@@ -6,7 +6,6 @@ Experimentation folder using GPT4ALL on my Mac Mini M2
 
 Download Note*: By default, models are stored in `~/.cache/gpt4all/` (you can change this with model_path). If the file already exists, model download will be skipped.
 
-
 ## Pipenv
 
 ### Usage
