@@ -2,6 +2,15 @@
 
 Experimentation folder using GPT4ALL on my Mac Mini M2
 
+## TODO
+
+- [ ] convert to monorepo
+  - [ ] syncabook
+  - gpt4all
+    - [ ] make python3.10 compatible (glob/hidden)
+    - [ ] write level 0 as json text files
+    - [ ] iterate up the levels (create if not exists on results)
+
 ## GPT4All
 
 Download Note*: By default, models are stored in `~/.cache/gpt4all/` (you can change this with model_path). If the file already exists, model download will be skipped.
