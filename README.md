@@ -40,12 +40,16 @@ Download Note\*: By default, models are stored in `~/.cache/gpt4all/` (you can c
 ```bash
 cd ext-repos
 git clone git@github.com:r4victor/syncabook.git
+# or
+git clone https://github.com/r4victor/syncabook.git
 ```
 
 ### gmessage
 
 ```bash
 git clone git@github.com:drbh/gmessage.git
+# or
+git clone https://github.com/drbh/gmessage.git
 cd gmessage
 docker build -t gmessage .
 docker run -p 10999:10999 gmessage
