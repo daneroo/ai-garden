@@ -1,20 +1,22 @@
-import gpt4all
+from gpt4all import GPT4All
 from bs4 import BeautifulSoup
 import glob
 import time
 
-# gptj = gpt4all.GPT4All("ggml-gpt4all-j-v1.3-groovy")
+# $ ls ~/.cache/gpt4all/ggml-*
+# ggml-gpt4all-j-v1.3-groovy.bin  ggml-gpt4all-l13b-snoozy.bin    ggml-vicuna-13b-1.1-q4_2.bin
+
+# gptj =         GPT4All("ggml-gpt4all-j-v1.3-groovy")
+# gptj = GPT4All("ggml-gpt4all-j-v1.3-groovy")
 # describe vicuna-13b
-# gptj = gpt4all.GPT4All("ggml-vicuna-13b-1.1-q4_2")
+# gptj = GPT4All("ggml-vicuna-13b-1.1-q4_2")
 # bestLlama
-gptj = gpt4all.GPT4All("ggml-gpt4all-l13b-snoozy.bin")
+# gptj = GPT4All("ggml-gpt4all-l13b-snoozy.bin")
+gptj = GPT4All("/Users/daniel/.cache/gpt4all/ggml-gpt4all-l13b-snoozy.bin")
+messages = [{"role": "user", "content": "Name 3 colors"}]
+gptj.chat_completion(messages)
 
-
-# messages = [{"role": "user", "content": "Name 3 colors"}]
-# gptj.chat_completion(messages)
-
-# print(f"models :{ gptj.list_models() }")
-
+# print(f"models :{ gptj.list_models() }")    
 
 def extract_text_from_html_file(file_path):
     """
@@ -110,4 +112,4 @@ def summarize_first_lines_in_files(file_glob, nFiles, maxSegmentLen=6000):
                 print("_______")
 
 
-summarize_first_lines_in_files("books/heroes/.html_split_*", 10000)
+# summarize_first_lines_in_files("books/heroes/.html_split_*", 10000)

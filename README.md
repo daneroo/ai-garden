@@ -2,6 +2,9 @@
 
 Experimentation folder using GPT4ALL on my Mac Mini M2
 
+GPT4all'a native Mac App stores it's models in `/Users/daniel/Library/Application Support/nomic.ai/GPT4All/`
+The python module stores them in `/Users/daniel/.cache/gpt4all/`
+
 ## TODO
 
 - [ ] convert to monorepo
@@ -11,6 +14,17 @@ Experimentation folder using GPT4ALL on my Mac Mini M2
     - [ ] write level 0 as json text files
     - [ ] iterate up the levels (create if not exists on results)
 
+## Gpt4All - openai
+
+Using [GPT4All Chat UI - API](https://docs.gpt4all.io/gpt4all_chat.html#server-mode)
+We can also use [openai node module](https://github.com/openai/openai-node) to talk to the local App:
+
+see `./gpt4all-openai`
+
+```bash
+pnpm add openai
+```
+
 ## GPT4All
 
 Download Note\*: By default, models are stored in `~/.cache/gpt4all/` (you can change this with model_path). If the file already exists, model download will be skipped.
@@ -19,8 +33,10 @@ Download Note\*: By default, models are stored in `~/.cache/gpt4all/` (you can c
 
 ### Usage
 
-- `pipenv shell`
-- `pipenv install`
+```bash
+pipenv shell
+pipenv install
+python --version
 
 ### Setup / My docs
 
@@ -35,6 +51,20 @@ Download Note\*: By default, models are stored in `~/.cache/gpt4all/` (you can c
 
 ## External Repos
 
+### gpt4all
+
+There is a branch (PR for now <https://github.com/nomic-ai/gpt4all/pull/839>)
+With a new gpt4all-api subproject
+
+```bash
+git clone git@github.com:nomic-ai/gpt4all.git
+# or git clone https://github.com/nomic-ai/gpt4all.git
+# look into the feature branch 'till merged
+git checkout gpt4all-api
+cd gpt4all-api
+
+```
+
 ### syncabook
 
 ```bash
@@ -44,19 +74,8 @@ git clone git@github.com:r4victor/syncabook.git
 git clone https://github.com/r4victor/syncabook.git
 ```
 
-### gmessage
-
-```bash
-git clone git@github.com:drbh/gmessage.git
-# or
-git clone https://github.com/drbh/gmessage.git
-cd gmessage
-docker build -t gmessage .
-docker run -p 10999:10999 gmessage
-
 ## References
 
 - [GPT4All docs](https://docs.gpt4all.io)
 - [syncabook](https://github.com/r4victor/syncabook)
 - [Dockerized gpt4all invoke with golang](https://github.com/drbh/gmessage)
-```
