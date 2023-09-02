@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "workshop-5"
+version = "0.1.0"
+description = ""
+authors = ["Daniel Lauzon <daniel.lauzon@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.x"
+pinecone-client = "2.2.2"
+openai = "^0.28.0"
+tiktoken = "^0.4.0"
+# given: langchain = "^0.0.276" wont update automatically, let's be more permissive
+# but let's re-evaluate if we get to 0.1.x
+langchain = ">=0.0.276, <0.1.0"
+unstructured = "^0.10.8"
+python-dotenv = "^1.0.0"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+flake8 = "^6.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
