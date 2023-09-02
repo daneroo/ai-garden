@@ -57,10 +57,12 @@ documents = loader.load()
 text_splitter = CharacterTextSplitter(chunk_size=1350, chunk_overlap=140)
 docs = text_splitter.split_documents(documents)
 
+# Initialize the embeddings and vectorstore
 embeddings = OpenAIEmbeddings()
 pinecone_langchain_vectorstore = Pinecone.from_existing_index(
     pinecone_index_name, embeddings
 )
+# Upsert the documents into the vectorstore
 pinecone_langchain_vectorstore.add_documents(docs)
 
 llm = ChatOpenAI(
@@ -71,5 +73,21 @@ llm = ChatOpenAI(
 qa = RetrievalQA.from_chain_type(
     llm=llm, chain_type="stuff", retriever=pinecone_langchain_vectorstore.as_retriever()
 )
+
+# Q & A
+print("\nQ & A\n")
+questions = [
+    "What is Huberman's view on health?",
+    "What does Huberman say about humility?",
+    "Find an interesting quote from the text.",
+    # add other questions as needed
+]
+
+for question in questions:
+    answer = qa.run(question)
+    print(f"Q: {question}")
+    print(f"A: {answer}\n")
+
+
 result = qa.run("What is Huberman's view on health")
 print(result)
