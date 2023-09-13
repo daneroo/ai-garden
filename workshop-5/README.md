@@ -1,4 +1,4 @@
-# Workshop 5 - Pinecone & LangChain
+# Workshop 5 - OpenAI, Pinecone & LangChain
 
 ## Operations
 

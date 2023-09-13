@@ -1,9 +1,19 @@
-# GPT4all
+# ai-garden
 
-Experimentation folder using GPT4ALL on my Mac Mini M2
+- poetry based projects for experimenting with ai and related data gathering
+  - Workshop 5 - OpenAI, Pinecone & LangChain
+- Legacy
+  - Experimentation folder using GPT4ALL on my Mac Mini M2
+  - gpt4all-node-openai-api: node.js call to GPT4ALL App (Enable API:true port:4891)
 
 GPT4all'a native Mac App stores it's models in `/Users/daniel/Library/Application Support/nomic.ai/GPT4All/`
 The python module stores them in `/Users/daniel/.cache/gpt4all/`
+
+## Operations
+
+- We will use poetry for dep management and virtual envs
+- We will use `just`/`Justfile` for task automation (see workshop-5 for initial template)
+- Credentials (when needed) are stored in gitignored `.../.env` (not checked in)
 
 ## TODO
 
@@ -33,7 +43,7 @@ Download Note\*: By default, models are stored in `~/.cache/gpt4all/` (you can c
 
 ### Usage
 
-```bash
+````bash
 pipenv shell
 pipenv install
 python --version
@@ -63,7 +73,7 @@ git clone git@github.com:nomic-ai/gpt4all.git
 git checkout gpt4all-api
 cd gpt4all-api
 
-```
+````
 
 ### syncabook
 
