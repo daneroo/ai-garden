@@ -39,25 +39,29 @@ pnpm add openai
 
 Download Note\*: By default, models are stored in `~/.cache/gpt4all/` (you can change this with model_path). If the file already exists, model download will be skipped.
 
-## Pipenv
+## Poetry
 
-### Usage
+```bash
+# init (once)
+poetry init
 
-````bash
-pipenv shell
-pipenv install
-python --version
+# update / use
+poetry install
+# add a dependency
+poetry add yourdep
 
-### Setup / My docs
 
-- Install `pipenv` by running `brew install pipenv`.
-- Run `pipenv install --dev` to create a new virtual environment and a `Pipfile` with development dependencies.
-- Activate the virtual environment with `pipenv shell`.
-- Run a command inside the virtual environment with `pipenv run`.
-- Deactivate the virtual environment with `exit`.
-- Add a dependency: `pipenv install gpt4all`
-- To list/show the virtual environment: `pipenv --venv`
-- To cleanup/remove the virtual environment: `pipenv --rm`
+poetry env info
+# show envs and activated status
+poetry env list
+
+poetry shell
+
+poetry run python main.py
+
+# cleanup
+poetry env remove
+```
 
 ## External Repos
 
@@ -73,7 +77,7 @@ git clone git@github.com:nomic-ai/gpt4all.git
 git checkout gpt4all-api
 cd gpt4all-api
 
-````
+```
 
 ### syncabook
 

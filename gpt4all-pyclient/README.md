@@ -1,26 +1,10 @@
 # GPT4all - python bindings
 
-Download Note\*: By default, models are stored in `~/.cache/gpt4all/` (you can change this with model_path). If the file already exists, model download will be skipped.
+By default, gpt4all models are stored in `~/.cache/gpt4all/`
+but you can change this with model_path.
 
-## Pipenv
+These models are the same as the GPT4All App's models,
+which are located at `~/Library/Application\ Support/nomic.ai/GPT4All/`,
+although they are name differently there.
 
-### Usage
-
-```bash
-pipenv shell
-pipenv install
-python --version
-
-python main.py
-
-## initial setup
-brew install pipenv
-pipenv shell
-# - Add a dependency: 
-pipenv install gpt4all
-
-# - To list/show the virtual environment:
-pipenv --venv
-# - To cleanup/remove the virtual environment; after exit
-pipenv --rm
-```
+If the file already exists, model download will be skipped.
