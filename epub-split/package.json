@@ -1,0 +1,17 @@
+{
+  "name": "epub-split",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@gxl/epub-parser": "^2.0.4",
+    "@root/walk": "^1.1.0",
+    "epubjs": "^0.3.93"
+  }
+}
