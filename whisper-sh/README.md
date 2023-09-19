@@ -1,5 +1,6 @@
 # Whisper.cpp invocation
 
+This is just a coordination script.
 We keep the [whisper.cpp](https://github.com/daneroo/whisper.cpp/tree/master) in `external-repos`
 
 As of 2023-09-16 I can;t get bindings/go to work on the mac mini,
@@ -8,16 +9,52 @@ so I have reverted to using the `main` binary.
 We want to:
 
 - process `.m4b` files directly
-- process wav files by appropriately sized chunks
+- process wav
+- produce SRT/VTT/JSON
 
 ## TODO
 
-- [ ] Move my fork into into ai-garden/external-repos
-- [ ] Run the examples from the top level and `main` binary
-- [ ] Do some benchmarks
-  - [ ] `./main -f -` works, so I can ffmpeg -o wav in a pipe
+- [ ] Do some benchmarks (including Core ML support)
+  - [x] Metal support (galois)
+  - [ ] Core ML support (galois, feynman)
+  - [ ] Validate on Mac x86_64 (feynman)
+  - [ ] Validate on Linux (VM/Docker)
+- [x] Move my fork into into ai-garden/external-repos
+- [x] Run the examples from the top level and `main` binary
 
 ## Operation
+
+We created the `whisper.sh` script to coordinate the invocation of the `main` binary,
+as well as attendant ffmpeg commands to produce intermediate `.wav` files.
+
+We invoke our script with the root path to the `.m4b` files we want to transcribe.
+From there the .wav files are created and transcribed.
+
+```bash
+ ./whisper.sh /Volumes/Reading/audiobooks/Joe\ Abercrombie\ -\ The\ First\ Law/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself
+```
+
+## Setup (whisper.cpp)
+
+### Whisper.cpp clone and/ort update
+
+The upstream repo [whisper.cpp](https://github.com/daneroo/whisper.cpp/tree/master) in `external-repos`
+
+We might want to periodically update the repo and models.
+
+```bash
+# clone the repo
+cd external-repos/
+git clone git@github.com:ggerganov/whisper.cpp.git
+cd whisper.cpp
+
+# update the repo
+git pull
+```
+
+### Get some models
+
+The models are stored in `external-repos/whisper.cpp/models/`.
 
 ```bash
 # get some models (.en) tiny.en base.en small.en medium.en (no large.en)
@@ -29,12 +66,13 @@ bash ./models/download-ggml-model.sh small.en
 bash ./models/download-ggml-model.sh medium.en
 
 du -sm models/ggml*bin|sort -n
-89      models/ggml-tiny.en.bin
-149     models/ggml-base.en.bin
-476     models/ggml-small.en.bin
-1468    models/ggml-medium.en.bin
-
+75 models/ggml-tiny.en.bin
+145 models/ggml-base.en.bin
+469 models/ggml-small.en.bin
+1468 models/ggml-medium.en.bin
 ```
+
+### Build the main binary
 
 ```bash
 make clean

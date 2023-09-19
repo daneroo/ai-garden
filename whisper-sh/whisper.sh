@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+OUTDIR="$HOME/Downloads/WhisperCPPContent"
+# reliably get this script's directory as an absolute path
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+WHISPER_HOME="${SCRIPT_DIR}/../external-repos/whisper.cpp"
+WHISPER_HOME="$( cd "${SCRIPT_DIR}/../external-repos/whisper.cpp" && pwd )"
+WHISPER_EXEC="$WHISPER_HOME/main"
+WHISPER_MODELS="${WHISPER_HOME}/models"
+
+# Script parameter: BASEDIR
+BASEDIR="$1"
+
 convert_to_wav() {
     local m4b="$1"
     local wav="$2"
@@ -28,7 +39,6 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-BASEDIR="$1"
 
 # Check if BASEDIR is a directory
 if [[ ! -d "${BASEDIR}" ]]; then
@@ -36,10 +46,18 @@ if [[ ! -d "${BASEDIR}" ]]; then
     exit 1
 fi
 
-OUTDIR="$HOME/Downloads/MacWhisperContent"
-WHISPER_HOME="$HOME/Downloads/whisper.cpp"
-WHISPER_EXEC="$WHISPER_HOME/main"
-WHISPER_MODELS="$HOME/Downloads/whisper.cpp/models"
+# is we wanted more verbose output, we could do this:
+echo "OUTDIR: ${OUTDIR}"
+echo "SCRIPT_DIR: ${SCRIPT_DIR}"
+echo "WHISPER_HOME: ${WHISPER_HOME}"
+echo "WHISPER_EXEC: ${WHISPER_EXEC}"
+
+# Check if OUTDIR exists, if not create it, exit on error
+# We could also just exit with error if OUTDIR does not exist
+if [[ ! -d "${OUTDIR}" ]]; then
+    echo "Creating OUTDIR ${OUTDIR}"
+    mkdir -p "${OUTDIR}" || exit 1
+fi
 
 echo "# Scanning for .m4b in ${BASEDIR}"
 
