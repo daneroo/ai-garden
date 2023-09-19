@@ -17,7 +17,9 @@ We want to:
 - [ ] Do some benchmarks (including Core ML support)
   - [x] Metal support (galois)
   - [ ] Core ML support (galois, feynman)
-  - [ ] Validate on Mac x86_64 (feynman)
+  - [ ] Validate on Mac x86_64
+    - [ ] feynman - AMD Radeon RX 580 - Not working
+    - [ ] dirac - Not working
   - [ ] Validate on Linux (VM/Docker)
 - [x] Move my fork into into ai-garden/external-repos
 - [x] Run the examples from the top level and `main` binary
