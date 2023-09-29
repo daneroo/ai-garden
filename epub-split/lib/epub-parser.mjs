@@ -1,11 +1,11 @@
 import { parseEpub } from "@gxl/epub-parser";
 
 export async function show(bookPath) {
-  const toc = await getEPubParserTOC(bookPath);
-  showEPubParserTOC(toc);
+  const toc = await getTOC(bookPath);
+  showTOC(toc);
 }
 
-function showEPubParserTOC(toc, level = 0) {
+function showTOC(toc, level = 0) {
   // These are the (nested elements) of the (await parseEpub())?.structure
   // {
   //   "name": "BOOK THREE",
@@ -27,11 +27,12 @@ function showEPubParserTOC(toc, level = 0) {
     const indent = " ".repeat(level * 2);
     console.log(`${indent}- ${item?.name} (#${item?.playOrder})`);
     if (item.children) {
-      showEPubParserTOC(item.children, level + 1);
+      showTOC(item.children, level + 1);
     }
   });
 }
-async function getEPubParserTOC(bookPath) {
+
+async function getTOC(bookPath) {
   const epubObj = await parseEpub(bookPath, {
     type: "path",
   });
