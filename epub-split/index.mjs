@@ -18,7 +18,7 @@ async function main() {
   console.log(
     `# Extracting structure and content of ePub books with ${
       useEpubParser ? "epub-parser" : "epubjs"
-    }`
+    }\n`
   );
   console.log(`Searching books in ${defaultRootPath}...`);
   const bookPaths = await findBookPaths(defaultRootPath);
@@ -49,6 +49,7 @@ async function main() {
 }
 
 function showEPubParserTOC(toc, level = 0) {
+  // These are the (nested elements) of the (await parseEpub())?.structure
   // {
   //   "name": "BOOK THREE",
   //   "path": "Text/part0005.html",
@@ -98,7 +99,8 @@ async function getEPubParserTOC(bookPath) {
   // ****
   // console.log("book info", epubObj.info);
   // console.log("the book has", epubObj.sections.length, "sections");
-
+  // console.log(epubObj.sections);
+  // console.log(epubObj.sections[0]);
   // const showSection = (idx) => {
   //   const section = epubObj.sections[idx];
   //   console.log(`-------- section index ${idx} (id=${section?.id}) --------`);

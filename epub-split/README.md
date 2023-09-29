@@ -10,3 +10,8 @@ Objectives (for now):
 
 - [x] extract TOC structure
 - [ ] extract First sentences from each "chapter"
+
+## References
+
+- [epubjs ^0.3.93](https://github.com/futurepress/epub.js)
+- [@gxl/epub-parser ^2.0.4](https://github.com/gaoxiaoliangz/epub-parser)
