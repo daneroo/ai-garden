@@ -4,7 +4,7 @@ import { show as showEpubJS } from "./lib/epubjs-playwright.mjs";
 import { show as showEPubParser } from "./lib/epub-parser.mjs";
 
 // until we resolve epubjs issues from node.
-const useEpubParser = true;
+const useEpubParser = false;
 
 const defaultRootPath =
   "/Users/daniel/Library/CloudStorage/Dropbox/A-Reading/EBook";
