@@ -18,8 +18,11 @@ My static html file starter was from the [spread example](https://github.com/fut
 ## Operation
 
 ```bash
+ln -s /Volumes/Reading/audiobooks html/audiobooks
 pnpx serve html/
 open http://localhost:3000/
+open http://localhost:3000/audiobooks/
+open http://localhost:3000/?url=/audiobooks/Tom%20Holland%20-%20Pax/Tom%20Holland%20-%20Pax.epub
 ```
 
 ## References

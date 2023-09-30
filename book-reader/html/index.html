@@ -17,7 +17,8 @@
 
     <!-- unpkg -->
     <script src="https://unpkg.com/jszip@3.1.5/dist/jszip.min.js"></script>
-    <script src="https://unpkg.com/epubjs@0.3.93/dist/epub.min.js"></script>
+    <!-- <script src="https://unpkg.com/epubjs@0.3.93/dist/epub.min.js"></script> -->
+    <script src="https://unpkg.com/epubjs@0.3.93/dist/epub.js"></script>
 
     <link rel="stylesheet" type="text/css" href="examples.css" />
   </head>
@@ -159,7 +160,11 @@
       });
 
       book.loaded.navigation.then(async function (toc) {
-        showTOC(toc);
+        try {
+          showTOC(toc);
+        } catch (error) {
+          console.error(error);
+        }
 
         var $select = document.getElementById("toc"),
           docfrag = document.createDocumentFragment();
@@ -192,18 +197,22 @@
           // console.log(section);
           // Section.load(_request: method?) needs a requestor function
           // and returns a HTMLHtmlElement
-          const contents = await section.load(book.load.bind(book));
-          const textContent = contents.textContent;
-          const cleanedContent = textContent
-            // .replace(/\s+/g, " ") // Replace multiple spaces with a single space
-            .replace(/\n+/g, "\n") // Replace multiple newlines with a single newline
-            .trim(); // Remove leading and trailing whitespace
+          if (section) {
+            const contents = await section.load(book.load.bind(book));
+            const textContent = contents.textContent;
+            const cleanedContent = textContent
+              // .replace(/\s+/g, " ") // Replace multiple spaces with a single space
+              .replace(/\n+/g, "\n") // Replace multiple newlines with a single newline
+              .trim(); // Remove leading and trailing whitespace
 
-          console.log(
-            `contents of ${href} (${label})[${
-              textContent.length
-            }]\n${cleanedContent.slice(0, 100)}...`
-          );
+            console.log(
+              `contents of ${href} (${label})[${
+                textContent.length
+              }]\n${cleanedContent.slice(0, 100)}...`
+            );
+          } else {
+            console.log(`section ${href} not found`);
+          }
         });
       }
     </script>
