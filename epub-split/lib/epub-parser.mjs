@@ -35,6 +35,7 @@ function showTOC(toc, level = 0) {
 async function getTOC(bookPath) {
   const epubObj = await parseEpub(bookPath, {
     type: "path",
+    expand: true, // should help but doesn't seem to
   });
   // console.log("epubObj:", epubObj);
   // console.log("TOC :", epubObj.structure);
@@ -54,6 +55,8 @@ async function getTOC(bookPath) {
 
   // ****
   // Exploring the sections and markdown content
+  //  **I cannot link the sections to the structure**
+  //  Even with the new parseEpub(path, {expand: true})
   // ****
   // console.log("book info", epubObj.info);
   // console.log("the book has", epubObj.sections.length, "sections");

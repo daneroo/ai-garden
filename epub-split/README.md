@@ -10,6 +10,8 @@ Objectives (for now):
 
 - [x] extract TOC structure
 - [ ] extract First sentences from each "chapter"
+  - [ ] epubjs works for Two Towers, but not Pax
+  - [ ] epub-parser has content (markdown) in sections, but _I_ cannot link spine(structure) to sections(content)
 
 ## References
 
