@@ -15,16 +15,22 @@ function showTOC(toc, level = 0) {
   //   "label": "\r\n        COPYRIGHT\r\n      ",
   //   "subitems": []
   //   "parent": "8a3b7da4-92e6-45e8-b523-8b018dc12000" | undefined
+  //   "textContent": "..."
   // }
+  const indent = " ".repeat(level * 2);
   toc.forEach((item) => {
     // print the indented title of the item *trimmed* (remove leading and trailing whitespace)
-    const indent = " ".repeat(level * 2);
     console.log(`${indent}- ${item.label.trim()} (${item?.href})`);
-    // if item has .cleanedContent, print it
-    if (item.cleanedContent) {
+    // if item has textContent, print it
+    if (item.textContent) {
+      const cleanedContent = item.textContent
+        .replace(/\s+/g, " ") // Replace multiple spaces with a single space
+        .replace(/\n+/g, "\n") // Replace multiple newlines with a single newline
+        .trim(); // Remove leading and trailing whitespace
+
       console.log(
-        `${indent}    ${item.cleanedContent.slice(0, 50)}${
-          item.cleanedContent.length > 50 ? "..." : ""
+        `${indent}    ${cleanedContent.slice(0, 80)}${
+          cleanedContent.length > 50 ? "..." : ""
         }`
       );
     }
@@ -86,7 +92,7 @@ async function getTOC(bookPath) {
 
     // This will add textContent to each entry in the toc (and it;s children)
     // TODO(daneroo): standardize shape of returned entry?
-    async function augmentEntryAndChildren(entry) {
+    async function augmentEntriesAndChildren(entries) {
       // {
       //   "id": "8a3b7da4-92e6-45e8-b523-8b018dc12000",
       //   "href": "Text/part0030.html",
@@ -94,28 +100,37 @@ async function getTOC(bookPath) {
       //   "subitems": []
       //   "parent": "8a3b7da4-92e6-45e8-b523-8b018dc12000" | undefined
       // }
-      const { id, href, label, subitems, parent } = entry;
+      const newEntries = [];
+      for (let entry of entries) {
+        const { id, href, label, subitems, parent } = entry;
 
-      const section = book.spine.get(href);
-      // console.log(section);
-      // Section.load(_request: method?) needs a requestor function
-      // and returns a HTMLHtmlElement
-      const contents = await section.load(book.load.bind(book));
-      const textContent = contents.textContent;
-      const cleanedContent = textContent
-        .replace(/\s+/g, " ") // Replace multiple spaces with a single space
-        .replace(/\n+/g, "\n") // Replace multiple newlines with a single newline
-        .trim(); // Remove leading and trailing whitespace
+        // console.log(`debug:augmenting ${label.trim()} (${href}) id:${id}`);
+        const section = book.spine.get(href);
+        // console.log(`debug:section ${section}`);
+        // Section.load(_request: method?) needs a requestor function
+        // and returns a HTMLHtmlElement
+        const contents = section
+          ? await section.load(book.load.bind(book))
+          : undefined;
+        const textContent = contents ? contents.textContent : undefined;
 
-      return {
-        id,
-        href,
-        label,
-        subitems,
-        parent,
-        textContent,
-        cleanedContent,
-      };
+        // debug section not found
+        // if (!section) {
+        //   console.log(`debug:section not found for ${href}`);
+        //   console.log(`debug:spine`, book.spine);
+        // }
+
+        newSubitems = await augmentEntriesAndChildren(subitems);
+        newEntries.push({
+          id,
+          href,
+          label,
+          subitems: newSubitems,
+          parent,
+          textContent,
+        });
+      }
+      return newEntries;
     }
     const buffer = base64ToArrayBuffer(base64Buffer);
 
@@ -123,25 +138,25 @@ async function getTOC(bookPath) {
     // Now use ePub with this ArrayBuffer
     const book = ePub(buffer);
 
-    // ... additional processing ...
     await book.opened;
+    // there are other states we can await; spine,cover,metadata,..
     await book.loaded.navigation;
+    await book.loaded.spine;
 
-    // console.log("book", book);
-    // console.log("spine", book.spine);
-    // console.log("package", book.package);
-    // navigation
-    // console.log("navigation", book.navigation);
-    // console.log("navigation.toc", JSON.stringify(book.navigation.toc, null, 2));
-
+    // console.log("debug:spine");
+    // book.spine.each((item) => {
+    //   // [idref, linear, properties, index, href, url, canonical, next, prev, cfiBase, hooks, document, contents, output]
+    //   const { idref, href, url, canonical } = item;
+    //   console.log(
+    //     "debug:spine:item",
+    //     JSON.stringify({ idref, href, url, canonical }, null, 2)
+    //   );
+    // });
     // book.navigation.toc is not actually an array, it just has a forEach method
     const toc = [];
     book.navigation.toc.forEach((item) => toc.push(item));
 
-    const newTOC = [];
-    for (let chapter of toc) {
-      newTOC.push(await augmentEntryAndChildren(chapter));
-    }
+    const newTOC = await augmentEntriesAndChildren(toc);
     return newTOC;
   }, base64Buffer);
 
