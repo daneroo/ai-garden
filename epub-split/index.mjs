@@ -11,6 +11,7 @@ const defaultRootPath =
 
 try {
   await main();
+  exit(0);
 } catch (error) {
   console.error("Error:", error.message);
   exit(1);
@@ -32,6 +33,11 @@ async function main() {
       default: "epubjs",
       describe: "Parse epub files withe the given library",
     })
+    .option("search", {
+      alias: "s",
+      type: "string",
+      describe: "Search for books with a matching name",
+    })
     .count("verbose")
     .alias("v", "verbose")
     .help()
@@ -40,7 +46,12 @@ async function main() {
     .parseAsync();
 
   // destructure arguments
-  const { rootPath: unverifiedRootPath, verbose: verbosity, parser } = argv;
+  const {
+    rootPath: unverifiedRootPath,
+    verbose: verbosity,
+    parser,
+    search,
+  } = argv;
 
   // clean the root path by removing trailing slash
   const rootPath = unverifiedRootPath.replace(/\/$/, "");
@@ -51,14 +62,15 @@ async function main() {
   const bookPaths = await findBookPaths(rootPath);
   console.log(`Found ${bookPaths.length} books.`);
 
-  // find any books with a matching name (case insensitive)
-  const matchingBookPaths = bookPaths.filter((book) => {
-    const regex = /two towers/i;
-    // const regex = /pax/i;
-    // const regex = /space 01/i;
-    return regex.test(book);
-    // return true || regex.test(book);
-  });
+  // find any books matching search criteria (case insensitive)
+  // if no search criteria is specified, use all books
+  const matchingBookPaths = search
+    ? bookPaths.filter((book) => {
+        // make a regex from a search string
+        const regex = new RegExp(search, "i");
+        return regex.test(book);
+      })
+    : bookPaths;
   console.log(`Found ${matchingBookPaths.length} matching books.`);
 
   for (const bookPath of matchingBookPaths) {
