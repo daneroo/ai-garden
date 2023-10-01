@@ -5,7 +5,22 @@ import { Book } from "epubjs";
 
 export async function show(bookPath) {
   const toc = await getTOC(bookPath);
+  // showWarnings(toc);
   showTOC(toc);
+}
+
+// clone of showTOC, but just for warnings
+function showWarnings(toc, level = 0) {
+  const indent = " ".repeat(level * 2);
+  toc.forEach((item) => {
+    if (item.warning) {
+      console.log(`${indent}- ${item.label.trim()} (${item?.href})`);
+      console.log(`${indent} ** ${item.warning}`);
+    }
+    if (item.subitems) {
+      showWarnings(item.subitems, level + 1);
+    }
+  });
 }
 
 function showTOC(toc, level = 0) {
@@ -33,6 +48,9 @@ function showTOC(toc, level = 0) {
           cleanedContent.length > 50 ? "..." : ""
         }`
       );
+    }
+    if (item.warning) {
+      console.log(`${indent} ** ${item.warning}`);
     }
     if (item.subitems) {
       showTOC(item.subitems, level + 1);
@@ -104,21 +122,58 @@ async function getTOC(bookPath) {
       for (let entry of entries) {
         const { id, href, label, subitems, parent } = entry;
 
-        // console.log(`debug:augmenting ${label.trim()} (${href}) id:${id}`);
-        const section = book.spine.get(href);
+        // console.log(`debug:augmenting ${label.trim()} href:${href} id:${id}`);
+        // preventative check for href
+        let fixedHref = href;
+        if (!book.spine.spineByHref.hasOwnProperty(href)) {
+          // For an old version of Pax, href:bm01.xhtml#bm1 is not in the spineByHref, but xhtml/bm01.xhtml is. Also: there is no spine.baseUrl
+          // Let's clean the fragment
+          fixedHref = href.split("#")[0];
+          // const pathname = new URL(href, book.spine.baseUrl).pathname; // and remove leading slash
+          // console.log(`debug:section:fixedHref ${href} -> ${fixedHref}`);
+          if (!book.spine.spineByHref.hasOwnProperty(fixedHref)) {
+            // console.log(`debug:section:fixedHref ${fixedHref} still not found`);
+            // check if any key in spineByHref ends with fixedHref
+            const keys = Object.keys(book.spine.spineByHref);
+            const foundHref = keys.find((key) => key.endsWith(fixedHref));
+            if (foundHref) {
+              // console.log(`debug:section:fixedHref ${foundHref}`);
+              fixedHref = foundHref;
+            }
+          }
+        }
+
+        const section = book.spine.get(fixedHref);
+        // This might have been another option to get the section (by Id)
+        // const section = book.spine.get(`#${id}`);
         // console.log(`debug:section ${section}`);
+        if (!section) {
+          console.log(`debug:section not found for href:${href} id:${id}`);
+          // console.log(`debug:spine.spineItems`, book.spine.spineItems.length);
+          // console.log(`debug:spine.baseUrl:|${book.spine.baseUrl}|`);
+          // console.log(
+          //   `debug:spine.spineByHref`,
+          //   Object.keys(book.spine.spineByHref)
+          // );
+          // console.log(
+          //   `debug:spine.spineById`,
+          //   Object.keys(book.spine.spineById)
+          // );
+        }
         // Section.load(_request: method?) needs a requestor function
         // and returns a HTMLHtmlElement
         const contents = section
           ? await section.load(book.load.bind(book))
           : undefined;
-        const textContent = contents ? contents.textContent : undefined;
 
-        // debug section not found
-        // if (!section) {
-        //   console.log(`debug:section not found for ${href}`);
-        //   console.log(`debug:spine`, book.spine);
-        // }
+        // contents is a HTMLHtmlElement | undefined
+        // if contents has a body, use that, otherwise use contents direclty
+        const bodyElement = contents?.querySelector("body");
+        const textContent = bodyElement
+          ? bodyElement.textContent
+          : contents
+          ? contents.textContent
+          : undefined;
 
         newSubitems = await augmentEntriesAndChildren(subitems);
         newEntries.push({
@@ -128,6 +183,7 @@ async function getTOC(bookPath) {
           subitems: newSubitems,
           parent,
           textContent,
+          ...(!section ? { warning: `section not found for ${href}` } : {}),
         });
       }
       return newEntries;
