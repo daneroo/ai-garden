@@ -1,6 +1,6 @@
 import yargs from "yargs/yargs";
 import { walk } from "@root/walk";
-import { basename, extname } from "node:path";
+import { extname } from "node:path";
 import { show as showEpubJS } from "./lib/epubjs-playwright.mjs";
 import { show as showEPubParser } from "./lib/epub-parser.mjs";
 import { exit } from "node:process";
@@ -74,7 +74,6 @@ async function main() {
   console.log(`Found ${matchingBookPaths.length} matching books.`);
 
   for (const bookPath of matchingBookPaths) {
-    console.log(`\n## ${basename(bookPath)}\n`);
     try {
       if (parser === "epub-parser") {
         await showEPubParser(bookPath);
@@ -84,7 +83,7 @@ async function main() {
         throw new Error(`Unknown parser: ${parser}`);
       }
     } catch (error) {
-      console.error("MyCatch: Error:", error.message);
+      console.error("Error:", error.message);
     }
   }
 }

@@ -1,6 +1,8 @@
 import { parseEpub } from "@gxl/epub-parser";
+import { basename } from "node:path";
 
 export async function show(bookPath) {
+  console.log(`\n## ${basename(bookPath)}\n`);
   const toc = await getTOC(bookPath);
   showTOC(toc);
 }
