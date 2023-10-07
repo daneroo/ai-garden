@@ -1,8 +1,51 @@
 import os
 from dotenv import load_dotenv
+import logging
+import sys
+from llama_index import TreeIndex, SimpleDirectoryReader
 
-load_dotenv()
+# from IPython.display import Markdown, display
 
-# Now you can access the variables using os.getenv
-my_var = os.getenv("OPENAI_API_KEY")
-print(f"OpenAI API Key: {my_var}")
+load_dotenv()  # get OPENAI_API_KEY
+
+
+def qAndA(query_engine, q):
+    print(f"Query: {q}")
+    response = query_engine.query(q)
+    print(f"Response: {response}")
+
+
+if os.getenv("OPENAI_API_KEY") is None or os.getenv("OPENAI_API_KEY") == "":
+    print("OPENAI_API_KEY is not set or empty, set it in your .env file")
+    sys.exit(1)
+
+
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+# logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+
+logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
+
+documents = SimpleDirectoryReader("data").load_data()
+new_index = TreeIndex.from_documents(documents)
+
+# set Logging to DEBUG for more detailed outputs
+query_engine = new_index.as_query_engine()
+
+print("\n# Basic examples")
+qAndA(query_engine, "What did the author do growing up?")
+qAndA(query_engine, "What did the author do after his time at Y Combinator?")
+
+# [Demo] Leaf traversal with child_branch_factor=2
+print("\n# Leaf traversal with child_branch_factor=2")
+query_engine = new_index.as_query_engine(child_branch_factor=2)
+qAndA(query_engine, "What did the author do growing up?")
+
+# [Demo] Build Tree Index during Query-Time
+print("\n# Build Tree Index during Query-Time")
+documents = SimpleDirectoryReader("data").load_data()
+index_light = TreeIndex.from_documents(documents, build_tree=False)
+query_engine = index_light.as_query_engine(
+    retriever_mode="all_leaf",
+    response_mode="tree_summarize",
+)
+qAndA(query_engine, "What did the author do after his time at Y Combinator?")
