@@ -10,6 +10,8 @@ python = "^3.11"
 ebooklib = "^0.18"
 html2text = "^2020.1.16"
 bs4 = "^0.0.1"
+llama-index = "^0.8.40"
+python-dotenv = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.9.1"
