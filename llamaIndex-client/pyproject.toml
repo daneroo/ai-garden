@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "llamaIndex-client"
+version = "0.1.0"
+description = "GPT4all - python bindings"
+authors = ["Daniel Lauzon <daniel.lauzon@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+ebooklib = "^0.18"
+html2text = "^2020.1.16"
+bs4 = "^0.0.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+flake8 = "^6.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
