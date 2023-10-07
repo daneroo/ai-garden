@@ -28,7 +28,7 @@ def get_content_for_href(book, href):
     text_maker.single_line_break = True
 
     # Split href into the base and fragment identifier
-    href_parts = href.split('#', 1)
+    href_parts = href.split("#", 1)
     href_without_fragment = href_parts[0]
     fragment = href_parts[1] if len(href_parts) > 1 else None
 
@@ -37,7 +37,7 @@ def get_content_for_href(book, href):
         return None  # Early return if no content item is found
 
     decoded_content = content_item.content.decode("utf-8")
-    
+
     # If we have a fragment, let's try to get the specific content
     if fragment:
         soup = BeautifulSoup(decoded_content, "html.parser")
@@ -54,11 +54,28 @@ def get_content_for_href(book, href):
 
     # Convert content to markdown
     markdown_content = text_maker.handle(content)
-    compact_content = re.sub(r'\s+', ' ', markdown_content).strip()
+    compact_content = re.sub(r"\s+", " ", markdown_content).strip()
     return compact_content
+
 
 def traverse_toc(toc, book, level=0):
     indent = "  " * level
+
+    # sometimes the whole toc is actually not a tree but a single leaf
+    # TODO(daneroo): refactor this so the content extraction is not duplicated
+    if isinstance(toc, ebooklib.epub.Link):
+        item = toc
+        print(f"{indent}{item.title} ({item.href}, Link/Leaf)")
+
+        # Get content for this item
+        compact_content = get_content_for_href(book, item.href)
+        if compact_content:
+            print(
+                f"{indent}   {compact_content[:75]}{'' if len(compact_content) < 75 else '...'}"
+            )
+        return
+
+    # traverse the tree
     for item in toc:
         if isinstance(item, ebooklib.epub.Link):
             print(f"{indent}{item.title} ({item.href}, Link/Leaf)")
@@ -75,6 +92,7 @@ def traverse_toc(toc, book, level=0):
             print(
                 f"{indent}{section.title} ({section.href if section.href else 'No Href'}, Section/Parent)"
             )
+            # TODO(daneroo): are there cases where we want to extract content from a (parent) section itself?
             traverse_toc(children, book, level + 1)
         else:
             print(
