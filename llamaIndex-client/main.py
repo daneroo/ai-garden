@@ -4,12 +4,24 @@ import logging
 import sys
 from llama_index import TreeIndex, SimpleDirectoryReader
 
-# from IPython.display import Markdown, display
+"""
+This example demonstrates llamaIndex-client usage with the openai API.
+"""
 
 load_dotenv()  # get OPENAI_API_KEY
 
 
 def qAndA(query_engine, q):
+    """
+    Prints the query and response for a given query engine and query.
+
+    Args:
+        query_engine (llama_index.QueryEngine): The query engine to use for the query.
+        q (str): The query string to use.
+
+    Returns:
+        None
+    """
     print(f"Query: {q}")
     response = query_engine.query(q)
     print(f"Response: {response}")
