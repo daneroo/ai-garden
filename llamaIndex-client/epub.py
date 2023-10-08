@@ -6,6 +6,11 @@ import html2text
 from ebooklib import epub
 from bs4 import BeautifulSoup
 
+"""
+This example demonstrates parsing all epub books under a root directory.
+This might serve as the basis to load all books into a llamaIndex
+"""
+
 
 default_root_path = "/Users/daniel/Library/CloudStorage/Dropbox/A-Reading/EBook"
 # const default_root_path =  "/Volumes/Reading/audiobooks/";
@@ -104,7 +109,7 @@ def traverse_toc(toc, book, level=0):
             )
 
 
-parser = argparse.ArgumentParser(description="Process some command line arguments.")
+parser = argparse.ArgumentParser(description="Parse ePub books from a directory root.")
 parser.add_argument("-l", "--list", action="store_true", help="List available models")
 parser.add_argument("-v", "--verbose", action="store_true", help="Print verbose output")
 parser.add_argument(
