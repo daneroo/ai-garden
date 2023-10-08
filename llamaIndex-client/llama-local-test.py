@@ -29,47 +29,47 @@ llm = LlamaCPP(
     verbose=False,
     # verbose=True,
 )
-print("\n# Loaded model\n")
+print("- Loaded model")
 
-print("\n## Simple Q&A\n")
+# print("\n## Simple Q&A\n")
 
-question = "Hello! Can you tell me a poem about cats and dogs?"
-print(f"Question: {question}")
-response = llm.complete("Hello! Can you tell me a poem about cats and dogs?")
-print(f"Response: {response.text}")
+# question = "Hello! Can you tell me a poem about cats and dogs?"
+# print(f"Question: {question}")
+# response = llm.complete("Hello! Can you tell me a poem about cats and dogs?")
+# print(f"Response: {response.text}")
 
-print("\n## Streaming Q&A\n")
+# print("\n## Streaming Q&A\n")
 
-question = "Can you write me a poem about fast cars?"
-print(f"Question: {question}")
-print(f"Answer: ", end="", flush=True)
-response_iter = llm.stream_complete(question)
-for response in response_iter:
-    print(response.delta, end="", flush=True)
+# question = "Can you write me a poem about fast cars?"
+# print(f"Question: {question}")
+# print(f"Answer: ", end="", flush=True)
+# response_iter = llm.stream_complete(question)
+# for response in response_iter:
+#     print(response.delta, end="", flush=True)
 
 from llama_index.embeddings import HuggingFaceEmbedding
 
 embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
-print("\n# Loaded embedding model\n")
+print("- Loaded embedding model")
 
 # create a service context
 service_context = ServiceContext.from_defaults(
     llm=llm,
     embed_model=embed_model,
 )
-print("\n# Created service context\n")
+print("- Created service context")
 
 # load documents
 documents = SimpleDirectoryReader("./data").load_data()
-print("\n# Loaded documents\n")
+print("- Loaded documents")
 
 # create vector store index
 index = VectorStoreIndex.from_documents(documents, service_context=service_context)
-print("\n# Created index\n")
+print("- Created index")
 
 # set up query engine
 query_engine = index.as_query_engine()
-print("\n# Created query engine\n")
+print("- Created query engine")
 
 question = "What did the author do growing up?"
 print(f"Question: {question}")

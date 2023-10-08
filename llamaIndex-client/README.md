@@ -1,6 +1,6 @@
 # llamaIndex - client example
 
-Just start by simulating the epub loader
+Just start by simulating the ePub loader
 
 ```bash
 just install
@@ -17,6 +17,8 @@ poetry run python llama-local-test.py
 ```
 
 ## llama-cpp-python
+
+_Note_: It seems this is not necessary. METAL seems to be detected automatically.
 
 I Need to figure out how to install this package with poetry directly.
 
