@@ -15,6 +15,7 @@ python-dotenv = "^1.0.0"
 llama-cpp-python = "^0.2.11"
 transformers = "^4.34.0"
 torch = "^2.1.0"
+rich = "^13.6.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.9.1"
