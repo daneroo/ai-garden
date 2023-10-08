@@ -46,3 +46,32 @@ print(f"Answer: ", end="", flush=True)
 response_iter = llm.stream_complete(question)
 for response in response_iter:
     print(response.delta, end="", flush=True)
+
+from llama_index.embeddings import HuggingFaceEmbedding
+
+embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
+print("\n# Loaded embedding model\n")
+
+# create a service context
+service_context = ServiceContext.from_defaults(
+    llm=llm,
+    embed_model=embed_model,
+)
+print("\n# Created service context\n")
+
+# load documents
+documents = SimpleDirectoryReader("./data").load_data()
+print("\n# Loaded documents\n")
+
+# create vector store index
+index = VectorStoreIndex.from_documents(documents, service_context=service_context)
+print("\n# Created index\n")
+
+# set up query engine
+query_engine = index.as_query_engine()
+print("\n# Created query engine\n")
+
+question = "What did the author do growing up?"
+print(f"Question: {question}")
+response = query_engine.query(question)
+print(f"Response: {response}")
