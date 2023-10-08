@@ -5,7 +5,8 @@ Just start by simulating the ePub loader
 ```bash
 just install
 just run -h
-just run -s memo
+just run -s memories
+time poetry run python epub.py -s memories
 ```
 
 ## llama-index

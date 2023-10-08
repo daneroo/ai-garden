@@ -58,45 +58,49 @@ def get_content_for_href(book, href):
     return compact_content
 
 
+# item is ebooklib.epub.Link or ebooklib.epub.Section
+def print_toc_item(indent, item, book):
+    # early return if item is not Link or Section
+    if not isinstance(item, ebooklib.epub.Link) and not isinstance(
+        item, ebooklib.epub.Section
+    ):
+        return
+
+    typeHint = "Link/Leaf" if isinstance(item, ebooklib.epub.Link) else "Section/Parent"
+    print(
+        f"{indent}- {item.title if item.title else 'No Title'} ({item.href if item.href else 'No Href'}, {typeHint})"
+    )
+
+    # Print content if it exists. This is probably only for Link/Leafs
+    compact_content = get_content_for_href(book, item.href)
+    if compact_content:
+        print(
+            f"{indent}    {compact_content[:75]}{'' if len(compact_content) < 75 else '...'}"
+        )
+
+
 def traverse_toc(toc, book, level=0):
     indent = "  " * level
 
     # sometimes the whole toc is actually not a tree but a single leaf
-    # TODO(daneroo): refactor this so the content extraction is not duplicated
+    # This should be flagged in validation
+    # e.g Redbreast, I Robot
     if isinstance(toc, ebooklib.epub.Link):
         item = toc
-        print(f"{indent}{item.title} ({item.href}, Link/Leaf)")
-
-        # Get content for this item
-        compact_content = get_content_for_href(book, item.href)
-        if compact_content:
-            print(
-                f"{indent}   {compact_content[:75]}{'' if len(compact_content) < 75 else '...'}"
-            )
+        print_toc_item(indent, item, book)
         return
 
     # traverse the tree
     for item in toc:
         if isinstance(item, ebooklib.epub.Link):
-            print(f"{indent}{item.title} ({item.href}, Link/Leaf)")
-
-            # Get content for this item
-            compact_content = get_content_for_href(book, item.href)
-            if compact_content:
-                print(
-                    f"{indent}   {compact_content[:75]}{'' if len(compact_content) < 75 else '...'}"
-                )
-
+            print_toc_item(indent, item, book)
         elif isinstance(item, tuple) and len(item) == 2:  # It's a section with children
             section, children = item
-            print(
-                f"{indent}{section.title} ({section.href if section.href else 'No Href'}, Section/Parent)"
-            )
-            # TODO(daneroo): are there cases where we want to extract content from a (parent) section itself?
+            print_toc_item(indent, section, book)
             traverse_toc(children, book, level + 1)
         else:
             print(
-                f"{indent}This should never happen: Unexpected type or structure in TOC: {item}"
+                f"{indent}This should never happen: Unexpected type or structure in TOC: ({type(item)}), {item}"
             )
 
 
