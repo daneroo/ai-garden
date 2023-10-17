@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>daneroo Logo</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffdab9; /* Lighter shade of orange */
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="90vmin" height="90vmin" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="70%" y2="100%">
+          <stop offset="0%" style="stop-color: orange; stop-opacity: 1" />
+          <stop offset="100%" style="stop-color: #ff8c00; stop-opacity: 1" />
+        </linearGradient>
+        <linearGradient id="d-gradient" x1="0%" y1="0%" x2="70%" y2="100%">
+          <stop offset="0%" style="stop-color: blue; stop-opacity: 1" />
+          <stop
+            offset="100%"
+            style="stop-color: rgb(0, 98, 255); stop-opacity: 1"
+          />
+        </linearGradient>
+      </defs>
+      <rect
+        x="0"
+        y="0"
+        width="100%"
+        height="100%"
+        rx="15%"
+        ry="15%"
+        fill="url(#bg-gradient)"
+      />
+      <style>
+        @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+      </style>
+
+      <!-- Duplicated Layer for Bold D -->
+      <text
+        x="50%"
+        y="50%"
+        font-family="'Pacifico', cursive, serif"
+        font-size="65vmin"
+        fill="darkblue"
+        text-anchor="middle"
+        dy=".4em"
+      >
+        D
+      </text>
+
+      <!-- Original D Layer -->
+      <text
+        x="50%"
+        y="50%"
+        font-family="'Pacifico', cursive, serif"
+        font-size="63vmin"
+        fill="url(#d-gradient)"
+        text-anchor="middle"
+        dy=".4em"
+      >
+        D
+      </text>
+
+      <!-- Duplicated Layer for Bold °° -->
+      <text
+        x="82%"
+        y="30%"
+        font-family="Arial"
+        font-size="32vmin"
+        fill="darkblue"
+        text-anchor="middle"
+        alignment-baseline="middle"
+        letter-spacing="-0.1em"
+      >
+        °°
+      </text>
+
+      <!-- Original °° Layer -->
+      <text
+        x="82%"
+        y="30%"
+        font-family="Arial"
+        font-size="30vmin"
+        fill="url(#d-gradient)"
+        text-anchor="middle"
+        alignment-baseline="middle"
+        letter-spacing="-0.1em"
+      >
+        °°
+      </text>
+
+      <text
+        x="50%"
+        y="90%"
+        font-family="monospace"
+        font-size="12vmin"
+        fill="black"
+        text-anchor="middle"
+      >
+        daneroo
+      </text>
+    </svg>
+  </body>
+</html>
