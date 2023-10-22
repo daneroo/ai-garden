@@ -7,6 +7,8 @@ just install
 just run -h
 just run -s memories
 time poetry run python epub.py -s memories
+time poetry run python llama-local-test.py --rag
+time poetry run python llama-local-test.py --summarize
 ```
 
 ## llama-index

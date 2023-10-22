@@ -1,15 +1,19 @@
 import argparse
+import asyncio
+
 from llama_index import (
     SimpleDirectoryReader,
     VectorStoreIndex,
     ServiceContext,
 )
+from llama_index import set_global_service_context
 from llama_index.llms import LlamaCPP
 from llama_index.llms.llama_utils import messages_to_prompt, completion_to_prompt
 from llama_index.embeddings import HuggingFaceEmbedding
+from llama_index.response_synthesizers import TreeSummarize
+
 from rich.console import Console
 from rich.markdown import Markdown
-from rich.theme import Theme
 import time
 
 console = Console()
@@ -17,6 +21,20 @@ console = Console()
 """
 This example demonstrates llamaIndex-client usage with a local LlamaCPP model (llama-2-13b-chat).
 """
+
+parser = argparse.ArgumentParser(description="Invoke a local LLM (Llama-2-13b-chat)")
+# parser.add_argument("-l", "--list", action="store_true", help="List available models")
+parser.add_argument("-v", "--verbose", action="store_true", help="Print verbose output")
+parser.add_argument("--simple", action="store_true", help="Simple Q&A")
+parser.add_argument("--streaming", action="store_true", help="Streaming Q&A")
+parser.add_argument("--rag", action="store_true", help="RAG Q&A")
+parser.add_argument("--summarize", action="store_true", help="Summarize text")
+
+args = parser.parse_args()
+
+if not (args.simple or args.streaming or args.rag or args.summarize):
+    parser.print_help()
+    exit(1)
 
 
 def h2(message):
@@ -27,7 +45,7 @@ def progress(message):
     console.print(Markdown(f"... *{message}*"))
 
 
-def load_model():
+def load_model(verbose=False):
     # Pre 0.1.79 model_url = "https://huggingface.co/TheBloke/Llama-2-13B-chat-GGML/resolve/main/llama-2-13b-chat.ggmlv3.q4_0.bin"
     model_url = "https://huggingface.co/TheBloke/Llama-2-13B-chat-GGUF/resolve/main/llama-2-13b-chat.Q4_0.gguf"
 
@@ -48,7 +66,7 @@ def load_model():
         # transform inputs into Llama2 format
         messages_to_prompt=messages_to_prompt,
         completion_to_prompt=completion_to_prompt,
-        verbose=False,
+        verbose=verbose,
         # verbose=True,
     )
     progress("Loaded model")
@@ -86,9 +104,16 @@ def createQueryEngine(llm):
     )
     progress("Created service context")
 
+    set_global_service_context(service_context)
+
+    progress("Set service context as default")
+
     # load documents
-    documents = SimpleDirectoryReader("./data").load_data()
-    progress("Loaded documents")
+    reader = SimpleDirectoryReader(
+        input_dir="./data/paul_graham", required_exts=[".txt"]
+    )
+    documents = reader.load_data()
+    progress(f"Loaded ({len(documents)}) documents")
 
     # create vector store index
     index = VectorStoreIndex.from_documents(documents, service_context=service_context)
@@ -98,6 +123,28 @@ def createQueryEngine(llm):
     query_engine = index.as_query_engine()
     progress("Created query engine")
     return query_engine
+
+
+# TODO(daneroo): this is not working yet
+async def summarize(llm):
+    h2("Summarize")
+    truncate_length = 15000  # in bytes, document is 75014
+    print(f"Had to truncate input to {truncate_length}...")
+
+    reader = SimpleDirectoryReader(input_dir="./data/paul_graham")
+    documents = reader.load_data()
+    progress(f"Loaded ({len(documents)}) documents")
+    progress(f"First document has length {len(documents[0].text)}")
+    text = documents[0].text[:truncate_length]
+
+    summarizer = TreeSummarize(
+        verbose=True,
+    )
+    question = "Who is Paul Graham?"
+    print(f"Question: {question}")
+    response = await summarizer.aget_response(question, [text])
+    # print(f"Response: {response.text}")
+    print(f"Response: {response}")
 
 
 def rag_QA(llm, query_engine):
@@ -113,20 +160,7 @@ def rag_QA(llm, query_engine):
     print("\n")
 
 
-parser = argparse.ArgumentParser(description="Invoke a local LLM (Llama-2-13b-chat)")
-# parser.add_argument("-l", "--list", action="store_true", help="List available models")
-parser.add_argument("-v", "--verbose", action="store_true", help="Print verbose output")
-parser.add_argument("--simple", action="store_true", help="Simple Q&A")
-parser.add_argument("--streaming", action="store_true", help="Streaming Q&A")
-parser.add_argument("--rag", action="store_true", help="RAG Q&A")
-
-args = parser.parse_args()
-
-if not (args.simple or args.streaming or args.rag):
-    parser.print_help()
-    exit(1)
-
-llm = load_model()
+llm = load_model(verbose=args.verbose)
 
 if args.simple:
     simple_QA(llm)
@@ -137,3 +171,7 @@ if args.streaming:
 if args.rag:
     query_engine = createQueryEngine(llm)
     rag_QA(llm, query_engine)
+
+if args.summarize:
+    query_engine = createQueryEngine(llm)
+    asyncio.run(summarize(llm))
