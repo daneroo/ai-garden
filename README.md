@@ -17,6 +17,8 @@ The python module stores them in `/Users/daniel/.cache/gpt4all/`
 
 ## TODO
 
+- [ ] [AI Engineering Resources - Bill Malarky](https://github.com/billmalarky/shift-left)
+- [ ] [Bark](https://github.com/suno-ai/bark#-usage-in-python)
 - [ ] convert to monorepo
   - [ ] [syncabook](https://github.com/r4victor/syncabook)
   - gpt4all
