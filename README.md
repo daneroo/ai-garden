@@ -17,6 +17,8 @@ The python module stores them in `/Users/daniel/.cache/gpt4all/`
 
 ## TODO
 
+- [ ] [LocalAI](https://github.com/mudler/LocalAI) [Flowise][https://flowiseai.com/]
+  - LLMs, TTS, whisper,..
 - [ ] [AI Engineering Resources - Bill Malarky](https://github.com/billmalarky/shift-left)
 - [ ] [Bark](https://github.com/suno-ai/bark#-usage-in-python)
 - [ ] convert to monorepo
