@@ -23,6 +23,7 @@ pnpx serve html/
 open http://localhost:3000/
 open http://localhost:3000/audiobooks/
 open http://localhost:3000/?url=/audiobooks/Tom%20Holland%20-%20Pax/Tom%20Holland%20-%20Pax.epub
+open http://localhost:3000/?url=/audiobooks/Brandon%20Sanderson%20-%20Mistborn/Brandon%20Sanderson%20-%20Mistborn%2003%20-%20The%20Hero%20of%20Ages/Brandon%20Sanderson%20-%20Mistborn%2003%20-%20The%20Hero%20of%20Ages.epub
 ```
 
 ## References
