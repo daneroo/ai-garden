@@ -3,7 +3,7 @@ import { Configuration, OpenAIApi } from "openai";
 // careful localhost does not work here
 const openAIApiBaseURL = "http://127.0.0.1:4891/v1";
 
-const verbose = true;
+const verbose = false;
 
 const prompts = [
   "What is the prime number theorem (PNT)?",
@@ -11,8 +11,8 @@ const prompts = [
   "Who is Michael Jordan?",
 ];
 const models = [
-  "llama-2-7b-chat.ggmlv3.q4_0.bin",
-  "wizardlm-13b-v1.1-superhot-8k.ggmlv3.q4_0.bin",
+  "mistral-7b-openorca.Q4_0.gguf",
+  "mistral-7b-instruct-v0.1.Q4_0.gguf",
 ];
 
 const methods = {
@@ -35,12 +35,12 @@ for (const model of models) {
         const responseData = await asyncFunc(prompt, model, openAIApiBaseURL);
         if (verbose) {
           console.log(
-            "- Response (full):",
+            `- Response: (verbose) (${responseData?.model})`,
             JSON.stringify(responseData, null, 2)
           );
         } else {
           console.log(
-            "- Response (short):",
+            `- Response (short): (${responseData?.model})`,
             JSON.stringify(responseData?.choices?.[0]?.text, null, 2)
           );
         }
