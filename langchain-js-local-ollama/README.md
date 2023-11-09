@@ -6,8 +6,12 @@ See <https://js.langchain.com/docs/use_cases/question_answering/local_retrieval_
 
 ## Operation
 
+Before you invoke the `index.mjs` script, you need to start the `ollama` server.
+
 ```bash
-pnpm install
+# in a separate terminal
+ollama serve
+
 pnpm start
 # or
 node index.mjs
@@ -18,6 +22,6 @@ node index.mjs
 ```bash
 pnpm init
 pnpm add langchain @xenova/transformers hnswlib-node cheerio
-
+pnpm install
 
 ```

@@ -71,6 +71,7 @@ Question: {question}`);
 const model = new Ollama({
   baseUrl: "http://localhost:11434",
   model: "llama2",
+  // model: "mistral",
 });
 
 const chain = RunnableSequence.from([
