@@ -17,8 +17,13 @@ The python module stores them in `/Users/daniel/.cache/gpt4all/`
 
 ## TODO
 
-- [ ] [LocalAI](https://github.com/mudler/LocalAI) [Flowise][https://flowiseai.com/]
-  - LLMs, TTS, whisper,..
+- Consolidate All 'runners'
+  - javascript client (based on gpt4all-node-openai-api)
+  - langchain using one or all of these runners
+    - QA
+    - RAG
+    - Summarization
+    - Map-Reduce (characters,Expressions,..)
 - [ ] [AI Engineering Resources - Bill Malarky](https://github.com/billmalarky/shift-left)
 - [ ] [Bark](https://github.com/suno-ai/bark#-usage-in-python)
 - [ ] convert to monorepo
@@ -28,9 +33,14 @@ The python module stores them in `/Users/daniel/.cache/gpt4all/`
     - [ ] write level 0 as json text files
     - [ ] iterate up the levels (create if not exists on results)
 
+## Ollama
+
+- see [Ollama on GitHub](https://github.com/jmorganca/ollama)
+- [Ollama](./ollama/README.md)
+
 ## LocalAI
 
-see [LocalAI](./LocalAI/README.md)
+- [LocalAI](./LocalAI/README.md)
 
 ## Gpt4All - openai
 
@@ -98,6 +108,9 @@ git clone https://github.com/r4victor/syncabook.git
 
 ## References
 
+- [ ] [ollama](https://github.com/jmorganca/ollama)
+- [ ] [LocalAI](https://github.com/mudler/LocalAI) [Flowise][https://flowiseai.com/]
+  - LLMs, TTS, whisper,bark
 - [GPT4All docs](https://docs.gpt4all.io)
 - [syncabook](https://github.com/r4victor/syncabook)
 - [Dockerized gpt4all invoke with golang](https://github.com/drbh/gmessage)
