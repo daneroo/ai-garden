@@ -1,4 +1,10 @@
-import { CheerioWebBaseLoader } from "langchain/document_loaders/web/cheerio";
+import {
+  getSourceForBlog,
+  getSourceForEPub,
+  getSourceForPDF,
+  getSourceForText,
+} from "./sources.mjs";
+
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { HNSWLib } from "langchain/vectorstores/hnswlib";
 import { Ollama } from "langchain/llms/ollama";
@@ -11,11 +17,13 @@ import { StringOutputParser } from "langchain/schema/output_parser";
 import { HuggingFaceTransformersEmbeddings } from "langchain/embeddings/hf_transformers";
 import { formatDocumentsAsString } from "langchain/util/document";
 
-console.log(`## 0- Fetch/spit/store document (cheerio)\n`);
+const { name, question, loader } = await getSourceForEPub();
+// const { name, question, loader } = await getSourceForPDF();
+// const { name, question, loader } = await getSourceForText();
+// const { name, question, loader } = await getSourceForBlog();
 
-const loader = new CheerioWebBaseLoader(
-  "https://lilianweng.github.io/posts/2023-06-23-agent/"
-);
+console.log(`## 0- Fetch/spit/store document (${name})\n`);
+
 const docs = await loader.load();
 
 const splitter = new RecursiveCharacterTextSplitter({
@@ -31,7 +39,6 @@ const vectorstore = await HNSWLib.fromDocuments(
 );
 
 // 1- demonstrate similarity search
-const question = "What are the approaches to Task Decomposition?";
 console.log(`## 1- Similarity search results: (question: ${question})\n`);
 
 const retrievedDocs = await vectorstore.similaritySearch(question);
