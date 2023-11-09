@@ -4,6 +4,8 @@
 
 see: <https://ollama.ai/library>, e.g. mistral, llama2
 
+Local models are stored in `~/.ollama/`
+
 ## Operation
 
 ```bash
