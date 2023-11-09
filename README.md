@@ -35,7 +35,6 @@ The python module stores them in `/Users/daniel/.cache/gpt4all/`
 
 ## Ollama
 
-- see [Ollama on GitHub](https://github.com/jmorganca/ollama)
 - [Ollama](./ollama/README.md)
 
 ## LocalAI
