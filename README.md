@@ -28,6 +28,10 @@ The python module stores them in `/Users/daniel/.cache/gpt4all/`
     - [ ] write level 0 as json text files
     - [ ] iterate up the levels (create if not exists on results)
 
+## LocalAI
+
+see [LocalAI](./LocalAI/README.md)
+
 ## Gpt4All - openai
 
 Using [GPT4All Chat UI - API](https://docs.gpt4all.io/gpt4all_chat.html#server-mode)
