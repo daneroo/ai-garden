@@ -75,8 +75,8 @@ const SUMMARY_REFINE_PROMPT = PromptTemplate.fromTemplate(
 // Llama 2 7b wrapped by Ollama
 const model = new Ollama({
   baseUrl: "http://localhost:11434",
-  model: "llama2",
-  // model: "mistral",
+  // model: "llama2",
+  model: "mistral",
 });
 
 const summarizeChain = loadSummarizationChain(model, {
@@ -87,7 +87,6 @@ const summarizeChain = loadSummarizationChain(model, {
 });
 
 console.log(`## 2- Summary Chain (${name})\n`);
-ß;
 const summary = await summarizeChain.run(splitDocuments);
 
 console.log(`## 3- FFinal Summary and Questions for ${name}\n`);
