@@ -96,11 +96,3 @@ console.log(`## 2- Invoke chain (QA): (question: ${question})\n`);
 const result = await chain.invoke(question);
 
 console.log(result);
-
-/*
-  Based on the provided context, there are three approaches to task decomposition:
-
-  1. Using simple prompts like "Steps for XYZ" or "What are the subgoals for achieving XYZ?" to elicit a list of tasks from a language model (LLM).
-  2. Providing task-specific instructions, such as "Write a story outline" for writing a novel, to guide the LLM in decomposing the task into smaller subtasks.
-  3. Incorporating human inputs to help the LLM learn and improve its decomposition abilities over time.
-*/
