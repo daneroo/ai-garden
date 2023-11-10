@@ -8,8 +8,14 @@ See <https://js.langchain.com/docs/use_cases/question_answering/local_retrieval_
 
 First summarization results:
 
-- llama2: 38 minutes -redo with recursive tokenizer
-- mistral: 24 minutes
+```bash
+time node summarize.mjs | tee -a "FinalSummary-Aristotle-ollama-llama2.$(gdate -u -Is)".raw.txt
+```
+
+- Ran summary and questions on llama and mistral (chunk 4000/200)
+  - llama2: 52m,60m
+  - mistral: 24 minutes
+- Ran summary only on llama and mistral (chunk 3000/200)
 
 ## Operation
 
