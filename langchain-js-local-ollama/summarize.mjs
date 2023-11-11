@@ -35,7 +35,6 @@ const splitDocuments = await splitter.splitDocuments(docs);
 console.log(`  - split into ${splitDocuments.length} document chunks`);
 // console.log(JSON.stringify(splitDocuments, null, 2));
 
-// Llama 2 7b wrapped by Ollama
 const model = new Ollama({
   baseUrl: "http://localhost:11434",
   model: ollamaModelName,
