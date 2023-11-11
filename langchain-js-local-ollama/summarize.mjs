@@ -35,8 +35,8 @@ console.log(`  - split into ${splitDocuments.length} document chunks`);
 // Llama 2 7b wrapped by Ollama
 const model = new Ollama({
   baseUrl: "http://localhost:11434",
-  model: "llama2",
-  // model: "mistral",
+  // model: "llama2",
+  model: "mistral",
 });
 
 const { questionPrompt, refinePrompt } = getSummaryPrompts();
