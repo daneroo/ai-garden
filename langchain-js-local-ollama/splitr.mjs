@@ -8,12 +8,10 @@ import {
   TokenTextSplitter,
 } from "langchain/text_splitter";
 
-const ollamaModelName = "llama2"; // mistral
-
 // const { name, question, loader } = await getSourceForTextSciFi();
 const { name, question, loader } = await getSourceForLargeFantasyNovel();
 
-console.log(`\n# Map/Reduce using ollama ${ollamaModelName}\n`);
+console.log(`\n# Load/Splitter\n`);
 
 console.log(`\n## Load document (${name})\n`);
 
