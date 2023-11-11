@@ -43,3 +43,23 @@ export async function getSourceForBlog() {
   );
   return { name, question, loader };
 }
+
+export async function getSourceForTextSciFi() {
+  const name = "Neon Shadows: Echoes of Neo-Tokyo 3 (txt)";
+  const question =
+    "What is Dr. Emiko Yamada's primary field of expertise, and what is her significant invention in the story?";
+  const loader = new TextLoader("./source/neon-shadows.txt");
+  return { name, question, loader };
+}
+
+export async function getSourceForLargeFantasyNovel() {
+  const name = "The Hero of Ages: Mistborn Book 3 (epub)";
+  const question = "What is the difference between a Mistling and a Mistborn?";
+  const loader = new EPubLoader(
+    "/Volumes/Reading/audiobooks/Brandon Sanderson - Mistborn/Brandon Sanderson - Mistborn 03 - The Hero of Ages/Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub",
+    {
+      splitPages: true,
+    }
+  );
+  return { name, question, loader };
+}

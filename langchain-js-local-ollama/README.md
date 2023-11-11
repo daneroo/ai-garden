@@ -30,6 +30,11 @@ time node summarize.mjs | tee -a "FinalSummary-Aristotle-ollama-llama2.$(gdate -
   - llama2: 27m
   - mistral: 30m
 
+## Experiments
+
+- Document Loaders - `sources.mjs`: loader.load -> docs[]
+- Tokenizer - `splitr.mjs`: RecursiveCharacterTextSplitter vs TokenTextSplitter
+
 ## Operation
 
 Before you invoke the `index.mjs` script, you need to start the `ollama` server.
