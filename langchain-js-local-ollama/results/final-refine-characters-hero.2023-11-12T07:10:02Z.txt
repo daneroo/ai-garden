@@ -1,0 +1,58 @@
+# Map/Reduce using ollama llama2
+
+## Load document (The Hero of Ages: Mistborn Book 3 (epub))
+
+- fetched 15 document(s)
+  - document 0 length: 3430 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    PROLOGUE MARSH STRUGGLED TO KILL HIMSELF. His hand trembled as he tried to summon the strength to ...
+  - document 1 length: 77 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    PART ONE LEGACY OF THE SURVIVOR I am, unfortunately, the Hero of Ages . ...
+  - document 2 length: 22106 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    1 FATREN SQUINTED UP AT THE RED SUN , which hid behind its perpetual screen of dark haze. Black ash...
+  - document 3 length: 8303 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    2 AS ALWAYS, TENSOON'S DAY began in darkness. Part of that was due, of course, to the fact that he ...
+  - document 4 length: 29313 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    3 ELEND VENTURE, SECOND EMPEROR of the Final Empire, had not been born a warrior. He'd been born a ...
+  - document 5 length: 17503 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    4 SAZED, CHIEF AMBASSADOR OF THE NEW EMPIRE , studied the sheet of paper in front of him. The tenet...
+  - document 6 length: 35839 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    5 ELEND KNELT BESIDE THE FALLEN INQUISITOR , trying to ignore the mess that was left of the thing's...
+  - document 7 length: 3040 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    6 I'M TOO WEAK, Marsh thought. Lucidity came upon him suddenly, as it often did when Ruin wasn't w...
+  - document 8 length: 8606 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    7 THEY GAVE HIM BONES. TenSoon flowed around them, dissolving muscles, then re-forming them into o...
+  - document 9 length: 20858 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    8 ON THE FIRST DAY OUT OF VETITAN, Vin and Elend murdered a hundred of the villagers. Or, at least,...
+  - document 10 length: 8266 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    9 TENSOON HAD VISITED the Trustwarren before; he was of the Third Generation. He had been born seve...
+  - document 11 length: 22772 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    10 LARSTAISM WAS A DIFFICULT one for Sazed to measure. The religion seemed innocent enough. They kn...
+  - document 12 length: 13067 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    11 KANPAAR LEANED FORWARD ON HIS LECTERN, red crystalline bones sparkling in the lamplight. "All ri...
+  - document 13 length: 28209 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    12 "I'M WORRIED ABOUT HIM, Elend," Vin said, sitting on their bedroll. "Who?" Elend asked, looking...
+  - document 14 length: 5610 characters source: Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub:
+    13 I'M MISSING SOMETHING, MARSH THOUGHT. He sat in the koloss camp. Just sitting. He hadn't moved ...
+
+## Split document RecursiveCharacterTextSplitter (The Hero of Ages: Mistborn Book 3 (epub))
+
+- split into 37 document chunks maxSize: 8000
+
+## Summary Chain - Refine (llama2 - The Hero of Ages: Mistborn Book 3 (epub))
+
+### Final Summary Refine for The Hero of Ages: Mistborn Book 3 (epub) using llama2
+
+Thank you for providing more context! Based on the new information provided, here is an updated list of characters in the story:
+
+1. TenSoon - An older kandra who has been away from the Homeland for a long time and is now being brought back to face the First Generation.
+2. KanPaar - A tall kandra who is a member of the Second Generation and serves as the prosecutor in TenSoon's trial.
+3. MeLaan - A character who is a member of the Seventh Generation and is known for her rebellious True Body.
+4. The First Generation - The ruling body of kandra, who TenSoon must convince that his betrayal was justified.
+5. The Second Generation - The ruling body of kandra who are being challenged by TenSoon and are fearful of losing their power.
+6. Elend Venture - An emperor who has come to help defend the city against the koloss invasion.
+7. Vin - A character mentioned in the story who is responsible for freeing Ruin and has Allomancer abilities.
+8. Ruin - The entity that has been imprisoned within the Well of Ascension and seeks to control and manipulate the world.
+9. King Lekal - The ruler of the city being defended against the koloss invasion.
+10. Sazed - A character who is friends with Breeze and has helped him recover from his past trauma.
+11. Breeze - A character who has been through a lot of trauma in the past and has been helped by Sazed.
+12. Allrianne - A young woman with golden hair who wears a bright pink dress and rides a galloping horse.

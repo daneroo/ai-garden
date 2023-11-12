@@ -8,6 +8,10 @@ See <https://js.langchain.com/docs/use_cases/question_answering/local_retrieval_
 
 - LangChain (JS)
   - [x] ollama local with llama2/mistral - Q&A and Summarization
+  - [ ] Tokenizer / splitter max chunk size per model
+  - [ ] maxConcurrency >1 ?
+  - [ ] [custom callback handlers](https://js.langchain.com/docs/modules/callbacks/how_to/create_handlers)
+- Later...
   - [ ] GPT4All local App
     - [ ] mistral-7b-instruct-v0.1.Q4_0.gguf - Q&A and Summarization
   - [ ] LocalAI local
@@ -34,6 +38,19 @@ time node summarize.mjs | tee -a "FinalSummary-Aristotle-ollama-llama2.$(gdate -
 
 - Document Loaders - `sources.mjs`: loader.load -> docs[]
 - Tokenizer - `splitr.mjs`: RecursiveCharacterTextSplitter vs TokenTextSplitter
+- Map/Reduce - `mappr.mjs` - characters in Hero of Ages
+
+  - Refine - llama2 5 docs/77 chunks chunkSize:1000 - 8 characters: 815s
+  - Refine - llama2 5 docs/37 chunks chunkSize:2000 - 10 characters: 536s
+  - Refine - llama2 5 docs/19 chunks chunkSize:4000 - 8 characters: 272s
+  - Refine - llama2 5 docs/11 chunks chunkSize:8000 - 8 characters: 235s
+
+  - Refine - llama2 15 docs/37 chunks chunkSize:8000 - 12 characters: 866s
+
+  - Refine - mistral 5 docs/77 chunks chunkSize:1000 - 7 characters: 347s - Vin Missing
+  - Refine - mistral 5 docs/37 chunks chunkSize:2000 - 11 characters: 143s
+  - Refine - mistral 5 docs/19 chunks chunkSize:4000 - 11 characters: 138s
+  - Refine - mistral 5 docs/11 chunks chunkSize:8000 - 6 characters: 68s
 
 ## Operation
 

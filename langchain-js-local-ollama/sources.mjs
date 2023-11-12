@@ -61,5 +61,6 @@ export async function getSourceForLargeFantasyNovel() {
       splitPages: true,
     }
   );
-  return { name, question, loader };
+  const contentDocumentStartIndex = 3; // 0-based use docs.slice(contentDocumentStartIndex)
+  return { name, question, loader, contentDocumentStartIndex };
 }
