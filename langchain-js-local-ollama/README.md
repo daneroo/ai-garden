@@ -19,7 +19,9 @@ See <https://js.langchain.com/docs/use_cases/question_answering/local_retrieval_
     - [ ] whisper
     - tts
 
-## Results
+## Experimental Results
+
+### Summarization v0
 
 First summarization results:
 
@@ -34,11 +36,21 @@ time node summarize.mjs | tee -a "FinalSummary-Aristotle-ollama-llama2.$(gdate -
   - llama2: 27m
   - mistral: 30m
 
-## Experiments
+### Loaders
 
 - Document Loaders - `sources.mjs`: loader.load -> docs[]
 - Tokenizer - `splitr.mjs`: RecursiveCharacterTextSplitter vs TokenTextSplitter
-- Map/Reduce - `mappr.mjs` - characters in Hero of Ages
+
+### Map/Reduce
+
+Trying various Map/Reduce - `mappr.mjs` - characters in Hero of Ages
+
+```bash
+#  move to markdown with tags - (dot?)
+time node mappr.mjs | tee -a "results/final-refine-characters-hero.$(gdate -u -Is|sed 's/+00:00/Z/')".txt
+```
+
+- Refine
 
   - Refine - llama2 5 docs/77 chunks chunkSize:1000 - 8 characters: 815s
   - Refine - llama2 5 docs/37 chunks chunkSize:2000 - 10 characters: 536s

@@ -10,7 +10,7 @@ import { loadSummarizationChain } from "langchain/chains";
 
 const ollamaModelName = "llama2"; // llama2,mistral
 const verbose = false;
-const maxDocs = 15; // Part One
+const maxDocs = 89; // 15 - Part One, 89 - Epilogue
 // RecursiveCharacterTextSplitter
 const chunkSize = 8000;
 const chunkOverlap = 100;
