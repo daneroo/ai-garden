@@ -49,7 +49,8 @@ export async function getSourceForTextSciFi() {
   const question =
     "What is Dr. Emiko Yamada's primary field of expertise, and what is her significant invention in the story?";
   const loader = new TextLoader("./source/neon-shadows.txt");
-  return { name, question, loader };
+  const contentDocumentStartIndex = 0; // 0-based use docs.slice(contentDocumentStartIndex)
+  return { name, question, loader, contentDocumentStartIndex };
 }
 
 export async function getSourceForLargeFantasyNovel() {

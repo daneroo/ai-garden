@@ -4,19 +4,25 @@ import {
   getSourceForLargeFantasyNovel,
 } from "./sources.mjs";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+
 import { Ollama } from "langchain/llms/ollama";
 import { PromptTemplate } from "langchain/prompts";
 import { loadSummarizationChain } from "langchain/chains";
+import { MyConsoleCallbackHandler } from "./callback.mjs";
 
 const ollamaModelName = "llama2"; // llama2,mistral
 const verbose = false;
 const maxDocs = 89; // 15 - Part One, 89 - Epilogue
 // RecursiveCharacterTextSplitter
-const chunkSize = 4000;
+const chunkSize = 8000;
 const chunkOverlap = 100;
 const maxChunks = 9999999;
 
-// const { name, question, loader } = await getSourceForTextSciFi();
+const handler = new MyConsoleCallbackHandler({
+  ignoreLLM: true,
+});
+
+// const { name, question, loader, contentDocumentStartIndex } = await getSourceForTextSciFi();
 const { name, question, loader, contentDocumentStartIndex } =
   await getSourceForLargeFantasyNovel();
 
@@ -88,7 +94,9 @@ if (true) {
     refinePrompt: PromptTemplate.fromTemplate(refinePrompt),
   });
 
-  const summary = await refineChain.run(splitDocuments);
+  const summary = await refineChain.run(splitDocuments, {
+    callbacks: [handler],
+  });
 
   console.log(
     `\n### Final Summary Refine for ${name} using ${ollamaModelName}\n`
@@ -140,35 +148,39 @@ Combine the following list of characters from a book:
 function characterFindingPrompt() {
   return {
     questionPrompt: `
-  You are a copy editor for short stories.
-  Your goal is to create a list of characters in a story.
-  Below you find an extract of the story:
-  --------
-  {text}
-  --------
-  
-  Total output will be a list characters in the story.
-  
-  LIST OF CHARACTERS:
+You are an attentive and thorough reader.
+Your goal is to create a comprehensive list of characters in a story.
+Prefer full names over nicknames, or first names only.
+Below you find an extract of the story:
+--------
+{text}
+--------
+
+Total output will be a list characters in the story.
+
+LIST OF CHARACTERS:
   `,
     refinePrompt: `
-    You are a copy editor for short stories.
-    Your goal is to create a list of characters in a story.
-    We have provided a list of existing characters up to a certain point: 
-    
-  {existing_answer}
+You are an attentive and thorough reader.
+Your goal is to create a comprehensive list of characters in a story.
+Prefer full names over nicknames, or first names only.
+We have provided a list of existing characters up to a certain point: 
   
-  Below you find an extract of the story:
-  --------
-  {text}
-  --------
-  
-  Given the new context, refine the list of characters.
-  If the context isn't useful, return the original list of characters.
-  
-  Total output will be a list characters in the story.
-  
-  LIST OF CHARACTERS:
+{existing_answer}
+
+Below you find a new extract of the story:
+--------
+{text}
+--------
+
+Given the new context, refine the list of characters.
+Never remove a character from the list of existing characters.
+You may consolidate the list of existing characters if some are repeated.
+If the context isn't useful, return the original list of characters.
+
+Total output will be a list characters in the story.
+
+LIST OF CHARACTERS:
   `,
   };
 }
