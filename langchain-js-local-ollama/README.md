@@ -8,10 +8,13 @@ See <https://js.langchain.com/docs/use_cases/question_answering/local_retrieval_
 
 - LangChain (JS)
   - [x] ollama local with llama2/mistral - Q&A and Summarization
+  - [ ] [custom callback handlers](https://js.langchain.com/docs/modules/callbacks/how_to/create_handlers)
   - [ ] Tokenizer / splitter max chunk size per model
   - [ ] maxConcurrency >1 ?
-  - [ ] [custom callback handlers](https://js.langchain.com/docs/modules/callbacks/how_to/create_handlers)
 - Later...
+  - PrivateGPT
+    - <https://github.com/imartinez/privateGPT>
+    - <https://docs.privategpt.dev/#section/Introduction>
   - [ ] GPT4All local App
     - [ ] mistral-7b-instruct-v0.1.Q4_0.gguf - Q&A and Summarization
   - [ ] LocalAI local
@@ -58,6 +61,8 @@ time node mappr.mjs | tee -a "results/final-refine-characters-hero.$(gdate -u -I
   - Refine - llama2 5 docs/11 chunks chunkSize:8000 - 8 characters: 235s
 
   - Refine - llama2 15 docs/37 chunks chunkSize:8000 - 12 characters: 866s
+  - Refine - llama2 89 docs/213 chunks chunkSize:8000 - ?? characters: ??s FAIL 3 times
+  - Refine - llama2 89 docs/213 chunks chunkSize:4000 - ?? characters: ??s FAIL 1 times
 
   - Refine - mistral 5 docs/77 chunks chunkSize:1000 - 7 characters: 347s - Vin Missing
   - Refine - mistral 5 docs/37 chunks chunkSize:2000 - 11 characters: 143s

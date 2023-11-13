@@ -12,7 +12,7 @@ const ollamaModelName = "llama2"; // llama2,mistral
 const verbose = false;
 const maxDocs = 89; // 15 - Part One, 89 - Epilogue
 // RecursiveCharacterTextSplitter
-const chunkSize = 8000;
+const chunkSize = 4000;
 const chunkOverlap = 100;
 const maxChunks = 9999999;
 
