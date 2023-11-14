@@ -52,6 +52,13 @@ export class MyConsoleCallbackHandler extends ConsoleCallbackHandler {
       console.log(`    - ${key} (${value.length}): ${snip}...`);
     }
     // extra tracing for now
-    console.log(`DBG: ---\n${outputs?.text}\n---`);
+    // if text is in outputs, print it
+    if (outputs?.text) {
+      console.log(`DBG: ---\n${outputs?.text}\n---`);
+    }
+    // if output_text in outputs, print it
+    if (outputs?.output_text) {
+      console.log(`DBG: ---\n${outputs?.output_text}\n---`);
+    }
   }
 }
