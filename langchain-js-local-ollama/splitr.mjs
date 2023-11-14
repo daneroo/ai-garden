@@ -1,15 +1,13 @@
 import { basename } from "node:path";
-import {
-  getSourceForTextSciFi,
-  getSourceForLargeFantasyNovel,
-} from "./sources.mjs";
+import { getSource } from "./lib/sources.mjs";
+
 import {
   RecursiveCharacterTextSplitter,
   TokenTextSplitter,
 } from "langchain/text_splitter";
 
-// const { name, question, loader } = await getSourceForTextSciFi();
-const { name, question, loader } = await getSourceForLargeFantasyNovel();
+const sourceNickname = "neon-shadows.txt"; // neon-shadows.txt, hero-of-ages.epub
+const { name, loader } = getSource(sourceNickname);
 
 console.log(`\n# Load/Splitter\n`);
 

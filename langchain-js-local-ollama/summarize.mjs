@@ -1,9 +1,4 @@
-import {
-  getSourceForBlog,
-  getSourceForEPub,
-  getSourceForPDF,
-  getSourceForText,
-} from "./sources.mjs";
+import { getSource } from "./lib/sources.mjs";
 
 // import { getSummaryWithQuestionsPrompts } from "./prompts.mjs";
 import { getSummaryPrompts } from "./prompts.mjs";
@@ -16,10 +11,8 @@ import { loadSummarizationChain } from "langchain/chains";
 
 const ollamaModelName = "llama2"; // mistral
 
-const { name, question, loader } = await getSourceForEPub();
-// const { name, question, loader } = await getSourceForPDF();
-// const { name, question, loader } = await getSourceForText();
-// const { name, question, loader } = await getSourceForBlog();
+const sourceNickname = "thesis.epub"; // thesis.epub, thesis.pdf, thesis.txt, blog.web, secret-history.epub
+const { name, loader } = getSource(sourceNickname);
 
 console.log(`\n# Summarization using ollama ${ollamaModelName}\n`);
 console.log(`\n## 1- Fetch/split document (${name})\n`);

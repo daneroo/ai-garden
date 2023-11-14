@@ -1,8 +1,5 @@
 import { basename } from "node:path";
-import {
-  getSourceForTextSciFi,
-  getSourceForLargeFantasyNovel,
-} from "./sources.mjs";
+import { getSource } from "./lib/sources.mjs";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
 import { Ollama } from "langchain/llms/ollama";
@@ -12,7 +9,7 @@ import { MyConsoleCallbackHandler } from "./callback.mjs";
 
 const ollamaModelName = "llama2"; // llama2,mistral
 const verbose = false;
-const maxDocs = 89; // 15 - Part One, 89 - Epilogue
+const maxDocs = 999; // hero: 15 - Part One, 89 - Epilogue
 // RecursiveCharacterTextSplitter
 const chunkSize = 8000;
 const chunkOverlap = 100;
@@ -22,9 +19,8 @@ const handler = new MyConsoleCallbackHandler({
   ignoreLLM: true,
 });
 
-// const { name, question, loader, contentDocumentStartIndex } = await getSourceForTextSciFi();
-const { name, question, loader, contentDocumentStartIndex } =
-  await getSourceForLargeFantasyNovel();
+const sourceNickname = "neon-shadows.txt"; // neon-shadows.txt, hero-of-ages.epub
+const { name, loader, contentDocumentStartIndex } = getSource(sourceNickname);
 
 console.log(`\n# Map/Reduce using ollama ${ollamaModelName}\n`);
 

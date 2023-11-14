@@ -1,9 +1,4 @@
-import {
-  getSourceForBlog,
-  getSourceForEPub,
-  getSourceForPDF,
-  getSourceForText,
-} from "./sources.mjs";
+import { getSource } from "./lib/sources.mjs";
 
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { HNSWLib } from "langchain/vectorstores/hnswlib";
@@ -17,10 +12,8 @@ import { StringOutputParser } from "langchain/schema/output_parser";
 import { HuggingFaceTransformersEmbeddings } from "langchain/embeddings/hf_transformers";
 import { formatDocumentsAsString } from "langchain/util/document";
 
-const { name, question, loader } = await getSourceForEPub();
-// const { name, question, loader } = await getSourceForPDF();
-// const { name, question, loader } = await getSourceForText();
-// const { name, question, loader } = await getSourceForBlog();
+const sourceNickname = "thesis.epub";
+const { name, question, loader } = getSource(sourceNickname);
 
 console.log(`## 0- Fetch/spit/store document (${name})\n`);
 
