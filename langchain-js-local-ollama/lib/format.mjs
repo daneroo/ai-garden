@@ -1,3 +1,21 @@
+// format the duration as a string using glonag style formatting
+// e.g. 57.123s 2m54.234s 1h23m45.345s
+// @param {number} elapsedMillis - the elapsed time in milliseconds
+// @returns {string} the formatted duration
+export function formatDuration(elapsedMillis) {
+  const seconds = Math.floor(elapsedMillis / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const remainingSeconds = seconds % 60;
+  const remainingMinutes = minutes % 60;
+  const remainingMillis = elapsedMillis % 1000;
+  const formattedHours = hours > 0 ? `${hours}h` : "";
+  const formattedMinutes =
+    remainingMinutes > 0 || hours > 0 ? `${remainingMinutes}m` : "";
+  const formattedSeconds = `${remainingSeconds}.${remainingMillis}s`;
+  return `${formattedHours}${formattedMinutes}${formattedSeconds}`;
+}
+
 /**
  * Format types.
  * @readonly
