@@ -1,4 +1,3 @@
-import { homedir } from "node:os";
 import { CheerioWebBaseLoader } from "langchain/document_loaders/web/cheerio";
 import { TextLoader } from "langchain/document_loaders/fs/text";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
@@ -24,7 +23,7 @@ import { EPubLoader } from "langchain/document_loaders/fs/epub";
  */
 
 export function getSources() {
-  const thesisBasePath = `${homedir()}/Downloads/These-Laurence-2023-10-13`;
+  const thesisBasePath = `./source/These-Laurence-2023-10-13`;
   const volReadingAudiobooksBasePath = "/Volumes/Reading/audiobooks";
   return {
     "thesis.epub": {
@@ -42,7 +41,7 @@ export function getSources() {
       question: "What is a shortcoming of Johnson’s interpretation",
       // { splitPages: true} is the default
       loader: new PDFLoader(
-        `${thesisBasePath}/These-Laurence-2023-10-13/These Laurence - Instrumental Relations in Aristotle’s Intrinsic Teleology.pdf`
+        `${thesisBasePath}/These Laurence - Instrumental Relations in Aristotle’s Intrinsic Teleology.pdf`
       ),
     },
     "thesis.txt": {
