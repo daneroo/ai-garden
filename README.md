@@ -15,6 +15,26 @@ The python module stores them in `/Users/daniel/.cache/gpt4all/`
 - We will use `just`/`Justfile` for task automation (see workshop-5 for initial template)
 - Credentials (when needed) are stored in gitignored `.../.env` (not checked in)
 
+## Model Storage
+
+- Ollama, LM Studio, GPT4All (cli and app separately)
+
+Starter script:
+
+```bash
+declare -A dirs=(
+    [Ollama]="$HOME/.ollama"
+    [LMStudio]="$HOME/.cache/lm-studio/models/"
+    [GPT4All]="$HOME/.cache/gpt4all/"
+    [NomicAI]="$HOME/Library/Application Support/nomic.ai/GPT4All/"
+)
+for key in "${!dirs[@]}"; do
+    total_size=$(du -sh "${dirs[$key]}" | cut -f1)
+    echo "$total_size :  $key (${dirs[$key]})"
+done
+ollama list
+```
+
 ## TODO
 
 - Consolidate All 'runners'
