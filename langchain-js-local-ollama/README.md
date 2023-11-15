@@ -12,6 +12,8 @@ See <https://js.langchain.com/docs/use_cases/question_answering/local_retrieval_
   - [ ] Tokenizer / splitter max chunk size per model
   - [ ] maxConcurrency >1 ?
 - Later...
+  - [OpenInterpreter](https://github.com/KillianLucas/open-interpreter/)
+  - [LMStudio](https://lmstudio.ai/)
   - PrivateGPT
     - <https://github.com/imartinez/privateGPT>
     - <https://docs.privategpt.dev/#section/Introduction>
