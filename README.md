@@ -37,6 +37,16 @@ ollama list
 
 ## TODO
 
+- [ ] Cleanup repo
+- [x] Cleanup python virtualenvs and unused models
+  - `/Users/daniel/Library/Caches/pypoetry/virtualenvs/`
+    - ai-implements-ai-fIOIe-Zf-py3.11
+    - ai-implements-ai-fIOIe-Zf-py3.12
+    - gpt4all-pyclient-\_gMVkbwA-py3.11
+    - llamaindex-client-T9vbKWum-py3.11
+    - local-interpreter-oEhRvI3n-py3.11
+    - local-interpreter-oEhRvI3n-py3.12
+    - workshop-5-doKmtUfd-py3.11
 - Consolidate All 'runners'
   - javascript client (based on gpt4all-node-openai-api)
   - langchain using one or all of these runners
