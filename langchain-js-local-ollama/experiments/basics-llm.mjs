@@ -1,6 +1,10 @@
 import { Ollama } from "langchain/llms/ollama";
 
-console.log(`# Hello LLMs (Ollama)!\n`);
+console.log(`# Basics LLMs (Ollama)!
+
+Here we simply construct an LLM object with a modelName as parameter,
+and ask it to predict some text.
+\n`);
 
 const modelNames = ["llama2", "mistral"];
 for (const modelName of modelNames) {
@@ -8,13 +12,12 @@ for (const modelName of modelNames) {
     baseUrl: "http://localhost:11434",
     model: modelName,
     maxConcurrency: 1,
-    format: "json",
   });
 
-  console.log(`## model: ${modelName}:\n`);
+  console.log(`## modelName: ${modelName}:\n`);
   const questions = [
-    "Name three colors",
-    "Name three colors; format the output as JSON",
+    "What is the prime number theorem (PNT)?",
+    "In which Lord of the Rings book does Tom Bombadil first appear?",
   ];
 
   // const text = texts[0];
