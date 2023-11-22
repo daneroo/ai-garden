@@ -7,6 +7,7 @@ See <https://js.langchain.com/docs/use_cases/question_answering/local_retrieval_
 ## TODO
 
 - LangChain (JS)
+  - [x] Common experiment structure
   - [x] ollama local with llama2/mistral - Q&A and Summarization
   - [x] [custom callback handlers](https://js.langchain.com/docs/modules/callbacks/how_to/create_handlers)
   - [ ] Tokenizer / splitter max chunk size per model
