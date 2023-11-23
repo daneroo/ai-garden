@@ -1,8 +1,8 @@
 import { ChatOllama } from "langchain/chat_models/ollama";
 import { PromptTemplate } from "langchain/prompts";
 import { RunnableSequence } from "langchain/schema/runnable";
-
-import { StringOutputParser } from "langchain/schema/output_parser";
+import { z } from "zod";
+import { StructuredOutputParser } from "langchain/output_parsers";
 
 console.log(`# Basics Output Parser
 
@@ -11,7 +11,7 @@ that includes an OutputParser as it's last step.
 
 \n`);
 
-const verbose = true;
+const verbose = false;
 const modelName = "llama2";
 const speechUnit = "joke";
 const topic = "a bear";
@@ -24,27 +24,43 @@ const model = new ChatOllama({
 
 console.log(`## Chat modelName: ${modelName}:\n`);
 
-const promptTemplate = PromptTemplate.fromTemplate(
-  "Tell me a {speechUnit} about {topic}"
+const parser = StructuredOutputParser.fromZodSchema(
+  z.object({
+    setup: z.string().describe("The premise of the joke"),
+    punchline: z.string().describe("The punchline of the joke"),
+  })
 );
 
-const outputParser = new StringOutputParser();
+if (verbose) {
+  console.log(parser.getFormatInstructions());
+}
+const promptTemplate = PromptTemplate.fromTemplate(`
+Tell me a joke about {topic}
+{format_instructions}
+Tell me a joke about {topic}`);
 
 // const chain = promptTemplate.pipe(model).pipe(outputParser);
 // Rewrite the piped chain expression as a runnable sequence:
-const chain = RunnableSequence.from([promptTemplate, model, outputParser]);
+const chain = RunnableSequence.from([promptTemplate, model, parser]);
 
 if (verbose) {
   console.log(`- Chain: ${JSON.stringify(chain, null, 2)}`);
 }
 
-const result = await chain.invoke({
-  topic,
-  speechUnit,
-});
-
-if (verbose) {
-  console.log(`- Result: ${JSON.stringify(result, null, 2)}\n`);
+// Iterate until successful
+while (true) {
+  try {
+    const result = await chain.invoke({
+      topic,
+      format_instructions: parser.getFormatInstructions(),
+    });
+    if (verbose) {
+      console.log(`- Result: ${JSON.stringify(result, null, 2)}\n`);
+    }
+    console.log(`Here is a joke about ${topic} as a JSON Object:\n`, result);
+    break;
+  } catch (err) {
+    // console.error(err);
+    console.log(`Failed to parse text. Retrying...`);
+  }
 }
-console.log(`Here is a ${speechUnit} about ${topic}:\n
-  ${result}\n`);
