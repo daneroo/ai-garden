@@ -22,12 +22,14 @@ Mistral seems much better at this than Llama2.
 \n`);
 
 const verbose = false;
-const modelName = "llama2"; // llama2,mistral
+const modelName = "mistral"; // llama2,mistral
 
 const model = new ChatOllama({
   baseUrl: "http://localhost:11434",
   model: modelName,
   maxConcurrency: 1,
+  // actually makes things worse??
+  // format: "json",
 });
 
 console.log(`## Chat modelName: ${modelName}\n`);
