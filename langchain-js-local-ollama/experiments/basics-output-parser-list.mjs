@@ -12,9 +12,7 @@ that includes an StructuredOutputParser (Zod) as it's last step.
 \n`);
 
 const verbose = false;
-const modelName = "llama2";
-const speechUnit = "joke";
-const topic = "a bear";
+const modelName = "mistral";
 
 const model = new ChatOllama({
   baseUrl: "http://localhost:11434",
@@ -25,19 +23,15 @@ const model = new ChatOllama({
 console.log(`## Chat modelName: ${modelName}:\n`);
 
 const parser = StructuredOutputParser.fromZodSchema(
-  z.object({
-    setup: z.string().describe("The premise of the joke"),
-    punchline: z.string().describe("The punchline of the joke"),
-  })
+  z.array(z.string()).describe("A list of colors")
 );
 
 if (verbose) {
   console.log(parser.getFormatInstructions());
 }
 const promptTemplate = PromptTemplate.fromTemplate(`
-Tell me a joke about {topic}
-{format_instructions}
-Tell me a joke about {topic}`);
+Make a list of 5 colors.
+{format_instructions}`);
 
 // const chain = promptTemplate.pipe(model).pipe(outputParser);
 // Rewrite the piped chain expression as a runnable sequence:
@@ -51,13 +45,13 @@ if (verbose) {
 while (true) {
   try {
     const result = await chain.invoke({
-      topic,
+      // topic,
       format_instructions: parser.getFormatInstructions(),
     });
     if (verbose) {
       console.log(`- Result: ${JSON.stringify(result, null, 2)}\n`);
     }
-    console.log(`Here is a joke about ${topic} as a JSON Object:\n`, result);
+    console.log(`Here is list of colors as a JSON Object:\n`, result);
     break;
   } catch (err) {
     // console.error(err);
