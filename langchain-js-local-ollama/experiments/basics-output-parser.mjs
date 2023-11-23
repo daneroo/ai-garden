@@ -7,7 +7,7 @@ import { StructuredOutputParser } from "langchain/output_parsers";
 console.log(`# Basics Output Parser
 
 Here we simply invoke a chain (RunnableSequece)
-that includes an OutputParser as it's last step.
+that includes an StructuredOutputParser (Zod) as it's last step.
 
 \n`);
 
