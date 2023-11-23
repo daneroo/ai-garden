@@ -6,6 +6,8 @@ import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { promises as fs } from "node:fs";
 import { join } from "node:path";
 import crypto from "node:crypto";
+// This now works, but llmKey: '_model:"base_chat_model",_type:"ollama"' does not distinguish between ollama models.
+// import { LocalFileCache } from "langchain/cache/file_system";
 
 await main();
 async function main() {
@@ -55,8 +57,23 @@ It is invoked repeatedly on chunks of text.
 }
 
 async function allInOne({ modelName, promptTemplateText, chunkContent }) {
+  // const cacheDir = "cache";
+  // const cache = new LocalFileCache(cacheDir);
+
+  // if (false) {
+  //   const prompt = "prompt";
+  //   const llmKey = "llmKey";
+  //   const generations = ["generation1", "generation2"];
+  //   console.log("update", { prompt, llmKey, generations });
+
+  //   await cache.update(prompt, llmKey, generations);
+  //   const result = await cache.lookup(prompt, llmKey);
+  //   console.log("lookup", { prompt, llmKey, result });
+  // }
+
   const model = new ChatOllama({
-    cache: true,
+    // We will use out own Cache implementation
+    // cache: cache,
     baseUrl: "http://localhost:11434",
     model: modelName,
     maxConcurrency: 1,
@@ -108,7 +125,7 @@ async function cachedAllInOne({ modelName, promptTemplateText, chunkContent }) {
   }
 }
 async function getChunks() {
-  const maxDocs = 15; // hero: 15 - Part One, 89 - Epilogue
+  const maxDocs = 89; // hero: 15 - Part One, 89 - Epilogue
   // RecursiveCharacterTextSplitter
   const chunkSize = 8000;
   const chunkOverlap = 100;
