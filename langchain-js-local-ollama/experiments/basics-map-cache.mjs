@@ -12,17 +12,26 @@ import { Document } from "langchain/document";
 
 await main();
 async function main() {
-  console.log(`# Basics Map Operation
+  console.log(`# Basics Map/reduce Operation
 
 Here we simply invoke a chain (RunnableSequence)
 to summarize a story "by parts".
-
 It is invoked repeatedly on chunks of text.
+
+The summaries themselves are then concatenated.
+This is the reduction part.
+
+This summarization is repeated until a sufficiently concise summary is reached.
 
 \n`);
 
-  const maxDocs = 89; // hero: 15 - Part One, 89 - Epilogue
-  const sourceNickname = "hero-of-ages.epub"; // neon-shadows.txt, hero-of-ages.epub
+  // const maxDocs = 89; // hero: 15 - Part One, 89 - Epilogue
+  // const sourceNickname = "hero-of-ages.epub";
+
+  const maxDocs = 999;
+  // const sourceNickname = "neon-shadows.txt";
+  const sourceNickname = "thesis.epub";
+
   const docs = await getDocs({ sourceNickname, maxDocs });
 
   const chunkSize = 8000;
@@ -33,12 +42,17 @@ It is invoked repeatedly on chunks of text.
   const verbose = false;
   const modelName = "llama2"; // llama2,mistral
 
-  console.log(`## Chat modelName: ${modelName}:\n`);
+  console.log(`## Parameters\n`);
+  console.log(`  - sourceNickname: ${sourceNickname}`);
+  console.log(`  - modelName: ${modelName}`);
+  console.log(`  - chunkSize: ${chunkSize}`);
 
+  const textKind = "story";
+  const textKindPlural = "stories";
   const promptTemplateText = `
-  You are an expert in summarizing stories.
-  Your goal is to create a summary of a story.
-  Below you find an excerpt of the story:
+  You are an expert in summarizing ${textKindPlural}.
+  Your goal is to create a summary of a ${textKind}.
+  Below you find an excerpt of the ${textKind}:
   --------
   {text}
   --------
@@ -49,19 +63,49 @@ It is invoked repeatedly on chunks of text.
   `;
 
   async function summarize(docs, level) {
+    console.log(`\n## Level ${level} Summarization\n`);
+    console.log(`- Level ${level} input summary:`);
+    console.log(`  - ${docs.length} docs, length: ${docsLength(docs)}`);
     const chunks = await getChunks({ docs, ...chunkParams });
+    console.log(
+      `  - split into ${chunks.length} chunks, length: ${docsLength(chunks)}`
+    );
+
     const summary = await reduce(chunks, modelName, promptTemplateText, level);
     return summary;
   }
   const level0Summary = await summarize(docs, 0);
-  const level1Summary = await summarize([level0Summary], 1);
-  const level2Summary = await summarize([level1Summary], 2);
-  const level3Summary = await summarize([level2Summary], 3);
+  const summaries = [level0Summary];
+  while (summaries[summaries.length - 1].pageContent.length > 5000) {
+    const level = summaries.length;
+    const summary = await summarize([summaries[summaries.length - 1]], level);
+    summaries.push(summary);
+  }
+  // Now print the last 2 summaries
+  const last2Summaries = summaries.slice(-2).reverse();
+  for (const summary of last2Summaries) {
+    console.log(`\n## ${summary.metadata.source}\n`);
+    console.log(summary.pageContent);
+    console.log();
+  }
+}
+
+// return the total length of all docs in
+// formatted as a single string
+function docsLength(docs) {
+  const bytes = docs.reduce((total, doc) => total + doc.pageContent.length, 0);
+  if (bytes < 1000) {
+    return `${bytes} bytes`;
+  }
+  const kB = (bytes / 1000).toFixed(2);
+  return `${kB} kB`;
 }
 
 // summarize an array of docs into a single document
 async function reduce(chunks, modelName, promptTemplateText, level) {
   const summaryDocs = [];
+  console.log(`\n- Level ${level} progress:`);
+
   for (const [i, chunk] of chunks.entries()) {
     const start = +new Date();
     const result = await cachedAllInOne({
@@ -70,26 +114,20 @@ async function reduce(chunks, modelName, promptTemplateText, level) {
       chunkContent: chunk.pageContent,
     });
 
-    const elapsesSeconds = ((+new Date() - start) / 1000).toFixed(2);
-    const rate = (chunk.pageContent.length / elapsesSeconds).toFixed(2);
-    console.log(
-      `\n- Level ${level} Chunk ${i} (${elapsesSeconds}s rate:${rate}b/s):`
-    );
-    console.log(result);
+    const elapsed = ((+new Date() - start) / 1000).toFixed(2);
+    const rate = (chunk.pageContent.length / elapsed).toFixed(2);
+    console.log(`  - Level ${level} Chunk ${i} (${elapsed}s rate:${rate}b/s):`);
+    // console.log(result);
     const doc = new Document({
       pageContent: result,
-      metadata: { source: `Level 0 Summary of chunk ${i}` },
+      metadata: { source: `Level ${level} Summary of chunk ${i}` },
     });
     summaryDocs.push(doc);
   }
-  const totalDocsLength = summaryDocs.reduce(
-    (total, doc) => total + doc.pageContent.length,
-    0
+  console.log(`\n- Level ${level} output summary:`);
+  console.log(
+    `  - ${summaryDocs.length} docs, length: ${docsLength(summaryDocs)}`
   );
-  console.log(`\n## Level ${level} Summary:
-  number of docs: ${summaryDocs.length}
-  total length: ${totalDocsLength}
-  \n`);
 
   const concatenatedSummaryDoc = new Document({
     pageContent: summaryDocs.reduce(
@@ -175,7 +213,6 @@ async function getDocs({ sourceNickname, maxDocs }) {
   const docs = (await loader.load())
     .slice(contentDocumentStartIndex)
     .slice(0, maxDocs);
-  console.log(`  - fetched ${docs.length} document(s)`);
   return docs;
 }
 async function getChunks({ docs, chunkSize, chunkOverlap, maxChunks }) {
@@ -188,13 +225,5 @@ async function getChunks({ docs, chunkSize, chunkOverlap, maxChunks }) {
     0,
     maxChunks
   );
-  console.log(
-    `  - split into ${splitDocuments.length} document chunks maxSize: ${chunkSize}`
-  );
-  const totalLength = splitDocuments.reduce(
-    (total, doc) => total + doc.pageContent.length,
-    0
-  );
-  console.log(`  - total length: ${totalLength}`);
   return splitDocuments;
 }

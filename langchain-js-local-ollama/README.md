@@ -54,6 +54,8 @@ Trying various Map/Reduce - `mappr.mjs` - characters in Hero of Ages
 ```bash
 #  move to markdown with tags - (dot?)
 time node mappr.mjs | tee -a "results/final-refine-characters-hero.$(gdate -u -Is|sed 's/+00:00/Z/')".txt
+
+time node experiments/basics-map-cache.mjs | tee -a "results/map-reduce-summary-hero.$(gdate -u -Is|sed 's/+00:00/Z/')".md
 ```
 
 - Refine
