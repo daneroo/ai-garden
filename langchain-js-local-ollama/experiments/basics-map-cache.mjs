@@ -8,6 +8,7 @@ import { join } from "node:path";
 import crypto from "node:crypto";
 // This now works, but llmKey: '_model:"base_chat_model",_type:"ollama"' does not distinguish between ollama models.
 // import { LocalFileCache } from "langchain/cache/file_system";
+import { Document } from "langchain/document";
 
 await main();
 async function main() {
@@ -20,7 +21,14 @@ It is invoked repeatedly on chunks of text.
 
 \n`);
 
-  const chunks = await getChunks();
+  const maxDocs = 89; // hero: 15 - Part One, 89 - Epilogue
+  const sourceNickname = "hero-of-ages.epub"; // neon-shadows.txt, hero-of-ages.epub
+  const docs = await getDocs({ sourceNickname, maxDocs });
+
+  const chunkSize = 8000;
+  const chunkOverlap = 100;
+  const maxChunks = 9999999;
+  const chunkParams = { chunkSize, chunkOverlap, maxChunks };
 
   const verbose = false;
   const modelName = "llama2"; // llama2,mistral
@@ -40,6 +48,20 @@ It is invoked repeatedly on chunks of text.
   SUMMARY:
   `;
 
+  async function summarize(docs, level) {
+    const chunks = await getChunks({ docs, ...chunkParams });
+    const summary = await reduce(chunks, modelName, promptTemplateText, level);
+    return summary;
+  }
+  const level0Summary = await summarize(docs, 0);
+  const level1Summary = await summarize([level0Summary], 1);
+  const level2Summary = await summarize([level1Summary], 2);
+  const level3Summary = await summarize([level2Summary], 3);
+}
+
+// summarize an array of docs into a single document
+async function reduce(chunks, modelName, promptTemplateText, level) {
+  const summaryDocs = [];
   for (const [i, chunk] of chunks.entries()) {
     const start = +new Date();
     const result = await cachedAllInOne({
@@ -51,9 +73,32 @@ It is invoked repeatedly on chunks of text.
     const elapsesSeconds = ((+new Date() - start) / 1000).toFixed(2);
     const rate = (chunk.pageContent.length / elapsesSeconds).toFixed(2);
     console.log(
-      `\n- Chunk ${i} (${elapsesSeconds}s rate:${rate}b/s):\n${result}`
+      `\n- Level ${level} Chunk ${i} (${elapsesSeconds}s rate:${rate}b/s):`
     );
+    console.log(result);
+    const doc = new Document({
+      pageContent: result,
+      metadata: { source: `Level 0 Summary of chunk ${i}` },
+    });
+    summaryDocs.push(doc);
   }
+  const totalDocsLength = summaryDocs.reduce(
+    (total, doc) => total + doc.pageContent.length,
+    0
+  );
+  console.log(`\n## Level ${level} Summary:
+  number of docs: ${summaryDocs.length}
+  total length: ${totalDocsLength}
+  \n`);
+
+  const concatenatedSummaryDoc = new Document({
+    pageContent: summaryDocs.reduce(
+      (total, doc) => total + doc.pageContent + "\n\n",
+      ""
+    ),
+    metadata: { source: `Level ${level} Summary` },
+  });
+  return concatenatedSummaryDoc;
 }
 
 async function allInOne({ modelName, promptTemplateText, chunkContent }) {
@@ -124,30 +169,32 @@ async function cachedAllInOne({ modelName, promptTemplateText, chunkContent }) {
     return result;
   }
 }
-async function getChunks() {
-  const maxDocs = 89; // hero: 15 - Part One, 89 - Epilogue
-  // RecursiveCharacterTextSplitter
-  const chunkSize = 8000;
-  const chunkOverlap = 100;
-  const maxChunks = 9999999;
 
-  const sourceNickname = "hero-of-ages.epub"; // neon-shadows.txt, hero-of-ages.epub
+async function getDocs({ sourceNickname, maxDocs }) {
   const { name, loader, contentDocumentStartIndex } = getSource(sourceNickname);
   const docs = (await loader.load())
     .slice(contentDocumentStartIndex)
     .slice(0, maxDocs);
   console.log(`  - fetched ${docs.length} document(s)`);
+  return docs;
+}
+async function getChunks({ docs, chunkSize, chunkOverlap, maxChunks }) {
   const splitter = new RecursiveCharacterTextSplitter({
     chunkSize,
     chunkOverlap,
   });
 
-  const splitDocuments = (await splitter.splitDocuments(docs)).splice(
+  const splitDocuments = (await splitter.splitDocuments(docs)).slice(
     0,
     maxChunks
   );
   console.log(
     `  - split into ${splitDocuments.length} document chunks maxSize: ${chunkSize}`
   );
+  const totalLength = splitDocuments.reduce(
+    (total, doc) => total + doc.pageContent.length,
+    0
+  );
+  console.log(`  - total length: ${totalLength}`);
   return splitDocuments;
 }
