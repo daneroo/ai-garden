@@ -9,9 +9,12 @@ console.log(`# Basics Output Parser
 Here we simply invoke a chain (RunnableSequence)
 that includes an StructuredOutputParser (Zod) as it's last step.
 
+Mistral seems much better at this than Llama2.
+
 \n`);
 
 const verbose = false;
+
 const modelName = "mistral";
 
 const model = new ChatOllama({

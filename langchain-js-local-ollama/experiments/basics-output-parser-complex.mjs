@@ -9,6 +9,11 @@ console.log(`# Basics Output Parser
 Here we simply invoke a chain (RunnableSequence)
 that includes an StructuredOutputParser (Zod) as it's last step.
 
+We are parsing an output that is a list of colors and moods.
+The output is a JSON Object, so we use Zod to parse it.
+
+Mistral seems much better at this than Llama2.
+
 \n`);
 
 const verbose = false;
