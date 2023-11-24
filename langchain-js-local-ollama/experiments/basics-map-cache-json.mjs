@@ -3,6 +3,9 @@ import { PromptTemplate } from "langchain/prompts";
 import { RunnableSequence } from "langchain/schema/runnable";
 import { getSource } from "../lib/sources.mjs";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { z } from "zod";
+import { StructuredOutputParser } from "langchain/output_parsers";
+
 import { promises as fs } from "node:fs";
 import { join } from "node:path";
 import crypto from "node:crypto";
@@ -37,30 +40,57 @@ The list of characters and locations are expected to conform to a JSON output sc
   const chunkParams = { chunkSize, chunkOverlap, maxChunks };
 
   const verbose = false;
-  const modelName = "llama2"; // llama2,mistral
+  const modelName = "llama2"; // llama2, mistral
 
   console.log(`## Parameters\n`);
   console.log(`  - sourceNickname: ${sourceNickname}`);
   console.log(`  - modelName: ${modelName}`);
   console.log(`  - chunkSize: ${chunkSize}`);
 
-  const textKind = "story";
-  const textKindPlural = "stories";
-  const promptTemplateText = `
-  You are an expert in summarizing ${textKindPlural}.
-  Your goal is to create a summary of a ${textKind}.
-  Below you find an excerpt of the ${textKind}:
-  --------
-  {text}
-  --------
-  
-  Total output will be a summary of the excerpt.
-  
-  SUMMARY:
-  `;
+  const schemaAndTemplateFString = {
+    schema: z
+      .object({
+        characters: z.array(
+          z.object({
+            name: z.string().describe("name of the character"),
+            description: z
+              .string()
+              .describe("short description of the character"),
+          })
+        ),
+      })
+      .describe("A list of characters"),
+    templateFString: `
+You are an attentive and thorough reader.
+Your goal is to create a comprehensive list of characters in a story.
+Prefer full names over nicknames or first names.
+Below you find an extract of the story:
+--------
+{text}
+--------
+
+- Only show the list of characters.
+- For each character, specify their name and a very short description.
+
+Format the output as JSON.
+{format_instructions}
+
+Only include the JSON Output. 
+
+ABSOLUTELY No other text is allowed.
+For example, do NOT include the following text in your output:
+---
+Here is the list of characters in the story, formatted as a JSON object:
+---
+
+JSON:
+    `,
+  };
+
+  const { schema, templateFString } = schemaAndTemplateFString;
 
   async function summarize(docs, level) {
-    console.log(`\n## Level ${level} Summarization\n`);
+    console.log(`\n## Level ${level} Character Summarization\n`);
     console.log(`- Level ${level} input summary:`);
     console.log(`  - ${docs.length} docs, length: ${docsLength(docs)}`);
     const chunks = await getChunks({ docs, ...chunkParams });
@@ -68,21 +98,30 @@ The list of characters and locations are expected to conform to a JSON output sc
       `  - split into ${chunks.length} chunks, length: ${docsLength(chunks)}`
     );
 
-    const summary = await reduce(chunks, modelName, promptTemplateText, level);
+    const summary = await reduce(
+      chunks,
+      modelName,
+      schema,
+      templateFString,
+      level
+    );
     return summary;
   }
   const level0Summary = await summarize(docs, 0);
+
+  // No recursion for now
   const summaries = [level0Summary];
-  while (summaries[summaries.length - 1].pageContent.length > 5000) {
-    const level = summaries.length;
-    const summary = await summarize([summaries[summaries.length - 1]], level);
-    summaries.push(summary);
-  }
+
+  // while (summaries[summaries.length - 1].pageContent.length > 5000) {
+  //   const level = summaries.length;
+  //   const summary = await summarize([summaries[summaries.length - 1]], level);
+  //   summaries.push(summary);
+  // }
   // Now print the last 2 summaries
   const last2Summaries = summaries.slice(-2).reverse();
   for (const summary of last2Summaries) {
     console.log(`\n## ${summary.metadata.source}\n`);
-    console.log(summary.pageContent);
+    // console.log(summary.pageContent);
     console.log();
   }
 }
@@ -99,7 +138,7 @@ function docsLength(docs) {
 }
 
 // summarize an array of docs into a single document
-async function reduce(chunks, modelName, promptTemplateText, level) {
+async function reduce(chunks, modelName, schema, templateFString, level) {
   const summaryDocs = [];
   console.log(`\n- Level ${level} progress:`);
 
@@ -107,16 +146,19 @@ async function reduce(chunks, modelName, promptTemplateText, level) {
     const start = +new Date();
     const result = await cachedAllInOne({
       modelName,
-      promptTemplateText,
+      schema,
+      templateFString,
       chunkContent: chunk.pageContent,
     });
 
     const elapsed = ((+new Date() - start) / 1000).toFixed(2);
     const rate = (chunk.pageContent.length / elapsed).toFixed(2);
-    console.log(`  - Level ${level} Chunk ${i} (${elapsed}s rate:${rate}b/s):`);
-    // console.log(result);
+    console.log(
+      `  - Level ${level} Chunk ${i}/${chunks.length} (${elapsed}s rate:${rate}b/s):`
+    );
+    console.log(result);
     const doc = new Document({
-      pageContent: result,
+      pageContent: JSON.stringify(result, null, 2),
       metadata: { source: `Level ${level} Summary of chunk ${i}` },
     });
     summaryDocs.push(doc);
@@ -136,54 +178,77 @@ async function reduce(chunks, modelName, promptTemplateText, level) {
   return concatenatedSummaryDoc;
 }
 
-async function allInOne({ modelName, promptTemplateText, chunkContent }) {
-  // const cacheDir = "cache";
-  // const cache = new LocalFileCache(cacheDir);
-
-  // if (false) {
-  //   const prompt = "prompt";
-  //   const llmKey = "llmKey";
-  //   const generations = ["generation1", "generation2"];
-  //   console.log("update", { prompt, llmKey, generations });
-
-  //   await cache.update(prompt, llmKey, generations);
-  //   const result = await cache.lookup(prompt, llmKey);
-  //   console.log("lookup", { prompt, llmKey, result });
-  // }
-
+async function allInOne({ modelName, schema, templateFString, chunkContent }) {
   const model = new ChatOllama({
     // We will use out own Cache implementation
     // cache: cache,
     baseUrl: "http://localhost:11434",
     model: modelName,
     maxConcurrency: 1,
+    temperature: 0.1,
+    format: "json", // seems to help llama2, in this case
+    // timeout: 30_000, //30s THIS DOES NOT ACTUALLY TIMEOUT!
     // verbose: true,
   });
-  const promptTemplate = PromptTemplate.fromTemplate(promptTemplateText);
-  const chain = RunnableSequence.from([promptTemplate, model]);
-  const result = await chain.invoke({
-    text: chunkContent,
-  });
-  return result.content;
+  const parser = StructuredOutputParser.fromZodSchema(schema);
+
+  // console.log("Parser instructions:\n", parser.getFormatInstructions());
+
+  const promptTemplate = PromptTemplate.fromTemplate(templateFString);
+
+  const chain = RunnableSequence.from([promptTemplate, model, parser]);
+
+  let attempts = 0;
+  while (attempts < 5) {
+    try {
+      attempts++;
+      const result = await chain.invoke({
+        text: chunkContent,
+        format_instructions: parser.getFormatInstructions(),
+      });
+      return result;
+    } catch (err) {
+      console.error(err);
+      console.log(
+        `  .. Failed to parse text (attempt ${attempts}). Retrying...`
+      );
+    }
+  }
+  return {
+    characters: [],
+  };
 }
 
-function cacheKey({ modelName, promptTemplateText, chunkContent }) {
+function cacheKey({ modelName, schema, templateFString, chunkContent }) {
   // hash the prompt template and chunk content
   // to create a cache key
   const hash = crypto.createHash("sha256");
-  hash.update(promptTemplateText);
+  const parser = StructuredOutputParser.fromZodSchema(schema);
+  const formatInstructions = parser.getFormatInstructions();
+  // console.log(
+  //   `******- Hashing schema from format intructions:`,
+  //   formatInstructions
+  // );
+  hash.update(formatInstructions);
+  hash.update(templateFString);
   hash.update(chunkContent);
   const contentHash = hash.digest("hex");
   return `${modelName}-${contentHash}`;
 }
 
-async function cachedAllInOne({ modelName, promptTemplateText, chunkContent }) {
-  const key = cacheKey({ modelName, promptTemplateText, chunkContent });
+async function cachedAllInOne({
+  modelName,
+  schema,
+  templateFString,
+  chunkContent,
+}) {
+  const key = cacheKey({ modelName, schema, templateFString, chunkContent });
   const cacheFilePath = join("cache", `${key}.txt`);
+  console.debug(`  .. Cache file path: ${cacheFilePath}`);
 
   try {
     // Check if the cache file exists and return its content if it does
-    const cachedResult = await fs.readFile(cacheFilePath, "utf8");
+    const cachedResult = JSON.parse(await fs.readFile(cacheFilePath, "utf8"));
     return cachedResult;
   } catch (error) {
     // If the file doesn't exist, catch the error and proceed to compute the result
@@ -194,12 +259,13 @@ async function cachedAllInOne({ modelName, promptTemplateText, chunkContent }) {
     // Call allInOne to get the result
     const result = await allInOne({
       modelName,
-      promptTemplateText,
+      schema,
+      templateFString,
       chunkContent,
     });
 
     // Store the result in the cache file
-    await fs.writeFile(cacheFilePath, result, "utf8");
+    await fs.writeFile(cacheFilePath, JSON.stringify(result), "utf8");
 
     return result;
   }

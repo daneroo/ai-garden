@@ -90,6 +90,7 @@ const schemaAndTemplateFString = {
     Format the output as JSON.
     {format_instructions}
     
+    Only include the JSON Output. No other text is allowed.
     `,
   },
 };
