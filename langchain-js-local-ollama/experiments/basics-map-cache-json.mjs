@@ -1,4 +1,6 @@
 import { ChatOllama } from "langchain/chat_models/ollama";
+import { Ollama } from "langchain/llms/ollama";
+
 import { PromptTemplate } from "langchain/prompts";
 import { RunnableSequence } from "langchain/schema/runnable";
 import { getSource } from "../lib/sources.mjs";
@@ -40,7 +42,7 @@ The list of characters and locations are expected to conform to a JSON output sc
   const chunkParams = { chunkSize, chunkOverlap, maxChunks };
 
   const verbose = false;
-  const modelName = "llama2"; // llama2, mistral
+  const modelName = "mistral"; // llama2, mistral
 
   console.log(`## Parameters\n`);
   console.log(`  - sourceNickname: ${sourceNickname}`);
@@ -89,35 +91,28 @@ JSON:
 
   const { schema, templateFString } = schemaAndTemplateFString;
 
-  async function summarize(docs, level) {
-    console.log(`\n## Level ${level} Character Summarization\n`);
-    console.log(`- Level ${level} input summary:`);
-    console.log(`  - ${docs.length} docs, length: ${docsLength(docs)}`);
-    const chunks = await getChunks({ docs, ...chunkParams });
-    console.log(
-      `  - split into ${chunks.length} chunks, length: ${docsLength(chunks)}`
-    );
+  console.log(`\n## Level 0 Character Extraction & Summarization\n`);
+  console.log(`- Level 0 input summary:`);
+  console.log(`  - ${docs.length} docs, length: ${docsLength(docs)}`);
+  const chunks = await getChunks({ docs, ...chunkParams });
+  console.log(
+    `  - split into ${chunks.length} chunks, length: ${docsLength(chunks)}`
+  );
 
-    const summary = await reduce(
-      chunks,
-      modelName,
-      schema,
-      templateFString,
-      level
-    );
-    return summary;
-  }
-  const level0Summary = await summarize(docs, 0);
+  const rawCharacterDocs = await extractRawCharacters(
+    chunks,
+    modelName,
+    schema,
+    templateFString
+  );
 
-  // No recursion for now
+  // Level 1: Aggregate by character
+
+  // Level 2: Aggregate by character, then summarize each character
+  const level0Summary = await aggregateByCharacter(rawCharacterDocs);
+
   const summaries = [level0Summary];
 
-  // while (summaries[summaries.length - 1].pageContent.length > 5000) {
-  //   const level = summaries.length;
-  //   const summary = await summarize([summaries[summaries.length - 1]], level);
-  //   summaries.push(summary);
-  // }
-  // Now print the last 2 summaries
   const last2Summaries = summaries.slice(-2).reverse();
   for (const summary of last2Summaries) {
     console.log(`\n## ${summary.metadata.source}\n`);
@@ -137,14 +132,104 @@ function docsLength(docs) {
   return `${kB} kB`;
 }
 
-// summarize an array of docs into a single document
-async function reduce(chunks, modelName, schema, templateFString, level) {
+// Aggregate the character descriptions from all chunks
+// return one document per character,
+// pageContent is JSON encoded as an array of descriptions
+//  {
+//   name: "Vin",
+//   descriptions: ["desc1", "desc2"],
+// };
+// input: array of documents, each containing a JSON array of characters
+async function aggregateByCharacter(rawCharacterDocs) {
+  const mergedCharacterMap = rawCharacterDocs.reduce((accObj, doc) => {
+    // console.log(`  - Merging ${doc.metadata.source}`);
+    const json = JSON.parse(doc.pageContent);
+    // console.log({ json });
+    json.characters.forEach((char) => {
+      // Initialize with an empty array for new characters or append to existing array
+      accObj[char.name] = accObj[char.name]
+        ? [...accObj[char.name], char.description]
+        : [char.description];
+    });
+    return accObj;
+  }, {});
+
+  // Output 1 document per character,
+  // optionally filtered by minDescriptionCount
+  // order by number of descriptions, or alphabetically (.sort())
+  const minDescriptionCount = 0;
+  const aggregatedCharacterDocs = Object.entries(mergedCharacterMap)
+    .filter(([key, descriptions]) => descriptions.length > minDescriptionCount)
+    // .sort(([kA], [kB]) => kA.localeCompare(kB)) // Uncomment for alphabetical sorting
+    .sort(([kA, dA], [kB, dB]) => dB.length - dA.length)
+    .map(
+      ([name, descriptions]) =>
+        new Document({
+          pageContent: JSON.stringify({ name, descriptions }, null, 2),
+          metadata: { source: `Level 1 Aggregation by Character for ${name}` },
+        })
+    );
+
+  // return aggregatedCharacterDocs;
+  // ----------------------------------------
+
+  // for (const key of Object.keys(mergedCharacterMap)) {
+  //   // mergedCharacterMap[key] is an array of descriptions
+  //   console.log(
+  //     `****${key}: has ${mergedCharacterMap[key].length} descriptions`
+  //   );
+  //   // re-summarize each character
+  //   const llm = new Ollama({
+  //     baseUrl: "http://localhost:11434",
+  //     model: modelName,
+  //     maxConcurrency: 1,
+  //   });
+  //   const llmResult = await llm.predict(
+  //     `Reformulate the following character description.
+  //     You may recombine, rephrase, or reword the description.
+  //     Describe the character in paragraph form, Do not include bullets or lists.
+  //     Keep all details. Include only the refined text itself\n\n ${mergedCharacterMap[
+  //       key
+  //     ].join("\n")}`
+  //   );
+  //   console.log(`  - refined ${key}:\n${llmResult}`);
+  // }
+
+  let summaryText = `\nThese are aggregated character descriptions:\n\n`;
+  for (const doc of aggregatedCharacterDocs) {
+    const json = JSON.parse(doc.pageContent);
+    const { name, descriptions } = json;
+    // console.log(`+++++ ${name}: has ${descriptions.length} descriptions`);
+    summaryText += `\n\n### ${name} (${descriptions.length} mentions)\n\n`;
+    summaryText += descriptions.join("\n");
+  }
+
+  const concatenatedSummaryDoc = new Document({
+    pageContent: summaryText,
+    // pageContent: characterDocs.reduce(
+    //   (total, doc) => total + doc.pageContent + "\n\n",
+    //   ""
+    // ),
+    metadata: { source: `Level 2 - Concatenated Aggregation by Character` },
+  });
+
+  return concatenatedSummaryDoc;
+}
+
+// This returns one document per chunk
+async function extractRawCharacters(
+  chunks,
+  modelName,
+  schema,
+  templateFString
+) {
+  const level = 0;
   const characterDocs = [];
   console.log(`\n- Level ${level} progress:`);
 
   for (const [i, chunk] of chunks.entries()) {
     const start = +new Date();
-    const result = await cachedAllInOne({
+    const result = await cachedExtractFromChunkAsJSON({
       modelName,
       schema,
       templateFString,
@@ -168,63 +253,16 @@ async function reduce(chunks, modelName, schema, templateFString, level) {
   console.log(
     `  - ${characterDocs.length} docs, length: ${docsLength(characterDocs)}`
   );
-
-  //  merge characterDocs.json maps ({characters:[{name:string,description: string}]}) into a single map
-  // e.g.  const json = {
-  //   characters: [
-  //     {
-  //       name: "Kelsier",
-  //       description:
-  //         "A clever and subtle character who appears to take on different forms.",
-  //     },
-  //     {
-  //       name: "Marsh",
-  //       description:
-  //         "A man controlled by Ruin who uses metal as an anchor to push himself into the air.",
-  //     },
-  //   ],
-  // };
-  const mergedCharacterMap = characterDocs.reduce((accObj, doc) => {
-    // console.log(`  - Merging ${doc.metadata.source}`);
-    const json = JSON.parse(doc.pageContent);
-    // console.log({ json });
-    json.characters.forEach((char) => {
-      // Initialize with an empty array for new characters or append to existing array
-      accObj[char.name] = accObj[char.name]
-        ? [...accObj[char.name], char.description]
-        : [char.description];
-    });
-    return accObj;
-  }, {});
-  // console.log({ mergedCharacterMap });
-
-  // Print character names with the count of their descriptions (if they have more than sufficient description)
-  const minDescriptionCount = 10;
-  let summaryText = `\nThe following characters have more than ${minDescriptionCount} mentions:\n\n`;
-  Object.keys(mergedCharacterMap)
-    .filter((key) => mergedCharacterMap[key].length > minDescriptionCount)
-    .sort((a, b) => mergedCharacterMap[b].length - mergedCharacterMap[a].length)
-    // .sort()
-    .forEach((key) => {
-      console.log(`${key}: has ${mergedCharacterMap[key].length} descriptions`);
-      summaryText += `\n\n### ${key} (${mergedCharacterMap[key].length} mentions)\n\n`;
-      summaryText += mergedCharacterMap[key].join("\n");
-    });
-
-  // TODO(daneroo): this is a hack, we need to merge maps , not concatenate docs
-  const concatenatedSummaryDoc = new Document({
-    pageContent: summaryText,
-    // pageContent: characterDocs.reduce(
-    //   (total, doc) => total + doc.pageContent + "\n\n",
-    //   ""
-    // ),
-    metadata: { source: `Level ${level} Summary` },
-  });
-
-  return concatenatedSummaryDoc;
+  return characterDocs;
 }
 
-async function allInOne({ modelName, schema, templateFString, chunkContent }) {
+// extract character/locations from a chunk of text
+async function extractFromChunkAsJSON({
+  modelName,
+  schema,
+  templateFString,
+  chunkContent,
+}) {
   const model = new ChatOllama({
     // We will use out own Cache implementation
     // cache: cache,
@@ -282,7 +320,7 @@ function cacheKey({ modelName, schema, templateFString, chunkContent }) {
   return `${modelName}-${contentHash}`;
 }
 
-async function cachedAllInOne({
+async function cachedExtractFromChunkAsJSON({
   modelName,
   schema,
   templateFString,
@@ -303,7 +341,7 @@ async function cachedAllInOne({
     }
 
     // Call allInOne to get the result
-    const result = await allInOne({
+    const result = await extractFromChunkAsJSON({
       modelName,
       schema,
       templateFString,
