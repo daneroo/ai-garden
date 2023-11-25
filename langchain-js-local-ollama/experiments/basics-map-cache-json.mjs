@@ -25,12 +25,12 @@ The list of characters and locations are expected to conform to a JSON output sc
 
 \n`);
 
-  // const maxDocs = 89; // hero: 15 - Part One, 89 - Epilogue
-  // const sourceNickname = "hero-of-ages.epub";
+  const maxDocs = 89; // hero: 15 - Part One, 89 - Epilogue
+  const sourceNickname = "hero-of-ages.epub";
 
-  const maxDocs = 999;
+  // const maxDocs = 999;
   // const sourceNickname = "neon-shadows.txt";
-  const sourceNickname = "thesis.epub";
+  // const sourceNickname = "thesis.epub";
 
   const docs = await getDocs({ sourceNickname, maxDocs });
 
@@ -121,7 +121,7 @@ JSON:
   const last2Summaries = summaries.slice(-2).reverse();
   for (const summary of last2Summaries) {
     console.log(`\n## ${summary.metadata.source}\n`);
-    // console.log(summary.pageContent);
+    console.log(summary.pageContent);
     console.log();
   }
 }
@@ -139,7 +139,7 @@ function docsLength(docs) {
 
 // summarize an array of docs into a single document
 async function reduce(chunks, modelName, schema, templateFString, level) {
-  const summaryDocs = [];
+  const characterDocs = [];
   console.log(`\n- Level ${level} progress:`);
 
   for (const [i, chunk] of chunks.entries()) {
@@ -156,25 +156,71 @@ async function reduce(chunks, modelName, schema, templateFString, level) {
     console.log(
       `  - Level ${level} Chunk ${i}/${chunks.length} (${elapsed}s rate:${rate}b/s):`
     );
-    console.log(result);
+    // console.log(result);
+    // TODO(daneroo): in this case, we should not need to stringify, just return the parsed JSON
     const doc = new Document({
       pageContent: JSON.stringify(result, null, 2),
       metadata: { source: `Level ${level} Summary of chunk ${i}` },
     });
-    summaryDocs.push(doc);
+    characterDocs.push(doc);
   }
   console.log(`\n- Level ${level} output summary:`);
   console.log(
-    `  - ${summaryDocs.length} docs, length: ${docsLength(summaryDocs)}`
+    `  - ${characterDocs.length} docs, length: ${docsLength(characterDocs)}`
   );
 
+  //  merge characterDocs.json maps ({characters:[{name:string,description: string}]}) into a single map
+  // e.g.  const json = {
+  //   characters: [
+  //     {
+  //       name: "Kelsier",
+  //       description:
+  //         "A clever and subtle character who appears to take on different forms.",
+  //     },
+  //     {
+  //       name: "Marsh",
+  //       description:
+  //         "A man controlled by Ruin who uses metal as an anchor to push himself into the air.",
+  //     },
+  //   ],
+  // };
+  const mergedCharacterMap = characterDocs.reduce((accObj, doc) => {
+    // console.log(`  - Merging ${doc.metadata.source}`);
+    const json = JSON.parse(doc.pageContent);
+    // console.log({ json });
+    json.characters.forEach((char) => {
+      // Initialize with an empty array for new characters or append to existing array
+      accObj[char.name] = accObj[char.name]
+        ? [...accObj[char.name], char.description]
+        : [char.description];
+    });
+    return accObj;
+  }, {});
+  // console.log({ mergedCharacterMap });
+
+  // Print character names with the count of their descriptions (if they have more than sufficient description)
+  const minDescriptionCount = 10;
+  let summaryText = `\nThe following characters have more than ${minDescriptionCount} mentions:\n\n`;
+  Object.keys(mergedCharacterMap)
+    .filter((key) => mergedCharacterMap[key].length > minDescriptionCount)
+    .sort((a, b) => mergedCharacterMap[b].length - mergedCharacterMap[a].length)
+    // .sort()
+    .forEach((key) => {
+      console.log(`${key}: has ${mergedCharacterMap[key].length} descriptions`);
+      summaryText += `\n\n### ${key} (${mergedCharacterMap[key].length} mentions)\n\n`;
+      summaryText += mergedCharacterMap[key].join("\n");
+    });
+
+  // TODO(daneroo): this is a hack, we need to merge maps , not concatenate docs
   const concatenatedSummaryDoc = new Document({
-    pageContent: summaryDocs.reduce(
-      (total, doc) => total + doc.pageContent + "\n\n",
-      ""
-    ),
+    pageContent: summaryText,
+    // pageContent: characterDocs.reduce(
+    //   (total, doc) => total + doc.pageContent + "\n\n",
+    //   ""
+    // ),
     metadata: { source: `Level ${level} Summary` },
   });
+
   return concatenatedSummaryDoc;
 }
 
@@ -244,7 +290,7 @@ async function cachedAllInOne({
 }) {
   const key = cacheKey({ modelName, schema, templateFString, chunkContent });
   const cacheFilePath = join("cache", `${key}.txt`);
-  console.debug(`  .. Cache file path: ${cacheFilePath}`);
+  // console.debug(`  .. Cache file path: ${cacheFilePath}`);
 
   try {
     // Check if the cache file exists and return its content if it does

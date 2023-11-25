@@ -56,6 +56,11 @@ Trying various Map/Reduce - `mappr.mjs` - characters in Hero of Ages
 time node mappr.mjs | tee -a "results/final-refine-characters-hero.$(gdate -u -Is|sed 's/+00:00/Z/')".txt
 
 time node experiments/basics-map-cache.mjs | tee -a "results/map-reduce-summary-hero.$(gdate -u -Is|sed 's/+00:00/Z/')".md
+time node experiments/basics-map-cache-json.mjs | tee -a "results/map-reduce-characters-model-hero.$(gdate -u -Is|sed 's/+00:00/Z/')".md
+
+# calling ollama directly
+head -145  source/characters-raw/hero-llama2-2023-11-25T00:50:43Z.md| ollama run llama2 "Rewrite the following character summaries in your own words. Keep as mush detail as possible. Preserve the Markdown order and formatting."
+
 ```
 
 - Refine

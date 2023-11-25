@@ -1,0 +1,848 @@
+# Basics Map/reduce Operation
+
+Here we simply invoke a chain (RunnableSequence)
+to extract characters and locations from a text.
+It is invoked repeatedly on chunks of the text.
+
+The list of characters and locations are expected to conform to a JSON output schema.
+
+## Parameters
+
+- sourceNickname: hero-of-ages.epub
+- modelName: mistral
+- chunkSize: 8000
+
+## Level 0 Character Summarization
+
+- Level 0 input summary:
+
+  - 89 docs, length: 1335.42 kB
+  - split into 213 chunks, length: 1336.85 kB
+
+- Level 0 progress:
+
+  - Level 0 Chunk 0/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 1/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 2/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 3/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 4/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 5/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 6/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 7/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 8/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 9/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 10/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 11/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 12/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 13/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 14/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 15/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 16/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 17/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 18/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 19/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 20/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 21/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 22/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 23/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 24/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 25/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 26/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 27/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 28/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 29/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 30/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 31/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 32/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 33/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 34/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 35/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 36/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 37/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 38/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 39/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 40/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 41/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 42/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 43/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 44/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 45/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 46/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 47/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 48/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 49/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 50/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 51/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 52/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 53/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 54/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 55/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 56/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 57/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 58/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 59/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 60/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 61/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 62/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 63/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 64/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 65/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 66/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 67/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 68/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 69/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 70/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 71/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 72/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 73/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 74/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 75/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 76/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 77/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 78/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 79/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 80/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 81/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 82/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 83/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 84/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 85/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 86/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 87/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 88/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 89/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 90/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 91/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 92/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 93/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 94/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 95/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 96/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 97/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 98/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 99/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 100/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 101/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 102/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 103/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 104/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 105/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 106/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 107/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 108/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 109/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 110/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 111/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 112/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 113/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 114/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 115/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 116/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 117/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 118/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 119/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 120/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 121/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 122/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 123/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 124/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 125/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 126/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 127/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 128/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 129/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 130/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 131/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 132/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 133/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 134/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 135/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 136/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 137/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 138/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 139/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 140/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 141/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 142/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 143/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 144/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 145/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 146/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 147/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 148/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 149/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 150/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 151/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 152/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 153/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 154/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 155/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 156/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 157/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 158/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 159/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 160/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 161/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 162/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 163/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 164/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 165/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 166/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 167/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 168/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 169/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 170/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 171/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 172/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 173/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 174/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 175/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 176/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 177/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 178/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 179/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 180/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 181/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 182/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 183/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 184/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 185/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 186/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 187/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 188/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 189/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 190/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 191/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 192/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 193/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 194/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 195/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 196/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 197/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 198/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 199/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 200/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 201/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 202/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 203/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 204/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 205/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 206/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 207/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 208/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 209/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 210/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 211/213 (0.00s rate:Infinityb/s):
+  - Level 0 Chunk 212/213 (0.00s rate:Infinityb/s):
+
+- Level 0 output summary:
+  - 213 docs, length: 109.31 kB
+    Vin: has 95 descriptions
+    Elend: has 75 descriptions
+    Sazed: has 55 descriptions
+    Kelsier: has 49 descriptions
+    Spook: has 43 descriptions
+    Ruin: has 42 descriptions
+    Breeze: has 31 descriptions
+    TenSoon: has 23 descriptions
+    Yomen: has 21 descriptions
+    Marsh: has 20 descriptions
+    Ham: has 18 descriptions
+    Cett: has 16 descriptions
+    Beldre: has 15 descriptions
+    Demoux: has 14 descriptions
+    Allrianne: has 13 descriptions
+    Preservation: has 11 descriptions
+
+## Level 0 Summary
+
+The following characters have more than 10 mentions:
+
+### Vin (95 mentions)
+
+A mysterious woman who helps Elend with his powers.
+The protagonist. She has pewter and duralumin metals.
+The protagonist of the story. A skilled Allomancer who uses her powers to fight against oppression.
+The protagonist of the story. She has the ability to control emotions and metal.
+The protagonist of the story. She is a powerful Allomancer and has been tasked with defeating the Outer Dominances.
+A skaa girl with a powerful koloss servant.
+A skilled Allomancer who has been tasked with protecting Elend. She is fiercely loyal to her employer but struggles with her own doubts and fears.
+A young woman who has been trained by her father to fight koloss.
+A woman who is determined to defeat the thing she has released.
+The protagonist of the story. She is an orphan who has been trained in the art of assassination by her uncle.
+A young woman with the ability to manipulate metal. She is the protagonist of the story.
+A young woman who has been raised by the Lord Ruler and is now on a quest to save her people.
+A young woman with short hair and a scar on her cheek. She is a skilled thief and often wears dark clothing.
+A street urchin who has been granted noble status by the Emperor. She is a skilled thief and assassin.
+A member of the crew, Kelsier's love interest. She is a skilled Allomancer and has a mysterious past.
+Heir of the Survivor and wife of Elend.
+An Allomancer who flares her metals and transforms her physiology, becoming an Allomantic savant with senses beyond what any normal Allomancer would need.
+The protagonist of the story. She is an orphan who has been trained in Allomancy by Kelsier.
+The protagonist of the story. A skilled Allomancer and former slave.
+A young woman who is searching for her missing brother and becomes involved with Kelsier's plan.
+A young woman who possesses magical abilities. She is a skilled archer and serves as a scout for the rebellion.
+A Tineye who has been tasked with scouting the city of Urteau.
+A young woman who became an Allomancer after being exposed to the metal allomancy of the Lord Ruler's forces. She joined Kelsier's crew and played a key role in the revolution, ultimately killing the Lord Ruler himself.
+The protagonist of the story. A skilled thief and member of the crew.
+A young woman who has been living in Luthadel since the fall of the Final Empire. She is determined to find her missing father and bring him to justice.
+A young woman with the ability to manipulate metal. She is determined and resourceful.
+A skilled thief and member of the Mistborn class.
+The Hero of Ages. She is the wife of Elend and has the ability to control the mists.
+A young woman who has been trained in the art of deception and disguise. She is fiercely independent and determined.
+A Mistborn who has been tasked with killing the Lord Ruler and taking control of the empire.
+A thieving crewleader who is trying to find a way out of Fadrex City.
+A powerful and skilled warrior, who killed an Elariel in a good fight.
+A mysterious woman who has captured Elend's heart, Vin is a skilled fighter and an enigma.
+A young woman of about eighteen, with long blonde hair and blue eyes. She is the daughter of a street urchin and an assassin.
+The protagonist of the story. A skilled Mistborn who is trying to become a good queen.
+A Mistborn who dances with Elend at a ball.
+A human who has trained TenSoon to leap incredible heights.
+A young woman with pewter-colored skin and hair. She is an Allomancer, able to manipulate metals through her body.
+A skilled warrior who is able to control koloss.
+A young woman with the ability to Push kolosses. She is also an Allomancer.
+The protagonist of the story, a human woman with the ability to manipulate metal.
+A young woman who is the protagonist of the story. She has the ability to control koloss and kandra.
+An attentive and thorough reader who is determined to find out what's in the storage cavern.
+A skilled thief and assassin who has been hired to steal a cache of weapons from the Ministry of Canton.
+A skilled thief and member of the Elend family.
+A person who fights against an enemy.
+A skilled Allomancer and thief who uses her powers to survive in the skaa slums.
+Elend's love interest and a skilled assassin. She helps Elend in his quest to overthrow Yomen.
+A woman who was captured by King Yomen and is trying to escape from a stone door.
+The protagonist of the story. A skilled Allomancer with a mysterious past.
+The protagonist who opposes Ruin's actions.
+A young woman who becomes a Misting and later a full Mistborn, joining Kelsier in his fight against the Lord Ruler.
+Elend's daughter and the love interest of the story. She is a skilled Allomancer who is captured by the enemy.
+The protagonist of the story. A skilled Mistborn who is searching for the Well of Ascension.
+The protagonist of the story. A skilled thief and member of the Keepers.
+The protagonist of the story. She is an Allomancer and has been imprisoned in the city of Yomen for several years.
+A character who is trying to escape from a cavern.
+A skilled assassin who works for Elend. She is fiercely loyal and willing to do whatever it takes to protect her employer.
+A young woman who can control kolosses. She has short blonde hair and blue eyes.
+A human woman who became the new Lord Ruler after killing Zane Venture.
+A skilled thief and Kelsier's love interest. She is also a member of the crew.
+The protagonist of the story. A Mistborn with the ability to Push metals.
+A blunt woman whose husband is the Lord Ruler. She was captured by Yomen and is awaiting execution.
+Elend's wife and love interest. She is an Allomancer and has been searching for the Well of Ascension as well.
+The protagonist of the story. A young woman with the ability to manipulate metal.
+A character who encounters Ruin and learns about his past and present.
+A young girl who possesses the ability to manipulate metal. Vin is fiercely independent and determined to protect those she cares about.
+A young woman who has been imprisoned for her crimes.
+The protagonist of the story. She is a skilled thief and member of the Lord Ruler's crew.
+The protagonist of the story. She is a skilled warrior and leader.
+Elend's daughter, who is captured by Yomen in order to secure a truce between the Southern and Northern Dominances. She is intelligent and resourceful, and is determined to rescue her father.
+A young woman who helps Sazed on his journey and has a deep understanding of religion and spirituality.
+The protagonist of the story. She is a Misting and has the ability to control emotions.
+The protagonist of the story. She is an orphan who has been trained in Allomancy by her uncle, Elend.
+The protagonist of the story. She is an Allomancer and has been tasked with finding the atium.
+A young girl who discovers the atium. She is brave and resourceful, but must navigate dangerous situations as she tries to protect her people from Ruin's grasp.
+A young woman with the ability to control metal. She is determined and resourceful.
+A woman who possesses the power to push on emotions and understand others' thoughts and feelings.
+A young woman who has been trained by the Lord Ruler to be an Allomancer. She is brave and resourceful, but also vulnerable.
+The protagonist of the story. A skilled Allomancer and member of the Brotherhood Without Banners.
+A young woman who has been through a lot.
+A woman with an earring made of metal, which Marsh rips from her ear.
+A young woman who has recently discovered her powers as an Allomancer. She is fierce and determined, and she fights with great skill.
+A young woman with Allomantic powers. She is the protagonist of the story.
+A young girl who discovers she has the power to burn metal. She becomes an important ally to Elend in his quest to protect the city.
+A human kandra who is a member of the First Generation.
+The protagonist of the story. She has been chosen to wield the power of the Lord Ruler.
+A being created by Preservation to be intentionally unbalanced. Stronger than Ruin, but they are equally matched at the moment.
+The protagonist, a young woman with the ability to manipulate atium.
+The Hero of Ages, a powerful Terris woman who is able to manipulate metal.
+A young woman with enhanced abilities who fights alongside Elend.
+Died, taking Ruin with him.
+A young woman who is the Hero of the story. She is tasked with saving the world from Ruin's power.
+A young woman with powerful Allomantic abilities who becomes the crew's mist spirit after touching the power at the Well of Ascension.
+A young woman who is a skilled thief and has been searching for something important.
+
+### Elend (75 mentions)
+
+A scholar and leader who uses pewter to fight koloss.
+The leader of the Final Empire. He has steel metal.
+The Emperor of the koloss. He has the ability to control emotions.
+A member of the Church of the Survivor, Elend is Vin's ally in the fight against the Outer Dominances. He is also a powerful Allomancer and has been tasked with ruling Luthadel.
+The Lord Ruler's son and heir, who has been captured by the skaa.
+The current Emperor of Luthadel and ruler of several kingdoms. He is a brilliant scholar but struggles with the weight of his responsibilities.
+The Lord Ruler of the Final Empire, a powerful man with a beard and a scar on his face.
+The Lord Ruler of the Central Dominance. He is a powerful Allomancer and has been tasked with protecting his people from the mists.
+The emperor of Luthadel, who has been forced into hiding by the koloss beasts. He is Vin's ally and mentor.
+A powerful skaa lord who has joined the Church of the Survivor.
+A character who was saved from death by the nugget of Allomancy.
+The emperor of the empire. He has a scar on his forehead and wears a crown.
+Emperor of the Empire
+The leader of the group who wants to create a skaa government.
+Emperor of the Central Dominance and husband of Vin.
+The protagonist of the story. He is a nobleman and a skilled politician.
+A captain in the army who rides a horse.
+The new ruler of the Central Dominance.
+The emperor of the New Empire. He is a powerful Allomancer who has taken up the mantle of leadership after the death of his father.
+The current king of Fadrex City, and Vin's friend and ally.
+The protagonist and leader of the rebellion against Lord Yomen.
+The Lord Ruler of the Final Empire. Immortal and omnipotent.
+Vin's husband and a skilled Allomancer. He is also a member of the crew.
+A Seeker who is Vin's ally and mentor.
+The Emperor of Ages. He is the husband of Vin and has the ability to manipulate the Well of Ascension.
+Emperor of the Holy Empire and Lord Ruler. He is a powerful and intelligent man, but also very cautious.
+The emperor of Luthadel and leader of the rebellion against the Lord Ruler.
+A young noblewoman who has been betrothed to Yomen.
+A scholar and conqueror who seeks to bring order to the shattered remains of the Final Empire.
+A Venture who led the march to reclaim Luthadel from the Lord Ruler's forces.
+The emperor of Luthadel and Vin's love interest. He is a bit of a barbarian, but also very kind.
+A noble Mistborn who loves Vin and dances with her at the ball.
+The protagonist of the story. He is a Soother and the son of the Emperor.
+The protagonist and leader of the army. He is determined to find a way to break the curse of the Lord Ruler.
+A lord who is trying to understand the events related to the Survivor.
+The main character and leader of the army.
+The king of Fadrex. He is a Mistborn with tin to enhance his ears, allowing him to hear even the softest footsteps approaching.
+A leader who spoke to Penrod after he failed to send support.
+A young nobleman who is attending the ball at the Ministry of Canton as part of his duties. He is Vin's contact within the nobility.
+A person who tries to distract the enemy from attacking the city.
+A wealthy nobleman who is captured by the Inquisitors and held as a prisoner in the Lord Ruler's palace.
+The protagonist of the story. He is an obligator who seeks to overthrow the current ruler of the city.
+A man who lost a lot of blood and was patched up by Ham.
+The protagonist of the story. He is a kind and just ruler who cares deeply for his people.
+The protagonist of the story. A former obligator who seeks to save his empire from destruction.
+The Lord Ruler of Luthadel. He is a powerful and cunning man who will stop at nothing to maintain his rule.
+The Lord Ruler, a man with black hair and eyes that glow like metal. He is the ruler of the Final Empire.
+Kelsier's right-hand man, a former koloss soldier who has been with him since the beginning.
+The protagonist of the story. He is a member of the Church of the Survivor and has been tasked with finding the Well of Ascension.
+The emperor of men.
+An attentive and thorough reader who witnessed the passing of Preservation.
+The Emperor of Venture, a powerful and wise ruler who opposes Ruin's plans for destruction.
+The main antagonist of the story. He is a powerful nobleman who seeks to conquer the world.
+The protagonist and king of the Southern Dominance. He is a skilled fighter and has a strong sense of duty to his people.
+The Lord Ruler's brother and Vin's uncle. He is a skilled Allomancer and the leader of the rebellion against the Lord Ruler.
+An Inquisitor who seeks to capture Vin and use her powers for his own purposes.
+The Lord Ruler of Vetitan. He is a powerful and wise ruler who has been tasked with protecting his people from the threat of the atium.
+The Lord Ruler of the city, who has been killed by Vin.
+The leader of the army who fought against the koloss. He couldn't control them through emotions, so he had to rely on fighting.
+The Lord Ruler of Luthadel. He is a wise and powerful man, but also troubled by his past actions.
+The protagonist of the story. He is a nobleman and scholar who becomes emperor of the Final Empire.
+A man who was taken by the mists and discovered he is an Allomancer.
+A powerful Allomancer and leader of Fadrex. He has the ability to manipulate pewter, a rare metal found in the city's walls.
+The protagonist of the story. He is a skilled swordsman and has been tasked with protecting the city of Luthadel.
+The leader of the Central Dominance and the father of Ruin.
+A First Generation kandra who was imprisoned by KanPaar.
+The First of the Firsts. A powerful and wise kandra who led his people to freedom.
+The protagonist of the story. A Terrisman who is searching for his people and their lost city.
+A person with the goal of survival after undergoing Allomancy.
+The king of Aonisia and leader of the Terris people.
+A white-clad warrior who leads his men into battle.
+The protagonist of the story. He is a powerful atium Mistinger who leads his people to safety.
+Only reason Vin had left to live.
+A man who was once a slave to Ruin, but has been freed by Sazed and now serves as his companion in battle.
+A man who is the leader of a group of people who have been living underground for years.
+
+### Sazed (55 mentions)
+
+A Terrisman who serves as Elend Venture's chief ambassador.
+A Terris Feruchemist who has lost his faith.
+A Terrisman who is an atheist and has lost his love.
+A powerful skaa allomancer and a key figure in the Church of the Survivor.
+A former Lord Ruler who has been studying the various religions of the world.
+A former obligator who has renounced his powers and taken up the mantle of leadership in Elend's new government.
+An elderly man who is a Keeper of the Terris, a powerful magic-wielding race. He is also Vin's mentor and guide.
+A small, quiet man with a scar on his forehead. He is a skilled healer and often wears a hooded cloak.
+The Holy Witness of Luthadel. He is a Keeper of the Terris Order, a powerful magic user.
+A man who remembers Kelsier's smile and believes it can inspire them to keep struggling on.
+A scholar who has studied all three religions.
+An eunuch steward who left the group to make supplies stop at Luthadel.
+A former Keeper who has renounced his faith and is now searching for answers.
+A Keeper who joined Kelsier's crew after being freed from prison. He used his knowledge of ancient texts and history to help the crew plan their rebellion against the Lord Ruler.
+A Terrisman who was once a companion of Kelsier, the Survivor. He is now serving as an advisor to Emperor Venture.
+A young man who is a skilled thief and has a romantic relationship with Spook.
+A scholar and Terrisman who is searching for the Well of Ascension.
+A Soother, a powerful magic user who can manipulate emotions. He is loyal to the Lord Ruler and serves as his personal advisor.
+A former priest and scholar who has renounced his faith.
+A scholar and researcher who becomes Elend's ambassador.
+An Urteauan scientist and historian who helps Spook and Franson in their quest to rescue Spook's sister.
+A former nobleman who has joined the rebellion against Quellion. He is also a member of the Keepers of the Flame.
+A wise and powerful Allomancer who has been working with Kelsier to gather support for their cause.
+A man who was present during the event.
+An ambassador from the city-state of Luthadel, who becomes involved in the rebellion against the Lord Ruler.
+The last Keeper. He has set aside his metalminds and does not believe in the things he once taught.
+A scholar who has been studying the construction that brought water down into the cavern. He is hesitant about using his metalminds to help Spook with their plan.
+A skaa thief who enjoys studying and providing information for others.
+An elderly scholar who is helping Spook with his plan.
+A character who observes the situation and thinks about what will happen next.
+A former member of the Synod who has joined forces with Kelsier to help him rule Luthadel.
+A healer and member of the city's resistance movement.
+Spook's friend and fellow Allomancer. He is a skilled healer and uses his abilities to help the injured during the riots.
+The Keeper who wears the same robes, and has the same Feruchemical bracers on his arms. He is better at dealing with people than TenSoon, and seems to enjoy taking care of the day-to-day concerns of the citizenry.
+A Keeper and member of the Terrisman group. Dangerous and prying for rumors, legends, and tales.
+A former scholar who has dedicated his life to understanding religion and spirituality.
+A former Lord Ruler who has been stripped of his powers and is now living in disguise.
+A kandra who founded his sect for the Terris religion and spent lifetimes searching to discover it.
+A human who is a Keeper of the Pits. He carries bones in his pack to use as weapons.
+Keeper of Terris sent to speak with the First Generation of kandra
+A Keeper of Terris who has lived for over 100 years. He is the Announcer and has discovered the Hero.
+A kandra who is an attentive and thorough reader. He is trying to create a comprehensive list of characters in the story.
+A young man who has been searching for the truth about his religion.
+A Kandra who has been tasked with protecting the Homeland and its inhabitants.
+A human kandra who has spent his life studying religion and philosophy.
+A Keeper who has been tasked with protecting the First Generation.
+A kandra researcher who is a member of the Second Generation.
+A human who has been imprisoned by the Second Generation kandra for his beliefs.
+A First Generation Feruchemist who has been studying Hemalurgy and the nature of Preservation and Ruin.
+A Fifth Generation kandra who was imprisoned by KanPaar.
+The protagonist of the story. A kandra who was taken captive by Ruin, but managed to escape with the help of Elend and Demoux.
+An old kandra who has been serving as a guide for Elend and his army. He knows the location of the Homeland of the kandra people and their hidden cache.
+A kandra who has been tasked with protecting the atium.
+A wise and powerful Allomancer who helps Elend Venture on his journey.
+A man who has been alive for over a thousand years. He is a Keeper of the One Ring, and is tasked with protecting it from those who would use its power to destroy the world.
+
+### Kelsier (49 mentions)
+
+A former Lord Ruler's assassin who is now fighting against him.
+A former Lord Ruler who is now a mentor to Vin. He has the ability to manipulate metal.
+A skilled thief who led the rebellion against the Final Empire.
+The protagonist of the story. A skilled thief and leader of the crew.
+The Survivor, a man whom Beldre and others speak of in reverence.
+Former Emperor of the Central Dominance, killed by a koloss.
+A former nobleman who became a criminal mastermind after being wronged by his own family. He is Spook's mentor and ally.
+The Survivor, a mysterious figure who was once a thief but has since become a religious icon. He is believed to have been granted divine powers.
+A man who gave Spook pewter to get revenge.
+A skilled thief and the mentor of Vin. He is determined to overthrow the Final Empire.
+A powerful Allomancer and Vin's former lover. He was once a slave like Vin, but he overthrew the Final Empire and became its first emperor.
+A former nobleman who was wronged by the Lord Ruler and seeks revenge through theft and deception. He is also a Mistborn.
+The protagonist of the story, a former Lord Ruler who seeks to overthrow the current one.
+A former nobleman turned thief who becomes Spook's mentor. He is obsessed with killing the Lord Ruler.
+A mysterious figure blamed for the mists and the collapse of the economy.
+The leader of the revolution against the Lord Ruler, Kelsier was a skilled thief who used his abilities to gather allies and resources for the rebellion. He was killed in battle with the Lord Ruler's forces.
+The leader of the crew and a skilled thief. He was once an Imperial nobleman.
+Another member of the Mistborn class who is known for his bravery and leadership.
+A former Lord Ruler's assassin who becomes a hero in his own right.
+The Survivor. A skilled thief and revolutionary who overthrew the Lord Ruler.
+An assassin who has been hired by Elend to help him overthrow his father and take the throne for himself.
+A former member of the Survivor's crew who has taken over the Ministry of Assassins. He is known for his cunning and resourcefulness.
+The leader of the group that Spook belongs to.
+The Survivor of Hathsin and leader of the rebellion against Quellion.
+A former Lord Ruler who was executed for treason.
+A Mistborn who is helping Spook complete his mission.
+An experienced Allomancer and leader of the resistance, determined to overthrow Quellion.
+A former street urchin who became a Mistborn and led the rebellion against the Lord Ruler.
+A former Lord Ruler who has turned away from his past and is now fighting against the oppressive regime of the Ash Lord.
+The Survivor of Hathsin, a human man who led a rebellion against the Lord Ruler.
+The Survivor, a former koloss soldier turned thief and leader of the crew.
+A man who was able to handle adulation like this and inspired Spook to do the same.
+A former criminal mastermind who becomes a mentor to Vin. He is also a Mistborn.
+A former criminal mastermind who is now working with the government to take down other criminals.
+A former thief who became the leader of Luthadel after overthrowing Elend Venture.
+A former nobleman turned revolutionary, and Spook's mentor.
+A mysterious figure who helps Spook on his quest. He is a skilled fighter and has a tragic past.
+An experienced Allomancer and Spook's mentor. He is a skilled fighter and strategist, but also has a tragic past.
+A former thief and current emperor. Kelsier is a skilled fighter and strategist, but also has a strong sense of loyalty to his crew.
+A former thief who becomes a hero after being captured by Rashek and is the inspiration for Sazed's quest.
+The Lord Ruler's brother and Marsh's father. He was an Allomancer who helped found the empire and was killed by the Lord Ruler.
+A clever and subtle character who appears to take on different forms.
+Elend's friend and mentor, Kelsier is an assassin who helps Elend take the throne.
+A former Emperor who raised an army of Mistings to fight against Ruin.
+A former Lord Ruler who was killed by Vin's Push.
+A former slave who led a rebellion against the Central Dominance and destroyed the Well of Ascension.
+Dead long ago.
+A former Lord Ruler who has become a hero and leader of a crew of thieves.
+A person who made Spook Mistborn and healed his body.
+
+### Spook (43 mentions)
+
+A member of the crew, Clubs's nephew. He is a skilled pickpocket and has a talent for sneaking around undetected.
+A skilled thief and member of the Citizen's resistance.
+A skaa who uses his heightened senses to navigate the city and avoid danger.
+A skaa who works for Elend and Vin. He is tasked with gathering information about the Citizen.
+A man who can see whispers and feel screams. He is the companion of a god.
+A nobleman with the ability to manipulate metal. He is the protagonist of the story.
+A thief who's been injured and is crawling through a burning house.
+A person who obeys the commands of a man.
+The protagonist of the story. A skaa boy who is taken by a nobleman and becomes a servant in the Lord Ruler's army.
+A Tineye sent to Urteau by Elend to gather information.
+A former slave who became an Allomancer and joined the crew of the Survivor. He is known for his timid nature and lack of confidence.
+A young man who has been tasked with protecting Vin and his companions.
+A former assassin who has become a leader and protector.
+A member of the Thuggery, a criminal organization that operates in the city of Urteau. He is loyal to Kelsier and serves as his right-hand man.
+A young boy who is the apprentice of Kelsier, a former thief turned hero.
+An informant who provides Sazed with information about the city and Kelsier.
+The protagonist of the story. He was once a member of the Survivor's crew, but is now on his own.
+A Soother who stands out a bit.
+A former assassin turned hero who uses his skills to fight against the Citizen.
+A skaa thief who has been tasked with killing several nobles.
+A young man who has been trained by Kelsier to fight against tyranny.
+A young man who rescued a child and fought against the soldiers.
+A mysterious figure who appears to have survived a fall from a rooftop without breaking bones, sparking rumors about his true nature.
+A member of the Survivor's crew who is working with Kelsier to overthrow the Ash Lord.
+The young man who has been raised by the Lord Ruler and is now fighting for Venture.
+An Allomancer who takes the lead in the mission to expose Quellion's lies. He requests that Sazed use his metalminds to help them with their plan.
+A young man who has taken control of the city.
+A member of the Survivor's crew, who is accompanying Sazed and Breeze on their mission in the city.
+A character who is clever and orchestrates a plan to attack the Citizen.
+The leader of the Survivor's crew, who rescued Beldre and is now holding her captive.
+A young man with burned skin and a pewter-colored cloak. He is the protagonist of the story.
+A man who was once insignificant and easily forgotten but now seeks respect and admiration.
+The protagonist of the story. He is a skilled thief and leader of his crew.
+A young man who has been tasked with protecting Kelsier and helping him maintain control of Luthadel.
+A skilled assassin and leader of the city's underground.
+A former street urchin and thief who uses Allomancy to fight against oppressive regimes.
+A former street urchin who has been trained by Kelsier to use Allomancy. He is the protagonist of the story.
+A former thief who was left behind by Kelsier's crew. Spook is a skilled fighter and strategist, but also struggles with feelings of guilt and inadequacy.
+A mysterious figure who helps Sazed on his journey and has a deep understanding of religion and spirituality.
+A former member of the Survivor rebellion who was saved by Lady Vin. He is now working with her to stop the Ash.
+An Allomancer who fights alongside Elend Venture in the battle against Ruin's forces.
+A mysterious figure who appears to be a ghost or spirit.
+The protagonist of the story who is now Mistborn.
+
+### Ruin (42 mentions)
+
+An entity that controls the minds of Inquisitors.
+An intelligent force of destruction that seeks to break everything down to its most basic forms.
+An ancient force that seeks to destroy the world.
+A god-like being trapped by the Well of Ascension
+A mysterious force that was imprisoned in the Well of Ascension. It has been released and is now causing chaos throughout the world.
+An ancient being that has been trapped in the Well for centuries. It possesses immense power and is the source of the Allomantic abilities.
+An ancient being who has been trapped in the Well of Ascension for centuries. He provides Kelsier with the Eleventh Metal, which is crucial to defeating the Lord Ruler.
+A mysterious figure who commands the power of Hemalurgy.
+A person who possesses Hemalurgy power.
+An Inquisitor who guides Marsh's hand to kill Penrod.
+An ancient force that seeks to destroy the world.
+An entity that seeks to end things the protagonist loves.
+A god-like being who is imprisoned by balance and seeks to find the hidden part of himself in order to regain his power.
+An ancient being who seeks to destroy the world and return to its original state.
+A character who seeks destruction and chaos.
+A kandra who serves as Vin's guide and protector. She is a skilled fighter and has the ability to shape-shift into a human form.
+An ancient and malevolent force that seeks to destroy the world.
+An ancient being who seeks to destroy all things and create a new world in its place. The main antagonist of the story.
+An antagonist who seeks to destroy the world, but is opposed by Preservation.
+A mysterious figure who can possess other people's bodies.
+A mysterious figure who appears to be Vin's mentor. He is an expert in Allomancy and Feruchemy.
+A young boy who becomes Vin's apprentice in combat and magic.
+A subtle creature who tries to gain control of people by spiking them with metal, but struggles with logical and prone-to-working-through-actions individuals.
+A mysterious figure who accompanies Vin on her journey. He is also a Misting.
+A mysterious figure who has been communicating with Vin through her dreams. He is believed to be the Lord Ruler's son, but his true identity and motives are unknown.
+The main antagonist of the story. He seeks the atium for his own purposes, and will stop at nothing to get it.
+A koloss who has been given orders to kill all humans. He is loyal to Elend.
+A hateful, destructive thing that hid behind a mask of civility. It was responsible for the destruction in the story.
+A mysterious figure who seeks to destroy the city of Luthadel. He is incredibly strong and cunning, but also unpredictable.
+A character who watches the protagonist carefully and is involved in a chase with them.
+An entity that seeks to control the minds of all living beings. He has corrupted much of the information about the Hero of Ages.
+The main antagonist of the story. Ruin is a powerful spirit that seeks to destroy the Final Empire.
+An entity that seeks to destroy the world.
+The main antagonist of the story, a god-like being seeking to destroy humanity.
+An Inquisitor who seeks to destroy the Brotherhood Without Banners. He is a powerful Feruchemical Lord Ruler with new powers.
+An ancient being who holds the power of the Lord Ruler. He is both a mentor and an antagonist to Vin.
+The god of atium, imprisoned by Balance.
+A being who was imprisoned by Preservation and helped make the mists stronger, leading to the threat known as the Deepness.
+A god-like being who seeks to destroy humanity and rule over it.
+Confronted Vin and was destroyed.
+The main antagonist of the story. He is a being of destruction that seeks to destroy all of creation.
+The former Lord Ruler, now a powerful and malevolent being who seeks to destroy all of humanity.
+
+### Breeze (31 mentions)
+
+An assassin who is Sazed's companion and guide.
+A former Lord Ruler's assassin who is now a friend to Sazed.
+A friend of Sazed who helped him get over a difficult time.
+An Allomancer and Sazed's friend. He is known for his wit and love of fashion.
+An Allomancer and Sazed's lover, who is also a captain in Elend's army.
+A tall, thin man with a long beard. He is a skilled swordsman and often wears a cloak.
+A Terrisman who has been granted noble status by the Emperor. He is a skilled thief and assassin.
+A former employee of Kelsier who admired his authenticity and determination.
+Ambassador to the Western Dominance.
+A skaa girl who is Sazed's assistant.
+An Allomancer who joined Kelsier's crew after being exposed to the metal allomancy of the Lord Ruler's forces. He was known for his ability to manipulate people with his Soothing powers.
+A Soother and member of House Driek. He is known for his manipulative abilities and has a reputation as one of the world's most vile men.
+An older man who is a skilled fighter and leader of the group.
+A thief who has joined Spook's group to help them find the Well.
+The leader of the Thuggery. A skilled fighter and strategist who has taken over the criminal organization after Kelsier's death.
+A thief and member of the Keepers of the Flame. He is also Kelsier's right-hand man.
+An experienced Allomancer who serves as Kelsier's second-in-command, known for his calm demeanor and strategic thinking.
+A man who was present during the event.
+A former student of Sazed who now fights alongside him.
+An attentive and thorough reader who joins Spook and Sazed on their mission to expose Quellion's lies.
+A skaa thief who imitates a nobleman and enjoys getting drunk on fine wines.
+An old man who is helping Sazed and Spook with their plan.
+A member of the Survivor's crew, who is accompanying Sazed and Allrianne on their mission in the city.
+A character who smiles and makes clever remarks.
+A young woman who joins Spook and Kelsier on their quest. She is a skilled fighter and uses Allomancy to help them.
+A former thief and current leader of the crew. Breeze is a skilled fighter and strategist, but also has a strong sense of loyalty to his crew.
+The Soother who sits in a throne-like chair, holding a cup of wine, looking very pleased with himself as he makes proclamations and settles disputes.
+A kandra who serves as Sazed's assistant and protector.
+A human kandra who is a member of the First Generation.
+An Allomancer who fights alongside Elend Venture in the battle against Ruin's forces.
+A young woman who is Ham's wife and a skilled fighter.
+
+### TenSoon (23 mentions)
+
+A kandra who has broken his contract with the First Generation.
+The protagonist of the story. He is a member of the Third Generation and has been imprisoned for many years.
+A Third Generation kandra who has been accused of treason.
+A kandra of the Third Generation. He was assigned to serve Zane Kelsier, but betrayed him and helped Vin kill the Lord Ruler.
+A member of the Second Generation who betrayed his people and revealed their secret to a human.
+A kandra who was punished for breaking Contract.
+A kandra who was forced to wear a dog's body for over a year.
+Third-Generation Kandra who has been punished by wearing a dog's bone.
+A member of the Third Generation. He was sentenced to the ritual imprisonment of ChanGaar.
+A kandra who has stolen the Blessing of Potency and is trying to escape.
+A kandra who gained the Blessing of Potency by stealing two spikes from OreSeur's body.
+A kandra who served the Lord Ruler and later Vin.
+A kandra who has taken on the form of a wolfhound. He is searching for Kelsier and Vin.
+A kandra who has come from Emperor Venture without a Contract.
+A kandra who is on a long run across the empire to find another storage cavern. He has a very, very long run ahead of him.
+A kandra who has been sent by the Lord Ruler to help Sazed on his quest.
+A member of the crew who is on a quest to find Vin and believes the end has arrived.
+A kandra who can carry a human and all their baggage through the ash. He has metal spikes on his back that grant him strength.
+The protagonist of the story, a young man who becomes a Misting after being Snapped.
+A human kandra who is the leader of the First Generation.
+A kandra who is fighting against the Second Generation and their rule.
+A Fifth Generation Hemalurgic kandra who is a member of the Lord Ruler's personal guard.
+A First Generation kandra who betrayed his comrades and attacked Sazed.
+
+### Yomen (21 mentions)
+
+An ally of Vin's husband, who was invited to the conference before an attack.
+An obligator who is currently negotiating with Elend on behalf of his city.
+The leader of a group of rebels who are fighting against the Lord Ruler's rule. He is a tall, muscular man with short dark hair and a beard.
+A tall, thin man with duralumin-colored skin and hair. He is an Allomancer, able to manipulate metals through his body.
+A leader of a city who is fighting against an enemy.
+The current ruler of the city, who is revealed to be an Allomancer.
+The main antagonist of the story. A powerful Mistborn who has imprisoned Vin in a cavern and is waiting for her to die of dehydration.
+A character who is in charge of the cavern and will not open the trapdoor unless he receives wine.
+The obligator king of Elend. A powerful Allomancer with the ability to burn atium.
+An obligator king who captured Vin to execute her.
+A member of the Church of the Survivor who Elend meets on his journey. He is a former slave who was freed by the Lord Ruler.
+Another man who was once a servant of Ruin but has since turned against him.
+The Lord of the City, a nobleman with atium powers.
+The leader of the obligator city that Vin and her crew attack. She is a skilled politician and fighter.
+The leader of the city that Vin and her allies must conquer to save the world.
+The leader of the Lord Ruler's forces. He is a powerful Allomancer and has the ability to control kolosses.
+A loyal servant of the Lord Ruler who has remained faithful even after his death. He is tasked with protecting the city from Elend's army.
+The leader of the city's soldiers, who is struggling to maintain control after the death of the Lord Ruler.
+A religious leader who takes over Fadrex after Elend's death. He is a skilled politician and military strategist.
+A member of the Church who believes in a god who ordered nature.
+An old man who is revealed to be a Seer, or an atium Misting. He helps Elend and Vin on their journey.
+
+### Marsh (20 mentions)
+
+An Inquisitor who has been imprisoned for three years and is struggling to kill himself.
+A character who is too weak to fight Ruin's control.
+An Inquisitor who uses Hemalurgy to drain Allomantic abilities.
+A former Allomancer turned Inquisitor. He is tasked with killing Penrod.
+An Inquisitor who cuts Penrod and fights with guards.
+A former Lord Ruler who has joined forces with Kelsier and Spook in their fight against the Ash Lord.
+An Inquisitor who serves the Lord Ruler. He is responsible for hunting down and eliminating any threats to the empire.
+An Inquisitor of the Lord Ruler. She is a skilled warrior and leader, but her loyalty to the Lord Ruler may be tested as she faces difficult choices.
+An Inquisitor who has been given orders by Yomen to kill Vin. He is a powerful Feruchemist.
+A man with a love of destruction and hatred towards himself, whose emotions were pushed by Vin.
+A man with a sword and axe who fights against a mysterious force.
+A man controlled by Ruin who uses metal as an anchor to push himself into the air.
+A member of the Brotherhood Without Banners and a skilled Allomancer. He has a unique set of spikes on his chest, which he uses as weapons.
+An Inquisitor who is obsessed with finding the atium.
+A former leader of the skaa rebellion who gave up before the victory.
+An Inquisitor who was killed by Vin's Push.
+An old man who serves as a guide and mentor to Vin. He is also an Allomancer.
+An atium Mistinger who fights alongside Elend. He is also under the control of Ruin, but not as strongly as Human.
+An Inquisitor of the Final Empire who seeks to capture Elend Venture for his master, Ruin.
+Fallen to become an Inquisitor.
+
+### Ham (18 mentions)
+
+Allomancer and advisor to Elend
+A nobleman from House Drell. He is Elend's right-hand man and advisor.
+A man who remembers Kelsier fondly and believes he would be proud of their achievements.
+General in the army of the Central Dominance.
+A skilled warrior and second-in-command to Elend. He is often paranoid and fearful, but his loyalty to Elend is unwavering.
+A powerful soldier who joined Kelsier's crew after being freed from prison. He was known for his strength and loyalty to the cause of the revolution.
+A skilled Allomancer and member of the crew. He is also a skilled fighter.
+A thug who has joined the rebellion and is now serving as a captain in Elend's army.
+A young soldier in Elend's army who was cured of the sickness. He is eager to prove himself in battle.
+An officer in Elend's army who is responsible for coordinating the siege.
+A member of the Canton of Inquisition who is obsessed with finding out the truth about the Lord Ruler and his reign.
+A captain in Elend's army. He is a Mistborn with tin to enhance his ears, allowing him to hear even the softest footsteps approaching.
+A man who forced Elend to eat after he didn't arrive.
+A loyal friend and advisor to Elend. He is a skilled fighter and strategist.
+A loyal advisor to Elend who is concerned about the safety of the empire. He is a skilled strategist and has a deep understanding of politics.
+A skilled fighter and loyal friend of Elend. He is not an Allomancer, but he fights bravely nonetheless.
+A koloss who fights alongside Elend Venture in the battle against Ruin's forces.
+A man who is the leader of a group of people who have been living underground for years.
+
+### Cett (16 mentions)
+
+An old man with a beard and two legs that don't work. He is the king of one of the empire's many kingdoms.
+King of Fadrex City
+The Lord of Fadrex. He is a nobleman from House Drell.
+An attentive and thorough reader who questions the point of their mission.
+A former nobleman who became an Allomancer after being beaten as a child. He is known for his logic and his willingness to use brutal methods to achieve his goals.
+A former nobleman who defected from Lord Yomen's regime and joined the rebellion. He is a cunning strategist and advisor to Elend.
+An advisor to Elend, known for his cunning and manipulation.
+A nobleman who is one of Vin's informants.
+A thug who has joined the rebellion and is currently serving as a lieutenant in Elend's army.
+An old, crippled general who serves as Elend's advisor. He is known for his arrogance and bitterness.
+An older soldier in Elend's army who was cured of the sickness. He is grateful for his recovery and wants to continue serving his king.
+A member of the Canton of Inquisition who is skeptical of all things.
+A wise old man who serves as Elend's advisor. He is a former soldier with experience in warfare.
+The leader of a group of kolosses who were fighting against the Lord Ruler's army.
+A powerful Misting warrior who serves as one of Elend's most trusted advisors. He is fiercely loyal to his king and will stop at nothing to protect the empire.
+A general who directed the battle tactics and sat at a table with a map of the area.
+
+### Beldre (15 mentions)
+
+The Citizen's sister, a beautiful young woman with deep sorrowful eyes.
+A woman who is exiled to the garden and whose brother's meeting is about to start.
+The sister of the Citizen, she is a member of the ruling family of the Luthadel city-state.
+The younger sister of the Ash Lord, who is torn between her loyalty to her brother and her growing doubts about his actions.
+The sister of Quellion, who has come to warn Spook and the others about her brother's plans.
+A character who is naive and has been sheltered by the Citizen.
+A noblewoman who was half-skaa. She was saved from execution by Spook and the Survivor's crew.
+A young woman who has been through much trauma. She is the love interest of Spook.
+Spook's captive who seems to be warming up to him in an effort to get him to let her go.
+Spook's younger sister who has been exiled from their family for her Allomancy abilities.
+The leader of the city's resistance movement.
+Spook's former love interest who was captured by Quellion's guards. She is an Allomancer and helps Spook on his quest.
+A young woman who becomes involved in the story when she attacks the guards. She later joins Spook and Sazed on their mission to stop the flames.
+A member of the Survivor rebellion who was saved by Spook. He is now working with him to stop the Ash.
+A person who helps Spook with his paper.
+
+### Demoux (14 mentions)
+
+The leader of the skaa army and a close ally to Elend.
+A nobleman from House Vorin. He is Elend's spymaster.
+A man who needs to pass the word to the men about growing plants in little sunlight.
+A general in Elend's army. He is loyal to Elend and believes in the Church of the Survivor.
+A balding soldier who falls from his saddle and collapses to the ground.
+A skilled thief and member of the crew. He is also a skilled fighter.
+A general in Elend's army. He was injured in the battle against Yomen's forces.
+A general in Elend's army who was cured of the sickness. He believes that Kelsier, the Lord of the Mists, is responsible for the sickness and wants to be released from his post as general.
+A faithful priest who believes that the mists are of the Survivor and that people who grow sick are displeasing him.
+A lieutenant in Elend's army. He is a Mistfallen, and has been tasked with leading a new company of men.
+A captain in the army who is tasked with taking control of Luthadel. He is a disciplined and efficient leader.
+A brave and resourceful kandra, who saved Sazed's life by removing his spike.
+A soldier in Elend's army. He is loyal to Elend and willing to do whatever it takes to protect him.
+A general in Elend's army and commander of the soldiers posted at the doorways to the Homeland.
+
+### Allrianne (13 mentions)
+
+A young princess of the House of Alleren, who is in love with Breeze.
+A woman with short hair and a scar on her cheek. She is a skilled archer and often wears leather armor.
+A woman who needs to talk with the scribes about supply estimates for their trip.
+A skaa girl who is Sazed's assistant.
+A noblewoman from House Ashweather Cett. She was captured by the Citizens during the war and is now being held captive in Emperor Venture's palace.
+A young woman who is a skilled archer and has a romantic relationship with Breeze.
+A young woman who is searching for her missing brother and has joined Spook's group.
+A member of the Thuggery who serves as Breeze's second-in-command. She is a skilled fighter and has a romantic relationship with Spook.
+A young woman who has been trained by Sazed to use her powers of emotion manipulation to aid the resistance.
+A woman who led the crowd in attacking the soldiers.
+A member of the Keepers who is tasked with keeping track of Allomancers and their powers.
+A member of the Survivor's crew, who is accompanying Sazed and Breeze on their mission in the city.
+Spook's lover and a skilled thief.
+
+### Preservation (11 mentions)
+
+The power of a god, inhabiting energy in the same way as Ruin
+An ancient god-like entity that has the power to heal and restore life. It was once bound by Rashek, but was later freed.
+A character who values preservation and stability.
+A powerful being who has been fighting against Ruin for centuries.
+A dying god whose body was left to be buried in ash.
+A force that once opposed Ruin and was imprisoned for several thousand years.
+A deity who imprisoned Ruin and left clues for humanity to find.
+A being who wanted to create something intentionally unbalanced. Gave up a piece of himself to create mankind.
+The other half of Ruin's power, imprisoned in the Pits of Hathsin.
+The Lord Ruler who granted nuggets to nobility, enabling the manifestation of Allomancy.
+A mysterious figure who holds the power to heal and restore life, but whose true nature is unknown.
