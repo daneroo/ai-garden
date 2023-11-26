@@ -42,7 +42,7 @@ The list of characters and locations are expected to conform to a JSON output sc
   const chunkParams = { chunkSize, chunkOverlap, maxChunks };
 
   const verbose = false;
-  const modelName = "mistral"; // llama2, mistral
+  const modelName = "llama2"; // llama2, mistral
 
   console.log(`## Parameters\n`);
   console.log(`  - sourceNickname: ${sourceNickname}`);
@@ -115,7 +115,11 @@ JSON:
     aggregatedCharacterDocs,
     modelName
   );
-
+  printDocs(summaryDocs, "Level 2 Character Summaries");
+  printDocs(
+    aggregatedCharacterDocs,
+    "Level 1 Aggregate Character Descriptions"
+  );
   // Legacy from when we had multiple summaries (levels)
   // const summaries = [concatenatedSummaryDoc];
   // const last2Summaries = summaries.slice(-2).reverse();
@@ -127,14 +131,25 @@ JSON:
 }
 
 // print the documents with their metadata.source as title
-// TODO(daneroo): make reusable for aggregateCharacterDocs ans reSummarizeAggregatedCharacters
+// if pageContent is JSON it's :{"name": string, "descriptions": string[]}
+// else it's the text to be rendered
 async function printDocs(docs, title) {
-  let summaryText = `\nThese are aggregated character descriptions:\n\n`;
+  console.log(`\n## ${title}:\n`);
   for (const doc of docs) {
-    const json = JSON.parse(doc.pageContent);
-    const { name, descriptions } = json;
-    summaryText += `\n\n### ${name} (${descriptions.length} mentions)\n\n`;
-    summaryText += descriptions.join("\n");
+    console.log(`\n### ${doc.metadata.source}\n`);
+
+    // if JSON it's :{"name": string, "descriptions": string[]}
+    // else it's the text to be rendered
+    try {
+      const json = JSON.parse(doc.pageContent);
+      const { name, descriptions } = json;
+      console.log(
+        `Description of ${name} (${descriptions.length} mentions):\n`
+      );
+      console.log(descriptions.map((d) => `- ${d}`).join("\n"));
+    } catch (error) {
+      console.log(doc.pageContent);
+    }
   }
 }
 // return the total length of all docs in
