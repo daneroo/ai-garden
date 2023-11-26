@@ -58,7 +58,7 @@ time node mappr.mjs | tee -a "results/final-refine-characters-hero.$(gdate -u -I
 time node experiments/basics-map-cache.mjs | tee -a "results/map-reduce-summary-hero.$(gdate -u -Is|sed 's/+00:00/Z/')".md
 time node experiments/basics-map-cache-json.mjs | tee -a "results/map-reduce-characters-model-hero.$(gdate -u -Is|sed 's/+00:00/Z/')".md
 
-# Recording
+# Recording: -i 2 is the max idle time (2s) in the recording
 asciinema rec -i 2 -c "time node experiments/basics-map-cache-json.mjs" "results/map-reduce-characters-model-hero.$(gdate -u -Is|sed 's/+00:00/Z/').cast"
 # Playback
 asciinema play results/map-reduce-characters-llama2-neon.2023-11-26T09\:23\:07Z.cast
