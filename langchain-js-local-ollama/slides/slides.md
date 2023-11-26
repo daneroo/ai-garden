@@ -3,7 +3,7 @@
 theme: "night"
 transition: "slide"
 highlightTheme: "monokai"
-logoImg: "assets/logo.png"
+logoImg: "logo.png"
 slideNumber: false
 title: "AI Tinkerer - Hackathon 2023"
 ---
@@ -12,7 +12,7 @@ title: "AI Tinkerer - Hackathon 2023"
 
 #### Book Exploration with LLM's
 
-![TinkerReReader](assets/logo.png)
+![TinkerReReader](logo.png)
 
 // @daneroo
 
@@ -22,7 +22,7 @@ title: "AI Tinkerer - Hackathon 2023"
 
 <!-- image -->
 
-![TinkerReReader](assets/logo.png)
+![TinkerReReader](logo.png)
 
 ---
 
