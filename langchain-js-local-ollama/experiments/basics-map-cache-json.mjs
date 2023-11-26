@@ -42,7 +42,7 @@ The list of characters and locations are expected to conform to a JSON output sc
   const chunkParams = { chunkSize, chunkOverlap, maxChunks };
 
   const verbose = false;
-  const modelName = "llama2"; // llama2, mistral
+  const modelName = "mistral"; // llama2, mistral
 
   console.log(`## Parameters\n`);
   console.log(`  - sourceNickname: ${sourceNickname}`);
@@ -91,6 +91,7 @@ JSON:
 
   const { schema, templateFString } = schemaAndTemplateFString;
 
+  // Level 0: Extract characters' name/description from each chunk
   console.log(`\n## Level 0 Character Extraction\n`);
   console.log(`- Level 0 input summary:`);
   console.log(`  - ${docs.length} docs, length: ${docsLength(docs)}`);
@@ -110,18 +111,19 @@ JSON:
   const aggregatedCharacterDocs = await aggregateByCharacter(rawCharacterDocs);
 
   // Level 2: summarize each character, return a single concatenated document
-  const concatenatedSummaryDoc = reSummarizeAggregatedCharacters(
-    aggregatedCharacterDocs
+  const summaryDocs = await reSummarizeAggregatedCharacters(
+    aggregatedCharacterDocs,
+    modelName
   );
 
   // Legacy from when we had multiple summaries (levels)
-  const summaries = [concatenatedSummaryDoc];
-  const last2Summaries = summaries.slice(-2).reverse();
-  for (const summary of last2Summaries) {
-    console.log(`\n## ${summary.metadata.source}\n`);
-    console.log(summary.pageContent);
-    console.log();
-  }
+  // const summaries = [concatenatedSummaryDoc];
+  // const last2Summaries = summaries.slice(-2).reverse();
+  // for (const summary of last2Summaries) {
+  //   console.log(`\n## ${summary.metadata.source}\n`);
+  //   console.log(summary.pageContent);
+  //   console.log();
+  // }
 }
 
 // print the documents with their metadata.source as title
@@ -131,7 +133,6 @@ async function printDocs(docs, title) {
   for (const doc of docs) {
     const json = JSON.parse(doc.pageContent);
     const { name, descriptions } = json;
-    // console.log(`+++++ ${name}: has ${descriptions.length} descriptions`);
     summaryText += `\n\n### ${name} (${descriptions.length} mentions)\n\n`;
     summaryText += descriptions.join("\n");
   }
@@ -177,7 +178,10 @@ async function aggregateByCharacter(rawCharacterDocs) {
     return accObj;
   }, {});
 
-  console.log(`\n- Level 1 progress:`);
+  console.log(`
+<details>
+<summary>- Level 1 progress:</summary>
+`);
 
   // Output 1 document per character,
   // optionally filtered by minDescriptionCount
@@ -200,7 +204,7 @@ ${JSON.stringify({ name, descriptions }, null, 2)}
       }
 
       console.log(
-        `  - Level 1 Character name: ${name} mentions: ${descriptions.length}`
+        `  - Level 1 Character name:${name} mentions:${descriptions.length}`
       );
 
       return new Document({
@@ -211,7 +215,7 @@ ${JSON.stringify({ name, descriptions }, null, 2)}
         },
       });
     });
-
+  console.log(`</details>`);
   console.log(`\n- Level 1 output summary:`);
   console.log(
     `  - ${aggregatedCharacterDocs.length} docs, length: ${docsLength(
@@ -222,50 +226,115 @@ ${JSON.stringify({ name, descriptions }, null, 2)}
   return aggregatedCharacterDocs;
 }
 
-function reSummarizeAggregatedCharacters(aggregatedCharacterDocs) {
-  let summaryText = `\nThese are aggregated character descriptions:\n\n`;
+async function reSummarizeAggregatedCharacters(
+  aggregatedCharacterDocs,
+  modelName
+) {
+  console.log(`\n## Level 2 Character Description Summarization\n`);
+  console.log(`- Level 2 input summary:`);
+  console.log(
+    `  - ${aggregatedCharacterDocs.length} docs, length: ${docsLength(
+      aggregatedCharacterDocs
+    )}`
+  );
+
+  console.log(`
+<details>
+<summary>- Level 2 progress:</summary>
+`);
+
+  const summaryDocs = []; // one per character
   for (const doc of aggregatedCharacterDocs) {
     const json = JSON.parse(doc.pageContent);
     const { name, descriptions } = json;
     // console.log(`+++++ ${name}: has ${descriptions.length} descriptions`);
-    summaryText += `\n\n### ${name} (${descriptions.length} mentions)\n\n`;
-    summaryText += descriptions.join("\n");
+
+    const start = +new Date();
+    // re-summarize each character
+    const llmResult = await cachedReSummarizeOneCharacter({
+      modelName,
+      name,
+      descriptions,
+    });
+    const elapsed = ((+new Date() - start) / 1000).toFixed(2);
+    const rate = (llmResult.length / elapsed).toFixed(2);
+    console.log(
+      `  - Level 2 Character name:${name} mentions:${descriptions.length} (${elapsed}s rate:${rate}b/s)`
+    );
+    const summaryDoc = new Document({
+      pageContent: llmResult,
+      // The `source` attribute will ne shown as title in the output
+      metadata: {
+        source: `${name} (${descriptions.length} mentions) - Level 2 Character Summary`,
+      },
+    });
+    summaryDocs.push(summaryDoc);
   }
+  console.log(`</details>`);
 
-  const concatenatedSummaryDoc = new Document({
-    pageContent: summaryText,
-    // pageContent: characterDocs.reduce(
-    //   (total, doc) => total + doc.pageContent + "\n\n",
-    //   ""
-    // ),
-    metadata: { source: `Level 2 - Concatenated Aggregation by Character` },
+  return summaryDocs;
+}
+
+async function reSummarizeOneCharacter({ modelName, name, descriptions }) {
+  const llm = new Ollama({
+    baseUrl: "http://localhost:11434",
+    model: modelName,
+    maxConcurrency: 1,
   });
+  const llmResult = await llm.predict(`
+You will be given a description of a single story character.
 
-  // ----------------------------------------
+Reformulate the following character description precisely.
+You may recombine, rephrase, or reword the given description.
+Keep all details.
+Reformulate in paragraph form.
 
-  // for (const key of Object.keys(mergedCharacterMap)) {
-  //   // mergedCharacterMap[key] is an array of descriptions
-  //   console.log(
-  //     `****${key}: has ${mergedCharacterMap[key].length} descriptions`
-  //   );
-  //   // re-summarize each character
-  //   const llm = new Ollama({
-  //     baseUrl: "http://localhost:11434",
-  //     model: modelName,
-  //     maxConcurrency: 1,
-  //   });
-  //   const llmResult = await llm.predict(
-  //     `Reformulate the following character description.
-  //     You may recombine, rephrase, or reword the description.
-  //     Describe the character in paragraph form, Do not include bullets or lists.
-  //     Keep all details. Include only the refined text itself\n\n ${mergedCharacterMap[
-  //       key
-  //     ].join("\n")}`
-  //   );
-  //   console.log(`  - refined ${key}:\n${llmResult}`);
-  // }
+CHARACTER NAME: ${name}
+DESCRIPTIONS:
 
-  return concatenatedSummaryDoc;
+${descriptions.join("\n")}
+
+REFORMULATED DESCRIPTION:
+`);
+  return llmResult;
+}
+
+async function cachedReSummarizeOneCharacter({
+  modelName,
+  name,
+  descriptions,
+}) {
+  // Synthetic values to fin into existing cacheKey signature
+  const schema = z.object({});
+  const templateFString = "";
+  const chunkContent = name + descriptions.join("\n");
+
+  const key = cacheKey({ modelName, schema, templateFString, chunkContent });
+  const cacheFilePath = join("cache", `${key}.txt`);
+  // console.debug(`  .. Cache file path: ${cacheFilePath}`);
+
+  try {
+    // Check if the cache file exists and return its content if it does
+    const cachedResult = JSON.parse(await fs.readFile(cacheFilePath, "utf8"));
+    return cachedResult;
+  } catch (error) {
+    // If the file doesn't exist, catch the error and proceed to compute the result
+    if (error.code !== "ENOENT") {
+      throw error; // Re-throw non-file-not-found errors
+    }
+
+    // Call allInOne to get the result
+    const result = await reSummarizeOneCharacter({
+      modelName,
+      name,
+      descriptions,
+    });
+
+    // Store the result in the cache file
+    await fs.writeFile(cacheFilePath, JSON.stringify(result), "utf8");
+
+    return result;
+  }
 }
 
 // This returns one document per chunk
@@ -275,9 +344,11 @@ async function extractRawCharacters(
   schema,
   templateFString
 ) {
+  console.log(`
+<details>
+<summary>- Level 0 progress:</summary>
+`);
   const characterDocs = [];
-  console.log(`\n- Level 0 progress:`);
-
   for (const [i, chunk] of chunks.entries()) {
     const start = +new Date();
     const result = await cachedExtractFromChunkAsJSON({
@@ -308,6 +379,7 @@ ${JSON.stringify(result, null, 2)}
     });
     characterDocs.push(doc);
   }
+  console.log(`</details>`);
   console.log(`\n- Level 0 output summary:`);
   console.log(
     `  - ${characterDocs.length} docs, length: ${docsLength(characterDocs)}`
@@ -369,7 +441,7 @@ function cacheKey({ modelName, schema, templateFString, chunkContent }) {
   const parser = StructuredOutputParser.fromZodSchema(schema);
   const formatInstructions = parser.getFormatInstructions();
   // console.log(
-  //   `******- Hashing schema from format intructions:`,
+  //   `******- Hashing schema from format instructions:`,
   //   formatInstructions
   // );
   hash.update(formatInstructions);
