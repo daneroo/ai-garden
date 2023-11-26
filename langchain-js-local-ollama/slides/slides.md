@@ -14,6 +14,10 @@ title: "AI Tinkerer - Hackathon 2023"
 
 // @daneroo
 
+`\[
+\text{AI Tinkerers Ottawa}_{\text{Hackathon}}^{\text{2023}}
+\]`
+
 ---
 
 > "Every Tinkerer needs a workbench"
