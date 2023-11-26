@@ -17,26 +17,31 @@ import { Document } from "langchain/document";
 
 await main();
 async function main() {
-  console.log(`# Basics Map/reduce Operation
+  console.log(`
+# Basics Map/Reduce Operation
 
-Here we simply invoke a chain (RunnableSequence)
-to extract characters and locations from a text.
-It is invoked repeatedly on chunks of the text.
+We perform a general map/reduce operation on a text, splitting it into chunks;
+- map: LLM extracts characters and locations from each chunk
+  - constrained to output a JSON structure
+- reduce: aggregate characters and locations from all chunks
+  - This step is performed entirely in JavaScript
+- map/transform: LLM re-summarizes each character
+- Finally the results are formatted as Markdown
 
 The list of characters and locations are expected to conform to a JSON output schema.
 
-\n`);
+`);
 
-  const maxDocs = 89; // hero: 15 - Part One, 89 - Epilogue
-  const sourceNickname = "hero-of-ages.epub";
+  // const maxDocs = 89; // hero: 15 - Part One, 89 - Epilogue
+  // const sourceNickname = "hero-of-ages.epub";
 
-  // const maxDocs = 999;
-  // const sourceNickname = "neon-shadows.txt";
+  const maxDocs = 999;
+  const sourceNickname = "neon-shadows.txt";
   // const sourceNickname = "thesis.epub";
 
   const docs = await getDocs({ sourceNickname, maxDocs });
 
-  const chunkSize = 8000;
+  const chunkSize = 1000;
   const chunkOverlap = 100;
   const maxChunks = 9999999;
   const chunkParams = { chunkSize, chunkOverlap, maxChunks };
@@ -115,11 +120,11 @@ JSON:
     aggregatedCharacterDocs,
     modelName
   );
-  printDocs(summaryDocs, "Level 2 Character Summaries");
   printDocs(
     aggregatedCharacterDocs,
     "Level 1 Aggregate Character Descriptions"
   );
+  printDocs(summaryDocs, "Level 2 Character Summaries");
   // Legacy from when we had multiple summaries (levels)
   // const summaries = [concatenatedSummaryDoc];
   // const last2Summaries = summaries.slice(-2).reverse();
