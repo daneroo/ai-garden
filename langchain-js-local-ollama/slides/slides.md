@@ -3,24 +3,26 @@
 theme: "night"
 transition: "slide"
 highlightTheme: "monokai"
-# logoImg: "logo.png"
+logoImg: "assets/logo.png"
 slideNumber: false
 title: "AI Tinkerer - Hackathon 2023"
 ---
 
 ### TinkeReReader
 
-#### AI-Leveraged Book Exploration
+#### Book Exploration with LLM's
+
+![TinkerReReader](assets/logo.png)
 
 // @daneroo
-
-`\[
-\text{AI Tinkerers Ottawa}_{\text{Hackathon}}^{\text{2023}}
-\]`
 
 ---
 
 > "Every Tinkerer needs a workbench"
+
+<!-- image -->
+
+![TinkerReReader](assets/logo.png)
 
 ---
 
@@ -89,6 +91,10 @@ A thin wrapper for MathJax
 `\[P(E) = {n \choose k} p^k (1-p)^{ n-k} \]`
 
 `\[ \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} = 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {1+\frac{e^{-6\pi}} {1+\frac{e^{-8\pi}} {1+\ldots} } } } \]`
+
+`\[
+{}_{\text{Ottawa}}^{\,\quad\text{AI}} \text{Tinkerer}_{\text{Hackathon}}^{2023}
+\]`
 
 ---
 
