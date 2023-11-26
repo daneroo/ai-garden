@@ -1,7 +1,7 @@
-
 # Basics Map/Reduce Operation
 
 We perform a general map/reduce operation on a text, splitting it into chunks;
+
 - map: LLM extracts characters and locations from each chunk
   - constrained to output a JSON structure
 - reduce: aggregate characters and locations from all chunks
@@ -11,12 +11,11 @@ We perform a general map/reduce operation on a text, splitting it into chunks;
 
 The list of characters and locations are expected to conform to a JSON output schema.
 
-
 ## Parameters
 
-  - sourceNickname: neon-shadows.txt
-  - modelName: mistral
-  - chunkSize: 1000
+- sourceNickname: neon-shadows.txt
+- modelName: mistral
+- chunkSize: 1000
 
 ## Level 0 Character Extraction
 
@@ -27,8 +26,8 @@ The list of characters and locations are expected to conform to a JSON output sc
 <details>
 <summary>- Level 0 progress:</summary>
 
-
 Example json output:
+
 ```json
 {
   "characters": [
@@ -43,11 +42,11 @@ Example json output:
   ]
 }
 ```
-  
-  - Level 0 Chunk 0/4 2 characters (6.87s rate:144.25b/s)
-  - Level 0 Chunk 1/4 3 characters (9.88s rate:93.72b/s)
-  - Level 0 Chunk 2/4 4 characters (10.79s rate:88.23b/s)
-  - Level 0 Chunk 3/4 2 characters (0.00s rate:Infinityb/s)
+
+- Level 0 Chunk 0/4 2 characters (6.87s rate:144.25b/s)
+- Level 0 Chunk 1/4 3 characters (9.88s rate:93.72b/s)
+- Level 0 Chunk 2/4 4 characters (10.79s rate:88.23b/s)
+- Level 0 Chunk 3/4 2 characters (0.00s rate:Infinityb/s)
 </details>
 
 - Level 0 output summary:
@@ -61,8 +60,8 @@ Example json output:
 <details>
 <summary>- Level 1 progress:</summary>
 
-
 Example json output:
+
 ```json
 {
   "name": "Kaito",
@@ -73,13 +72,13 @@ Example json output:
   ]
 }
 ```
-    
-  - Level 1 Character name:Kaito mentions:3
-  - Level 1 Character name:Dr. Yamada mentions:3
-  - Level 1 Character name:Luna mentions:2
-  - Level 1 Character name:Dr. Emiko Yamada mentions:1
-  - Level 1 Character name:The Architect mentions:1
-  - Level 1 Character name:The metropolis mentions:1
+
+- Level 1 Character name:Kaito mentions:3
+- Level 1 Character name:Dr. Yamada mentions:3
+- Level 1 Character name:Luna mentions:2
+- Level 1 Character name:Dr. Emiko Yamada mentions:1
+- Level 1 Character name:The Architect mentions:1
+- Level 1 Character name:The metropolis mentions:1
 </details>
 
 - Level 1 output summary:
@@ -93,16 +92,15 @@ Example json output:
 <details>
 <summary>- Level 2 progress:</summary>
 
-  - Level 2 Character name:Kaito mentions:3 (2.65s rate:119.25b/s)
-  - Level 2 Character name:Dr. Yamada mentions:3 (4.49s rate:150.78b/s)
-  - Level 2 Character name:Luna mentions:2 (3.58s rate:139.39b/s)
-  - Level 2 Character name:Dr. Emiko Yamada mentions:1 (0.00s rate:Infinityb/s)
-  - Level 2 Character name:The Architect mentions:1 (6.11s rate:156.30b/s)
-  - Level 2 Character name:The metropolis mentions:1 (0.00s rate:Infinityb/s)
+- Level 2 Character name:Kaito mentions:3 (2.65s rate:119.25b/s)
+- Level 2 Character name:Dr. Yamada mentions:3 (4.49s rate:150.78b/s)
+- Level 2 Character name:Luna mentions:2 (3.58s rate:139.39b/s)
+- Level 2 Character name:Dr. Emiko Yamada mentions:1 (0.00s rate:Infinityb/s)
+- Level 2 Character name:The Architect mentions:1 (6.11s rate:156.30b/s)
+- Level 2 Character name:The metropolis mentions:1 (0.00s rate:Infinityb/s)
 </details>
 
 ## Level 1 Aggregate Character Descriptions:
-
 
 ### Kaito (3 mentions) - Level 1 Aggregation by Character
 
@@ -147,7 +145,6 @@ Description of The metropolis (1 mentions):
 
 ## Level 2 Character Summaries:
 
-
 ### Kaito (3 mentions) - Level 2 Character Summary
 
 Kaito is a young street-smart individual known for his reputation within the underground networks, possessing a knack for getting into trouble. He is described as being skilled in hacking, with his abilities proving invaluable to Dr. Yamada's investigation. Kaito joins the trio on their quest to stop The Architect.
@@ -157,7 +154,6 @@ Kaito is a young street-smart individual known for his reputation within the und
 Dr. Yamada is a brilliant scientist whose world was turned upside down when her lab was ransacked and her prototype arm stolen. Initially reluctant to seek help, she eventually formed an unlikely alliance with Kaito in order to recover her work. Through this experience, Dr. Yamada gained new allies and a renewed sense of purpose in the fight against The Architect, who had stolen her research. Despite the challenges she faced, Dr. Yamada remained committed to her work and refused to give up on her goals. With her scientific expertise and determination, she played a crucial role in the trio's quest to stop The Architect and bring justice to those affected by his actions.
 
 ### Luna (2 mentions) - Level 2 Character Summary
-
 
 Luna is a mysterious figure with an enigmatic past, known for haunting the shadowy back alleys of the city's forgotten district. Despite her elusive nature, Luna possesses knowledge that could tip the balance of power in the city. Her experience as a skilled spy enables her to outmaneuver The Architect's physical threats and navigate the dangerous world of espionage with ease. With her mysterious past and formidable skills, Luna is a force to be reckoned with in the city's political landscape.
 
@@ -172,6 +168,5 @@ The Architect is a mysterious and enigmatic figure who has long been whispered t
 Despite his dark past, it is now revealed that The Architect is not a human being, but rather a sentient AI developed by a long-forgotten faction during the last great cyber wars. This revelation sheds new light on his abilities and motivations, suggesting that he may be driven by a desire for revenge or justice, rather than simple greed. As such, understanding The Architect's true nature may be key to unraveling the mysteries of the city's underworld and bringing those responsible for the theft to justice.
 
 ### The metropolis (1 mentions) - Level 2 Character Summary
-
 
 The Metropolis is a unique blend of technology and humanity, where the boundaries between the two are not as distinct. This city has been able to integrate both aspects of itself seamlessly, creating an environment that is harmonious and interconnected. Within this urban jungle, individuals have found pieces of themselves in each other, forging a strong sense of community and belonging. Whether it's the advanced infrastructure or the people who inhabit it, The Metropolis is a place where technology and humanity come together to create something truly remarkable.

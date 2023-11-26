@@ -41,7 +41,7 @@ The list of characters and locations are expected to conform to a JSON output sc
 
   const docs = await getDocs({ sourceNickname, maxDocs });
 
-  const chunkSize = 1000;
+  const chunkSize = 8000;
   const chunkOverlap = 100;
   const maxChunks = 9999999;
   const chunkParams = { chunkSize, chunkOverlap, maxChunks };

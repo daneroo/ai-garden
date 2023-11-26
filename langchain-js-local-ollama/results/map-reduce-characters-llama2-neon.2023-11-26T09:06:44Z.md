@@ -1,7 +1,7 @@
-
 # Basics Map/Reduce Operation
 
 We perform a general map/reduce operation on a text, splitting it into chunks;
+
 - map: LLM extracts characters and locations from each chunk
   - constrained to output a JSON structure
 - reduce: aggregate characters and locations from all chunks
@@ -11,12 +11,11 @@ We perform a general map/reduce operation on a text, splitting it into chunks;
 
 The list of characters and locations are expected to conform to a JSON output schema.
 
-
 ## Parameters
 
-  - sourceNickname: neon-shadows.txt
-  - modelName: llama2
-  - chunkSize: 1000
+- sourceNickname: neon-shadows.txt
+- modelName: llama2
+- chunkSize: 1000
 
 ## Level 0 Character Extraction
 
@@ -27,8 +26,8 @@ The list of characters and locations are expected to conform to a JSON output sc
 <details>
 <summary>- Level 0 progress:</summary>
 
-
 Example json output:
+
 ```json
 {
   "characters": [
@@ -43,11 +42,11 @@ Example json output:
   ]
 }
 ```
-  
-  - Level 0 Chunk 0/4 2 characters (8.03s rate:123.41b/s)
-  - Level 0 Chunk 1/4 3 characters (6.56s rate:141.16b/s)
-  - Level 0 Chunk 2/4 4 characters (7.95s rate:119.75b/s)
-  - Level 0 Chunk 3/4 3 characters (6.79s rate:86.01b/s)
+
+- Level 0 Chunk 0/4 2 characters (8.03s rate:123.41b/s)
+- Level 0 Chunk 1/4 3 characters (6.56s rate:141.16b/s)
+- Level 0 Chunk 2/4 4 characters (7.95s rate:119.75b/s)
+- Level 0 Chunk 3/4 3 characters (6.79s rate:86.01b/s)
 </details>
 
 - Level 0 output summary:
@@ -61,8 +60,8 @@ Example json output:
 <details>
 <summary>- Level 1 progress:</summary>
 
-
 Example json output:
+
 ```json
 {
   "name": "Kaito",
@@ -73,14 +72,14 @@ Example json output:
   ]
 }
 ```
-    
-  - Level 1 Character name:Kaito mentions:3
-  - Level 1 Character name:Dr. Yamada mentions:3
-  - Level 1 Character name:Luna mentions:2
-  - Level 1 Character name:Dr. Emiko Yamada mentions:1
-  - Level 1 Character name:The Architect mentions:1
-  - Level 1 Character name:The Prototype Arm mentions:1
-  - Level 1 Character name:New Allies mentions:1
+
+- Level 1 Character name:Kaito mentions:3
+- Level 1 Character name:Dr. Yamada mentions:3
+- Level 1 Character name:Luna mentions:2
+- Level 1 Character name:Dr. Emiko Yamada mentions:1
+- Level 1 Character name:The Architect mentions:1
+- Level 1 Character name:The Prototype Arm mentions:1
+- Level 1 Character name:New Allies mentions:1
 </details>
 
 - Level 1 output summary:
@@ -94,17 +93,16 @@ Example json output:
 <details>
 <summary>- Level 2 progress:</summary>
 
-  - Level 2 Character name:Kaito mentions:3 (3.71s rate:121.83b/s)
-  - Level 2 Character name:Dr. Yamada mentions:3 (4.38s rate:136.53b/s)
-  - Level 2 Character name:Luna mentions:2 (2.53s rate:142.29b/s)
-  - Level 2 Character name:Dr. Emiko Yamada mentions:1 (0.00s rate:Infinityb/s)
-  - Level 2 Character name:The Architect mentions:1 (5.42s rate:167.34b/s)
-  - Level 2 Character name:The Prototype Arm mentions:1 (2.93s rate:151.88b/s)
-  - Level 2 Character name:New Allies mentions:1 (2.85s rate:161.40b/s)
+- Level 2 Character name:Kaito mentions:3 (3.71s rate:121.83b/s)
+- Level 2 Character name:Dr. Yamada mentions:3 (4.38s rate:136.53b/s)
+- Level 2 Character name:Luna mentions:2 (2.53s rate:142.29b/s)
+- Level 2 Character name:Dr. Emiko Yamada mentions:1 (0.00s rate:Infinityb/s)
+- Level 2 Character name:The Architect mentions:1 (5.42s rate:167.34b/s)
+- Level 2 Character name:The Prototype Arm mentions:1 (2.93s rate:151.88b/s)
+- Level 2 Character name:New Allies mentions:1 (2.85s rate:161.40b/s)
 </details>
 
 ## Level 1 Aggregate Character Descriptions:
-
 
 ### Kaito (3 mentions) - Level 1 Aggregation by Character
 
@@ -154,7 +152,6 @@ Description of New Allies (1 mentions):
 - a group of individuals who joined Dr. Yamada on his mission
 
 ## Level 2 Character Summaries:
-
 
 ### Kaito (3 mentions) - Level 2 Character Summary
 

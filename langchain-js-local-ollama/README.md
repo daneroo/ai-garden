@@ -58,8 +58,10 @@ time node mappr.mjs | tee -a "results/final-refine-characters-hero.$(gdate -u -I
 time node experiments/basics-map-cache.mjs | tee -a "results/map-reduce-summary-hero.$(gdate -u -Is|sed 's/+00:00/Z/')".md
 time node experiments/basics-map-cache-json.mjs | tee -a "results/map-reduce-characters-model-hero.$(gdate -u -Is|sed 's/+00:00/Z/')".md
 
-# calling ollama directly
-head -145  source/characters-raw/hero-llama2-2023-11-25T00:50:43Z.md| ollama run llama2 "Rewrite the following character summaries in your own words. Keep as mush detail as possible. Preserve the Markdown order and formatting."
+# Recording
+asciinema rec -i 2 -c "time node experiments/basics-map-cache-json.mjs" "results/map-reduce-characters-model-hero.$(gdate -u -Is|sed 's/+00:00/Z/').cast"
+# Playback
+asciinema play results/map-reduce-characters-llama2-neon.2023-11-26T09\:23\:07Z.cast
 
 ```
 
