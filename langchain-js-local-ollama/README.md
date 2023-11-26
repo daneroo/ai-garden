@@ -6,11 +6,17 @@ See <https://js.langchain.com/docs/use_cases/question_answering/local_retrieval_
 
 ## TODO
 
+- [ ] progress to sderr (as well as stdout)
+- [ ] reintroduce yargs
+  - [ ] turn
+  - [ ] turn experiments/basics-map-cache-json.mjs into commands/characterize.mjs - getting it's args
+  - [ ] turn experiments/basics-map-cache.mjs into commands/summarize.mjs - getting it's args
+  -
 - LangChain (JS)
   - [x] Common experiment structure
   - [x] ollama local with llama2/mistral - Q&A and Summarization
   - [x] [custom callback handlers](https://js.langchain.com/docs/modules/callbacks/how_to/create_handlers)
-  - [ ] Tokenizer / splitter max chunk size per model
+  - [x] Tokenizer / splitter max chunk size per model
   - [ ] maxConcurrency >1 ?
 - Later...
   - [OpenInterpreter](https://github.com/KillianLucas/open-interpreter/)
