@@ -42,7 +42,7 @@ The list of characters and locations are expected to conform to a JSON output sc
   const chunkParams = { chunkSize, chunkOverlap, maxChunks };
 
   const verbose = false;
-  const modelName = "mistral"; // llama2, mistral
+  const modelName = "llama2"; // llama2, mistral
 
   console.log(`## Parameters\n`);
   console.log(`  - sourceNickname: ${sourceNickname}`);
@@ -91,7 +91,7 @@ JSON:
 
   const { schema, templateFString } = schemaAndTemplateFString;
 
-  console.log(`\n## Level 0 Character Extraction & Summarization\n`);
+  console.log(`\n## Level 0 Character Extraction\n`);
   console.log(`- Level 0 input summary:`);
   console.log(`  - ${docs.length} docs, length: ${docsLength(docs)}`);
   const chunks = await getChunks({ docs, ...chunkParams });
@@ -107,12 +107,15 @@ JSON:
   );
 
   // Level 1: Aggregate by character
+  const aggregatedCharacterDocs = await aggregateByCharacter(rawCharacterDocs);
 
-  // Level 2: Aggregate by character, then summarize each character
-  const level0Summary = await aggregateByCharacter(rawCharacterDocs);
+  // Level 2: summarize each character, return a single concatenated document
+  const concatenatedSummaryDoc = reSummarizeAggregatedCharacters(
+    aggregatedCharacterDocs
+  );
 
-  const summaries = [level0Summary];
-
+  // Legacy from when we had multiple summaries (levels)
+  const summaries = [concatenatedSummaryDoc];
   const last2Summaries = summaries.slice(-2).reverse();
   for (const summary of last2Summaries) {
     console.log(`\n## ${summary.metadata.source}\n`);
@@ -121,6 +124,18 @@ JSON:
   }
 }
 
+// print the documents with their metadata.source as title
+// TODO(daneroo): make reusable for aggregateCharacterDocs ans reSummarizeAggregatedCharacters
+async function printDocs(docs, title) {
+  let summaryText = `\nThese are aggregated character descriptions:\n\n`;
+  for (const doc of docs) {
+    const json = JSON.parse(doc.pageContent);
+    const { name, descriptions } = json;
+    // console.log(`+++++ ${name}: has ${descriptions.length} descriptions`);
+    summaryText += `\n\n### ${name} (${descriptions.length} mentions)\n\n`;
+    summaryText += descriptions.join("\n");
+  }
+}
 // return the total length of all docs in
 // formatted as a single string
 function docsLength(docs) {
@@ -141,6 +156,14 @@ function docsLength(docs) {
 // };
 // input: array of documents, each containing a JSON array of characters
 async function aggregateByCharacter(rawCharacterDocs) {
+  console.log(`\n## Level 1 Character Aggregation\n`);
+  console.log(`- Level 1 input summary:`);
+  console.log(
+    `  - ${rawCharacterDocs.length} docs, length: ${docsLength(
+      rawCharacterDocs
+    )}`
+  );
+
   const mergedCharacterMap = rawCharacterDocs.reduce((accObj, doc) => {
     // console.log(`  - Merging ${doc.metadata.source}`);
     const json = JSON.parse(doc.pageContent);
@@ -154,23 +177,70 @@ async function aggregateByCharacter(rawCharacterDocs) {
     return accObj;
   }, {});
 
+  console.log(`\n- Level 1 progress:`);
+
   // Output 1 document per character,
   // optionally filtered by minDescriptionCount
   // order by number of descriptions, or alphabetically (.sort())
   const minDescriptionCount = 0;
+  let first = true;
   const aggregatedCharacterDocs = Object.entries(mergedCharacterMap)
     .filter(([key, descriptions]) => descriptions.length > minDescriptionCount)
     // .sort(([kA], [kB]) => kA.localeCompare(kB)) // Uncomment for alphabetical sorting
     .sort(([kA, dA], [kB, dB]) => dB.length - dA.length)
-    .map(
-      ([name, descriptions]) =>
-        new Document({
-          pageContent: JSON.stringify({ name, descriptions }, null, 2),
-          metadata: { source: `Level 1 Aggregation by Character for ${name}` },
-        })
-    );
+    .map(([name, descriptions]) => {
+      if (first) {
+        first = false;
+        console.log(`
+Example json output:
+\`\`\`json
+${JSON.stringify({ name, descriptions }, null, 2)}
+\`\`\`
+    `);
+      }
 
-  // return aggregatedCharacterDocs;
+      console.log(
+        `  - Level 1 Character name: ${name} mentions: ${descriptions.length}`
+      );
+
+      return new Document({
+        pageContent: JSON.stringify({ name, descriptions }, null, 2),
+        // The `source` attribute will ne shown as title in the output
+        metadata: {
+          source: `${name} (${descriptions.length} mentions) - Level 1 Aggregation by Character`,
+        },
+      });
+    });
+
+  console.log(`\n- Level 1 output summary:`);
+  console.log(
+    `  - ${aggregatedCharacterDocs.length} docs, length: ${docsLength(
+      aggregatedCharacterDocs
+    )}`
+  );
+
+  return aggregatedCharacterDocs;
+}
+
+function reSummarizeAggregatedCharacters(aggregatedCharacterDocs) {
+  let summaryText = `\nThese are aggregated character descriptions:\n\n`;
+  for (const doc of aggregatedCharacterDocs) {
+    const json = JSON.parse(doc.pageContent);
+    const { name, descriptions } = json;
+    // console.log(`+++++ ${name}: has ${descriptions.length} descriptions`);
+    summaryText += `\n\n### ${name} (${descriptions.length} mentions)\n\n`;
+    summaryText += descriptions.join("\n");
+  }
+
+  const concatenatedSummaryDoc = new Document({
+    pageContent: summaryText,
+    // pageContent: characterDocs.reduce(
+    //   (total, doc) => total + doc.pageContent + "\n\n",
+    //   ""
+    // ),
+    metadata: { source: `Level 2 - Concatenated Aggregation by Character` },
+  });
+
   // ----------------------------------------
 
   // for (const key of Object.keys(mergedCharacterMap)) {
@@ -195,24 +265,6 @@ async function aggregateByCharacter(rawCharacterDocs) {
   //   console.log(`  - refined ${key}:\n${llmResult}`);
   // }
 
-  let summaryText = `\nThese are aggregated character descriptions:\n\n`;
-  for (const doc of aggregatedCharacterDocs) {
-    const json = JSON.parse(doc.pageContent);
-    const { name, descriptions } = json;
-    // console.log(`+++++ ${name}: has ${descriptions.length} descriptions`);
-    summaryText += `\n\n### ${name} (${descriptions.length} mentions)\n\n`;
-    summaryText += descriptions.join("\n");
-  }
-
-  const concatenatedSummaryDoc = new Document({
-    pageContent: summaryText,
-    // pageContent: characterDocs.reduce(
-    //   (total, doc) => total + doc.pageContent + "\n\n",
-    //   ""
-    // ),
-    metadata: { source: `Level 2 - Concatenated Aggregation by Character` },
-  });
-
   return concatenatedSummaryDoc;
 }
 
@@ -223,9 +275,8 @@ async function extractRawCharacters(
   schema,
   templateFString
 ) {
-  const level = 0;
   const characterDocs = [];
-  console.log(`\n- Level ${level} progress:`);
+  console.log(`\n- Level 0 progress:`);
 
   for (const [i, chunk] of chunks.entries()) {
     const start = +new Date();
@@ -236,20 +287,28 @@ async function extractRawCharacters(
       chunkContent: chunk.pageContent,
     });
 
+    if (i == 0) {
+      console.log(`
+Example json output:
+\`\`\`json
+${JSON.stringify(result, null, 2)}
+\`\`\`
+  `);
+    }
+
     const elapsed = ((+new Date() - start) / 1000).toFixed(2);
     const rate = (chunk.pageContent.length / elapsed).toFixed(2);
     console.log(
-      `  - Level ${level} Chunk ${i}/${chunks.length} (${elapsed}s rate:${rate}b/s):`
+      `  - Level 0 Chunk ${i}/${chunks.length} ${result?.characters?.length} characters (${elapsed}s rate:${rate}b/s)`
     );
-    // console.log(result);
     // TODO(daneroo): in this case, we should not need to stringify, just return the parsed JSON
     const doc = new Document({
       pageContent: JSON.stringify(result, null, 2),
-      metadata: { source: `Level ${level} Summary of chunk ${i}` },
+      metadata: { source: `Level 0 Summary of chunk ${i}` },
     });
     characterDocs.push(doc);
   }
-  console.log(`\n- Level ${level} output summary:`);
+  console.log(`\n- Level 0 output summary:`);
   console.log(
     `  - ${characterDocs.length} docs, length: ${docsLength(characterDocs)}`
   );

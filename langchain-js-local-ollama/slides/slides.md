@@ -8,9 +8,15 @@ slideNumber: false
 title: "AI Tinkerer - Hackathon 2023"
 ---
 
-> "Every Tinkerer needs a workbench"
+### TinkeReReader
+
+#### AI-Leveraged Book Exploration
 
 // @daneroo
+
+---
+
+> "Every Tinkerer needs a workbench"
 
 ---
 
