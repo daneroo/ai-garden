@@ -260,7 +260,6 @@ Kaito is a young street-smart individual with a reputation within the undergroun
 |      Ruin | 30           |
 |    Breeze | 30           |
 |   Kelsier | 23           |
-|   TenSoon | 20           |
 
 ---
 
