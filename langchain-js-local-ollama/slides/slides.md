@@ -186,19 +186,19 @@ This turns out to be a very effective approach, and produces a very good summary
 
 ---
 
-### Character Extraction - 1st
+### Character Extraction - 1
 
 - extract the characters from a novel
 - aggregate their descriptions
 
-Same as with summarization, langChain's
+Same as with summarization
 
-- `refine` mode is not stable, on long-form text.
+- langChain's `refine` is not suited for long text.
 - The refine chain is too lossy, or _forgetful_
 
 ---
 
-### Character Extraction - 2nd
+### Character Extraction - 2.1
 
 - Extract characters from each chunk (LLM)
   - Constrain to JSON (with a schema)
@@ -215,6 +215,12 @@ chunk2:[
 ...chunkN:
 ```
 
+Then ...
+
+---
+
+### Character Extraction - 2.2
+
 - Aggregate the descriptions for each character
   - Done in JavaScript
 
@@ -225,21 +231,21 @@ chunk2:[
 }
 ```
 
-- Finnally, synthesize a readable description for each character (LLM)
+- Finally, synthesize a readable description for each character (LLM)
+
+> "Kaito is a hacker, invaluable to Dr. Yamada"
 
 ---
 
 ### Character Extraction - Example
 
-- [Neon - Characters - llama2](https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-characters-mistral-neon.2023-11-26T09%3A03%3A55Z.md#level-2-character-summaries)
+<a href="https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-characters-mistral-neon.2023-11-26T09%3A03%3A55Z.md#level-2-character-summaries" target="_blank">Neon - Characters - llama2 ↗️</a>
 
-#### Kaito - Aggregate
+- Kaito
+  - A young street-smart hacker with a ...
+  - He joins the trio stop The Architect ...
 
-- A young street-smart hacker with a ...
-- An individual known for his reputation in the underground ...
-- He joins the trio stop The Architect ...
-
-#### Kaito - Reformulated
+#### Reformulated
 
 Kaito is a young street-smart individual known for his reputation within the underground networks, possessing a knack for getting into trouble. He is skilled in hacking, his abilities proving invaluable to Dr. Yamada's investigation. Kaito joins the trio on their quest to stop The Architect.
 
@@ -257,6 +263,38 @@ Kaito is a young street-smart individual known for his reputation within the und
 |    Breeze | 30           |
 |   Kelsier | 23           |
 |   TenSoon | 20           |
+
+---
+
+### Future Work
+
+- Lot's of refactoring **;-)**
+- JSON OutputParser can be made mode robust
+- Disk caching (refinements)
+- Extend to other aspects of long-form text
+  - Locations
+  - Events
+- Combine with RAGs
+  - By indexing the summaries and aggregations
+
+---
+
+### Takeaways
+
+- A concrete project is invaluable to learning LLM's
+- LangChain(.js) is a great tool to start
+- Local LLM's are truly a feasible option
+- Map/Reduce is a powerful pattern
+
+---
+
+### Thank You
+
+// @daneroo
+
+`\[
+\text{Daniel Lauzon} = \sum_{meetups} \text{people}_{met} + \epsilon
+\]`
 
 ---
 

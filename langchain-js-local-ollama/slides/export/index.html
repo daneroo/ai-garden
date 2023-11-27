@@ -353,14 +353,14 @@ level2Txt = concat(level1Summaries)
     
         <section >
             
-            <h3>Character Extraction - 1st</h3>
+            <h3>Character Extraction - 1</h3>
 <ul>
 <li>extract the characters from a novel</li>
 <li>aggregate their descriptions</li>
 </ul>
-<p>Same as with summarization, langChain’s</p>
+<p>Same as with summarization</p>
 <ul>
-<li><code>refine</code> mode is not stable, on long-form text.</li>
+<li>langChain’s <code>refine</code> is not suited for long text.</li>
 <li>The refine chain is too lossy, or <em>forgetful</em></li>
 </ul>
 
@@ -372,7 +372,7 @@ level2Txt = concat(level1Summaries)
     
         <section >
             
-            <h3>Character Extraction - 2nd</h3>
+            <h3>Character Extraction - 2.1</h3>
 <ul>
 <li>Extract characters from each chunk (LLM)
 <ul>
@@ -390,6 +390,17 @@ chunk2:[
 ]
 ...chunkN:
 </code></pre>
+<p>Then …</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Character Extraction - 2.2</h3>
 <ul>
 <li>Aggregate the descriptions for each character
 <ul>
@@ -403,8 +414,11 @@ chunk2:[
 }
 </code></pre>
 <ul>
-<li>Finnally, synthesize a readable description for each character (LLM)</li>
+<li>Finally, synthesize a readable description for each character (LLM)</li>
 </ul>
+<blockquote>
+<p>“Kaito is a hacker, invaluable to Dr. Yamada”</p>
+</blockquote>
 
             </section>
     
@@ -415,16 +429,16 @@ chunk2:[
         <section >
             
             <h3>Character Extraction - Example</h3>
+<p><a href="https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-characters-mistral-neon.2023-11-26T09%3A03%3A55Z.md#level-2-character-summaries" target="_blank">Neon - Characters - llama2 ↗️</a></p>
 <ul>
-<li><a href="https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-characters-mistral-neon.2023-11-26T09%3A03%3A55Z.md#level-2-character-summaries">Neon - Characters - llama2</a></li>
-</ul>
-<h4>Kaito - Aggregate</h4>
+<li>Kaito
 <ul>
 <li>A young street-smart hacker with a …</li>
-<li>An individual known for his reputation in the underground …</li>
 <li>He joins the trio stop The Architect …</li>
 </ul>
-<h4>Kaito - Reformulated</h4>
+</li>
+</ul>
+<h4>Reformulated</h4>
 <p>Kaito is a young street-smart individual known for his reputation within the underground networks, possessing a knack for getting into trouble. He is skilled in hacking, his abilities proving invaluable to Dr. Yamada’s investigation. Kaito joins the trio on their quest to stop The Architect.</p>
 
             </section>
@@ -478,6 +492,60 @@ chunk2:[
 </tr>
 </tbody>
 </table>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Future Work</h3>
+<ul>
+<li>Lot’s of refactoring <strong>;-)</strong></li>
+<li>JSON OutputParser can be made mode robust</li>
+<li>Disk caching (refinements)</li>
+<li>Extend to other aspects of long-form text
+<ul>
+<li>Locations</li>
+<li>Events</li>
+</ul>
+</li>
+<li>Combine with RAGs
+<ul>
+<li>By indexing the summaries and aggregations</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Takeaways</h3>
+<ul>
+<li>A concrete project is invaluable to learning LLM’s</li>
+<li>LangChain(.js) is a great tool to start</li>
+<li>Local LLM’s are truly a feasible option</li>
+<li>Map/Reduce is a powerful pattern</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Thank You</h3>
+<p>// @daneroo</p>
+<p><code>\[ \text{Daniel Lauzon} = \sum_{meetups} \text{people}_{met} + \epsilon \]</code></p>
 
             </section>
     
