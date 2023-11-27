@@ -267,7 +267,7 @@ Kaito is a young street-smart individual with a reputation within the undergroun
 ### Future Work
 
 - Lot's of refactoring **;-)**
-- JSON OutputParser can be made mode robust
+- JSON OutputParser can be made more robust
 - Disk caching (refinements)
 - Extend to other aspects of long-form text
   - Locations
@@ -297,6 +297,8 @@ Kaito is a young street-smart individual with a reputation within the undergroun
 ---
 
 ## The End
+
+![TinkerReReader](logo.png)
 
 ---
 
