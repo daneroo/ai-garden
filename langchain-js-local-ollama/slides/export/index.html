@@ -311,7 +311,7 @@ level2Txt = concat(level1Summaries)
         <section >
             
             <h3>Example Result</h3>
-<p>Hero of Ages - Mistborn Novel 3</p>
+<p><a href="https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-summary-mistral-hero.2023-11-23T20%3A42%3A30Z.md#level-2-summary" target="_blank">Hero of Ages - Summary ↗️</a></p>
 <p><code>~10:1</code> reduction per level</p>
 <table>
 <thead>
@@ -344,7 +344,6 @@ level2Txt = concat(level1Summaries)
 </tr>
 </tbody>
 </table>
-<p><a href="https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-summary-mistral-hero.2023-11-23T20%3A42%3A30Z.md#level-2-summary" target="_blank">Mistral Hero Summary ↗️</a></p>
 
             </section>
     
@@ -354,14 +353,131 @@ level2Txt = concat(level1Summaries)
     
         <section >
             
-            <h2>Map / Reduce</h2>
+            <h3>Character Extraction - 1st</h3>
 <ul>
-<li>Summarization Chain
+<li>extract the characters from a novel</li>
+<li>aggregate their descriptions</li>
+</ul>
+<p>Same as with summarization, langChain’s</p>
 <ul>
-<li>Refine is unstable</li>
+<li><code>refine</code> mode is not stable, on long-form text.</li>
+<li>The refine chain is too lossy, or <em>forgetful</em></li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Character Extraction - 2nd</h3>
+<ul>
+<li>Extract characters from each chunk (LLM)
+<ul>
+<li>Constrain to JSON (with a schema)</li>
 </ul>
 </li>
 </ul>
+<pre><code class="language-json">chunk1:[
+  { &quot;name&quot;: &quot;Dr. Yamada&quot;, &quot;description&quot;: &quot;A scientist&quot; },
+  { &quot;name&quot;: &quot;Kaito&quot;, &quot;description&quot;: &quot;A hacker&quot; }
+]
+
+chunk2:[
+  { &quot;name&quot;: &quot;Kaito&quot;, &quot;description&quot;: &quot;invaluable to Dr. Yamada&quot; }
+]
+...chunkN:
+</code></pre>
+<ul>
+<li>Aggregate the descriptions for each character
+<ul>
+<li>Done in JavaScript</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;Kaito&quot;: [&quot;A hacker&quot;, &quot;invaluable to Dr. Yamada&quot;],
+  &quot;Dr. Yamada&quot;: [&quot;A scientist&quot;]
+}
+</code></pre>
+<ul>
+<li>Finnally, synthesize a readable description for each character (LLM)</li>
+</ul>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Character Extraction - Example</h3>
+<ul>
+<li><a href="https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-characters-mistral-neon.2023-11-26T09%3A03%3A55Z.md#level-2-character-summaries">Neon - Characters - llama2</a></li>
+</ul>
+<h4>Kaito - Aggregate</h4>
+<ul>
+<li>A young street-smart hacker with a …</li>
+<li>An individual known for his reputation in the underground …</li>
+<li>He joins the trio stop The Architect …</li>
+</ul>
+<h4>Kaito - Reformulated</h4>
+<p>Kaito is a young street-smart individual known for his reputation within the underground networks, possessing a knack for getting into trouble. He is skilled in hacking, his abilities proving invaluable to Dr. Yamada’s investigation. Kaito joins the trio on their quest to stop The Architect.</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <p><a href="https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-characters-llama2-hero.2023-11-26T06%3A03%3A11Z.md#level-2-character-summaries" target="_blank">Hero Of Ages - Characters - llama2 ↗️</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Character</th>
+<th>Mentioned in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">Vin</td>
+<td>77</td>
+</tr>
+<tr>
+<td style="text-align:right">Elend</td>
+<td>55</td>
+</tr>
+<tr>
+<td style="text-align:right">Sazed</td>
+<td>47</td>
+</tr>
+<tr>
+<td style="text-align:right">Spook</td>
+<td>33</td>
+</tr>
+<tr>
+<td style="text-align:right">Ruin</td>
+<td>30</td>
+</tr>
+<tr>
+<td style="text-align:right">Breeze</td>
+<td>30</td>
+</tr>
+<tr>
+<td style="text-align:right">Kelsier</td>
+<td>23</td>
+</tr>
+<tr>
+<td style="text-align:right">TenSoon</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
 
             </section>
     

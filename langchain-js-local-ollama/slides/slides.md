@@ -173,7 +173,7 @@ This turns out to be a very effective approach, and produces a very good summary
 
 ### Example Result
 
-Hero of Ages - Mistborn Novel 3
+<a href="https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-summary-mistral-hero.2023-11-23T20%3A42%3A30Z.md#level-2-summary" target="_blank">Hero of Ages - Summary ↗️</a>
 
 `~10:1` reduction per level
 
@@ -184,14 +184,79 @@ Hero of Ages - Mistborn Novel 3
 | Level 1  | 23        | 16.70     |
 | Level 2  | 3         | 1.96      |
 
-<a href="https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-summary-mistral-hero.2023-11-23T20%3A42%3A30Z.md#level-2-summary" target="_blank">Mistral Hero Summary ↗️</a>
+---
+
+### Character Extraction - 1st
+
+- extract the characters from a novel
+- aggregate their descriptions
+
+Same as with summarization, langChain's
+
+- `refine` mode is not stable, on long-form text.
+- The refine chain is too lossy, or _forgetful_
 
 ---
 
-## Map / Reduce
+### Character Extraction - 2nd
 
-- Summarization Chain
-  - Refine is unstable
+- Extract characters from each chunk (LLM)
+  - Constrain to JSON (with a schema)
+
+```json
+chunk1:[
+  { "name": "Dr. Yamada", "description": "A scientist" },
+  { "name": "Kaito", "description": "A hacker" }
+]
+
+chunk2:[
+  { "name": "Kaito", "description": "invaluable to Dr. Yamada" }
+]
+...chunkN:
+```
+
+- Aggregate the descriptions for each character
+  - Done in JavaScript
+
+```json
+{
+  "Kaito": ["A hacker", "invaluable to Dr. Yamada"],
+  "Dr. Yamada": ["A scientist"]
+}
+```
+
+- Finnally, synthesize a readable description for each character (LLM)
+
+---
+
+### Character Extraction - Example
+
+- [Neon - Characters - llama2](https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-characters-mistral-neon.2023-11-26T09%3A03%3A55Z.md#level-2-character-summaries)
+
+#### Kaito - Aggregate
+
+- A young street-smart hacker with a ...
+- An individual known for his reputation in the underground ...
+- He joins the trio stop The Architect ...
+
+#### Kaito - Reformulated
+
+Kaito is a young street-smart individual known for his reputation within the underground networks, possessing a knack for getting into trouble. He is skilled in hacking, his abilities proving invaluable to Dr. Yamada's investigation. Kaito joins the trio on their quest to stop The Architect.
+
+---
+
+<a href="https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-characters-llama2-hero.2023-11-26T06%3A03%3A11Z.md#level-2-character-summaries" target="_blank">Hero Of Ages - Characters - llama2 ↗️</a>
+
+| Character | Mentioned in |
+| --------: | ------------ |
+|       Vin | 77           |
+|     Elend | 55           |
+|     Sazed | 47           |
+|     Spook | 33           |
+|      Ruin | 30           |
+|    Breeze | 30           |
+|   Kelsier | 23           |
+|   TenSoon | 20           |
 
 ---
 
