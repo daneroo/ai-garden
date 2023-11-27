@@ -221,8 +221,8 @@ Then ...
 
 ### Character Extraction - 2.2
 
-- Aggregate the descriptions for each character
-  - Done in JavaScript
+- Aggregate the descriptions (JavaScript)
+- Synthesize a description (LLM)
 
 ```json
 {
@@ -230,8 +230,6 @@ Then ...
   "Dr. Yamada": ["A scientist"]
 }
 ```
-
-- Finally, synthesize a readable description for each character (LLM)
 
 > "Kaito is a hacker, invaluable to Dr. Yamada"
 
@@ -247,7 +245,7 @@ Then ...
 
 #### Reformulated
 
-Kaito is a young street-smart individual known for his reputation within the underground networks, possessing a knack for getting into trouble. He is skilled in hacking, his abilities proving invaluable to Dr. Yamada's investigation. Kaito joins the trio on their quest to stop The Architect.
+Kaito is a young street-smart individual with a reputation within the underground networks, ... Kaito joins the trio on their quest to stop The Architect.
 
 ---
 
