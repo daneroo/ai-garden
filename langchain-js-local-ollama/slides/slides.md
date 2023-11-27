@@ -33,13 +33,13 @@ Attempting to answer questions that are not well suited for simple RAGs.
 - [This Slide Deck](https://slides.ai-garden.v.imetrical.com/)
 - [The Code](https://github.com/daneroo/ai-garden/tree/main/langchain-js-local-ollama)
 - Sample Results
-  - [Summarization - Hero Of Ages - LLama2](https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-summary-llama2-hero.2023-11-23T20%3A40%3A19Z.md#level-3-summary){:target="\_blank"}
-  - [Summarization - Hero Of Ages - Mistral](https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-summary-mistral-hero.2023-11-23T20%3A42%3A30Z.md#level-2-summary){:target="\_blank"}
-  - [Character Extraction - Hero Of Ages - LLama2](https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-characters-llama2-hero.2023-11-26T06%3A03%3A11Z.md#level-2-character-summaries){:target="\_blank"}
-  - [Character Extraction - Hero Of Ages - Mistral](https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-characters-mistral-hero.2023-11-26T06%3A01%3A11Z.md#elend-75-mentions---level-2-character-summary){:target="\_blank"}
+  - [Summarization - Hero Of Ages - LLama2](https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-summary-llama2-hero.2023-11-23T20%3A40%3A19Z.md#level-3-summary)
+  - [Summarization - Hero Of Ages - Mistral](https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-summary-mistral-hero.2023-11-23T20%3A42%3A30Z.md#level-2-summary)
+  - [Character Extraction - Hero Of Ages - LLama2](https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-characters-llama2-hero.2023-11-26T06%3A03%3A11Z.md#level-2-character-summaries)
+  - [Character Extraction - Hero Of Ages - Mistral](https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-characters-mistral-hero.2023-11-26T06%3A01%3A11Z.md#elend-75-mentions---level-2-character-summary)
 - Asciinema recordings
-  - [Character Extraction (Neon / Mistral)](https://asciinema.org/a/FCyk9wohJVb6GAcFjqGSgKv9e){:target="\_blank"}
-  - [Character Extraction (Neon / LLama2)](https://asciinema.org/a/39KrddgNY2nkWJz2upwsh5lku){:target="\_blank"}
+  - [Character Extraction (Neon / Mistral)](https://asciinema.org/a/FCyk9wohJVb6GAcFjqGSgKv9e)
+  - [Character Extraction (Neon / LLama2)](https://asciinema.org/a/39KrddgNY2nkWJz2upwsh5lku)
 
 --
 
