@@ -20,11 +20,12 @@ title: "AI Tinkerer - Hackathon 2023"
 
 ### Summary
 
-We "Tinkered" with long-form text.
+We _"Tinkered"_ with long-form text.
 Attempting to answer questions that are not well suited for simple RAGs.
 
 - First with summarization
-- Second with character extraction and description from a Novel
+- Second with character extraction
+  - from Novels / Thesis / Blog
 
 --
 
@@ -66,35 +67,124 @@ Using LangChain(.js) and Local LLMs (llama2/mistral) to perform Map/Reduce opera
 
 ![TinkerReReader](logo.png)
 
+#### Experiments →
+
+#### Tools and Setup ↓
+
+--
+
+### Initial Setup and Trials
+
+- LLM's
+  - OpenAI's API
+  - LM Studio
+  - GPT4All
+- python3, LangChain(.py)
+  - pipenv, virtualenv, poetry,...
+  - LlamaIndex
+- node.js, LangChain(.js)
+  - pnpm, nx
+
+--
+
+### Hello worlds
+
+> "Every Tinkerer needs a workbench"
+
+- LagChain Basics
+  - Document Loaders
+  - Tokenization
+  - Chat Chain
+  - Simple Rag (HNSWLib)
+
+--
+
+### Move to LangChain(.js)
+
+- Familiarity
+  - _especial dependency management_
+- Better monorepo management
+  - pnpm / nx
+
+--
+
+### Exploring LangChain(.js)
+
+- Callbacks (ConsoleCallbackHandler)
+- Caching
+- Extract my own common patterns
+  - Sources
+  - Templating
+
 ---
 
-## Assumptions and Choices
+### Choice of Weapons
 
 - Locally running LLM's
-  - Ollama / GPT4All / LM Studio
-- Programming Frameworks
-  - LangChain (.js)
-  - LlamaIndex
-- Topic of Inquiry
-  - Books; ebooks in particular
-  - Sample Documents
+  - Ollama (llama2 7b / mistral 7b)
+- LangChain (.js)
+- Sources
+  - Choice ePub ebooks
+  - Thesis
+  - Synthesized text (Thanks GTP4)
 
 ---
 
-## Questions one might ask
+### Summarization - 1st attempt
 
-These are not well suited for RAG
+Using LangChain(.js)
 
-- Summary (at different levels)
-- List of characters / locations
+```js
+const chain = loadSummarizationChain(model, { type: "refine" });
+```
+
+```txt
+summary = summarize(chunk1)
+summary = summarize(chunk2, summary)
+summary = summarize(chunk3, summary)
+...
+```
+
+When this is performed on a large number of chunks (>30), the _running_ summary becomes very forgetful.
 
 ---
 
-## Basics
+### Summarization - 2nd attempt
 
-- Basic Q&A
-- RAG
-- Summarization
+Repeatedly `split`, `summarize`, `concat`
+
+```js
+level0Chunks = split(OriginalText)
+level0Summaries = [...level0Chunks].map(summarize)
+level1Txt = concat(level0Summaries)
+
+level1Chunks = split(level1Txt)
+level1Summaries = [level1Chunks].map(summarize)
+level2Txt = concat(level1Summaries)
+
+...
+```
+
+Until `levelNText` is small enough.
+
+This turns out to be a very effective approach, and produces a very good summary.
+
+---
+
+### Example Result
+
+Hero of Ages - Mistborn Novel 3
+
+`~10:1` reduction per level
+
+| Level    | Documents | Size (kB) |
+| -------- | --------- | --------- |
+| Original | 89        | 1336.85   |
+| Level 0  | 213       | 179.04    |
+| Level 1  | 23        | 16.70     |
+| Level 2  | 3         | 1.96      |
+
+<a href="https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-summary-mistral-hero.2023-11-23T20%3A42%3A30Z.md#level-2-summary" target="_blank">Mistral Hero Summary ↗️</a>
 
 ---
 

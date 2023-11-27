@@ -89,11 +89,15 @@
     <section>
         <section >
             <h3>Summary</h3>
-<p>We “Tinkered” with long-form text.
+<p>We <em>“Tinkered”</em> with long-form text.
 Attempting to answer questions that are not well suited for simple RAGs.</p>
 <ul>
 <li>First with summarization</li>
-<li>Second with character extraction and description from a Novel</li>
+<li>Second with character extraction
+<ul>
+<li>from Novels / Thesis / Blog</li>
+</ul>
+</li>
 </ul>
 
             </section>
@@ -143,39 +147,115 @@ Using LangChain(.js) and Local LLMs (llama2/mistral) to perform Map/Reduce opera
 
 
     
+    <section>
         <section >
-            
             <blockquote>
 <p>“Every Tinkerer needs a workbench”</p>
 </blockquote>
 <!-- image -->
 <p><img src="logo.png" alt="TinkerReReader"></p>
+<h4>Experiments →</h4>
+<h4>Tools and Setup ↓</h4>
 
             </section>
-    
-
-
-
-    
-        <section >
-            
-            <h2>Assumptions and Choices</h2>
+        
+            <section >
+                <h3>Initial Setup and Trials</h3>
 <ul>
-<li>Locally running LLM’s
+<li>LLM’s
 <ul>
-<li>Ollama / GPT4All / LM Studio</li>
+<li>OpenAI’s API</li>
+<li>LM Studio</li>
+<li>GPT4All</li>
 </ul>
 </li>
-<li>Programming Frameworks
+<li>python3, LangChain(.py)
 <ul>
-<li>LangChain (.js)</li>
+<li>pipenv, virtualenv, poetry,…</li>
 <li>LlamaIndex</li>
 </ul>
 </li>
-<li>Topic of Inquiry
+<li>node.js, LangChain(.js)
 <ul>
-<li>Books; ebooks in particular</li>
-<li>Sample Documents</li>
+<li>pnpm, nx</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+        
+            <section >
+                <h3>Hello worlds</h3>
+<blockquote>
+<p>“Every Tinkerer needs a workbench”</p>
+</blockquote>
+<ul>
+<li>LagChain Basics
+<ul>
+<li>Document Loaders</li>
+<li>Tokenization</li>
+<li>Chat Chain</li>
+<li>Simple Rag (HNSWLib)</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+        
+            <section >
+                <h3>Move to LangChain(.js)</h3>
+<ul>
+<li>Familiarity
+<ul>
+<li><em>especial dependency management</em></li>
+</ul>
+</li>
+<li>Better monorepo management
+<ul>
+<li>pnpm / nx</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+        
+            <section >
+                <h3>Exploring LangChain(.js)</h3>
+<ul>
+<li>Callbacks (ConsoleCallbackHandler)</li>
+<li>Caching</li>
+<li>Extract my own common patterns
+<ul>
+<li>Sources</li>
+<li>Templating</li>
+</ul>
+</li>
+</ul>
+
+            </section>
+        
+
+    </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Choice of Weapons</h3>
+<ul>
+<li>Locally running LLM’s
+<ul>
+<li>Ollama (llama2 7b / mistral 7b)</li>
+</ul>
+</li>
+<li>LangChain (.js)</li>
+<li>Sources
+<ul>
+<li>Choice ePub ebooks</li>
+<li>Thesis</li>
+<li>Synthesized text (Thanks GTP4)</li>
 </ul>
 </li>
 </ul>
@@ -188,12 +268,16 @@ Using LangChain(.js) and Local LLMs (llama2/mistral) to perform Map/Reduce opera
     
         <section >
             
-            <h2>Questions one might ask</h2>
-<p>These are not well suited for RAG</p>
-<ul>
-<li>Summary (at different levels)</li>
-<li>List of characters / locations</li>
-</ul>
+            <h3>Summarization - 1st attempt</h3>
+<p>Using LangChain(.js)</p>
+<pre><code class="language-js">const chain = loadSummarizationChain(model, { type: &quot;refine&quot; });
+</code></pre>
+<pre><code class="language-txt">summary = summarize(chunk1)
+summary = summarize(chunk2, summary)
+summary = summarize(chunk3, summary)
+...
+</code></pre>
+<p>When this is performed on a large number of chunks (&gt;30), the <em>running</em> summary becomes very forgetful.</p>
 
             </section>
     
@@ -203,12 +287,64 @@ Using LangChain(.js) and Local LLMs (llama2/mistral) to perform Map/Reduce opera
     
         <section >
             
-            <h2>Basics</h2>
-<ul>
-<li>Basic Q&amp;A</li>
-<li>RAG</li>
-<li>Summarization</li>
-</ul>
+            <h3>Summarization - 2nd attempt</h3>
+<p>Repeatedly <code>split</code>, <code>summarize</code>, <code>concat</code></p>
+<pre><code class="language-js">level0Chunks = split(OriginalText)
+level0Summaries = [...level0Chunks].map(summarize)
+level1Txt = concat(level0Summaries)
+
+level1Chunks = split(level1Txt)
+level1Summaries = [level1Chunks].map(summarize)
+level2Txt = concat(level1Summaries)
+
+...
+</code></pre>
+<p>Until <code>levelNText</code> is small enough.</p>
+<p>This turns out to be a very effective approach, and produces a very good summary.</p>
+
+            </section>
+    
+
+
+
+    
+        <section >
+            
+            <h3>Example Result</h3>
+<p>Hero of Ages - Mistborn Novel 3</p>
+<p><code>~10:1</code> reduction per level</p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Documents</th>
+<th>Size (kB)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Original</td>
+<td>89</td>
+<td>1336.85</td>
+</tr>
+<tr>
+<td>Level 0</td>
+<td>213</td>
+<td>179.04</td>
+</tr>
+<tr>
+<td>Level 1</td>
+<td>23</td>
+<td>16.70</td>
+</tr>
+<tr>
+<td>Level 2</td>
+<td>3</td>
+<td>1.96</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/daneroo/ai-garden/blob/main/langchain-js-local-ollama/results/map-reduce-summary-mistral-hero.2023-11-23T20%3A42%3A30Z.md#level-2-summary" target="_blank">Mistral Hero Summary ↗️</a></p>
 
             </section>
     
