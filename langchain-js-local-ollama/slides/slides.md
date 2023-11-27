@@ -298,6 +298,10 @@ Kaito is a young street-smart individual known for his reputation within the und
 
 ---
 
+## The End
+
+---
+
 <!-- .slide: data-background="#dddddd" -->
 
 ### Map / Reduce (ctd)
@@ -330,9 +334,5 @@ A thin wrapper for MathJax
 `\[
 {}_{\text{Ottawa}}^{\,\quad\text{AI}} \text{Tinkerer}_{\text{Hackathon}}^{2023}
 \]`
-
----
-
-## The End
 
 ---
