@@ -53,19 +53,15 @@ export function formatSize(size, format = SizeFormat.IEC) {
   const units = format === SizeFormat.SI ? SIUnits : IECUnits;
   const threshold = format === SizeFormat.SI ? 1000 : 1024;
 
-  if (size < threshold) {
-    return `${size} ${units[0]}`; // No decimal for bytes
-  }
-
+  let formattedSize = Math.abs(size); // Convert size to positive number
   let index = 0;
-  let formattedSize = size;
 
   while (formattedSize >= threshold && index < units.length - 1) {
     formattedSize /= threshold;
     index++;
   }
 
-  return `${index === 0 ? formattedSize : formattedSize.toFixed(2)} ${
-    units[index]
-  }`;
+  return `${size < 0 ? "-" : ""}${
+    index === 0 ? formattedSize : formattedSize.toFixed(2)
+  } ${units[index]}`;
 }

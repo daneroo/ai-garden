@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.mjs",
   "scripts": {
-    "start": "node index.mjs"
+    "start": "node index.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +21,9 @@
     "pdf-parse": "^1.1.1",
     "yargs": "^17.7.2",
     "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "vite": "^5.0.4",
+    "vitest": "^0.34.6"
   }
 }
