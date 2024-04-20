@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Audio Player with Transcript</title>
+    <style>
+      .current {
+        background-color: #ffff99; /* Softer shade of yellow */
+        font-weight: bold; /* Make current cue stand out more */
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+      "
+    >
+      <audio id="audioPlayer" controls>
+        <source
+          id="audioPlayerSrc"
+          src="media/thebladeitself.m4b"
+          type="audio/mp4"
+        />
+        <track
+          id="transcriptTrack"
+          src="media/thebladeitself.vtt"
+          kind="subtitles"
+          srclang="en"
+          default
+        />
+      </audio>
+      <div>
+        <span id="currentTime">0:00</span>
+        <input type="range" id="posSlider" value="0" />
+        <span id="duration">0:00</span>
+      </div>
+      <div
+        id="transcriptContainer"
+        style="
+          flex-grow: 1;
+          overflow-y: auto;
+          max-height: calc(100vh - 200px);
+          font-family: Arial, sans-serif;
+        "
+      >
+        <!-- This is where the transcript goes -->
+      </div>
+    </div>
+    <script>
+      // const audioFile = "media/thebladeitself.m4b";
+      // const audioType = "audio/mp4";
+      // const transcriptFile = "media/thebladeitself.vtt";
+      const audioFile = "media/theroadnottaken.mp3";
+      const audioType = "audio/mp3";
+      const transcriptFile = "media/theroadnottaken.vtt";
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const audioPlayer = document.getElementById("audioPlayer");
+        const audioPlayerSrc = document.getElementById("audioPlayerSrc");
+        audioPlayerSrc.src = audioFile;
+        audioPlayer.type = audioType;
+        const transcriptTrack = document.getElementById("transcriptTrack");
+        transcriptTrack.src = transcriptFile;
+        const transcriptContainer = document.getElementById(
+          "transcriptContainer"
+        );
+        const currentTime = document.getElementById("currentTime");
+        const durationEl = document.getElementById("duration");
+        const posSlider = document.getElementById("posSlider");
+        audioPlayer.addEventListener("loadedmetadata", function () {
+          console.log(`Audio duration: ${audioPlayer.duration}`); // Log audio duration (in seconds)
+          posSlider.max = audioPlayer.duration;
+          durationEl.textContent = formatTime(audioPlayer.duration);
+        });
+        posSlider.addEventListener("input", function () {
+          audioPlayer.currentTime = posSlider.value;
+        });
+        transcriptTrack.addEventListener("load", function () {
+          const cues = transcriptTrack.track.cues;
+          const totalDuration = cues[cues.length - 1].endTime; // End time of the last cue
+          console.log(`Total duration (last sue): ${totalDuration}`); // Log total duration (in seconds
+
+          const delayAtEnd = 2; // Delay at the end of the audio in seconds
+
+          Array.from(cues).forEach((cue, index) => {
+            const offset = (delayAtEnd / totalDuration) * cue.startTime;
+            cue.startTime -= offset;
+            cue.endTime -= offset;
+
+            const p = document.createElement("div");
+            p.id = "cue" + index; // Assign an ID to each paragraph for better control
+            p.textContent = cue.text;
+            transcriptContainer.appendChild(p);
+
+            cue.onenter = function () {
+              // Event listener for cue entering
+              document.getElementById("cue" + index).classList.add("current");
+              document
+                .getElementById("cue" + index)
+                .scrollIntoView({ behavior: "smooth", block: "center" });
+            };
+
+            cue.onexit = function () {
+              // Event listener for cue exiting
+              document
+                .getElementById("cue" + index)
+                .classList.remove("current");
+            };
+          });
+        });
+
+        function formatTime(timeInSeconds) {
+          const minutes = Math.floor(timeInSeconds / 60);
+          const seconds = Math.floor(timeInSeconds % 60);
+          return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+        }
+        audioPlayer.load(); // Ensure track cues are loaded
+        audioPlayer.ontimeupdate = () => {
+          currentTime.textContent = formatTime(audioPlayer.currentTime);
+        };
+      });
+    </script>
+  </body>
+</html>

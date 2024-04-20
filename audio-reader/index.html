@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Audio Player with Transcript</title>
+    <style>
+      .current {
+        background-color: rgba(64, 72, 230, 0.6);
+        /* font-weight: bold; */
+        transition: background-color 1s ease-out; /* transition effect for the background color */
+      }
+
+      .current.fadeout {
+        background-color: rgba(64, 72, 230, 0.6);
+        transition: background-color 1s ease-out; /* transition effect for the background color */
+      }
+    </style>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel" src="App.jsx"></script>
+  </body>
+</html>
