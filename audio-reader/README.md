@@ -15,6 +15,7 @@ pnpm dev
 ## Setup
 
 ```bash
-npx create-next-app@latest --typescript --tailwind --eslint
-npx v0@latest init
+pnpx create-next-app@latest --typescript --tailwind --eslint
+pnpx v0@latest init
+pnpx v0 add bUJpWsYlvnY
 ```
