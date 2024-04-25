@@ -1,7 +1,16 @@
 <!DOCTYPE html>
+<!-- 
+  - I want an html page with three sections: header, body, and footer.
+  - The header should be at the top of the page, the body should be in the middle, and the footer should be at the bottom.
+  - I want the header and footer to take their  "natural" height, 
+  - and the body to take up the remaining space. with flex-grow: 1
+  - I want this to work on Mobile browser as well, where the URL Bar must be taken into account!
+  - This is accomplished by setting the CSS variable --vh to the actual height of 1vh on mobile.
+  - i.e. --vh = window.innerHeight / 100.0
+ -->
 <html>
   <head>
-    <title>Audio Reader</title>
+    <title>URL BAR TEST</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       :root {
@@ -18,25 +27,24 @@
         /* Make corrections for URL Bar heigh on Mobile */
         height: calc(var(--vh) * 100);
       }
-
-      .current {
-        background-color: rgba(64, 72, 230, 0.6);
-        /* font-weight: bold; */
-        transition: background-color 1s ease-out; /* transition effect for the background color */
-      }
-
-      .current.fadeout {
-        background-color: rgba(64, 72, 230, 0.6);
-        transition: background-color 1s ease-out; /* transition effect for the background color */
-      }
     </style>
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="text/babel" src="App.jsx"></script>
+    <div
+      style="
+        height: calc(var(--vh) * 100);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+      "
+    >
+      <div style="font-size: 200%">Header</div>
+      <pre id="transcript" style="flex-grow: 1; overflow: auto; width: 100%">
+Body</pre
+      >
+      <div style="font-size: 200%">Footer</div>
+    </div>
     <script>
       function createFixed100VHFElement() {
         const testElement = document.createElement("div");
@@ -69,20 +77,20 @@
         console.log("URL Bar Height: ", urlBarHeight);
         console.log("Corrected vh: ", newVH);
 
-        // const str = JSON.stringify(
-        //   {
-        //     windowHeight,
-        //     // urlBarHeight,
-        //     newVH,
-        //   },
-        //   null,
-        //   2
-        // );
-        // const numCopies = 30;
-        // const strCopies = Array(numCopies).fill(str).join("\n");
+        const str = JSON.stringify(
+          {
+            windowHeight,
+            // urlBarHeight,
+            newVH,
+          },
+          null,
+          2
+        );
+        const numCopies = 30;
+        const strCopies = Array(numCopies).fill(str).join("\n");
 
-        // // Optionally update display or debug info
-        // document.getElementById("transcript").innerHTML = strCopies;
+        // Optionally update display or debug info
+        document.getElementById("transcript").innerHTML = strCopies;
       }
 
       // Set the --vh-offset variable when the page loads

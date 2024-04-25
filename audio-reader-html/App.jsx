@@ -96,34 +96,39 @@ function App() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        height: "100vh",
+        height: "calc(var(--vh) * 100)",
       }}
     >
-      <audio ref={audioPlayerRef} controls>
-        <source src={audioFile} type={audioType} />
-        <track
-          ref={trackRef}
-          src={transcriptFile}
-          kind="subtitles"
-          srcLang="en"
-          default
-        />
-      </audio>
+      {/* Media controls */}
       <div>
-        <span>{formatTime(currentTime)}</span>
-        <input
-          type="range"
-          value={currentTime}
-          max={duration}
-          onChange={sliderChange}
-        />
-        <span>{formatTime(duration)}</span>
+        <h4>controls</h4>
+        <audio ref={audioPlayerRef} controls>
+          <source src={audioFile} type={audioType} />
+          <track
+            ref={trackRef}
+            src={transcriptFile}
+            kind="subtitles"
+            srcLang="en"
+            default
+          />
+        </audio>
+        <div>
+          <span>{formatTime(currentTime)}</span>
+          <input
+            type="range"
+            value={currentTime}
+            max={duration}
+            onChange={sliderChange}
+          />
+          <span>{formatTime(duration)}</span>
+        </div>
       </div>
+      {/* Transcript Area */}
       <div
         style={{
           flexGrow: 1,
           overflowY: "auto",
-          maxHeight: "calc(100vh - 200px)",
+          width: "100%",
           fontFamily: "Arial, sans-serif",
         }}
       >
@@ -133,6 +138,9 @@ function App() {
             {cue.text}
           </div>
         ))}{" "}
+      </div>
+      <div>
+        <h4>footer</h4>
       </div>
     </div>
   );
