@@ -37,57 +37,6 @@
   <body>
     <div id="root"></div>
     <script type="text/babel" src="App.jsx"></script>
-    <script>
-      function createFixed100VHFElement() {
-        const testElement = document.createElement("div");
-        testElement.style.cssText =
-          "position: fixed; top: 0; height: 100vh; pointer-events: none;";
-        document.documentElement.insertBefore(
-          testElement,
-          document.documentElement.firstChild
-        );
-        return testElement;
-      }
-
-      function removeFixed100VHElement(element) {
-        document.documentElement.removeChild(element);
-      }
-
-      function setCorrectedVH() {
-        const windowHeight = window.innerHeight;
-        const newVH = windowHeight / 100; // Each unit of VH should be 1% of the actual windowHeight
-        document.documentElement.style.setProperty("--vh", `${newVH}px`);
-
-        // This section is not actually need to calculate the --vh value
-        // But it is useful to show the actual height of the URL Bar height on mobile devices
-        const fixed100VHElt = createFixed100VHFElement();
-        const fixed100VHHeight = fixed100VHElt.offsetHeight;
-        removeFixed100VHElement(fixed100VHElt);
-        const urlBarHeight = fixed100VHHeight - windowHeight;
-
-        console.log("window.innerHeight: ", windowHeight);
-        console.log("URL Bar Height: ", urlBarHeight);
-        console.log("Corrected vh: ", newVH);
-
-        // const str = JSON.stringify(
-        //   {
-        //     windowHeight,
-        //     // urlBarHeight,
-        //     newVH,
-        //   },
-        //   null,
-        //   2
-        // );
-        // const numCopies = 30;
-        // const strCopies = Array(numCopies).fill(str).join("\n");
-
-        // // Optionally update display or debug info
-        // document.getElementById("transcript").innerHTML = strCopies;
-      }
-
-      // Set the --vh-offset variable when the page loads
-      window.addEventListener("DOMContentLoaded", setCorrectedVH);
-      window.addEventListener("resize", setCorrectedVH);
-    </script>
+    <script src="setAdjustedVH.js"></script>
   </body>
 </html>
