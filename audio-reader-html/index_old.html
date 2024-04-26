@@ -61,7 +61,7 @@
         const audioPlayer = document.getElementById("audioPlayer");
         const audioPlayerSrc = document.getElementById("audioPlayerSrc");
         audioPlayerSrc.src = audioFile;
-        audioPlayer.type = audioType;
+        audioPlayerSrc.type = audioType;
         const transcriptTrack = document.getElementById("transcriptTrack");
         transcriptTrack.src = transcriptFile;
         const transcriptContainer = document.getElementById(
@@ -79,6 +79,7 @@
           audioPlayer.currentTime = posSlider.value;
         });
         transcriptTrack.addEventListener("load", function () {
+          console.log("Transcript track loaded");
           const cues = transcriptTrack.track.cues;
           const totalDuration = cues[cues.length - 1].endTime; // End time of the last cue
           console.log(`Total duration (last sue): ${totalDuration}`); // Log total duration (in seconds
