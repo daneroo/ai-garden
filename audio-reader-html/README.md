@@ -20,5 +20,6 @@ I have an .m4b audio file, and I can produce a .vtt transcript of it. How can I 
   - index_old - Not working on iPad, but working elsewhere
   - audio - not loading tracks, anywhere?
   - clone audio2 from index_old, and converge to audio
+    - fix layout - steal from audio -while keeping it working on Desktop/Mobile
 - Clean up html when everything is working
 - Port back to React
