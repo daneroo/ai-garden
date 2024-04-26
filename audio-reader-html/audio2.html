@@ -2,7 +2,23 @@
 <html>
   <head>
     <title>Audio2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+      :root {
+        /* default value of --vh is 1vh, but that will be corrected on mobile, when URL Bar is present to window.innerHeight/100.0 */
+        --vh: 1vh;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        /* Prevents the overall page from scrolling */
+        overflow: hidden;
+        /* Ensures the page takes full viewport height */
+        /* Make corrections for URL Bar heigh on Mobile */
+        height: calc(var(--vh) * 100);
+      }
+
       .current {
         background-color: #ffff99; /* Softer shade of yellow */
         font-weight: bold; /* Make current cue stand out more */
@@ -12,10 +28,11 @@
   <body>
     <div
       style="
+        height: calc(var(--vh) * 100);
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 100vh;
+        justify-content: space-between;
       "
     >
       <div>
@@ -59,7 +76,13 @@
       >
         <!-- This is where the transcript goes -->
       </div>
+      <div>
+        <!-- Reload button -->
+        <button onclick="location.reload()" style="font-size: 20px; padding: 10px; margin: 10px;">Reload</button>
+      </div>
+      </div>
     </div>
+    <script src="setAdjustedVH.js"></script>
     <script>
       const mediaChoices = [
         {
@@ -73,7 +96,7 @@
           transcriptFile: "media/theroadnottaken.vtt",
         },
       ];
-      const { audioFile, audioType, transcriptFile } = mediaChoices[0];
+      const { audioFile, audioType, transcriptFile } = mediaChoices[1];
 
       document.addEventListener("DOMContentLoaded", function () {
         const audioPlayer = document.getElementById("audioPlayer");
