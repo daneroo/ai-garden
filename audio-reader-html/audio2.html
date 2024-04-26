@@ -18,24 +18,35 @@
         height: 100vh;
       "
     >
-      <audio id="audioPlayer" controls>
-        <source
-          id="audioPlayerSrc"
-          src="media/thebladeitself.m4b"
-          type="audio/mp4"
-        />
-        <track
-          id="transcriptTrack"
-          src="media/thebladeitself.vtt"
-          kind="subtitles"
-          srclang="en"
-          default
-        />
-      </audio>
       <div>
-        <span id="currentTime">0:00</span>
-        <input type="range" id="posSlider" value="0" />
-        <span id="duration">0:00</span>
+        <!-- Media Selector -->
+        Select Media:
+        <select id="mediaSelector">
+          <option value="0">The Blade Itself</option>
+          <option value="1">The Road Not Taken</option>
+        </select>
+      </div>
+      <div>
+        <!-- Media controls -->
+        <audio id="audioPlayer" controls>
+          <source
+            id="audioPlayerSrc"
+            src="media/thebladeitself.m4b"
+            type="audio/mp4"
+          />
+          <track
+            id="transcriptTrack"
+            src="media/thebladeitself.vtt"
+            kind="subtitles"
+            srclang="en"
+            default
+          />
+        </audio>
+        <div>
+          <span id="currentTime">0:00</span>
+          <input type="range" id="posSlider" value="0" />
+          <span id="duration">0:00</span>
+        </div>
       </div>
       <div
         id="transcriptContainer"
@@ -50,12 +61,19 @@
       </div>
     </div>
     <script>
-      // const audioFile = "media/thebladeitself.m4b";
-      // const audioType = "audio/mp4";
-      // const transcriptFile = "media/thebladeitself.vtt";
-      const audioFile = "media/theroadnottaken.mp3";
-      const audioType = "audio/mp3";
-      const transcriptFile = "media/theroadnottaken.vtt";
+      const mediaChoices = [
+        {
+          audioFile: "media/thebladeitself.m4b",
+          audioType: "audio/mp4",
+          transcriptFile: "media/thebladeitself.vtt",
+        },
+        {
+          audioFile: "media/theroadnottaken.mp3",
+          audioType: "audio/mp3",
+          transcriptFile: "media/theroadnottaken.vtt",
+        },
+      ];
+      const { audioFile, audioType, transcriptFile } = mediaChoices[0];
 
       document.addEventListener("DOMContentLoaded", function () {
         const audioPlayer = document.getElementById("audioPlayer");
