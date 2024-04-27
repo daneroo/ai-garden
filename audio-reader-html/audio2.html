@@ -115,15 +115,17 @@
           console.log(`Audio duration: ${audioPlayer.duration}`); // Log audio duration (in seconds)
           posSlider.max = audioPlayer.duration;
           durationEl.textContent = formatTime(audioPlayer.duration);
+          // transcriptContainer.innerHTML = "loadmetadata event fired.";
         });
         posSlider.addEventListener("input", function () {
           audioPlayer.currentTime = posSlider.value;
         });
         transcriptTrack.addEventListener("load", function () {
           console.log("Transcript track loaded");
+          // transcriptContainer.innerHTML = "transcript load event fired.";
           const cues = transcriptTrack.track.cues;
           const totalDuration = cues[cues.length - 1].endTime; // End time of the last cue
-          console.log(`Total duration (last sue): ${totalDuration}`); // Log total duration (in seconds
+          console.log(`Total duration (last cue): ${totalDuration}`); // Log total duration (in seconds
 
           const delayAtEnd = 2; // Delay at the end of the audio in seconds
 
