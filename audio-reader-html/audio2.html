@@ -50,7 +50,7 @@
         Select Media:
         <select id="mediaSelector">
           <option value="0">The Blade Itself</option>
-          <option value="1">The Road Not Taken</option>
+          <option value="1" selected>The Road Not Taken</option>
         </select>
       </div>
       <div>
@@ -115,13 +115,26 @@
       document.addEventListener("DOMContentLoaded", function () {
         const audioPlayer = document.getElementById("audioPlayer");
         const audioPlayerSrc = document.getElementById("audioPlayerSrc");
-        audioPlayerSrc.src = audioFile;
-        audioPlayerSrc.type = audioType;
         const transcriptTrack = document.getElementById("transcriptTrack");
-        transcriptTrack.src = transcriptFile;
         const transcriptContainer = document.getElementById(
           "transcriptContainer"
         );
+
+        function changeMedia(index) {
+          const { audioFile, audioType, transcriptFile } = mediaChoices[index];
+          audioPlayerSrc.src = audioFile;
+          audioPlayerSrc.type = audioType;
+          transcriptTrack.src = transcriptFile;
+          transcriptContainer.innerHTML = ""; // Clear transcript container
+          audioPlayer.load(); // Reload the audio element to apply new sources
+          console.log(`Media changed to: ${audioFile}`);
+        }
+        // Initial load
+        changeMedia(mediaSelector.value); // Load initial media based on default selection
+        // Event listener for changes in selection
+        mediaSelector.addEventListener("change", () => {
+          changeMedia(mediaSelector.value);
+        });
         const currentTime = document.getElementById("currentTime");
         const durationEl = document.getElementById("duration");
         const posSlider = document.getElementById("posSlider");
