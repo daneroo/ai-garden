@@ -110,7 +110,7 @@
           transcriptFile: "media/theroadnottaken.vtt",
         },
       ];
-      const { audioFile, audioType, transcriptFile } = mediaChoices[1];
+      const { audioFile, audioType, transcriptFile } = mediaChoices[0];
 
       document.addEventListener("DOMContentLoaded", function () {
         const audioPlayer = document.getElementById("audioPlayer");
@@ -162,7 +162,10 @@
         }
 
         transcriptTrack.addEventListener("load", function () {
-          console.log("Transcript track loaded");
+          console.log(
+            "Transcript track loaded",
+            transcriptTrack?.track?.cues?.length
+          );
           // transcriptContainer.innerHTML = "transcript load event fired.";
           const cues = transcriptTrack.track.cues;
           const totalDuration = cues[cues.length - 1].endTime; // End time of the last cue
