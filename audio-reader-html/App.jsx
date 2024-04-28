@@ -28,6 +28,7 @@ function App() {
   const [duration, setDuration] = React.useState(100);
   const [currentTime, setCurrentTime] = React.useState(0);
   const [transcript, setTranscript] = React.useState([]);
+  const [markupContent, setMarkupContent] = React.useState("");
 
   const mediaChange = (id) => {
     setSelectedMediaId(id);
@@ -38,6 +39,12 @@ function App() {
     setCurrentTime(newTime);
     audioPlayerRef.current.currentTime = newTime;
   }
+
+  React.useEffect(() => {
+    fetch(mediaChoices[selectedMediaId].markupFile)
+      .then((response) => response.text())
+      .then((data) => setMarkupContent(data));
+  }, [selectedMediaId]);
 
   React.useEffect(() => {
     function handleMetadataLoaded() {
@@ -165,19 +172,47 @@ function App() {
           <span>{formatTime(duration)}</span>
         </div>
       </div>
-      {/* Transcript Area */}
+      {/* Two-Column Layout for Transcript and HTML Content */}
       <div
         style={{
           flexGrow: 1,
           overflowY: "auto",
+          display: "flex",
+          gap: "1rem", // Add a gap between the columns
+          justifyContent: "space-between", // Add space between the columns
+          paddingLeft: "1rem", // Add padding to the left of the container
+          paddingRight: "1rem", // Add padding to the right of the container
         }}
       >
-        {/* This is where the transcript goes */}
-        {transcript.map((cue) => (
-          <div className={"caption"} key={cue.id} ref={cue.ref}>
-            {cue.text}
-          </div>
-        ))}{" "}
+        {/* Transcript Column */}
+        <div
+          style={{
+            width: "50%", // half of the container width
+            overflowY: "auto",
+          }}
+        >
+          {/* This is where the transcript goes */}
+          {transcript.map((cue) => (
+            <div className={"caption"} key={cue.id} ref={cue.ref}>
+              {cue.text}
+            </div>
+          ))}
+        </div>
+
+        {/* HTML Content Column */}
+        <div
+          style={{
+            width: "50%", // half of the container width
+            overflowY: "auto",
+          }}
+        >
+          {/* Assuming you will load HTML content into this div somehow, e.g., via innerHTML or a component */}
+          <div
+            dangerouslySetInnerHTML={{
+              __html: markupContent,
+            }}
+          />
+        </div>
       </div>
       <div>
         {/* Reload button  */}
