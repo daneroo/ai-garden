@@ -146,7 +146,7 @@
           // console.log("Text track found, mode:", textTrack.mode);
           // Well this line cost me about 5 days of debugging
           // this is disabled by default, which won;t even trigger the loading of cues from the vtt file
-          //  needs to be set to "showing" or "hidden" to trigger cue loading on iPad/iPhone
+          // needs to be set to "showing" or "hidden" to trigger cue loading on iPad/iPhone
           textTrack.mode = "hidden"; // or "showing", as long as it does not remain "disabled"
           // now attach an event listener to the text track cuechange event
           // this might be an alternative to the individual cue onenter and onexit events
