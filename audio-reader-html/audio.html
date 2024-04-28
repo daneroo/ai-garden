@@ -10,9 +10,9 @@
         /* background color for current highlighted text */
         --current-bg: hsl(210, 50%, 90%);
       }
-
       html,
       body {
+        font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
         /* Prevents the overall page from scrolling */
@@ -43,6 +43,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        gap: 1.2rem;
       "
     >
       <div>
@@ -75,22 +76,14 @@
           <span id="duration">0:00</span>
         </div>
       </div>
-      <div
-        id="transcriptContainer"
-        style="
-          flex-grow: 1;
-          overflow-y: auto;
-          max-height: calc(100vh - 200px);
-          font-family: Arial, sans-serif;
-        "
-      >
+      <div id="transcriptContainer" style="flex-grow: 1; overflow-y: auto">
         <!-- This is where the transcript goes -->
       </div>
       <div>
         <!-- Reload button -->
         <button
           onclick="location.reload()"
-          style="font-size: 20px; padding: 10px; margin: 10px"
+          style="font-size: 1.5rem; padding: 1rem; margin: 1rem"
         >
           Reload
         </button>

@@ -69,7 +69,6 @@ function App() {
     cues.forEach((cue, index) => {
       cue.onenter = () => {
         transcript[index].ref.current.classList.add("current");
-        transcript[index].ref.current.classList.remove("fadeout");
         transcript[index].ref.current.scrollIntoView({
           behavior: "smooth",
           block: "center",
@@ -77,7 +76,6 @@ function App() {
       };
       cue.onexit = () => {
         transcript[index].ref.current.classList.remove("current");
-        transcript[index].ref.current.classList.add("fadeout");
       };
     });
 
@@ -97,6 +95,8 @@ function App() {
         flexDirection: "column",
         alignItems: "center",
         height: "calc(var(--vh) * 100)",
+        justifyContent: "space-between",
+        gap: "1.2rem",
       }}
     >
       {/* Media controls */}
@@ -128,13 +128,11 @@ function App() {
         style={{
           flexGrow: 1,
           overflowY: "auto",
-          width: "100%",
-          fontFamily: "Arial, sans-serif",
         }}
       >
         {/* This is where the transcript goes */}
         {transcript.map((cue) => (
-          <div key={cue.id} ref={cue.ref}>
+          <div className={"caption"} key={cue.id} ref={cue.ref}>
             {cue.text}
           </div>
         ))}{" "}

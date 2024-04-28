@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Audio Reader</title>
+    <title>Audio &amp; VTT &amp; jsx</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       :root {
         /* default value of --vh is 1vh, but that will be corrected on mobile, when URL Bar is present to window.innerHeight/100.0 */
         --vh: 1vh;
+        /* background color for current highlighted text */
+        --current-bg: hsl(210, 50%, 90%);
       }
       html,
       body {
+        font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
         /* Prevents the overall page from scrolling */
@@ -19,15 +22,16 @@
         height: calc(var(--vh) * 100);
       }
 
-      .current {
-        background-color: rgba(64, 72, 230, 0.6);
-        /* font-weight: bold; */
-        transition: background-color 1s ease-out; /* transition effect for the background color */
+      .caption {
+        color: gray;
+        /* Smooth transition for color and background */
+        transition: background-color 1.3s ease, color 0.3s ease;
       }
-
-      .current.fadeout {
-        background-color: rgba(64, 72, 230, 0.6);
-        transition: background-color 1s ease-out; /* transition effect for the background color */
+      .caption.current {
+        color: black;
+        background-color: var(--current-bg);
+        /* Optional: add a subtle shadow for depth */
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
       }
     </style>
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
