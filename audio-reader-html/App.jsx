@@ -257,20 +257,46 @@ function App() {
   );
 }
 
+function stripHTML(text) {
+  const div = document.createElement("div");
+  div.innerHTML = text;
+  return div.textContent || div.innerText || "";
+}
+function normalizeText(text) {
+  // Strip HTML tags from text
+  // This RE does not work,
+  // const stripRE = /<(?:"[^"]*"['"]*'[^']*'['"]*[^'">])+>/g;
+  // const strippedHtml = text.replace(stripRE, "");
+  const strippedHtml = stripHTML(text);
+  // Normalize text: convert to lowercase, remove non-word characters, collapse spaces
+  return strippedHtml
+    .toLowerCase()
+    .replace(/[\W_]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function highlightCueInMarkupContent(cueText, markupContent) {
-  const markupIndex = markupContent.indexOf(cueText);
-  if (markupIndex !== -1) {
-    // Compute the range or highlight the HTML based on the index
-    console.log(`Cue found at index ${markupIndex}`);
+  // Normalize the cue text and the markup content
+  const normalizedCueText = normalizeText(cueText);
+  const normalizedMarkupContent = normalizeText(markupContent).slice(0, 100);
+
+  console.log("-----------------");
+  console.log("|cue|:   ", normalizedCueText);
+  console.log("|markup|:", normalizedMarkupContent);
+  // Find the entire cue text in the normalized markup content
+  const markupIndexMatch = normalizedMarkupContent.indexOf(normalizedCueText);
+
+  if (markupIndexMatch !== -1) {
+    // Highlight the match in the original markup content
     return (
-      markupContent.substring(0, markupIndex) +
-      `<span class="caption current">${cueText}</span>` +
-      markupContent.substring(markupIndex + cueText.length)
+      `<span class="caption current">There is a match somewehere for "${normalizedCueText}"</span>` +
+      markupContent
     );
-  } else {
-    console.log("Cue text not found in markup");
-    return markupContent;
   }
+
+  console.warn(`Cue text not found in markup : ${cueText.slice(0, 20)}...`);
+  return markupContent;
 }
 
 function formatTime(secs) {
