@@ -17,8 +17,9 @@ I have an .m4b audio file, and I can produce a .vtt transcript of it. How can I 
 ## TODO
 
 - Implement an initial fuzzy match
-- Clean up html when everything is working
-- Port back to React
+  - Normalization: lowercase, remove non-alphanumeric characters (except spaces), and collapse multiple spaces into a single space.
+  - Segmentation: phrase split
+  - Handling Missing or Extra Words
 
 ## References
 
