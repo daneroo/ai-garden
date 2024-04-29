@@ -16,10 +16,12 @@ I have an .m4b audio file, and I can produce a .vtt transcript of it. How can I 
 
 ## TODO
 
-- Get the audio playing on iPad
-  - index_old - Not working on iPad, but working elsewhere
-  - audio - not loading tracks, anywhere?
-  - clone audio2 from index_old, and converge to audio
-    - fix layout - steal from audio -while keeping it working on Desktop/Mobile
+- Implement an initial fuzzy match
 - Clean up html when everything is working
 - Port back to React
+
+## References
+
+- <https://github.com/muxinc/media-chrome>
+  - <https://www.media-chrome.org/docs/en/get-started>
+- <https://www.fusejs.io/>

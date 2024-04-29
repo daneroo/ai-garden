@@ -18,7 +18,7 @@ function App() {
     },
   ];
 
-  const [selectedMediaId, setSelectedMediaId] = React.useState(0);
+  const [selectedMediaId, setSelectedMediaId] = React.useState(1);
   const { audioFile, audioType, transcriptFile } =
     mediaChoices[selectedMediaId];
 
@@ -122,6 +122,35 @@ function App() {
     };
   }, [selectedMediaId, transcript, trackRef]);
 
+  // declare state for the markupContentHighlight
+  const [markupContentHighlight, setMarkupContentHighlight] =
+    React.useState("");
+
+  // sync active cues with markup content (html)
+  React.useEffect(() => {
+    if (!markupContentHighlight) {
+      setMarkupContentHighlight(markupContent);
+    }
+    const track = trackRef.current.track;
+    function handleCueChange() {
+      // What does it mean if there is more that one active cue????
+      const cues = Array.from(track.activeCues);
+      cues.forEach((cue, index) => {
+        console.log(
+          `Cue ${index + 1}/${cues.length}: [${cue.startTime},${cue.endTime}]`,
+          cue.text
+        );
+        setMarkupContentHighlight(
+          highlightCueInMarkupContent(cue.text, markupContent)
+        );
+      });
+    }
+    track.addEventListener("cuechange", handleCueChange);
+    return () => {
+      track.removeEventListener("cuechange", handleCueChange);
+    };
+  }, [trackRef, markupContent]);
+
   return (
     <div
       style={{
@@ -206,10 +235,11 @@ function App() {
             overflowY: "auto",
           }}
         >
-          {/* Assuming you will load HTML content into this div somehow, e.g., via innerHTML or a component */}
+          {/* highlighted content from fuzzy match */}
           <div
             dangerouslySetInnerHTML={{
-              __html: markupContent,
+              // __html: markupContent,
+              __html: markupContentHighlight,
             }}
           />
         </div>
@@ -225,6 +255,22 @@ function App() {
       </div>
     </div>
   );
+}
+
+function highlightCueInMarkupContent(cueText, markupContent) {
+  const markupIndex = markupContent.indexOf(cueText);
+  if (markupIndex !== -1) {
+    // Compute the range or highlight the HTML based on the index
+    console.log(`Cue found at index ${markupIndex}`);
+    return (
+      markupContent.substring(0, markupIndex) +
+      `<span class="caption current">${cueText}</span>` +
+      markupContent.substring(markupIndex + cueText.length)
+    );
+  } else {
+    console.log("Cue text not found in markup");
+    return markupContent;
+  }
 }
 
 function formatTime(secs) {
