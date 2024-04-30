@@ -96,20 +96,42 @@ function App() {
     };
   }, [selectedMediaId]);
 
+  // setup the cue enter and exit event handlers
   React.useEffect(() => {
     const track = trackRef.current.track;
     const cues = Array.from(track.cues);
 
     cues.forEach((cue, index) => {
-      cue.onenter = () => {
-        transcript[index].ref.current.classList.add("current");
-        transcript[index].ref.current.scrollIntoView({
+      function highlightElt(elt) {
+        if (!elt) return;
+        elt.classList.add("current");
+        elt.scrollIntoView({
           behavior: "smooth",
           block: "center",
         });
+      }
+      cue.onenter = () => {
+        // transcript side
+        highlightElt(transcript[index].ref.current);
+        // markup side
+        const cueId = transcript[index].id;
+        const elt = document.getElementById(cueId);
+        if (!elt) {
+          console.log(`No element found for ${cueId}`);
+        }
+        highlightElt(elt);
       };
+      function unHighlightElt(elt) {
+        if (!elt) return;
+        elt.classList.remove("current");
+      }
       cue.onexit = () => {
-        transcript[index].ref.current.classList.remove("current");
+        // transcript side
+        unHighlightElt(transcript[index].ref.current);
+        // markup side
+        const cueId = transcript[index].id;
+        const elt = document.getElementById(cueId);
+        unHighlightElt(elt);
       };
     });
 
@@ -126,30 +148,25 @@ function App() {
   const [markupContentHighlight, setMarkupContentHighlight] =
     React.useState("");
 
-  // sync active cues with markup content (html)
+  // setup the highlight-instrumented markup content
   React.useEffect(() => {
-    if (!markupContentHighlight) {
+    console.log(
+      `markupContentHighlight effect |cues|:${transcript.length} |markup|: ${markupContent.length}`
+    );
+    if (!transcript.length || !markupContentHighlight) {
       setMarkupContentHighlight(markupContent);
     }
-    const track = trackRef.current.track;
-    function handleCueChange() {
-      // What does it mean if there is more that one active cue????
-      const cues = Array.from(track.activeCues);
-      cues.forEach((cue, index) => {
-        console.log(
-          `Cue ${index + 1}/${cues.length}: [${cue.startTime},${cue.endTime}]`,
-          cue.text
-        );
-        setMarkupContentHighlight(
-          highlightCueInMarkupContent(cue.text, markupContent)
-        );
-      });
-    }
-    track.addEventListener("cuechange", handleCueChange);
+    // here we match the transcript with the markup content
+    // transcript: {id:string, text:string}[]
+    const highlightedMarkupContent = highlightCuesInMarkupContent(
+      transcript,
+      markupContent
+    );
+    setMarkupContentHighlight(highlightedMarkupContent);
     return () => {
-      track.removeEventListener("cuechange", handleCueChange);
+      // cleanup
     };
-  }, [trackRef, markupContent]);
+  }, [transcript, markupContent]);
 
   return (
     <div
@@ -276,27 +293,22 @@ function normalizeText(text) {
     .trim();
 }
 
-function highlightCueInMarkupContent(cueText, markupContent) {
-  // Normalize the cue text and the markup content
-  const normalizedCueText = normalizeText(cueText);
-  const normalizedMarkupContent = normalizeText(markupContent).slice(0, 100);
+// This is a stub implementation (fake) of the findFuzzyMatch functionality
+// it currently only assigns transcript entries sequentially to the paragraphs in the markup
+function highlightCuesInMarkupContent(cues, markupContent) {
+  const div = document.createElement("div");
+  div.innerHTML = markupContent;
+  // do some decorating here by operating on the dom
+  // assuming for now we have just a bunch of <p> elements, no nesting,...
+  // eventually search for our cues.forEach((cue) => {});
+  div.querySelectorAll("p").forEach((p, index) => {
+    if (index >= cues.length) return;
+    if (index % 2) {
+      p.innerHTML = `<span id="${cues[index].id}" class="caption">${p.innerHTML}</span>`;
+    }
+  });
 
-  console.log("-----------------");
-  console.log("|cue|:   ", normalizedCueText);
-  console.log("|markup|:", normalizedMarkupContent);
-  // Find the entire cue text in the normalized markup content
-  const markupIndexMatch = normalizedMarkupContent.indexOf(normalizedCueText);
-
-  if (markupIndexMatch !== -1) {
-    // Highlight the match in the original markup content
-    return (
-      `<span class="caption current">There is a match somewehere for "${normalizedCueText}"</span>` +
-      markupContent
-    );
-  }
-
-  console.warn(`Cue text not found in markup : ${cueText.slice(0, 20)}...`);
-  return markupContent;
+  return div.innerHTML;
 }
 
 function formatTime(secs) {
