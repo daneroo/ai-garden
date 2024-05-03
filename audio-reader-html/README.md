@@ -26,8 +26,21 @@ I wish to match each subtitle entry to a position/range in the HTML
 Discuss the matching algorithm, which must account for misspelling, case, missing/extra punctuation etc.
 ```
 
+```txt
+Ok, I have thought much, this is what I think I need;
+I need to produce a normalized text representation of the DOM,
+which is easy enough with topElement.innerText,
+but I also need a reverse map from any character range in the normalized text to the original DOM node.
+
+How can I produce this reverseMap by traversing the DOM?
+Perhaps traversing the DOM and adding an entry for each text node?
+```
+
 ## TODO
 
+- Linearize text-node-tree, and preserve map to original nodes.
+  - easy match -> partial 'certain results'
+  - constrained sub problems - with combinatorics, or fuzzy matches.
 - Implement an initial fuzzy match
   - Normalization: lowercase, remove non-alphanumeric characters (except spaces), and collapse multiple spaces into a single space.
   - Segmentation: phrase split
@@ -40,6 +53,7 @@ Discuss the matching algorithm, which must account for misspelling, case, missin
 - <https://www.fusejs.io/>
 - Similarity
   - <https://github.com/nol13/fuzzball.js>
+    - <https://unpkg.com/browse/fuzzball@2.1.2/dist/>
     - <https://cdn.jsdelivr.net/npm/fuzzball/>
   - <https://github.com/words/soundex-code>
   - <https://github.com/words/double-metaphone>

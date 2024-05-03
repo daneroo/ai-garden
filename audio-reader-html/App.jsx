@@ -153,6 +153,9 @@ function App() {
     console.log(
       `markupContentHighlight effect |cues|:${transcript.length} |markup|: ${markupContent.length}`
     );
+    if (!transcript.length || !markupContent) {
+      return;
+    }
     if (!transcript.length || !markupContentHighlight) {
       setMarkupContentHighlight(markupContent);
     }
@@ -293,24 +296,347 @@ function normalizeText(text) {
     .trim();
 }
 
-// This is a stub implementation (fake) of the findFuzzyMatch functionality
-// it currently only assigns transcript entries sequentially to the paragraphs in the markup
+// highligh elements using a linearized text node
 function highlightCuesInMarkupContent(cues, markupContent) {
+  const start = +new Date();
+
   const div = document.createElement("div");
   div.innerHTML = markupContent;
-  // do some decorating here by operating on the dom
-  // assuming for now we have just a bunch of <p> elements, no nesting,...
-  // eventually search for our cues.forEach((cue) => {});
-  div.querySelectorAll("p").forEach((p, index) => {
-    if (index >= cues.length) return;
-    if (index % 2) {
-      p.innerHTML = `<span id="${cues[index].id}" class="caption">${p.innerHTML}</span>`;
-    }
-  });
+  const { normalizedText, reverseMap } = createReverseMap(div);
+  console.log(`reverseMap: ${reverseMap.length}`);
 
+  for (const cue of cues) {
+    // Short circuit for The Blade Itself
+    if (cue.text.trim() === "Part 1.") {
+      console.log(`-- Early termination: ${cue.text}`);
+      break;
+    }
+    const needle = normalizeText(cue.text);
+    console.log(`-- looking for: ${needle}`);
+    const needleStartInNormalizedText = normalizedText.indexOf(needle);
+    const needleEndInNormalizedText =
+      needleStartInNormalizedText + needle.length - 1;
+
+    if (needleStartInNormalizedText < 0) {
+      console.error(`Could not find: ${needle}`);
+      continue;
+    } else {
+      console.log(
+        `.. found at ${needleStartInNormalizedText} in normalizedText`
+      );
+      // now find in reverseMap
+      // TODO: this is just for the 1:1 case, need to handle multiple matches
+      const matches = reverseMap.filter(
+        (entry) =>
+          needleEndInNormalizedText >= entry.start &&
+          needleStartInNormalizedText <= entry.end
+      );
+      if (matches.length === 0) {
+        console.error(`-- no matches for : ${needle}`);
+      } else if (matches.length === 1) {
+        const match = matches[0];
+        console.log(
+          `  - match: ${match.start}..${
+            match.end
+          } parent: ${match.parentNode.textContent.trim()}`
+        );
+        highlightMatchWithinTextNode(match.parentNode, cue);
+      } else if (matches.length > 1) {
+        console.warn(`-- reverseMap: multiple matches for : ${needle}`);
+        for (const match of matches) {
+          console.log(
+            `  - match: ${match.start}..${
+              match.end
+            } parent: ${match.parentNode.textContent.trim()}`
+          );
+          // not yet multiple match aware/capable
+          // highlightMatchWithinTextNode(match.parentNode, cue);
+        }
+      }
+    }
+  }
+  console.log(
+    `Elapsed: ${+new Date() - start}ms for ${cues.length} cues rate: ${(
+      (+new Date() - start) /
+      cues.length
+    ).toFixed(2)}ms/cue`
+  );
   return div.innerHTML;
 }
 
+function findTextInNode(haystackNode, needle) {
+  // 1- find normalized text in normalized node.textContent
+  const haystack = haystackNode.textContent;
+  const nHaystack = normalizeText(haystack);
+  const nNeedle = normalizeText(needle);
+  const nNeedleStartIndex = nHaystack.indexOf(nNeedle);
+  if (nNeedleStartIndex < 0) {
+    console.error(
+      `Needle not found\n |needle|: ${nNeedle}\n |haystack|: ${nHaystack}`
+    );
+    return nNeedleStartIndex;
+  }
+  console.log(`.. |needle| found at ${nNeedleStartIndex} in |haystack|`);
+  if (
+    nHaystack.slice(nNeedleStartIndex, nNeedleStartIndex + nNeedle.length) ===
+    nNeedle
+  ) {
+    console.log(`.. |needle| assertion passed (start:${nNeedleStartIndex})`);
+  }
+  if (haystackNode.nodeType !== Node.TEXT_NODE) {
+    console.debug(`.. not a text node: probably the parent node`);
+    return nNeedleStartIndex;
+  }
+  console.log(`.. refining for text node`);
+  // if this is a text node, refine with non-normalized text
+  //  could we start from nNeedleStartIndex?
+  // const needleStartIndex = haystack.indexOf(needle, nNeedleStartIndex);
+  const needleStartIndex = haystack.indexOf(needle, 0);
+  if (needleStartIndex < 0) {
+    console.error(`Needle not found in node`);
+    return needleStartIndex;
+  }
+  console.log(`.. needle found in node start:${needleStartIndex}`);
+  if (
+    haystack.slice(needleStartIndex, needleStartIndex + needle.length) ===
+    needle
+  ) {
+    console.log(`.. needle assertion passed (start:${needleStartIndex})`);
+  } else {
+    console.error(
+      `.. needle assertion failed (start:${needleStartIndex})\nhaystack.slice:${haystack.slice(
+        needleStartIndex,
+        needleStartIndex + needle.length
+      )}\nneedle:${needle}`
+    );
+  }
+  return needleStartIndex;
+}
+function highlightMatchWithinTextNode(parentNode, cue) {
+  const needle = cue.text;
+  const parentIndex = findTextInNode(parentNode, needle);
+  if (parentIndex < 0) {
+    console.error(`Needle not found in parent node`);
+    return;
+  }
+  console.log(`.. needle found in parent (start:${parentIndex})`);
+
+  // now we need to find the start and end offsets in the unnormalized child node
+  // we need to find the right child textNode to highlight
+  console.log("----- children:");
+  let foundChild = null;
+  let foundChildStartIndex = -1;
+  for (const child of parentNode.childNodes) {
+    if (child.nodeType === Node.TEXT_NODE) {
+      const childStartIndex = findTextInNode(child, needle);
+      if (childStartIndex >= 0) {
+        console.log(`.. found in child (start:${childStartIndex})`);
+        foundChild = child;
+        foundChildStartIndex = childStartIndex;
+        break;
+      }
+    } else {
+      console.log(`.. skipping non-text child: ${child.textContent}`);
+    }
+  }
+  if (!foundChild) {
+    console.error(`Could not find child node for ${needle}`);
+    return;
+  }
+  console.log(`.. needle found in child start:${foundChildStartIndex}`);
+  // Now perform the DOM manipulation to highlight the text
+  const childNode = foundChild;
+  const needleLength = needle.length;
+
+  // Step 1: Split the text at the start index of the needle
+  const restNode = childNode.splitText(foundChildStartIndex);
+
+  // Step 2: Split the restNode at the end of the needle to isolate the needle
+  const needleNode = restNode.splitText(needleLength);
+
+  // Step 3: Create a new span element and move the needle text into it
+  // element.innerHTML = `<span id="${cue.id}" class="caption">${element.innerHTML}</span>`;
+  const span = document.createElement("span");
+  span.id = cue.id; // Apply the cue id as the span id
+  span.className = "caption"; // Apply any class for styling
+  span.textContent = restNode.textContent; // Transfer the needle text to the span
+
+  // Step 4: Replace the original needle text node with the span
+  parentNode.replaceChild(span, restNode);
+
+  // Now the parentNode contains three parts:
+  // 1. Original text up to 'foundChildStartIndex'
+  // 2. The 'span' containing the needle
+  // 3. The rest of the original text after the needle
+}
+
+// this function returns a normalized text and a reverse map
+function createReverseMap(element) {
+  const normalizedText = normalizeText(element.textContent);
+  let charIndex = 0; // This will keep track of the current position in the normalized text.
+  const reverseMap = [];
+
+  function traverse(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const text = normalizeText(node.textContent);
+      const length = text.length;
+      // skip empty text nodes
+      if (length > 0) {
+        // this is to account for the top level text content, vs joined inner text content and empty space nodes
+        const charIndexInOuter = normalizedText.indexOf(text, charIndex);
+        if (charIndexInOuter < 0) {
+          console.error(`Could not match in outer: ${text}`);
+        } else {
+          // console.log(`.. off by ${charIndexInOuter - charIndex} chars`);
+          charIndex = charIndexInOuter;
+        }
+
+        const startIndex = charIndex.toString().padStart(5, "0");
+        console.log(` - start:${startIndex} l:${length} text: ${text}`);
+        // console.log(
+        //   ` - text:${startIndex}/${length} node: ${normalizedText.slice(
+        //     charIndex,
+        //     charIndex + length
+        //   )}`
+        // );
+        reverseMap.push({
+          start: charIndex,
+          end: charIndex + length - 1,
+          parentNode: node.parentNode,
+        });
+      }
+      charIndex += length; // Update the current position by the length of the text node.
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      Array.from(node.childNodes).forEach(traverse); // Recursively handle all children.
+    } else if (node.nodeType === Node.COMMENT_NODE) {
+      console.log("Skipping comment node");
+    } else {
+      console.error("Unhandled node type:", node.nodeType);
+    }
+  }
+
+  traverse(element);
+  return { normalizedText, reverseMap };
+}
+
+// This is a stub implementation (fake) of the findFuzzyMatch functionality
+// it uses fuzzball and is not working well
+function highlightCuesInMarkupContentWithFuzzBall(cues, markupContent) {
+  const div = document.createElement("div");
+  div.innerHTML = markupContent;
+  const choiceElements = Array.from(
+    div.querySelectorAll("p, .o-poem > *, .c-feature-hd, .c-feature-sub")
+  );
+
+  const choices = choicesFromElements(choiceElements);
+  const start = +new Date();
+  for (const cue of cues) {
+    if (cue.text.trim() === "Part 1.") {
+      console.log(`-- Early termination: ${cue.text}`);
+      break;
+    }
+    const needle = cue.text;
+    console.log(`-- looking for: ${needle}`);
+    const matches = fuzzball.extract(needle, choices, {
+      scorer: fuzzball.partial_ratio,
+      processor: (choice) => choice.text,
+      limit: 1, // Max number of top results to return, default: no limit / 0.
+      cutoff: 0, // Lowest score to return, default: 0
+      unsorted: false, // Results won't be sorted if true, default: false. If true limit will be ignored.
+      returnObjects: true,
+    });
+    if (matches.length > 1) {
+      console.warn(`-- multiple matches for : ${needle}`);
+    }
+    // only use the first match
+    for (const match of matches.slice(0, 1)) {
+      console.log(
+        `  - score:${match.score}: id:${
+          match.choice.id
+        } ${match.choice.text.slice(0, 80)}`
+      );
+      const element = match.choice.element;
+      console.log("  - element:", element);
+      element.innerHTML = `<span id="${cue.id}" class="caption">${element.innerHTML}</span>`;
+    }
+  }
+  console.log(
+    `Elapsed: ${+new Date() - start}ms for ${cues.length} cues rate: ${(
+      (+new Date() - start) /
+      cues.length
+    ).toFixed(2)}ms/cue`
+  );
+  return div.innerHTML;
+}
+
+// extract the fuzzball choices from the markup content
+function choicesFromElements(choiceElements) {
+  return choiceElements
+    .map((p, index) => {
+      const element = p;
+      const text = normalizeText(p.innerHTML);
+      return { id: `k-${index}`, text, element };
+    })
+    .filter((choice) => choice.text.length > 0);
+}
+function fuzzTest() {
+  // fuzz test
+  const corpusLines = `
+    The Road Not Taken
+  By Robert Frost
+  Two roads diverged in a yellow wood,
+  And sorry I could not travel both
+  And be one traveler, long I stood
+  And looked down one as far as I could
+  To where it bent in the undergrowth;
+  
+  Then took the other, as just as fair,
+  And having perhaps the better claim,
+  Because it was grassy and wanted wear;
+  Though as for that the passing there
+  Had worn them really about the same,
+  
+  And both that morning equally lay
+  In leaves no step had trodden black.
+  Oh, I kept the first for another day!
+  Yet knowing how way leads on to way,
+  I doubted if I should ever come back.
+  
+  I shall be telling this with a sigh
+  Somewhere ages and ages hence:
+  Two roads diverged in a wood, and I—
+  I took the one less traveled by,
+  And that has made all the difference.`
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.trim().length > 0)
+    .map((line) => normalizeText(line))
+    .map((line, index) => {
+      return { id: `k-${index}`, text: line }; // could keep markup!
+    });
+  console.log(
+    `corpus: ${corpusLines.length}\n${corpusLines
+      .map((line) => JSON.stringify(line))
+      .join("\n")}`
+  );
+  // console.log(fuzzball.partial_ratio("test", "testing"));
+  const needles = [
+    "The road not taken by Robert Frost.",
+    "Two roads diverged in a yellow wood,",
+  ];
+  for (const needle of needles) {
+    console.log(`--looking for: ${needle}`);
+    const matches = fuzzball.extract(needle, corpusLines, {
+      scorer: fuzzball.partial_ratio,
+      processor: (choice) => choice.text,
+      limit: 3, // Max number of top results to return, default: no limit / 0.
+      cutoff: 50, // Lowest score to return, default: 0
+      unsorted: false, // Results won't be sorted if true, default: false. If true limit will be ignored.
+      returnObjects: true,
+    });
+    console.log(JSON.stringify(matches, null, 2));
+  }
+}
 function formatTime(secs) {
   if (isNaN(secs)) return "0:00.00";
   const fl = Math.floor;
