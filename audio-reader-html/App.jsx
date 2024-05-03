@@ -364,6 +364,16 @@ function highlightCuesInMarkupContent(cues, markupContent) {
   return div.innerHTML;
 }
 
+/**
+ * Finds the startIndex and length of a substring (needle) in a Node (haystack).
+ * if the the haystackNode is a not a text node
+ *  return the startIndex of the normalized needle in the normalized textContent
+ * if the haystackNode is a text node
+ *
+ * @param {Node} haystackNode - The node in which to search for the substring.
+ * @param {string} needle - The substring to search for.
+ * @returns {[number, number]} - A tuple containing the start and length indices of the substring in the node's text content.
+ */
 function findTextInNode(haystackNode, needle) {
   // 1- find normalized text in normalized node.textContent
   const haystack = haystackNode.textContent;
@@ -374,7 +384,7 @@ function findTextInNode(haystackNode, needle) {
     console.error(
       `Needle not found\n |needle|: ${nNeedle}\n |haystack|: ${nHaystack}`
     );
-    return nNeedleStartIndex;
+    return [nNeedleStartIndex, 0];
   }
   console.log(`.. |needle| found at ${nNeedleStartIndex} in |haystack|`);
   if (
@@ -385,36 +395,92 @@ function findTextInNode(haystackNode, needle) {
   }
   if (haystackNode.nodeType !== Node.TEXT_NODE) {
     console.debug(`.. not a text node: probably the parent node`);
-    return nNeedleStartIndex;
+    return [nNeedleStartIndex, nNeedle.length];
   }
   console.log(`.. refining for text node`);
-  // if this is a text node, refine with non-normalized text
-  //  could we start from nNeedleStartIndex?
-  // const needleStartIndex = haystack.indexOf(needle, nNeedleStartIndex);
+
+  // if this is a text node, refine start index with original non-normalized text
   const needleStartIndex = haystack.indexOf(needle, 0);
-  if (needleStartIndex < 0) {
-    console.error(`Needle not found in node`);
-    return needleStartIndex;
+
+  // exact match
+  if (needleStartIndex >= 0) {
+    console.log(`.. needle found in node start:${needleStartIndex}`);
+    if (
+      haystack.slice(needleStartIndex, needleStartIndex + needle.length) ===
+      needle
+    ) {
+      console.log(`.. needle assertion passed (start:${needleStartIndex})`);
+    } else {
+      console.error(
+        `.. needle assertion failed (start:${needleStartIndex})\nhaystack.slice:${haystack.slice(
+          needleStartIndex,
+          needleStartIndex + needle.length
+        )}\nneedle:${needle}`
+      );
+    }
+    return [needleStartIndex, needle.length];
   }
-  console.log(`.. needle found in node start:${needleStartIndex}`);
-  if (
-    haystack.slice(needleStartIndex, needleStartIndex + needle.length) ===
-    needle
-  ) {
-    console.log(`.. needle assertion passed (start:${needleStartIndex})`);
-  } else {
-    console.error(
-      `.. needle assertion failed (start:${needleStartIndex})\nhaystack.slice:${haystack.slice(
-        needleStartIndex,
-        needleStartIndex + needle.length
-      )}\nneedle:${needle}`
-    );
+  //  so we have an inexact match, let's find the maximal normalized match
+  // i.e. let us find a substring of haystack that matches the normalized needle
+  // and we know that such a string exists
+  // nHaystack.slice(nNeedleStartIndex, nNeedleStartIndex + nNeedle.length) === nNeedle
+  // TODO(daneroo): tighten up these bounds
+  // ordered to find smallest match: start: descending, length: ascending
+  for (let s = haystack.length - 1; s > 0; s--) {
+    for (let l = 0; l < haystack.length - s; l++) {
+      const sub = haystack.slice(s, s + l);
+      if (normalizeText(sub) === nNeedle) {
+        console.log(
+          `.. found a (normalized) match start:${s} length:${l} ${sub}`
+        );
+        console.log(
+          JSON.stringify(
+            {
+              needle,
+              nNeedle,
+              sub,
+              nSub: normalizeText(sub),
+            },
+            null,
+            2
+          )
+        );
+
+        return [s, l];
+      }
+    }
   }
-  return needleStartIndex;
+  // should not happen - sicne we know that a normalized match exists
+  console.warn("No normalized match found in text node: SHOULD NOT HAPPEN");
+  return [-1, 0];
 }
+
+// childNode is a text node
+function wrapNeedleInSpan(parentNode, childNode, startIndex, length, spanId) {
+  // Step 1: Split the text at the start index of the needle
+  const restNode = childNode.splitText(startIndex);
+
+  // Step 2: Split the restNode at the end of the needle to isolate the needle
+  /*const needleNode =*/ restNode.splitText(length);
+
+  // Step 3: Create a new span element and move the needle text into it
+  // element.innerHTML = `<span id="${cue.id}" class="caption">${element.innerHTML}</span>`;
+  const span = document.createElement("span");
+  span.id = spanId; // Apply the cue id as the span id
+  span.className = "caption"; // Apply any class for styling
+  span.textContent = restNode.textContent; // Transfer the needle text to the span
+  span.style.border = "1px solid green";
+  // Step 4: Replace the original needle text node with the span
+  parentNode.replaceChild(span, restNode);
+  // Now the parentNode contains three parts:
+  // 1. Original text up to 'foundChildStartIndex'
+  // 2. The 'span' containing the needle
+  // 3. The rest of the original text after the
+}
+
 function highlightMatchWithinTextNode(parentNode, cue) {
   const needle = cue.text;
-  const parentIndex = findTextInNode(parentNode, needle);
+  const [parentIndex, _length] = findTextInNode(parentNode, needle);
   if (parentIndex < 0) {
     console.error(`Needle not found in parent node`);
     return;
@@ -426,13 +492,15 @@ function highlightMatchWithinTextNode(parentNode, cue) {
   console.log("----- children:");
   let foundChild = null;
   let foundChildStartIndex = -1;
+  let foundChildLength = -1;
   for (const child of parentNode.childNodes) {
     if (child.nodeType === Node.TEXT_NODE) {
-      const childStartIndex = findTextInNode(child, needle);
+      const [childStartIndex, length] = findTextInNode(child, needle);
       if (childStartIndex >= 0) {
         console.log(`.. found in child (start:${childStartIndex})`);
         foundChild = child;
         foundChildStartIndex = childStartIndex;
+        foundChildLength = length;
         break;
       }
     } else {
@@ -444,30 +512,14 @@ function highlightMatchWithinTextNode(parentNode, cue) {
     return;
   }
   console.log(`.. needle found in child start:${foundChildStartIndex}`);
-  // Now perform the DOM manipulation to highlight the text
-  const childNode = foundChild;
-  const needleLength = needle.length;
-
-  // Step 1: Split the text at the start index of the needle
-  const restNode = childNode.splitText(foundChildStartIndex);
-
-  // Step 2: Split the restNode at the end of the needle to isolate the needle
-  const needleNode = restNode.splitText(needleLength);
-
-  // Step 3: Create a new span element and move the needle text into it
-  // element.innerHTML = `<span id="${cue.id}" class="caption">${element.innerHTML}</span>`;
-  const span = document.createElement("span");
-  span.id = cue.id; // Apply the cue id as the span id
-  span.className = "caption"; // Apply any class for styling
-  span.textContent = restNode.textContent; // Transfer the needle text to the span
-
-  // Step 4: Replace the original needle text node with the span
-  parentNode.replaceChild(span, restNode);
-
-  // Now the parentNode contains three parts:
-  // 1. Original text up to 'foundChildStartIndex'
-  // 2. The 'span' containing the needle
-  // 3. The rest of the original text after the needle
+  // split the child (text) node and wrap the needle in a span
+  wrapNeedleInSpan(
+    parentNode,
+    foundChild,
+    foundChildStartIndex,
+    foundChildLength,
+    cue.id
+  );
 }
 
 // this function returns a normalized text and a reverse map
