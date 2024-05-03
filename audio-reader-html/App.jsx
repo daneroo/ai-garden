@@ -64,6 +64,7 @@ function App() {
       setTranscript(
         cues.map((cue, index) => ({
           id: `${cue.startTime}-${cue.endTime}`,
+          startTime: cue.startTime,
           text: cue.text,
           ref: cueRefs[index],
         }))
@@ -242,7 +243,16 @@ function App() {
         >
           {/* This is where the transcript goes */}
           {transcript.map((cue) => (
-            <div className={"caption"} key={cue.id} ref={cue.ref}>
+            <div
+              className={"caption"}
+              key={cue.id}
+              ref={cue.ref}
+              onDoubleClick={() => {
+                console.log("dbl click", cue);
+                setCurrentTime(cue.startTime);
+                audioPlayerRef.current.currentTime = cue.startTime;
+              }}
+            >
               {cue.text}
             </div>
           ))}
@@ -469,7 +479,7 @@ function wrapNeedleInSpan(parentNode, childNode, startIndex, length, spanId) {
   span.id = spanId; // Apply the cue id as the span id
   span.className = "caption"; // Apply any class for styling
   span.textContent = restNode.textContent; // Transfer the needle text to the span
-  span.style.border = "1px solid green";
+  // span.style.border = "1px solid green";
   // Step 4: Replace the original needle text node with the span
   parentNode.replaceChild(span, restNode);
   // Now the parentNode contains three parts:
