@@ -460,8 +460,10 @@ function findTextInNode(haystackNode, needle) {
       }
     }
   }
-  // should not happen - sicne we know that a normalized match exists
+  // should not happen - since we know that a normalized match exists
   console.warn("No normalized match found in text node: SHOULD NOT HAPPEN");
+  console.log(`|needle|: ${nNeedle}\n|haystack|: ${nHaystack}`);
+  console.log(`needle: ${needle}\nhaystack: ${haystack}`);
   return [-1, 0];
 }
 
