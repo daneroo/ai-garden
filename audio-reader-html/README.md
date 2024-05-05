@@ -51,6 +51,7 @@ Perhaps traversing the DOM and adding an entry for each text node?
 - <https://github.com/muxinc/media-chrome>
   - <https://www.media-chrome.org/docs/en/get-started>
 - <https://www.fusejs.io/>
+- <https://readium.org/awesome-readium/> - related to Thorium Reader
 - Similarity
   - <https://github.com/nol13/fuzzball.js>
     - <https://unpkg.com/browse/fuzzball@2.1.2/dist/>
