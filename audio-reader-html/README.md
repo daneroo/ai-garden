@@ -5,7 +5,7 @@ Simplest possible UI, which plays an audio media file (m4b,mp3) and displays a t
 Currently, using CDN Loaded React, with a single App.jsx file.
 
 ```bash
-pnpx serve .
+pnpx serve -p 4000 .
 ```
 
 ## Prompts
