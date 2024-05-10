@@ -10,6 +10,13 @@ function App() {
       markupFile: "media/theroadnottaken.html",
     },
     {
+      name: "Ruin",
+      audioFile: "media/ruin.m4b",
+      audioType: "audio/mp4",
+      transcriptFile: "media/ruin.vtt",
+      markupFile: "media/ruin.html",
+    },
+    {
       name: "The Blade Itself",
       audioFile: "media/thebladeitself.m4b",
       audioType: "audio/mp4",
@@ -18,7 +25,7 @@ function App() {
     },
   ];
 
-  const [selectedMediaId, setSelectedMediaId] = React.useState(1);
+  const [selectedMediaId, setSelectedMediaId] = React.useState(0);
   const { audioFile, audioType, transcriptFile } =
     mediaChoices[selectedMediaId];
 
@@ -49,7 +56,7 @@ function App() {
   React.useEffect(() => {
     function handleMetadataLoaded() {
       const duration = audioPlayerRef.current.duration;
-      console.log("Duration loaded", duration);
+      console.log(`Audion Duration (loaded): ${duration}s`);
       setDuration(duration);
     }
 
@@ -317,7 +324,7 @@ function highlightCuesInMarkupContent(cues, markupContent) {
 
   for (const cue of cues) {
     // Short circuit for The Blade Itself
-    if (cue.text.trim() === "Part 1.") {
+    if (cue.text.trim() === "Part 1." || cue.text.trim() === "Chapter 3") {
       console.log(`-- Early termination: ${cue.text}`);
       break;
     }
@@ -369,7 +376,7 @@ function highlightCuesInMarkupContent(cues, markupContent) {
     `Elapsed: ${+new Date() - start}ms for ${cues.length} cues rate: ${(
       (+new Date() - start) /
       cues.length
-    ).toFixed(2)}ms/cue`
+    ).toFixed(2)}ms/cue (match)`
   );
   return div.innerHTML;
 }
@@ -628,7 +635,7 @@ function highlightCuesInMarkupContentWithFuzzBall(cues, markupContent) {
     `Elapsed: ${+new Date() - start}ms for ${cues.length} cues rate: ${(
       (+new Date() - start) /
       cues.length
-    ).toFixed(2)}ms/cue`
+    ).toFixed(2)}ms/cue (fuzzball)`
   );
   return div.innerHTML;
 }
