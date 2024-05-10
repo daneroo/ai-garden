@@ -66,6 +66,23 @@ Deno.test("Testing replace innerHTML", () => {
   assertEquals(doc.body.innerHTML, "<p>paragraph 1</p><p>new paragraph 2</p>");
 });
 
+Deno.test("Testing construct body by appending", () => {
+  const doc = parseHTML("");
+  if (!doc) {
+    throw new Error("Failed to parse HTML");
+  }
+  const h1 = doc.createElement("h1");
+  h1.textContent = "Hello, world!";
+  doc.body.appendChild(h1);
+  const div1 = doc.createElement("div");
+  div1.innerHTML = "<p>paragraph 1 with <em>emphasis</em></p>";
+  doc.body.appendChild(div1);
+  assertEquals(
+    doc.body.innerHTML,
+    "<h1>Hello, world!</h1><div><p>paragraph 1 with <em>emphasis</em></p></div>"
+  );
+});
+
 Deno.test("Testing getTextNodes nested", () => {
   const html =
     "<html><body><h1>Hello, world!</h1><p>This is a <span>nested text node</span> test.</p></body></html>";
