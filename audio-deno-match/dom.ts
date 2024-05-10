@@ -10,7 +10,10 @@ export function parseHTML(html: string) {
 export function getTextNodes(node: Node): string[] {
   let texts: string[] = [];
   if (node.nodeType === Node.TEXT_NODE) {
-    texts.push(node.textContent.trim());
+    const trimmed = node.textContent.trim();
+    if (trimmed) {
+      texts.push(trimmed);
+    }
   }
   for (const child of node.childNodes) {
     texts = texts.concat(getTextNodes(child));
