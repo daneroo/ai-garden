@@ -16,12 +16,12 @@ Deno.test("Testing parseVTT", () => {
     {
       startTime: "00:00:00.000",
       endTime: "00:00:04.800",
-      text: "The road not taken by Robert Frost.\n",
+      text: "The road not taken by Robert Frost.",
     },
     {
       startTime: "00:00:04.800",
       endTime: "00:00:09.600",
-      text: "Two roads diverged in a yellow wood,\n",
+      text: "Two roads diverged in a yellow wood,",
     },
   ]);
 });

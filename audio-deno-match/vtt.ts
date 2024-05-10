@@ -1,6 +1,11 @@
 // parseVTT function
 
-export function parseVTT(vtt: string) {
+export type VTTCue = {
+  startTime: string;
+  endTime: string;
+  text: string;
+};
+export function parseVTT(vtt: string): VTTCue[] {
   const lines = vtt.split("\n");
   const cues = [];
   let currentCue = {
@@ -39,5 +44,10 @@ export function parseVTT(vtt: string) {
     cues.push(currentCue);
   }
 
-  return cues;
+  // trim the resulting cues
+  return cues.map((cue) => ({
+    startTime: cue.startTime,
+    endTime: cue.endTime,
+    text: cue.text.trim(),
+  }));
 }
