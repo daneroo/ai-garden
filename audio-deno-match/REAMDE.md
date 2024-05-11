@@ -2,8 +2,15 @@
 
 Match the html content with vtt cues from deno
 
+## TODO
+
+- [ ] assert normalized(htmlDoc.body.textContent) === normalized(textNodes.join(' '))
+
+## Usage
+
 ```bash
-deno run --allow-read module.ts
+deno run -A module.ts # [road ruin blade]
+
 deno run --allow-read module.ts --html ../audio-reader-html/media/theroadnottaken.html --vtt ../audio-reader-html/media/theroadnottaken.vtt
 deno run --allow-read --allow-env module.ts --epub ../audio-reader-html/media/ruin.epub --vtt ../audio-reader-html/media/ruin.vtt
 ```

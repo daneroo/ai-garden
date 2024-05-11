@@ -10,7 +10,7 @@ export async function getHTML(epubPath: string): Promise<string> {
 
   // epubObj keys: [ "structure", "info", "sections" ]
   // 1 - info
-  console.log(`- epub info: ${JSON.stringify(epubObj.info)}`);
+  console.log(`  - epub info: ${JSON.stringify(epubObj.info)}`);
 
   // 2 - structure, see epub-split/lib/epub-parser.mjs/showTOC
   // These are the (nested elements) of the (await parseEpub())?.structure
@@ -30,7 +30,7 @@ export async function getHTML(epubPath: string): Promise<string> {
   // 3 - sections
   // console.log(`epub sections: ${JSON.stringify(epubObj.sections, null, 2)}`);
   if (epubObj.sections) {
-    console.log(`- |epub sections|: ${epubObj.sections?.length}`);
+    console.log(`  - |epub sections|: ${epubObj.sections?.length}`);
 
     const outerDoc = parseHTML("");
     if (!outerDoc) {
