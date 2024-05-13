@@ -1,11 +1,25 @@
-import { assertEquals } from "https://deno.land/std@0.106.0/testing/asserts.ts";
+import { assertEquals } from 'https://deno.land/std@0.106.0/testing/asserts.ts';
 
-import { getTextNodes, parseHTML } from "./dom.ts";
+import {
+  getTextNodes,
+  parseHTML,
+} from './dom.ts';
 
 Deno.test("Testing parseHTML", () => {
   const html = "<html><body><h1>Hello, world!</h1></body></html>";
   const doc = parseHTML(html);
   assertEquals(doc?.body.innerHTML.trim(), "<h1>Hello, world!</h1>");
+});
+
+Deno.test("Testing parseHTML - malformed - so forgiving", () => {
+  // Even malformed html is parsed
+  // I have not been able to create an example string, even null, that would cause this to return null
+  const html = "<div>some good</div></div><div>some bad</div>";
+  const doc = parseHTML(html);
+  assertEquals(
+    doc?.body.innerHTML.trim(),
+    "<div>some good</div><div>some bad</div>"
+  );
 });
 
 Deno.test("Testing parseHTML - no body", () => {
@@ -20,9 +34,6 @@ Deno.test("Testing parseHTML - no body", () => {
 Deno.test("Testing parseHTML - no top body", () => {
   const html = "<p>paragraph 1</p><p>paragraph 2</p>";
   const doc = parseHTML(html);
-  if (!doc) {
-    throw new Error("Failed to parse HTML");
-  }
   assertEquals(
     doc.body.innerHTML.trim(),
     "<p>paragraph 1</p><p>paragraph 2</p>"
@@ -37,9 +48,6 @@ Deno.test("Testing parseHTML - empty", () => {
 
 Deno.test("Testing set innerHTML", () => {
   const doc = parseHTML("");
-  if (!doc) {
-    throw new Error("Failed to parse HTML");
-  }
   const html = "<p>paragraph 1</p><p>paragraph 2</p>";
   doc.body.innerHTML = html;
   assertEquals(
@@ -53,9 +61,6 @@ Deno.test("Testing set innerHTML", () => {
 Deno.test("Testing replace innerHTML", () => {
   const html = "<p>paragraph 1</p><p>paragraph 2</p>";
   const doc = parseHTML(html);
-  if (!doc) {
-    throw new Error("Failed to parse HTML");
-  }
   assertEquals(
     doc.body.innerHTML.trim(),
     "<p>paragraph 1</p><p>paragraph 2</p>"
@@ -68,9 +73,6 @@ Deno.test("Testing replace innerHTML", () => {
 
 Deno.test("Testing construct body by appending", () => {
   const doc = parseHTML("");
-  if (!doc) {
-    throw new Error("Failed to parse HTML");
-  }
   const h1 = doc.createElement("h1");
   h1.textContent = "Hello, world!";
   doc.body.appendChild(h1);
@@ -87,9 +89,6 @@ Deno.test("Testing getTextNodes nested", () => {
   const html =
     "<html><body><h1>Hello, world!</h1><p>This is a <span>nested text node</span> test.</p></body></html>";
   const doc = parseHTML(html);
-  if (!doc) {
-    throw new Error("Failed to parse HTML");
-  }
   const texts = getTextNodes(doc);
   assertEquals(texts, [
     "Hello, world!",
