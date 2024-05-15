@@ -10,6 +10,20 @@ function App() {
       markupFile: "media/theroadnottaken.html",
     },
     {
+      name: "The Road Not Taken (orig)",
+      audioFile: "media/theroadnottaken.mp3",
+      audioType: "audio/mp3",
+      transcriptFile: "media/theroadnottaken.vtt",
+      markupFile: "media/theroadnottaken-original.html",
+    },
+    {
+      name: "Wrath",
+      audioFile: "media/wrath.m4b",
+      audioType: "audio/mp4",
+      transcriptFile: "media/wrath.vtt",
+      markupFile: "media/wrath.html",
+    },
+    {
       name: "Ruin",
       audioFile: "media/ruin.m4b",
       audioType: "audio/mp4",
@@ -324,7 +338,11 @@ function highlightCuesInMarkupContent(cues, markupContent) {
 
   for (const cue of cues) {
     // Short circuit for The Blade Itself
-    if (cue.text.trim() === "Part 1." || cue.text.trim() === "Chapter 3") {
+    if (
+      cue.text.trim() === "Part 1." || // blade
+      cue.text.trim() === "Chapter 3" || // ruin
+      cue.text.trim() === "Chapter 4 Corbin" // wrath
+    ) {
       console.log(`-- Early termination: ${cue.text}`);
       break;
     }
@@ -437,16 +455,21 @@ function findTextInNode(haystackNode, needle) {
     }
     return [needleStartIndex, needle.length];
   }
-  //  so we have an inexact match, let's find the maximal normalized match
+  // So we have an inexact match, let's find the maximal normalized match
   // i.e. let us find a substring of haystack that matches the normalized needle
   // and we know that such a string exists
   // nHaystack.slice(nNeedleStartIndex, nNeedleStartIndex + nNeedle.length) === nNeedle
   // TODO(daneroo): tighten up these bounds
   // ordered to find smallest match: start: descending, length: ascending
-  for (let s = haystack.length - 1; s > 0; s--) {
+  // console.log(
+  //   `.. searching for needle: |${nNeedle}| in haystack: |${haystack}|`
+  // );
+  for (let s = haystack.length - 1; s >= 0; s--) {
     for (let l = 0; l < haystack.length - s; l++) {
       const sub = haystack.slice(s, s + l);
-      if (normalizeText(sub) === nNeedle) {
+      const nSub = normalizeText(sub);
+      // console.log(`  .. considering s: ${s} l: ${l} nSub: |${nSub}|`);
+      if (nSub === nNeedle) {
         console.log(
           `.. found a (normalized) match start:${s} length:${l} ${sub}`
         );
@@ -456,7 +479,7 @@ function findTextInNode(haystackNode, needle) {
               needle,
               nNeedle,
               sub,
-              nSub: normalizeText(sub),
+              nSub,
             },
             null,
             2
@@ -469,8 +492,8 @@ function findTextInNode(haystackNode, needle) {
   }
   // should not happen - since we know that a normalized match exists
   console.warn("No normalized match found in text node: SHOULD NOT HAPPEN");
-  console.log(`|needle|: ${nNeedle}\n|haystack|: ${nHaystack}`);
-  console.log(`needle: ${needle}\nhaystack: ${haystack}`);
+  console.log(`|needle|: |${nNeedle}|\n|haystack|: |${nHaystack}|`);
+  console.log(`needle: '${needle}'\nhaystack: '${haystack}'`);
   return [-1, 0];
 }
 
