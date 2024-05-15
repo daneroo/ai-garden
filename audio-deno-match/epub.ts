@@ -5,7 +5,7 @@ import { parseHTML } from "./dom.ts";
 export async function getHTML(epubPath: string): Promise<string> {
   const epubObj = await parseEpub(epubPath, {
     type: "path",
-    expand: true, // should help but doesn't seem to
+    expand: false, // false prevents errors when not in browser (image), should help but doesn't seem to
   });
 
   // epubObj keys: [ "structure", "info", "sections" ]
