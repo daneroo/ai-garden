@@ -70,10 +70,10 @@ function makeRanges(htmlDoc: HTMLDocument, options: MakeRangesOptions) {
 
 // Function to log memory usage
 function logMemoryUsage(msg: string) {
-  if (msg) {
-    // fake condition just to disable. Just for profiling memory usage, turn off for now
-    return;
-  }
+  // if (msg) {
+  //   // fake condition just to disable. Just for profiling memory usage, turn off for now
+  //   return;
+  // }
   const { heapUsed } = Deno.memoryUsage();
   const heapUsedMB = (heapUsed / (1024 * 1024)).toFixed(2);
 
@@ -101,7 +101,8 @@ export async function main() {
     wrath: {
       name: "Wrath",
       epubFile: "../audio-reader-html/media/wrath.epub",
-      vttFile: "../audio-reader-html/media/wrath.vtt",
+      // vttFile: "../audio-reader-html/media/wrath.tiny.en.vtt",
+      vttFile: "../audio-reader-html/media/wrath.base.en.vtt",
     },
   };
 
@@ -121,7 +122,7 @@ export async function main() {
   console.log(`- |VTT Cues|: ${cues.length} cues`);
   logMemoryUsage("after cues");
 
-  const verbose = true;
+  const verbose = false;
   // no need to use unnormalized text matching any more
   for (const normalize of [true]) {
     const { textContent, textRanges, valid } = makeRanges(htmlDoc, {

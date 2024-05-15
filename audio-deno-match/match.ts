@@ -41,56 +41,6 @@ export function matchCuesToTextRanges(
     )}`
   );
 }
-// This is the/an outer loop
-export function match(cues: VTTCue[], textNodes: string[]) {
-  const matchTypeCounts = {
-    total: 0,
-    exact: 0,
-    normalized: 0,
-    joined: 0,
-    unmatched: 0,
-  };
-  const normalizedTextNodes = textNodes.map(normalizeText);
-  const joinedTextNodes = normalizeText(textNodes.join(" "));
-  for (const cue of cues) {
-    // console.log(`Looking for: ${cue.text}`);
-    const matches = textNodes.filter((text) => {
-      return matchText(cue.text, text);
-    });
-    if (matches && matches.length > 0) {
-      matchTypeCounts.exact++;
-      // console.log(`Matched (exact): ${matches.length} times`);
-      // for (const match of matches) {
-      //   console.log(`- ${match}`);
-      // }
-      continue;
-    }
-    const normalizedCueText = normalizeText(cue.text);
-    const normalizedMatches = normalizedTextNodes.filter((text) => {
-      return matchText(normalizedCueText, text);
-    });
-    if (normalizedMatches && normalizedMatches.length > 0) {
-      matchTypeCounts.normalized++;
-      // console.log(`Matched (normalized): ${normalizedMatches.length} times`);
-      // for (const match of normalizedMatches) {
-      //   console.log(`- ${match}`);
-      // }
-      continue;
-    }
-    if (matchText(normalizedCueText, joinedTextNodes)) {
-      matchTypeCounts.joined++;
-      // console.log(`Matched (joined): ${cue.text}`);
-      continue;
-    }
-    // console.log(`No match: ${cue.text}`);
-    matchTypeCounts.unmatched++;
-  }
-  matchTypeCounts.total = cues.length - matchTypeCounts.unmatched;
-  console.log(
-    `- (match) Matched Type Counts: ${JSON.stringify(matchTypeCounts)}`
-  );
-  // console.log("joinedTextNodes: ", joinedTextNodes);
-}
 
 function matchText(needle: string, haystack: string) {
   return haystack.includes(needle);
