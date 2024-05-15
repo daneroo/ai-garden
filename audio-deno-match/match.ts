@@ -1,6 +1,43 @@
+import { alignWords } from "./align.ts";
 import { type VTTCue } from "./vtt.ts";
 
-// This is another outer loop (TextRanges)
+function wordSplit(text: string) {
+  return text.split(/\s+/);
+}
+
+function linesToWords(lines: string[]): string[] {
+  return lines.map(wordSplit).flat();
+}
+
+export function matchWordSequences(
+  cues: VTTCue[],
+  textRanges: TextRange[],
+  textContent: string,
+  options: { normalize: boolean; verbose: boolean } = {
+    normalize: false,
+    verbose: false,
+  }
+) {
+  const { normalize, verbose } = options;
+  // map all cues (possibly normalized) to an array of strings, then split into words
+  const cueWords = linesToWords(
+    cues.map((cue) => (normalize ? normalizeText(cue.text) : cue.text))
+  );
+  const maxWords = 180;
+  console.log(`- cueWords: ${cueWords.length} from ${cues.length} cues`);
+  console.log(`  ... ${cueWords.slice(0, maxWords).join(", ")}`);
+
+  const textWords = linesToWords([textContent]);
+  console.log(
+    `- textWords: ${textWords.length} from ${textRanges.length} ranges`
+  );
+  console.log(`  ... ${textWords.slice(0, maxWords).join(", ")}`);
+
+  const maxSkip = 3;
+  const { alignedCues, alignedText } = alignWords(cueWords, textWords, maxSkip);
+  console.log("Aligned Cues:", alignedCues);
+  console.log("Aligned Text:", alignedText);
+}
 export function matchCuesToTextRanges(
   cues: VTTCue[],
   textRanges: TextRange[],
@@ -11,11 +48,7 @@ export function matchCuesToTextRanges(
   }
 ) {
   const { normalize, verbose } = options;
-  const matchTypeCounts = {
-    total: 0,
-    matched: 0,
-    unmatched: 0,
-  };
+  let cueMatches = 0;
   for (const cue of cues) {
     if (verbose) {
       console.log(`Looking for: ${cue.text}`);
@@ -28,17 +61,14 @@ export function matchCuesToTextRanges(
     }
     const found = matchText(needle, textContent);
     if (found) {
-      matchTypeCounts.matched++;
+      cueMatches++;
       continue;
-    } else {
-      matchTypeCounts.unmatched++;
     }
   }
-  matchTypeCounts.total = cues.length - matchTypeCounts.unmatched;
+  // matchTypeCounts.total = cues.length - matchTypeCounts.unmatched;
+  const cueMatchRate = ((cueMatches / cues.length) * 100.0).toFixed(2);
   console.log(
-    `- (matchCuesToTextRanges) Matched Type Counts (normalize:${normalize}): ${JSON.stringify(
-      matchTypeCounts
-    )}`
+    `- metric (matchCuesToTextRanges) cue match rate (normalize:${normalize}): ${cueMatchRate}% (${cueMatches}/${cues.length})`
   );
 }
 

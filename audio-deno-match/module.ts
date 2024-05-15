@@ -5,10 +5,13 @@ import { getHTML } from "./epub.ts";
 import {
   createTextRanges,
   matchCuesToTextRanges,
+  matchWordSequences,
   normalizeText,
   validateTextRanges,
 } from "./match.ts";
 import { parseVTT } from "./vtt.ts";
+
+const verboseMemory = false;
 
 export function hello() {
   return "Hello, world!";
@@ -70,10 +73,9 @@ function makeRanges(htmlDoc: HTMLDocument, options: MakeRangesOptions) {
 
 // Function to log memory usage
 function logMemoryUsage(msg: string) {
-  // if (msg) {
-  //   // fake condition just to disable. Just for profiling memory usage, turn off for now
-  //   return;
-  // }
+  if (!verboseMemory) {
+    return;
+  }
   const { heapUsed } = Deno.memoryUsage();
   const heapUsedMB = (heapUsed / (1024 * 1024)).toFixed(2);
 
@@ -133,7 +135,9 @@ export async function main() {
       console.error(`TextRange validation (normalized:${normalize}) failed`);
       Deno.exit(1);
     } else {
-      console.log(`TextRange validation (normalized:${normalize}) passed`);
+      if (verbose) {
+        console.log(`TextRange validation (normalized:${normalize}) passed`);
+      }
     }
     // print the current memory consumption
     logMemoryUsage(`after TextRanges (normalized:${normalize})`);
@@ -141,13 +145,17 @@ export async function main() {
       normalize,
       verbose,
     });
-    logMemoryUsage(`after match (normalized:${normalize})`);
+    logMemoryUsage(`after matchCues (normalized:${normalize})`);
+    matchWordSequences(cues, textRanges, textContent, { normalize, verbose });
+    logMemoryUsage(`after matchWords (normalized:${normalize})`);
   }
 
   // loop 10 times to allow for memory profiling
-  for (let i = 0; i < 10; i++) {
-    await new Promise((r) => setTimeout(r, 1000));
-    logMemoryUsage("the end..");
+  if (verboseMemory) {
+    for (let i = 0; i < 10; i++) {
+      await new Promise((r) => setTimeout(r, 1000));
+      logMemoryUsage("the end..");
+    }
   }
 }
 
