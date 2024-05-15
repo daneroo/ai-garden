@@ -34,9 +34,14 @@ export function matchWordSequences(
   console.log(`  ... ${textWords.slice(0, maxWords).join(", ")}`);
 
   const maxSkip = 3;
-  const { alignedCues, alignedText } = alignWords(cueWords, textWords, maxSkip);
+  const { alignedCues, alignedText, matchingRate } = alignWords(
+    cueWords,
+    textWords,
+    maxSkip
+  );
   console.log("Aligned Cues:", alignedCues);
   console.log("Aligned Text:", alignedText);
+  console.log("Matching Rate:", matchingRate);
 }
 export function matchCuesToTextRanges(
   cues: VTTCue[],
