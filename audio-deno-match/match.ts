@@ -168,6 +168,9 @@ export function validateTextRanges(
     return false;
   }
   let allOk = true;
+  if (verbose) {
+    console.log(`- Validating ${reverseMap.length} TextRanges`);
+  }
   for (let i = 0; i < reverseMap.length; i++) {
     const { start, end } = reverseMap[i];
     const len = end - start;

@@ -4,7 +4,6 @@ import { getTextNodes, type HTMLDocument, parseHTML } from "./dom.ts";
 import { getHTML } from "./epub.ts";
 import {
   createTextRanges,
-  match,
   matchCuesToTextRanges,
   normalizeText,
   validateTextRanges,
@@ -105,7 +104,6 @@ export async function main() {
       vttFile: "../audio-reader-html/media/wrath.vtt",
     },
   };
-  // let { epubFile, htmlFile, vttFile } = choices[0];
 
   const sourceKey = Deno.args[0];
   if (!(sourceKey in sources)) {
@@ -123,9 +121,9 @@ export async function main() {
   console.log(`- |VTT Cues|: ${cues.length} cues`);
   logMemoryUsage("after cues");
 
-  const verbose = false;
-  for (const normalize of [false, true]) {
-    // const { textContent, textRanges, valid } = makeRanges(htmlDoc, {
+  const verbose = true;
+  // no need to use unnormalized text matching any more
+  for (const normalize of [true]) {
     const { textContent, textRanges, valid } = makeRanges(htmlDoc, {
       normalize,
       verbose,
@@ -142,16 +140,14 @@ export async function main() {
       normalize,
       verbose,
     });
-    logMemoryUsage("after match");
+    logMemoryUsage(`after match (normalized:${normalize})`);
   }
 
-  match(cues, getTextNodes(htmlDoc));
-  logMemoryUsage("after match");
   // loop 10 times to allow for memory profiling
-  // for (let i = 0; i < 10; i++) {
-  //   await new Promise((r) => setTimeout(r, 1000));
-  //   logMemoryUsage("after match");
-  // }
+  for (let i = 0; i < 10; i++) {
+    await new Promise((r) => setTimeout(r, 1000));
+    logMemoryUsage("the end..");
+  }
 }
 
 // If this module is the main module, then call the main function

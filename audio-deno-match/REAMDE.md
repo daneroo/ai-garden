@@ -10,6 +10,7 @@ Match the html content with vtt cues from deno
 
 ```bash
 deno run -A module.ts # [road ruin blade]
+deno run -A module.ts road; npx prettier -w output.html
 
 deno run --allow-read module.ts --html ../audio-reader-html/media/theroadnottaken.html --vtt ../audio-reader-html/media/theroadnottaken.vtt
 deno run --allow-read --allow-env module.ts --epub ../audio-reader-html/media/ruin.epub --vtt ../audio-reader-html/media/ruin.vtt
