@@ -122,12 +122,12 @@ OUTDIR: ./bench-results
 MODELS: tiny.en base.en
 DURATIONS: 60000 120000
 
-| Model     | 1 min (s) | 5 min (s) | 1 hr (s) | 5 hrs (s) |
-| --------- | --------- | --------- | -------- | --------- |
-| tiny.en   | 48        | 52        | 117      | 405       |
-| base.en   | 47        | 53        | 142      | 542       |
-| small.en  | 49        | 61        | 240      | 1071      |
-| medium.en | 54        | 80        | 469      | 2380      |
+| Model     | 1 min (s) | 5 min (s) | 1 hr (s) | 5 hrs (s) | Exec Time per Hour (s/hr) | Marginal Exec Time (s/hr) |
+| --------- | --------- | --------- | -------- | --------- | ------------------------- | ------------------------- |
+| tiny.en   | 48        | 52        | 117      | 405       | 81                        | 71.75                     |
+| base.en   | 47        | 53        | 142      | 542       | 108.4                     | 99.47                     |
+| small.en  | 49        | 61        | 240      | 1071      | 214.2                     | 205.56                    |
+| medium.en | 54        | 80        | 469      | 2380      | 476                       | 468.58                    |
 
 Prompt to convert results.md:
 

@@ -4712,16 +4712,16 @@ main: processing './bench-results/John Gwynne - Faithful and the Fallen 04 - Wra
 [04:59:57.180 --> 05:00:04.900]   recovered. Soon, though, perhaps. His ribs now were little more than a dull ache, occasionally
 output_vtt: saving output to './bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.base.en.d18000000.vtt'
 
-whisper_print_timings:     load time =   125.06 ms
+whisper_print_timings:     load time =   130.14 ms
 whisper_print_timings:     fallbacks =   0 p /   0 h
-whisper_print_timings:      mel time = 44680.92 ms
-whisper_print_timings:   sample time = 86727.84 ms / 348636 runs (    0.25 ms per run)
-whisper_print_timings:   encode time = 42819.66 ms /   652 runs (   65.67 ms per run)
-whisper_print_timings:   decode time =  2472.53 ms /   832 runs (    2.97 ms per run)
-whisper_print_timings:   batchd time = 353098.94 ms / 344546 runs (    1.02 ms per run)
-whisper_print_timings:   prompt time =  9990.49 ms / 146573 runs (    0.07 ms per run)
-whisper_print_timings:    total time = 541889.25 ms
+whisper_print_timings:      mel time = 44377.62 ms
+whisper_print_timings:   sample time = 86738.69 ms / 348636 runs (    0.25 ms per run)
+whisper_print_timings:   encode time = 43008.57 ms /   652 runs (   65.96 ms per run)
+whisper_print_timings:   decode time =  2432.71 ms /   832 runs (    2.92 ms per run)
+whisper_print_timings:   batchd time = 350060.47 ms / 344546 runs (    1.02 ms per run)
+whisper_print_timings:   prompt time = 10029.20 ms / 146573 runs (    0.07 ms per run)
+whisper_print_timings:    total time = 538749.12 ms
 ggml_metal_free: deallocating
 ggml_metal_free: deallocating
 
-541.935s
+538.803s

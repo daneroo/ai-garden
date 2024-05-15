@@ -129,16 +129,16 @@ main: processing './bench-results/John Gwynne - Faithful and the Fallen 04 - Wra
 [00:04:57.000 --> 00:05:03.300]   How long, Veridis asked him, how long have you been Callidus's prisoner?
 output_vtt: saving output to './bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.medium.en.d300000.vtt'
 
-whisper_print_timings:     load time =   555.28 ms
+whisper_print_timings:     load time =   560.04 ms
 whisper_print_timings:     fallbacks =   0 p /   0 h
-whisper_print_timings:      mel time = 44832.72 ms
-whisper_print_timings:   sample time =  1267.55 ms /  5068 runs (    0.25 ms per run)
-whisper_print_timings:   encode time =  7428.19 ms /    13 runs (  571.40 ms per run)
-whisper_print_timings:   decode time =   571.82 ms /    41 runs (   13.95 ms per run)
-whisper_print_timings:   batchd time = 23410.64 ms /  4964 runs (    4.72 ms per run)
-whisper_print_timings:   prompt time =  1132.39 ms /  2263 runs (    0.50 ms per run)
-whisper_print_timings:    total time = 80671.62 ms
+whisper_print_timings:      mel time = 44546.88 ms
+whisper_print_timings:   sample time =  1262.04 ms /  5068 runs (    0.25 ms per run)
+whisper_print_timings:   encode time =  7415.48 ms /    13 runs (  570.42 ms per run)
+whisper_print_timings:   decode time =   570.68 ms /    41 runs (   13.92 ms per run)
+whisper_print_timings:   batchd time = 23269.27 ms /  4964 runs (    4.69 ms per run)
+whisper_print_timings:   prompt time =  1130.03 ms /  2263 runs (    0.50 ms per run)
+whisper_print_timings:    total time = 80213.55 ms
 ggml_metal_free: deallocating
 ggml_metal_free: deallocating
 
-80.737s
+80.281s
