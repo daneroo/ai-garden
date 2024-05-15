@@ -14,15 +14,8 @@ We want to:
 
 ## TODO
 
-- [ ] Do some benchmarks (including Core ML support)
-  - [x] Metal support (galois)
-  - [ ] Core ML support (galois, feynman)
-  - [ ] Validate on Mac x86_64
-    - [ ] feynman - AMD Radeon RX 580 - Not working
-    - [ ] dirac - Not working
-  - [ ] Validate on Linux (VM/Docker)
-- [x] Move my fork into into ai-garden/external-repos
-- [x] Run the examples from the top level and `main` binary
+- [ ] cleanup the scripts (prompts and validation)
+- [ ] run bench on feynman
 
 ## Operation
 
@@ -32,11 +25,17 @@ as well as attendant ffmpeg commands to produce intermediate `.wav` files.
 We invoke our script with the root path to the `.m4b` files we want to transcribe.
 From there the .wav files are created and transcribed.
 
+CoreML didn't change performance, so just using metal.
+
 ```bash
- ./whisper.sh /Volumes/Reading/audiobooks/Joe\ Abercrombie\ -\ The\ First\ Law/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself
-./whisper.sh /Volumes/Reading/audiobooks/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen\ 03\ -\ Ruin/
-./whisper.sh /Volumes/Reading/audiobooks/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen\ 04
-./whisper.sh /Volumes/Reading/audiobooks/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen\ 04\ -\ Wrath/
+ ❯ ./whisper.sh -h
+Usage: ./whisper.sh -i <base_directory> [-d <duration>] [-m <model_shortname: tiny.en, base.en, small.en, medium.en>] [-o <output_directory>]
+       ./whisper.sh -h
+
+./whisper.sh -i /Volumes/Reading/audiobooks/Joe\ Abercrombie\ -\ The\ First\ Law/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself
+./whisper.sh -i /Volumes/Reading/audiobooks/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen\ 03\ -\ Ruin/
+./whisper.sh -i /Volumes/Reading/audiobooks/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen\ 04\ -\ Wrath/
+./whisper.sh -m tiny.en -i /Volumes/Reading/audiobooks/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen\ 04\ -\ Wrath/
 ```
 
 ## Setup (whisper.cpp)

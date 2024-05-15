@@ -6,6 +6,7 @@ WHISPER_HOME="${SCRIPT_DIR}/../external-repos/whisper.cpp"
 WHISPER_HOME="$( cd "${SCRIPT_DIR}/../external-repos/whisper.cpp" && pwd )"
 WHISPER_EXEC="$WHISPER_HOME/main"
 WHISPER_MODELS="${WHISPER_HOME}/models"
+DEFAULT_OUTDIR="$HOME/Downloads/WhisperCPPContent"
 DEFAULT_MODEL_SHORTNAME="base.en"
 # Allowed model shortnames
 ALLOWED_MODELS=("tiny.en" "base.en" "small.en" "medium.en")
@@ -16,14 +17,23 @@ OUTPUT_FORMATS="--output-vtt"
 BASEDIR=""
 DURATION=0
 MODEL_SHORTNAME=$DEFAULT_MODEL_SHORTNAME
-OUTDIR="$HOME/Downloads/WhisperCPPContent"
+OUTDIR=$DEFAULT_OUTDIR
 
 # Usage function
 usage() {
-    echo "Usage: ./whisper.sh -i <base_directory> [-d <duration>] [-m <model_shortname: tiny.en, base.en, small.en, medium.en>] [-o <output_directory>]"
-    echo "       ./whisper.sh -h"
+    cat << EOF
+Usage: $0 -i base directory [-d duration] [-m model] [-o output]
+
+Parameters:
+  -i  Base directory (required, no default)
+  -d  Duration (default: None, meaning entire file duration)
+  -m  Model (default: $DEFAULT_MODEL_SHORTNAME)
+  -o  Output (default: $DEFAULT_OUTDIR)
+
+EOF
     exit 1
 }
+
 # Parse command line options
 while getopts ":i:d:m:o:h" opt; do
   case ${opt} in
