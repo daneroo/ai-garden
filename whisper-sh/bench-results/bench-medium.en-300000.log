@@ -1,0 +1,144 @@
+# Whisper Transcription
+
+## Configuration
+- BASEDIR (input for m4b's): /Volumes/Reading/audiobooks/John Gwynne - Faithful and the Fallen/John Gwynne - Faithful and the Fallen 04 - Wrath
+- MODEL_SHORTNAME: medium.en
+- DURATION: 300000 seconds
+- OUTDIR: ./bench-results
+- SCRIPT_DIR: /Users/daniel/Code/iMetrical/ai-garden/whisper-sh
+- WHISPER_HOME: /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp
+- WHISPER_EXEC: /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/main
+
+# Scanning for .m4b in: /Volumes/Reading/audiobooks/John Gwynne - Faithful and the Fallen/John Gwynne - Faithful and the Fallen 04 - Wrath
+
+## Processing John Gwynne - Faithful and the Fallen 04 - Wrath
+
+### Converting to WAV file
+.wav already exists. Skipping conversion...
+
+### Transcribing to SRT/VTT/JSON
+Launching whisper transcribe...
+CMD: /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/main -f ./bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.wav -m /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/models/ggml-medium.en.bin --output-vtt -of ./bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.medium.en.d300000 -d 300000
+whisper_init_from_file_with_params_no_state: loading model from '/Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/models/ggml-medium.en.bin'
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51864
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 1024
+whisper_model_load: n_audio_head  = 16
+whisper_model_load: n_audio_layer = 24
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 1024
+whisper_model_load: n_text_head   = 16
+whisper_model_load: n_text_layer  = 24
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 1
+whisper_model_load: qntvr         = 0
+whisper_model_load: type          = 4 (medium)
+whisper_model_load: adding 1607 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_backend_init: using Metal backend
+ggml_metal_init: allocating
+ggml_metal_init: found device: Apple M2 Pro
+ggml_metal_init: picking default device: Apple M2 Pro
+ggml_metal_init: default.metallib not found, loading from source
+ggml_metal_init: GGML_METAL_PATH_RESOURCES = nil
+ggml_metal_init: loading '/Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/ggml-metal.metal'
+ggml_metal_init: GPU name:   Apple M2 Pro
+ggml_metal_init: GPU family: MTLGPUFamilyApple8  (1008)
+ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+ggml_metal_init: simdgroup reduction support   = true
+ggml_metal_init: simdgroup matrix mul. support = true
+ggml_metal_init: hasUnifiedMemory              = true
+ggml_metal_init: recommendedMaxWorkingSetSize  = 22906.50 MB
+whisper_model_load:    Metal total size =  1533.14 MB
+whisper_model_load: model size    = 1533.14 MB
+whisper_backend_init: using Metal backend
+ggml_metal_init: allocating
+ggml_metal_init: found device: Apple M2 Pro
+ggml_metal_init: picking default device: Apple M2 Pro
+ggml_metal_init: default.metallib not found, loading from source
+ggml_metal_init: GGML_METAL_PATH_RESOURCES = nil
+ggml_metal_init: loading '/Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/ggml-metal.metal'
+ggml_metal_init: GPU name:   Apple M2 Pro
+ggml_metal_init: GPU family: MTLGPUFamilyApple8  (1008)
+ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+ggml_metal_init: simdgroup reduction support   = true
+ggml_metal_init: simdgroup matrix mul. support = true
+ggml_metal_init: hasUnifiedMemory              = true
+ggml_metal_init: recommendedMaxWorkingSetSize  = 22906.50 MB
+whisper_init_state: kv self size  =  132.12 MB
+whisper_init_state: kv cross size =  147.46 MB
+whisper_init_state: compute buffer (conv)   =   28.68 MB
+whisper_init_state: compute buffer (encode) =  600.36 MB
+whisper_init_state: compute buffer (cross)  =    7.85 MB
+whisper_init_state: compute buffer (decode) =  138.87 MB
+
+system_info: n_threads = 4 / 10 | AVX = 0 | AVX2 = 0 | AVX512 = 0 | FMA = 0 | NEON = 1 | ARM_FMA = 1 | METAL = 1 | F16C = 0 | FP16_VA = 1 | WASM_SIMD = 0 | BLAS = 1 | SSE3 = 0 | SSSE3 = 0 | VSX = 0 | CUDA = 0 | COREML = 0 | OPENVINO = 0
+
+main: processing './bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.wav' (1346112041 samples, 84132.0 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
+
+
+[00:00:00.000 --> 00:00:08.000]   "Roth, Book IV of the Faithful and the Fallen" by John Gwynne, read by Damien Lynch
+[00:00:08.000 --> 00:00:16.000]   "Roth and Vengeance Poured" John Milton, Paradise Lost
+[00:00:16.000 --> 00:00:21.000]   Chapter 1 "Veritus"
+[00:00:21.000 --> 00:00:28.000]   The year 1144 of the Age of Exiles, Hound Moon
+[00:00:29.000 --> 00:00:34.000]   Veridis fell through the night air, weightless.
+[00:00:34.000 --> 00:00:42.000]   He caught glimpses of the Tower of Brickhan, Calidus's still smoldering outline at the window, then below, the river coming up to meet him.
+[00:00:42.000 --> 00:00:47.000]   He slammed into the water, the cold shocking the breath out of him.
+[00:00:47.000 --> 00:00:52.000]   He panicked, disorientated, realizing he didn't know which way was up.
+[00:00:52.000 --> 00:00:55.000]   All about him was darkness and ice.
+[00:00:55.000 --> 00:01:06.000]   Then something grabbed his hair, and he was surging upwards, breaking through the water in a burst of spray, and saw Alcyon's pale broad face staring back at him.
+[00:01:06.000 --> 00:01:17.000]   "They will come hunting for us," the giant shouted over the roar of the river as the current gripped them, sweeping them away from the thunder of warrior's feet crossing the bridge.
+[00:01:17.000 --> 00:01:21.000]   "Let the water take us far from them."
+[00:01:21.000 --> 00:01:27.000]   Veridis saw the sense of that, though his hands and feet were already numbing from the cold.
+[00:01:27.000 --> 00:01:34.000]   He put some effort into swimming, speeding his way from Brickhan, from Calidus, from the Kadashim.
+[00:01:34.000 --> 00:01:38.000]   The thought still jolted him like a blow.
+[00:01:38.000 --> 00:01:44.000]   They turned a bend in the river, and the fortress was gone, darkness enfolding them.
+[00:01:44.000 --> 00:01:58.000]   The soft, weak sheen of dawn's gray light filtered down through the lattice of branches above as Veridis met Alcyon's gaze, an unspoken agreement passing between them as they both headed for the riverbank.
+[00:01:58.000 --> 00:02:17.000]   It was harder going, swimming across the current, and Veridis realized how exhausted his body was, but eventually he felt silt beneath his feet, his hands grasping at reeds as he pulled himself out of the water and flopped onto his back, gasping, his limbs feeling lead-filled.
+[00:02:17.000 --> 00:02:30.000]   Turning, he saw Alcyon on the bank, thirty or forty paces upriver from him, staggering wearily towards him before he slumped down beside him with a groan, water dripping from his drooping mustache.
+[00:02:30.000 --> 00:02:34.000]   "Thank you," Alcyon said.
+[00:02:34.000 --> 00:02:36.000]   "For what?"
+[00:02:36.000 --> 00:02:42.000]   "Everything. Most of all for helping my family escape Brickhan's dungeons."
+[00:02:42.000 --> 00:02:45.000]   His wife and Bern.
+[00:02:45.000 --> 00:02:48.000]   How long has he gone without seeing them?
+[00:02:48.000 --> 00:02:53.000]   And what must he have suffered, knowing they were Callidus and Lycus's prisoners?
+[00:02:53.000 --> 00:03:02.000]   "And for destroying Callidus's effigy of me," Alcyon continued. "You have set me free."
+[00:03:02.000 --> 00:03:06.000]   He gave a shudder, followed by a smile.
+[00:03:06.000 --> 00:03:12.000]   "A shadow is gone from my soul. I feel reborn."
+[00:03:12.000 --> 00:03:21.000]   "If you mean you feel weak as a newborn Bern," Veridis muttered as he emptied his boot of water and tried to pull it back on, "then I feel the same."
+[00:03:21.000 --> 00:03:28.000]   "That is not what I mean," the giant rumbled, regarding Veridis with serious eyes.
+[00:03:28.000 --> 00:03:39.000]   "You set Rayna and Tane free. You set me free. I owe you a debt beyond all imagining."
+[00:03:39.000 --> 00:03:42.000]   "You are in no debt to me," Veridis said.
+[00:03:42.000 --> 00:03:49.000]   "I kicked the effigies into the fire on impulse, not really knowing what they were or what power they held over you."
+[00:03:49.000 --> 00:03:51.000]   "But you suspected."
+[00:03:51.000 --> 00:03:56.000]   "Aye. Something that Fidale said."
+[00:03:56.000 --> 00:04:05.000]   He thought of Nithair's mother, hoped that she had made it to freedom along with his brother, Krelis, Makin, and Albin.
+[00:04:05.000 --> 00:04:13.000]   "And your wife and son. I set them free because it was the right thing to do. There was no other choice."
+[00:04:13.000 --> 00:04:20.000]   "Ah, but there was, True Heart. There always is."
+[00:04:20.000 --> 00:04:22.000]   Veridis shrugged.
+[00:04:22.000 --> 00:04:27.000]   "There is no debt between us. You are my friend."
+[00:04:27.000 --> 00:04:30.000]   "One of my only friends, it has turned out."
+[00:04:30.000 --> 00:04:37.000]   His thoughts swept bitterly to Nithair and the confession and revelations that had stunned Veridis.
+[00:04:37.000 --> 00:04:44.000]   He remembered Callidus' confession, that Nithair had slain Aquilas, his own father.
+[00:04:44.000 --> 00:04:48.000]   Anger and shame twisted through him.
+[00:04:48.000 --> 00:04:51.000]   There had been so many signs.
+[00:04:51.000 --> 00:04:57.000]   "How can I have been deceived for so long? I am a fool."
+[00:04:57.000 --> 00:05:03.300]   How long, Veridis asked him, how long have you been Callidus's prisoner?
+output_vtt: saving output to './bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.medium.en.d300000.vtt'
+
+whisper_print_timings:     load time =   555.28 ms
+whisper_print_timings:     fallbacks =   0 p /   0 h
+whisper_print_timings:      mel time = 44832.72 ms
+whisper_print_timings:   sample time =  1267.55 ms /  5068 runs (    0.25 ms per run)
+whisper_print_timings:   encode time =  7428.19 ms /    13 runs (  571.40 ms per run)
+whisper_print_timings:   decode time =   571.82 ms /    41 runs (   13.95 ms per run)
+whisper_print_timings:   batchd time = 23410.64 ms /  4964 runs (    4.72 ms per run)
+whisper_print_timings:   prompt time =  1132.39 ms /  2263 runs (    0.50 ms per run)
+whisper_print_timings:    total time = 80671.62 ms
+ggml_metal_free: deallocating
+ggml_metal_free: deallocating
+
+80.737s

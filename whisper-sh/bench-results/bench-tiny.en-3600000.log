@@ -973,16 +973,16 @@ main: processing './bench-results/John Gwynne - Faithful and the Fallen 04 - Wra
 [00:59:58.000 --> 01:00:01.000]   twisting and turning amongst peaks and sheer cliffs,
 output_vtt: saving output to './bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.tiny.en.d3600000.vtt'
 
-whisper_print_timings:     load time =   103.83 ms
+whisper_print_timings:     load time =    90.95 ms
 whisper_print_timings:     fallbacks =   0 p /   0 h
-whisper_print_timings:      mel time = 44586.64 ms
-whisper_print_timings:   sample time = 16433.95 ms / 67452 runs (    0.24 ms per run)
-whisper_print_timings:   encode time =  4715.58 ms /   134 runs (   35.19 ms per run)
-whisper_print_timings:   decode time =   566.52 ms /   282 runs (    2.01 ms per run)
-whisper_print_timings:   batchd time = 45707.73 ms / 66501 runs (    0.69 ms per run)
-whisper_print_timings:   prompt time =  1195.18 ms / 29811 runs (    0.04 ms per run)
-whisper_print_timings:    total time = 114934.92 ms
+whisper_print_timings:      mel time = 44297.05 ms
+whisper_print_timings:   sample time = 16691.76 ms / 67452 runs (    0.25 ms per run)
+whisper_print_timings:   encode time =  4736.69 ms /   134 runs (   35.35 ms per run)
+whisper_print_timings:   decode time =   605.30 ms /   282 runs (    2.15 ms per run)
+whisper_print_timings:   batchd time = 47815.44 ms / 66501 runs (    0.72 ms per run)
+whisper_print_timings:   prompt time =  1209.64 ms / 29811 runs (    0.04 ms per run)
+whisper_print_timings:    total time = 117098.15 ms
 ggml_metal_free: deallocating
 ggml_metal_free: deallocating
 
-114.985s
+117.147s

@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 # Define the sets of parameters
-# ALLOWED_MODELS=("tiny.en" "base.en" "small.en" "medium.en")
-MODELS=("tiny.en" "base.en" "small.en")
+MODELS=("tiny.en" "base.en" "small.en" "medium.en")
 # 1min, 5min, 1hr, 5hr
 DURATIONS=("60000" "300000" "3600000" "18000000")
 # DURATIONS=("60000" "120000")

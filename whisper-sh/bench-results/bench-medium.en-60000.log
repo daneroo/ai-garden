@@ -2,7 +2,7 @@
 
 ## Configuration
 - BASEDIR (input for m4b's): /Volumes/Reading/audiobooks/John Gwynne - Faithful and the Fallen/John Gwynne - Faithful and the Fallen 04 - Wrath
-- MODEL_SHORTNAME: base.en
+- MODEL_SHORTNAME: medium.en
 - DURATION: 60000 seconds
 - OUTDIR: ./bench-results
 - SCRIPT_DIR: /Users/daniel/Code/iMetrical/ai-garden/whisper-sh
@@ -18,22 +18,22 @@
 
 ### Transcribing to SRT/VTT/JSON
 Launching whisper transcribe...
-CMD: /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/main -f ./bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.wav -m /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/models/ggml-base.en.bin --output-vtt -of ./bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.base.en.d60000 -d 60000
-whisper_init_from_file_with_params_no_state: loading model from '/Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/models/ggml-base.en.bin'
+CMD: /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/main -f ./bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.wav -m /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/models/ggml-medium.en.bin --output-vtt -of ./bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.medium.en.d60000 -d 60000
+whisper_init_from_file_with_params_no_state: loading model from '/Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/models/ggml-medium.en.bin'
 whisper_model_load: loading model
 whisper_model_load: n_vocab       = 51864
 whisper_model_load: n_audio_ctx   = 1500
-whisper_model_load: n_audio_state = 512
-whisper_model_load: n_audio_head  = 8
-whisper_model_load: n_audio_layer = 6
+whisper_model_load: n_audio_state = 1024
+whisper_model_load: n_audio_head  = 16
+whisper_model_load: n_audio_layer = 24
 whisper_model_load: n_text_ctx    = 448
-whisper_model_load: n_text_state  = 512
-whisper_model_load: n_text_head   = 8
-whisper_model_load: n_text_layer  = 6
+whisper_model_load: n_text_state  = 1024
+whisper_model_load: n_text_head   = 16
+whisper_model_load: n_text_layer  = 24
 whisper_model_load: n_mels        = 80
 whisper_model_load: ftype         = 1
 whisper_model_load: qntvr         = 0
-whisper_model_load: type          = 2 (base)
+whisper_model_load: type          = 4 (medium)
 whisper_model_load: adding 1607 extra tokens
 whisper_model_load: n_langs       = 99
 whisper_backend_init: using Metal backend
@@ -51,8 +51,8 @@ ggml_metal_init: simdgroup reduction support   = true
 ggml_metal_init: simdgroup matrix mul. support = true
 ggml_metal_init: hasUnifiedMemory              = true
 ggml_metal_init: recommendedMaxWorkingSetSize  = 22906.50 MB
-whisper_model_load:    Metal total size =   147.37 MB
-whisper_model_load: model size    =  147.37 MB
+whisper_model_load:    Metal total size =  1533.14 MB
+whisper_model_load: model size    = 1533.14 MB
 whisper_backend_init: using Metal backend
 ggml_metal_init: allocating
 ggml_metal_init: found device: Apple M2 Pro
@@ -68,38 +68,40 @@ ggml_metal_init: simdgroup reduction support   = true
 ggml_metal_init: simdgroup matrix mul. support = true
 ggml_metal_init: hasUnifiedMemory              = true
 ggml_metal_init: recommendedMaxWorkingSetSize  = 22906.50 MB
-whisper_init_state: kv self size  =   16.52 MB
-whisper_init_state: kv cross size =   18.43 MB
-whisper_init_state: compute buffer (conv)   =   16.39 MB
-whisper_init_state: compute buffer (encode) =  135.14 MB
-whisper_init_state: compute buffer (cross)  =    4.78 MB
-whisper_init_state: compute buffer (decode) =   96.48 MB
+whisper_init_state: kv self size  =  132.12 MB
+whisper_init_state: kv cross size =  147.46 MB
+whisper_init_state: compute buffer (conv)   =   28.68 MB
+whisper_init_state: compute buffer (encode) =  600.36 MB
+whisper_init_state: compute buffer (cross)  =    7.85 MB
+whisper_init_state: compute buffer (decode) =  138.87 MB
 
 system_info: n_threads = 4 / 10 | AVX = 0 | AVX2 = 0 | AVX512 = 0 | FMA = 0 | NEON = 1 | ARM_FMA = 1 | METAL = 1 | F16C = 0 | FP16_VA = 1 | WASM_SIMD = 0 | BLAS = 1 | SSE3 = 0 | SSSE3 = 0 | VSX = 0 | CUDA = 0 | COREML = 0 | OPENVINO = 0
 
 main: processing './bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.wav' (1346112041 samples, 84132.0 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
 
 
-[00:00:00.000 --> 00:00:27.400]   The year 1144 of the Age of Exiles, Hound Moon.
-[00:00:27.400 --> 00:00:33.000]   There it is fell through the night air, waitless.
-[00:00:33.000 --> 00:00:36.200]   He caught glimpses of the tower of Brickhan.
-[00:00:36.200 --> 00:00:41.960]   Caledus is still smoldering outline at the window, then below, the river coming up to meet him.
-[00:00:41.960 --> 00:00:46.520]   He slammed into the water, the cold shocking the breath out of him.
-[00:00:46.520 --> 00:00:51.520]   He panicked, disorientated, realizing he didn't know which way was up.
-[00:00:51.520 --> 00:00:54.280]   All about him was darkness and ice.
-[00:00:54.280 --> 00:01:00.880]   Then something grabbed his hair, and he was surging upwards, breaking through the water
-output_vtt: saving output to './bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.base.en.d60000.vtt'
+[00:00:00.000 --> 00:00:08.000]   "Roth, Book IV of the Faithful and the Fallen" by John Gwynne, read by Damien Lynch
+[00:00:08.000 --> 00:00:16.000]   "Roth and Vengeance Poured" John Milton, Paradise Lost
+[00:00:16.000 --> 00:00:21.000]   Chapter 1 "Veritus"
+[00:00:21.000 --> 00:00:28.000]   The year 1144 of the Age of Exiles, Hound Moon
+[00:00:29.000 --> 00:00:34.000]   Veridis fell through the night air, weightless.
+[00:00:34.000 --> 00:00:42.000]   He caught glimpses of the Tower of Brickhan, Calidus's still smoldering outline at the window, then below, the river coming up to meet him.
+[00:00:42.000 --> 00:00:47.000]   He slammed into the water, the cold shocking the breath out of him.
+[00:00:47.000 --> 00:00:52.000]   He panicked, disorientated, realizing he didn't know which way was up.
+[00:00:52.000 --> 00:00:55.000]   All about him was darkness and ice.
+[00:00:55.000 --> 00:01:02.160]   Then something grabbed his hair, and he was surging upwards, breaking through the water in a burst of spray,
+output_vtt: saving output to './bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.medium.en.d60000.vtt'
 
-whisper_print_timings:     load time =   124.95 ms
+whisper_print_timings:     load time =   553.70 ms
 whisper_print_timings:     fallbacks =   0 p /   0 h
-whisper_print_timings:      mel time = 44377.91 ms
-whisper_print_timings:   sample time =   146.55 ms /   663 runs (    0.22 ms per run)
-whisper_print_timings:   encode time =   236.54 ms /     3 runs (   78.85 ms per run)
-whisper_print_timings:   decode time =     9.03 ms /     2 runs (    4.52 ms per run)
-whisper_print_timings:   batchd time =   674.37 ms /   647 runs (    1.04 ms per run)
-whisper_print_timings:   prompt time =    15.02 ms /   136 runs (    0.11 ms per run)
-whisper_print_timings:    total time = 47089.07 ms
+whisper_print_timings:      mel time = 45395.56 ms
+whisper_print_timings:   sample time =   206.81 ms /   915 runs (    0.23 ms per run)
+whisper_print_timings:   encode time =  1953.33 ms /     3 runs (  651.11 ms per run)
+whisper_print_timings:   decode time =    89.16 ms /     6 runs (   14.86 ms per run)
+whisper_print_timings:   batchd time =  4156.87 ms /   896 runs (    4.64 ms per run)
+whisper_print_timings:   prompt time =    44.75 ms /    66 runs (    0.68 ms per run)
+whisper_print_timings:    total time = 53899.68 ms
 ggml_metal_free: deallocating
 ggml_metal_free: deallocating
 
-47.140s
+53.957s

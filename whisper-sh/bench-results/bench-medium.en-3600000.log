@@ -1,0 +1,727 @@
+# Whisper Transcription
+
+## Configuration
+- BASEDIR (input for m4b's): /Volumes/Reading/audiobooks/John Gwynne - Faithful and the Fallen/John Gwynne - Faithful and the Fallen 04 - Wrath
+- MODEL_SHORTNAME: medium.en
+- DURATION: 3600000 seconds
+- OUTDIR: ./bench-results
+- SCRIPT_DIR: /Users/daniel/Code/iMetrical/ai-garden/whisper-sh
+- WHISPER_HOME: /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp
+- WHISPER_EXEC: /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/main
+
+# Scanning for .m4b in: /Volumes/Reading/audiobooks/John Gwynne - Faithful and the Fallen/John Gwynne - Faithful and the Fallen 04 - Wrath
+
+## Processing John Gwynne - Faithful and the Fallen 04 - Wrath
+
+### Converting to WAV file
+.wav already exists. Skipping conversion...
+
+### Transcribing to SRT/VTT/JSON
+Launching whisper transcribe...
+CMD: /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/main -f ./bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.wav -m /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/models/ggml-medium.en.bin --output-vtt -of ./bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.medium.en.d3600000 -d 3600000
+whisper_init_from_file_with_params_no_state: loading model from '/Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/models/ggml-medium.en.bin'
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51864
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 1024
+whisper_model_load: n_audio_head  = 16
+whisper_model_load: n_audio_layer = 24
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 1024
+whisper_model_load: n_text_head   = 16
+whisper_model_load: n_text_layer  = 24
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 1
+whisper_model_load: qntvr         = 0
+whisper_model_load: type          = 4 (medium)
+whisper_model_load: adding 1607 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_backend_init: using Metal backend
+ggml_metal_init: allocating
+ggml_metal_init: found device: Apple M2 Pro
+ggml_metal_init: picking default device: Apple M2 Pro
+ggml_metal_init: default.metallib not found, loading from source
+ggml_metal_init: GGML_METAL_PATH_RESOURCES = nil
+ggml_metal_init: loading '/Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/ggml-metal.metal'
+ggml_metal_init: GPU name:   Apple M2 Pro
+ggml_metal_init: GPU family: MTLGPUFamilyApple8  (1008)
+ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+ggml_metal_init: simdgroup reduction support   = true
+ggml_metal_init: simdgroup matrix mul. support = true
+ggml_metal_init: hasUnifiedMemory              = true
+ggml_metal_init: recommendedMaxWorkingSetSize  = 22906.50 MB
+whisper_model_load:    Metal total size =  1533.14 MB
+whisper_model_load: model size    = 1533.14 MB
+whisper_backend_init: using Metal backend
+ggml_metal_init: allocating
+ggml_metal_init: found device: Apple M2 Pro
+ggml_metal_init: picking default device: Apple M2 Pro
+ggml_metal_init: default.metallib not found, loading from source
+ggml_metal_init: GGML_METAL_PATH_RESOURCES = nil
+ggml_metal_init: loading '/Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/ggml-metal.metal'
+ggml_metal_init: GPU name:   Apple M2 Pro
+ggml_metal_init: GPU family: MTLGPUFamilyApple8  (1008)
+ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+ggml_metal_init: simdgroup reduction support   = true
+ggml_metal_init: simdgroup matrix mul. support = true
+ggml_metal_init: hasUnifiedMemory              = true
+ggml_metal_init: recommendedMaxWorkingSetSize  = 22906.50 MB
+whisper_init_state: kv self size  =  132.12 MB
+whisper_init_state: kv cross size =  147.46 MB
+whisper_init_state: compute buffer (conv)   =   28.68 MB
+whisper_init_state: compute buffer (encode) =  600.36 MB
+whisper_init_state: compute buffer (cross)  =    7.85 MB
+whisper_init_state: compute buffer (decode) =  138.87 MB
+
+system_info: n_threads = 4 / 10 | AVX = 0 | AVX2 = 0 | AVX512 = 0 | FMA = 0 | NEON = 1 | ARM_FMA = 1 | METAL = 1 | F16C = 0 | FP16_VA = 1 | WASM_SIMD = 0 | BLAS = 1 | SSE3 = 0 | SSSE3 = 0 | VSX = 0 | CUDA = 0 | COREML = 0 | OPENVINO = 0
+
+main: processing './bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.wav' (1346112041 samples, 84132.0 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
+
+
+[00:00:00.000 --> 00:00:08.000]   "Roth, Book IV of the Faithful and the Fallen" by John Gwynne, read by Damien Lynch
+[00:00:08.000 --> 00:00:16.000]   "Roth and Vengeance Poured" John Milton, Paradise Lost
+[00:00:16.000 --> 00:00:21.000]   Chapter 1 "Veritus"
+[00:00:21.000 --> 00:00:28.000]   The year 1144 of the Age of Exiles, Hound Moon
+[00:00:29.000 --> 00:00:34.000]   Veridis fell through the night air, weightless.
+[00:00:34.000 --> 00:00:42.000]   He caught glimpses of the Tower of Brickhan, Calidus's still smoldering outline at the window, then below, the river coming up to meet him.
+[00:00:42.000 --> 00:00:47.000]   He slammed into the water, the cold shocking the breath out of him.
+[00:00:47.000 --> 00:00:52.000]   He panicked, disorientated, realizing he didn't know which way was up.
+[00:00:52.000 --> 00:00:55.000]   All about him was darkness and ice.
+[00:00:55.000 --> 00:01:06.000]   Then something grabbed his hair, and he was surging upwards, breaking through the water in a burst of spray, and saw Alcyon's pale broad face staring back at him.
+[00:01:06.000 --> 00:01:17.000]   "They will come hunting for us," the giant shouted over the roar of the river as the current gripped them, sweeping them away from the thunder of warrior's feet crossing the bridge.
+[00:01:17.000 --> 00:01:21.000]   "Let the water take us far from them."
+[00:01:21.000 --> 00:01:27.000]   Veridis saw the sense of that, though his hands and feet were already numbing from the cold.
+[00:01:27.000 --> 00:01:34.000]   He put some effort into swimming, speeding his way from Brickhan, from Calidus, from the Kadashim.
+[00:01:34.000 --> 00:01:38.000]   The thought still jolted him like a blow.
+[00:01:38.000 --> 00:01:44.000]   They turned a bend in the river, and the fortress was gone, darkness enfolding them.
+[00:01:44.000 --> 00:01:58.000]   The soft, weak sheen of dawn's gray light filtered down through the lattice of branches above as Veridis met Alcyon's gaze, an unspoken agreement passing between them as they both headed for the riverbank.
+[00:01:58.000 --> 00:02:17.000]   It was harder going, swimming across the current, and Veridis realized how exhausted his body was, but eventually he felt silt beneath his feet, his hands grasping at reeds as he pulled himself out of the water and flopped onto his back, gasping, his limbs feeling lead-filled.
+[00:02:17.000 --> 00:02:30.000]   Turning, he saw Alcyon on the bank, thirty or forty paces upriver from him, staggering wearily towards him before he slumped down beside him with a groan, water dripping from his drooping mustache.
+[00:02:30.000 --> 00:02:34.000]   "Thank you," Alcyon said.
+[00:02:34.000 --> 00:02:36.000]   "For what?"
+[00:02:36.000 --> 00:02:42.000]   "Everything. Most of all for helping my family escape Brickhan's dungeons."
+[00:02:42.000 --> 00:02:45.000]   His wife and Bern.
+[00:02:45.000 --> 00:02:48.000]   How long has he gone without seeing them?
+[00:02:48.000 --> 00:02:53.000]   And what must he have suffered, knowing they were Callidus and Lycus's prisoners?
+[00:02:53.000 --> 00:03:02.000]   "And for destroying Callidus's effigy of me," Alcyon continued. "You have set me free."
+[00:03:02.000 --> 00:03:06.000]   He gave a shudder, followed by a smile.
+[00:03:06.000 --> 00:03:12.000]   "A shadow is gone from my soul. I feel reborn."
+[00:03:12.000 --> 00:03:21.000]   "If you mean you feel weak as a newborn Bern," Veridis muttered as he emptied his boot of water and tried to pull it back on, "then I feel the same."
+[00:03:21.000 --> 00:03:28.000]   "That is not what I mean," the giant rumbled, regarding Veridis with serious eyes.
+[00:03:28.000 --> 00:03:39.000]   "You set Rayna and Tane free. You set me free. I owe you a debt beyond all imagining."
+[00:03:39.000 --> 00:03:42.000]   "You are in no debt to me," Veridis said.
+[00:03:42.000 --> 00:03:49.000]   "I kicked the effigies into the fire on impulse, not really knowing what they were or what power they held over you."
+[00:03:49.000 --> 00:03:51.000]   "But you suspected."
+[00:03:51.000 --> 00:03:56.000]   "Aye. Something that Fidale said."
+[00:03:56.000 --> 00:04:05.000]   He thought of Nithair's mother, hoped that she had made it to freedom along with his brother, Krelis, Makin, and Albin.
+[00:04:05.000 --> 00:04:13.000]   "And your wife and son. I set them free because it was the right thing to do. There was no other choice."
+[00:04:13.000 --> 00:04:20.000]   "Ah, but there was, True Heart. There always is."
+[00:04:20.000 --> 00:04:22.000]   Veridis shrugged.
+[00:04:22.000 --> 00:04:27.000]   "There is no debt between us. You are my friend."
+[00:04:27.000 --> 00:04:30.000]   "One of my only friends, it has turned out."
+[00:04:30.000 --> 00:04:37.000]   His thoughts swept bitterly to Nithair and the confession and revelations that had stunned Veridis.
+[00:04:37.000 --> 00:04:44.000]   He remembered Callidus' confession, that Nithair had slain Aquilas, his own father.
+[00:04:44.000 --> 00:04:48.000]   Anger and shame twisted through him.
+[00:04:48.000 --> 00:04:51.000]   There had been so many signs.
+[00:04:51.000 --> 00:04:57.000]   "How can I have been deceived for so long? I am a fool."
+[00:04:57.000 --> 00:05:01.000]   "How long?" Veridis asked him.
+[00:05:01.000 --> 00:05:04.000]   "How long have you been Callidus' prisoner?"
+[00:05:04.000 --> 00:05:07.000]   Alcyon's smile withered.
+[00:05:07.000 --> 00:05:10.000]   "Sixteen years."
+[00:05:10.000 --> 00:05:13.000]   "That is a long time."
+[00:05:13.000 --> 00:05:18.000]   "It is." Alcyon clenched his fists, knuckles cracking.
+[00:05:18.000 --> 00:05:21.000]   "I should have killed him."
+[00:05:21.000 --> 00:05:25.000]   "To be fair, we both tried hard on that count.
+[00:05:25.000 --> 00:05:31.000]   I put a knife in his belly, threw him in a fire, and he shattered his chest with a war hammer."
+[00:05:31.000 --> 00:05:35.000]   "Kadoshim are hard to kill."
+[00:05:35.000 --> 00:05:37.000]   "I'd have to agree."
+[00:05:37.000 --> 00:05:39.000]   "Can he be killed?"
+[00:05:39.000 --> 00:05:44.000]   "Maybe taking his head. That is how the others are slain."
+[00:05:44.000 --> 00:05:46.000]   "Others?"
+[00:05:46.000 --> 00:05:54.000]   "N'jihah. They are demon-possessed by Kadoshim. At Murias."
+[00:05:54.000 --> 00:05:58.000]   Alcyon said to the question in Veridis' eyes.
+[00:05:58.000 --> 00:06:04.000]   "The jihah," Veridis muttered, shaking his head, "have been so blind."
+[00:06:04.000 --> 00:06:10.000]   "You trusted your king and your friend," Alcyon shrugged.
+[00:06:10.000 --> 00:06:14.000]   "There are worse failings to have."
+[00:06:14.000 --> 00:06:16.000]   "Are there?"
+[00:06:16.000 --> 00:06:20.000]   "I have dedicated my life to a lie."
+[00:06:20.000 --> 00:06:25.000]   They both sat in silence, water dripping from clothes and hair.
+[00:06:25.000 --> 00:06:29.000]   "What now?" Veridis said to himself.
+[00:06:29.000 --> 00:06:34.000]   "It feels as if my whole life has been dedicated to N'Thir and his cause."
+[00:06:34.000 --> 00:06:37.000]   "What do I do now?"
+[00:06:37.000 --> 00:06:42.000]   Alcyon regarded him gravely, then poked his chest with a thick finger.
+[00:06:42.000 --> 00:06:46.000]   "What does your heart tell you?"
+[00:06:46.000 --> 00:06:48.000]   "I would not trust it."
+[00:06:48.000 --> 00:06:52.000]   "Look what has led me thus far," Veridis said sourly.
+[00:06:52.000 --> 00:06:56.000]   "Your eyes are open now."
+[00:06:56.000 --> 00:07:01.000]   Veridis sucked in a deep breath, felt exhaustion seeping through him.
+[00:07:01.000 --> 00:07:05.000]   "What would you do?" he asked the giant.
+[00:07:05.000 --> 00:07:10.000]   "Find my kin. My Reinar and Tain."
+[00:07:10.000 --> 00:07:13.000]   He smiled as he said their names.
+[00:07:13.000 --> 00:07:15.000]   "Kin?"
+[00:07:15.000 --> 00:07:22.000]   "My father is slain, as is my brother Ektor. Only Krelos is left."
+[00:07:22.000 --> 00:07:25.000]   Suddenly he was desperate to see his older brother.
+[00:07:25.000 --> 00:07:29.000]   "Find our kin," he echoed.
+[00:07:29.000 --> 00:07:32.000]   "A good place to start."
+[00:07:32.000 --> 00:07:38.000]   Something squawked, a handful of wood pigeons suddenly bursting from the trees and flapping noisily overhead.
+[00:07:38.000 --> 00:07:40.000]   "We should move."
+[00:07:40.000 --> 00:07:42.000]   "We need cover."
+[00:07:42.000 --> 00:07:48.000]   "Aye, to the trees," Veridis said as he stood suppressing a groan.
+[00:07:48.000 --> 00:07:54.000]   They were halfway across the clearing when Alcyon stopped abruptly, staring back along the riverbank.
+[00:07:54.000 --> 00:08:01.000]   Forms appeared around a distant bend on the track, shadows in the half-light that Form's canopy created.
+[00:08:01.000 --> 00:08:05.000]   Black shadows with curved swords sheathed across their backs.
+[00:08:05.000 --> 00:08:09.000]   "Kadoshim," Alcyon growled.
+[00:08:09.000 --> 00:08:16.000]   Veridis counted at least seven of them, moving quickly, a loping, ground-eating pace like a pack of wolfen.
+[00:08:16.000 --> 00:08:21.000]   They were spread in a half-circle between the riverbank and the treeline.
+[00:08:21.000 --> 00:08:28.000]   "They are hunting us. Have been running all night long following the river in search of our trail."
+[00:08:28.000 --> 00:08:33.000]   One of the figures paused, the others rippling to a halt about it.
+[00:08:33.000 --> 00:08:42.000]   It lifted its head, as if tasting the air, then gave an ululating howl and leapt forwards a new energy in its stride.
+[00:08:42.000 --> 00:08:45.000]   "They've caught our scent."
+[00:08:45.000 --> 00:08:48.000]   Veridis felt a jolt of fear.
+[00:08:48.000 --> 00:08:59.000]   He'd faced giants, draigs, warbands, but somehow knowing that the demons of the Otherworld were hunting him sent a cold shock of fear tingling through his veins.
+[00:08:59.000 --> 00:09:05.000]   "Kadoshim. Kalidus's kin. My enemy."
+[00:09:05.000 --> 00:09:16.000]   Kalidus filled his mind, an image of the man he had thought counselor and ally emerging from the fire in Brickhand's tower, flame-wreathed and snarling.
+[00:09:16.000 --> 00:09:24.000]   "He has corrupted Nefair and has deceived me for so long. He is the author of this evil."
+[00:09:24.000 --> 00:09:29.000]   Fear morphed into a cold rage and he reached for his sword, lips twisting.
+[00:09:29.000 --> 00:09:34.000]   "Move!" Altean grunted and broke into a run.
+[00:09:34.000 --> 00:09:45.000]   Veridis resisted for a moment, inexplicably wanting to stand and fight these creatures, but Altean dragged him along and, in a heartbeat, they were only a few strides from the treeline.
+[00:09:45.000 --> 00:09:53.000]   He realized the giant had no weapon, no warhammer or battle axe strapped across his back, no sword or dagger at his hip.
+[00:09:53.000 --> 00:10:01.000]   They crashed through the first layer of undergrowth and were immediately enveloped by a twilight world of shadow and thorn.
+[00:10:01.000 --> 00:10:12.000]   Altean forged ahead, grunting as branches snapped upon his rock-like torso, thorns whipping at Veridis, vines tangling about his boots.
+[00:10:12.000 --> 00:10:30.000]   For what seemed a long time, Veridis only heard his own heart thumping, the rasp of his breath, the thud of Altean's feet. Then there were sounds behind him, faint at first, like the rustle of wind through foliage, but soon louder, keening cries were floating about him.
+[00:10:30.000 --> 00:10:37.000]   They splashed through a stream, something sinuous slithered beneath Veridis' feet, making him stumble.
+[00:10:37.000 --> 00:10:46.000]   "They are almost upon us," he gasped to Altean. "Better to turn and fight, hold a sword in my fist, than die running."
+[00:10:46.000 --> 00:10:50.000]   "I know," the giant said, turning, chest heaving.
+[00:10:50.000 --> 00:10:57.000]   Veridis drew his sword as they put their backs to a huge tree, the stream before them, and waited.
+[00:10:57.000 --> 00:11:03.000]   Forms flitted through the gloom, emerging from a curtain of shadows and thick foliage.
+[00:11:03.000 --> 00:11:13.000]   One was a long way ahead of the others, clothed in the dark mail of the jihad, pale-skinned, dark veins making a tapestry of its flesh.
+[00:11:13.000 --> 00:11:20.000]   It saw them and leapt the stream, arms reaching for Veridis, not even bothering to draw its sword.
+[00:11:20.000 --> 00:11:31.000]   "Remember, you must take their heads," Altean grunted, as he pushed away from the tree, hurling himself into the oncoming Karashim with bone-crushing power.
+[00:11:31.000 --> 00:11:43.000]   The two fell to the ground. Veridis hurtled forwards, sword raised, hacking two-handed at the Karashim's arm, its hand spinning away, blood-like oil pumping languidly from the stump.
+[00:11:43.000 --> 00:11:46.000]   Then the two forms were rolling together again.
+[00:11:46.000 --> 00:11:54.000]   Altean growled in pain. Then he was on his knees, arms wrapped about the Karashim's torso, pinning its arms at its side.
+[00:11:54.000 --> 00:12:04.000]   The creature's head writhed, veins bulging as it strained to break free, Altean's face turning purple with the effort, his locked fingers slowly pulling apart.
+[00:12:04.000 --> 00:12:13.000]   "What are you waiting for?" the giant rasped, and Veridis swung his sword, chopping into the creature's neck.
+[00:12:13.000 --> 00:12:22.000]   Dark blood spurted from the half-severed neck, the Karashim screeching with fury. Altean roared with the strain of holding the creature.
+[00:12:22.000 --> 00:12:26.000]   Veridis wrenched his sword free and swung again.
+[00:12:26.000 --> 00:12:37.000]   The Karashim's head flew through the air, landing with a splash in the stream, its body slumped, legs drumming as Altean fell away and rolled clear.
+[00:12:37.000 --> 00:12:53.000]   A black, icor-like mist flowed from the Karashim's neck, hissing and swirling, gathering above its body, forming a human shape with tattered wings of smoke spread about it and red eyes glowing like coals at its heart.
+[00:12:53.000 --> 00:13:02.000]   Veridis stared, frozen. It screamed savagely, then it was melting away, torn and dispersed by a slight breeze.
+[00:13:02.000 --> 00:13:15.000]   "What the hell?" Veridis gasped. "Down!" Altean yelled, as he surged up from the ground, a fist slamming into the jaw of a leaping Karashim, hurling it spinning into the undergrowth.
+[00:13:15.000 --> 00:13:22.000]   Almost as soon as it hit the ground, it was back on its feet, twisting like a feral cat.
+[00:13:22.000 --> 00:13:34.000]   Veridis hefted his sword, spread his legs to meet the impact and then something crunched into his side, sending him flying through the air, another Karashim's arms locked around his waist.
+[00:13:34.000 --> 00:13:42.000]   He caught a glimpse of Altean standing, Karashim swarming upon him, then Veridis was slamming into the ground.
+[00:13:42.000 --> 00:13:52.000]   Pain exploded in his shoulder and his sword skittered away. He rolled, punched at his attacker, for a moment staring into its black, soulless eyes.
+[00:13:52.000 --> 00:14:01.000]   Then they were sliding into the stream, the Karashim beneath him, his hands fastening about its neck, squeezing, seeking to crush the life from the black-eyed abomination.
+[00:14:01.000 --> 00:14:10.000]   It bucked and kicked like a wild stallion, thrashing a tempest amidst the stream water, but Veridis would not let go.
+[00:14:10.000 --> 00:14:21.000]   He felt its strength ebbing, some of its vitality fading, then hands gripped him from behind, dragging him backwards, his fingers slipping as he was hauled to the bank.
+[00:14:21.000 --> 00:14:28.000]   Another Karashim stood over him, drawing its sword from its back as the one from the stream splashed into view.
+[00:14:28.000 --> 00:14:36.000]   He rolled and saw a handful of Karashim circling Altean, who had fallen to one knee, the giant bleeding from a dozen wounds.
+[00:14:36.000 --> 00:14:47.000]   Veridis tried to drag himself through the mud towards his friend. Another Karashim was held in Altean's arms, he had one hand gripping its jaw, the other wrapped about its chest.
+[00:14:47.000 --> 00:14:59.000]   With a savage wrench, Altean heaved. Veridis heard the Karashim's neck break, then the sound of flesh tearing, Altean screaming his defiance as he ripped the Karashim's head from its shoulders.
+[00:14:59.000 --> 00:15:05.000]   He flung the corpse to the ground as the black mist boiled from the dead creature's wound.
+[00:15:05.000 --> 00:15:11.000]   A searing pain lanced through Veridis' leg, a Karashim blade scoring along his thigh.
+[00:15:11.000 --> 00:15:19.000]   He dropped to the ground, looked back at the two Karashim on the stream bank. They were following him, toying with him.
+[00:15:19.000 --> 00:15:26.000]   The one with the drawn sword slashed his blade across Veridis' upheld forearm, a new cut burning like fire.
+[00:15:26.000 --> 00:15:37.000]   "Think we'll bleed you a while," the Karashim said, leering with pale lips. "Pay you back for the chase you've led us."
+[00:15:37.000 --> 00:15:40.000]   It should not end like this.
+[00:15:40.000 --> 00:15:47.000]   Frustration gave Veridis a last surge of strength and he rolled to his feet, pushed himself upright.
+[00:15:47.000 --> 00:15:53.000]   The Karashim before him grinned, then paused, cocking its head to one side.
+[00:15:53.000 --> 00:16:03.000]   Figures burst out of the gloom. Veridis' hopes rose and then fell as he saw the newcomers were dressed in black breastplates with silver eagles on their chests.
+[00:16:03.000 --> 00:16:10.000]   Eagle Guard, no doubt sent by Nefair to make sure that his monsters complete their task.
+[00:16:10.000 --> 00:16:17.000]   Ten, twelve, fifteen more men, one of them tall and wide.
+[00:16:17.000 --> 00:16:21.000]   Veridis blinked. Something familiar.
+[00:16:21.000 --> 00:16:27.000]   "Well met, little brother," the big man bellowed, grinning wildly.
+[00:16:27.000 --> 00:16:34.000]   A moment's confusion followed swiftly by elation. "Krelis!"
+[00:16:34.000 --> 00:16:41.000]   Then Krelis and his men were attacking the Karashim, Krelis taking a head in one great swing of his longsword.
+[00:16:41.000 --> 00:16:48.000]   Another warrior swept into view, this one not dressed as a man of Tenebraal but gripping a knife in each hand.
+[00:16:48.000 --> 00:16:54.000]   He joined Krelis and together they attacked the Karashim before Veridis.
+[00:16:54.000 --> 00:16:57.000]   Makin and Krelis.
+[00:16:57.000 --> 00:17:02.000]   Chapter Two
+[00:17:02.000 --> 00:17:05.000]   Nefair
+[00:17:05.000 --> 00:17:11.000]   Nefair stood in the great hall of Drassil and stared at the giant's skeleton on its throne.
+[00:17:11.000 --> 00:17:18.000]   The bones of the ribcage surrounded a thick-shafted spear, the wood dark and pale-veined,
+[00:17:18.000 --> 00:17:25.000]   only a hint of black iron of the blade visible, the rest buried in the great tree of Drassil.
+[00:17:25.000 --> 00:17:32.000]   "So that is Skald, High King of the Giants, and that is the Starstone Spear."
+[00:17:32.000 --> 00:17:40.000]   "Skald, the last man to rule a united empire where giants and men live together in peace."
+[00:17:40.000 --> 00:17:43.000]   "Will I be the next to unite this shattered world?"
+[00:17:43.000 --> 00:17:47.000]   The skeleton was mottled yellow and brown, ancient,
+[00:17:47.000 --> 00:17:55.000]   the brow of the skull broad and thick eye sockets, black holes that seemed to stare at Nefair, questioning him.
+[00:17:55.000 --> 00:17:58.000]   "Are you worthy?"
+[00:17:58.000 --> 00:18:00.000]   "Are you capable?"
+[00:18:00.000 --> 00:18:02.000]   He sighed.
+[00:18:02.000 --> 00:18:07.000]   "History shall be my judge, nothing and no one else."
+[00:18:07.000 --> 00:18:10.000]   A hand touched his shoulder.
+[00:18:10.000 --> 00:18:15.000]   Sezus was standing at the head of three-score Eagle Guard.
+[00:18:15.000 --> 00:18:22.000]   The young warrior had been recently promoted to High Captain of the Fares Warband now that Veridis was gone.
+[00:18:22.000 --> 00:18:29.000]   "Ah, Veridis, are you dead or alive, old friend?"
+[00:18:29.000 --> 00:18:35.000]   "It does not seem right that you are not beside me to share in this great victory."
+[00:18:35.000 --> 00:18:42.000]   He had been informed of Veridis' betrayal, his attempt on Calidas' life, and he and Alteon's escape.
+[00:18:42.000 --> 00:18:49.000]   "Veridis, how could you abandon me, break your oath to me?"
+[00:18:49.000 --> 00:18:52.000]   He looked at the white scars on the palm of his hand,
+[00:18:52.000 --> 00:18:59.000]   one of them made as a blood oath of brotherhood to Veridis on a moonlit hillside and tenor brow.
+[00:18:59.000 --> 00:19:05.000]   It felt like a lifetime ago, words and promises spoken by different people.
+[00:19:05.000 --> 00:19:13.000]   "My king," Sezus said, "it is Calidas. He asks for you."
+[00:19:13.000 --> 00:19:20.000]   Nefair looked back at the skeleton one last time, then turned and strode through the huge chamber.
+[00:19:20.000 --> 00:19:24.000]   The dead were still being cleared from the battle of the day before.
+[00:19:24.000 --> 00:19:31.000]   Blood stained the stone floor, mounds of corpses lay in stinking piles.
+[00:19:31.000 --> 00:19:39.000]   Hundreds of them, Kadashim, Jiha, Vinthalan, Eagleguard, Bonothi giants, many others.
+[00:19:39.000 --> 00:19:44.000]   The cost of taking Drassil had been high, higher than he would have imagined
+[00:19:44.000 --> 00:19:48.000]   considering that the element of surprise had been on their side.
+[00:19:48.000 --> 00:19:52.000]   But victory is victory.
+[00:19:52.000 --> 00:19:57.000]   The fortress is ours, the back of our enemy broken.
+[00:19:57.000 --> 00:20:06.000]   Though many had escaped, reports were coming in of pitched battles still being fought beyond the walls of Drassil.
+[00:20:06.000 --> 00:20:11.000]   Nefair glanced to his right as he passed an open trapdoor as wide as the gates of Jeralin
+[00:20:11.000 --> 00:20:14.000]   and the dark stain of blood on the stone before it.
+[00:20:14.000 --> 00:20:17.000]   Maikal's blood.
+[00:20:17.000 --> 00:20:24.000]   The Ben Elim's head now adorned a spear set in the ground of the courtyard before the gates of Drassil.
+[00:20:24.000 --> 00:20:27.000]   It was not alone.
+[00:20:27.000 --> 00:20:30.000]   But what of Corbin, their bright star?
+[00:20:30.000 --> 00:20:32.000]   Where is he?
+[00:20:32.000 --> 00:20:35.000]   He glared mistrustfully into the yawning dark of the tunnel,
+[00:20:35.000 --> 00:20:41.000]   knew that Maikal had chosen to stand and fight there to gain time for many who escaped into the tunnel.
+[00:20:41.000 --> 00:20:44.000]   Was Corbin one of them?
+[00:20:44.000 --> 00:20:48.000]   There had been no reports of Corbin being seen during the battle.
+[00:20:48.000 --> 00:20:51.000]   Had he even been here?
+[00:20:51.000 --> 00:20:58.000]   It had been a long night and Nefair felt a greater weariness settling upon him than he had ever known before.
+[00:20:58.000 --> 00:21:04.000]   Saesir snapped an order behind him and eagle guards spread to either side forming a protective column.
+[00:21:04.000 --> 00:21:11.000]   Drassil is not yet secure, Saesir said in reply to Nefair's inquiring look.
+[00:21:11.000 --> 00:21:14.000]   The courtyard also bore the signs of yesterday's battle.
+[00:21:14.000 --> 00:21:21.000]   Bodies scattered all about, flies buzzing, the metallic aroma of blood everywhere.
+[00:21:21.000 --> 00:21:27.000]   For an instant, Nefair thought he saw a wolf and cub tugging at the leg of a dead Karashim,
+[00:21:27.000 --> 00:21:31.000]   but looking back, realized it was a small white-furred dog.
+[00:21:31.000 --> 00:21:36.000]   They turned a corner in a street and Nefair glimpsed the towering outer walls of Drassil
+[00:21:36.000 --> 00:21:41.000]   beyond the layers of stone buildings latticed with thick branches.
+[00:21:41.000 --> 00:21:45.000]   This is a truly remarkable place.
+[00:21:45.000 --> 00:21:53.000]   Branches soared above him as thick as towers with buildings of stone and iron wrapped about them bound tighter than leather armor.
+[00:21:53.000 --> 00:21:57.000]   It looks almost alive.
+[00:21:57.000 --> 00:22:02.000]   The tree, the bones, the fortress, its flesh.
+[00:22:02.000 --> 00:22:06.000]   The rasp of a sword drawn from its scabbard drew his attention
+[00:22:06.000 --> 00:22:11.000]   and he glimpsed the black-clothed warrior hurtling from the shadows of a doorway.
+[00:22:11.000 --> 00:22:17.000]   Abruptly, Saesir was yelling as more dark figures emerged, iron glinting.
+[00:22:17.000 --> 00:22:23.000]   The eagle guard moved, shields thudding together around Nefair obscuring his view.
+[00:22:23.000 --> 00:22:28.000]   Blood sprayed, spattering Nefair's face as an eagle guard before him collapsed.
+[00:22:28.000 --> 00:22:35.000]   A black-clothed jihad slipped into the gap carved in the shield wall, surging towards Nefair.
+[00:22:35.000 --> 00:22:41.000]   Nefair drew his sword, fear and rage, his constant companions, igniting within him.
+[00:22:41.000 --> 00:22:47.000]   The shouts and screams of battle faded, his world contracting to the jihad warrior before him.
+[00:22:47.000 --> 00:22:53.000]   A woman, her dark-skinned face all sharp bones, almost fragile looking.
+[00:22:53.000 --> 00:22:59.000]   "Truth and courage!" she yelled, curved sword rising.
+[00:22:59.000 --> 00:23:03.000]   There was an explosion of sparks as their weapons met,
+[00:23:03.000 --> 00:23:10.000]   the power of the jihad's strike making the tendons of his wrists shriek, shuddering on into his arm and shoulder.
+[00:23:10.000 --> 00:23:15.000]   He pushed forwards, knowing to retreat was to die,
+[00:23:15.000 --> 00:23:20.000]   tried to move within her guard, use his short sword where her longer blade would hinder her.
+[00:23:20.000 --> 00:23:24.000]   They collided, limbs tangling as both crashed to the ground,
+[00:23:24.000 --> 00:23:29.000]   wrestling, punching, kicking and biting at each other as they rolled back and forth across the stone street,
+[00:23:29.000 --> 00:23:32.000]   with a battle raging all about them.
+[00:23:32.000 --> 00:23:36.000]   The jihad struck a glancing blow that made his vision blur.
+[00:23:36.000 --> 00:23:40.000]   Then her knee crunched into his groin and he slumped, pain exploding,
+[00:23:40.000 --> 00:23:45.000]   pulsing through him in savage waves, draining his strength.
+[00:23:45.000 --> 00:23:53.000]   She pulled herself free and half rose as he coughed into the cold stone, tried to rise, knew if he didn't, he was dead.
+[00:23:53.000 --> 00:23:59.000]   Fear and rage sparked inside him, sent new energy coursing through his veins.
+[00:23:59.000 --> 00:24:02.000]   "I'll not die here."
+[00:24:02.000 --> 00:24:08.000]   The jihad stood over him, sword raised, her eyes bright with victory.
+[00:24:08.000 --> 00:24:12.000]   Then a form crashed into her, throwing her to the ground.
+[00:24:12.000 --> 00:24:18.000]   She started to rise and a boot slammed into her jaw, sent her crashing back down.
+[00:24:18.000 --> 00:24:23.000]   The figure was blurred, a buzzing cloud swirling about it.
+[00:24:23.000 --> 00:24:27.000]   Hands gripped him and pulled him upright, Sezus's concerned face appeared,
+[00:24:27.000 --> 00:24:31.000]   blood sheeting from a long cut across his forehead.
+[00:24:31.000 --> 00:24:35.000]   Nathare looked past him, saw his rescuer pull a sword from a scabbard upon its back
+[00:24:35.000 --> 00:24:38.000]   and raise it over the unconscious jihad.
+[00:24:38.000 --> 00:24:42.000]   "A Kadashim." "No," Nathare called.
+[00:24:42.000 --> 00:24:47.000]   The figure's head turned to look at him, the buzzing cloud parting.
+[00:24:47.000 --> 00:24:52.000]   "Flies," Nathare realized, recognizing the Kadashim.
+[00:24:52.000 --> 00:24:57.000]   "No, Legion. I want her alive."
+[00:24:57.000 --> 00:25:01.000]   The Kadashim regarded him for a moment with cold black eyes.
+[00:25:01.000 --> 00:25:08.000]   "Better dead," it said. "I want her alive," Nathare snapped.
+[00:25:08.000 --> 00:25:11.000]   "Kalidas may have questions."
+[00:25:11.000 --> 00:25:18.000]   "Dead after, then," the Kadashim said, then sheathing its sword.
+[00:25:18.000 --> 00:25:22.000]   "Kalidas wants you."
+[00:25:22.000 --> 00:25:26.000]   The flesh of its face and neck rippled, seeming to move of its own accord
+[00:25:26.000 --> 00:25:30.000]   as if something were locked within trying to get out.
+[00:25:30.000 --> 00:25:34.000]   About them, the battle seemed almost done.
+[00:25:34.000 --> 00:25:38.000]   Nathare scanned the street, counted nearly a score of his eagle guard
+[00:25:38.000 --> 00:25:42.000]   dead to five or six of their jihad attackers.
+[00:25:42.000 --> 00:25:46.000]   "This part of Drassil is supposed to have been cleared," he snarled.
+[00:25:46.000 --> 00:25:49.000]   "How did they get in here?"
+[00:25:49.000 --> 00:25:53.000]   He looked down at the unconscious jihad's form at Legion's feet.
+[00:25:53.000 --> 00:25:57.000]   "Bring her," Nathare said as he marched away.
+[00:25:57.000 --> 00:26:01.000]   As Nathare entered the courtyard before Drassil's gates,
+[00:26:01.000 --> 00:26:06.000]   he heard a rumbling growl reverberate from one of the many stables that edged the courtyard.
+[00:26:06.000 --> 00:26:10.000]   He looked fondly at the doors that contained his draig.
+[00:26:10.000 --> 00:26:14.000]   Kalidas stood before the closed gates of Drassil.
+[00:26:14.000 --> 00:26:17.000]   To either side of him were a host of spears driven into the ground,
+[00:26:17.000 --> 00:26:20.000]   most of them adorned with a head.
+[00:26:20.000 --> 00:26:24.000]   A handful of Vinthalen warriors were planting new spears into the ground,
+[00:26:24.000 --> 00:26:29.000]   while behind them, Kadashim prowled into the courtyard's shadows.
+[00:26:29.000 --> 00:26:34.000]   Before Kalidas knelt a ragged group of people, bound at wrist and ankle,
+[00:26:34.000 --> 00:26:38.000]   over three hundred prisoners from yesterday's battle.
+[00:26:38.000 --> 00:26:43.000]   Above them, eagle guards stood upon Drassil's walls.
+[00:26:43.000 --> 00:26:45.000]   "My warriors."
+[00:26:45.000 --> 00:26:50.000]   They were easily the best-disciplined troops amongst those that had stormed Drassil.
+[00:26:50.000 --> 00:26:58.000]   The Kadashim and many of Lycus's Vinthalen were involved in the pursuit of their scattered enemy out beyond Drassil's walls.
+[00:26:58.000 --> 00:27:05.000]   But Nathare suspected that most by far were ranging throughout the forest, looting and drinking.
+[00:27:05.000 --> 00:27:10.000]   The Kadashim were doing other things, such as eating their victims.
+[00:27:10.000 --> 00:27:13.000]   Lycus was standing behind Kalidas.
+[00:27:13.000 --> 00:27:22.000]   A dozen Vinthalen ranged about him, hard-looking men, bodies lean and muscular, skin weathered and scarred.
+[00:27:22.000 --> 00:27:26.000]   Lycus lifted a waterskin to his mouth and took a long drink.
+[00:27:26.000 --> 00:27:30.000]   "I'd wager it's not water that he's drinking."
+[00:27:30.000 --> 00:27:33.000]   The Vinthalen saw him approaching and nodded a greeting.
+[00:27:33.000 --> 00:27:36.000]   Nathare hid his disgust.
+[00:27:36.000 --> 00:27:39.000]   "Him and my mother."
+[00:27:39.000 --> 00:27:43.000]   "Ah, Nathare," Kalidas said.
+[00:27:43.000 --> 00:27:52.000]   He raised an eyebrow at the blood on Nathare's face, then saw a legion dragging the Jihar warrior across the courtyard by her ankle.
+[00:27:52.000 --> 00:27:57.000]   "Kalidas?" Nathare said with a dip of his head.
+[00:27:57.000 --> 00:28:00.000]   His old counselor was not looking his best.
+[00:28:00.000 --> 00:28:04.000]   Part of his face was burned charcoal black and peeling.
+[00:28:04.000 --> 00:28:10.000]   Silver hair was growing in tufts from patches on his head, elsewhere singed to stubble or burned clear.
+[00:28:10.000 --> 00:28:17.000]   "It would appear that the streets of Drassil are not yet cleared of our enemy," Nathare said sourly,
+[00:28:17.000 --> 00:28:21.000]   as legion dumped the Jihar warrior in front of Kalidas.
+[00:28:21.000 --> 00:28:28.000]   She groaned, pushing herself to her knees as legion's hand clamped on her shoulder, holding her before Kalidas.
+[00:28:28.000 --> 00:28:35.000]   "What is your name, child?" Kalidas asked, regarding her with his cold eyes.
+[00:28:35.000 --> 00:28:40.000]   She spat blood at Kalidas's feet and glowered up at him.
+[00:28:40.000 --> 00:28:46.000]   "Ilta," the Jihar said. "And I am no child."
+[00:28:46.000 --> 00:28:53.000]   "Well, Ilta, I shall ask you the same question that I have just put to your comrades."
+[00:28:53.000 --> 00:29:01.000]   "Where is Khoban?" "You will see him soon enough," a voice said from amongst the prisoners.
+[00:29:01.000 --> 00:29:04.000]   "He will come for you."
+[00:29:04.000 --> 00:29:13.000]   "And when he does," said Ilta, as she turned her head to look from Kalidas to Nathare and Lycos, "he will kill you all."
+[00:29:13.000 --> 00:29:24.000]   "He is a boy. A puppet. Your ill master is already slain," Kalidas said angrily, sweeping a hand towards Michael's head.
+[00:29:24.000 --> 00:29:36.000]   "You are wrong," Ilta said. "Khoban is our lord. He slew your best, Sumor, in single combat. We all saw it. He will do the same to you."
+[00:29:36.000 --> 00:29:43.000]   "Sumor," Kalidas frowned, "I saw his head decorating your gates."
+[00:29:43.000 --> 00:29:51.000]   "Khoban killed him," the prisoner's voice called out again, one vaguely familiar to Nathare.
+[00:29:51.000 --> 00:29:58.000]   A figure straightened amongst the captives, black hair hanging lank about her face.
+[00:29:58.000 --> 00:30:02.000]   "He took Sumor's head, and he will take yours too."
+[00:30:02.000 --> 00:30:06.000]   "Ah, Kohen."
+[00:30:06.000 --> 00:30:17.000]   "I want nothing more than for him to come and try," Kalidas said with a sigh, his expression mocking, but Nathare glimpsed something else in his eyes. "Doubt?"
+[00:30:17.000 --> 00:30:28.000]   "But so far, he does not seem inclined to do so," Kalidas continued. "Perhaps a message will speed him to us."
+[00:30:28.000 --> 00:30:37.000]   He looked to the Karashim. "Legion, choose one prisoner and impale them upon a spear," he ordered.
+[00:30:37.000 --> 00:30:46.000]   Legion drabbed Kohen and pulled her struggling towards a spear. "Not her," Kalidas said with a wave of his hand.
+[00:30:46.000 --> 00:30:51.000]   Legion grabbed another prisoner. He was a man of Iseltir by the look of him.
+[00:30:51.000 --> 00:30:58.000]   The Karashim hoisted him effortlessly into the air and brought him down slowly upon the upright spear.
+[00:30:58.000 --> 00:31:01.000]   Then the screaming began.
+[00:31:01.000 --> 00:31:08.000]   When it was over, the prisoner was skewered like a squirrel ready for the cook fire.
+[00:31:08.000 --> 00:31:14.000]   He was writhing upon the spear, blood pooling about his feet, screaming himself to oblivion.
+[00:31:14.000 --> 00:31:21.000]   Nathare resisted the urge to cover his ears. "On your feet," Kalidas said to Iltir.
+[00:31:21.000 --> 00:31:26.000]   "Go and tell Korban what is happening to his followers, what I am doing.
+[00:31:26.000 --> 00:31:31.000]   Tell him I will not stop until he has faced me."
+[00:31:31.000 --> 00:31:37.000]   Legion pushed her stumbling forwards as, with a rumble, the gates opened.
+[00:31:37.000 --> 00:31:43.000]   She looked back once and then ran, the gates slamming behind her.
+[00:31:43.000 --> 00:31:48.000]   Kalidas barked in order and the remaining captives were led away.
+[00:31:48.000 --> 00:31:53.000]   Kohen caught Nathare's eye as she walked in line, hatred pouring from her.
+[00:31:53.000 --> 00:31:58.000]   "We must talk soon," Kalidas said to Nathare and Lycos.
+[00:31:58.000 --> 00:32:01.000]   "High Sun and the Great Hall."
+[00:32:01.000 --> 00:32:04.000]   Then he was striding away.
+[00:32:04.000 --> 00:32:08.000]   Lycos raised an eyebrow and offered Nathare his water skin.
+[00:32:08.000 --> 00:32:13.000]   Without thinking, Nathare took it and drank, then coughed, almost choking on the contents.
+[00:32:13.000 --> 00:32:15.000]   "Is that..."
+[00:32:15.000 --> 00:32:19.000]   "Mead," Lycos finished for him.
+[00:32:19.000 --> 00:32:23.000]   "Found a dozen wagons with barrels full of the stuff."
+[00:32:23.000 --> 00:32:31.000]   Nathare handed it back to him and Lycos walked away, chuckling to himself, his Vinthalen following him.
+[00:32:31.000 --> 00:32:42.000]   Nathare headed for the wide stairs that scaled Drasil's walls and climbed to the top, stopping above the great gates where he stared out at the world beyond.
+[00:32:42.000 --> 00:32:51.000]   A wide plain circled the fortress, clear blue sky bathing the ground in sunshine before the great trees of Faun blotted it from view.
+[00:32:51.000 --> 00:32:56.000]   He caught a glimpse of Ilta just before she disappeared into the treeline.
+[00:32:56.000 --> 00:33:03.000]   Behind him, he heard the footsteps of Saesus and his eagle guard stopping a respectful distance away.
+[00:33:03.000 --> 00:33:10.000]   The screams of the impaled in the courtyard were much fainter up here, fading to a pathetic mewling.
+[00:33:10.000 --> 00:33:13.000]   He wished he would just die.
+[00:33:13.000 --> 00:33:16.000]   "How have I allowed myself to come to this?"
+[00:33:16.000 --> 00:33:27.000]   "It is for the greater good. For me to win the war, Corban must die. To bring peace to the Banished Lands, Corban must die."
+[00:33:27.000 --> 00:33:37.000]   He felt his resolve stir, but still the screams wormed their way into his head, reminding him of other battles, other deaths in the name of this great cause.
+[00:33:37.000 --> 00:33:44.000]   "And now I follow the path of Karoshim, of demons, of Asrath himself."
+[00:33:44.000 --> 00:33:50.000]   He remembered Kalidus' words to him in Murias, so persuasive.
+[00:33:50.000 --> 00:33:55.000]   It had all been so logical when Kalidus explained it, made sense of the alliances, the lies.
+[00:33:55.000 --> 00:33:59.000]   Deception upon deception heaped in a great pile.
+[00:33:59.000 --> 00:34:04.000]   "But the truth is simpler," a voice seemed to whisper inside his mind.
+[00:34:04.000 --> 00:34:07.000]   Deep down, he knew.
+[00:34:07.000 --> 00:34:18.000]   It was more basic when all was stripped away, Kalidus' persuasive arguments and philosophical debates on good and evil, right and wrong, the abstract meanings that were attached to names.
+[00:34:18.000 --> 00:34:22.000]   Politics? Power struggles? Who deserved what?
+[00:34:22.000 --> 00:34:31.000]   The honest answer was much simpler than any of those meandering debates, and one that had been clearly reinforced by his brief struggle with the Jihar warrior before him.
+[00:34:31.000 --> 00:34:35.000]   "I don't want to lose."
+[00:34:36.000 --> 00:34:39.000]   Chapter Three
+[00:34:39.000 --> 00:34:42.000]   Corellon
+[00:34:42.000 --> 00:34:51.000]   Corellon sat with her back to a tree, staring into the dawn gloom of Faun, absently twirling a knife between her fingers.
+[00:34:51.000 --> 00:34:57.000]   Behind her were the sleeping forms of threescore or so of the survivors with whom she had fled Drassil.
+[00:34:57.000 --> 00:35:08.000]   Amongst them was Brina, gray hair poking from beneath her cloak. Beside her the bolts of feral and laith curled close together.
+[00:35:08.000 --> 00:35:14.000]   She glimpsed the Jihar, Akkar, standing guard on the far side of their camp.
+[00:35:14.000 --> 00:35:23.000]   Exhaustion hovered at the fringes of her consciousness, and in so many ways it would be wonderful to lose herself in the nothingness of sleep.
+[00:35:23.000 --> 00:35:25.000]   But she couldn't.
+[00:35:25.000 --> 00:35:34.000]   Her mind was reeling. A whirlwind of grief, fear, and rage as fractured moments of the previous day played out in her mind's eye.
+[00:35:34.000 --> 00:35:39.000]   Out of them all, though, everything kept returning to one thought circling.
+[00:35:39.000 --> 00:35:42.000]   "Where is Corbin?"
+[00:35:42.000 --> 00:35:53.000]   The fog of tiredness crept upon her again. A relentless assault, but she knew that sleep would not come. The shock and horror of yesterday's battle was still too present.
+[00:35:53.000 --> 00:35:58.000]   There was a soft footfall from behind, and a figure came to stand beside her.
+[00:35:58.000 --> 00:36:00.000]   Gar.
+[00:36:00.000 --> 00:36:06.000]   The lord of the Jihar looked at her, lines of worry etched upon his usually unreadable face.
+[00:36:06.000 --> 00:36:17.000]   He was clothed in a shirt of dark chainmail, splattered with grime and blood, his curved sword sheathed across his back, a single-bladed throwing axe hanging at his belt.
+[00:36:17.000 --> 00:36:24.000]   Even he was not free of injury. A bloodstained bandage was tied around his forehead.
+[00:36:24.000 --> 00:36:34.000]   "Storm is with him," Gar said, as if he could read her thoughts. "They must be as plain to read upon my face as are his."
+[00:36:34.000 --> 00:36:36.000]   Storm.
+[00:36:36.000 --> 00:36:48.000]   That was a measure of comfort. Corolin knew that the wolfen was a better guardian than a dozen shieldmen, but still... "We will find him," Gar said.
+[00:36:48.000 --> 00:36:56.000]   Corolin had seen the familiar scuff marks of Storm's claws in the tunnel, which was why they had exited at this spot.
+[00:36:56.000 --> 00:37:07.000]   After a brief search, she'd found mawtracks, leading to the brow of the slope, but darkness had settled upon them, and no matter how frustrating, it was pointless to stumble around in the dark.
+[00:37:07.000 --> 00:37:10.000]   But where can Corbin be?
+[00:37:10.000 --> 00:37:16.000]   He must have heard the din of battle from Drassil, even if he were this far away.
+[00:37:16.000 --> 00:37:24.000]   The thoughts rose unbidden in her mind, the one thought she had refused to acknowledge throughout the long dark of night.
+[00:37:24.000 --> 00:37:27.000]   What if he is slain?
+[00:37:27.000 --> 00:37:31.000]   What else could have kept him from returning to Drassil?
+[00:37:31.000 --> 00:37:36.000]   She felt a worm of fear wriggling through her belly but refused to consider it.
+[00:37:36.000 --> 00:37:40.000]   "He lives. He must."
+[00:37:40.000 --> 00:37:48.000]   She nodded and stood, sheathing her knife, a myriad of cuts, bruises, and strains aching for attention.
+[00:37:48.000 --> 00:37:50.000]   She ignored them all.
+[00:37:50.000 --> 00:37:54.000]   "We need to go," she said.
+[00:37:54.000 --> 00:37:57.000]   "Aye," Gar agreed.
+[00:37:57.000 --> 00:38:01.000]   He continued to stare at the trapdoor.
+[00:38:01.000 --> 00:38:06.000]   "I had hoped that Maekal would find us. That he escaped."
+[00:38:06.000 --> 00:38:09.000]   Corolin remembered her last sight of the Benelim.
+[00:38:09.000 --> 00:38:17.000]   Wielding his sword, two-handed, feet planted before the entrance to the tunnel in Drassil's great hall as they had retreated into its shadows.
+[00:38:17.000 --> 00:38:27.000]   Swaths of blood had surrounded him as he swung his sword in deadly arcs, holding back the enemy, protecting them, purchasing them time to escape.
+[00:38:27.000 --> 00:38:32.000]   "He would have come by now, if he could," Corolin said.
+[00:38:32.000 --> 00:38:35.000]   Gar sighed and nodded.
+[00:38:35.000 --> 00:38:40.000]   Corolin cocked her head, listening, staring down the hill.
+[00:38:40.000 --> 00:38:45.000]   Something was moving in the undergrowth, heading towards the trapdoor.
+[00:38:45.000 --> 00:38:53.000]   Gar saw it too, and without words the two of them separated, slipping into the shadows as they quietly surrounded the intruder.
+[00:38:53.000 --> 00:38:59.000]   Bushes rustled, a twig snapped, and Corolin caught a glimpse of dark hair.
+[00:38:59.000 --> 00:39:04.000]   She knew it wasn't Corbin. Even he isn't that clumsy.
+[00:39:04.000 --> 00:39:14.000]   A figure burst from the undergrowth, a young man clad in leather and wool, his dark hair tousled, and a scabbing cut marking his forehead.
+[00:39:14.000 --> 00:39:20.000]   He started at the sight of her, fumbled for a weapon at his belt, his eyes widening.
+[00:39:20.000 --> 00:39:25.000]   "I know you," Corolin said, though she didn't remember his name.
+[00:39:25.000 --> 00:39:28.000]   "Your da is Atilius."
+[00:39:28.000 --> 00:39:35.000]   A competent, unassuming warrior, Atilius had been a slave oarsman on a Vinthalan ship.
+[00:39:35.000 --> 00:39:39.000]   The lad nodded, his lip trembling.
+[00:39:39.000 --> 00:39:48.000]   "Pax? What are you doing here?" Gar said, stepping silently from the shadows, making the young warrior jump again.
+[00:39:48.000 --> 00:39:54.000]   "You must come quickly," Pax blurted. "My da, Corbin, giants."
+[00:39:54.000 --> 00:39:59.000]   "Corbin?" Corolin hissed. "Aye, we must go."
+[00:39:59.000 --> 00:40:05.000]   Tears were spilling down Pax's cheeks now, tracing tracks through blood and grime.
+[00:40:05.000 --> 00:40:07.000]   "He's dead."
+[00:40:07.000 --> 00:40:12.000]   Corolin froze, feeling as if a fist had just clamped around her heart.
+[00:40:12.000 --> 00:40:16.000]   "I ran," Pax said.
+[00:40:16.000 --> 00:40:21.000]   He began to shake, an involuntary twitching that quickly became more violent.
+[00:40:21.000 --> 00:40:32.000]   "Where is Corbin?" Corolin asked, trying to control the panic leaking through her, reaching out to grab the now sobbing boy and shake the sense from him.
+[00:40:32.000 --> 00:40:44.000]   "Hold," Gar said, putting a hand upon her arm. "Pax, you must tell us as clearly as you can. Where is Corbin and your da? What happened?"
+[00:40:44.000 --> 00:40:52.000]   Others were coming down the hill now, corralling glimpses of dath and color, a handful of Jeha laith looming behind them.
+[00:40:52.000 --> 00:41:01.000]   "We heard fighting. Knew Corbin was out there," Pax began haltingly. "We found him, facing giants and bears."
+[00:41:01.000 --> 00:41:05.000]   "What? But there were no giants beneath there at Drassil."
+[00:41:05.000 --> 00:41:11.000]   "Da? He threw a spear at a giant. Then we all ran. We thought we'd lost them. Then..."
+[00:41:11.000 --> 00:41:18.000]   "Go on," Gar said. The whole group was gathered around them now, listening in absolute silence.
+[00:41:18.000 --> 00:41:24.000]   "They came from nowhere, my da."
+[00:41:24.000 --> 00:41:28.000]   He rubbed his eyes, blew out a long breath.
+[00:41:28.000 --> 00:41:34.000]   "They killed my da. Corbin told me to run, to fetch help."
+[00:41:34.000 --> 00:41:40.000]   "When did this happen?" Gar asked, not able to keep the urgency from his voice.
+[00:41:40.000 --> 00:41:44.000]   "Yesterday, after Hai's son, before sunset."
+[00:41:44.000 --> 00:41:49.000]   Pax's face had grown paler as he spoke. Now he looked like a corpse.
+[00:41:49.000 --> 00:41:53.000]   "I ran. I fell, hit my head."
+[00:41:53.000 --> 00:41:56.000]   He raised a hand to the cut on his brow.
+[00:41:56.000 --> 00:42:02.000]   "When I came to? It was dark. I've been trying to find my way since then."
+[00:42:02.000 --> 00:42:05.000]   "Take us, now," Gar said.
+[00:42:05.000 --> 00:42:12.000]   "I will try," Pax nodded. "I became lost for a while, but I know it was that direction."
+[00:42:12.000 --> 00:42:21.000]   Gar barked orders and then they were moving, Corolin taking the lead with Pax, Gar jogging beside the lad, a steadying hand on his arm.
+[00:42:21.000 --> 00:42:27.000]   Corwin Storm, facing giants, alone. "Yesterday."
+[00:42:27.000 --> 00:42:33.000]   She sent a silent prayer to Elion, one of many that she had made over the last half day.
+[00:42:33.000 --> 00:42:36.000]   "Let them still live."
+[00:42:36.000 --> 00:42:45.000]   Corolin was the first to enter the glade. At its far end was a sudden ridge, and beyond it, the sound of a fast-flowing river.
+[00:42:45.000 --> 00:42:50.000]   The smell hit her first, the metallic tang of blood and decay.
+[00:42:50.000 --> 00:42:52.000]   Death.
+[00:42:52.000 --> 00:42:57.000]   Flies were buzzing in great clouds about bodies heaped on the floor.
+[00:42:57.000 --> 00:43:04.000]   She counted three giant corpses on the ground, and Atilius, pinned to a great oak by a giant's axe.
+[00:43:04.000 --> 00:43:07.000]   She could not see Corbin or Storm.
+[00:43:07.000 --> 00:43:17.000]   She ran to the first giant, who was on his back, a hole in his belly, throat cleanly cut, his wrist bearing the telltale, ripping wounds of the Wolfen.
+[00:43:17.000 --> 00:43:28.000]   Corolin moved on, dimly aware of others spilling into the glade behind her, the sound of Pax's sobs as he dropped to his knees before his da, Gar's presence at her shoulder.
+[00:43:28.000 --> 00:43:36.000]   The other two giants were close together, the ground trampled, rutted, dark and still sticky with blood.
+[00:43:36.000 --> 00:43:42.000]   One's throat had been ripped out by Storm, the flesh mangled and torn.
+[00:43:42.000 --> 00:43:46.000]   He is not here, nor Storm.
+[00:43:46.000 --> 00:43:55.000]   The relief was a physical thing, though she knew their absence did not mean that they were safe or even alive, but it was clear they had fought here and won.
+[00:43:55.000 --> 00:43:58.000]   They slew three giants.
+[00:43:58.000 --> 00:44:09.000]   She felt a flush of pride at that feat, knew that it would be a story told around the campfire this very night, adding to the tales that were growing up around Corbin and his Wolfen companion.
+[00:44:09.000 --> 00:44:13.000]   The other giant lay upon his front.
+[00:44:13.000 --> 00:44:21.000]   Gar and Corolin tried to turn him over together, flies buzzed angrily, the huge warrior's dead weight like a boulder.
+[00:44:21.000 --> 00:44:29.000]   Farrell and Laith joined them, and together they rolled the giant, the stench of corruption and decay wafting up to them as they disturbed the body.
+[00:44:29.000 --> 00:44:36.000]   "He is of the Jotun clan," Laith spat as they stood and stared at the dead giant.
+[00:44:36.000 --> 00:44:39.000]   "What are they doing here?"
+[00:44:39.000 --> 00:44:43.000]   Corolin's eyes were drawn to the glint of leather and iron amidst the congealed blood.
+[00:44:43.000 --> 00:44:50.000]   She bent and wrapped a fist around the hilt of a sword buried deep in the giant's thigh, angled upwards into its groin.
+[00:44:50.000 --> 00:44:58.000]   It came free with a sucking sound, and she lifted it for them all to see, the pommel shaped like a howling wolfen.
+[00:44:58.000 --> 00:45:03.000]   The relief she'd felt fled, replaced by the crushing weight of fear.
+[00:45:03.000 --> 00:45:10.000]   "That's Ban's sword," Dath said as he joined them, colour a pace behind him.
+[00:45:10.000 --> 00:45:15.000]   Corolin stared at them a moment, felt a wave of sympathy for them.
+[00:45:15.000 --> 00:45:18.000]   They'd been wed less than two nights.
+[00:45:18.000 --> 00:45:21.000]   Gar took the sword from her and stared at it.
+[00:45:21.000 --> 00:45:25.000]   I watched Ban's da give him this blade.
+[00:45:25.000 --> 00:45:30.000]   "In the Rowan field at Duncarig," Farrell said. "I remember it."
+[00:45:30.000 --> 00:45:33.000]   "And I?" Dath muttered.
+[00:45:33.000 --> 00:45:39.000]   Corolin turned away, her eyes scanning the ground, searching for any sign.
+[00:45:39.000 --> 00:45:42.000]   "He is not here. Storm is not here."
+[00:45:42.000 --> 00:45:48.000]   "They escaped, but they did not make their way back to Drassil. Why?"
+[00:45:48.000 --> 00:45:51.000]   Briner was on her knees beside the giant.
+[00:45:51.000 --> 00:45:58.000]   The old healer had a file in one hand, a knife in the other that she was using to scrape blood from the trampled grass.
+[00:45:58.000 --> 00:46:07.000]   One side of Briner's face was still an angry red, seared by the explosion she had generated that had rocked the chamber in Drassil yesterday.
+[00:46:07.000 --> 00:46:13.000]   Whatever benefit Briner thought the giant's blood would bring, she was welcome to it.
+[00:46:13.000 --> 00:46:19.000]   As Corolin scanned the rest of the clearing, her eyes caught a patch of crushed grass spattered with blood.
+[00:46:19.000 --> 00:46:25.000]   It was close to the edge of the glade, leading to a sheer drop to the river below.
+[00:46:25.000 --> 00:46:28.000]   As if something were dragged.
+[00:46:28.000 --> 00:46:34.000]   She followed the marks and dropped to a crouch, looking down to the river.
+[00:46:34.000 --> 00:46:39.000]   Further down she spied a dark smear on a boulder. Blood.
+[00:46:39.000 --> 00:46:43.000]   "They jumped into the river!" she called out.
+[00:46:43.000 --> 00:46:49.000]   Gar was first to join her. His eyes found the same evidence, and he gripped her wrist.
+[00:46:49.000 --> 00:46:53.000]   "After them," he said.
+[00:46:53.000 --> 00:47:00.000]   Corolin led the way, running along the ridge that shadowed the river, twisting around thick-rooted trees in dense vegetation,
+[00:47:00.000 --> 00:47:05.000]   her eyes flitting between the path she was navigating and the banks of the river.
+[00:47:05.000 --> 00:47:14.000]   Rounding a sharp bend in the path, she suddenly saw a shape lying on a grassy verge, firm-hatted and blood-stained.
+[00:47:14.000 --> 00:47:16.000]   Her heart stopped.
+[00:47:16.000 --> 00:47:18.000]   Storm.
+[00:47:18.000 --> 00:47:25.000]   She skidded to a halt on the ridge above the wolfen, a part of her mind noticing large boot prints in the grass.
+[00:47:25.000 --> 00:47:33.000]   In a spray of dirt, she scrambled over the edge, clinging to root and vine as she made her way down to the riverbank.
+[00:47:33.000 --> 00:47:41.000]   Storm lay still as stone, and she was covered in blood a huge wound was visible above her shoulder.
+[00:47:41.000 --> 00:47:47.000]   Corolin crouched, too scared to touch her, not wanting to confirm what her eyes were telling her.
+[00:47:47.000 --> 00:47:55.000]   Stifling tears, she remembered the first time she had seen Storm when she had threatened to turn the wolfen into a cloak.
+[00:47:55.000 --> 00:48:01.000]   Even then, she had seen the bond between Corbin and his faithful and vigilant shadow.
+[00:48:01.000 --> 00:48:08.000]   Since then, she had developed her own bond with the wolfen, more like a sword brother to her than a mere animal.
+[00:48:08.000 --> 00:48:14.000]   As Gar joined her, she tentatively reached out her hand and laid it upon Storm's body.
+[00:48:14.000 --> 00:48:20.000]   She felt nothing. "No. Please, Elion above."
+[00:48:20.000 --> 00:48:32.000]   She screwed her eyes shut tight, pressed harder, flattening her palm against Storm's deep chest, willing her hand to feel the movement of life, a drawn breath, the pumping of Storm's heart.
+[00:48:32.000 --> 00:48:40.000]   With every moment, her hopes faded, a bleakness taking hold inside, spreading through her like ink through water.
+[00:48:40.000 --> 00:48:48.000]   And then, she felt it. A flicker, a heartbeat deep within the cavern of Storm's broad chest.
+[00:48:48.000 --> 00:48:52.000]   Corolin opened her eyes and saw Storm's amber gaze regarding her.
+[00:48:52.000 --> 00:48:58.000]   The wolfen whined, a weak, miserable sound, but one that gave Corolin a rush of joy.
+[00:48:58.000 --> 00:49:05.000]   Storm's tail thumped feebly on the turf.
+[00:49:05.000 --> 00:49:10.000]   Chapter 4 - Corbin
+[00:49:10.000 --> 00:49:17.000]   Corbin walked through a world of grey, dimly aware that he was staggering close to a wide and dark river.
+[00:49:17.000 --> 00:49:23.000]   There was a splash and a wide ripple, the hint of something large and sinuous in its depths.
+[00:49:23.000 --> 00:49:32.000]   Bloated dark clouds boiled above him, flickering with lightning, and black shapes winged through them with an occasional gleam of chainmail and iron.
+[00:49:32.000 --> 00:49:35.000]   "This is the Otherworld."
+[00:49:35.000 --> 00:49:41.000]   His knee throbbed and a pain spasmed through his chest with every in-drawn breath.
+[00:49:41.000 --> 00:49:46.000]   He fixed his eyes on the ground before him, concentrating on each step.
+[00:49:46.000 --> 00:49:54.000]   There had always been an element of the Otherworld that calmed him, a serenity that settled within him that gave him a sense of strength and hope.
+[00:49:54.000 --> 00:50:01.000]   But this time was different. There was something frayed about the peacefulness. It felt force.
+[00:50:01.000 --> 00:50:07.000]   Something lurked at the fringes of his mind, trying, needing to be remembered.
+[00:50:07.000 --> 00:50:15.000]   When next he looked up, the river was flowing into a valley, cliffs rearing up by the side of him tall and forbidding.
+[00:50:15.000 --> 00:50:23.000]   Ahead of him, the river spilt into a lake. Vibrant colour was seeping into the landscape with every step into the valley.
+[00:50:23.000 --> 00:50:29.000]   The grass grew greener, the river bluer, as if colour were seeping up from the rock below.
+[00:50:29.000 --> 00:50:33.000]   "I know this place. I've been here before."
+[00:50:33.000 --> 00:50:39.000]   The green valley and the lake of deep blue. Gentle waves lapped against the shore.
+[00:50:39.000 --> 00:50:47.000]   A sound drew Corbin's eye towards the lake's heart, a splash and ripples, as if a stone had been thrown into water.
+[00:50:47.000 --> 00:50:54.000]   His memory prodded at him and his eyes wandered back to the lakeshore, searching for something else, and then he saw it.
+[00:50:54.000 --> 00:50:59.000]   The red-leafed maple that he had once sat beneath.
+[00:50:59.000 --> 00:51:03.000]   Without thinking, he made his way to it and sat down, his back to the trunk.
+[00:51:03.000 --> 00:51:09.000]   Everything was still, no breeze to stir the grass or leaves, no hum of insects.
+[00:51:09.000 --> 00:51:12.000]   The silence was oppressive.
+[00:51:12.000 --> 00:51:18.000]   And then, high above, like a heartbeat, there was a beat of wings.
+[00:51:18.000 --> 00:51:25.000]   He glanced up through the lattice of leaf and bark and saw a figure silhouetted against the clouds, human-like,
+[00:51:25.000 --> 00:51:31.000]   a spear clutched in one hand, broad, white-feathered wings powering it through the air.
+[00:51:31.000 --> 00:51:37.000]   The Ben-elim. Maikal. Maikal.
+[00:51:37.000 --> 00:51:41.000]   Then, like an avalanche, he remembered.
+[00:51:41.000 --> 00:51:47.000]   Maikal, in the great hall of Drassil, telling Corwin about the deception of the Ben-elim,
+[00:51:47.000 --> 00:51:54.000]   how the prophecy was nothing more than a strategy, a trick to force Asroth's hand to lure Calidus and the Karashim to Drassil.
+[00:51:54.000 --> 00:52:02.000]   That the bright star and black sun were an invention, fabricated to snare Asroth in the trap of his own making.
+[00:52:02.000 --> 00:52:09.000]   A sound strategy, maybe, in the great war between Ben-elim and Karashim, the faithful and the fallen,
+[00:52:09.000 --> 00:52:14.000]   apart from the fact that it used people's lives like pawns on a throwboard.
+[00:52:14.000 --> 00:52:19.000]   My Da's life. My Maam's. So many others.
+[00:52:19.000 --> 00:52:25.000]   Rage swept through him, veined with betrayal at the memory of Maikal's confession.
+[00:52:25.000 --> 00:52:31.000]   He remembered resisting the urge to strike Maikal, then leaving, knowing his rage was at the boundaries of his control,
+[00:52:31.000 --> 00:52:35.000]   and had ended up sitting upon a hill in the forest.
+[00:52:35.000 --> 00:52:43.000]   He had sat there a long time, contemplating Maikal's words, trying to make some sense of what it would mean for the future.
+[00:52:43.000 --> 00:52:46.000]   And then the Jotun giants had come.
+[00:52:46.000 --> 00:52:52.000]   Ildir, their warlord, Slayer of Tuckle, Ghaz'dah.
+[00:52:52.000 --> 00:52:58.000]   Images flickered through his mind, a bear roaring, spittles spraying from its red maw,
+[00:52:58.000 --> 00:53:04.000]   running, foliage whipping his face, the thunder of the bear's pursuit, the wounds to his knee and chest,
+[00:53:04.000 --> 00:53:10.000]   a spear piercing Storm, a river, ice-cold water.
+[00:53:10.000 --> 00:53:14.000]   Storm howling as giants had dragged him away from her side.
+[00:53:14.000 --> 00:53:16.000]   Storm.
+[00:53:16.000 --> 00:53:22.000]   Pain shuddered through Corbin's chest as if someone were gripping his heart, squeezing and twisting it.
+[00:53:22.000 --> 00:53:24.000]   He couldn't breathe.
+[00:53:24.000 --> 00:53:27.000]   His sorrow was a physical thing that crushed the air from his lungs.
+[00:53:27.000 --> 00:53:32.000]   He staggered towards the lake, dropping to his knees at the water's edge.
+[00:53:32.000 --> 00:53:38.000]   Even as he did so, more memories flooded his mind, an unstoppable wave of drasil,
+[00:53:38.000 --> 00:53:42.000]   the frantic blowing of horns and sound of battle that had drifted up to him.
+[00:53:42.000 --> 00:53:46.000]   Images of his loved ones swam before his eyes.
+[00:53:46.000 --> 00:53:52.000]   Corolin, Ghah, Coen, Daph and Feral, Brynna, so many others.
+[00:53:52.000 --> 00:53:54.000]   Do they still live?
+[00:53:54.000 --> 00:53:57.000]   Who was attacking drasil?
+[00:53:57.000 --> 00:54:01.000]   Dimly he became aware of movement.
+[00:54:01.000 --> 00:54:07.000]   Before him, the water of the lake started to shift and foam, something rising from the depths.
+[00:54:07.000 --> 00:54:13.000]   A shape appeared, water cascading and masking for a moment the creature within.
+[00:54:13.000 --> 00:54:21.000]   Then a man was striding from the lake, with water dripping from the dark cloak that trailed him like seaweed.
+[00:54:21.000 --> 00:54:23.000]   He approached Corbin.
+[00:54:23.000 --> 00:54:26.000]   An interested, amicable smile upon his face.
+[00:54:26.000 --> 00:54:29.000]   His skin was grey-mottled and veined like a dead thing.
+[00:54:29.000 --> 00:54:31.000]   His hair was black and slick as oil.
+[00:54:31.000 --> 00:54:35.000]   A black, scabbarded sword hung at his hip.
+[00:54:35.000 --> 00:54:42.000]   "Well," the man said, "it's not often that I get visitors."
+[00:54:42.000 --> 00:54:47.000]   His voice was liquid, flowing like a shallow stream over shingle.
+[00:54:47.000 --> 00:54:51.000]   "What brings you to my home?"
+[00:54:51.000 --> 00:54:55.000]   "I... I've been here before," Corbin said.
+[00:54:55.000 --> 00:54:59.000]   "I know. I've watched you."
+[00:54:59.000 --> 00:55:09.000]   "This is the other world," Corbin said. "It is. And this lake, this tree, this valley,"
+[00:55:09.000 --> 00:55:14.000]   the dark-haired man said with a wave of his hands, "are mine."
+[00:55:14.000 --> 00:55:17.000]   He shrugged. Water dripped from his hair.
+[00:55:17.000 --> 00:55:22.000]   "Are you... Ben Ellum?" Corbin asked.
+[00:55:22.000 --> 00:55:25.000]   The man laughed, a damp exhalation.
+[00:55:25.000 --> 00:55:31.000]   "Those pompous fools. No, though to my shame we are related."
+[00:55:31.000 --> 00:55:34.000]   "Caris him?" Corbin asked, fearful.
+[00:55:34.000 --> 00:55:36.000]   "Hardly." The man snorted.
+[00:55:36.000 --> 00:55:42.000]   "Those fawning debauched deviants. Do I look like one of them?"
+[00:55:42.000 --> 00:55:49.000]   "No," Corbin admitted. "Well, then, I am just me. Vaiarthen."
+[00:55:49.000 --> 00:55:54.000]   He lifted his hands, held one up to the sky, splayed his fingers.
+[00:55:54.000 --> 00:55:58.000]   Corbin saw that they were webbed like a frog's feet.
+[00:55:58.000 --> 00:56:04.000]   "You are from the world of flesh, are you not?" the man said.
+[00:56:04.000 --> 00:56:11.000]   Corbin nodded wearily. "And what is your name, creature of flesh?"
+[00:56:11.000 --> 00:56:16.000]   Vaiarthen asked him, leaning in uncomfortably close,
+[00:56:16.000 --> 00:56:21.000]   his breath washing over Corbin moist and full of rot.
+[00:56:21.000 --> 00:56:24.000]   Corbin did not want to tell him.
+[00:56:24.000 --> 00:56:30.000]   "I'm... going to go now," he said, standing, wanting to be far away from this creature.
+[00:56:30.000 --> 00:56:34.000]   "I don't think so," Vaiarthen sighed.
+[00:56:34.000 --> 00:56:41.000]   "I think we should continue this conversation somewhere a little more... private."
+[00:56:41.000 --> 00:56:47.000]   Corbin backed away, turning to leave. Something grabbed his ankle.
+[00:56:47.000 --> 00:56:53.000]   Looking down, he saw that it was a tendril of Vaiarthen's cloak, flexing like a grasping limb.
+[00:56:53.000 --> 00:56:56.000]   It wrapped itself around his leg as Vaiarthen walked back towards the lake.
+[00:56:56.000 --> 00:57:02.000]   Then, with shocking strength, the cloak pulled tight and started dragging Corbin.
+[00:57:02.000 --> 00:57:05.000]   "For a moment," Corbin was too shocked to resist,
+[00:57:05.000 --> 00:57:10.000]   but then he scrambled back, yanking at his ankle, hand grasping for his sword.
+[00:57:10.000 --> 00:57:16.000]   "Come on, don't dally," Vaiarthen called over his shoulder as he reached the lake.
+[00:57:16.000 --> 00:57:19.000]   He walked in, sinking rapidly.
+[00:57:19.000 --> 00:57:25.000]   The cloak seemed to split, to flow, forming a myriad of strands, reaching up to Corbin,
+[00:57:25.000 --> 00:57:29.000]   each one contracting around his ankles, wrists, and throat.
+[00:57:29.000 --> 00:57:36.000]   Then he was being pulled down to the lakeshore, trussed like a fly in a spider's web, into the water.
+[00:57:36.000 --> 00:57:39.000]   Panic filled him as his head sank beneath the surface,
+[00:57:39.000 --> 00:57:45.000]   and he struggled desperately, straining, veins bulging, muscles screaming.
+[00:57:45.000 --> 00:57:50.000]   With a sinew-tearing effort, he pulled one arm free and then he was bursting out of the water,
+[00:57:50.000 --> 00:57:53.000]   hoisted into the air, dangling before the creature,
+[00:57:53.000 --> 00:57:58.000]   held up by his dark cloak that looked now more like a squirming nest of snakes.
+[00:57:58.000 --> 00:58:04.000]   Corbin gasped for breath, ripping at the cloak strands, enclosing him to little effect.
+[00:58:04.000 --> 00:58:07.000]   Vaiarthen regarded him with a cold fascination.
+[00:58:07.000 --> 00:58:14.000]   "Tell me your name," Vaiarthen said, anger swelling in his voice the crash of waves upon rocks.
+[00:58:14.000 --> 00:58:18.000]   "Let me go," Corbin grunted through his constricted chest.
+[00:58:18.000 --> 00:58:26.000]   "You have trespassed here, disturbed my rest," Vaiarthen said wetly as he pulled Corbin closer.
+[00:58:26.000 --> 00:58:36.000]   "In return, I will have some answers, and then, after, I may see how you taste."
+[00:58:36.000 --> 00:58:40.000]   A wave of found breath engulfed Corbin, making his stomach lurch.
+[00:58:40.000 --> 00:58:48.000]   "What are you?" Corbin coughed. "I am Vaiarthen," the creature said,
+[00:58:48.000 --> 00:58:53.000]   his mouth opening wide, seeming to grow before Corbin's eyes, wider and wider,
+[00:58:53.000 --> 00:58:57.000]   revealing rows of razor-sharp teeth glistening and dripping with mucus.
+[00:58:57.000 --> 00:59:02.000]   "Eater of Souls."
+[00:59:02.000 --> 00:59:08.000]   There was a whistling sound, and a spear slammed into Vaiarthen's cloak, piercing it.
+[00:59:08.000 --> 00:59:12.000]   Vaiarthen screamed as Ben-Elim swept down from the sky.
+[00:59:12.000 --> 00:59:16.000]   More spears flew, stabbing into Vaiarthen's body.
+[00:59:16.000 --> 00:59:20.000]   His yell deepened into a bellow of pain and rage,
+[00:59:20.000 --> 00:59:25.000]   and Corbin found himself thrown to the ground as the creature turned its attention to its attackers.
+[00:59:25.000 --> 00:59:30.000]   Then hands were grasping Corbin, and he was hoisted into the air again.
+[00:59:30.000 --> 00:59:36.000]   There was a Ben-Elim either side of him, surging skywards, their wings beating hard.
+[00:59:36.000 --> 00:59:40.000]   Within heartbeats, the conflict in the lake was below them,
+[00:59:40.000 --> 00:59:44.000]   Vaiarthen and his living cloak sinking into the water,
+[00:59:44.000 --> 00:59:48.000]   one strand coiling around a Ben-Elim, dragging it beneath the surface.
+[00:59:48.000 --> 00:59:54.000]   The Ben-Elim's scream cut short as the water closed over its head.
+[00:59:54.000 --> 00:59:58.000]   They flew higher, following the course of a winding valley,
+[00:59:58.000 --> 01:00:01.000]   twisting and turning amongst peaks and sheer cliffs,
+output_vtt: saving output to './bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.medium.en.d3600000.vtt'
+
+whisper_print_timings:     load time =   569.79 ms
+whisper_print_timings:     fallbacks =   0 p /   0 h
+whisper_print_timings:      mel time = 44703.23 ms
+whisper_print_timings:   sample time = 16612.43 ms / 64246 runs (    0.26 ms per run)
+whisper_print_timings:   encode time = 77344.52 ms /   139 runs (  556.44 ms per run)
+whisper_print_timings:   decode time =  2788.40 ms /   190 runs (   14.68 ms per run)
+whisper_print_timings:   batchd time = 310000.34 ms / 63362 runs (    4.89 ms per run)
+whisper_print_timings:   prompt time = 15287.33 ms / 30965 runs (    0.49 ms per run)
+whisper_print_timings:    total time = 468915.56 ms
+ggml_metal_free: deallocating
+ggml_metal_free: deallocating
+
+468.976s
