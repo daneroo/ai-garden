@@ -41,7 +41,11 @@ From there the .wav files are created and transcribed.
 
 ## Setup (whisper.cpp)
 
-### Whisper.cpp clone and/ort update
+See Nix pkg: <https://github.com/NixOS/nixpkgs/blob/nixos-23.11/pkgs/tools/audio/openai-whisper-cpp/default.nix#L57>
+
+The brew formula has problems using METAL/GPU.
+
+### Whisper.cpp clone and/or update
 
 The upstream repo [whisper.cpp](https://github.com/daneroo/whisper.cpp/tree/master) in `external-repos`
 
@@ -71,10 +75,10 @@ bash ./models/download-ggml-model.sh small.en
 bash ./models/download-ggml-model.sh medium.en
 
 du -sm models/ggml*bin|sort -n
-75 models/ggml-tiny.en.bin
-145 models/ggml-base.en.bin
-469 models/ggml-small.en.bin
-1468 models/ggml-medium.en.bin
+75      models/ggml-tiny.en.bin
+146     models/ggml-base.en.bin
+481     models/ggml-small.en.bin
+1472    models/ggml-medium.en.bin
 ```
 
 ### Build the main binary
@@ -88,63 +92,52 @@ make
 ./main -m models/ggml-tiny.en.bin -f samples/jfk.wav
 ```
 
+### Neural Engine: ANE
+
+I built the binary with WHISPER_COREML=1,etc as in the README, but it made **no difference in runtime**.
+
+```bash
+# ?? asdf local python 3.10.0
+python3 -m venv py310-whisper
+source py310-whisper/bin/activate
+pip install ane_transformers openai-whisper coremltools
+
+./models/generate-coreml-model.sh base.en
+# using Makefile
+make clean
+WHISPER_COREML=1 make -j
+
+deactivate
+```
+
 ## Benchmarks
+
+you can use `./bench.sh` to re-run the benchmarks.
 
 On Mac Mini M2 Pro 32GB
 
-```bash
-# ggml-metal - models/ggml-base.en.bin - 1 thread - 16minutes
+Running whisper.sh with the following parameters:
+BASEDIR: John Gwynne - Faithful and the Fallen 04 - Wrath
+OUTDIR: ./bench-results
+MODELS: tiny.en base.en
+DURATIONS: 60000 120000
 
-# -d duration 1 hour 3600000 x model size
-time ./main -f ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.wav -d 3600000 -m models/ggml-tiny.en.bin
-whisper_print_timings:      mel time = 42274.54 ms
-whisper_print_timings:   sample time =  4920.10 ms / 12981 runs (    0.38 ms per run)
-whisper_print_timings:   encode time =  4720.96 ms /   135 runs (   34.97 ms per run)
-whisper_print_timings:   decode time = 17601.31 ms / 12847 runs (    1.37 ms per run)
-whisper_print_timings:   prompt time =   762.09 ms /   134 runs (    5.69 ms per run)
-whisper_print_timings:    total time = 71772.46 ms
+| Model   | Duration 1 (min) | Duration 2 (min) |
+| ------- | ---------------- | ---------------- |
+| tiny.en | 47               | 49               |
+| base.en | 48               | 48               |
 
-time ./main -f ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.wav -d 3600000 -m models/ggml-base.en.bin
-whisper_print_timings:      mel time = 42378.63 ms
-whisper_print_timings:   sample time =  4690.46 ms / 12051 runs (    0.39 ms per run)
-whisper_print_timings:   encode time = 10618.96 ms /   162 runs (   65.55 ms per run)
-whisper_print_timings:   decode time = 25354.13 ms / 11890 runs (    2.13 ms per run)
-whisper_print_timings:   prompt time =  1743.80 ms /   161 runs (   10.83 ms per run)
-whisper_print_timings:    total time = 86311.54 ms
+Prompt to convert results.md:
 
-time ./main -f ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.wav -d 3600000 -m models/ggml-small.en.bin
-whisper_print_timings:      mel time = 42287.89 ms
-whisper_print_timings:   sample time =  4930.70 ms / 12836 runs (    0.38 ms per run)
-whisper_print_timings:   encode time = 27163.83 ms /   140 runs (  194.03 ms per run)
-whisper_print_timings:   decode time = 67844.86 ms / 12697 runs (    5.34 ms per run)
-whisper_print_timings:   prompt time =  4650.46 ms /   139 runs (   33.46 ms per run)
-whisper_print_timings:    total time = 148541.02 ms
-
-time ./main -f ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.wav -d 3600000 -m models/ggml-medium.en.bin
-whisper_print_timings:      mel time = 47669.28 ms
-whisper_print_timings:   sample time =  5132.43 ms / 13573 runs (    0.38 ms per run)
-whisper_print_timings:   encode time = 72753.66 ms /   132 runs (  551.16 ms per run)
-whisper_print_timings:   decode time = 166653.44 ms / 13440 runs (   12.40 ms per run)
-whisper_print_timings:   prompt time = 12492.16 ms /   132 runs (   94.64 ms per run)
-whisper_print_timings:    total time = 306824.75 ms
-
-# tiny.en - metal: 8 threads - slower than 4 threads??
-time ./main -f ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.wav -d 3600000 -m models/ggml-tiny.en.bin -t 8 -p 4
-whisper_print_timings:      mel time = 53952.79 ms
-whisper_print_timings:   sample time =  4988.94 ms / 12981 runs (    0.38 ms per run)
-whisper_print_timings:   encode time =  4950.49 ms /   135 runs (   36.67 ms per run)
-whisper_print_timings:   decode time = 18083.11 ms / 12847 runs (    1.41 ms per run)
-whisper_print_timings:   prompt time =   761.85 ms /   134 runs (    5.69 ms per run)
-whisper_print_timings:    total time = 84282.57 ms
-
-# tiny.en - metal: 8 threads 4 processors - even slower than 8 th 1 proc
-time ./main -f ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.wav -d 3600000 -m models/ggml-tiny.en.bin -t 8 -p 4
-whisper_print_timings:      mel time = 43397.42 ms
-whisper_print_timings:   sample time =  5641.44 ms / 51966 runs (    0.11 ms per run)
-whisper_print_timings:   encode time =  5996.71 ms /   543 runs (   11.04 ms per run)
-whisper_print_timings:   decode time = 36890.00 ms / 51425 runs (    0.72 ms per run)
-whisper_print_timings:   prompt time =  4838.65 ms /   540 runs (    8.96 ms per run)
-whisper_print_timings:    total time = 97459.04 ms
+```txt
+Convert the detailed table listing execution times for each model at different durations into a summarized format.
+The original table has multiple rows per model, each specifying the duration in milliseconds and
+the corresponding execution time in seconds.
+The summarized table should have one row per model,
+with separate columns for the execution times corresponding to each duration.
+The column headers should reflect the execution times for the different durations.
+In the final table, express the duration (column headers) in minutes.
+The summarized table should be in markdown format.
 ```
 
 ## Transcribe a single .m4b file with a pipe

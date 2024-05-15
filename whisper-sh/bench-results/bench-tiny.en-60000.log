@@ -1,0 +1,108 @@
+# Whisper Transcription
+
+## Configuration
+- BASEDIR (input for m4b's): /Volumes/Reading/audiobooks/John Gwynne - Faithful and the Fallen/John Gwynne - Faithful and the Fallen 04 - Wrath
+- MODEL_SHORTNAME: tiny.en
+- DURATION: 60000 seconds
+- OUTDIR: ./bench-results
+- SCRIPT_DIR: /Users/daniel/Code/iMetrical/ai-garden/whisper-sh
+- WHISPER_HOME: /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp
+- WHISPER_EXEC: /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/main
+
+# Scanning for .m4b in: /Volumes/Reading/audiobooks/John Gwynne - Faithful and the Fallen/John Gwynne - Faithful and the Fallen 04 - Wrath
+
+## Processing John Gwynne - Faithful and the Fallen 04 - Wrath
+
+### Converting to WAV file
+.wav already exists. Skipping conversion...
+
+### Transcribing to SRT/VTT/JSON
+Launching whisper transcribe...
+CMD: /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/main -f ./bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.wav -m /Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/models/ggml-tiny.en.bin --output-vtt -of ./bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.tiny.en.d60000 -d 60000
+whisper_init_from_file_with_params_no_state: loading model from '/Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/models/ggml-tiny.en.bin'
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51864
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 384
+whisper_model_load: n_audio_head  = 6
+whisper_model_load: n_audio_layer = 4
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 384
+whisper_model_load: n_text_head   = 6
+whisper_model_load: n_text_layer  = 4
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 1
+whisper_model_load: qntvr         = 0
+whisper_model_load: type          = 1 (tiny)
+whisper_model_load: adding 1607 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_backend_init: using Metal backend
+ggml_metal_init: allocating
+ggml_metal_init: found device: Apple M2 Pro
+ggml_metal_init: picking default device: Apple M2 Pro
+ggml_metal_init: default.metallib not found, loading from source
+ggml_metal_init: GGML_METAL_PATH_RESOURCES = nil
+ggml_metal_init: loading '/Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/ggml-metal.metal'
+ggml_metal_init: GPU name:   Apple M2 Pro
+ggml_metal_init: GPU family: MTLGPUFamilyApple8  (1008)
+ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+ggml_metal_init: simdgroup reduction support   = true
+ggml_metal_init: simdgroup matrix mul. support = true
+ggml_metal_init: hasUnifiedMemory              = true
+ggml_metal_init: recommendedMaxWorkingSetSize  = 22906.50 MB
+whisper_model_load:    Metal total size =    77.11 MB
+whisper_model_load: model size    =   77.11 MB
+whisper_backend_init: using Metal backend
+ggml_metal_init: allocating
+ggml_metal_init: found device: Apple M2 Pro
+ggml_metal_init: picking default device: Apple M2 Pro
+ggml_metal_init: default.metallib not found, loading from source
+ggml_metal_init: GGML_METAL_PATH_RESOURCES = nil
+ggml_metal_init: loading '/Users/daniel/Code/iMetrical/ai-garden/external-repos/whisper.cpp/ggml-metal.metal'
+ggml_metal_init: GPU name:   Apple M2 Pro
+ggml_metal_init: GPU family: MTLGPUFamilyApple8  (1008)
+ggml_metal_init: GPU family: MTLGPUFamilyCommon3 (3003)
+ggml_metal_init: GPU family: MTLGPUFamilyMetal3  (5001)
+ggml_metal_init: simdgroup reduction support   = true
+ggml_metal_init: simdgroup matrix mul. support = true
+ggml_metal_init: hasUnifiedMemory              = true
+ggml_metal_init: recommendedMaxWorkingSetSize  = 22906.50 MB
+whisper_init_state: kv self size  =    8.26 MB
+whisper_init_state: kv cross size =    9.22 MB
+whisper_init_state: compute buffer (conv)   =   13.32 MB
+whisper_init_state: compute buffer (encode) =   87.96 MB
+whisper_init_state: compute buffer (cross)  =    4.01 MB
+whisper_init_state: compute buffer (decode) =   96.02 MB
+
+system_info: n_threads = 4 / 10 | AVX = 0 | AVX2 = 0 | AVX512 = 0 | FMA = 0 | NEON = 1 | ARM_FMA = 1 | METAL = 1 | F16C = 0 | FP16_VA = 1 | WASM_SIMD = 0 | BLAS = 1 | SSE3 = 0 | SSSE3 = 0 | VSX = 0 | CUDA = 0 | COREML = 0 | OPENVINO = 0
+
+main: processing './bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.wav' (1346112041 samples, 84132.0 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
+
+
+[00:00:00.000 --> 00:00:09.020]   Roth, Book 4 of the Faithful and the Fallen, by John Gwynn, read by Damien Lynch.
+[00:00:09.020 --> 00:00:17.160]   Roth and vengeance poured, John Milton, Paradise Lost.
+[00:00:17.160 --> 00:00:23.000]   Chapter 1 There it is.
+[00:00:23.000 --> 00:00:30.000]   The year 1144 of the Age of Exiles, Hound moon.
+[00:00:30.000 --> 00:00:34.000]   There it is, fell through the night air, weightless.
+[00:00:34.000 --> 00:00:37.000]   He caught glimpses of the Tower of Bricken.
+[00:00:37.000 --> 00:00:43.000]   Caledas is still smoldering outline at the window, then below, the river coming up to meet him.
+[00:00:43.000 --> 00:00:47.000]   He slammed into the water, the cold shocking the breath out of him.
+[00:00:47.000 --> 00:00:52.000]   He panicked, disorientated, realizing he didn't know which way was up.
+[00:00:52.000 --> 00:00:55.000]   All about him was darkness and ice.
+[00:00:55.000 --> 00:01:02.000]   Then something grabbed his hair, and he was surging upwards, breaking through the water in a burst of spray,
+output_vtt: saving output to './bench-results/John Gwynne - Faithful and the Fallen 04 - Wrath.tiny.en.d60000.vtt'
+
+whisper_print_timings:     load time =   102.10 ms
+whisper_print_timings:     fallbacks =   0 p /   0 h
+whisper_print_timings:      mel time = 44868.22 ms
+whisper_print_timings:   sample time =   205.68 ms /   934 runs (    0.22 ms per run)
+whisper_print_timings:   encode time =   146.99 ms /     3 runs (   49.00 ms per run)
+whisper_print_timings:   decode time =     5.03 ms /     1 runs (    5.03 ms per run)
+whisper_print_timings:   batchd time =   611.85 ms /   919 runs (    0.67 ms per run)
+whisper_print_timings:   prompt time =    12.32 ms /   205 runs (    0.06 ms per run)
+whisper_print_timings:    total time = 47426.63 ms
+ggml_metal_free: deallocating
+ggml_metal_free: deallocating
+
+47.471s
