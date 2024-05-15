@@ -29,12 +29,17 @@ CoreML didn't change performance, so just using metal.
 
 ```bash
  ❯ ./whisper.sh -h
-Usage: ./whisper.sh -i <base_directory> [-d <duration>] [-m <model_shortname: tiny.en, base.en, small.en, medium.en>] [-o <output_directory>]
-       ./whisper.sh -h
+Usage: ./whisper.sh -i base directory [-d duration] [-m model] [-o output]
+Parameters:
+  -i  Base directory (required, no default)
+  -d  Duration (default: None, meaning entire file duration)
+  -m  Model (default: base.en)
+  -o  Output (default: /Users/daniel/Downloads/WhisperCPPContent)
 
 ./whisper.sh -i /Volumes/Reading/audiobooks/Joe\ Abercrombie\ -\ The\ First\ Law/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself
 ./whisper.sh -i /Volumes/Reading/audiobooks/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen\ 03\ -\ Ruin/
 ./whisper.sh -i /Volumes/Reading/audiobooks/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen\ 04\ -\ Wrath/
+# force tiny.en model, default is base.en
 ./whisper.sh -m tiny.en -i /Volumes/Reading/audiobooks/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen\ 04\ -\ Wrath/
 ```
 
