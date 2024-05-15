@@ -1,17 +1,15 @@
 // module.ts
 
+import { getTextNodes, type HTMLDocument, parseHTML } from "./dom.ts";
+import { getHTML } from "./epub.ts";
 import {
-  getTextNodes,
-  parseHTML,
-} from './dom.ts';
-import { getHTML } from './epub.ts';
-import {
-  createReverseMap,
+  createTextRanges,
   match,
+  matchCuesToTextRanges,
   normalizeText,
-  validateReverseMap,
-} from './match.ts';
-import { parseVTT } from './vtt.ts';
+  validateTextRanges,
+} from "./match.ts";
+import { parseVTT } from "./vtt.ts";
 
 export function hello() {
   return "Hello, world!";
@@ -32,7 +30,6 @@ type EPubSource = {
 type Source = HTMLSource | EPubSource;
 
 // Should probably be imported from dom.ts, but then it would need to be exported from there...
-type HTMLDocument = ReturnType<typeof parseHTML>;
 async function htmlDocForSource(source: Source): Promise<HTMLDocument> {
   if ("htmlFile" in source) {
     // source is an HTMLSource
@@ -48,15 +45,48 @@ async function htmlDocForSource(source: Source): Promise<HTMLDocument> {
     await Deno.writeTextFile("output.html", html);
     return parseHTML(html);
   } else {
-    throw new Error("Invalid source");
+    throw new Error("Invalid source type");
   }
+}
+
+type MakeRangesOptions = {
+  normalize: boolean;
+  verbose: boolean;
+};
+
+function makeRanges(htmlDoc: HTMLDocument, options: MakeRangesOptions) {
+  const { normalize, verbose } = options;
+  const textContent = normalize
+    ? normalizeText(htmlDoc.body.textContent)
+    : htmlDoc.body.textContent;
+  const tn = getTextNodes(htmlDoc);
+  // don;t forget the remove empty text nodes after normalization
+  const textNodes = normalize
+    ? tn.map(normalizeText).filter((t) => t.length > 0)
+    : tn;
+  const textRanges = createTextRanges(textContent, textNodes);
+  const valid = validateTextRanges(textRanges, textContent, textNodes, verbose);
+  return { textContent, textRanges, valid };
+}
+
+// Function to log memory usage
+function logMemoryUsage(msg: string) {
+  if (msg) {
+    // fake condition just to disable. Just for profiling memory usage, turn off for now
+    return;
+  }
+  const { heapUsed } = Deno.memoryUsage();
+  const heapUsedMB = (heapUsed / (1024 * 1024)).toFixed(2);
+
+  console.log(`Heap Used (${msg}): ${heapUsedMB} MB`);
 }
 
 export async function main() {
   const sources: Record<string, Source> = {
     road: {
       name: "The Road Not Taken",
-      htmlFile: "../audio-reader-html/media/theroadnottaken.html",
+      // htmlFile: "../audio-reader-html/media/theroadnottaken-original.html",
+      epubFile: "../audio-reader-html/media/theroadnottaken.epub",
       vttFile: "../audio-reader-html/media/theroadnottaken.vtt",
     },
     blade: {
@@ -69,6 +99,11 @@ export async function main() {
       epubFile: "../audio-reader-html/media/ruin.epub",
       vttFile: "../audio-reader-html/media/ruin.vtt",
     },
+    wrath: {
+      name: "Wrath",
+      epubFile: "../audio-reader-html/media/wrath.epub",
+      vttFile: "../audio-reader-html/media/wrath.vtt",
+    },
   };
   // let { epubFile, htmlFile, vttFile } = choices[0];
 
@@ -78,64 +113,45 @@ export async function main() {
     Deno.exit(1);
   }
   const source = sources[sourceKey];
+  logMemoryUsage("start");
 
   const htmlDoc = await htmlDocForSource(source);
-  if (!htmlDoc) {
-    console.error("Failed to parse HTML");
-    Deno.exit(1);
-  }
-  const textNodes = getTextNodes(htmlDoc);
-  console.log(`- |HTML document text nodes|: ${textNodes.length}`);
-  console.log(`- |html.inner|: ${htmlDoc.body.innerHTML.length}`);
+  logMemoryUsage("after htmlDoc");
 
   console.log(`- vttFile: ${source.vttFile}`);
   const cues = parseVTT(Deno.readTextFileSync(source.vttFile));
   console.log(`- |VTT Cues|: ${cues.length} cues`);
+  logMemoryUsage("after cues");
 
   const verbose = false;
-  {
-    // non normalized
-    const reverseMap = createReverseMap(htmlDoc.body.textContent, textNodes);
-    const ok = validateReverseMap(
-      reverseMap,
-      htmlDoc.body.textContent,
-      textNodes,
-      verbose
-    );
-    if (!ok) {
-      console.error("ReverseMap validation (original) failed");
+  for (const normalize of [false, true]) {
+    // const { textContent, textRanges, valid } = makeRanges(htmlDoc, {
+    const { textContent, textRanges, valid } = makeRanges(htmlDoc, {
+      normalize,
+      verbose,
+    });
+    if (!valid) {
+      console.error(`TextRange validation (normalized:${normalize}) failed`);
       Deno.exit(1);
     } else {
-      console.log("ReverseMap validation (original) passed");
+      console.log(`TextRange validation (normalized:${normalize}) passed`);
     }
-  }
-  {
-    const normalizedTextContent = normalizeText(htmlDoc.body.textContent);
-    const normalizedTextNodes = textNodes
-      .map(normalizeText)
-      .filter((t) => t.length > 0);
-
-    const reverseMap = createReverseMap(
-      normalizedTextContent,
-      normalizedTextNodes
-    );
-    const ok = validateReverseMap(
-      reverseMap,
-      normalizedTextContent,
-      normalizedTextNodes,
-      verbose
-    );
-    if (!ok) {
-      console.error("ReverseMap validation (normalized) failed");
-      Deno.exit(1);
-    } else {
-      console.log("ReverseMap validation (normalized) passed");
-    }
+    // print the current memory consumption
+    logMemoryUsage(`after TextRanges (normalized:${normalize})`);
+    matchCuesToTextRanges(cues, textRanges, textContent, {
+      normalize,
+      verbose,
+    });
+    logMemoryUsage("after match");
   }
 
-  Deno.exit(0);
-
-  match(cues, textNodes);
+  match(cues, getTextNodes(htmlDoc));
+  logMemoryUsage("after match");
+  // loop 10 times to allow for memory profiling
+  // for (let i = 0; i < 10; i++) {
+  //   await new Promise((r) => setTimeout(r, 1000));
+  //   logMemoryUsage("after match");
+  // }
 }
 
 // If this module is the main module, then call the main function

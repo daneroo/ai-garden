@@ -1,8 +1,50 @@
-import { type VTTCue } from './vtt.ts';
+import { type VTTCue } from "./vtt.ts";
 
+// This is another outer loop (TextRanges)
+export function matchCuesToTextRanges(
+  cues: VTTCue[],
+  textRanges: TextRange[],
+  textContent: string,
+  options: { normalize: boolean; verbose: boolean } = {
+    normalize: false,
+    verbose: false,
+  }
+) {
+  const { normalize, verbose } = options;
+  const matchTypeCounts = {
+    total: 0,
+    matched: 0,
+    unmatched: 0,
+  };
+  for (const cue of cues) {
+    if (verbose) {
+      console.log(`Looking for: ${cue.text}`);
+    }
+    const needle = normalize ? normalizeText(cue.text) : cue.text;
+    // TODO(daneroo): get a position, not just a boolean
+    if (!textRanges) {
+      console.error("TODO match ranges");
+      continue;
+    }
+    const found = matchText(needle, textContent);
+    if (found) {
+      matchTypeCounts.matched++;
+      continue;
+    } else {
+      matchTypeCounts.unmatched++;
+    }
+  }
+  matchTypeCounts.total = cues.length - matchTypeCounts.unmatched;
+  console.log(
+    `- (matchCuesToTextRanges) Matched Type Counts (normalize:${normalize}): ${JSON.stringify(
+      matchTypeCounts
+    )}`
+  );
+}
 // This is the/an outer loop
 export function match(cues: VTTCue[], textNodes: string[]) {
   const matchTypeCounts = {
+    total: 0,
     exact: 0,
     normalized: 0,
     joined: 0,
@@ -40,11 +82,14 @@ export function match(cues: VTTCue[], textNodes: string[]) {
       // console.log(`Matched (joined): ${cue.text}`);
       continue;
     }
-    console.log(`No match: ${cue.text}`);
+    // console.log(`No match: ${cue.text}`);
     matchTypeCounts.unmatched++;
   }
-  console.log(`Matched Type Counts: ${JSON.stringify(matchTypeCounts)}`);
-  console.log("joinedTextNodes: ", joinedTextNodes);
+  matchTypeCounts.total = cues.length - matchTypeCounts.unmatched;
+  console.log(
+    `- (match) Matched Type Counts: ${JSON.stringify(matchTypeCounts)}`
+  );
+  // console.log("joinedTextNodes: ", joinedTextNodes);
 }
 
 function matchText(needle: string, haystack: string) {
@@ -65,9 +110,11 @@ export type TextRange = {
   start: number; // inclusive
   end: number; // exclusive
 };
-// This returns a mapping from each textNode to the start and end index in the textContent
-// i.e. for all textNodes[i], textContent.slice(reverseMap[i].start, reverseMap[i].end) === textNodes[i]
-export function createReverseMap(
+
+// This returns an array of TextRange objects, one for each textNode, such that
+// 1- textContent.slice(reverseMap[i].start, reverseMap[i].end) === textNodes[i]
+// 2- textContent.slice(reverseMap[i-1].end, reverseMap[i].start) is all whitespace
+export function createTextRanges(
   textContent: string,
   textNodes: string[]
 ): TextRange[] {
@@ -105,7 +152,10 @@ function nPad(num: number, length: number = 7) {
   return num.toString().padStart(length, "0");
 }
 
-export function validateReverseMap(
+// for every TextRange entry in reverseMap, validate that
+// 1- textContent.slice(start, end) === textNodes[i]
+// 2- textContent.slice(reverseMap[i-1].end, start) is all whitespace
+export function validateTextRanges(
   reverseMap: TextRange[],
   textContent: string,
   textNodes: string[],
