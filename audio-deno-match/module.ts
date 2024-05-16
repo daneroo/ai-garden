@@ -103,8 +103,8 @@ export async function main() {
     wrath: {
       name: "Wrath",
       epubFile: "../audio-reader-html/media/wrath.epub",
-      // vttFile: "../audio-reader-html/media/wrath.tiny.en.vtt",
-      vttFile: "../audio-reader-html/media/wrath.base.en.vtt",
+      vttFile: "../audio-reader-html/media/wrath.tiny.en.vtt",
+      // vttFile: "../audio-reader-html/media/wrath.base.en.vtt",
     },
   };
 

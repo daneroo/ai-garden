@@ -25,13 +25,17 @@ export function matchWordSequences(
   );
   const maxWords = 180;
   console.log(`- cueWords: ${cueWords.length} from ${cues.length} cues`);
-  console.log(`  ... ${cueWords.slice(0, maxWords).join(", ")}`);
+  if (verbose) {
+    console.log(`  ... ${cueWords.slice(0, maxWords).join(", ")}`);
+  }
 
   const textWords = linesToWords([textContent]);
   console.log(
     `- textWords: ${textWords.length} from ${textRanges.length} ranges`
   );
-  console.log(`  ... ${textWords.slice(0, maxWords).join(", ")}`);
+  if (verbose) {
+    console.log(`  ... ${textWords.slice(0, maxWords).join(", ")}`);
+  }
 
   const maxSkip = 3;
   const { alignedMatches, matchingRate } = alignWords(
@@ -39,7 +43,7 @@ export function matchWordSequences(
     textWords,
     maxSkip
   );
-  console.log("Aligned Matches:", alignedMatches);
+  // console.log("Aligned Matches:", alignedMatches);
   console.log("Matching Rate:", matchingRate);
   prettyPrint(alignedMatches, cueWords, textWords);
 }
