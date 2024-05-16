@@ -4,7 +4,10 @@ Match the html content with vtt cues from deno
 
 ## TODO
 
-- [ ] assert normalized(htmlDoc.body.textContent) === normalized(textNodes.join(' '))
+- [ ] move to `tsx`
+  - [ ] node's parseArgs, and styleText, .. and test
+- [ ] call alignWords with start position, returns maximal match.
+- [x] assert normalized(htmlDoc.body.textContent) === normalized(textNodes.join(' '))
 
 ## Usage
 
@@ -18,6 +21,8 @@ deno run --allow-read --allow-env module.ts --epub ../audio-reader-html/media/ru
 
 ## References
 
+- [tsx importer](https://tsx.is/)
+  - [TSX Blog entry](https://dev.to/_staticvoid/how-to-run-typescript-natively-in-nodejs-with-tsx-3a0c)
 - [syncabook](https://github.com/r4victor/syncabook)
 - [afaligner](https://github.com/r4victor/afaligner)
 - [Dynamic Time Warping](https://en.wikipedia.org/wiki/Dynamic_time_warping)
