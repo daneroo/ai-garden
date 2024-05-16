@@ -157,9 +157,11 @@ export function prettyPrint(
       case "insertion":
         if (indexA === -1) {
           cueLine += downArrow;
-          textLine += emptyPad + red(textWord);
+          // textLine += emptyPad + textWord;
+          textLine += red(textWord);
         } else {
-          cueLine += emptyPad + red(cueWord);
+          // cueLine += emptyPad + cueWord;
+          cueLine += red(cueWord);
           textLine += upArrow;
         }
         break;
@@ -170,8 +172,12 @@ export function prettyPrint(
     cueLine = cueLine.padEnd(maxLength + 1, " ");
     textLine = textLine.padEnd(maxLength + 1, " ");
     if (textLine.length > 80) {
-      console.log("cue:  ", cueLine.trim());
-      console.log("text: ", textLine.trim());
+      if (textLine === cueLine) {
+        console.log("same: ", cueLine.trim());
+      } else {
+        console.log("cue:  ", cueLine.trim());
+        console.log("text: ", textLine.trim());
+      }
       console.log("");
       cueLine = "";
       textLine = "";
