@@ -1,4 +1,4 @@
-import { alignWords } from "./align.ts";
+import { alignWords, prettyPrint } from "./align.ts";
 import { type VTTCue } from "./vtt.ts";
 
 function wordSplit(text: string) {
@@ -34,14 +34,14 @@ export function matchWordSequences(
   console.log(`  ... ${textWords.slice(0, maxWords).join(", ")}`);
 
   const maxSkip = 3;
-  const { alignedCues, alignedText, matchingRate } = alignWords(
+  const { alignedMatches, matchingRate } = alignWords(
     cueWords,
     textWords,
     maxSkip
   );
-  console.log("Aligned Cues:", alignedCues);
-  console.log("Aligned Text:", alignedText);
+  console.log("Aligned Matches:", alignedMatches);
   console.log("Matching Rate:", matchingRate);
+  prettyPrint(alignedMatches, cueWords, textWords);
 }
 export function matchCuesToTextRanges(
   cues: VTTCue[],
