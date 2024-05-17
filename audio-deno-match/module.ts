@@ -141,12 +141,18 @@ export async function main() {
     }
     // print the current memory consumption
     logMemoryUsage(`after TextRanges (normalized:${normalize})`);
+
+    let start = +new Date();
     matchCuesToTextRanges(cues, textRanges, textContent, {
       normalize,
       verbose,
     });
+    console.log(`- matchCuesToTextRanges took: ${+new Date() - start}ms`);
+
+    start = +new Date();
     logMemoryUsage(`after matchCues (normalized:${normalize})`);
     matchWordSequences(cues, textRanges, textContent, { normalize, verbose });
+    console.log(`- matchWordSequences took: ${+new Date() - start}ms`);
     logMemoryUsage(`after matchWords (normalized:${normalize})`);
   }
 
