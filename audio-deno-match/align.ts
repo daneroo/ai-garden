@@ -50,7 +50,7 @@ export function alignWords(
       const match = findNextMatch(i, j, maxSkip);
       if (!match) {
         throw new Error(
-          `findNextMatch exceeded window threshold of ${maxSkip}`
+          `findNextMatch exceeded window threshold of ${maxSkip} at i=${i}, j=${j}`
         );
       }
       if (match.skipInCues === 0 || match.skipInText === 0) {
@@ -139,6 +139,18 @@ export function prettyPrint(
   // so we add the same number of control chars for str length alignment
   const emptyPad = blue(""); // Blue "" symbol
 
+  function outputAndReset() {
+    if (textLine === cueLine) {
+      console.log("same: ", cueLine.trim());
+    } else {
+      console.log(`cue:  |${cueLine.trim()}|`);
+      console.log(`text: |${textLine.trim()}|`);
+    }
+    console.log("");
+    cueLine = "";
+    textLine = "";
+  }
+
   alignedMatches.forEach((match) => {
     const { indexA, indexB, type } = match;
 
@@ -167,28 +179,19 @@ export function prettyPrint(
         break;
     }
     // Calculate padding to align symbols
-    const maxLength = Math.max(cueLine.length, cueLine.length);
+    const maxLength = Math.max(cueLine.length, textLine.length);
     // +1 is for space between words; but the joined string is trimmed to remove the last space
     cueLine = cueLine.padEnd(maxLength + 1, " ");
     textLine = textLine.padEnd(maxLength + 1, " ");
     if (textLine.length > 80) {
-      if (textLine === cueLine) {
-        console.log("same: ", cueLine.trim());
-      } else {
-        console.log("cue:  ", cueLine.trim());
-        console.log("text: ", textLine.trim());
-      }
-      console.log("");
-      cueLine = "";
-      textLine = "";
+      outputAndReset();
     }
   });
-
-  console.log("cue:  ", cueLine.trim());
-  console.log("text: ", textLine.trim());
+  outputAndReset();
 }
 
-// If this module is the main module, then call the main function
+// If this module is the main module, then call the main
+// node.js: if (import.meta.url === `file://${process.argv[1]}`) {
 if (import.meta.main) {
   // Example usage:
   const cueWords = ["this", "is", "a", "sentence"];
