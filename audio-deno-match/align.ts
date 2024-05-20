@@ -67,9 +67,9 @@ export function alignWords(
         // throw new Error(
         //   `findNextMatch exceeded window threshold of ${maxSkip} at i=${i}, j=${j}`
         // );
-        console.log(
-          `findNextMatch exceeded window threshold of ${maxSkip} at i=${i}, j=${j}`
-        );
+        // console.log(
+        //   `findNextMatch exceeded window threshold of ${maxSkip} at i=${i}, j=${j}`
+        // );
         return { alignedMatches };
       }
       if (match.skipInCues === 1 && match.skipInText === 1) {
@@ -103,23 +103,26 @@ export function alignWords(
     }
   }
 
-  // Handle remaining words symmetrically
-  while (i < m) {
-    alignedMatches.push({
-      indexA: i,
-      indexB: -1,
-      type: "insertion",
-    });
-    i++;
-  }
-  while (j < n) {
-    alignedMatches.push({
-      indexA: -1,
-      indexB: j,
-      type: "insertion",
-    });
-    j++;
-  }
+  //  We no longer do this end padding
+  // console.error(`\n- Remaining stuff: ${i}/${m}, ${j}/${n}\n`);
+
+  // // Handle remaining words symmetrically
+  // while (i < m) {
+  //   alignedMatches.push({
+  //     indexA: i,
+  //     indexB: -1,
+  //     type: "insertion",
+  //   });
+  //   i++;
+  // }
+  // while (j < n) {
+  //   alignedMatches.push({
+  //     indexA: -1,
+  //     indexB: j,
+  //     type: "insertion",
+  //   });
+  //   j++;
+  // }
 
   return { alignedMatches };
 }

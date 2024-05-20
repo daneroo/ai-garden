@@ -8,6 +8,7 @@ import {
   matchWordSequences,
   normalizeText,
   validateTextRanges,
+  viewMultipleAlignments,
 } from "./match.ts";
 import { parseVTT } from "./vtt.ts";
 
@@ -158,7 +159,13 @@ export async function main() {
 
     start = +new Date();
     logMemoryUsage(`after matchCues (normalized:${normalize})`);
-    matchWordSequences(cues, textRanges, textContent, { normalize, verbose });
+    const multipleAlignment = matchWordSequences(
+      cues,
+      textRanges,
+      textContent,
+      { normalize, verbose }
+    );
+    viewMultipleAlignments(multipleAlignment);
     console.log(`- matchWordSequences took: ${+new Date() - start}ms`);
     logMemoryUsage(`after matchWords (normalized:${normalize})`);
   }

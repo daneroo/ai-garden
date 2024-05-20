@@ -1,4 +1,4 @@
-import { alignWords, prettyPrint } from "./align.ts";
+import { AlignedMatch, AlignmentResult, alignWords } from "./align.ts";
 import { type VTTCue } from "./vtt.ts";
 
 function wordSplit(text: string) {
@@ -9,6 +9,11 @@ function linesToWords(lines: string[]): string[] {
   return lines.map(wordSplit).flat();
 }
 
+type MultipleAlignment = {
+  cueWords: string[];
+  textWords: string[];
+  alignmentResults: AlignmentResult[];
+};
 export function matchWordSequences(
   cues: VTTCue[],
   textRanges: TextRange[],
@@ -17,7 +22,7 @@ export function matchWordSequences(
     normalize: false,
     verbose: false,
   }
-) {
+): MultipleAlignment {
   const { normalize, verbose } = options;
   // map all cues (possibly normalized) to an array of strings, then split into words
   const cueWords = linesToWords(
@@ -44,7 +49,7 @@ export function matchWordSequences(
   const minWordsForStart = 8;
   let initialCueStartIndex = 0;
   let initialTextStartIndex = 0;
-  let matchedBlocks = 0;
+  const alignmentResults: AlignmentResult[] = [];
   const start = Date.now();
   while (initialCueStartIndex < cueWords.length - minWordsForStart) {
     const start = Date.now();
@@ -62,45 +67,206 @@ export function matchWordSequences(
       break;
     }
     const elapsed = Date.now() - start;
-    console.log(
-      `  - match: |words|:${minWordsForStart} wordIndexes - cue:${cueStartIndex} text:${textStartIndex}  in ${elapsed}ms`
-    );
-    console.log(` - alignWords: ${cueStartIndex} ${textStartIndex}`);
+    if (elapsed < 0) {
+      console.log(
+        `  - match: |words|:${minWordsForStart} wordIndexes - cue:${cueStartIndex} text:${textStartIndex}  in ${elapsed}ms`
+      );
+    }
     const maxSkip = 4;
-    const { alignedMatches } = alignWords(
+    const alignmentResult = alignWords(
       cueWords,
       textWords,
       maxSkip,
       cueStartIndex,
       textStartIndex
     );
-    prettyPrint(alignedMatches, cueWords, textWords);
-    // assert the last alignedMatch is a 'match', actually there is abug, just find the last match
-    const lastMatch = alignedMatches.findLast((m) => m.type === "match");
-    if (lastMatch) {
-      if (lastMatch.type !== "match") {
-        console.error(`- Last alignment match: `, lastMatch);
-        throw new Error(`- Last alignment is not a match: ${lastMatch.type}`);
-      }
-      console.log(
-        `  - Last alignment match: cue:${lastMatch.indexA} text:${lastMatch.indexB}`
+    const { alignedMatches } = alignmentResult;
+
+    // prettyPrint(alignedMatches, cueWords, textWords);
+    // TODO: assert the last alignedMatch is a 'match', actually there is a bug, just find the last match
+    if (alignedMatches[alignedMatches.length - 1].type !== "match") {
+      console.error(
+        `\n- Last alignment is not a match: ${
+          alignedMatches[alignedMatches.length - 1].type
+        }\n`
       );
-      initialCueStartIndex = lastMatch.indexA + 1;
-      initialTextStartIndex = lastMatch.indexB + 1;
-    } else {
-      console.error(`  - No alignment matches found; SHOULD NOT HAPPEN`);
-      initialCueStartIndex = cueStartIndex + minWordsForStart;
-      initialTextStartIndex = textStartIndex + minWordsForStart;
     }
-    matchedBlocks++;
+    const lastMatch = alignedMatches[alignedMatches.length - 1];
+    // just an assertion
+    if (lastMatch.type !== "match") {
+      console.error(`- Last alignment match: `, lastMatch);
+      throw new Error(`- Last alignment is not a match: ${lastMatch.type}`);
+    }
+    initialCueStartIndex = lastMatch.indexA + 1;
+    initialTextStartIndex = lastMatch.indexB + 1;
+    alignmentResults.push(alignmentResult);
   }
   const elapsed = Date.now() - start;
   console.log(
-    `- (matchWordSequences) matchedBlocks: ${matchedBlocks} in ${elapsed}ms`
+    `- (matchWordSequences) alignments: ${alignmentResults.length} in ${elapsed}ms`
   );
 
-  return;
+  return { cueWords, textWords, alignmentResults };
   // now do alignWords
+}
+function multipleAlignmentMetrics(multipleAlignment: MultipleAlignment) {
+  const { cueWords, textWords, alignmentResults } = multipleAlignment;
+
+  let lastCueWordIndex = 0;
+  let lastTextWordIndex = 0;
+  let totalMatchedWords = 0;
+  let totalSkippedCueWords = 0;
+  let totalSkippedTextWords = 0;
+  alignmentResults.map((alignment) => {
+    const { alignedMatches } = alignment;
+    const startCueWordIndex = alignedMatches[0].indexA;
+    const startTextWordIndex = alignedMatches[0].indexB;
+    const skippedCueWords = startCueWordIndex - lastCueWordIndex;
+    const skippedTextWords = startTextWordIndex - lastTextWordIndex;
+    const matchedWords = alignedMatches.filter(
+      (match) => match.type === "match"
+    ).length;
+    totalMatchedWords += matchedWords;
+    totalSkippedCueWords += skippedCueWords;
+    totalSkippedTextWords += skippedTextWords;
+    // console.log(
+    //   `  - Alignment ${index + 1} of ${
+    //     alignmentResults.length
+    //   } -  matchedWords: ${matchedWords} skippedCueWords: ${skippedCueWords} skippedTextWords: ${skippedTextWords}`
+    // );
+    lastCueWordIndex = alignedMatches[alignedMatches.length - 1].indexA;
+    lastTextWordIndex = alignedMatches[alignedMatches.length - 1].indexB;
+  });
+  totalSkippedCueWords += cueWords.length - lastCueWordIndex;
+  totalSkippedTextWords += textWords.length - lastTextWordIndex;
+  const cueMatchRate = totalMatchedWords / cueWords.length;
+  console.log(
+    `  - Cue Match Rate: ${(cueMatchRate * 100).toFixed(
+      2
+    )} Total matchedWords: ${totalMatchedWords} skippedCueWords: ${totalSkippedCueWords} skippedTextWords: ${totalSkippedTextWords}`
+  );
+  return {
+    totalMatchedWords,
+    totalSkippedCueWords,
+    totalSkippedTextWords,
+    cueMatchRate,
+  };
+}
+export function viewMultipleAlignments(multipleAlignment: MultipleAlignment) {
+  const { cueWords, textWords, alignmentResults } = multipleAlignment;
+  console.log(
+    `- (viewMultipleAlignments) alignments: ${alignmentResults.length}`
+  );
+  const {
+    totalMatchedWords,
+    totalSkippedCueWords,
+    totalSkippedTextWords,
+    cueMatchRate,
+  } = multipleAlignmentMetrics(multipleAlignment);
+  const html = `<!DOCTYPE html>
+<html>
+<head>
+  <title>Alignments</title>
+
+  <style>
+  .aligned-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .aligned-match {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 0.2em;
+  }
+
+  .match {
+    color: black;
+  }
+
+  .substitution {
+    color: green;
+  }
+
+  .insertion {
+    color: blue;
+  }
+
+  .cue-word, .text-word {
+    margin: 2px 0;
+  }
+</style>
+
+  </head>
+<body>
+  <h1>Alignments</h1>
+  <p>cueWords: ${cueWords.length}</p>
+  <p>textWords: ${textWords.length}</p>
+  <p>alignments: ${alignmentResults.length}</p>
+  <p>totalMatchedWords: ${totalMatchedWords}</p>
+  <p>totalSkippedCueWords: ${totalSkippedCueWords}</p>
+  <p>totalSkippedTextWords: ${totalSkippedTextWords}</p>
+  <p>cueMatchRate: ${(cueMatchRate * 100).toFixed(2)}%</p>
+  <hr>
+  ${alignmentResults
+    .map((alignment, index) => {
+      const { alignedMatches } = alignment;
+      return `<div>
+      <h2>Alignment ${index + 1} of ${alignmentResults.length}</h2>
+      ${alignmentsToHTML(alignedMatches, cueWords, textWords)}
+    </div>`;
+    })
+    .join("\n")}
+</body>
+</html>`;
+  Deno.writeTextFileSync("output/align.html", html);
+}
+
+export function alignmentsToHTML(
+  alignedMatches: AlignedMatch[],
+  cueWords: string[],
+  textWords: string[]
+): string {
+  return `
+    <div class="aligned-container">
+      ${alignedMatches
+        .map((match) => {
+          const { indexA, indexB, type } = match;
+          const cueWord = indexA !== -1 ? cueWords[indexA] : "";
+          const textWord = indexB !== -1 ? textWords[indexB] : "";
+
+          switch (type) {
+            case "match":
+              return `<div class="aligned-match match">${cueWord}</div>`;
+            case "substitution":
+              return `
+                <div class="aligned-match substitution">
+                  <div class="cue-word">${cueWord}</div>
+                  <div class="text-word">${textWord}</div>
+                </div>`;
+            case "insertion":
+              if (indexA === -1) {
+                return `
+                  <div class="aligned-match insertion">
+                    <div class="cue-word">&nbsp;</div>
+                    <div class="text-word">${textWord}</div>
+                  </div>`;
+              } else {
+                return `
+                  <div class="aligned-match insertion">
+                    <div class="cue-word">${cueWord}</div>
+                    <div class="text-word">&nbsp;</div>
+                  </div>`;
+              }
+            default:
+              return "";
+          }
+        })
+        .join("")}
+    </div>
+  `;
 }
 
 function findConsecutiveWordMatches(
