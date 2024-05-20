@@ -36,17 +36,138 @@ export function matchWordSequences(
   if (verbose) {
     console.log(`  ... ${textWords.slice(0, maxWords).join(", ")}`);
   }
+  Deno.writeTextFileSync("output/cuewords.txt", cueWords.join(" "));
+  Deno.writeTextFileSync("output/textwords.txt", textWords.join(" "));
 
-  const maxSkip = 3;
-  const { alignedMatches, matchingRate } = alignWords(
-    cueWords,
-    textWords,
-    maxSkip
+  // find a starting point for the alignment
+  console.log(`- Starting matchWordSequences`);
+  const minWordsForStart = 8;
+  let initialCueStartIndex = 0;
+  let initialTextStartIndex = 0;
+  let matchedBlocks = 0;
+  const start = Date.now();
+  while (initialCueStartIndex < cueWords.length - minWordsForStart) {
+    const start = Date.now();
+    const { textStartIndex, cueStartIndex } = findConsecutiveWordMatches(
+      initialCueStartIndex,
+      initialTextStartIndex,
+      cueWords,
+      textWords,
+      minWordsForStart
+    );
+    if (textStartIndex < 0) {
+      // console.error(
+      //   `- Could not find a starting match for ${minWordsForStart} words`
+      // );
+      break;
+    }
+    const elapsed = Date.now() - start;
+    console.log(
+      `  - match: |words|:${minWordsForStart} wordIndexes - cue:${cueStartIndex} text:${textStartIndex}  in ${elapsed}ms`
+    );
+    console.log(` - alignWords: ${cueStartIndex} ${textStartIndex}`);
+    const maxSkip = 4;
+    const { alignedMatches } = alignWords(
+      cueWords,
+      textWords,
+      maxSkip,
+      cueStartIndex,
+      textStartIndex
+    );
+    prettyPrint(alignedMatches, cueWords, textWords);
+    // assert the last alignedMatch is a 'match', actually there is abug, just find the last match
+    const lastMatch = alignedMatches.findLast((m) => m.type === "match");
+    if (lastMatch) {
+      if (lastMatch.type !== "match") {
+        console.error(`- Last alignment match: `, lastMatch);
+        throw new Error(`- Last alignment is not a match: ${lastMatch.type}`);
+      }
+      console.log(
+        `  - Last alignment match: cue:${lastMatch.indexA} text:${lastMatch.indexB}`
+      );
+      initialCueStartIndex = lastMatch.indexA + 1;
+      initialTextStartIndex = lastMatch.indexB + 1;
+    } else {
+      console.error(`  - No alignment matches found; SHOULD NOT HAPPEN`);
+      initialCueStartIndex = cueStartIndex + minWordsForStart;
+      initialTextStartIndex = textStartIndex + minWordsForStart;
+    }
+    matchedBlocks++;
+  }
+  const elapsed = Date.now() - start;
+  console.log(
+    `- (matchWordSequences) matchedBlocks: ${matchedBlocks} in ${elapsed}ms`
   );
-  // console.log("Aligned Matches:", alignedMatches);
-  console.log("Matching Rate:", matchingRate);
-  prettyPrint(alignedMatches, cueWords, textWords);
+
+  return;
+  // now do alignWords
 }
+
+function findConsecutiveWordMatches(
+  initialCueStartIndex: number,
+  initialTextStartIndex: number,
+  cueWords: string[],
+  textWords: string[],
+  minWordsForStart: number
+) {
+  const cueLength = cueWords.length;
+  const textLength = textWords.length;
+
+  // Iterate over each starting index in cueWords
+  for (
+    let cueStartIndex = initialCueStartIndex;
+    cueStartIndex <= cueLength - minWordsForStart;
+    cueStartIndex++
+  ) {
+    // Iterate over each starting index in textWords
+    for (
+      let textStartIndex = initialTextStartIndex;
+      textStartIndex <= textLength - minWordsForStart;
+      textStartIndex++
+    ) {
+      let match = true;
+
+      // Check for consecutive matches
+      for (let offset = 0; offset < minWordsForStart; offset++) {
+        if (
+          cueWords[cueStartIndex + offset] !==
+          textWords[textStartIndex + offset]
+        ) {
+          match = false;
+          break;
+        }
+      }
+
+      // If a match is found, return the indices
+      if (match) {
+        // now let's confirm that the words match (cueWords and textWords)
+        const cc = cueWords
+          .slice(cueStartIndex, cueStartIndex + minWordsForStart)
+          .join(" ");
+
+        const tt = textWords
+          .slice(textStartIndex, textStartIndex + minWordsForStart)
+          .join(" ");
+
+        if (cc !== tt) {
+          console.log(`- (arr) Mismatch: cueWords[..] !== textWords[..]`);
+          console.log(
+            `  ..  cueWords[${cueStartIndex},...,+${minWordsForStart}]: ${cc}`
+          );
+          console.log(
+            `  .. textWords[${textStartIndex},...,+${minWordsForStart}]: ${tt}`
+          );
+        }
+
+        return { cueStartIndex, textStartIndex };
+      }
+    }
+  }
+
+  // No match found
+  return { textStartIndex: -1, cueStartIndex: -1 };
+}
+
 export function matchCuesToTextRanges(
   cues: VTTCue[],
   textRanges: TextRange[],
@@ -74,7 +195,6 @@ export function matchCuesToTextRanges(
       continue;
     }
   }
-  // matchTypeCounts.total = cues.length - matchTypeCounts.unmatched;
   const cueMatchRate = ((cueMatches / cues.length) * 100.0).toFixed(2);
   console.log(
     `- metric (matchCuesToTextRanges) cue match rate (normalize:${normalize}): ${cueMatchRate}% (${cueMatches}/${cues.length})`

@@ -6,42 +6,57 @@ export type AlignedMatch = {
 
 export type AlignmentResult = {
   alignedMatches: AlignedMatch[];
-  matchingRate: number;
 };
 
 export function alignWords(
   cueWords: string[],
   textWords: string[],
-  maxSkip: number
+  maxSkip: number,
+  cueStartIndex: number = 0,
+  textStartIndex: number = 0
 ): AlignmentResult {
   const m = cueWords.length;
   const n = textWords.length;
 
   const alignedMatches: AlignedMatch[] = [];
-  let i = 0,
-    j = 0;
+  let i = cueStartIndex,
+    j = textStartIndex;
 
   // Helper function to find the next match within a window
   function findNextMatch(i: number, j: number, window: number) {
-    for (let offset = 1; offset <= window; offset++) {
-      if (i + offset < m && cueWords[i + offset] === textWords[j]) {
-        return { skipInCues: offset, skipInText: 0 };
-      }
-      if (j + offset < n && cueWords[i] === textWords[j + offset]) {
-        return { skipInCues: 0, skipInText: offset };
-      }
-      if (
-        i + offset < m &&
-        j + offset < n &&
-        cueWords[i + offset] === textWords[j + offset]
-      ) {
-        return { skipInCues: offset, skipInText: offset };
+    // console.debug(`## findNextMatch: i=${i}, j=${j}, window=${window}`);
+    // console.debug(
+    //   `   cueWords[i,..]=${cueWords.slice(i, i + window).join(",")}`
+    // );
+    // console.debug(
+    //   `   textWords[j.,,]=${textWords.slice(j, j + window).join(",")}`
+    // );
+    // Iterate over all pairs of offsets within the given window
+    for (let offsetCues = 1; offsetCues <= window; offsetCues++) {
+      for (let offsetText = 1; offsetText <= window; offsetText++) {
+        if (
+          i + offsetCues < m &&
+          j + offsetText < n &&
+          cueWords[i + offsetCues] === textWords[j + offsetText]
+        ) {
+          // console.debug(
+          //   `.. findNextMatch: offsetCues=${offsetCues}, offsetText=${offsetText} matched: ${
+          //     cueWords[i + offsetCues]
+          //   } === ${textWords[j + offsetText]}`
+          // );
+          return { skipInCues: offsetCues, skipInText: offsetText };
+        }
       }
     }
     return null;
   }
 
   while (i < m && j < n) {
+    // console.debug(`## alignWords: i=${i}, j=${j}`);
+    // console.debug(`.. cueWords[${i},..]=${cueWords.slice(i, i + maxSkip + 1)}`);
+    // console.debug(
+    //   `.. textWords[${j},..]=${textWords.slice(j, j + maxSkip + 1)}`
+    // );
     if (cueWords[i] === textWords[j]) {
       alignedMatches.push({ indexA: i, indexB: j, type: "match" });
       i++;
@@ -49,12 +64,25 @@ export function alignWords(
     } else {
       const match = findNextMatch(i, j, maxSkip);
       if (!match) {
-        throw new Error(
+        // throw new Error(
+        //   `findNextMatch exceeded window threshold of ${maxSkip} at i=${i}, j=${j}`
+        // );
+        console.log(
           `findNextMatch exceeded window threshold of ${maxSkip} at i=${i}, j=${j}`
         );
+        return { alignedMatches };
       }
-      if (match.skipInCues === 0 || match.skipInText === 0) {
-        // Handle insertions
+      if (match.skipInCues === 1 && match.skipInText === 1) {
+        // Single word difference (substitution)
+        alignedMatches.push({
+          indexA: i,
+          indexB: j,
+          type: "substitution",
+        });
+        i++;
+        j++;
+      } else {
+        // otherwise treat as insertions on both sides
         for (let k = 0; k < match.skipInCues; k++) {
           alignedMatches.push({
             indexA: i + k,
@@ -71,15 +99,6 @@ export function alignWords(
         }
         i += match.skipInCues;
         j += match.skipInText;
-      } else {
-        // Single word difference (substitution)
-        alignedMatches.push({
-          indexA: i,
-          indexB: j,
-          type: "substitution",
-        });
-        i++;
-        j++;
       }
     }
   }
@@ -102,15 +121,14 @@ export function alignWords(
     j++;
   }
 
-  // Calculate matched count
+  return { alignedMatches };
+}
+
+export function alignedMatchingRate(alignedMatches: AlignedMatch[]): number {
   const matchedCount = alignedMatches.filter(
     (match) => match.type === "match"
   ).length;
-
-  // Calculate matching rate
-  const matchingRate = matchedCount / Math.max(m, n);
-
-  return { alignedMatches, matchingRate };
+  return matchedCount / alignedMatches.length;
 }
 
 function green(str: string): string {
@@ -137,11 +155,11 @@ export function prettyPrint(
   const upArrow = blue("↑"); // Blue "↑" symbol
   const downArrow = blue("↓"); // Blue "↑" symbol
   // so we add the same number of control chars for str length alignment
-  const emptyPad = blue(""); // Blue "" symbol
+  // const emptyPad = blue(""); // Blue "" symbol
 
   function outputAndReset() {
     if (textLine === cueLine) {
-      console.log("same: ", cueLine.trim());
+      console.log(`same: |${cueLine.trim()}|`);
     } else {
       console.log(`cue:  |${cueLine.trim()}|`);
       console.log(`text: |${textLine.trim()}|`);
@@ -188,6 +206,13 @@ export function prettyPrint(
     }
   });
   outputAndReset();
+  const matchingRate = alignedMatchingRate(alignedMatches);
+  const matchedCount = alignedMatches.filter(
+    (match) => match.type === "match"
+  ).length;
+  console.log(
+    `Matching Rate: ${matchingRate} matches: ${matchedCount} of (${cueWords.length}, ${textWords.length})`
+  );
 }
 
 // If this module is the main module, then call the main
@@ -206,12 +231,7 @@ if (import.meta.main) {
   ];
   const maxSkip = 3;
 
-  const { alignedMatches, matchingRate } = alignWords(
-    cueWords,
-    textWords,
-    maxSkip
-  );
-  console.log("Aligned Matches:", alignedMatches);
-  console.log("Matching Rate:", matchingRate);
+  const { alignedMatches } = alignWords(cueWords, textWords, maxSkip);
+  // console.log("Aligned Matches:", alignedMatches);
   prettyPrint(alignedMatches, cueWords, textWords);
 }

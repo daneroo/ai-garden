@@ -37,10 +37,15 @@ Parameters:
   -o  Output (default: /Users/daniel/Downloads/WhisperCPPContent)
 
 ./whisper.sh -i /Volumes/Reading/audiobooks/Joe\ Abercrombie\ -\ The\ First\ Law/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself
+
 ./whisper.sh -i /Volumes/Reading/audiobooks/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen\ 03\ -\ Ruin/
+
 ./whisper.sh -i /Volumes/Reading/audiobooks/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen\ 04\ -\ Wrath/
 # force tiny.en model, default is base.en
 ./whisper.sh -m tiny.en -i /Volumes/Reading/audiobooks/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen/John\ Gwynne\ -\ Faithful\ and\ the\ Fallen\ 04\ -\ Wrath/
+
+ ./whisper.sh -i /Volumes/Reading/audiobooks/Iain\ M.\ Banks\ -\ Culture\ Novels/Iain\ M.\ Banks\ -\ Culture\ 03\ -\ Use\ Of\ Weapons/
+ ./whisper.sh -m tiny.en -i /Volumes/Reading/audiobooks/Iain\ M.\ Banks\ -\ Culture\ Novels/Iain\ M.\ Banks\ -\ Culture\ 03\ -\ Use\ Of\ Weapons/
 ```
 
 ## Setup (whisper.cpp)

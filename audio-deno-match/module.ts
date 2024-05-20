@@ -17,6 +17,7 @@ export function hello() {
   return "Hello, world!";
 }
 
+// No longer Used
 type HTMLSource = {
   name: string;
   htmlFile: string;
@@ -42,9 +43,7 @@ async function htmlDocForSource(source: Source): Promise<HTMLDocument> {
     // source is an EPubSource
     console.log(`- epubFile: ${source.epubFile}`);
     const html = await getHTML(source.epubFile);
-    // console.log(`|html|: ${html.length}`);
-    // console.log(`html: ${html.slice(0, 1000)}...`);
-    await Deno.writeTextFile("output.html", html);
+    await Deno.writeTextFile("output/input-epub.html", html);
     return parseHTML(html);
   } else {
     throw new Error("Invalid source type");
@@ -89,6 +88,11 @@ export async function main() {
       // htmlFile: "../audio-reader-html/media/theroadnottaken-original.html",
       epubFile: "../audio-reader-html/media/theroadnottaken.epub",
       vttFile: "../audio-reader-html/media/theroadnottaken.vtt",
+    },
+    weapons: {
+      name: "The Use of Weapons",
+      epubFile: "../audio-reader-html/media/weapons.epub",
+      vttFile: "../audio-reader-html/media/weapons.base.en.vtt",
     },
     blade: {
       name: "The Blade Itself",
@@ -143,11 +147,14 @@ export async function main() {
     logMemoryUsage(`after TextRanges (normalized:${normalize})`);
 
     let start = +new Date();
-    matchCuesToTextRanges(cues, textRanges, textContent, {
-      normalize,
-      verbose,
-    });
-    console.log(`- matchCuesToTextRanges took: ${+new Date() - start}ms`);
+    // skip for now
+    if (start < 0) {
+      matchCuesToTextRanges(cues, textRanges, textContent, {
+        normalize,
+        verbose,
+      });
+      console.log(`- matchCuesToTextRanges took: ${+new Date() - start}ms`);
+    }
 
     start = +new Date();
     logMemoryUsage(`after matchCues (normalized:${normalize})`);

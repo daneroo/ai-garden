@@ -17,6 +17,13 @@ function App() {
       markupFile: "media/theroadnottaken-original.html",
     },
     {
+      name: "Weapons",
+      audioFile: "media/weapons.m4b",
+      audioType: "audio/mp4",
+      transcriptFile: "media/weapons.base.en.vtt",
+      markupFile: "media/weapons.html",
+    },
+    {
       name: "Wrath",
       audioFile: "media/wrath.m4b",
       audioType: "audio/mp4",
@@ -341,7 +348,8 @@ function highlightCuesInMarkupContent(cues, markupContent) {
     if (
       cue.text.trim() === "Part 1." || // blade
       cue.text.trim() === "Chapter 3" || // ruin
-      cue.text.trim() === "Chapter 4 Corbin" // wrath
+      cue.text.trim() === "Chapter 4 Corbin" || // wrath
+      cue.text.trim() === "Numeral 13" // weapons - XIII
     ) {
       console.log(`-- Early termination: ${cue.text}`);
       break;
