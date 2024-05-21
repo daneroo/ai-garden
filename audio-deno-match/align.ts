@@ -1,11 +1,15 @@
 export type AlignedMatch = {
-  indexA: number; // Index into cueWords, -1 for words only in textWords
-  indexB: number; // Index into textWords, -1 for words only in cueWords
+  cueWordIndex: number; // Index into cueWords, -1 for words only in textWords
+  textWordIndex: number; // Index into textWords, -1 for words only in cueWords
   type: "insertion" | "substitution" | "match";
 };
 
 export type AlignmentResult = {
   alignedMatches: AlignedMatch[];
+  startCueWordIndex: number; // -1 if alignmentMatches is empty
+  startTextWordIndex: number; // -1 if alignmentMatches is empty
+  endCueWordIndex: number; // -1 if alignmentMatches is empty
+  endTextWordIndex: number; // -1 if alignmentMatches is empty
 };
 
 export function alignWords(
@@ -22,6 +26,31 @@ export function alignWords(
   let i = cueStartIndex,
     j = textStartIndex;
 
+  // helper function to record the start/end indices
+  function addWordIndices(alignedMatches: AlignedMatch[]): AlignmentResult {
+    if (alignedMatches.length === 0) {
+      return {
+        alignedMatches,
+        startCueWordIndex: -1,
+        startTextWordIndex: -1,
+        endCueWordIndex: -1,
+        endTextWordIndex: -1,
+      };
+    }
+    const startCueWordIndex = alignedMatches[0].cueWordIndex;
+    const startTextWordIndex = alignedMatches[0].textWordIndex;
+    const li = alignedMatches.length - 1;
+    const endCueWordIndex = alignedMatches[li].cueWordIndex;
+    const endTextWordIndex = alignedMatches[li].textWordIndex;
+
+    return {
+      alignedMatches,
+      startCueWordIndex,
+      startTextWordIndex,
+      endCueWordIndex,
+      endTextWordIndex,
+    };
+  }
   // Helper function to find the next match within a window
   function findNextMatch(i: number, j: number, window: number) {
     // console.debug(`## findNextMatch: i=${i}, j=${j}, window=${window}`);
@@ -58,7 +87,7 @@ export function alignWords(
     //   `.. textWords[${j},..]=${textWords.slice(j, j + maxSkip + 1)}`
     // );
     if (cueWords[i] === textWords[j]) {
-      alignedMatches.push({ indexA: i, indexB: j, type: "match" });
+      alignedMatches.push({ cueWordIndex: i, textWordIndex: j, type: "match" });
       i++;
       j++;
     } else {
@@ -70,13 +99,13 @@ export function alignWords(
         // console.log(
         //   `findNextMatch exceeded window threshold of ${maxSkip} at i=${i}, j=${j}`
         // );
-        return { alignedMatches };
+        return addWordIndices(alignedMatches);
       }
       if (match.skipInCues === 1 && match.skipInText === 1) {
         // Single word difference (substitution)
         alignedMatches.push({
-          indexA: i,
-          indexB: j,
+          cueWordIndex: i,
+          textWordIndex: j,
           type: "substitution",
         });
         i++;
@@ -85,15 +114,15 @@ export function alignWords(
         // otherwise treat as insertions on both sides
         for (let k = 0; k < match.skipInCues; k++) {
           alignedMatches.push({
-            indexA: i + k,
-            indexB: -1,
+            cueWordIndex: i + k,
+            textWordIndex: -1,
             type: "insertion",
           });
         }
         for (let k = 0; k < match.skipInText; k++) {
           alignedMatches.push({
-            indexA: -1,
-            indexB: j + k,
+            cueWordIndex: -1,
+            textWordIndex: j + k,
             type: "insertion",
           });
         }
@@ -123,8 +152,7 @@ export function alignWords(
   //   });
   //   j++;
   // }
-
-  return { alignedMatches };
+  return addWordIndices(alignedMatches);
 }
 
 export function alignedMatchingRate(alignedMatches: AlignedMatch[]): number {
@@ -173,10 +201,10 @@ export function prettyPrint(
   }
 
   alignedMatches.forEach((match) => {
-    const { indexA, indexB, type } = match;
+    const { cueWordIndex, textWordIndex, type } = match;
 
-    const cueWord = indexA !== -1 ? cueWords[indexA] : "";
-    const textWord = indexB !== -1 ? textWords[indexB] : "";
+    const cueWord = cueWordIndex !== -1 ? cueWords[cueWordIndex] : "";
+    const textWord = textWordIndex !== -1 ? textWords[textWordIndex] : "";
 
     switch (type) {
       case "match":
@@ -188,7 +216,7 @@ export function prettyPrint(
         textLine += upDownArrow + green(textWord);
         break;
       case "insertion":
-        if (indexA === -1) {
+        if (cueWordIndex === -1) {
           cueLine += downArrow;
           // textLine += emptyPad + textWord;
           textLine += red(textWord);

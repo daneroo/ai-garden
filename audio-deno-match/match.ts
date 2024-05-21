@@ -97,8 +97,8 @@ export function matchWordSequences(
       console.error(`- Last alignment match: `, lastMatch);
       throw new Error(`- Last alignment is not a match: ${lastMatch.type}`);
     }
-    initialCueStartIndex = lastMatch.indexA + 1;
-    initialTextStartIndex = lastMatch.indexB + 1;
+    initialCueStartIndex = lastMatch.cueWordIndex + 1;
+    initialTextStartIndex = lastMatch.textWordIndex + 1;
     alignmentResults.push(alignmentResult);
   }
   const elapsed = Date.now() - start;
@@ -109,34 +109,50 @@ export function matchWordSequences(
   return { cueWords, textWords, alignmentResults };
   // now do alignWords
 }
+
+// get the end indices of the previous alignment (current alignment is index)
+function getPrevWordIndices(
+  alignments: AlignmentResult[],
+  index: number
+): { lastCueWordIndex: number; lastTextWordIndex: number } {
+  if (index < 0 || index > alignments.length) {
+    throw new Error(
+      `- getPrevWordIndices: index out of range: ${index}/${alignments.length}`
+    );
+  }
+  return index === 0
+    ? { lastCueWordIndex: 0, lastTextWordIndex: 0 }
+    : {
+        lastCueWordIndex: alignments[index - 1].endCueWordIndex,
+        lastTextWordIndex: alignments[index - 1].endTextWordIndex,
+      };
+}
 function multipleAlignmentMetrics(multipleAlignment: MultipleAlignment) {
   const { cueWords, textWords, alignmentResults } = multipleAlignment;
 
-  let lastCueWordIndex = 0;
-  let lastTextWordIndex = 0;
   let totalMatchedWords = 0;
   let totalSkippedCueWords = 0;
   let totalSkippedTextWords = 0;
-  alignmentResults.map((alignment) => {
-    const { alignedMatches } = alignment;
-    const startCueWordIndex = alignedMatches[0].indexA;
-    const startTextWordIndex = alignedMatches[0].indexB;
+  alignmentResults.map((alignment, index, alignments) => {
+    const { alignedMatches, startCueWordIndex, startTextWordIndex } = alignment;
+    const { lastCueWordIndex, lastTextWordIndex } = getPrevWordIndices(
+      alignments,
+      index
+    );
     const skippedCueWords = startCueWordIndex - lastCueWordIndex;
     const skippedTextWords = startTextWordIndex - lastTextWordIndex;
+
     const matchedWords = alignedMatches.filter(
       (match) => match.type === "match"
     ).length;
     totalMatchedWords += matchedWords;
     totalSkippedCueWords += skippedCueWords;
     totalSkippedTextWords += skippedTextWords;
-    // console.log(
-    //   `  - Alignment ${index + 1} of ${
-    //     alignmentResults.length
-    //   } -  matchedWords: ${matchedWords} skippedCueWords: ${skippedCueWords} skippedTextWords: ${skippedTextWords}`
-    // );
-    lastCueWordIndex = alignedMatches[alignedMatches.length - 1].indexA;
-    lastTextWordIndex = alignedMatches[alignedMatches.length - 1].indexB;
   });
+  const { lastCueWordIndex, lastTextWordIndex } = getPrevWordIndices(
+    alignmentResults,
+    alignmentResults.length
+  );
   totalSkippedCueWords += cueWords.length - lastCueWordIndex;
   totalSkippedTextWords += textWords.length - lastTextWordIndex;
   const cueMatchRate = totalMatchedWords / cueWords.length;
@@ -152,6 +168,7 @@ function multipleAlignmentMetrics(multipleAlignment: MultipleAlignment) {
     cueMatchRate,
   };
 }
+
 export function viewMultipleAlignments(multipleAlignment: MultipleAlignment) {
   const { cueWords, textWords, alignmentResults } = multipleAlignment;
   console.log(
@@ -173,6 +190,7 @@ export function viewMultipleAlignments(multipleAlignment: MultipleAlignment) {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
+    margin: 0 1em;
   }
 
   .aligned-match {
@@ -214,16 +232,74 @@ export function viewMultipleAlignments(multipleAlignment: MultipleAlignment) {
     .map((alignment, index) => {
       const { alignedMatches } = alignment;
       return `<div>
+      <h2>Skip before ${index + 1} of ${alignmentResults.length}</h2>
+      ${skipBetweenAlignmentsToHTML(
+        alignmentResults,
+        index,
+        cueWords,
+        textWords
+      )}
       <h2>Alignment ${index + 1} of ${alignmentResults.length}</h2>
       ${alignmentsToHTML(alignedMatches, cueWords, textWords)}
     </div>`;
     })
     .join("\n")}
-</body>
+    <h2>Skip after ${alignmentResults.length} of ${alignmentResults.length}</h2>
+    ${skipBetweenAlignmentsToHTML(
+      alignmentResults,
+      alignmentResults.length,
+      cueWords,
+      textWords
+    )}
+  </body>
 </html>`;
   Deno.writeTextFileSync("output/align.html", html);
 }
 
+export function skipBetweenAlignmentsToHTML(
+  alignments: AlignmentResult[],
+  index: number,
+  cueWords: string[],
+  textWords: string[]
+) {
+  if (index === alignments.length) {
+    // After the Last alignment
+    const { lastCueWordIndex, lastTextWordIndex } = getPrevWordIndices(
+      alignments,
+      index
+    );
+    const skippedCueWords = cueWords.length - lastCueWordIndex;
+    const skippedTextWords = textWords.length - lastTextWordIndex;
+    return `
+    <div class="skip-container">
+      <p>Skipped ${skippedCueWords} cue words</p>
+      <p>${cueWords.slice(lastCueWordIndex + 1).join(" ")}</p>
+      <p>Skipped ${skippedTextWords} text words</p>
+      <p>${textWords.slice(lastTextWordIndex + 1).join(" ")}</p>
+    </div>
+  `;
+  }
+  const { startCueWordIndex, startTextWordIndex } = alignments[index];
+  const { lastCueWordIndex, lastTextWordIndex } = getPrevWordIndices(
+    alignments,
+    index
+  );
+  const skippedCueWords = startCueWordIndex - lastCueWordIndex;
+  const skippedTextWords = startTextWordIndex - lastTextWordIndex;
+
+  return `
+    <div class="skip-container">
+      <p>Skipped ${skippedCueWords} cue words</p>
+      <p>${cueWords
+        .slice(lastCueWordIndex + 1, startCueWordIndex)
+        .join(" ")}</p>
+      <p>Skipped ${skippedTextWords} text words</p>
+      <p>${textWords
+        .slice(lastTextWordIndex + 1, startTextWordIndex)
+        .join(" ")}</p>
+    </div>
+  `;
+}
 export function alignmentsToHTML(
   alignedMatches: AlignedMatch[],
   cueWords: string[],
@@ -233,9 +309,9 @@ export function alignmentsToHTML(
     <div class="aligned-container">
       ${alignedMatches
         .map((match) => {
-          const { indexA, indexB, type } = match;
-          const cueWord = indexA !== -1 ? cueWords[indexA] : "";
-          const textWord = indexB !== -1 ? textWords[indexB] : "";
+          const { cueWordIndex, textWordIndex, type } = match;
+          const cueWord = cueWordIndex !== -1 ? cueWords[cueWordIndex] : "";
+          const textWord = textWordIndex !== -1 ? textWords[textWordIndex] : "";
 
           switch (type) {
             case "match":
@@ -247,7 +323,7 @@ export function alignmentsToHTML(
                   <div class="text-word">${textWord}</div>
                 </div>`;
             case "insertion":
-              if (indexA === -1) {
+              if (cueWordIndex === -1) {
                 return `
                   <div class="aligned-match insertion">
                     <div class="cue-word">&nbsp;</div>
