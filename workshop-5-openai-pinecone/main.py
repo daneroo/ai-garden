@@ -14,7 +14,7 @@ load_dotenv()
 
 # Global variables
 pinecone_index_name = "knowledge"
-text_url = "https://github.com/trancethehuman/LLMSchool/blob/main/sample-data/transcript-lex-huberman-2023.txt?raw=true"
+text_url = "https://github.com/trancethehuman/LLMSchool/blob/main/sample-data/transcript-lex-huberman-2023.txt?raw=true"  # noqa: E501
 file_name = os.path.basename(text_url.split("?")[0])
 
 
@@ -71,7 +71,9 @@ llm = ChatOpenAI(
     temperature=0,
 )
 qa = RetrievalQA.from_chain_type(
-    llm=llm, chain_type="stuff", retriever=pinecone_langchain_vectorstore.as_retriever()
+    llm=llm,
+    chain_type="stuff",
+    retriever=pinecone_langchain_vectorstore.as_retriever(),  # noqa: E501
 )
 
 # Q & A
