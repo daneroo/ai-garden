@@ -141,6 +141,11 @@ function multipleAlignmentMetrics(multipleAlignment: MultipleAlignment) {
     );
     const skippedCueWords = startCueWordIndex - lastCueWordIndex;
     const skippedTextWords = startTextWordIndex - lastTextWordIndex;
+    console.log(
+      `- Alignment ${index + 1} of ${
+        alignments.length
+      }: skipped cue: ${skippedCueWords} text: ${skippedTextWords}`
+    );
 
     const matchedWords = alignedMatches.filter(
       (match) => match.type === "match"
@@ -306,7 +311,7 @@ export function alignmentsToHTML(
   textWords: string[]
 ): string {
   return `
-    <div class="aligned-container">
+    <div class="aligned-containerNOT">
       ${alignedMatches
         .map((match) => {
           const { cueWordIndex, textWordIndex, type } = match;
@@ -315,27 +320,33 @@ export function alignmentsToHTML(
 
           switch (type) {
             case "match":
-              return `<div class="aligned-match match">${cueWord}</div>`;
+              // return `<div class="aligned-match match">${cueWord}</div>`;
+              // return `<span class="aligned-match match">${cueWord}</span>`;
+              return ` ${cueWord} `;
             case "substitution":
-              return `
-                <div class="aligned-match substitution">
-                  <div class="cue-word">${cueWord}</div>
-                  <div class="text-word">${textWord}</div>
-                </div>`;
+              // return `
+              //   <div class="aligned-match substitution">
+              //     <div class="cue-word">${cueWord}</div>
+              //     <div class="text-word">${textWord}</div>
+              //   </div>`;
+              return `<span class="substitution">{${cueWord}↔${textWord}}</span> `;
             case "insertion":
-              if (cueWordIndex === -1) {
-                return `
-                  <div class="aligned-match insertion">
-                    <div class="cue-word">&nbsp;</div>
-                    <div class="text-word">${textWord}</div>
-                  </div>`;
-              } else {
-                return `
-                  <div class="aligned-match insertion">
-                    <div class="cue-word">${cueWord}</div>
-                    <div class="text-word">&nbsp;</div>
-                  </div>`;
-              }
+              return `<span class="insertion">${
+                cueWordIndex === -1 ? "↑" + textWord : "↓" + cueWord
+              }</span> `;
+            // if (cueWordIndex === -1) {
+            //   return `
+            //     <div class="aligned-match insertion">
+            //       <div class="cue-word">&nbsp;</div>
+            //       <div class="text-word">${textWord}</div>
+            //     </div>`;
+            // } else {
+            //   return `
+            //     <div class="aligned-match insertion">
+            //       <div class="cue-word">${cueWord}</div>
+            //       <div class="text-word">&nbsp;</div>
+            //     </div>`;
+            // }
             default:
               return "";
           }
