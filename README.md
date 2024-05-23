@@ -38,6 +38,9 @@ ollama list
 ## TODO
 
 - [ ] Cleanup repo
+  - [ ] consolidate audio book sub-projects (non-AI)
+    - [ ] audio-reader-vite - create new vite base consolidated app
+  - [ ] remove old projects (audio-reader-html, audio-deno-match book-reader)
 - [x] Cleanup python virtualenvs and unused models
   - `/Users/daniel/Library/Caches/pypoetry/virtualenvs/`
     - ai-implements-ai-fIOIe-Zf-py3.11
