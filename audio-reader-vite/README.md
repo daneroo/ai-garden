@@ -2,7 +2,7 @@
 
 ## TODO
 
-- [ ] cleanup starting template
+- [x] cleanup starting template
 - [ ] add minimal lint and test
 - [ ] consolidate other experiments
   - [ ] book-reader (simple static html epubjs reader with ?url=/audiobooks/..)
@@ -10,6 +10,7 @@
     - [ ] index.html -> picker and bad matcher
     - [ ] audio.html simple cue vtt display (road not taken)
   - [ ] audio-deno-match (deno cli matcher)
+- [ ] refactor useAdjustedVH and useUrlBarHeight - separate use cases
 - [TanStack Router](https://tanstack.com/router/latest/docs/framework/react/quick-start) for second page
 
 ## Usage
