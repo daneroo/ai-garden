@@ -141,7 +141,7 @@ git clone https://github.com/r4victor/syncabook.git
 ## References
 
 - [ ] [ollama](https://github.com/jmorganca/ollama)
-- [ ] [LocalAI](https://github.com/mudler/LocalAI) [Flowise][https://flowiseai.com/]
+- [ ] [LocalAI](https://github.com/mudler/LocalAI), [Flowise](https://flowiseai.com/)
   - LLMs, TTS, whisper,bark
 - [GPT4All docs](https://docs.gpt4all.io)
 - [syncabook](https://github.com/r4victor/syncabook)

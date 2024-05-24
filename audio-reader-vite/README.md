@@ -10,7 +10,7 @@
     - [ ] index.html -> picker and bad matcher
     - [ ] audio.html simple cue vtt display (road not taken)
   - [ ] audio-deno-match (deno cli matcher)
-- [tanstack router](https://tanstack.com/router/latest/docs/framework/react/quick-start) for second page
+- [TanStack Router](https://tanstack.com/router/latest/docs/framework/react/quick-start) for second page
 
 ## Usage
 
