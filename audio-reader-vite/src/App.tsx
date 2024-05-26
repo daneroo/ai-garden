@@ -3,6 +3,10 @@ import './App.css';
 import { useState } from 'react';
 
 import {
+  AudioPlayer,
+  type TranscriptCue,
+} from './components/audio-player';
+import {
   type MediaChoice,
   MediaSelector,
 } from './components/media-selector';
@@ -62,27 +66,41 @@ function App() {
   const handleMediaChange = (media: MediaChoice) => {
     setSelectedMedia(media);
   };
+
+  const [transcript, setTranscript] = useState<TranscriptCue[]>([]);
+
+  const handleTranscriptChange = (cues: TranscriptCue[]) => {
+    console.log(`Transcript Change: ${cues.length} cues`);
+    setTranscript(cues);
+  };
   return (
     <VH100>
       <h3>Audio Reader (Vite)</h3>
-      <ul>
-        <li>[x] media selector</li>
-        <li>[ ] audio player</li>
-        <li>[ ] transcript | markup</li>
-      </ul>
       <MediaSelector
         mediaChoices={mediaChoices}
         onMediaChange={handleMediaChange} // Optional handler
       />
+      <AudioPlayer
+        audioFile={selectedMedia.audioFile}
+        audioType={selectedMedia.audioType}
+        transcriptFile={selectedMedia.transcriptFile}
+        onTranscriptChange={handleTranscriptChange} // Optional handler
+      />
       {/* Use the selectedMedia object directly */}
       <div>
-        <h2>Selected Media Details</h2>
-        <p>Audio: {selectedMedia.audioFile}</p>
-        <p>Type: {selectedMedia.audioType}</p>
-        <p>Transcript: {selectedMedia.transcriptFile}</p>
+        <p>
+          Selected Media Details <br />
+          Audio: {selectedMedia.audioFile} ({selectedMedia.audioType}) <br />
+          Transcript: {selectedMedia.transcriptFile}
+        </p>
       </div>
       <pre style={{ flexGrow: 1, overflow: "auto", width: "100%" }}>
         Transcript
+        {transcript.map((cue) => (
+          <div key={cue.id}>
+            {cue.startTime.toFixed(2)}s - {cue.text}
+          </div>
+        ))}
       </pre>
       <div>
         {/* Reload button  */}
