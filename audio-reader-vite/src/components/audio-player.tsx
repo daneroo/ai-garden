@@ -1,150 +1,150 @@
 import React, {
-  type RefObject,
   useEffect,
   useRef,
   useState,
 } from 'react';
 
-export type AudioPlayerProps = {
-  audioFile: string;
-  audioType: string;
-  transcriptFile: string;
-  onTranscriptChange?: (cues: TranscriptCue[]) => void;
-};
+import { useMedia } from '../hooks/useMedia';
+import type { TranscriptCue } from '../types';
 
-export type TranscriptCue = {
-  id: string;
-  startTime: number;
-  text: string;
-  ref: RefObject<VTTCue>;
-};
 const formatTime = (time: number) => {
   const minutes = Math.floor(time / 60);
-  const seconds = Math.floor(time % 60);
-  return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  // const seconds = Math.floor(time % 60);
+  // return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  const seconds = (time % 60).toFixed(1).padStart(4, "0");
+  return `${minutes}:${seconds}`;
 };
 
-export function AudioPlayer({
-  audioFile,
-  audioType,
-  transcriptFile,
-  onTranscriptChange: onTranscriptChange,
-}: AudioPlayerProps) {
+export function AudioPlayer() {
+  const { selectedMedia, setTranscript, currentTime, setCurrentTime } =
+    useMedia();
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
   const trackRef = useRef<HTMLTrackElement>(null);
+  const isTimeUpdateFromAudio = useRef(false); // Ref to track if the time update is from the audio element, and prevent feedback loop
 
-  const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [transcript, setTranscript] = useState<TranscriptCue[]>([]);
 
   const sliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTime = parseFloat(e.target.value);
     setCurrentTime(newTime);
-    if (audioPlayerRef.current) {
-      audioPlayerRef.current.currentTime = newTime;
-    }
   };
 
+  // handle audio element events
   useEffect(() => {
-    // const audioPlayer = audioPlayerRef.current;
-    // const track = trackRef.current?.track;
+    if (!selectedMedia) return;
 
-    console.log(`useEffect (${audioFile}, ${transcriptFile})`);
+    console.log(
+      `useEffect (${selectedMedia.audioFile}, ${selectedMedia.transcriptFile})`
+    );
+
+    const audioElement = audioPlayerRef.current;
 
     function handleMetadataLoaded() {
-      if (!audioPlayerRef.current) return;
-      const duration = audioPlayerRef.current?.duration;
-      console.log(`Audion Duration (loaded): ${duration}s`);
+      if (!audioElement) return;
+      const duration = audioElement.duration;
+      console.log(`Audio Duration (loaded): ${duration}s`);
       setDuration(duration);
     }
 
     function handleTimeUpdate() {
-      if (!audioPlayerRef.current) return;
-      setCurrentTime(audioPlayerRef.current.currentTime);
+      if (!audioElement) return;
+      isTimeUpdateFromAudio.current = true; // This update is from the audio element
+      setCurrentTime(audioElement.currentTime);
     }
+
+    if (audioElement) {
+      audioElement.onloadedmetadata = handleMetadataLoaded;
+      audioElement.ontimeupdate = handleTimeUpdate;
+      audioElement.load(); // Reload the audio element to apply new sources
+    }
+
+    return () => {
+      if (audioElement) {
+        audioElement.onloadedmetadata = null;
+        audioElement.ontimeupdate = null;
+      }
+    };
+  }, [selectedMedia, setCurrentTime, setDuration]);
+
+  // handle track element events
+  useEffect(() => {
+    if (!selectedMedia) return;
+
+    const trackElement = trackRef.current;
 
     function handleTrackLoad() {
       console.log(`Track loaded`);
-      if (!trackRef.current) return;
-      const track = trackRef.current.track;
+      if (!trackElement) return;
+      const track = trackElement.track;
       if (track.cues) {
         console.log(`Track cues: ${track.cues.length}`);
-        //
         const cues = Array.from(track.cues) as VTTCue[];
-        const cueRefs = cues.map(() => React.createRef<VTTCue>());
-        setTranscript(
-          cues.map((cue, index) => ({
-            id: `${cue.startTime}-${cue.endTime}`,
-            startTime: cue.startTime,
-            text: cue.text,
-            ref: cueRefs[index],
-          }))
-        );
+        const newTranscript: TranscriptCue[] = cues.map((cue) => ({
+          id: `${cue.startTime}-${cue.endTime}`,
+          startTime: cue.startTime,
+          text: cue.text,
+        }));
+        setTranscript(newTranscript);
       }
     }
 
-    if (audioPlayerRef.current) {
-      audioPlayerRef.current.addEventListener(
-        "loadedmetadata",
-        handleMetadataLoaded
-      );
-      audioPlayerRef.current.ontimeupdate = handleTimeUpdate;
-      audioPlayerRef.current.load(); // Reload the audio element to apply new sources
-    }
-
-    // Well this line cost me about 5 days of debugging
-    // this is disabled by default, which won;t even trigger the loading of cues from the vtt file
-    // needs to be set to "showing" or "hidden" to trigger cue loading on iPad/iPhone
-    // console.log(`Track mode: ${trackRef.current.track.mode}`);
-    if (trackRef.current) {
-      trackRef.current.track.mode = "hidden"; // or "showing", as long as it does not remain "disabled"
-      console.log(`Track mode: ${trackRef.current.track.mode}`);
+    if (trackElement) {
+      trackElement.track.mode = "hidden"; // or 'showing', as long as it does not remain 'disabled'
+      console.log(`Track mode: ${trackElement.track.mode}`);
       console.log(`Track adding event listener for load`);
-      trackRef.current.addEventListener("load", handleTrackLoad);
+      trackElement.onload = handleTrackLoad;
     }
 
-    // Clean up function
     return () => {
-      if (audioPlayerRef.current) {
-        audioPlayerRef.current.removeEventListener(
-          "loadedmetadata",
-          handleMetadataLoaded
-        );
-        audioPlayerRef.current.ontimeupdate = null;
-      }
-      if (trackRef.current) {
-        trackRef.current.removeEventListener("load", handleTrackLoad);
+      if (trackElement) {
+        trackElement.onload = null;
       }
     };
-  }, [audioFile, transcriptFile, onTranscriptChange]);
+  }, [selectedMedia, setTranscript]);
 
+  // Sync the context currentTime with the audio element's currentTime when context currentTime changes
   useEffect(() => {
-    if (onTranscriptChange) {
-      onTranscriptChange(transcript);
+    if (audioPlayerRef.current) {
+      if (isTimeUpdateFromAudio.current) {
+        // console.log("Would have caused feedback loop");
+        isTimeUpdateFromAudio.current = false; // Reset the flag after syncing
+        return;
+      }
+      if (Math.abs(audioPlayerRef.current.currentTime - currentTime) > 0.1) {
+        audioPlayerRef.current.currentTime = currentTime;
+      }
     }
-  }, [transcript, onTranscriptChange]);
+  }, [currentTime]);
+
   return (
     <div>
       {/* Media controls */}
       <audio ref={audioPlayerRef} controls>
-        <source src={audioFile} type={audioType} />
+        <source
+          src={selectedMedia?.audioFile}
+          type={selectedMedia?.audioType}
+        />
         <track
           ref={trackRef}
-          src={transcriptFile}
+          src={selectedMedia?.transcriptFile}
           kind="subtitles"
           srcLang="en"
           default
         />
       </audio>
       <div>
-        <span>{formatTime(currentTime)}</span>
+        <span style={{ fontVariantNumeric: "tabular-nums" }}>
+          {formatTime(currentTime)}
+        </span>
         <input
           type="range"
           value={currentTime}
           max={duration}
           onChange={sliderChange}
         />
-        <span>{formatTime(duration)}</span>
+        <span style={{ fontVariantNumeric: "tabular-nums" }}>
+          {formatTime(duration)}
+        </span>{" "}
       </div>
     </div>
   );

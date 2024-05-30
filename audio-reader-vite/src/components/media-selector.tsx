@@ -1,60 +1,28 @@
-import React, {
-  useMemo,
-  useState,
-} from 'react';
+import React from 'react';
 
-export type MediaChoice = {
-  name: string;
-  audioFile: string;
-  audioType: string;
-  transcriptFile: string;
-  markupFile: string;
-};
+import { useMedia } from '../hooks/useMedia';
 
-export type MediaSelectorProps = {
-  mediaChoices: MediaChoice[];
-  onMediaChange?: (media: MediaChoice) => void; // Optional onMediaChange handler
-};
+export function MediaSelector() {
+  const { mediaChoices, selectedMediaId, setSelectedMediaId, setTranscript } =
+    useMedia();
 
-function useMediaSelectorInternal(mediaChoices: MediaChoice[]) {
-  const [selectedMediaId, setSelectedMediaId] = useState(0);
-
-  const selectedMedia = useMemo(
-    () => mediaChoices[selectedMediaId],
-    [mediaChoices, selectedMediaId]
-  );
-
-  const selectMedia = (index: number) => {
-    setSelectedMediaId(index);
-  };
-
-  return {
-    selectedMedia,
-    selectMedia,
-  };
-}
-
-export function MediaSelector({
-  mediaChoices,
-  onMediaChange,
-}: MediaSelectorProps) {
-  const { selectMedia } = useMediaSelectorInternal(mediaChoices);
-
-  const handleMediaChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newIndex = Number(e.target.value);
-    selectMedia(newIndex);
-    if (onMediaChange) {
-      onMediaChange(mediaChoices[newIndex]);
-    }
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setTranscript([]);
+    const newIndex = Number(event.target.value);
+    setSelectedMediaId(newIndex);
   };
 
   return (
     <div>
       <span style={{ fontSize: "1.2rem" }}>Select Media:</span>
-      <select onChange={handleMediaChange} style={{ fontSize: "1.2rem" }}>
-        {mediaChoices.map((m, index) => (
+      <select
+        onChange={handleChange}
+        value={selectedMediaId}
+        style={{ fontSize: "1.2rem" }}
+      >
+        {mediaChoices.map((media, index) => (
           <option key={index} value={index}>
-            {m.name}
+            {media.name}
           </option>
         ))}
       </select>
