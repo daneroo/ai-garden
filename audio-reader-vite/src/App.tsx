@@ -94,14 +94,63 @@ function App() {
           Transcript: {selectedMedia.transcriptFile}
         </p>
       </div>
-      <pre style={{ flexGrow: 1, overflow: "auto", width: "100%" }}>
-        Transcript
-        {transcript.map((cue) => (
-          <div key={cue.id}>
-            {cue.startTime.toFixed(2)}s - {cue.text}
-          </div>
-        ))}
-      </pre>
+      {/* Two-Column Layout for Transcript and HTML Content */}
+      <div
+        style={{
+          overflowY: "auto", // required for children to get proper height
+          flexGrow: 1, // Outer container grows to fill available space
+          display: "flex", // Outer container uses flexbox layout
+          gap: "1rem", // Gap between the inner columns
+          justifyContent: "space-between", // Space between the inner columns
+          padding: "1rem", // Padding for the outer container
+        }}
+      >
+        {/* Transcript Column */}
+        <div
+          style={{
+            width: "50%",
+            // flexBasis: "40%", // Take up to 40% of the container's width
+            // maxWidth: "40%", // Ensure it doesn't exceed 40% of the container's width
+            // flexGrow: 1, // Inner column grows to fill the available space equally
+            overflowY: "auto", // Adds vertical scrolling to the inner column if needed
+            overflowX: "auto", // Adds horizontal scrolling to the pre tag if needed
+          }}
+        >
+          {/* This is where the transcript goes */}
+          <h5>Transcript</h5>
+
+          {transcript.map((cue) => (
+            <div
+              key={cue.id}
+              className={"caption"}
+              onDoubleClick={() => {
+                console.log("dbl click", cue);
+                // setCurrentTime(cue.startTime);
+                // audioPlayerRef.current.currentTime = cue.startTime;
+              }}
+            >
+              {cue.startTime.toFixed(2)}s - {cue.text}
+            </div>
+          ))}
+        </div>
+        {/* Markup Content Column */}
+        <div
+          style={{
+            width: "50%",
+            // flexGrow: 1, // Inner column grows to fill the available space equally
+            overflowY: "auto", // Adds vertical scrolling to the inner column if needed
+          }}
+        >
+          {/* This is where the markup goes */}
+          <h5>Markup</h5>
+          {/* 100 copies of : this is a line */}
+          {Array.from({ length: 100 }).map((_, index) => (
+            <div key={index}>
+              This is a line that is long enough to balance the transcript
+            </div>
+          ))}
+        </div>
+      </div>
       <div>
         {/* Reload button  */}
         <button
