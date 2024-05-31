@@ -3,11 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useMedia } from "../hooks/useMedia";
 import type { TranscriptCue } from "../types";
 
-const formatTime = (time: number) => {
+const formatTime = (time: number, fractionDigits = 0) => {
   const minutes = Math.floor(time / 60);
-  // const seconds = Math.floor(time % 60);
-  // return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-  const seconds = (time % 60).toFixed(1).padStart(4, "0");
+  const pad = fractionDigits > 0 ? fractionDigits + 3 : 2;
+  const seconds = (time % 60).toFixed(fractionDigits).padStart(pad, "0");
   return `${minutes}:${seconds}`;
 };
 
@@ -34,16 +33,14 @@ export function AudioPlayer() {
   useEffect(() => {
     if (!selectedMedia) return;
 
-    console.log(
-      `useEffect (${selectedMedia.audioFile}, ${selectedMedia.transcriptFile})`
-    );
-
     const audioElement = audioPlayerRef.current;
 
     function handleMetadataLoaded() {
       if (!audioElement) return;
       const duration = audioElement.duration;
-      console.log(`Audio Duration (loaded): ${duration}s`);
+      console.log(
+        `Audio Duration for ${selectedMedia.audioFile}: ${duration}s (loaded)`
+      );
       setDuration(duration);
     }
 
@@ -85,9 +82,9 @@ export function AudioPlayer() {
         track.oncuechange = () => {
           if (!track.activeCues) return;
           const activeCues = fromTextTrackCueList(track.activeCues);
-          console.log(
-            `Active cues: ${activeCues.length} ${JSON.stringify(activeCues)}`
-          );
+          // console.log(
+          //   `Active cues: ${activeCues.length} ${JSON.stringify(activeCues)}`
+          // );
           setActiveCues(activeCues);
         };
       }
