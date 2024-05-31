@@ -1,11 +1,7 @@
-import React, {
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
-import { useMedia } from '../hooks/useMedia';
-import type { TranscriptCue } from '../types';
+import { useMedia } from "../hooks/useMedia";
+import type { TranscriptCue } from "../types";
 
 const formatTime = (time: number) => {
   const minutes = Math.floor(time / 60);
@@ -16,8 +12,13 @@ const formatTime = (time: number) => {
 };
 
 export function AudioPlayer() {
-  const { selectedMedia, setTranscript, currentTime, setCurrentTime } =
-    useMedia();
+  const {
+    selectedMedia,
+    setTranscript,
+    currentTime,
+    setCurrentTime,
+    setActiveCues,
+  } = useMedia();
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
   const trackRef = useRef<HTMLTrackElement>(null);
   const isTimeUpdateFromAudio = useRef(false); // Ref to track if the time update is from the audio element, and prevent feedback loop
@@ -78,13 +79,17 @@ export function AudioPlayer() {
       const track = trackElement.track;
       if (track.cues) {
         console.log(`Track cues: ${track.cues.length}`);
-        const cues = Array.from(track.cues) as VTTCue[];
-        const newTranscript: TranscriptCue[] = cues.map((cue) => ({
-          id: `${cue.startTime}-${cue.endTime}`,
-          startTime: cue.startTime,
-          text: cue.text,
-        }));
+        const newTranscript = fromTextTrackCueList(track.cues);
         setTranscript(newTranscript);
+
+        track.oncuechange = () => {
+          if (!track.activeCues) return;
+          const activeCues = fromTextTrackCueList(track.activeCues);
+          console.log(
+            `Active cues: ${activeCues.length} ${JSON.stringify(activeCues)}`
+          );
+          setActiveCues(activeCues);
+        };
       }
     }
 
@@ -98,9 +103,14 @@ export function AudioPlayer() {
     return () => {
       if (trackElement) {
         trackElement.onload = null;
+        const track = trackElement.track;
+        if (track) {
+          track.oncuechange = null;
+        }
       }
+      setTranscript([]);
     };
-  }, [selectedMedia, setTranscript]);
+  }, [selectedMedia, setTranscript, setActiveCues]);
 
   // Sync the context currentTime with the audio element's currentTime when context currentTime changes
   useEffect(() => {
@@ -148,4 +158,13 @@ export function AudioPlayer() {
       </div>
     </div>
   );
+}
+
+function fromTextTrackCueList(ttcl: TextTrackCueList): TranscriptCue[] {
+  const cues = Array.from(ttcl) as VTTCue[];
+  return cues.map((cue) => ({
+    id: `${cue.startTime}-${cue.endTime}`,
+    startTime: cue.startTime,
+    text: cue.text,
+  }));
 }

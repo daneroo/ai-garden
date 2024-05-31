@@ -3,11 +3,9 @@ import React from 'react';
 import { useMedia } from '../hooks/useMedia';
 
 export function MediaSelector() {
-  const { mediaChoices, selectedMediaId, setSelectedMediaId, setTranscript } =
-    useMedia();
+  const { mediaChoices, selectedMediaId, setSelectedMediaId } = useMedia();
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setTranscript([]);
     const newIndex = Number(event.target.value);
     setSelectedMediaId(newIndex);
   };

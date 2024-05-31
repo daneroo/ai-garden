@@ -19,6 +19,8 @@ export type MediaContextType = {
   selectedMedia: MediaChoice; // | undefined;
   transcript: TranscriptCue[];
   setTranscript: (cues: TranscriptCue[]) => void;
+  activeCues: TranscriptCue[];
+  setActiveCues: (cues: TranscriptCue[]) => void;
   currentTime: number;
   setCurrentTime: (time: number) => void;
 };

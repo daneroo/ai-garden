@@ -1,13 +1,13 @@
-import './App.css';
+import "./App.css";
 
-import { AudioPlayer } from './components/audio-player';
-import { Markup } from './components/markup';
-import { MediaSelector } from './components/media-selector';
-import { Transcript } from './components/transcript';
-import { VH100 } from './components/VH100';
-import { MediaProvider } from './contexts/media-context';
-import { useAdjustedVH } from './hooks/useAdjustedVH';
-import type { MediaChoice } from './types';
+import { AudioPlayer } from "./components/audio-player";
+import { Markup } from "./components/markup";
+import { MediaSelector } from "./components/media-selector";
+import { Transcript } from "./components/transcript";
+import { VH100 } from "./components/VH100";
+import { MediaProvider } from "./contexts/media-context";
+import { useAdjustedVH } from "./hooks/useAdjustedVH";
+import type { MediaChoice } from "./types";
 
 const mediaChoices: MediaChoice[] = [
   {
