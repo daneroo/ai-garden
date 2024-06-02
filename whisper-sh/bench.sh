@@ -6,6 +6,7 @@ MODELS=("tiny.en" "base.en" "small.en" "medium.en")
 DURATIONS=("60000" "300000" "3600000" "18000000")
 # DURATIONS=("60000" "120000")
 BASEDIR="/Volumes/Reading/audiobooks/John Gwynne - Faithful and the Fallen/John Gwynne - Faithful and the Fallen 04 - Wrath"
+# BASEDIR="/Volumes/Reading/audiobooks/Stephen Kotkin - Stalin/Stephen Kotkin - Stalin 01 - Paradoxes of Power"
 OUTDIR="./bench-results"
 
 # Initialize the markdown results file

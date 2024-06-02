@@ -16,6 +16,7 @@ We want to:
 
 - [ ] cleanup the scripts (prompts and validation)
 - [ ] run bench on feynman
+- [ ] run in docker/nix/brew
 
 ## Operation
 
@@ -46,6 +47,9 @@ Parameters:
 
  ./whisper.sh -i /Volumes/Reading/audiobooks/Iain\ M.\ Banks\ -\ Culture\ Novels/Iain\ M.\ Banks\ -\ Culture\ 03\ -\ Use\ Of\ Weapons/
  ./whisper.sh -m tiny.en -i /Volumes/Reading/audiobooks/Iain\ M.\ Banks\ -\ Culture\ Novels/Iain\ M.\ Banks\ -\ Culture\ 03\ -\ Use\ Of\ Weapons/
+
+ ./whisper.sh -i /Volumes/Reading/audiobooks/Stephen\ Kotkin\ -\ Stalin/Stephen\ Kotkin\ -\ Stalin\ 01\ -\ Paradoxes\ of\ Power/
+ ./whisper.sh -m tiny.en -i /Volumes/Reading/audiobooks/Stephen\ Kotkin\ -\ Stalin/Stephen\ Kotkin\ -\ Stalin\ 01\ -\ Paradoxes\ of\ Power/
 ```
 
 ## Setup (whisper.cpp)
@@ -56,7 +60,7 @@ The brew formula has problems using METAL/GPU.
 
 ### Whisper.cpp clone and/or update
 
-The upstream repo [whisper.cpp](https://github.com/daneroo/whisper.cpp/tree/master) in `external-repos`
+The upstream repo [whisper.cpp](https://github.com/ggerganov/whisper.cpp/tree/master) in `external-repos`
 
 We might want to periodically update the repo and models.
 
