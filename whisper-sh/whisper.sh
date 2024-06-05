@@ -5,6 +5,8 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WHISPER_HOME="${SCRIPT_DIR}/../external-repos/whisper.cpp"
 WHISPER_HOME="$( cd "${SCRIPT_DIR}/../external-repos/whisper.cpp" && pwd )"
 WHISPER_EXEC="$WHISPER_HOME/main"
+# Brew's whisper-cpp
+# WHISPER_EXEC="whisper-cpp"
 WHISPER_MODELS="${WHISPER_HOME}/models"
 DEFAULT_OUTDIR="$HOME/Downloads/WhisperCPPContent"
 DEFAULT_MODEL_SHORTNAME="base.en"

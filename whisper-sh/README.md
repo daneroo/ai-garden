@@ -1,7 +1,7 @@
 # Whisper.cpp invocation
 
 This is just a coordination script.
-We keep the [whisper.cpp](https://github.com/daneroo/whisper.cpp/tree/master) in `external-repos`
+We keep the [whisper.cpp](https://github.com/ggerganov/whisper.cpp/tree/master) in `external-repos`
 
 As of 2023-09-16 I can;t get bindings/go to work on the mac mini,
 so I have reverted to using the `main` binary.
@@ -17,6 +17,30 @@ We want to:
 - [ ] cleanup the scripts (prompts and validation)
 - [ ] run bench on feynman
 - [ ] run in docker/nix/brew
+
+## Homebrew
+
+### brew install openai-whisper
+
+Using brew's `brew install openai-whisper` is working, but has not been tested (No acceleration)
+
+- models are downlpoaded into `~/.cache/whisper`
+- It seems to work on `.m4b` files directly, but seem to transcode to stdout, so might not help for large wav files.
+- Works on CPU F32, extremely slow.
+
+```bash
+time whisper /Volumes/Reading/audiobooks/Joe\ Abercrombie\ -\ The\ First\ Law/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.m4b
+```
+
+### whisper-cpp
+
+Using brew's `brew install whisper-cpp` is working at about half speed, METAL is not loading properly.
+
+```txt
+ggml_metal_init: loading 'ggml-metal.metal'
+ggml_metal_init: error: Error Domain=MTLLibraryErrorDomain Code=3 "program_source:3:10: fatal error: 'ggml-common.h' file not found
+#include "ggml-common.h"
+```
 
 ## Operation
 
