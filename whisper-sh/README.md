@@ -12,6 +12,10 @@ We want to:
 - process wav
 - produce SRT/VTT/JSON
 
+## piping ffmpeg to whisper
+
+So, the maximum duration of a WAV file that can be created under the 4 GiB limit, given your audio settings, is approximately 37 hours, 16 minutes, and 57.728 seconds.
+
 ## TODO
 
 - [ ] cleanup the scripts (prompts and validation)

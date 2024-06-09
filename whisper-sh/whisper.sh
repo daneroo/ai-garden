@@ -12,8 +12,6 @@ DEFAULT_OUTDIR="$HOME/Downloads/WhisperCPPContent"
 DEFAULT_MODEL_SHORTNAME="base.en"
 # Allowed model shortnames
 ALLOWED_MODELS=("tiny.en" "base.en" "small.en" "medium.en")
-# OUTPUT_FORMATS="--output-json --output-srt --output-vtt"
-OUTPUT_FORMATS="--output-vtt"
 
 # Initialize our own variables
 BASEDIR=""
@@ -106,33 +104,73 @@ fi
 convert_to_wav() {
     local m4b="$1"
     local wav="$2"
-    if [[ -f "${wav}" ]]; then
-        echo ".wav already exists. Skipping conversion..."
-    else
-        echo "Converting ${m4b} to ${wav} ..."
-        ffmpeg -y -hide_banner -loglevel panic -i "${m4b}" -ar 16000 -ac 1 -c:a pcm_s16le "${wav}"
+    # Extract the directory part and filename base from wav
+    local WAVEDIR=$(dirname "${wav}")
+    local WAVBASE=$(basename "${wav}" .wav)
+
+
+    # Check if any segment already exists to avoid redundant processing
+    shopt -s nullglob  # Enable nullglob option to handle non-matching patterns
+    segment_files=("${WAVEDIR}/${WAVBASE}_part_"*.wav)
+    if [ "${#segment_files[@]}" -gt 0 ]; then
+        echo "Segment files already exist. Skipping conversion..."
+        printf '%s\n' "${segment_files[@]}"  # Print the existing segment files
+        return
     fi
+    shopt -u nullglob  # Undo nullglob option
+
+    local SEGMENT_LENGTH_SECONDS=3600 # 1hr
+    local SEGMENT_LENGTH_SECONDS=72000 # 20hrs
+
+    echo "Converting ${m4b} to multiple segments..."
+    # ffmpeg -y -hide_banner -loglevel panic -i "${m4b}" \
+    #     -f segment -segment_time ${SEGMENT_LENGTH_SECONDS} -c:a pcm_s16le -ar 16000 -ac 1 \
+    #     -reset_timestamps 1 "${WAVEDIR}/${WAVBASE}_part_%03d.wav"
+    # This refinement ensure much better accuracy on the split points (force_key_frames)
+    ffmpeg -y -hide_banner -loglevel panic -i "${m4b}" \
+      -af "asetpts=N/SR/TB" \
+      -f segment -segment_time ${SEGMENT_LENGTH_SECONDS} \
+      -c:a pcm_s16le -ar 16000 -ac 1 -reset_timestamps 1 \
+      -force_key_frames "expr:gte(t,n_forced*${SEGMENT_LENGTH_SECONDS})" \
+      "${WAVEDIR}/${WAVBASE}_part_%03d.wav"
+
 }
 
 whisper_transcribe() {
     local wav="$1"
-    local prefix="$2.${MODEL_SHORTNAME}"
-    if [[ -n "$DURATION" && "$DURATION" -gt 0 ]]; then
-        prefix+=".d${DURATION}"
-    fi
+    # local prefix="${2}.${MODEL_SHORTNAME}.split"
+    # if [[ -n "${DURATION}" && "${DURATION}" -gt 0 ]]; then
+    #     prefix+=".d${DURATION}"
+    # fi
 
-    if [ -f "${prefix}.srt" ] || [ -f "${prefix}.vtt" ] || [ -f "${prefix}.json" ]; then
+    # Derive directory and base name for WAV files
+    local WAVEDIR=$(dirname "${wav}")
+    local WAVBASE=$(basename "${wav}" .wav)
+
+    # OUTPUT_FORMATS="--output-json --output-srt --output-vtt"
+    OUTPUT_FORMATS="--output-vtt"
+
+    # Calculate the glob pattern for VTT segment files
+    shopt -s nullglob  # Enable nullglob option
+    vtt_files=("${WAVEDIR}/${WAVBASE}_part_"*.vtt)
+    if [ "${#vtt_files[@]}" -gt 0 ]; then
         echo "Transcription files already exist, skipping processing."
-    else
-        echo "Launching whisper transcribe..."
-
-        CMD=(${WHISPER_EXEC} -f "${wav}" -m ${WHISPER_MODELS}/ggml-${MODEL_SHORTNAME}.bin ${OUTPUT_FORMATS} -of "${prefix}")
-        if [[ -n "$DURATION" && "$DURATION" -gt 0 ]]; then
-            CMD+=(-d "${DURATION}")
-        fi
-        echo "CMD: ${CMD[@]}"
-        time "${CMD[@]}"
+        printf '%s\n' "${vtt_files[@]}"  # Print the existing transcription files
+        return
     fi
+    shopt -u nullglob  # Undo nullglob option
+
+    echo "Launching whisper transcribe..."
+    local cmd="${WHISPER_EXEC} -m ${WHISPER_MODELS}/ggml-${MODEL_SHORTNAME}.bin ${OUTPUT_FORMATS}"
+    if [[ -n "${DURATION}" && "${DURATION}" -gt 0 ]]; then
+        cmd+=" -d ${DURATION}"
+    fi
+
+    # Display command for debugging purposes
+    echo "CMD: ${cmd} \"${WAVEDIR}/${WAVBASE}\"_part_*.wav"
+    # Execute the command and let the shell handle the glob expansion
+    time bash -c "${cmd} \"${WAVEDIR}/${WAVBASE}\"_part_*.wav"
+
 }
 
 echo ""
