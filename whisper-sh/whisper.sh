@@ -119,8 +119,9 @@ convert_to_wav() {
     fi
     shopt -u nullglob  # Undo nullglob option
 
-    local SEGMENT_LENGTH_SECONDS=3600 # 1hr
-    local SEGMENT_LENGTH_SECONDS=72000 # 20hrs
+    # local SEGMENT_LENGTH_SECONDS=3600 # 1hr
+    # local SEGMENT_LENGTH_SECONDS=72000 # 20hrs
+    local SEGMENT_LENGTH_SECONDS=126000 # 35hrs
 
     echo "Converting ${m4b} to multiple segments..."
     # ffmpeg -y -hide_banner -loglevel panic -i "${m4b}" \
