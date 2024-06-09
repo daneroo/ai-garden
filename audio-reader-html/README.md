@@ -5,7 +5,9 @@ Simplest possible UI, which plays an audio media file (m4b,mp3) and displays a t
 Currently, using CDN Loaded React, with a single App.jsx file.
 
 ```bash
-pnpx serve -p 4000 .
+pnpx serve -p 4001 .
+# setup symbolic link to media folder (link is .gitignored)
+ ln -s ../media/ media
 ```
 
 ## Prompts
