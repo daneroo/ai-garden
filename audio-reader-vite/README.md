@@ -18,6 +18,9 @@
 
 ```bash
 pnpm dev
+# setup media folder symbolic link (.gitignore)
+(cd public; ln -s ../../media media)
+
 ```
 
 ## Setup
