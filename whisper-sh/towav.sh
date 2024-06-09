@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-OUTDIR="$HOME/Downloads/MacWhisperContent"
+OUTDIR="$HOME/Downloads/WhisperCPPContent"
 
 # Ensure a file is provided as argument
 if [ -z "$1" ]; then
