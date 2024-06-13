@@ -2,7 +2,8 @@
 
 # Define the sets of parameters
 # MODELS=("tiny.en" "base.en" "small.en" "medium.en")
-MODELS=("tiny.en" "base.en")
+# MODELS=("tiny.en" "base.en")
+MODELS=("tiny.en")
 # 1min, 5min, 1hr, 5hr
 DURATIONS=("60000" "300000" "3600000" "18000000")
 # 1hr, 2hr
@@ -17,6 +18,7 @@ WHISPER_HOME="$( cd "${SCRIPT_DIR}/../external-repos/whisper.cpp" && pwd )"
 WHISPER_EXEC="$WHISPER_HOME/main"
 WHISPER_MODELS="${WHISPER_HOME}/models"
 ARCH=$(uname -sm)
+THREADS=12
 
 # Initialize the markdown results file
 cat << EOF | tee results.md
@@ -27,6 +29,8 @@ WAV_FILE: $(basename "${WAV_FILE}")
 OUTDIR: $OUTDIR
 MODELS: ${MODELS[@]}
 DURATIONS: ${DURATIONS[@]}
+ARCH: $ARCH
+THREADS: $THREADS
 
 EOF
 
@@ -39,8 +43,8 @@ if [[ $(find "${OUTDIR}" -maxdepth 1 -name "*.log" -o -name "*.vtt") ]]; then
 fi
 
 # Initialize the markdown table
-echo "| Arch | Model | Duration (ms) | Execution Time (s) |" | tee -a results.md
-echo "|------|-------|----------|------|" | tee -a results.md
+echo "| Arch | Threads | Model | Duration (ms) | Execution Time (s) |" | tee -a results.md
+echo "|------|---------|-------|---------------|--------------------|" | tee -a results.md
 
 # Loop over the sets of parameters
 for MODEL in "${MODELS[@]}"; do
@@ -49,7 +53,7 @@ for MODEL in "${MODELS[@]}"; do
         START=$(date +%s)
         OUTPUT_PREFIX="${OUTDIR}/$(basename "${WAV_FILE}" .wav)-${MODEL}-${DURATION}"
         LOGFILE="${OUTDIR}/bench-${MODEL}-${DURATION}.log"
-        CMD="${WHISPER_EXEC} -m ${WHISPER_MODELS}/ggml-${MODEL}.bin -d ${DURATION} --output-vtt --output-file \"${OUTPUT_PREFIX}\" \"${WAV_FILE}\""
+        CMD="${WHISPER_EXEC} -m ${WHISPER_MODELS}/ggml-${MODEL}.bin -d ${DURATION} -t $THREADS --output-vtt --output-file \"${OUTPUT_PREFIX}\" \"${WAV_FILE}\""
 
         # Display command for debugging purposes
         echo "CMD: ${CMD}" >"${LOGFILE}"
@@ -60,7 +64,7 @@ for MODEL in "${MODELS[@]}"; do
         TIME=$((END - START))
 
         # Add the results to the markdown table
-        echo "| $ARCH | $MODEL | $DURATION | $TIME |" | tee -a results.md
+        echo "| $ARCH | $THREADS | $MODEL | $DURATION | $TIME |" | tee -a results.md
     done
 done
 
