@@ -10,6 +10,8 @@ DURATIONS: 3600000 7200000
 | ------------ | ------- | ------- | ------------- | ------------------ |
 | Darwin arm64 | 4       | tiny.en | 3600000       | 86                 |
 | Darwin arm64 | 4       | tiny.en | 7200000       | 144                |
+| Darwin arm64 | 8       | tiny.en | 3600000       | 82                 |
+| Darwin arm64 | 8       | tiny.en | 7200000       | 137                |
 | Darwin arm64 | 4       | base.en | 3600000       | 114                |
 | Darwin arm64 | 4       | base.en | 7200000       | 216                |
 

@@ -18,7 +18,7 @@ WHISPER_HOME="$( cd "${SCRIPT_DIR}/../external-repos/whisper.cpp" && pwd )"
 WHISPER_EXEC="$WHISPER_HOME/main"
 WHISPER_MODELS="${WHISPER_HOME}/models"
 ARCH=$(uname -sm)
-THREADS=12
+THREADS=8
 
 # Initialize the markdown results file
 cat << EOF | tee results.md
