@@ -12,31 +12,28 @@ We want to:
 - process wav
 - produce SRT/VTT/JSON
 
-## piping ffmpeg to whisper
+## TODO
+
+- fix whisper.sh to to single part files again
+- [ ] make a standard benchmark
+  - [ ] run bench on galois
+  - [ ] run bench on feynman
+- [ ] use `-ot XXms` to offset output vtt
+- [ ] cleanup the scripts (prompts and validation)
+- [ ] run in docker/nix/brew
+
+## piping/splitting with ffmpeg to whisper
 
 So, the maximum duration of a WAV file that can be created under the 4 GiB limit, given your audio settings, is approximately 37 hours, 16 minutes, and 57.728 seconds.
 
-## TODO
-
-- [ ] cleanup the scripts (prompts and validation)
-- [ ] run bench on feynman
-- [ ] run in docker/nix/brew
-
-## Homebrew
-
-### brew install openai-whisper
-
-Using brew's `brew install openai-whisper` is working, but has not been tested (No acceleration)
-
-- models are downlpoaded into `~/.cache/whisper`
-- It seems to work on `.m4b` files directly, but seem to transcode to stdout, so might not help for large wav files.
-- Works on CPU F32, extremely slow.
+We can split the wav files into segments, but alignment seems to be a problem.
 
 ```bash
-time whisper /Volumes/Reading/audiobooks/Joe\ Abercrombie\ -\ The\ First\ Law/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.m4b
+for i in split/*wav; do echo $i $(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$i") ; done
+for i in ~/Downloads/WhisperCPPContent/*wav; do echo $i $(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$i") ; done
 ```
 
-### whisper-cpp
+## Homebrew - whisper-cpp
 
 Using brew's `brew install whisper-cpp` is working at about half speed, METAL is not loading properly.
 

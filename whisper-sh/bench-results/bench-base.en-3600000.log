@@ -665,15 +665,15 @@ whisper_mel_init: n_len = 3751250, n_len_org = 3748250, n_mel = 80
 [00:59:57.000 --> 01:00:06.000]   "I'm awfully sorry," said Bilbo, "but I have come without my hat and I have left my pocket handkerchief behind and I haven't got any money
 output_vtt: saving output to './bench-results/J.R.R. Tolkien - The Hobbit - Andy Serkis-base.en-3600000.vtt'
 
-whisper_print_timings:     load time =   103.97 ms
+whisper_print_timings:     load time =    92.26 ms
 whisper_print_timings:     fallbacks =   0 p /   0 h
-whisper_print_timings:      mel time = 17038.15 ms
-whisper_print_timings:   sample time = 15638.61 ms / 67338 runs (    0.23 ms per run)
-whisper_print_timings:   encode time =  9932.27 ms /   151 runs (   65.78 ms per run)
-whisper_print_timings:   decode time =  1557.55 ms /   553 runs (    2.82 ms per run)
-whisper_print_timings:   batchd time = 67895.49 ms / 66031 runs (    1.03 ms per run)
-whisper_print_timings:   prompt time =  2292.01 ms / 33585 runs (    0.07 ms per run)
-whisper_print_timings:    total time = 115093.35 ms
+whisper_print_timings:      mel time = 16101.85 ms
+whisper_print_timings:   sample time = 15413.95 ms / 67338 runs (    0.23 ms per run)
+whisper_print_timings:   encode time =  9929.62 ms /   151 runs (   65.76 ms per run)
+whisper_print_timings:   decode time =  1569.09 ms /   553 runs (    2.84 ms per run)
+whisper_print_timings:   batchd time = 67913.34 ms / 66031 runs (    1.03 ms per run)
+whisper_print_timings:   prompt time =  2287.71 ms / 33585 runs (    0.07 ms per run)
+whisper_print_timings:    total time = 113865.26 ms
 ggml_metal_free: deallocating
 ggml_metal_free: deallocating
 

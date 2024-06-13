@@ -8,10 +8,10 @@ DURATIONS: 3600000 7200000
 
 | Arch         | Model   | Duration (ms) | Execution Time (s) |
 | ------------ | ------- | ------------- | ------------------ |
-| Darwin arm64 | tiny.en | 3600000       | 83                 |
-| Darwin arm64 | tiny.en | 7200000       | 146                |
-| Darwin arm64 | base.en | 3600000       | 115                |
-| Darwin arm64 | base.en | 7200000       | 218                |
+| Darwin arm64 | tiny.en | 3600000       | 86                 |
+| Darwin arm64 | tiny.en | 7200000       | 144                |
+| Darwin arm64 | base.en | 3600000       | 114                |
+| Darwin arm64 | base.en | 7200000       | 216                |
 
 Results also saved to results.md"
 

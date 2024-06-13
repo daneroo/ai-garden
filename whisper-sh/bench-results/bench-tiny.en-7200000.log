@@ -1160,15 +1160,15 @@ whisper_mel_init: n_len = 3751250, n_len_org = 3748250, n_mel = 80
 [01:59:56.720 --> 02:00:03.200]   as it is called, so far. They did not hate dwarves especially, no more than they hated
 output_vtt: saving output to './bench-results/J.R.R. Tolkien - The Hobbit - Andy Serkis-tiny.en-7200000.vtt'
 
-whisper_print_timings:     load time =    75.37 ms
+whisper_print_timings:     load time =    75.94 ms
 whisper_print_timings:     fallbacks =   0 p /   0 h
-whisper_print_timings:      mel time = 17347.89 ms
-whisper_print_timings:   sample time = 28618.36 ms / 125951 runs (    0.23 ms per run)
-whisper_print_timings:   encode time =  9559.23 ms /   274 runs (   34.89 ms per run)
-whisper_print_timings:   decode time =   814.39 ms /   418 runs (    1.95 ms per run)
-whisper_print_timings:   batchd time = 85632.11 ms / 124164 runs (    0.69 ms per run)
-whisper_print_timings:   prompt time =  2456.40 ms / 61484 runs (    0.04 ms per run)
-whisper_print_timings:    total time = 145214.69 ms
+whisper_print_timings:      mel time = 16572.89 ms
+whisper_print_timings:   sample time = 28414.44 ms / 125951 runs (    0.23 ms per run)
+whisper_print_timings:   encode time =  9566.55 ms /   274 runs (   34.91 ms per run)
+whisper_print_timings:   decode time =   821.36 ms /   418 runs (    1.96 ms per run)
+whisper_print_timings:   batchd time = 85952.39 ms / 124164 runs (    0.69 ms per run)
+whisper_print_timings:   prompt time =  2455.91 ms / 61484 runs (    0.04 ms per run)
+whisper_print_timings:    total time = 144491.83 ms
 ggml_metal_free: deallocating
 ggml_metal_free: deallocating
 
