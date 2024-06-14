@@ -35,6 +35,19 @@ for i in split/*wav; do echo $i $(ffprobe -v error -show_entries format=duration
 for i in ~/Downloads/WhisperCPPContent/*wav; do echo $i $(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$i") ; done
 ```
 
+## Nix - openai-whisper-cpp
+
+```bash
+nix-shell -p openai-whisper-cpp
+
+# download models
+mkdir models
+(cd models; whisper-cpp-download-ggml-model tiny.en)
+(cd models; whisper-cpp-download-ggml-model base.en)
+
+whisper-cpp -m ./models/ggml-tiny.en.bin -d 360000 "/Users/daniel/Downloads/WhisperCPPContent/J.R.R. Tolkien - The Hobbit - Andy Serkis.wav"
+```
+
 ## Homebrew - whisper-cpp
 
 Using brew's `brew install whisper-cpp` is working at about half speed, METAL is not loading properly.
@@ -154,12 +167,14 @@ deactivate
 
 you can use `./bench.sh` to re-run the benchmarks.
 
-| Model   | Architecture  | 60 min (s) | 120 min (s) | Marginal Time (s/h) |
-| ------- | ------------- | ---------: | ----------: | ------------------: |
-| tiny.en | Darwin/arm64  |        108 |         152 |                  44 |
-| tiny.en | Darwin/x86_64 |        156 |         278 |                 122 |
-| base.en | Darwin/arm64  |        117 |         222 |                 105 |
-| base.en | Darwin/x86_64 |        262 |         522 |                 260 |
+| Model   | Architecture  | 1 hour (s) | 2 hours (s) | 3 hours (s) | Marginal Time (s/h) |
+| ------- | ------------- | ---------: | ----------: | ----------: | ------------------: |
+| tiny.en | Darwin/arm64  |         83 |         144 |         213 |                  65 |
+| tiny.en | Darwin/x86_64 |        160 |         279 |         405 |                 123 |
+| base.en | Darwin/arm64  |        114 |         216 |         305 |                  96 |
+| base.en | Darwin/x86_64 |        261 |         517 |         760 |                 250 |
+
+![Bench Plot](./bench-results/bench-plot.png)
 
 Prompt to convert `bench-results/summary_results.md`:
 
