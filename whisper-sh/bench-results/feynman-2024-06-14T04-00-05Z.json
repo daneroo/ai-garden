@@ -5,7 +5,7 @@
     "threads": "8",
     "model": "tiny.en",
     "audio_duration_ms": "3600000",
-    "execution_time_sec": 156
+    "execution_time_sec": 160
   },
   {
     "hostname": "feynman",
@@ -13,7 +13,15 @@
     "threads": "8",
     "model": "tiny.en",
     "audio_duration_ms": "7200000",
-    "execution_time_sec": 278
+    "execution_time_sec": 279
+  },
+  {
+    "hostname": "feynman",
+    "arch": "Darwin/x86_64",
+    "threads": "8",
+    "model": "tiny.en",
+    "audio_duration_ms": "10800000",
+    "execution_time_sec": 405
   },
   {
     "hostname": "feynman",
@@ -21,7 +29,7 @@
     "threads": "8",
     "model": "base.en",
     "audio_duration_ms": "3600000",
-    "execution_time_sec": 262
+    "execution_time_sec": 261
   },
   {
     "hostname": "feynman",
@@ -29,6 +37,14 @@
     "threads": "8",
     "model": "base.en",
     "audio_duration_ms": "7200000",
-    "execution_time_sec": 522
+    "execution_time_sec": 517
+  },
+  {
+    "hostname": "feynman",
+    "arch": "Darwin/x86_64",
+    "threads": "8",
+    "model": "base.en",
+    "audio_duration_ms": "10800000",
+    "execution_time_sec": 760
   }
 ]
