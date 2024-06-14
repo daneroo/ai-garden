@@ -14,6 +14,8 @@ We want to:
 
 ## TODO
 
+- home brew - get inspiration from nix pkg: <https://github.com/NixOS/nixpkgs/blob/nixos-24.05/pkgs/tools/audio/openai-whisper-cpp/default.nix#L115>
+  - GGML_METAL_PATH_RESOURCES = ...
 - fix whisper.sh to to single part files again
 - [ ] make a standard benchmark
   - [ ] run bench on galois
