@@ -19,7 +19,12 @@ WHISPER_HOME="$(cd "${SCRIPT_DIR}/../external-repos/whisper.cpp" && pwd)"
 WHISPER_EXEC="$WHISPER_HOME/main"
 WHISPER_MODELS="${WHISPER_HOME}/models"
 ARCH="$(uname -s)/$(uname -m)"
-THREADS=8
+
+THREADS=8 # Override Default THREADS setting except on Darwin/arm64
+# Set THREADS to 4 only for Darwin/arm64 systems
+if [[ "$ARCH" == "Darwin/arm64" ]]; then
+    THREADS=4
+fi
 
 # File naming
 HOSTNAME=$(hostname -s)
