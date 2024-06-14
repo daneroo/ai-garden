@@ -2,83 +2,93 @@
 
 # Define the sets of parameters
 # MODELS=("tiny.en" "base.en" "small.en" "medium.en")
-# MODELS=("tiny.en" "base.en")
-MODELS=("tiny.en")
-# 1min, 5min, 1hr, 5hr
-DURATIONS=("60000" "300000" "3600000" "18000000")
-# 1hr, 2hr
+MODELS=("tiny.en" "base.en")
+# MODELS=("tiny.en")
 DURATIONS=("3600000" "7200000")
+# DURATIONS=("900000" "1800000")
+# DURATIONS=("900000")
 WAV_FILE="${HOME}/Downloads/WhisperCPPContent/J.R.R. Tolkien - The Hobbit - Andy Serkis.wav"
-# WAV_FILE="/Volumes/Reading/audiobooks/Stephen Kotkin - Stalin/Stephen Kotkin - Stalin 01 - Paradoxes of Power"
-OUTDIR="./bench-results"
+RESULTS_DIR="./bench-results"
+TEMP_DIR="./bench-temp-run"
+mkdir -p "${RESULTS_DIR}"
+mkdir -p "${TEMP_DIR}"
 
 # whisper executable
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-WHISPER_HOME="$( cd "${SCRIPT_DIR}/../external-repos/whisper.cpp" && pwd )"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+WHISPER_HOME="$(cd "${SCRIPT_DIR}/../external-repos/whisper.cpp" && pwd)"
 WHISPER_EXEC="$WHISPER_HOME/main"
 WHISPER_MODELS="${WHISPER_HOME}/models"
-ARCH=$(uname -sm)
+ARCH="$(uname -s)/$(uname -m)"
 THREADS=8
 
-# Initialize the markdown results file
-cat << EOF | tee results.md
+# File naming
+HOSTNAME=$(hostname -s)
+TIMESTAMP=$(date -u +"%Y-%m-%dT%H-%M-%SZ")
+RESULT_FILE="${RESULTS_DIR}/${HOSTNAME}-${TIMESTAMP}.json"
+
+# Output
+cat << EOF | gum format --theme=light
 # Whisper.sh Benchmark Results
 
 Running whisper.sh with the following parameters:
-WAV_FILE: $(basename "${WAV_FILE}")
-OUTDIR: $OUTDIR
-MODELS: ${MODELS[@]}
-DURATIONS: ${DURATIONS[@]}
-ARCH: $ARCH
-THREADS: $THREADS
+- HOSTNAME:  $HOSTNAME
+- ARCH:      $ARCH
+- THREADS:   $THREADS
+- WAV_FILE:  $(basename "${WAV_FILE}")
+- RESULTS_FILE:   $RESULT_FILE
+- MODELS:    ${MODELS[@]}
+- DURATIONS: ${DURATIONS[@]}
 
 EOF
 
-# Check if there are any log or vtt files in the output directory
-if [[ $(find "${OUTDIR}" -maxdepth 1 -name "*.log" -o -name "*.vtt") ]]; then
-    # Ask the user whether to remove all log and vtt files
-    if gum confirm "Do you want to remove all (previous) log and vtt files?"; then
-        rm "${OUTDIR}"/*.log "${OUTDIR}"/*.vtt
-    fi
-fi
-
-# Initialize the markdown table
-echo "| Arch | Threads | Model | Duration (ms) | Execution Time (s) |" | tee -a results.md
-echo "|------|---------|-------|---------------|--------------------|" | tee -a results.md
+# Initialize JSON file
+echo "[]" > "${RESULT_FILE}" # Start with an empty JSON array
 
 # Loop over the sets of parameters
 for MODEL in "${MODELS[@]}"; do
     for DURATION in "${DURATIONS[@]}"; do
-        # Run whisper.sh and capture the time it took
         START=$(date +%s)
-        OUTPUT_PREFIX="${OUTDIR}/$(basename "${WAV_FILE}" .wav)-${MODEL}-${DURATION}"
-        LOGFILE="${OUTDIR}/bench-${MODEL}-${DURATION}.log"
-        CMD="${WHISPER_EXEC} -m ${WHISPER_MODELS}/ggml-${MODEL}.bin -d ${DURATION} -t $THREADS --output-vtt --output-file \"${OUTPUT_PREFIX}\" \"${WAV_FILE}\""
+        OUTPUT_PREFIX="${TEMP_DIR}/$(basename "${WAV_FILE}" .wav)-${MODEL}-${DURATION}"
+        LOGFILE="${TEMP_DIR}/bench-${MODEL}-${DURATION}.log"
+        CMD="${WHISPER_EXEC} -m ${WHISPER_MODELS}/ggml-${MODEL}.bin -d ${DURATION} -t $THREADS --output-vtt --output-file \"${OUTPUT_PREFIX}\" \"${WAV_FILE}\" >> \"${LOGFILE}\" 2>&1"
 
-        # Display command for debugging purposes
-        echo "CMD: ${CMD}" >"${LOGFILE}"
-        # Execute the command and let the shell handle the glob expansion
-        bash -c "${CMD}" >>${LOGFILE} 2>&1
-
+        # Execute the command and log it
+        echo " .. command: ${CMD}" 
+        gum spin --title "Running model:${MODEL} duration:${DURATION}" -- bash -c "${CMD}"
         END=$(date +%s)
         TIME=$((END - START))
 
-        # Add the results to the markdown table
-        echo "| $ARCH | $THREADS | $MODEL | $DURATION | $TIME |" | tee -a results.md
+        # Construct JSON entry
+        JSON_ENTRY=$(jq -n \
+                    --arg hostname "$HOSTNAME" \
+                    --arg arch "$ARCH" \
+                    --arg threads "$THREADS" \
+                    --arg model "$MODEL" \
+                    --arg duration "$DURATION" \
+                    --argjson time "$TIME" \
+                    '{hostname: $hostname, arch: $arch, threads: $threads, model: $model, audio_duration_ms: $duration, execution_time_sec: $time}')
+
+        # Append JSON entry to the file
+        jq ". += [$JSON_ENTRY]" "${RESULT_FILE}" > tmp.$$ && mv tmp.$$ "${RESULT_FILE}"
     done
 done
 
-cat << EOF | tee -a results.md
+generate_markdown_table() {
+    local results_dir=$1
+    local markdown_file="${results_dir}/summary_results.md"
 
-Results also saved to results.md"
+    echo "# Summary Results" > "${markdown_file}"
+    echo "" >> "${markdown_file}"
+    # Start the markdown table with headers
+    echo "| Hostname | Architecture | Model | Threads | Duration (ms) | Execution Time (s) |" >> "${markdown_file}"
+    echo "|----------|--------------|-------|--------:|--------------:|-------------------:|" >> "${markdown_file}"
 
-Prompt to convert:
-Convert the detailed table listing execution times for each model at different durations into a summarized format. 
-The original table has multiple rows per model, each specifying the duration in milliseconds and
-the corresponding execution time in seconds. 
-The summarized table should have one row per model, 
-with separate columns for the execution times corresponding to each duration. 
-The column headers should reflect the execution times for the different durations. 
-In the final table, express the duration (column headers) in minutes or hours.
-The summarized table should be in markdown format.
-EOF
+    # Iterate over all JSON files and extract data
+    for json_file in "${results_dir}"/*.json; do
+        jq -r '.[] | 
+            "| \(.hostname) | \(.arch) | \(.model) | \(.threads) | \(.audio_duration_ms) | \(.execution_time_sec) |"' "${json_file}" >> "${markdown_file}"
+    done
+}
+
+# Call the function with the results directory path
+generate_markdown_table "${RESULTS_DIR}"
