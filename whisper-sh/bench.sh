@@ -4,7 +4,7 @@
 # MODELS=("tiny.en" "base.en" "small.en" "medium.en")
 MODELS=("tiny.en" "base.en")
 # MODELS=("tiny.en")
-DURATIONS=("3600000" "7200000")
+DURATIONS=("3600000" "7200000" "10800000")
 # DURATIONS=("900000" "1800000")
 # DURATIONS=("900000")
 WAV_FILE="${HOME}/Downloads/WhisperCPPContent/J.R.R. Tolkien - The Hobbit - Andy Serkis.wav"

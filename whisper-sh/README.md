@@ -154,32 +154,27 @@ deactivate
 
 you can use `./bench.sh` to re-run the benchmarks.
 
-On Mac Mini M2 Pro 32GB
+| Model   | Architecture  | 60 min (s) | 120 min (s) | Marginal Time (s/h) |
+| ------- | ------------- | ---------: | ----------: | ------------------: |
+| tiny.en | Darwin/arm64  |        108 |         152 |                  44 |
+| tiny.en | Darwin/x86_64 |        156 |         278 |                 122 |
+| base.en | Darwin/arm64  |        117 |         222 |                 105 |
+| base.en | Darwin/x86_64 |        262 |         522 |                 260 |
 
-Running whisper.sh with the following parameters:
-BASEDIR: John Gwynne - Faithful and the Fallen 04 - Wrath
-OUTDIR: ./bench-results
-MODELS: tiny.en base.en
-DURATIONS: 60000 120000
-
-| Model     | 1 min (s) | 5 min (s) | 1 hr (s) | 5 hrs (s) | Exec Time per Hour (s/hr) | Marginal Exec Time (s/hr) |
-| --------- | --------- | --------- | -------- | --------- | ------------------------- | ------------------------- |
-| tiny.en   | 48        | 52        | 117      | 405       | 81                        | 71.75                     |
-| base.en   | 47        | 53        | 142      | 542       | 108.4                     | 99.47                     |
-| small.en  | 49        | 61        | 240      | 1071      | 214.2                     | 205.56                    |
-| medium.en | 54        | 80        | 469      | 2380      | 476                       | 468.58                    |
-
-Prompt to convert results.md:
+Prompt to convert `bench-results/summary_results.md`:
 
 ```txt
 Convert the detailed table listing execution times for each model at different durations into a summarized format.
 The original table has multiple rows per model, each specifying the duration in milliseconds and
 the corresponding execution time in seconds.
-The summarized table should have one row per model,
+The summarized table should have one row per model and architecture,
 with separate columns for the execution times corresponding to each duration.
 The column headers should reflect the execution times for the different durations.
 In the final table, express the duration (column headers) in minutes.
 The summarized table should be in markdown format.
+Finally Add a column for the `Marginal execution time / per hour`, which you can estimate with a linear fit of the execution time vs duration in hours.
+
+Order by Model, then ARCH.
 ```
 
 ## Transcribe a single .m4b file with a pipe
