@@ -55,7 +55,7 @@ for MODEL in "${MODELS[@]}"; do
         START=$(date +%s)
         OUTPUT_PREFIX="${TEMP_DIR}/$(basename "${WAV_FILE}" .wav)-${MODEL}-${DURATION}"
         LOGFILE="${TEMP_DIR}/bench-${MODEL}-${DURATION}.log"
-        CMD="${WHISPER_EXEC} -m ${WHISPER_MODELS}/ggml-${MODEL}.bin -d ${DURATION} -t $THREADS --output-vtt --output-file \"${OUTPUT_PREFIX}\" \"${WAV_FILE}\" >> \"${LOGFILE}\" 2>&1"
+        CMD="${WHISPER_EXEC} -m ${WHISPER_MODELS}/ggml-${MODEL}.bin -d ${DURATION} -t $THREADS --output-vtt --output-file \"${OUTPUT_PREFIX}\" \"${WAV_FILE}\" > \"${LOGFILE}\" 2>&1"
 
         # Execute the command and log it
         echo " .. command: ${CMD}" 
