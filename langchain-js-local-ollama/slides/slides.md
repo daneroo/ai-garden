@@ -295,7 +295,7 @@ Kaito is a young street-smart individual with a reputation within the undergroun
 
 ---
 
-## The End
+## The End.
 
 ![TinkerReReader](logo.png)
 
