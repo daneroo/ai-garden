@@ -37,6 +37,8 @@ ollama list
 
 ## TODO
 
+- [ ] Move to uv/ruff
+  - find all venv's: /Users/daniel/Library/Caches/pypoetry/virtualenvs
 - [ ] Cleanup repo
   - [ ] consolidate audio book sub-projects (non-AI)
     - [ ] audio-reader-vite - create new vite base consolidated app
