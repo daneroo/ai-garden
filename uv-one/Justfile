@@ -1,0 +1,42 @@
+# List just commands
+help:
+    just --list
+
+# Display information about the virtual environment, and python version
+info:
+    @if [ -d ".venv" ]; then \
+        echo "Using virtual environment at: .venv"; \
+        (. .venv/bin/activate; python -c "import platform, sys, os; print(f'Using {platform.python_implementation()} {platform.python_version()} interpreter at: {os.path.realpath(sys.executable)}')"); \
+    else \
+        uv venv; \
+    fi
+    
+
+# Syncing ensures that all project dependencies are installed and up-to-date with the lockfile
+# Update the project's environment
+sync:
+    uv sync
+
+# Until `uv pip list --outdated` is implemented
+#   or ` uv sync --upgrade --dry-run`
+#  https://github.com/astral-sh/uv/issues/2150#issuecomment-2313934453
+# List outdated dependencies
+outdated:
+    bash -c "uv pip list --format=freeze |sed 's/==.*//' | uv pip compile - --no-deps --no-header |diff <(uv pip list --format=freeze) - -y --suppress-common-lines || :"
+    @echo "Run 'just upgrade' to update dependencies."
+
+
+# Update dependencies
+upgrade:
+    uv sync --upgrade
+
+
+# Remove virtual environment
+cleanup:
+    @echo "Removing virtual environment for the current project..."
+    rm -rf .venv
+    @echo "Virtual environment removed."
+
+# Run the app with (zero * or more) args
+run *args:
+    uv run python hello.py {{args}}
