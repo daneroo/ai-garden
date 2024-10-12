@@ -2,19 +2,7 @@
 
 Just trying to get rid of poetry
 
-## TODO
-
-- [ ] Python related extensions, lsp format on save, linter
-  - [ ] confirm for cursor
-  - [ ] confirm for VSCode
-
-## Extensions
-
-- Pylance
-- Python
-- Python Debugger
-
-## Setup
+## Python Project Setup
 
 ```bash
 uv init uv-one
