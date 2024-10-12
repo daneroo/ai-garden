@@ -40,3 +40,15 @@ cleanup:
 # Run the app with (zero * or more) args
 run *args:
     uv run python hello.py {{args}}
+
+# Lint using ruff
+lint:
+    ruff check
+
+# Check formatting using ruff
+format-check:
+    ruff format --check
+
+# Format using ruff
+format-fix:
+    ruff format
