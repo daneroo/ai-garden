@@ -16,6 +16,21 @@ uv add requests
 uv run hello.py
 ```
 
+## VSCode Extensions
+
+- Python (ms-python.python)
+- Pylance (ms-python.vscode-pylance)
+- Python Environment Manager (donjayamanne.python-environment-manager)
+- Ruff (charliermarsh.ruff)
+and User Settings
+
+```json
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnType": true
+  },
+```
+
 ## Tasks
 
 ```bash
