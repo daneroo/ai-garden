@@ -37,6 +37,7 @@ ollama list
 
 ## TODO
 
+- [ ] Look at [MarkItDown](https://github.com/microsoft/markitdown) for examining pfds/epub
 - [ ] Move to uv/ruff
   - find all venv's: /Users/daniel/Library/Caches/pypoetry/virtualenvs
 - [ ] Cleanup repo
