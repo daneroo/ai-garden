@@ -124,57 +124,44 @@ The models are stored in `external-repos/whisper.cpp/models/`.
 
 bash ./models/download-ggml-model.sh tiny.en
 bash ./models/download-ggml-model.sh base.en
-bash ./models/download-ggml-model.sh small.en
-bash ./models/download-ggml-model.sh medium.en
+# bash ./models/download-ggml-model.sh small.en
+# bash ./models/download-ggml-model.sh medium.en
 
 du -sm models/ggml*bin|sort -n
 75      models/ggml-tiny.en.bin
 146     models/ggml-base.en.bin
-481     models/ggml-small.en.bin
-1472    models/ggml-medium.en.bin
+# 481     models/ggml-small.en.bin
+# 1472    models/ggml-medium.en.bin
 ```
 
 ### Build the main binary
 
+As of my 2025-02-14 update, the binary has moved to $WHISPER_HOME/build/bin/whisper-cli.
+
 ```bash
-make clean
-# build the main example
+# make clean # this target disappeared
+# build the main example - now requires cmake
+brew install cmake
 make
-# transcribe an audio file
-./main -f samples/jfk.wav
-./main -m models/ggml-tiny.en.bin -f samples/jfk.wav
-```
-
-### Neural Engine: ANE
-
-I built the binary with WHISPER_COREML=1,etc as in the README, but it made **no difference in runtime**.
-
-```bash
-# ?? asdf local python 3.10.0
-python3 -m venv py310-whisper
-source py310-whisper/bin/activate
-pip install ane_transformers openai-whisper coremltools
-
-./models/generate-coreml-model.sh base.en
-# using Makefile
-make clean
-WHISPER_COREML=1 make -j
-
-deactivate
+# transcribe an audio file - base is the default model
+./build/bin/whisper-cli -f samples/jfk.wav
+./build/bin/whisper-cli -f samples/jfk.wav -m models/ggml-tiny.en.bin
 ```
 
 ## Benchmarks
 
-you can use `./bench.sh` to re-run the benchmarks.
+*Note:* As of 2025-02-14, the benchmarks got significantly faster, but I only reran galois/arm64.
 
-| Model   | Architecture  | 1 hour (s) | 2 hours (s) | 3 hours (s) | Marginal Time (s/h) |
-| ------- | ------------- | ---------: | ----------: | ----------: | ------------------: |
-| tiny.en | Darwin/arm64  |         83 |         144 |         213 |                  65 |
-| tiny.en | Darwin/x86_64 |        160 |         279 |         405 |                 123 |
-| base.en | Darwin/arm64  |        114 |         216 |         305 |                  96 |
-| base.en | Darwin/x86_64 |        261 |         517 |         760 |                 250 |
+| Model   | Architecture  | 60 min (s) | 120 min (s) | 180 min (s) | Marginal Time (s/h) |
+|:--------|:--------------|-----------:|------------:|------------:|--------------------:|
+| tiny.en | Darwin/arm64  |         69 |         128 |         190 |                60.5 |
+| tiny.en | Darwin/x86_64 |        160 |         279 |         405 |               122.5 |
+| base.en | Darwin/arm64  |         90 |         169 |         251 |                80.5 |
+| base.en | Darwin/x86_64 |        261 |         517 |         760 |               249.5 |
 
-![Bench Plot](./bench-results/bench-plot.png)
+You can use `./bench.sh` to re-run the benchmarks.
+
+![Bench Plot](./bench-results/bench-plot-2025.png)
 
 Prompt to convert `bench-results/summary_results.md`:
 
@@ -190,42 +177,6 @@ The summarized table should be in markdown format.
 Finally Add a column for the `Marginal execution time / per hour`, which you can estimate with a linear fit of the execution time vs duration in hours.
 
 Order by Model, then ARCH.
-```
-
-## Transcribe a single .m4b file with a pipe
-
-This added 55s to convert the entire file to wav... but it works!
-
-```bash
-time ffmpeg -i /Volumes/Reading/audiobooks/Joe\ Abercrombie\ -\ The\ First\ Law/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.m4b -ar 16000 -ac 1 -c:a pcm_s16le -f wav - | time ./main -f - -m models/ggml-tiny.en.bin
-
-
-time ffmpeg -i /Volumes/Reading/audiobooks/Joe\ Abercrombie\ -\ The\ First\ Law/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.m4b -ar 16000 -ac 1 -c:a pcm_s16le -f wav - | ./main -f - -d 3600000 -m models/ggml-tiny.en.bin
-whisper_print_timings:      mel time = 43280.52 ms
-whisper_print_timings:   sample time =  5071.32 ms / 12981 runs (    0.39 ms per run)
-whisper_print_timings:   encode time =  4664.09 ms /   135 runs (   34.55 ms per run)
-whisper_print_timings:   decode time = 17424.11 ms / 12847 runs (    1.36 ms per run)
-whisper_print_timings:   prompt time =   760.03 ms /   134 runs (    5.67 ms per run)
-whisper_print_timings:    total time = 127309.86 ms
-```
-
-## Output type (SRT/VTT)
-
-```bash
-# SRT is the default
-#   -osrt,     --output-srt        [false  ] output result in a srt file
-#   -ovtt,     --output-vtt        [false  ] output result in a vtt file
-time ./main -f ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.wav -d 3600000 -m models/ggml-tiny.en.bin --output-srt
-
-time ./main -f ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.wav -d 60000 -m models/ggml-tiny.en.bin --output-vtt
-
-time ./main -f ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.wav -d 60000 -m models/ggml-tiny.en.bin --output-json
-
-# All together
-time ./main -f ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.wav -d 60000 -m models/ggml-tiny.en.bin --output-json --output-srt --output-vtt
-
-# All together with base filename for output (coco)
-time ./main -f ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.wav -d 60000 -m models/ggml-tiny.en.bin --output-json --output-srt --output-vtt -of coco
 ```
 
 ## First attempt at a script
@@ -256,39 +207,4 @@ find "${OUTDIR}" -name \*.wav | sort | while IFS= read -r f; do
     time ./main -f "${wavfile}" -m models/ggml-tiny.en.bin --output-json --output-srt --output-vtt -of "${transcribe_pfx}"
 done
 
-```
-
-```bash
-# Convert to .wav 16kHz - mono
-time ffmpeg -y -i "Joe Abercrombie - The First Law 01 - The Blade Itself.m4b" -ar 16000 -ac 1 "Joe Abercrombie - The First Law 01 - The Blade Itself.wav"
-
- ./build/go-whisper -model models/ggml-tiny.en.bin ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.wav
-
-
-time ffmpeg -y -i "00 The End.mp3" -ar 16000 -ac 1 "00 The End.wav"
- ./build/go-whisper -model models/ggml-tiny.en.bin ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself.wav
-
-# This works
-time ./build/go-whisper -model models/ggml-tiny.en.bin ~/Downloads/MacWhisperContent/00\ The\ End.wav
-
-# now split into chunks
-time ./build/go-whisper --offset 4m --duration 2m -model models/ggml-tiny.en.bin ~/Downloads/MacWhisperContent/00\ The\ End.wav
-```
-
-By Chunks:
-
-```bash
-ffmpeg -i input.mp3 -ar 16000 -ac 1 -c:a pcm_s16le output.wav
-
-for i in {0..5}; do
-    start_time=$((i*10*60))
-    ffmpeg -i "Joe Abercrombie - The First Law 01 - The Blade Itself.m4b" -ar 16000 -ac 1 -c:a pcm_s16le -ss $start_time -t 600 "Joe Abercrombie - The First Law 01 - The Blade Itself_part$(($i+1)).wav"
-done
-
-for i in {1..6}; do
-    time ./build/go-whisper -model models/ggml-tiny.en.bin ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself_part${i}.wav
-done
-
-# or as args to the program, and with ggml-base.en.bin this time
-time ./build/go-whisper -model models/ggml-base.en.bin ~/Downloads/MacWhisperContent/Joe\ Abercrombie\ -\ The\ First\ Law\ 01\ -\ The\ Blade\ Itself_part*.wav
 ```

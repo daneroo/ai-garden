@@ -16,7 +16,7 @@ mkdir -p "${TEMP_DIR}"
 # whisper executable
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 WHISPER_HOME="$(cd "${SCRIPT_DIR}/../external-repos/whisper.cpp" && pwd)"
-WHISPER_EXEC="$WHISPER_HOME/main"
+WHISPER_EXEC="$WHISPER_HOME/build/bin/whisper-cli"
 WHISPER_MODELS="${WHISPER_HOME}/models"
 ARCH="$(uname -s)/$(uname -m)"
 
