@@ -3,7 +3,7 @@
 # reliably get this script's directory as an absolute path
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WHISPER_HOME="$( cd "${SCRIPT_DIR}/../external-repos/whisper.cpp" && pwd )"
-WHISPER_EXEC="$WHISPER_HOME/main"
+WHISPER_EXEC="$WHISPER_HOME/build/bin/whisper-cli"
 WHISPER_MODELS="${WHISPER_HOME}/models"
 DEFAULT_OUTDIR="$HOME/Downloads/WhisperCPPContent"
 DEFAULT_MODEL_SHORTNAME="base.en"
