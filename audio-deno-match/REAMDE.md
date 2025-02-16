@@ -4,10 +4,61 @@ Match the html content with vtt cues from deno
 
 ## TODO
 
+- produce epubcfi() style matches
 - [ ] move to `tsx`
   - [ ] node's parseArgs, and styleText, .. and test
 - [ ] call alignWords with start position, returns maximal match.
 - [x] assert normalized(htmlDoc.body.textContent) === normalized(textNodes.join(' '))
+
+## Match Result (epubcfi)
+
+This is one idea for a match result.
+We would produce a *corrected* vtt, with epubcfi() style matches.
+
+- Possibly correct spelling, missed/extra words
+- Include an epubcfi() range as prefix for each vtt cue
+
+Input HTML, VTT
+
+```html Pyramids_split_004.html
+<body class="calibre">
+  <div class="calibre1">
+    <p class="calibre6">
+      <a href="Pyramids_split_002.html#filepos786" class="calibre14">
+        <span class="calibre19">
+          <span class="italic">
+            <span class="bold">
+              <span class="calibre15">The Book of Going Forth</span>
+            </span>
+          </span>
+        </span>
+      </a>
+    </p>
+  </div>
+</body>
+```
+
+```vtt
+00:02:00.000 --> 00:02:08.000
+ Book one, the book of going forth.
+```
+
+We construct a working epubcfi as follows:
+
+- Package Part:
+  - `/6/2[Pyramids_split_004.html]`
+  - (Indicating that this file is the second content document.)
+
+- Local Path:
+  - `!/4/2/2/2/2/2/2/1:0,/4/2/2/2/2/2/2/1:23`
+  - (Navigating from the body down through the first elements until reaching the `<span class="calibre15">`, then pointing to its text node from offset 0 to 23.)
+
+Resulting epubcfi:
+
+```vtt
+00:02:00.000 --> 00:02:08.000
+ epubcfi(/6/2[Pyramids_split_004.html]!/4/2/2/2/2/2/2/1:0,/4/2/2/2/2/2/2/1:23) Book one, the book of going forth.
+```
 
 ## Usage
 
