@@ -3,24 +3,86 @@
 This is just a coordination script.
 We keep the [whisper.cpp](https://github.com/ggerganov/whisper.cpp/tree/master) in `external-repos`
 
-As of 2023-09-16 I can;t get bindings/go to work on the mac mini,
-so I have reverted to using the `main` binary.
+Since 2025-02-15 we can confirm that brew's `whisper-cpp` also works, although it is tiny bit slower.
+Therefore we should make the wrapper agnostic to the build vs installed binary.
+We should also refer to models in the repo directly, i.e. `./models/ggml-base.en.bin`. vs `../external-repos/whisper.cpp/models/ggml-base.en.bin`.
 
 We want to:
 
 - process `.m4b` files directly
-- process wav
-- produce SRT/VTT/JSON
+  - process wav files, as temporary files, which may be cached (although that is not usually a big time cost, except perhaps for very small segments?)
+- produce VTT output
+
+## Locations - TBD
+
+Need refactoring: these are variable that have defaults in our wrapper(s)
+
+- `REPO_BASE`: this repo, e.g. `~/Code/iMetrical/ai-garden/`
+- `WHISPER_WRAPPER_BASE`: `${REPO_BASE}/whisper.sh` : perhaps to be renamed, or split per runtime? bash/deno/..
+- models: `${WHISPER_WRAPPER_BASE}/models/`
+  - e.g.: `${WHISPER_WRAPPER_BASE}/models/ggml-base.en.bin`
+- binary: `${WHISPER-CLI}`
+  - `${REPO_BASE}/external-repos/whisper.cpp/build/bin/whisper-cli`
+  - `whisper-cli` if using `brew install whisper-cpp`
+- WHISPER_ARTIFACT_BASE: `~/Downloads/WhisperCPPContent` - move to `/Volumes/Space/XX`?
+  - vtt-files: `${WHISPER_ARTIFACT_BASE}/vtt`
+  - wav-files: `${WHISPER_ARTIFACT_BASE}/wav` - both whole and split, should always be considered volatile
+- just use system ffmpeg, for now.
+
+## Perf again
+
+Move this to Benmark section.
+
+Pyramids: duration:09:53:014.50 base.en:722.481s ~ 12 min (73.07 s/h)  tiny.en:597.805s ~ 10 min (60.47 s/h)
+
+```bash
+time whisper-cli -t 8 -p 8 -pp ./split/Stephen\ Kotkin\ -\ Stalin\ 01\ -\ Paradoxes\ of\ Power_part_001.wav 2>/dev/null >/dev/null
+107.560s
+
+time whisper-cli -pp ./split/Stephen\ Kotkin\ -\ Stalin\ 01\ -\ Paradoxes\ of\ Power_part_001.wav 2>/dev/null >/dev/null
+236.611s
+```
+
+## splitting large files - or piping
+
+```bash
+# all m4b's - durations
+find /Volumes/Space/Reading/audiobooks/ -name "*.m4b" -exec bash -c 'file="{}"; basename="${file##*/}"; duration=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$file" | awk '"'"'{printf "%d:%02d:%06.2f", int($1/3600), int(($1%3600)/60), $1%60}'"'"'); echo "$basename : $duration"' \;
+# by parts
+./whisper.sh -i /Volumes/Space/Reading/audiobooks/Stephen\ Kotkin\ -\ Stalin/Stephen\ Kotkin\ -\ Stalin\ 02\ -\ Waiting\ for\ Hitler/
+# broken - pipe does not help!
+node whisper.mjs -i /Volumes/Space/Reading/audiobooks/Stephen\ Kotkin\ -\ Stalin/Stephen\ Kotkin\ -\ Stalin\ 02\ -\ Waiting\ for\ Hitler/
+```
+
+## Validation by re-sampling
+
+```bash
+daniel@galois:.../ai-garden/whisper-sh main[!] 7s506ms ❯ ls ~/Downloads/WhisperCPPContent/J.R.R.\ Tolkien\ -\ The\ Hobbit\ -\ Andy\ Serkis.*
+   1320 /Users/daniel/Downloads/WhisperCPPContent/J.R.R. Tolkien - The Hobbit - Andy Serkis.vtt  2342664 /Users/daniel/Downloads/WhisperCPPContent/J.R.R. Tolkien - The Hobbit - Andy Serkis.wav
+# 08:18:40.600 --> 08:18:47.880
+#  Chapter 14 Fire and Water
+# narrowed down to 08:18:44 - 4 seconds
+ffplay -ss 08:18:44.1 -t 3.85 -autoexit -nodisp "/Users/daniel/Downloads/WhisperCPPContent/J.R.R. Tolkien - The Hobbit - Andy Serkis.wav" 2>/dev/null
+# 08:18:44.1 --> 29924100ms
+time whisper-cli -m ./models/ggml-tiny.en.bin -ot 29924100 -d 3850 -t 4  "/Users/daniel/Downloads/WhisperCPPContent/J.R.R. Tolkien - The Hobbit - Andy Serkis.wav" --print-colors 2>/dev/null
+
+
+ffplay -ss 34:59:55.000 -t 5 -autoexit -nodisp ./split/Stephen\ Kotkin\ -\ Stalin\ 01\ -\ Paradoxes\ of\ Power_part_000.wav 2>/dev/null
+
+whisper-cli -m ./models/ggml-tiny.en.bin -ot 125995 -d 4000 -t 4  --print-colors ./split/Stephen\ Kotkin\ -\ Stalin\ 01\ -\ Paradoxes\ of\ Power_part_000.wav 2>/dev/null
+```
 
 ## TODO
 
-- home brew - get inspiration from nix pkg: <https://github.com/NixOS/nixpkgs/blob/nixos-24.05/pkgs/tools/audio/openai-whisper-cpp/default.nix#L115>
-  - GGML_METAL_PATH_RESOURCES = ...
-- fix whisper.sh to to single part files again
+- [ ] Idea: validate a vtt, by sampling audio segments re-submitted to whisper.
+- [ ] examine the possibility of using whisper-server!
+  - `-p 4` processors - or can I run multiple whisper-cli instances?
+- [ ] fix whisper.sh to to single part files again
+- [x] homebrew whisper-cpp works: `whisper-cli`
 - [ ] make a standard benchmark
   - [ ] run bench on galois
-  - [ ] run bench on feynman
-- [ ] use `-ot XXms` to offset output vtt
+  - [ ] run bench on feynman ? perhaps no longer pertinent, but perhaps a linux/container based benchmark?
+- [ ] NOT use `-ot XXms` to offset output vtt
 - [ ] cleanup the scripts (prompts and validation)
 - [ ] run in docker/nix/brew
 
@@ -37,15 +99,18 @@ for i in ~/Downloads/WhisperCPPContent/*wav; do echo $i $(ffprobe -v error -show
 
 ## Nix - openai-whisper-cpp
 
+Move to bench?
+
 ```bash
 nix-shell -p openai-whisper-cpp
 
-# download models
+# download models : seem to be broken, but our models from other builds work
+#  as of 2025-02-16 nixpkgs is on whisper-cpp v1.7.1, current is 1.7.4
 mkdir models
 (cd models; whisper-cpp-download-ggml-model tiny.en)
 (cd models; whisper-cpp-download-ggml-model base.en)
 
-whisper-cpp -m ./models/ggml-tiny.en.bin -d 360000 "/Users/daniel/Downloads/WhisperCPPContent/J.R.R. Tolkien - The Hobbit - Andy Serkis.wav"
+whisper-cpp -m ./models/ggml-tiny.en.bin -d 3600000 "/Users/daniel/Downloads/WhisperCPPContent/J.R.R. Tolkien - The Hobbit - Andy Serkis.wav"
 ```
 
 ## Homebrew - whisper-cpp

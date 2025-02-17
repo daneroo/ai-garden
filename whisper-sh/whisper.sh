@@ -10,6 +10,14 @@ DEFAULT_MODEL_SHORTNAME="base.en"
 # Allowed model shortnames
 ALLOWED_MODELS=("tiny.en" "base.en" "small.en" "medium.en")
 
+# Constants
+MAX_WAV_DURATION_SECONDS=133200 # 37 hours
+# SEGMENT_LENGTH_SECONDS=3600 # 1hr
+# SEGMENT_LENGTH_SECONDS=72000 # 20hrs
+# SEGMENT_LENGTH_SECONDS=126000 # 35hrs
+SEGMENT_LENGTH_SECONDS="${MAX_WAV_DURATION_SECONDS}" # could be a parameter
+
+
 # Initialize our own variables
 BASEDIR=""
 DURATION=0
@@ -19,21 +27,24 @@ OUTDIR=$DEFAULT_OUTDIR
 # Usage function
 usage() {
     cat << EOF
-Usage: $0 -i base directory [-d duration] [-m model] [-o output]
+Usage: $0 -i base directory [-n] [-d duration] [-m model] [-o output]
 
 Parameters:
   -i  Base directory (required, no default)
-  -d  Duration (default: None, meaning entire file duration)
+  -n  Dry-run mode (default: False)
+  -d  Duration (seconds) transcription (default: None, meaning entire file duration)
   -m  Model (default: $DEFAULT_MODEL_SHORTNAME)
   -o  Output (default: $DEFAULT_OUTDIR)
-
 EOF
     exit 1
 }
 
 # Parse command line options
-while getopts ":i:d:m:o:h" opt; do
+while getopts ":i:nd:m:o:h" opt; do
   case ${opt} in
+    n)
+      DRYRUN=true
+      ;;
     i)
       BASEDIR=$OPTARG
       ;;
@@ -65,7 +76,7 @@ if [[ ! -d "${BASEDIR}" ]]; then
     usage
 fi
 
-# Validate DURATION
+# Validate DURATION if present
 if [[ -n "$DURATION" && ! "$DURATION" =~ ^[0-9]+$ ]]; then
     echo "Error: Duration ($DURATION) must be a positive integer."
     usage
@@ -98,6 +109,8 @@ if [[ ! -d "${OUTDIR}" ]]; then
     mkdir -p "${OUTDIR}" || exit 1
 fi
 
+# Convert m4b to wav
+# - split if >37hrs or requested
 convert_to_wav() {
     local m4b="$1"
     local wav="$2"
@@ -105,42 +118,84 @@ convert_to_wav() {
     local WAVEDIR=$(dirname "${wav}")
     local WAVBASE=$(basename "${wav}" .wav)
 
-
-    # Check if any segment already exists to avoid redundant processing
-    shopt -s nullglob  # Enable nullglob option to handle non-matching patterns
-    segment_files=("${WAVEDIR}/${WAVBASE}_part_"*.wav)
-    if [ "${#segment_files[@]}" -gt 0 ]; then
-        echo "Segment files already exist. Skipping conversion..."
-        printf '%s\n' "${segment_files[@]}"  # Print the existing segment files
-        return
+    local duration=$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "${m4b}" 2>/dev/null)
+    if [[ -z "$duration" ]]; then
+        echo "Error: Could not get duration of ${m4b}"
+        exit 1
     fi
-    shopt -u nullglob  # Undo nullglob option
+    # Convert duration to integer by rounding up - to use in bash comparisons (requires)
+    duration_int=$(printf "%.0f" "$duration")
 
-    # local SEGMENT_LENGTH_SECONDS=3600 # 1hr
-    # local SEGMENT_LENGTH_SECONDS=72000 # 20hrs
-    local SEGMENT_LENGTH_SECONDS=126000 # 35hrs
+    echo "- Input file: ${m4b}"
+    echo "- Duration: ${duration}"
 
-    echo "Converting ${m4b} to multiple segments..."
-    # ffmpeg -y -hide_banner -loglevel panic -i "${m4b}" \
-    #     -f segment -segment_time ${SEGMENT_LENGTH_SECONDS} -c:a pcm_s16le -ar 16000 -ac 1 \
-    #     -reset_timestamps 1 "${WAVEDIR}/${WAVBASE}_part_%03d.wav"
-    # This refinement ensure much better accuracy on the split points (force_key_frames)
-    ffmpeg -y -hide_banner -loglevel panic -i "${m4b}" \
-      -af "asetpts=N/SR/TB" \
-      -f segment -segment_time ${SEGMENT_LENGTH_SECONDS} \
-      -c:a pcm_s16le -ar 16000 -ac 1 -reset_timestamps 1 \
-      -force_key_frames "expr:gte(t,n_forced*${SEGMENT_LENGTH_SECONDS})" \
-      "${WAVEDIR}/${WAVBASE}_part_%03d.wav"
+    # Build up the ffmpeg conversion command
+    # Document flags used:
+    cmd="ffmpeg"
+    # Overwrite output files without asking
+    cmd+=" -y"
+    # Suppress the ffmpeg banner output and show only critical error messages
+    cmd+=" -hide_banner -loglevel panic"
+    # Specify the input file (the m4b audiobook)
+    cmd+=" -i \"${m4b}\""
+    # Encode audio in PCM signed 16-bit little-endian format, with a 16 kHz sample rate and mono channel
+    cmd+=" -c:a pcm_s16le -ar 16000 -ac 1"
+    # Apply the audio filter to reset timestamps based on frame index (N), sample rate (SR), and time base (TB)
+    cmd+=" -af \"asetpts=N/SR/TB\""
+    # Reset timestamps for each segment so that they start at zero
+    cmd+=" -reset_timestamps 1"
+
+    # conditional part of the command if duration <= SEGMENT_LENGTH_SECONDS
+    if [[ "$duration_int" -le "$SEGMENT_LENGTH_SECONDS" ]]; then
+      cmd+=" \"${WAVEDIR}/${WAVBASE}.wav\""
+      # Check if the output file already exists to avoid redundant processing
+      if [[ -f "${WAVEDIR}/${WAVBASE}.wav" ]]; then
+          echo "Output file already exists. Skipping conversion..."
+          printf '%s\n' "${WAVEDIR}/${WAVBASE}.wav"  # Print the existing output file
+          return
+      fi
+    else
+      echo "Duration is greater than SEGMENT_LENGTH_SECONDS:${SEGMENT_LENGTH_SECONDS} seconds, splitting into segments"
+
+      # Use the segment muxer to split output into multiple files, with each segment lasting SEGMENT_LENGTH_SECONDS seconds
+      cmd+=" -f segment -segment_time ${SEGMENT_LENGTH_SECONDS}"
+      # Force key frames at each segment boundary for better accuracy using an expression:
+      # "expr:gte(t,n_forced*${SEGMENT_LENGTH_SECONDS})" means force a key frame when the timestamp t is greater than or equal to n_forced times the segment length.
+      cmd+=" -force_key_frames \"expr:gte(t,n_forced*${SEGMENT_LENGTH_SECONDS})\""
+
+      # Specify the output file pattern, using a three-digit segment index
+      cmd+=" \"${WAVEDIR}/${WAVBASE}_part_%03d.wav\""
+
+      # Check if any segment already exists to avoid redundant processing
+      shopt -s nullglob  # Enable nullglob option to handle non-matching patterns
+      segment_files=("${WAVEDIR}/${WAVBASE}_part_"*.wav)
+      if [ "${#segment_files[@]}" -gt 0 ]; then
+          echo "Segment files already exist. Skipping conversion..."
+          printf '%s\n' "${segment_files[@]}"  # Print the existing segment files
+          return
+      fi
+      shopt -u nullglob  # Undo nullglob option
+    fi
+
+
+
+
+    if [[ "$DRYRUN" == true ]]; then
+      echo "Dry-run: Would convert with command"
+      echo "$cmd"
+      return
+    else
+      echo "Converting with command"
+      echo "$cmd"
+      # Execute the command
+      time bash -c "$cmd"
+
+    fi
 
 }
 
 whisper_transcribe() {
     local wav="$1"
-    # local prefix="${2}.${MODEL_SHORTNAME}.split"
-    # if [[ -n "${DURATION}" && "${DURATION}" -gt 0 ]]; then
-    #     prefix+=".d${DURATION}"
-    # fi
-
     # Derive directory and base name for WAV files
     local WAVEDIR=$(dirname "${wav}")
     local WAVBASE=$(basename "${wav}" .wav)
@@ -158,16 +213,50 @@ whisper_transcribe() {
     fi
     shopt -u nullglob  # Undo nullglob option
 
-    echo "Launching whisper transcribe..."
     local cmd="${WHISPER_EXEC} -m ${WHISPER_MODELS}/ggml-${MODEL_SHORTNAME}.bin ${OUTPUT_FORMATS}"
+    # make it faster: need experimentation
+    cmd+=" -t 8 -p 8"
+    # print progress
+    cmd+=" --print-progress" # or -pp
     if [[ -n "${DURATION}" && "${DURATION}" -gt 0 ]]; then
-        cmd+=" -d ${DURATION}"
+        # seconds to milliseconds
+        cmd+=" -d ${DURATION}000"
     fi
 
-    # Display command for debugging purposes
-    echo "CMD: ${cmd} \"${WAVEDIR}/${WAVBASE}\"_part_*.wav"
-    # Execute the command and let the shell handle the glob expansion
-    time bash -c "${cmd} \"${WAVEDIR}/${WAVBASE}\"_part_*.wav"
+    # Check whether we have segments or a single file
+    shopt -s nullglob  # Enable nullglob option
+    segment_files=("${WAVEDIR}/${WAVBASE}_part_"*.wav)
+    single_file="${WAVEDIR}/${WAVBASE}.wav"
+    
+    if [ "${#segment_files[@]}" -gt 0 ]; then
+        echo "Working with segments:"
+        printf '%s\n' "${segment_files[@]}"
+        # We use the already expanded segment_files array instead of relying on glob expansion in the command
+        # This ensures each file is properly quoted and passed as individual arguments to whisper-cli
+        # Example: whisper-cli ... "file_part_000.wav" "file_part_001.wav" instead of "file_part_*.wav"
+        segment_files_quoted=$(printf '"%s" ' "${segment_files[@]}")
+        cmd+=" ${segment_files_quoted}"
+    elif [ -f "$single_file" ]; then
+        echo "Working with single file: ${single_file}"
+        cmd+=" \"${single_file}\""
+    else
+        echo "Error: No WAV file(s) found (neither segments nor single file)"
+        echo "Expected either:"
+        echo "- Single file: ${single_file}"
+        echo "- Segment files: ${WAVEDIR}/${WAVBASE}_part_*.wav"
+        exit 1
+    fi
+    shopt -u nullglob  # Undo nullglob option
+
+    if [[ "$DRYRUN" == true ]]; then
+      echo "Dry-run: Would transcribe with command"
+      echo "$cmd"
+      return
+    else
+      echo "Transcribing with command"
+      echo "$cmd"
+      time bash -c "$cmd"
+    fi
 
 }
 
