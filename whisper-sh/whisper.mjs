@@ -587,6 +587,8 @@ function spawnAsync(command, args) {
  * @returns {Promise<boolean>} True if VTT files are valid
  */
 async function sanityCheckVtt(m4bInputPath, wavFiles, vttFiles) {
+  console.log(`\nVTT sanity check\n`);
+
   let isValid = true;
 
   // First check: 1:1 correspondence between WAV and VTT files
@@ -667,9 +669,9 @@ async function sanityCheckVtt(m4bInputPath, wavFiles, vttFiles) {
   // TODO: Prepare for future concatenation with proper offsets
 
   if (isValid) {
-    console.log("Basic VTT validation passed");
+    console.log("- [✓] VTT validation passed");
   } else {
-    console.log("Basic VTT validation failed");
+    console.log("- [✗] VTT validation failed");
   }
   return isValid;
 }
