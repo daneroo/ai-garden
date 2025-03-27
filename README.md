@@ -1,5 +1,7 @@
 # ai-garden
 
+*Note:* We are switching to `uv` for python, and `mastra` for JavaScript.
+
 - poetry based projects for experimenting with ai and related data gathering
   - Workshop 5 - OpenAI, Pinecone & LangChain
 - Legacy
@@ -37,6 +39,9 @@ ollama list
 
 ## TODO
 
+- [ ] Try out [Mastra](https://mastra.ai/docs) for JS
+  - `pnpm create mastra@latest`
+  - [ ] [Mastra MCP](https://mastra.ai/blog/introducing-mastra-mcp)
 - [ ] Look at [MarkItDown](https://github.com/microsoft/markitdown) for examining pfds/epub
 - [ ] Move to uv/ruff
   - find all venv's: /Users/daniel/Library/Caches/pypoetry/virtualenvs
