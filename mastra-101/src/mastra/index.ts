@@ -7,6 +7,6 @@ export const mastra = new Mastra({
   agents: { weatherAgent },
   logger: createLogger({
     name: "Mastra",
-    level: "info",
+    level: "debug",
   }),
 });
