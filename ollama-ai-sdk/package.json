@@ -1,0 +1,17 @@
+{
+  "name": "ollama-ai-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.5",
+  "dependencies": {
+    "ai": "^4.2.8",
+    "ollama-ai-provider": "^1.2.0"
+  }
+}
