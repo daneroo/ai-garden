@@ -1,12 +1,12 @@
 import { openai } from "@ai-sdk/openai";
-import { /*ollama, */ createOllama } from "ollama-ai-provider";
+import { ollama } from "ollama-ai-provider";
 import { google, createGoogleGenerativeAI } from "@ai-sdk/google";
 import { Agent } from "@mastra/core/agent";
 import { weatherTool } from "../tools";
 
 // You can easily change the model by updating this string
 // Available options:
-// const MODEL = "openai:gpt-4";
+// const MODEL = "openai:gpt-4o";
 // const MODEL = "openai:gpt-4o-mini";
 const MODEL = "ollama:llama3.1:8b";
 // const MODEL = "ollama:qwen2.5-coder:7b";
@@ -77,14 +77,13 @@ function getModel(modelString: string) {
       try {
         console.log("Creating Ollama model with:", { model });
 
-        // Use the direct ollama function approach as in ollama.js example
-        // const ollamaModel = ollama(model);
-        const ollama = createOllama();
+        // looks like this is what is required to get streaming
+        // could use createOllama if we need to customize endpoimt, etc..
         const ollamaModel = ollama.chat(model, {
           simulateStreaming: true,
         });
 
-        console.log("Ollama model created successfully");
+        console.log("Ollama (chat) model created successfully");
         return ollamaModel;
       } catch (error) {
         console.error("Error creating Ollama model:", error);
