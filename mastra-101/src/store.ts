@@ -2,9 +2,9 @@ import { MDocument } from "@mastra/rag";
 import { ollama } from "ollama-ai-provider";
 import { embedMany, embed } from "ai";
 import { parse, HTMLElement } from "node-html-better-parser";
-
-import { LibSQLVector } from "@mastra/core/vector/libsql";
+import { writeFile } from "node:fs/promises";
 import { QueryResult } from "@mastra/core";
+import { mastra } from "./mastra";
 
 // invoke async main (which is hoisted, so this is ok)
 main();
@@ -16,34 +16,39 @@ async function main() {
       "https://www.gutenberg.org/files/8438/8438-h/8438-h.htm"
     );
     const htmlText = await response.text();
-    const gutenChunks = await gutenParse(htmlText);
-    console.log("Number of GutenChunks:", gutenChunks.length);
-    console.log("\nGutenChunks:");
-    showChunks(gutenChunks, 20, 40);
-    // Exit early to analyze chunks
-    process.exit(0);
 
-    // Create document and chunk it semantically
-    const doc = MDocument.fromHTML(htmlText, {
+    // const gutenChunks = await gutenParse(htmlText);
+    // console.log("Number of GutenChunks:", gutenChunks.length);
+    // console.log("\nGutenChunks:");
+    // showChunks(gutenChunks, 20, 40);
+    // // Exit early to analyze chunks
+    // process.exit(0);
+
+    // Create document and chunk it
+    const root = parse(htmlText);
+    const structuredText =
+      root.querySelector("body")?.structuredText ?? root.structuredText;
+    const doc = MDocument.fromText(structuredText, {
       title: "The Nicomachean Ethics of Aristotle",
     });
     const chunks = await doc.chunk({
-      headers: [
-        ["h2", "chapter"], // book headers for structure and metadata
-        // ["h3", "section"], // chapter headers for structure and metadata
-      ],
+      // size: 1000,
     });
 
     // Parse and chunk the Gutenberg text
-    console.log("Number of chunks:", chunks.length);
-    showChunks(chunks, 20, 40);
+    const avgChunkLength = Math.round(
+      chunks.reduce((a, b) => a + b.text.length, 0) / chunks.length
+    );
+    const maxChunkLength = Math.max(...chunks.map((c) => c.text.length));
+    const minChunkLength = Math.min(...chunks.map((c) => c.text.length));
+    console.log(
+      `- Number of chunks: ${chunks.length} avg: ${avgChunkLength} min: ${minChunkLength} max: ${maxChunkLength}`
+    );
+    showChunks(chunks, 5, 30);
 
     // Initialize vector store
     //  This should be imported from mastra
-    // const vectorStore = mastra.getVector('libsql');
-    const vectorStore = new LibSQLVector({
-      connectionUrl: "file:./data/libsql/vector.db",
-    });
+    const vectorStore = mastra.getVector("libsql");
 
     // Generate embeddings
     console.log("Generating embeddings...");
@@ -51,11 +56,11 @@ async function main() {
       model: ollama.embedding("mxbai-embed-large"),
       values: chunks.map((chunk) => chunk.text),
     });
-    embeddings.forEach((embedding, i) => {
-      console.log(
-        `embedding(${i})(${embedding.length}) ${embedding.slice(0, 4)}`
-      );
-    });
+    // embeddings.forEach((embedding, i) => {
+    //   console.log(
+    //     `embedding(${i})(${embedding.length}) ${embedding.slice(0, 4)}`
+    //   );
+    // });
 
     // Create index
     console.log("Creating index...");
@@ -122,7 +127,9 @@ function showResult(results: QueryResult[], snippetLength = 40) {
 }
 
 function showChunks(chunks: any[], nChunks = 100, snippetLength = 40) {
-  console.log(`\nFirst ${nChunks} chunks (first ${snippetLength} chars each):`);
+  console.log(
+    `\nShowing (max) ${nChunks} chunks (first ${snippetLength} chars each):`
+  );
   chunks.slice(0, nChunks).forEach((chunk, i) => {
     console.log(
       `\nChunk ${i + 1}:`,
@@ -139,6 +146,8 @@ function showChunks(chunks: any[], nChunks = 100, snippetLength = 40) {
 
 async function gutenParse(htmlText: string) {
   const root = parse(htmlText);
+  await writeFile(`./data/guten/html/all.html`, htmlText);
+  await writeFile(`./data/guten/text/all.txt`, root.structuredText);
 
   // Initialize strings for frontmatter and endmatter
   let frontmatterHtml = "";
@@ -154,10 +163,13 @@ async function gutenParse(htmlText: string) {
 
   let foundFirstChapter = false;
   let afterLastChapter = false;
+  let chapterCount = 0;
   for (const node of bodyChildren) {
     if (node instanceof HTMLElement && chapters.has(node)) {
+      chapterCount++;
       foundFirstChapter = true;
       if (node === lastChapter) {
+        console.log("- Found last chapter.");
         afterLastChapter = true;
       }
 
@@ -169,27 +181,63 @@ async function gutenParse(htmlText: string) {
       });
 
       // Log the chapter title for debugging
-      console.log("\nFound chapter:", chapterTitle);
+      console.log(
+        `- Found chapter ${chapterCount}: ${chapterTitle} (${node.outerHTML.length})`
+      );
+      // write the chapter to a file
+      await writeFile(
+        `./data/guten/html/chapter-${chapterCount}.html`,
+        node.outerHTML
+      );
+      await writeFile(
+        `./data/guten/text/chapter-${chapterCount}.txt`,
+        parse(node.outerHTML).structuredText
+      );
 
       // Chunk the chapter and show results
       const chunks = await chapterDoc.chunk({
         headers: [["h3", "section"]],
-        maxSize: 1000, // Control chunk size
+        size: 1000, // Control chunk size
       });
+      // compare the length of the chunks to the length of the chapter
+      const chunkLengths = chunks.map((c) => c.text.length);
+      const totalChunksLength = chunkLengths.reduce((a, b) => a + b, 0);
       console.log(
-        `Number of chunks for chapter ${chapterTitle}: ${chunks.length}`
+        `  - chapter ${chapterCount} html: ${node.outerHTML.length}) sumchunks: ${totalChunksLength}`
       );
-      showChunks(chunks, 5, 40); // Show first 5 chunks of each chapter
+      for (const [i, chunk] of chunks.entries()) {
+        console.log(`  - wrting chunk ${i} ${chunk.text.length}`);
+        await writeFile(
+          `./data/guten/html/chapter-${chapterCount}-chunk-${i}.html`,
+          chunk.text
+        );
+        await writeFile(
+          `./data/guten/text/chapter-${chapterCount}-chunk-${i}.txt`,
+          chunk.text
+        );
+      }
+      if (chunks.length > 0) {
+        console.log(
+          `  - needs (re)chunking at section level (${chunks.length}) ${totalChunksLength} (${chunkLengths})`
+        );
+        // showChunks(chunks, 2, 40);
+      } else {
+        console.log(`  - no chunk found convert to text at chapter level`);
+      }
+      // showChunks(chunks, 2, 40); // Show first 5 chunks of each chapter
     } else if (!foundFirstChapter) {
+      // console.log("Found frontmatter...");
       if (node instanceof HTMLElement) {
         frontmatterHtml += node.outerHTML;
       }
     } else if (afterLastChapter) {
+      // console.log("Found endmatter...");
       if (node instanceof HTMLElement) {
         endmatterHtml += node.outerHTML;
       }
     } else {
       // This is content between chapters
+      // console.log("Found content between chapters...");
       const content = node instanceof HTMLElement ? node.outerHTML : node.text;
       if (content.trim() !== "") {
         console.log("Non-empty between chapters node:", {
@@ -203,7 +251,15 @@ async function gutenParse(htmlText: string) {
 
   // Process frontmatter
   if (frontmatterHtml) {
-    console.log("\nProcessing frontmatter...");
+    console.log(`Processing frontmatter(${frontmatterHtml.length})...`);
+    await writeFile(
+      `./data/guten/html/chapter-0-frontmatter.html`,
+      frontmatterHtml
+    );
+    await writeFile(
+      `./data/guten/text/chapter-0-frontmatter.txt`,
+      parse(frontmatterHtml).structuredText
+    );
     const frontmatterDoc = MDocument.fromHTML(frontmatterHtml, {
       title: "The Nicomachean Ethics of Aristotle",
       chapter: "Frontmatter",
@@ -219,8 +275,17 @@ async function gutenParse(htmlText: string) {
   }
 
   // Process endmatter
+  chapterCount++;
   if (endmatterHtml) {
-    console.log("\nProcessing endmatter...");
+    console.log(`Processing endmatter(${endmatterHtml.length})...`);
+    await writeFile(
+      `./data/guten/html/chapter-${chapterCount}-endmatter.html`,
+      endmatterHtml
+    );
+    await writeFile(
+      `./data/guten/text/chapter-${chapterCount}-endmatter.txt`,
+      parse(endmatterHtml).structuredText
+    );
     const endmatterDoc = MDocument.fromHTML(endmatterHtml, {
       title: "The Nicomachean Ethics of Aristotle",
       chapter: "Endmatter",

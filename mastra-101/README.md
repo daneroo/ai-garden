@@ -71,13 +71,23 @@ If I understand correctly, we need to build the agent and the store:
 ### Dependencies
 
 ```bash
-pnpm add @mastra/rag
+pnpm add @mastra/rag ai
 ```
 
 ### Store
 
+Invoke Create and Store Embeddings with:
+
 ```bash
 npx tsx src/store.ts
+```
+
+- vector store is created in `./data/vector.db`
+
+```bash
+sqlite3 data/libsql/vector.db ".tables"
+sqlite3 data/libsql/vector.db ".schema"
+sqlite3 data/libsql/vector.db "SELECT COUNT(*) FROM ethics;"
 ```
 
 ### Book structure

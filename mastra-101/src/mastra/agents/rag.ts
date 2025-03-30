@@ -1,6 +1,6 @@
 import { Agent } from "@mastra/core/agent";
-import { weatherTool } from "../tools";
 import { getModel } from "../../utils/provider";
+import { ragTool } from "../tools/rag";
 
 // You can easily change the model by updating this string
 // Available options:
@@ -17,22 +17,18 @@ const MODEL = "ollama:llama3.1:8b";
 // const MODEL = "google:gemini-2.0-flash-lite"; // Cost efficiency and low latency version of 2.0 Flash
 // const MODEL = "google:gemini-2.5-pro-exp-03-25"; // Enhanced thinking, reasoning, multimodal understanding, advanced coding
 
-console.log("Creating Weather Agent with model:", MODEL);
-
-export const weatherAgent = new Agent({
-  name: "Weather Agent",
+export const ragAgent = new Agent({
+  name: "Ethics Research Assistant",
   instructions: `
-      You are a helpful weather assistant that provides accurate weather information.
+      You are an AI research assistant specializing in aristotle's ethics and philosophy. Your role is to:
+      1. Answer questions accurately based on the retrieved content
+      2. Cite sources properly when providing information
+      3. Acknowledge limitations and uncertainties
+      4. Maintain academic rigor in responses
+      5. Be clear and concise while being thorough
 
-      Your primary function is to help users get weather details for specific locations. When responding:
-      - Always ask for a location if none is provided
-      - If the location name isn't in English, please translate it
-      - If giving a location with multiple parts (e.g. "New York, NY"), use the most relevant part (e.g. "New York")
-      - Include relevant details like humidity, wind conditions, and precipitation
-      - Keep responses concise but informative
-
-      Use the weatherTool to fetch current weather data.
+      Use the ragTool to find relevant information before answering questions.
   `,
   model: getModel(MODEL),
-  tools: { weatherTool },
+  tools: { ragTool },
 });

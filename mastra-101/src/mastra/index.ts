@@ -3,16 +3,21 @@ import { createLogger } from "@mastra/core/logger";
 
 import { weatherAgent } from "./agents";
 import { LibSQLVector } from "@mastra/core/vector/libsql";
+import { ragAgent } from "./agents/rag";
+
+// Initialize Mastra instance
+const libsqlVector = new LibSQLVector({
+  connectionUrl: "file:./data/libsql/vector.db",
+});
 
 export const mastra = new Mastra({
-  agents: { weatherAgent },
+  agents: { weatherAgent, ragAgent },
   vectors: {
-    libsql: new LibSQLVector({
-      connectionUrl: "file:./data/libsql/vector.db",
-    }),
+    libsql: libsqlVector,
   },
   logger: createLogger({
     name: "Mastra",
-    level: "debug",
+    // level: "debug",
+    level: "info",
   }),
 });
