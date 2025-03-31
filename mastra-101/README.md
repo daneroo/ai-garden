@@ -3,9 +3,16 @@
 ## TODO
 
 - Mastra Memory - Use cases
-- Vector Upsert - not working
-- parse Gutenber (general) - multiple works
+- [RAG Next Steps - Filter/Cleanup/COT/Rerank](https://mastra.ai/docs/guides/04-research-assistant)
+- parse Gutenberg (general) - multiple works
 - parse ePub
+
+*Note: 2025-03-31:* I was told turning on memory triggered bugs in traces, so I should upgrade to latest alphas
+
+```bash
+# YOLO
+pnpm add @mastra/core@alpha @mastra/memory@alpha @mastra/rag@alpha mastra@alpha
+```
 
 ## Setup
 

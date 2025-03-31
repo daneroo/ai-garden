@@ -1,6 +1,7 @@
 import { Agent } from "@mastra/core/agent";
 import { getModel } from "../../utils/provider";
 import { ragTool } from "../tools/rag";
+import { Memory } from "@mastra/memory";
 
 // You can easily change the model by updating this string
 // Available options:
@@ -17,6 +18,17 @@ const MODEL = "ollama:llama3.1:8b";
 // const MODEL = "google:gemini-2.0-flash-lite"; // Cost efficiency and low latency version of 2.0 Flash
 // const MODEL = "google:gemini-2.5-pro-exp-03-25"; // Enhanced thinking, reasoning, multimodal understanding, advanced coding
 
+// Initialize memory with semantic search enabled
+const memory = new Memory({
+  options: {
+    lastMessages: 10, // Keep last 10 messages in context
+    semanticRecall: {
+      topK: 3, // Find 3 most relevant previous messages
+      messageRange: 2, // Include 2 messages before and after each result
+    },
+  },
+});
+
 export const ragAgent = new Agent({
   name: "Ethics Research Assistant",
   instructions: `
@@ -28,7 +40,9 @@ export const ragAgent = new Agent({
       5. Be clear and concise while being thorough
 
       Use the ragTool to find relevant information before answering questions.
+      Consider previous conversation context when formulating responses.
   `,
   model: getModel(MODEL),
   tools: { ragTool },
+  memory, // Add memory to the agent
 });

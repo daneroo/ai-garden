@@ -1,5 +1,6 @@
 import { Mastra } from "@mastra/core/mastra";
 import { createLogger } from "@mastra/core/logger";
+import { DefaultStorage } from "@mastra/core/storage/libsql";
 
 import { weatherAgent } from "./agents";
 import { LibSQLVector } from "@mastra/core/vector/libsql";
@@ -11,13 +12,18 @@ const libsqlVector = new LibSQLVector({
 });
 
 export const mastra = new Mastra({
+  storage: new DefaultStorage({
+    config: {
+      url: "file:./data/libsql/memory.db",
+    },
+  }),
   agents: { weatherAgent, ragAgent },
   vectors: {
     libsql: libsqlVector,
   },
   logger: createLogger({
     name: "Mastra",
-    // level: "debug",
-    level: "info",
+    level: "debug",
+    // level: "info",
   }),
 });

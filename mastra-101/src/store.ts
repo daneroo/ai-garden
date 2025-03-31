@@ -7,12 +7,16 @@ import { QueryResult } from "@mastra/core";
 import { mastra } from "./mastra";
 import crypto from "node:crypto";
 
+// TODO: These should be cli flags!
+const FORCE_RECREATE_INDEX = false;
+const VERBOSE = false;
 // invoke async main (which is hoisted, so this is ok)
 main();
 
 async function main() {
   try {
     // Load the paper
+    console.log("\n- Loading data source HTML...");
     const response = await fetch(
       "https://www.gutenberg.org/files/8438/8438-h/8438-h.htm"
     );
@@ -26,6 +30,7 @@ async function main() {
     // process.exit(0);
 
     // Create document and chunk it
+    console.log("\n- Parsing/Chunking HTML...");
     const root = parse(htmlText);
     const structuredText =
       root.querySelector("body")?.structuredText ?? root.structuredText;
@@ -43,61 +48,77 @@ async function main() {
     const maxChunkLength = Math.max(...chunks.map((c) => c.text.length));
     const minChunkLength = Math.min(...chunks.map((c) => c.text.length));
     console.log(
-      `- Number of chunks: ${chunks.length} avg: ${avgChunkLength} min: ${minChunkLength} max: ${maxChunkLength}`
+      `  - Number of chunks: ${chunks.length} avg: ${avgChunkLength} min: ${minChunkLength} max: ${maxChunkLength}`
     );
-    showChunks(chunks, 5, 30);
+    if (VERBOSE) {
+      console.log(`\n- Showing chunks: (VERBOSE:${VERBOSE})`);
+      showChunks(chunks, 5, 30);
+    }
 
     // Initialize vector store
     //  This should be imported from mastra
     const vectorStore = mastra.getVector("libsql");
 
     // Generate embeddings
-    console.log("Generating embeddings...");
+    console.log("\n- Generating embeddings...");
     const { embeddings } = await embedMany({
       model: ollama.embedding("mxbai-embed-large"),
       values: chunks.map((chunk) => chunk.text),
     });
 
     // Create index
-    const idxs = await vectorStore.listIndexes();
-    console.log(`Vector store indexes: ${idxs}`);
-
     const indexName = "ethics";
+    console.log(`\n- Creating/Updating index ${indexName}...`);
+    const idxs = await vectorStore.listIndexes();
+    console.log(`  - Existing Vector store indexes: ${idxs}`);
+
     if (idxs.includes(indexName)) {
-      console.log(`Index: ${indexName} already exists`);
+      console.log(
+        `  - Index: ${indexName} already exists && FORCE_RECREATE_INDEX: ${FORCE_RECREATE_INDEX}`
+      );
       const description = await vectorStore.describeIndex(indexName);
-      console.log(`  - ${JSON.stringify(description)}`);
-      console.log(`Deleting index: ${indexName}... until UPSERT WORKS!`);
-      await vectorStore.deleteIndex(indexName);
+      console.log(
+        `    - Index ${indexName} description: ${JSON.stringify(description)}`
+      );
+
+      if (FORCE_RECREATE_INDEX) {
+        console.log(
+          `  - Deleting index: ${indexName}... because FORCE_RECREATE_INDEX: ${FORCE_RECREATE_INDEX}`
+        );
+        await vectorStore.deleteIndex(indexName);
+      }
     }
-    console.log(`Creating index: ${indexName}...`);
+    console.log(`  - Creating index: ${indexName}...`);
     await vectorStore.createIndex({
       indexName,
       dimension: 1024, // Dimensions for mxbai-embed-large
     });
 
     // Store embeddings and metadata
-    console.log("Storing embeddings and metadata...");
+    console.log("\n- Storing embeddings and metadata...");
     await vectorStore.upsert({
       indexName,
       vectors: embeddings,
-      metadata: chunks.map((chunk) => ({
+      ids: chunks.map((chunk) =>
         // let's get a consistent id (content hash sha256)
-        id: crypto.createHash("sha256").update(chunk.text).digest("hex"),
+        crypto.createHash("sha256").update(chunk.text).digest("hex")
+      ),
+      metadata: chunks.map((chunk) => ({
         text: chunk.text,
         book: chunk.metadata.book,
         // xpath: chunk.metadata.xpath,
       })),
     });
-    console.log(`Upserted ${embeddings.length} embeddings`);
+    console.log(`  - Upserted ${embeddings.length} embeddings`);
     const description = await vectorStore.describeIndex(indexName);
     console.log(
-      `Index ${indexName} description: ${JSON.stringify(description)}`
+      `    - Index ${indexName} description: ${JSON.stringify(description)}`
     );
 
     // let test a query!
+    console.log("\n- Querying index...");
     const query = "What is the ultimate virtue?";
-    console.log(`Querying index: ${indexName} with: ${query}...`);
+    console.log(`  - Querying index: ${indexName} with: ${query}...`);
     const { embedding } = await embed({
       value: query,
       model: ollama.embedding("mxbai-embed-large"),
@@ -109,10 +130,10 @@ async function main() {
       topK: 2,
     });
 
-    console.log("Query results:");
+    console.log("- Query results:");
     showResult(results);
 
-    console.log("Done!");
+    console.log("- Done!");
   } catch (error) {
     console.error("Error processing document:", error);
     process.exit(1);
