@@ -52,7 +52,7 @@ export function getModel(modelString: string) {
           simulateStreaming: true,
         });
 
-        console.log("Ollama (chat) model created successfully");
+        // console.log("Ollama (chat) model created successfully");
         return ollamaModel;
       } catch (error) {
         console.error("Error creating Ollama model:", error);

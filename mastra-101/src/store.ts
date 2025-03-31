@@ -5,6 +5,7 @@ import { parse, HTMLElement } from "node-html-better-parser";
 import { writeFile } from "node:fs/promises";
 import { QueryResult } from "@mastra/core";
 import { mastra } from "./mastra";
+import crypto from "node:crypto";
 
 // invoke async main (which is hoisted, so this is ok)
 main();
@@ -56,38 +57,54 @@ async function main() {
       model: ollama.embedding("mxbai-embed-large"),
       values: chunks.map((chunk) => chunk.text),
     });
-    // embeddings.forEach((embedding, i) => {
-    //   console.log(
-    //     `embedding(${i})(${embedding.length}) ${embedding.slice(0, 4)}`
-    //   );
-    // });
 
     // Create index
-    console.log("Creating index...");
+    const idxs = await vectorStore.listIndexes();
+    console.log(`Vector store indexes: ${idxs}`);
+
+    const indexName = "ethics";
+    if (idxs.includes(indexName)) {
+      console.log(`Index: ${indexName} already exists`);
+      const description = await vectorStore.describeIndex(indexName);
+      console.log(`  - ${JSON.stringify(description)}`);
+      console.log(`Deleting index: ${indexName}... until UPSERT WORKS!`);
+      await vectorStore.deleteIndex(indexName);
+    }
+    console.log(`Creating index: ${indexName}...`);
     await vectorStore.createIndex({
-      indexName: "ethics",
+      indexName,
       dimension: 1024, // Dimensions for mxbai-embed-large
     });
 
     // Store embeddings and metadata
     console.log("Storing embeddings and metadata...");
     await vectorStore.upsert({
-      indexName: "ethics",
+      indexName,
       vectors: embeddings,
       metadata: chunks.map((chunk) => ({
+        // let's get a consistent id (content hash sha256)
+        id: crypto.createHash("sha256").update(chunk.text).digest("hex"),
         text: chunk.text,
         book: chunk.metadata.book,
-        xpath: chunk.metadata.xpath,
+        // xpath: chunk.metadata.xpath,
       })),
     });
+    console.log(`Upserted ${embeddings.length} embeddings`);
+    const description = await vectorStore.describeIndex(indexName);
+    console.log(
+      `Index ${indexName} description: ${JSON.stringify(description)}`
+    );
+
     // let test a query!
+    const query = "What is the ultimate virtue?";
+    console.log(`Querying index: ${indexName} with: ${query}...`);
     const { embedding } = await embed({
-      value: "What is the ultimate virtue?",
+      value: query,
       model: ollama.embedding("mxbai-embed-large"),
     });
 
     const results = await vectorStore.query({
-      indexName: "ethics",
+      indexName,
       queryVector: embedding,
       topK: 2,
     });
@@ -112,17 +129,16 @@ function showResult(results: QueryResult[], snippetLength = 40) {
       .filter(([key]) => key !== "text")
       .map(([key, value]) => `${key}: ${value}`)
       .join(", ");
-    console.log(`id: ${id}, score: ${score}, ${metadataLine}`);
+    console.log(`-id: ${id}, score: ${score}, ${metadataLine}`);
 
     // Show text snippet on next line
     const displayText = metadata.text.trim().replace(/\s+/g, " ");
     console.log(
-      `Text(${metadata.text.length}): |${displayText.slice(
+      `  -text(${metadata.text.length}): |${displayText.slice(
         0,
         snippetLength
       )}...|`
     );
-    console.log("-".repeat(80));
   }
 }
 

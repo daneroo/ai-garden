@@ -17,8 +17,6 @@ const MODEL = "ollama:llama3.1:8b";
 // const MODEL = "google:gemini-2.0-flash-lite"; // Cost efficiency and low latency version of 2.0 Flash
 // const MODEL = "google:gemini-2.5-pro-exp-03-25"; // Enhanced thinking, reasoning, multimodal understanding, advanced coding
 
-console.log("Creating Weather Agent with model:", MODEL);
-
 export const weatherAgent = new Agent({
   name: "Weather Agent",
   instructions: `

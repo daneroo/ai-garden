@@ -1,5 +1,12 @@
 # Mastra 101
 
+## TODO
+
+- Mastra Memory - Use cases
+- Vector Upsert - not working
+- parse Gutenber (general) - multiple works
+- parse ePub
+
 ## Setup
 
 ```bash
