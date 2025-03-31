@@ -2,13 +2,14 @@ import { Agent } from "@mastra/core/agent";
 import { getModel } from "../../utils/provider";
 import { ragTool } from "../tools/rag";
 import { Memory } from "@mastra/memory";
+import { SummarizationMetric, AnswerRelevancyMetric } from "@mastra/evals/llm";
 
 // You can easily change the model by updating this string
 // Available options:
 // const MODEL = "openai:gpt-4o";
 // const MODEL = "openai:gpt-4o-mini";
-const MODEL = "ollama:llama3.1:8b";
-// const MODEL = "ollama:qwen2.5-coder:7b";
+// const MODEL = "ollama:llama3.1:8b";
+const MODEL = "ollama:qwen2.5-coder:7b";
 // the deepseek thinking models don;t seem to work
 // const MODEL = "ollama:deepseek-r1:7b";
 // const MODEL = "ollama:deepseek-r1:8b";
@@ -45,4 +46,12 @@ export const ragAgent = new Agent({
   model: getModel(MODEL),
   tools: { ragTool },
   memory, // Add memory to the agent
+  evals: {
+    summarization: new SummarizationMetric(getModel(MODEL)),
+    answerRelevancy: new AnswerRelevancyMetric(getModel(MODEL), {
+      // these are the default values
+      // scale: 1.0,
+      // uncertaintyWeight: 0.3,
+    }),
+  },
 });

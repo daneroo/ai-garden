@@ -2,7 +2,6 @@
 
 ## TODO
 
-- Mastra Memory - Use cases
 - [RAG Next Steps - Filter/Cleanup/COT/Rerank](https://mastra.ai/docs/guides/04-research-assistant)
 - parse Gutenberg (general) - multiple works
 - parse ePub
@@ -11,7 +10,7 @@
 
 ```bash
 # YOLO
-pnpm add @mastra/core@alpha @mastra/memory@alpha @mastra/rag@alpha mastra@alpha
+pnpm add @mastra/core@alpha @mastra/evals@alpha @mastra/memory@alpha @mastra/rag@alpha mastra@alpha
 ```
 
 ## Setup
