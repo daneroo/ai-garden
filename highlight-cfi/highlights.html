@@ -115,11 +115,13 @@
       document.addEventListener("keyup", keyListener, false);
 
       rendition.on("relocated", function (location) {
-        // console.log(location);
+        console.log("location:", JSON.stringify(location, null, 2));
       });
 
       // Apply a class to selected text
       rendition.on("selected", function (cfiRange, contents) {
+        console.log("rendition.selected1:", cfiRange);
+
         rendition.annotations.highlight(cfiRange, {}, (e) => {
           console.log("highlight clicked", e.target);
         });
@@ -141,6 +143,7 @@
       var highlights = document.getElementById("highlights");
 
       rendition.on("selected", function (cfiRange) {
+        console.log("rendition.selected2:", cfiRange);
         book.getRange(cfiRange).then(function (range) {
           var text;
           var li = document.createElement("li");
