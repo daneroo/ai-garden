@@ -487,10 +487,10 @@ export async function whisperTranscribe(
   const audioDuration =
     DURATION > 0 ? DURATION : await getAudioFileDuration(wavInputPath);
   const cost = (elapsed / (audioDuration / 3600)).toFixed(2); // seconds per hour of audio
-  const ratio = (audioDuration / elapsed).toFixed(2); // audio duration per second
+  const speedup = (audioDuration / elapsed).toFixed(2); // audio duration per second
   console.log(`- elapsed: ${elapsed.toFixed(2)}s`);
   console.log(`- cost: ${cost}s/h of audio`);
-  console.log(`- speedup: ${ratio}x realtime`);
+  console.log(`- speedup: ${speedup}x realtime`);
   return {
     wav: wavInputPath,
     duration: audioDuration,

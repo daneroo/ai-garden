@@ -31,7 +31,7 @@ Need refactoring: these are variable that have defaults in our wrapper(s)
 
 ## Perf again
 
-Move this to Benmark section.
+Move this to Benchmark section.
 
 Pyramids: duration:09:53:014.50 base.en:722.481s ~ 12 min (73.07 s/h)  tiny.en:597.805s ~ 10 min (60.47 s/h)
 
