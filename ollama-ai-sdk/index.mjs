@@ -6,8 +6,8 @@ const MODELS = [
   "llama3.1:8b",
   "qwen2.5-coder:7b",
   // these don;t work with tool calling
-  "deepseek-r1:7b", // commented out as they don't work
-  "deepseek-r1:8b",
+  // "deepseek-r1:7b", // commented out as they don't work
+  // "deepseek-r1:8b",
 ];
 
 async function testModel(modelName, prompt) {
