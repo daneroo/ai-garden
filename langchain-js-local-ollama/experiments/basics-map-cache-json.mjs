@@ -36,8 +36,10 @@ The list of characters and locations are expected to conform to a JSON output sc
   // const sourceNickname = "hero-of-ages.epub";
 
   const maxDocs = 999;
-  const sourceNickname = "neon-shadows.txt";
+  // const sourceNickname = "neon-shadows.txt";
   // const sourceNickname = "thesis.epub";
+  // const sourceNickname = "secret-history.epub";
+  const sourceNickname = "long-game.epub";
 
   const docs = await getDocs({ sourceNickname, maxDocs });
 
@@ -47,7 +49,7 @@ The list of characters and locations are expected to conform to a JSON output sc
   const chunkParams = { chunkSize, chunkOverlap, maxChunks };
 
   const verbose = false;
-  const modelName = "llama2"; // llama2, mistral
+  const modelName = "llama3.1:8b"; // llama2,mistral
 
   console.log(`## Parameters\n`);
   console.log(`  - sourceNickname: ${sourceNickname}`);

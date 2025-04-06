@@ -9,7 +9,7 @@ import { Ollama } from "langchain/llms/ollama";
 import { PromptTemplate } from "langchain/prompts";
 import { loadSummarizationChain } from "langchain/chains";
 
-const ollamaModelName = "llama2"; // mistral
+const ollamaModelName = "llama3.1:8b"; // mistral
 
 const sourceNickname = "thesis.epub"; // thesis.epub, thesis.pdf, thesis.txt, blog.web, secret-history.epub
 const { name, loader } = getSource(sourceNickname);

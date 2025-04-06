@@ -30,36 +30,47 @@ This summarization is repeated until a sufficiently concise summary is reached.
 
   const maxDocs = 999;
   // const sourceNickname = "neon-shadows.txt";
-  const sourceNickname = "thesis.epub";
+  // const sourceNickname = "thesis.epub";
+  // const sourceNickname = "secret-history.epub";
+  // const sourceNickname = "long-game.epub";
+  const sourceNickname = "ancestors-tale.epub";
 
   const docs = await getDocs({ sourceNickname, maxDocs });
 
-  const chunkSize = 8000;
+  const chunkSize = 8000000;
   const chunkOverlap = 100;
   const maxChunks = 9999999;
   const chunkParams = { chunkSize, chunkOverlap, maxChunks };
 
   const verbose = false;
-  const modelName = "llama2"; // llama2,mistral
+  const modelName = "llama3.1:8b"; // llama2,mistral,llama3.1:8b,qwen2.5-coder:32b
 
   console.log(`## Parameters\n`);
   console.log(`  - sourceNickname: ${sourceNickname}`);
   console.log(`  - modelName: ${modelName}`);
   console.log(`  - chunkSize: ${chunkSize}`);
 
-  const textKind = "story";
-  const textKindPlural = "stories";
+  const textKind = "scientific text"; // or "historical document", "essay", "transcript", etc.
   const promptTemplateText = `
-  You are an expert in summarizing ${textKindPlural}.
-  Your goal is to create a summary of a ${textKind}.
-  Below you find an excerpt of the ${textKind}:
+  You are an expert in summarizing this type of ${textKind}.
+  Your task is to write a clear and concise summary of the following excerpt(s).
+  
+  Guidelines:
+  - Do not preface the summary with phrases like "Here is a summary" or "Summary:"
+  - Do not reference your task, your role, or the type of text
+  - Do not comment on what the excerpt appears to be (e.g., table of contents, copyright page, image reference)
+  - Do not speculate about missing text or request more content
+  - Always write a neutral summary in plain text, regardless of what the excerpt contains
+  
+  Examples of BAD summaries:
+  x- "There seems to be no excerpt provided. Please provide the scientific text, and I will create a clear and concise summary for you."
+  x- "This text appears to be the copyright page of a book, providing information about the publication history..."
+  x- "There is no text provided. The only content is an image file referenced by '[../images/00001.jpeg]' and metadata indicating this."
+  x- "This text contains ..."
+  
   --------
   {text}
   --------
-  
-  Total output will be a summary of the excerpt.
-  
-  SUMMARY:
   `;
 
   async function summarize(docs, level) {
@@ -74,6 +85,7 @@ This summarization is repeated until a sufficiently concise summary is reached.
     const summary = await reduce(chunks, modelName, promptTemplateText, level);
     return summary;
   }
+  console.log(`Summarizing ${sourceNickname}`);
   const level0Summary = await summarize(docs, 0);
   const summaries = [level0Summary];
   while (summaries[summaries.length - 1].pageContent.length > 5000) {
@@ -93,7 +105,10 @@ This summarization is repeated until a sufficiently concise summary is reached.
 // return the total length of all docs in
 // formatted as a single string
 function docsLength(docs) {
-  const bytes = docs.reduce((total, doc) => total + doc.pageContent.length, 0);
+  const bytes = docs.reduce(
+    (total, doc) => total + (doc?.pageContent?.length ?? 0),
+    0
+  );
   if (bytes < 1000) {
     return `${bytes} bytes`;
   }
@@ -212,7 +227,9 @@ async function getDocs({ sourceNickname, maxDocs }) {
   const { name, loader, contentDocumentStartIndex } = getSource(sourceNickname);
   const docs = (await loader.load())
     .slice(contentDocumentStartIndex)
-    .slice(0, maxDocs);
+    .slice(0, maxDocs)
+    // filter out docs that have no pageContent
+    .filter((doc) => "pageContent" in doc);
   return docs;
 }
 async function getChunks({ docs, chunkSize, chunkOverlap, maxChunks }) {

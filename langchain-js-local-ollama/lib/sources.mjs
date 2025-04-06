@@ -24,7 +24,7 @@ import { EPubLoader } from "langchain/document_loaders/fs/epub";
 
 export function getSources() {
   const thesisBasePath = `./source/These-Laurence-2023-10-13`;
-  const volReadingAudiobooksBasePath = "/Volumes/Reading/audiobooks";
+  const volReadingAudiobooksBasePath = "/Volumes/Space/Reading/audiobooks";
   return {
     "thesis.epub": {
       name: "These Laurence - Aristotle’s Intrinsic Teleology (epub)",
@@ -79,6 +79,21 @@ export function getSources() {
         }
       ),
       contentDocumentStartIndex: 3, // 0-based use docs.slice(contentDocumentStartIndex)
+    },
+    "long-game.epub": {
+      name: "Rush Doshi - The Long Game (epub)",
+      question: "What is a grand strategy?",
+      loader: new EPubLoader(
+        `${volReadingAudiobooksBasePath}/Rush Doshi - The Long Game/Rush Doshi - The Long Game.epub`
+      ),
+    },
+    "ancestors-tale.epub": {
+      name: "Richard Dawkins - Ancestor's Tale (epub)",
+      question: "What is the common ancestor of all life on Earth?",
+      loader: new EPubLoader(
+        // `${volReadingAudiobooksBasePath}/Richard Dawkins - The Ancestor's Tale/Richard Dawkins - The Ancestors Tale.epub`
+        `${volReadingAudiobooksBasePath}/Richard Dawkins - The Ancestor's Tale/Richard Dawkins - The Ancestors Tale-2016.epub`
+      ),
     },
 
     "blog.web": {

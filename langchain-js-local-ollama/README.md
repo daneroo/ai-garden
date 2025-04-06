@@ -6,7 +6,7 @@ See <https://js.langchain.com/docs/use_cases/question_answering/local_retrieval_
 
 ## TODO
 
-- [ ] progress to sderr (as well as stdout)
+- [ ] progress to stderr (as well as stdout)
 - [ ] reintroduce yargs
   - [ ] turn
   - [ ] turn experiments/basics-map-cache-json.mjs into commands/characterize.mjs - getting it's args
@@ -60,9 +60,12 @@ Trying various Map/Reduce - `mappr.mjs` - characters in Hero of Ages
 ```bash
 #  move to markdown with tags - (dot?)
 time node mappr.mjs | tee -a "results/final-refine-characters-hero.$(gdate -u -Is|sed 's/+00:00/Z/')".txt
+# watch the cache
+watch 'cat $(find cache/ -mmin -1|tail -1)'
 
-time node experiments/basics-map-cache.mjs | tee -a "results/map-reduce-summary-hero.$(gdate -u -Is|sed 's/+00:00/Z/')".md
-time node experiments/basics-map-cache-json.mjs | tee -a "results/map-reduce-characters-model-hero.$(gdate -u -Is|sed 's/+00:00/Z/')".md
+# Ancestor's Tale
+time node experiments/basics-map-cache.mjs | tee -a "results/map-reduce-summary-ancestors-tale.$(gdate -u -Is|sed 's/+00:00/Z/')".md
+time node experiments/basics-map-cache-json.mjs | tee -a "results/map-reduce-characters-model-ancestors-tale.$(gdate -u -Is|sed 's/+00:00/Z/')".md
 
 # Recording: -i 2 is the max idle time (2s) in the recording
 asciinema rec -i 2 -c "time node experiments/basics-map-cache-json.mjs" "results/map-reduce-characters-model-hero.$(gdate -u -Is|sed 's/+00:00/Z/').cast"
