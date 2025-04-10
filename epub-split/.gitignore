@@ -1,1 +1,6 @@
+# Dependencies
 node_modules/
+.pnpm-store/
+
+# Test books (downloaded by script ./test-books/download-books.sh)
+test-books/*.epub
