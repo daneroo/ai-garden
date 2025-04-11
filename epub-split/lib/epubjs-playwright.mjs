@@ -52,6 +52,7 @@ export async function getTOC(bookPath) {
   await page.waitForFunction(() => typeof ePub !== "undefined");
 
   const tocOutside = await page.evaluate(async (base64Buffer) => {
+    const DEBUG_IN_PLAYWRIGHT = false;
     // The following code runs in the browser context.
     // You should have access to any browser-specific features here.
     function base64ToArrayBuffer(base64) {
@@ -82,7 +83,6 @@ export async function getTOC(bookPath) {
       // Remove any fragment identifier #id
       const noFragmentIdHref = href.split("#")[0];
       if (spineByHref.hasOwnProperty(noFragmentIdHref)) {
-        // console.log(`debug:section:fixHref (noFragmentId) ${noFragmentIdHref}`);
         return noFragmentIdHref;
       }
       // Decode URI:
@@ -90,7 +90,6 @@ export async function getTOC(bookPath) {
       // e.g. href:Text/Reaper%27s_Gale_042_chapter24.html is not in the spineByHref, but Text/Reaper's_Gale_042_chapter24.html is.
       const decodedHref = decodeURIComponent(href);
       if (spineByHref.hasOwnProperty(decodedHref)) {
-        // console.log(`debug:section:fixHref (decodeURI) ${decodedHref}`);
         return decodedHref;
       }
       if (decodedHref.includes("%2C")) {
@@ -100,46 +99,45 @@ export async function getTOC(bookPath) {
       }
       const noFragmentIdDecodedHref = decodedHref.split("#")[0];
       if (spineByHref.hasOwnProperty(noFragmentIdDecodedHref)) {
-        // console.log(`debug:section:fixHref (noFragmentIdDecoded) ${noFragmentIdDecodedHref}`);
         return noFragmentIdDecodedHref;
       }
 
       // look for any href in spineByHref that ends with noFragmentIdDecodedHref
       // - e.g. where the href is bm01.xhtml#bm1, but the spineByHref has xhtml/bm01.xhtml
       const keys = Object.keys(spineByHref);
-      const foundHref = keys.find((key) =>
+      const foundEndsWithNoFragmentIdDecodedHref = keys.find((key) =>
         key.endsWith(noFragmentIdDecodedHref)
       );
-      if (foundHref) {
-        // console.log(`debug:section:fixHref (endsWith) ${foundHref}`);
-        return foundHref;
+      if (foundEndsWithNoFragmentIdDecodedHref) {
+        return foundEndsWithNoFragmentIdDecodedHref;
       }
-      // browser:debug:section:fixHref (not found) ../Text/01_Cover.xhtml
-      const basnameOfNoFragmentIdDecodedHref = getBasename(
+      const basenameOfNoFragmentIdDecodedHref = getBasename(
         noFragmentIdDecodedHref
       );
-      const foundBaseNameOfHref = keys.find((key) =>
-        key.endsWith(basnameOfNoFragmentIdDecodedHref)
+      const foundEndsWithBasenameOfNoFragmentIdDecodedHref = keys.find((key) =>
+        key.endsWith(basenameOfNoFragmentIdDecodedHref)
       );
-      if (foundBaseNameOfHref) {
-        // console.log(`debug:section:fixHref (basnameNoFragmentIdDecodedHref) ${foundBaseNameOfHref}`);
-        return foundBaseNameOfHref;
+      if (foundEndsWithBasenameOfNoFragmentIdDecodedHref) {
+        return foundEndsWithBasenameOfNoFragmentIdDecodedHref;
       }
 
-      console.log(`debug:section:fixHref (not found) ${href}`);
-      console.log(
-        `- debug:section:fixHref tried noFragmentIdHref:${noFragmentIdHref}`
-      );
-      console.log(`- debug:section:fixHref tried decodedHref:${decodedHref}`);
-      console.log(
-        `- debug:section:fixHref tried noFragmentIdDecodedHref:${noFragmentIdDecodedHref}`
-      );
-      console.log(
-        `- debug:section:fixHref tried endsWith:${noFragmentIdDecodedHref}`
-      );
-      console.log(
-        `- debug:section:fixHref tried endsWith:${basnameOfNoFragmentIdDecodedHref}`
-      );
+      if (DEBUG_IN_PLAYWRIGHT) {
+        console.log(`debug:section:fixHref (not found) ${href}`);
+        console.log(`- debug:section:fixHref tried href:${href}`);
+        console.log(
+          `- debug:section:fixHref tried noFragmentIdHref:${noFragmentIdHref}`
+        );
+        console.log(`- debug:section:fixHref tried decodedHref:${decodedHref}`);
+        console.log(
+          `- debug:section:fixHref tried noFragmentIdDecodedHref:${noFragmentIdDecodedHref}`
+        );
+        console.log(
+          `- debug:section:fixHref tried endsWith:noFragmentIdDecodedHref:${noFragmentIdDecodedHref}`
+        );
+        console.log(
+          `- debug:section:fixHref tried endsWith:basenameOfNoFragmentIdDecodedHref:${basenameOfNoFragmentIdDecodedHref}`
+        );
+      }
 
       // return undefined if we can't find a fixedHref
     }
@@ -166,7 +164,7 @@ export async function getTOC(bookPath) {
         let textContent;
         if (shouldGetContent) {
           fixedHref = fixHref(href);
-          if (!fixedHref) {
+          if (!fixedHref && DEBUG_IN_PLAYWRIGHT) {
             console.log(`debug:section not found for href:${href} id:${id}`);
             // console.log(`debug:spine.spineItems`, book.spine.spineItems.length);
             // console.log(`debug:spine.baseUrl:|${book.spine.baseUrl}|`);
@@ -205,7 +203,7 @@ export async function getTOC(bookPath) {
           ...(textContent ? { textContent } : {}),
           ...(shouldGetContent && (!fixedHref || !section)
             ? {
-                warning: `section not found for label:${label.trim()} href:${href}`,
+                warning: `section not found for label:${label.trim()} href:${href} id:${id}`,
               }
             : {}),
         });
