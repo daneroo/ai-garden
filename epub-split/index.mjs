@@ -2,12 +2,13 @@ import yargs from "yargs/yargs";
 import { walk } from "@root/walk";
 import { extname } from "node:path";
 import { show as showEpubJS } from "./lib/epubjs-playwright.mjs";
-import { show as showEPubParser } from "./lib/epub-parser.mjs";
+import { show as showEPubParser } from "./lib/epub-parser-lingo.mjs";
 import { exit } from "node:process";
 
-const defaultRootPath =
-  "/Users/daniel/Library/CloudStorage/Dropbox/A-Reading/EBook";
-// const defaultRootPath = "/Volumes/Reading/audiobooks/";
+const defaultRootPath = "test-books";
+// const defaultRootPath =
+//   "/Users/daniel/Library/CloudStorage/Dropbox/A-Reading/EBook";
+// const defaultRootPath = "/Volumes/Space/Reading/audiobooks/";
 
 try {
   await main();
@@ -29,8 +30,8 @@ async function main() {
     .option("parser", {
       alias: "p",
       type: "string",
-      choices: ["epubjs", "epub-parser"], // Limit the options to 'check' or 'fix'
-      default: "epubjs",
+      choices: ["epubjs", "epub-parser"],
+      default: "epub-parser",
       describe: "Parse epub files withe the given library",
     })
     .option("search", {
@@ -73,6 +74,9 @@ async function main() {
     : bookPaths;
   console.log(`Found ${matchingBookPaths.length} matching books.`);
 
+  // Add markdown table header
+  console.log("\n| Status | Warnings | Title |");
+  console.log("|--------|---------:|-------|");
   for (const bookPath of matchingBookPaths) {
     try {
       if (parser === "epub-parser") {

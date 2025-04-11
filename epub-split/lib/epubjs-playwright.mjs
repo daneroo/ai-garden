@@ -2,6 +2,21 @@ import { promises as fs } from "node:fs";
 import { basename } from "node:path";
 import { chromium } from "playwright";
 
+export async function showSummary(bookPath) {
+  try {
+    const toc = await getTOC(bookPath);
+    const warnings = validate(toc);
+    const ok = warnings.length === 0;
+    console.log(
+      `| ${ok ? "✓" : "✗"} | ${warnings.length
+        .toString()
+        .padStart(5)} | ${basename(bookPath)} |`
+    );
+  } catch (error) {
+    console.log(`| ✗ | ${"-1".padStart(5)} | ${basename(bookPath)} |`);
+  }
+}
+
 export async function show(bookPath) {
   try {
     const toc = await getTOC(bookPath);
