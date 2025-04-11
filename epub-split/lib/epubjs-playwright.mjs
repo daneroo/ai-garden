@@ -2,101 +2,17 @@ import { promises as fs } from "node:fs";
 import { basename } from "node:path";
 import { chromium } from "playwright";
 
-export async function showSummary(bookPath) {
-  try {
-    const toc = await getTOC(bookPath);
-    const warnings = validate(toc);
-    const ok = warnings.length === 0;
-    console.log(
-      `| ${ok ? "✓" : "✗"} | ${warnings.length
-        .toString()
-        .padStart(5)} | ${basename(bookPath)} |`
-    );
-  } catch (error) {
-    console.log(`| ✗ | ${"-1".padStart(5)} | ${basename(bookPath)} |`);
-  }
-}
-
-export async function show(bookPath) {
-  try {
-    const toc = await getTOC(bookPath);
-    const warnings = validate(toc);
-    if (warnings.length > 0) {
-      console.log(`\n## ${basename(bookPath)}\n`);
-      warnings.forEach((warning) => console.log(`- ${warning}`));
-      console.log("");
-    } else {
-      console.log(`\n## ${basename(bookPath)}\n`);
-      showTOC(toc);
-    }
-  } catch (error) {
-    console.log(`\n## ${basename(bookPath)}\n`);
-    console.error(`Error: ${error.message}`);
-  }
-}
-
-// clone of showTOC, but just for warnings
-function validate(toc, level = 0) {
-  const warnings = [];
-  const indent = " ".repeat(level * 2);
-  toc.forEach((item) => {
-    if (item.warning) {
-      // console.log(`${indent}- ${item.label.trim()} (${item?.href})`);
-      // console.log(`${indent} ** ${item.warning}`);
-      warnings.push(item.warning);
-    }
-    if (item.subitems) {
-      const subWarnings = validate(item.subitems, level + 1);
-      warnings.push(...subWarnings);
-    }
-  });
-  return warnings;
-}
-
-function showTOC(toc, level = 0) {
-  // {
-  //   "id": "8a3b7da4-92e6-45e8-b523-8b018dc12000",
-  //   "href": "Text/part0030.html",
-  //   "label": "\r\n        COPYRIGHT\r\n      ",
-  //   "subitems": []
-  //   "parent": "8a3b7da4-92e6-45e8-b523-8b018dc12000" | undefined
-  //   "textContent": "..."
-  // }
-  const indent = " ".repeat(level * 2);
-  toc.forEach((item) => {
-    // print the indented title of the item *trimmed* (remove leading and trailing whitespace)
-    console.log(`${indent}- ${item.label.trim()} (${item?.href})`);
-    // if item has textContent, print it
-    if (item.textContent) {
-      const cleanedContent = item.textContent
-        .replace(/\s+/g, " ") // Replace multiple spaces with a single space
-        .replace(/\n+/g, "\n") // Replace multiple newlines with a single newline
-        .trim(); // Remove leading and trailing whitespace
-
-      console.log(
-        `${indent}    ${cleanedContent.slice(0, 80)}${
-          cleanedContent.length > 50 ? "..." : ""
-        }`
-      );
-    }
-    if (item.warning) {
-      console.log(`${indent} ** ${item.warning}`);
-    }
-    if (item.subitems) {
-      showTOC(item.subitems, level + 1);
-    }
-  });
-}
+/**
+ * @typedef {import('./types.mjs').TocEntry} TocEntry
+ * @typedef {import('./types.mjs').Toc} Toc
+ */
 
 /**
- * Splits the specified book into chapters and saves them as separate files.
- * @param {string} bookPath - The path of the book file to split.
- * @returns {Promise<void>} - A promise that resolves when the book has been split into chapters.
+ * @param {string} bookPath
+ * @returns {Promise<Toc>}
  */
-async function getTOC(bookPath) {
+export async function getTOC(bookPath) {
   const maxBase64BufferSize = 100 * 1024 * 1024; // 100MiB
-  // var book = new Book(bookPath);
-  // const bookBuffer = await fs.readFile(bookPath);
   const buffer = await fs.readFile(bookPath);
   // console.log(`debug:node:Buffer (${buffer.byteLength}) ${basename(bookPath)}`);
   const base64Buffer = buffer.toString("base64");
@@ -122,7 +38,7 @@ async function getTOC(bookPath) {
       .args()
       .map((arg) => `${arg}`)
       .join(", ");
-    console.log(`browser:${args}`);
+    console.log(`[${basename(bookPath)}] browser:${args}`);
   });
 
   await page.goto("about:blank");
@@ -133,9 +49,6 @@ async function getTOC(bookPath) {
     url: "https://cdn.jsdelivr.net/npm/epubjs@0.3.93/dist/epub.min.js",
   });
 
-  // timeout: arbitrary and brittle, wait for something else?
-  // await page.waitForTimeout(1000); // Adjust as needed, this is just to ensure scripts have time to load
-  // This reduced time to process 175 books from 292s to 114s
   await page.waitForFunction(() => typeof ePub !== "undefined");
 
   const tocOutside = await page.evaluate(async (base64Buffer) => {
@@ -233,7 +146,6 @@ async function getTOC(bookPath) {
 
     // This will add textContent to each entry in the toc (and it;s children)
     // or a warning if the section is not found
-    // TODO(daneroo): standardize shape of returned entry?
     async function augmentEntriesAndChildren(entries) {
       // {
       //   "id": "8a3b7da4-92e6-45e8-b523-8b018dc12000",
@@ -244,49 +156,54 @@ async function getTOC(bookPath) {
       // }
       const newEntries = [];
       for (let entry of entries) {
-        const { id, href, label, subitems, parent } = entry;
+        const { id, href, label, subitems } = entry;
 
         // console.log(`debug:augmenting ${label.trim()} href:${href} id:${id}`);
         // preventative check for href
-        const fixedHref = fixHref(href);
-        if (!fixedHref) {
-          console.log(`debug:section not found for href:${href} id:${id}`);
-          // console.log(`debug:spine.spineItems`, book.spine.spineItems.length);
-          // console.log(`debug:spine.baseUrl:|${book.spine.baseUrl}|`);
-          console.log(
-            `debug:spine.spineByHref`,
-            JSON.stringify(Object.keys(book.spine.spineByHref), null, 2)
-          );
+        const shouldGetContent = true;
+        let fixedHref;
+        let section;
+        let textContent;
+        if (shouldGetContent) {
+          fixedHref = fixHref(href);
+          if (!fixedHref) {
+            console.log(`debug:section not found for href:${href} id:${id}`);
+            // console.log(`debug:spine.spineItems`, book.spine.spineItems.length);
+            // console.log(`debug:spine.baseUrl:|${book.spine.baseUrl}|`);
+            console.log(
+              `debug:spine.spineByHref`,
+              JSON.stringify(Object.keys(book.spine.spineByHref), null, 2)
+            );
+          }
+
+          // **************************
+          // TODO(daneroo): Don;t look up section if we have no fixedHref!
+
+          section = book.spine.get(fixedHref);
+          // Section.load(_request: method?) needs a requestor function
+          // and returns a HTMLHtmlElement
+          const contents = section
+            ? await section.load(book.load.bind(book))
+            : undefined;
+
+          // contents is a HTMLHtmlElement | undefined
+          // if contents has a body, use that, otherwise use contents direclty
+          const bodyElement = contents?.querySelector("body");
+          textContent = bodyElement
+            ? bodyElement.textContent
+            : contents
+            ? contents.textContent
+            : undefined;
         }
-
-        // **************************
-        // TODO(daneroo): Don;t look up section if we have no fixedHref!
-
-        const section = book.spine.get(fixedHref);
-        // Section.load(_request: method?) needs a requestor function
-        // and returns a HTMLHtmlElement
-        const contents = section
-          ? await section.load(book.load.bind(book))
-          : undefined;
-
-        // contents is a HTMLHtmlElement | undefined
-        // if contents has a body, use that, otherwise use contents direclty
-        const bodyElement = contents?.querySelector("body");
-        const textContent = bodyElement
-          ? bodyElement.textContent
-          : contents
-          ? contents.textContent
-          : undefined;
-
-        newSubitems = await augmentEntriesAndChildren(subitems);
+        const children = await augmentEntriesAndChildren(subitems);
         newEntries.push({
           id,
           href,
           label,
-          subitems: newSubitems,
-          parent,
-          textContent,
-          ...(!fixedHref || !section
+          children,
+          // Only include textContent if it has a truthy value (empty string is falsy)
+          ...(textContent ? { textContent } : {}),
+          ...(shouldGetContent && (!fixedHref || !section)
             ? {
                 warning: `section not found for label:${label.trim()} href:${href}`,
               }

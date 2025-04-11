@@ -1,32 +1,15 @@
 import { initEpubFile } from "@lingo-reader/epub-parser";
-// import type { EpubToc } from "@lingo-reader/epub-parser";
-import { basename } from "node:path";
 
-export async function show(bookPath) {
-  console.log(`\n## ${basename(bookPath)}\n`);
-  const toc = await getTOC(bookPath);
-  showTOC(toc);
-}
+/**
+ * @typedef {import('./types.mjs').TocEntry} TocEntry
+ * @typedef {import('./types.mjs').Toc} Toc
+ */
 
-function showTOC(toc, level = 0) {
-  if (!toc || !Array.isArray(toc)) {
-    return;
-  }
-
-  toc.forEach((item) => {
-    // print the indented title of the item *trimmed* (remove leading and trailing whitespace)
-    const indent = " ".repeat(level * 2);
-    console.log(
-      `${indent}- ${item?.label} (#${item?.playOrder}) [id=${item?.id} href=${item?.href}]`
-    );
-
-    if (item.children) {
-      showTOC(item.children, level + 1);
-    }
-  });
-}
-
-async function getTOC(bookPath) {
+/**
+ * @param {string} bookPath
+ * @returns {Promise<Toc>}
+ */
+export async function getTOC(bookPath) {
   const epub = await initEpubFile(bookPath);
 
   // const fileInfo = epub.getFileInfo();
@@ -38,6 +21,8 @@ async function getTOC(bookPath) {
   //   console.log(`${item.id}, ${item.href}, ${item.linear}`)
   // );
 
+  // Note: lingo-reader's EpubToc type is compatible with our Toc type
+  // Both use 'children' for nested entries and have the same structure
   const toc = epub.getToc();
   return toc;
 }

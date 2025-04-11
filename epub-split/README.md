@@ -23,5 +23,5 @@
 ## References
 
 - [epubjs ^0.3.93](https://github.com/futurepress/epub.js)
-- [@gxl/epub-parser ^2.0.4](https://github.com/gaoxiaoliangz/epub-parser)
 - [@lingo-reader/epub-parser](https://github.com/hhk-png/lingo-reader/blob/main/packages/epub-parser/README.md)
+- [@gxl/epub-parser ^2.0.4 (deprecated)](https://github.com/gaoxiaoliangz/epub-parser)

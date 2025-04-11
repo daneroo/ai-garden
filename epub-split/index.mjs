@@ -1,14 +1,16 @@
 import yargs from "yargs/yargs";
 import { walk } from "@root/walk";
-import { extname } from "node:path";
-import { show as showEpubJS } from "./lib/epubjs-playwright.mjs";
-import { show as showEPubParser } from "./lib/epub-parser-lingo.mjs";
+import { extname, basename } from "node:path";
+
+import { getTOC as getTOCEpubjs } from "./lib/epubjs-playwright.mjs";
+import { getTOC as getTOCLingo } from "./lib/epub-parser-lingo.mjs";
+import { showTOC, showSummary, compareToc } from "./lib/showToc.mjs";
 import { exit } from "node:process";
 
-const defaultRootPath = "test-books";
+// const defaultRootPath = "test-books";
 // const defaultRootPath =
 //   "/Users/daniel/Library/CloudStorage/Dropbox/A-Reading/EBook";
-// const defaultRootPath = "/Volumes/Space/Reading/audiobooks/";
+const defaultRootPath = "/Volumes/Space/Reading/audiobooks/";
 
 try {
   await main();
@@ -30,8 +32,8 @@ async function main() {
     .option("parser", {
       alias: "p",
       type: "string",
-      choices: ["epubjs", "epub-parser"],
-      default: "epub-parser",
+      choices: ["epubjs", "lingo", "compare"],
+      default: "lingo",
       describe: "Parse epub files withe the given library",
     })
     .option("search", {
@@ -39,11 +41,15 @@ async function main() {
       type: "string",
       describe: "Search for books with a matching name",
     })
+    .option("summary", {
+      type: "boolean",
+      default: false,
+      describe: "Show summary table instead of full TOC",
+    })
     .count("verbose")
     .alias("v", "verbose")
     .help()
     .alias("h", "help")
-
     .parseAsync();
 
   // destructure arguments
@@ -52,6 +58,7 @@ async function main() {
     verbose: verbosity,
     parser,
     search,
+    summary,
   } = argv;
 
   // clean the root path by removing trailing slash
@@ -75,16 +82,38 @@ async function main() {
   console.log(`Found ${matchingBookPaths.length} matching books.`);
 
   // Add markdown table header
-  console.log("\n| Status | Warnings | Title |");
-  console.log("|--------|---------:|-------|");
+  if (summary) {
+    console.log("\n| Status | Warnings | Title |");
+    console.log("|--------|---------:|-------|");
+  }
+  if (parser === "compare") {
+    console.log("\n| Status | Lingo | Epubjs | Book |");
+    console.log("|--------|-------|-------|------|");
+  }
   for (const bookPath of matchingBookPaths) {
     try {
-      if (parser === "epub-parser") {
-        await showEPubParser(bookPath);
-      } else if (parser === "epubjs") {
-        await showEpubJS(bookPath);
+      if (parser === "compare") {
+        const [tocLingo, tocEpubjs] = await Promise.all([
+          getTOCLingo(bookPath),
+          getTOCEpubjs(bookPath),
+        ]);
+        compareToc(tocLingo, tocEpubjs, bookPath);
       } else {
-        throw new Error(`Unknown parser: ${parser}`);
+        let toc;
+        if (parser === "lingo") {
+          toc = await getTOCLingo(bookPath);
+        } else if (parser === "epubjs") {
+          toc = await getTOCEpubjs(bookPath);
+        } else {
+          throw new Error(`Unknown parser: ${parser}`);
+        }
+
+        if (summary) {
+          showSummary(toc, bookPath);
+        } else {
+          console.log(`\n## ${basename(bookPath)}\n`);
+          showTOC(toc);
+        }
       }
     } catch (error) {
       console.error("Error:", error.message);
