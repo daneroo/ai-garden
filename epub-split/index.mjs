@@ -83,8 +83,8 @@ async function main() {
 
   // Add markdown table header
   if (summary) {
-    console.log("\n| Status | Warnings | Title |");
-    console.log("|--------|---------:|-------|");
+    console.log("\n| Status | Warnings | Entries | Title |");
+    console.log("|--------|---------:|--------:|-------|");
   }
   if (parser === "compare") {
     console.log("\n| Status | Lingo | Epubjs | Book |");
