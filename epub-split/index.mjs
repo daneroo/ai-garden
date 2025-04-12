@@ -81,23 +81,13 @@ async function main() {
     : bookPaths;
   console.log(`Found ${matchingBookPaths.length} matching books.`);
 
-  // Add markdown table header
-  if (summary) {
-    console.log("\n| Status | Warnings | Entries | Title |");
-    console.log("|--------|---------:|--------:|-------|");
-  }
-  if (parser === "compare") {
-    console.log("\n| Status | Lingo | Epubjs | Book |");
-    console.log("|--------|-------|-------|------|");
-  }
-  for (const bookPath of matchingBookPaths) {
+  for (const [bkIndex, bookPath] of matchingBookPaths.entries()) {
     try {
       if (parser === "compare") {
-        const [tocLingo, tocEpubjs] = await Promise.all([
-          getTOCLingo(bookPath),
-          getTOCEpubjs(bookPath),
-        ]);
-        compareToc(tocLingo, tocEpubjs, bookPath);
+        // do these sequentially
+        const tocLingo = await getTOCLingo(bookPath);
+        const tocEpubjs = await getTOCEpubjs(bookPath);
+        compareToc(tocLingo, tocEpubjs, bookPath, bkIndex === 0);
       } else {
         let toc;
         if (parser === "lingo") {
@@ -109,7 +99,7 @@ async function main() {
         }
 
         if (summary) {
-          showSummary(toc, bookPath);
+          showSummary(toc, bookPath, bkIndex === 0);
         } else {
           console.log(`\n## ${basename(bookPath)}\n`);
           showTOC(toc);
