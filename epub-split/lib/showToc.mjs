@@ -53,38 +53,58 @@ export function showTOC(toc, level = 0) {
  */
 export function showSummary(toc, bookPath) {
   try {
-    const warnings = validate(toc);
+    const warnings = flattenWarnings(toc);
     const ok = warnings.length === 0;
+    const count = countTOC(toc);
     console.log(
-      `| ${ok ? "✓" : "✗"} | ${warnings.length
+      `| ${ok ? "✓" : "✗"} | ${warnings.length.toString().padStart(5)} | ${count
         .toString()
         .padStart(5)} | ${basename(bookPath)} |`
     );
+    for (const warning of warnings) {
+      console.log(`- warning: ${warning}`);
+    }
   } catch (error) {
-    console.log(`| ✗ | ${"-1".padStart(5)} | ${basename(bookPath)} |`);
+    console.log(
+      `| ✗ | ${"-1".padStart(5)} | ${"-1".padStart(5)} | ${basename(
+        bookPath
+      )} |`
+    );
   }
 }
 
 /**
- * Collects all warning messages from the table of contents
- * @param {Toc} toc - The table of contents to validate
- * @param {number} level - The current indentation level (default: 0)
+ * Collects and flattens all warning messages from the table of contents into a single array
+ * @param {Toc} toc - The table of contents to process
  * @returns {string[]} Array of warning messages
  */
-function validate(toc, level = 0) {
+function flattenWarnings(toc) {
   const warnings = [];
   toc.forEach((item) => {
     if (item.warning) {
-      // console.log(`${indent}- ${item.label.trim()} (${item?.href})`);
-      // console.log(`${indent} ** ${item.warning}`);
       warnings.push(item.warning);
     }
-    if (item.subitems) {
-      const subWarnings = validate(item.subitems, level + 1);
+    if (item.children) {
+      const subWarnings = flattenWarnings(item.children);
       warnings.push(...subWarnings);
     }
   });
   return warnings;
+}
+
+/**
+ * Counts all entries in the table of contents, including children
+ * @param {Toc} toc - The table of contents to count
+ * @returns {number} Total number of entries
+ */
+function countTOC(toc) {
+  let count = toc.length;
+  toc.forEach((item) => {
+    if (item.children) {
+      count += countTOC(item.children);
+    }
+  });
+  return count;
 }
 
 /**
