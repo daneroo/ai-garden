@@ -67,7 +67,8 @@ export function showSummary(toc, bookPath, showHeader) {
         .padStart(5)} | ${basename(bookPath)} |`
     );
     for (const warning of warnings) {
-      console.log(`- warning: ${warning}`);
+      // console.log(`- warning: ${warning}`);
+      console.log(`|   |       |       | ${warning} |`);
     }
   } catch (error) {
     console.log(
