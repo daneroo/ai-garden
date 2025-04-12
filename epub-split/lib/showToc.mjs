@@ -49,9 +49,14 @@ export function showTOC(toc, level = 0) {
  * Displays a summary of the table of contents in a markdown table format
  * @param {Toc} toc - The table of contents to summarize
  * @param {string} bookPath - Path of the book being processed
+ * @param {boolean} showHeader - Whether to display the table header
  * @returns {void}
  */
-export function showSummary(toc, bookPath) {
+export function showSummary(toc, bookPath, showHeader) {
+  if (showHeader) {
+    console.log("\n| Status | Warnings | Entries | Title |");
+    console.log("|--------|---------:|--------:|-------|");
+  }
   try {
     const warnings = flattenWarnings(toc);
     const ok = warnings.length === 0;
@@ -109,17 +114,127 @@ function countTOC(toc) {
 
 /**
  * Compares two table of contents and displays their differences
- * @param {Toc} a - First table of contents to compare
- * @param {Toc} b - Second table of contents to compare
+ * Needs much work, and not sure it is worth diving into epubjs vs lingo differences
+ * @param {Toc} tocLingo - First table of contents to compare
+ * @param {Toc} tocEpubjs - Second table of contents to compare
  * @param {string} bookPath - Path of the book being compared
+ * @param {boolean} showHeader - Whether to display the table header
  * @returns {void}
  */
-export function compareToc(a, b, bookPath) {
-  // TODO: Implement comparison logic and display differences
-  const status = a.length === b.length ? "✓" : "✗";
+export function compareToc(tocLingo, tocEpubjs, bookPath, showHeader) {
+  // the recursive comparison of fields: id, href, label is sketchy
+  // and not sure it is worth diving into epubjs vs lingo differences
+  const SHOW_DETAILS = false;
+  if (showHeader) {
+    console.log(`\n## Comparing parsers\n`);
+    if (SHOW_DETAILS) {
+      console.log(`including field comparisons: id, href, label`);
+    } else {
+      console.log(`Only comparing TOC total counts`);
+    }
+    console.log("\n| Status | Lingo | Epubjs | Book |");
+    console.log("|--------|-------|-------|------|");
+  }
+
+  // First row: total counts
+  const totalMatch = tocLingo.length === tocEpubjs.length;
   console.log(
-    `| ${status} | ${a.length.toString().padStart(5)} | ${b.length
+    `| ${checkOrXmark(totalMatch)} | ${tocLingo.length
       .toString()
-      .padStart(5)} | ${basename(bookPath)} |`
+      .padStart(5)} | ${tocEpubjs.length.toString().padStart(5)} | ${basename(
+      bookPath
+    )} |`
   );
+
+  if (!SHOW_DETAILS) return;
+
+  // showResultDetail is a helper function to display the result of a comparison
+  // | ✓ |      |     | label's match |
+  // | ✗ |      |     | label's differ |
+  function showResultDetail(matchBoolean, label) {
+    console.log(
+      `| ${checkOrXmark(matchBoolean)} | ${"".padStart(5)} | ${"".padStart(
+        5
+      )} | ${label}'s ${matchBoolean ? "match" : "differ"} |`
+    );
+  }
+  // Compare IDs - does not work - ebubjs and lingo have different ids
+  // console.debug("compareToc: comparing ids");
+  const idMatch = tocLingo.every((entry, i) =>
+    compareEntries(entry, tocEpubjs[i], (a, b) => {
+      if (a.id !== b.id) {
+        console.debug(`| ✗ |       |       |   a.id:${a.id} b.id:${b.id} |`);
+      }
+      return a.id === b.id;
+    })
+  );
+  showResultDetail(idMatch, "id");
+
+  // Compare hrefs
+  // console.debug("compareToc: comparing hrefs");
+  const hrefMatch = tocLingo.every((entry, i) =>
+    compareEntries(entry, tocEpubjs[i], (a, b) => {
+      // remove any epub: prefix from hrefs
+      const aHref = a.href.replace(/^epub:/, "");
+      const bHref = b.href.replace(/^epub:/, "");
+      if (aHref !== bHref) {
+        console.debug(
+          `| ✗ |       |       |   a.href:${aHref} b.href:${bHref} |`
+        );
+      }
+      return aHref === bHref;
+    })
+  );
+  showResultDetail(hrefMatch, "href");
+
+  // Compare labels
+  // console.debug("compareToc: comparing labels");
+  const labelMatch = tocLingo.every((entry, i) =>
+    compareEntries(entry, tocEpubjs[i], (a, b) => {
+      if (a.label.trim() !== b.label.trim()) {
+        console.debug(
+          `| ✗ |       |       |   a.label:${a.label} b.label:${b.label}`
+        );
+      }
+      return a.label.trim() === b.label.trim();
+    })
+  );
+  showResultDetail(labelMatch, "label");
+}
+
+/**
+ * Compares two TOC entries recursively
+ * @param {TocEntry} a - First TOC entry
+ * @param {TocEntry} b - Second TOC entry
+ * @param {(a: TocEntry, b: TocEntry) => boolean} compare - Comparison function
+ * @returns {boolean} Whether the entries and their children match
+ */
+function compareEntries(a, b, compare) {
+  if (!a || !b) {
+    console.debug(
+      `| ✗ |       |       |   !!a:${!!a} !!b:${!!b} a:${a} b:${b}`
+    );
+    return false;
+  }
+  if (!compare(a, b)) return false;
+  if ((a.children?.length ?? 0) !== (b.children?.length ?? 0)) {
+    console.debug(
+      `compareEntries: a.children?.length:${a.children?.length} b.children?.length:${b.children?.length}`
+    );
+    return false;
+  }
+  return (
+    a.children?.every((childA, i) =>
+      compareEntries(childA, b.children[i], compare)
+    ) ?? true
+  );
+}
+
+/**
+ * Returns a checkmark or xmark based on a boolean value
+ * @param {boolean} value - The value to check
+ * @returns {string} "✓" or "✗"
+ */
+function checkOrXmark(value) {
+  return value ? "✓" : "✗";
 }
