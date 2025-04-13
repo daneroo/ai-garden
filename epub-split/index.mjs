@@ -1,4 +1,5 @@
 import yargs from "yargs/yargs";
+import os from "node:os";
 import { walk } from "@root/walk";
 import { extname, basename } from "node:path";
 
@@ -6,11 +7,6 @@ import { parse as parseEpubjs } from "./lib/epubjs-playwright.mjs";
 import { parse as parseLingo } from "./lib/epub-parser-lingo.mjs";
 import { showTOC, showSummary, compareToc } from "./lib/showToc.mjs";
 import { exit } from "node:process";
-
-// const defaultRootPath = "test-books";
-// const defaultRootPath =
-//   "/Users/daniel/Library/CloudStorage/Dropbox/A-Reading/EBook";
-const defaultRootPath = "/Volumes/Space/Reading/audiobooks/";
 
 try {
   await main();
@@ -26,8 +22,9 @@ async function main() {
       alias: "r",
       type: "string",
       demandOption: true,
-      default: defaultRootPath,
-      describe: "Path of the root directory to search from",
+      default: "space",
+      describe:
+        "Path of the root directory to search from (can be a path or one of: test, space, drop[box])",
     })
     .option("parser", {
       alias: "p",
@@ -61,8 +58,8 @@ async function main() {
     summary,
   } = argv;
 
-  // clean the root path by removing trailing slash
-  const rootPath = unverifiedRootPath.replace(/\/$/, "");
+  // resolve the root path (includes cleaning)
+  const rootPath = resolveRootPath(unverifiedRootPath);
   console.log(
     `# Extracting structure and content of ePub books with ${parser}\n`
   );
@@ -123,6 +120,31 @@ async function main() {
       console.error(`Book level error: ${error.message}`);
     }
   }
+}
+
+/**
+ * Resolves a root path shortcut to its actual path and cleans it
+ * @param {string} path - The path or shortcut to resolve
+ * @returns {string} The resolved and cleaned path (no trailing slash)
+ * @example
+ * resolveRootPath("test") // returns "./test-books"
+ * resolveRootPath("space") // returns "/Volumes/Space/Reading/audiobooks"
+ * resolveRootPath("dropbox") // returns "~/Library/CloudStorage/Dropbox/A-Reading/EBook"
+ * resolveRootPath("/some/path/") // returns "/some/path"
+ */
+function resolveRootPath(path) {
+  const shortcuts = {
+    test: "./test-books",
+    space: "/Volumes/Space/Reading/audiobooks/",
+    drop: `${os.homedir()}/Library/CloudStorage/Dropbox/A-Reading/EBook`,
+    dropbox: `${os.homedir()}/Library/CloudStorage/Dropbox/A-Reading/EBook`,
+  };
+
+  // Resolve shortcut or use the path as is
+  const resolvedPath = shortcuts[path] || path;
+
+  // Remove trailing slash and return
+  return resolvedPath.replace(/\/$/, "");
 }
 
 /**

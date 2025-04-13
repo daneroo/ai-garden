@@ -13,10 +13,13 @@
 
 ## Development Objectives
 
-- [ ] capture all error in epub parsing (3 corpuses)
-  - [ ] epubjs
-  - [ ] lingo
-- [ ] add spine
+- refine error strategy
+  - anything that fatal to parsing: throw - should not be captured in ParserResult
+  - categorize warnings: add to ParserResult.warnings
+- [x] capture all error in epub parsing (3 corpuses)
+  - [x] epubjs
+  - [x] lingo
+- [ ] add spine and guide: just because guide is required, but I don't know why!
 - [x] setup multiple parser implementations
   - [x] make an interface to each implementation so we can compare them
 - [x] extract TOC structure
