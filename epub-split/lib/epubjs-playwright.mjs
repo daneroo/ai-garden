@@ -6,13 +6,16 @@ import { chromium } from "playwright";
  * @typedef {import('./types.mjs').TocEntry} TocEntry
  * @typedef {import('./types.mjs').Toc} Toc
  * @typedef {import('./types.mjs').ParserResult} ParserResult
+ * @typedef {import('./types.mjs').ParseOptions} ParseOptions
  */
 
 /**
  * @param {string} bookPath
+ * @param {ParseOptions} [opts={}]
  * @returns {Promise<ParserResult>}
  */
-export async function parse(bookPath) {
+export async function parse(bookPath, opts = {}) {
+  const { verbosity = 0 } = opts;
   const maxBase64BufferSize = 100 * 1024 * 1024; // 100MiB
   const buffer = await fs.readFile(bookPath);
   // console.log(`debug:node:Buffer (${buffer.byteLength}) ${basename(bookPath)}`);

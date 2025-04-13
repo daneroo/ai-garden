@@ -82,17 +82,27 @@ async function main() {
     try {
       if (parser === "compare") {
         // do these sequentially
-        const { toc: tocLingo } = await parseLingo(bookPath);
-        const { toc: tocEpubjs } = await parseEpubjs(bookPath);
+        const { toc: tocLingo } = await parseLingo(bookPath, { verbosity });
+        const { toc: tocEpubjs } = await parseEpubjs(bookPath, { verbosity });
         compareToc(tocLingo, tocEpubjs, bookPath, bkIndex === 0);
       } else {
         let parseResult; // parseResult is the result of parsing the book
         if (parser === "lingo") {
-          parseResult = await parseLingo(bookPath);
+          parseResult = await parseLingo(bookPath, { verbosity });
         } else if (parser === "epubjs") {
-          parseResult = await parseEpubjs(bookPath);
+          parseResult = await parseEpubjs(bookPath, { verbosity });
         } else {
           throw new Error(`Unknown parser: ${parser}`);
+        }
+
+        if (verbosity > 1) {
+          const { errors, warnings, toc } = parseResult;
+          // console.log(
+          //   `## ${basename(bookPath)} ${parser} e:${errors.length} w:${
+          //     warnings.length
+          //   } toc:${toc.length}`
+          // );
+          continue;
         }
 
         if (summary) {
@@ -133,7 +143,9 @@ async function main() {
         }
       }
     } catch (error) {
-      console.error(`** Book level error: ${error.message}`);
+      console.error(`\n** Book level error: ${basename(bookPath)}`);
+      console.error(`  - ${error.message}`);
+      process.exit(1);
     }
   }
 }

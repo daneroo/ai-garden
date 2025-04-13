@@ -21,5 +21,10 @@
  * @property {string[]} warnings - array of non-fatal issues - content will be extracted
  */
 
+/**
+ * @typedef {Object} ParseOptions
+ * @property {number} [verbosity=0] - Verbosity level for logging
+ */
+
 // Export as ES module without exporting any values
 export {};
