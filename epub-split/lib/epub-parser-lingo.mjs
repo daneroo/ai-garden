@@ -3,13 +3,14 @@ import { initEpubFile } from "@lingo-reader/epub-parser";
 /**
  * @typedef {import('./types.mjs').TocEntry} TocEntry
  * @typedef {import('./types.mjs').Toc} Toc
+ * @typedef {import('./types.mjs').ParserResult} ParserResult
  */
 
 /**
  * @param {string} bookPath
- * @returns {Promise<Toc>}
+ * @returns {Promise<ParserResult>}
  */
-export async function getTOC(bookPath) {
+export async function parse(bookPath) {
   const epub = await initEpubFile(bookPath);
 
   // const fileInfo = epub.getFileInfo();
@@ -24,5 +25,9 @@ export async function getTOC(bookPath) {
   // Note: lingo-reader's EpubToc type is compatible with our Toc type
   // Both use 'children' for nested entries and have the same structure
   const toc = epub.getToc();
-  return toc;
+  return {
+    parser: "lingo",
+    toc,
+    errors: [],
+  };
 }
