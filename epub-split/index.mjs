@@ -2,8 +2,8 @@ import yargs from "yargs/yargs";
 import { walk } from "@root/walk";
 import { extname, basename } from "node:path";
 
-import { getTOC as getTOCEpubjs } from "./lib/epubjs-playwright.mjs";
-import { getTOC as getTOCLingo } from "./lib/epub-parser-lingo.mjs";
+import { parse as parseEpubjs } from "./lib/epubjs-playwright.mjs";
+import { parse as parseLingo } from "./lib/epub-parser-lingo.mjs";
 import { showTOC, showSummary, compareToc } from "./lib/showToc.mjs";
 import { exit } from "node:process";
 
@@ -85,24 +85,33 @@ async function main() {
     try {
       if (parser === "compare") {
         // do these sequentially
-        const tocLingo = await getTOCLingo(bookPath);
-        const tocEpubjs = await getTOCEpubjs(bookPath);
+        const { toc: tocLingo } = await parseLingo(bookPath);
+        const { toc: tocEpubjs } = await parseEpubjs(bookPath);
         compareToc(tocLingo, tocEpubjs, bookPath, bkIndex === 0);
       } else {
-        let toc;
+        let parseResult; // parseResult is the result of parsing the book
         if (parser === "lingo") {
-          toc = await getTOCLingo(bookPath);
+          parseResult = await parseLingo(bookPath);
         } else if (parser === "epubjs") {
-          toc = await getTOCEpubjs(bookPath);
+          parseResult = await parseEpubjs(bookPath);
         } else {
           throw new Error(`Unknown parser: ${parser}`);
         }
 
         if (summary) {
-          showSummary(toc, bookPath, bkIndex === 0);
+          showSummary(parseResult.toc, bookPath, bkIndex === 0);
+          if (parseResult.errors.length > 0) {
+            console.log(
+              `|   |       |       | found ${parseResult.errors.length} errors |`
+            );
+          }
         } else {
           console.log(`\n## ${basename(bookPath)}\n`);
-          showTOC(toc);
+          showTOC(parseResult.toc);
+          if (parseResult.errors.length > 0) {
+            console.log(`\n### Errors\n`);
+            console.log(parseResult.errors.join("\n"));
+          }
         }
       }
     } catch (error) {

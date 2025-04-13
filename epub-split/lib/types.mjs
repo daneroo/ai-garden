@@ -15,8 +15,9 @@
 
 /**
  * @typedef {Object} ParserResult
- * @property {Toc} toc - Table of contents
  * @property {string} parser - Name of the parser used ('lingo' or 'epubjs')
+ * @property {Toc} toc - Table of contents
+ * @property {string[]} errors - array of errors if any issues occurred during parsing
  */
 
 // Export as ES module without exporting any values

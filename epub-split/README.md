@@ -13,9 +13,13 @@
 
 ## Development Objectives
 
-- [ ] setup multiple parser implementations
-  - [ ] make an interface to each implementation so we can compare them
-- [ ] extract TOC structure
+- [ ] capture all error in epub parsing (3 corpuses)
+  - [ ] epubjs
+  - [ ] lingo
+- [ ] add spine
+- [x] setup multiple parser implementations
+  - [x] make an interface to each implementation so we can compare them
+- [x] extract TOC structure
 - [ ] extract First sentences from each "chapter"
   - [ ] epubjs works for Two Towers, but not Pax
   - [ ] epub-parser has content (markdown) in sections, but _I_ cannot link spine(structure) to sections(content)

@@ -5,40 +5,70 @@ import { chromium } from "playwright";
 /**
  * @typedef {import('./types.mjs').TocEntry} TocEntry
  * @typedef {import('./types.mjs').Toc} Toc
+ * @typedef {import('./types.mjs').ParserResult} ParserResult
  */
 
 /**
  * @param {string} bookPath
- * @returns {Promise<Toc>}
+ * @returns {Promise<ParserResult>}
  */
-export async function getTOC(bookPath) {
+export async function parse(bookPath) {
   const maxBase64BufferSize = 100 * 1024 * 1024; // 100MiB
   const buffer = await fs.readFile(bookPath);
   // console.log(`debug:node:Buffer (${buffer.byteLength}) ${basename(bookPath)}`);
   const base64Buffer = buffer.toString("base64");
   // console.log(`debug:node:base64Buffer (${base64Buffer.length})`);
   if (base64Buffer.length > maxBase64BufferSize) {
-    throw new Error(
-      `Base64 encoded file size for ${bookPath} exceeds maximum ${(
-        maxBase64BufferSize /
-        1024 /
-        1024
-      ).toFixed(2)}MiB (orig:${(buffer.byteLength / 1024 / 1024).toFixed(
-        2
-      )} MiB base64:${(base64Buffer.length / 1024 / 1024).toFixed(2)} MiB==${
-        base64Buffer.length
-      } bytes)`
-    );
+    const maxSizeMiB = (maxBase64BufferSize / 1024 / 1024).toFixed(2);
+    const origSizeMiB = (buffer.byteLength / 1024 / 1024).toFixed(2);
+    const base64SizeMiB = (base64Buffer.length / 1024 / 1024).toFixed(2);
+    const errorMessage = `Base64 encoded file size for ${bookPath} exceeds maximum ${maxSizeMiB}MiB (orig:${origSizeMiB}MiB base64:${base64SizeMiB}MiB==${base64Buffer.length} bytes)`;
+    return {
+      parser: "epubjs",
+      toc: [],
+      errors: [errorMessage],
+    };
   }
+
+  // we accumulate these from the browser console log
+  // we detect and capture these because epubjs logs errors to console instead of throwing them
+  const errors = [];
 
   const browser = await chromium.launch(/*{ headless: false, slowMo: 50 }*/);
   const page = await browser.newPage();
-  page.on("console", (msg) => {
-    const args = msg
-      .args()
-      .map((arg) => `${arg}`)
-      .join(", ");
-    console.log(`[${basename(bookPath)}] browser:${args}`);
+  page.on("console", async (msg) => {
+    const args = msg.args();
+    // evaluate runs the given function in the browser context, where the actual Error object exists
+    // This is necessary because args[0] is a JSHandle - a proxy to the browser-side object
+    // We're doing this because epubjs logs errors to console instead of throwing them
+    const isEpubjsLoggedError =
+      (await args[0]?.evaluate((obj) => obj instanceof Error)) &&
+      args.length === 1;
+
+    const formattedArgs = args.map((arg) => `${arg}`).join(", ");
+
+    if (isEpubjsLoggedError) {
+      // Filter out stack trace lines (those starting with whitespace followed by 'at')
+      const errorMsg = formattedArgs
+        .split("\n")
+        .filter((line) => !line.match(/^\s+at/))
+        .join("\n");
+      // console.log(`** SPECIAL CASE DETECTED: ${errorMsg}`);
+      errors.push(errorMsg);
+      return;
+    }
+    // second case:
+    // if msg.type() is "error"
+    if (msg.type() === "error") {
+      // errors.push(args[0].message);
+      // console.log(`** SPECIAL CASE DETECTED: args.length:${args.length}`);
+      // console.log(`** SPECIAL CASE DETECTED: args[0]:${args[0]}`);
+      errors.push(formattedArgs);
+      return;
+    }
+    console.log(
+      `[${basename(bookPath)}][${msg.type()}] browser:${formattedArgs}`
+    );
   });
 
   await page.goto("about:blank");
@@ -244,5 +274,9 @@ export async function getTOC(bookPath) {
   }, base64Buffer);
 
   await browser.close();
-  return tocOutside;
+  return {
+    parser: "epubjs",
+    toc: tocOutside,
+    errors: errors,
+  };
 }
