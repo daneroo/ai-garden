@@ -19,10 +19,9 @@ export async function parse(bookPath) {
   const base64Buffer = buffer.toString("base64");
   // console.log(`debug:node:base64Buffer (${base64Buffer.length})`);
   if (base64Buffer.length > maxBase64BufferSize) {
-    const maxSizeMiB = (maxBase64BufferSize / 1024 / 1024).toFixed(2);
-    const origSizeMiB = (buffer.byteLength / 1024 / 1024).toFixed(2);
+    // const maxSizeMiB = (maxBase64BufferSize / 1024 / 1024).toFixed(2);
     const base64SizeMiB = (base64Buffer.length / 1024 / 1024).toFixed(2);
-    const errorMessage = `Base64 encoded file size for ${bookPath} exceeds maximum ${maxSizeMiB}MiB (orig:${origSizeMiB}MiB base64:${base64SizeMiB}MiB==${base64Buffer.length} bytes)`;
+    const errorMessage = `Max file size exceeded: ${base64SizeMiB}MiB`;
     return {
       parser: "epubjs",
       toc: [],

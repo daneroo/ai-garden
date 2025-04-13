@@ -100,10 +100,15 @@ async function main() {
 
         if (summary) {
           showSummary(parseResult.toc, bookPath, bkIndex === 0);
-          if (parseResult.errors.length > 0) {
+          // should distinguish between warnings and error
+          if (parseResult.errors.length > 0 && parseResult.toc.length === 0) {
+            // console.log(`\n## ${basename(bookPath)}\n`);
             console.log(
-              `|   |       |       | found ${parseResult.errors.length} errors |`
+              `|   |       |       | found ${parseResult.errors.length} errors/warnings |`
             );
+            for (const error of parseResult.errors) {
+              console.log(`|   |       |       | - ${error} |`);
+            }
           }
         } else {
           console.log(`\n## ${basename(bookPath)}\n`);
@@ -115,7 +120,7 @@ async function main() {
         }
       }
     } catch (error) {
-      console.error("Error:", error.message);
+      console.error(`Book level error: ${error.message}`);
     }
   }
 }
