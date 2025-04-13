@@ -2,6 +2,7 @@ import { initEpubFile } from "@lingo-reader/epub-parser";
 import { promises as fs } from "node:fs";
 import { basename } from "node:path";
 import assert from "node:assert";
+import { JSDOM } from "jsdom";
 
 /**
  * @typedef {import('./types.mjs').TocEntry} TocEntry
@@ -72,25 +73,76 @@ export async function parse(
     // const guide = epub.getGuide();
     // debuglog(verbosity, `- guide [${guide.length}]`);
 
+    // const manifest: Record<string, ManifestItem> = epub.getManifest()
+    const manifest = epub.getManifest();
+    debuglog(verbosity, `- manifest [${Object.keys(manifest).length}]`);
+    Object.entries(manifest).forEach(([id, item]) => {
+      debuglog(verbosity, `  - ${id}: ${JSON.stringify(item)}`);
+    });
+
     const spine = epub.getSpine();
     debuglog(verbosity, `- spine [${spine.length}]`);
     // assert(spine.length > 0, "spine is empty - this should never happen");
-    // spine.forEach((item) =>
-    //   debuglog(verbosity, `${item.id}, ${item.href}, ${item.linear}`)
-    // );
+    for (const item of spine) {
+      debuglog(verbosity, `  - ${item.id}, ${item.href}, ${item.linear}`);
+      const { html, css } = await epub.loadChapter(item.id);
+      debuglog(
+        verbosity,
+        `    - html [${html.length}] lines: ${html.split("\n").length}`
+      );
+      // console.log(`----------\n${html}\n----------`);
+      debuglog(verbosity, `    - css [${css.length}]`);
+      for (const cssItem of css) {
+        debuglog(verbosity, `      - ${cssItem.id}, ${cssItem.href}`);
+      }
+    }
 
     const toc = await epub.getToc();
     debuglog(verbosity, `- toc [${toc.length}]`);
-
-    if (toc.length > 0 && spine.length > 0) {
-      toc.forEach((item) => {
-        debuglog(verbosity, `-toc: ${item.id}, ${item.href}, ${item.linear}`);
-      });
-      spine.forEach((item) => {
-        debuglog(verbosity, `-spine: ${item.id}, ${item.href}, ${item.linear}`);
-      });
+    for (const item of toc) {
+      debuglog(
+        verbosity,
+        `  - ${item.label}: id=${item.id}, href=${item.href}, playOrder=${
+          item.playOrder
+        } children: ${item?.children?.length ?? 0}`
+      );
     }
-    // assert(toc.length > 0, "toc is empty - this should never happen");
+
+    // get the start of the dom for each top level toc entry
+    debuglog(verbosity, `- toc first html element [${toc.length}]`);
+    for (const item of toc) {
+      const { html } = await epub.loadChapter(item.id);
+      debuglog(
+        verbosity,
+        `  - ${item.label}: id=${item.id}, href=${item.href}, playOrder=${
+          item.playOrder
+        } children: ${item?.children?.length ?? 0}`
+      );
+      debuglog(verbosity, `    - looking up href:${item.href}`);
+      const { id, selector } = epub.resolveHref(item.href);
+      debuglog(verbosity, `    - id:${id}, selector:${selector}`);
+
+      // Create a new JSDOM instance with the HTML content
+      const dom = new JSDOM(html);
+      const document = dom.window.document;
+
+      // Find the element using the selector
+      const element = document.querySelector(selector);
+      if (element) {
+        debuglog(verbosity, `    - found element: ${element.tagName}`);
+        // Get the text content of the element and its children
+        const textContent = element.textContent?.trim();
+        debuglog(
+          verbosity,
+          `    - text content length: ${textContent?.length ?? 0}`
+        );
+      } else {
+        debuglog(
+          verbosity,
+          `    - element not found with selector: ${selector}`
+        );
+      }
+    }
 
     return {
       parser: "lingo",
@@ -120,6 +172,7 @@ export async function parse(
 
 function debuglog(verbosity, ...args) {
   if (verbosity > 1) {
-    console.log("lingo:", ...args);
+    // console.log("lingo:", ...args);
+    console.log(...args);
   }
 }
