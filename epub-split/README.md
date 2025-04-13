@@ -27,6 +27,16 @@
   - [ ] epubjs works for Two Towers, but not Pax
   - [ ] epub-parser has content (markdown) in sections, but _I_ cannot link spine(structure) to sections(content)
 
+## Summary
+
+```bash
+time node index.mjs -p lingo -r drop --summary > summary.lingo.drop.md
+time node index.mjs -p lingo -r space --summary > summary.lingo.space.md
+
+time node index.mjs -p epubjs -r drop --summary > summary.epubjs.drop.md
+time node index.mjs -p epubjs -r space --summary > summary.epubjs.space.md
+```
+
 ## References
 
 - [epubjs ^0.3.93](https://github.com/futurepress/epub.js)

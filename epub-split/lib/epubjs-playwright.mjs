@@ -26,12 +26,14 @@ export async function parse(bookPath) {
       parser: "epubjs",
       toc: [],
       errors: [errorMessage],
+      warnings: [],
     };
   }
 
   // we accumulate these from the browser console log
   // we detect and capture these because epubjs logs errors to console instead of throwing them
   const errors = [];
+  const warnings = [];
 
   const browser = await chromium.launch(/*{ headless: false, slowMo: 50 }*/);
   const page = await browser.newPage();
@@ -40,6 +42,7 @@ export async function parse(bookPath) {
     // evaluate runs the given function in the browser context, where the actual Error object exists
     // This is necessary because args[0] is a JSHandle - a proxy to the browser-side object
     // We're doing this because epubjs logs errors to console instead of throwing them
+    // TypeError: t.getElementsByTagName is not a function +... stacktrace
     const isEpubjsLoggedError =
       (await args[0]?.evaluate((obj) => obj instanceof Error)) &&
       args.length === 1;
@@ -48,23 +51,25 @@ export async function parse(bookPath) {
 
     if (isEpubjsLoggedError) {
       // Filter out stack trace lines (those starting with whitespace followed by 'at')
+      // TypeError: t.getElementsByTagName is not a function +... stacktrace
       const errorMsg = formattedArgs
         .split("\n")
         .filter((line) => !line.match(/^\s+at/))
         .join("\n");
-      // console.log(`** SPECIAL CASE DETECTED: ${errorMsg}`);
+      // console.log(`** SPECIAL CASE 1 DETECTED: ${errorMsg}`);
       errors.push(errorMsg);
       return;
     }
     // second case:
     // if msg.type() is "error"
     if (msg.type() === "error") {
-      // errors.push(args[0].message);
-      // console.log(`** SPECIAL CASE DETECTED: args.length:${args.length}`);
-      // console.log(`** SPECIAL CASE DETECTED: args[0]:${args[0]}`);
-      errors.push(formattedArgs);
+      // console.log(`** SPECIAL CASE 2 DETECTED: args.length:${args.length}`);
+      // console.log(`** SPECIAL CASE 2 DETECTED: args[0]:${args[0]}`);
+      // {message: File not found in the epub:...
+      warnings.push(formattedArgs);
       return;
     }
+    // other cases: this is me logging debug stuff mostly
     console.log(
       `[${basename(bookPath)}][${msg.type()}] browser:${formattedArgs}`
     );
@@ -277,5 +282,6 @@ export async function parse(bookPath) {
     parser: "epubjs",
     toc: tocOutside,
     errors: errors,
+    warnings: warnings,
   };
 }

@@ -97,14 +97,26 @@ async function main() {
 
         if (summary) {
           showSummary(parseResult.toc, bookPath, bkIndex === 0);
-          // should distinguish between warnings and error
-          if (parseResult.errors.length > 0 && parseResult.toc.length === 0) {
+          if (
+            parseResult.errors.length > 0 ||
+            parseResult.warnings.length > 0
+          ) {
             // console.log(`\n## ${basename(bookPath)}\n`);
-            console.log(
-              `|   |       |       | found ${parseResult.errors.length} errors/warnings |`
-            );
-            for (const error of parseResult.errors) {
-              console.log(`|   |       |       | - ${error} |`);
+            if (parseResult.errors.length > 0) {
+              console.log(
+                `|   |       |       | found ${parseResult.errors.length} errors |`
+              );
+              for (const error of parseResult.errors) {
+                console.log(`|   |       |       | - ${error} |`);
+              }
+            }
+            if (parseResult.warnings.length > 0) {
+              console.log(
+                `|   |       |       | found ${parseResult.warnings.length} warnings |`
+              );
+              for (const warning of parseResult.warnings) {
+                console.log(`|   |       |       | - ${warning} |`);
+              }
             }
           }
         } else {
@@ -114,10 +126,14 @@ async function main() {
             console.log(`\n### Errors\n`);
             console.log(parseResult.errors.join("\n"));
           }
+          if (parseResult.warnings.length > 0) {
+            console.log(`\n### Warnings\n`);
+            console.log(parseResult.warnings.join("\n"));
+          }
         }
       }
     } catch (error) {
-      console.error(`Book level error: ${error.message}`);
+      console.error(`** Book level error: ${error.message}`);
     }
   }
 }
