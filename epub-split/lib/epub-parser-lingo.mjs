@@ -85,15 +85,22 @@ export async function parse(
     // assert(spine.length > 0, "spine is empty - this should never happen");
     for (const item of spine) {
       debuglog(verbosity, `  - ${item.id}, ${item.href}, ${item.linear}`);
-      const { html, css } = await epub.loadChapter(item.id);
-      debuglog(
-        verbosity,
-        `    - html [${html.length}] lines: ${html.split("\n").length}`
-      );
-      // console.log(`----------\n${html}\n----------`);
-      debuglog(verbosity, `    - css [${css.length}]`);
-      for (const cssItem of css) {
-        debuglog(verbosity, `      - ${cssItem.id}, ${cssItem.href}`);
+      try {
+        const { html, css } = await epub.loadChapter(item.id);
+        debuglog(
+          verbosity,
+          `    - html [${html.length}] lines: ${html.split("\n").length}`
+        );
+        // console.log(`----------\n${html}\n----------`);
+        debuglog(verbosity, `    - css [${css.length}]`);
+        for (const cssItem of css) {
+          debuglog(verbosity, `      - ${cssItem.id}, ${cssItem.href}`);
+        }
+      } catch (error) {
+        debuglog(
+          verbosity,
+          `    -error loading chapter ${item.id} ${item.href}: ${error.message}`
+        );
       }
     }
 
@@ -111,7 +118,30 @@ export async function parse(
     // get the start of the dom for each top level toc entry
     debuglog(verbosity, `- toc first html element [${toc.length}]`);
     for (const item of toc) {
+      if (!item.id) {
+        debuglog(
+          verbosity,
+          `  - id is null for ${item.label}: id=${item.id}, href=${
+            item.href
+          }, playOrder=${item.playOrder} children: ${
+            item?.children?.length ?? 0
+          }`
+        );
+        continue;
+      }
+
+      //  we cannot use the loadChapter because it returns the inside of the <body> tag
+      // which is bad if the id in ON the <body id="0-068e12a8c93f4ef.. /> tag
+
       const { html } = await epub.loadChapter(item.id);
+
+      // // my own loadChapter!
+      // const xmlHref = manifest[item.id].href;
+      // // console.log(`- xmlHref: ${xmlHref}`);
+      // const xhtml = await epub.zip.readFile(xmlHref);
+      // careful xhtml may include an <?xml version='1.0' encoding='utf-8'?> declaration
+      // // console.log(`- xhtml: ${xhtml}`);
+
       debuglog(
         verbosity,
         `  - ${item.label}: id=${item.id}, href=${item.href}, playOrder=${
@@ -119,15 +149,23 @@ export async function parse(
         } children: ${item?.children?.length ?? 0}`
       );
       debuglog(verbosity, `    - looking up href:${item.href}`);
+      assert(item.href, "item.href is null - this should never happen");
+
       const { id, selector } = epub.resolveHref(item.href);
-      debuglog(verbosity, `    - id:${id}, selector:${selector}`);
+      debuglog(verbosity, `    - id:${id}, selector:'${selector}'`);
+      assert(
+        selector !== null,
+        `selector is null - this should never happen href:${item.href} selector:${selector}`
+      );
 
       // Create a new JSDOM instance with the HTML content
+      // const dom = new JSDOM(html);
       const dom = new JSDOM(html);
       const document = dom.window.document;
 
-      // Find the element using the selector
-      const element = document.querySelector(selector);
+      const element = selector
+        ? document.querySelector(selector)
+        : document.body;
       if (element) {
         debuglog(verbosity, `    - found element: ${element.tagName}`);
         // Get the text content of the element and its children
@@ -136,13 +174,54 @@ export async function parse(
           verbosity,
           `    - text content length: ${textContent?.length ?? 0}`
         );
+        if (textContent?.length > 0) {
+          debuglog(
+            verbosity,
+            `    - text content snippet: ${snippet(textContent)}`
+          );
+        } else {
+          // If no text content, look for first image's alt text
+          const firstImage = element.querySelector("img");
+          if (firstImage?.alt) {
+            debuglog(
+              verbosity,
+              `    - image alt text: ${snippet(firstImage.alt)}`
+            );
+          } else {
+            debuglog(
+              verbosity,
+              `    - no text content or image alt text found`
+            );
+          }
+        }
       } else {
         debuglog(
           verbosity,
           `    - element not found with selector: ${selector}`
         );
+        // console.log(`----------\n${html}\n----------`);
+        // process.exit(1);
       }
     }
+
+    // Just to show the difference between the different ways to get the html
+    // const dom = new JSDOM("<p>Just a paragraph</p>");
+    // console.log(
+    //   `---dom.serialize(<p/>) -------\n${dom.serialize()}\n----------`
+    // );
+    // <html><head></head><body><p>Just a paragraph</p></body></html>
+    // console.log(
+    //   `---dom.window.document.body.innerHTML -------\n${dom.window.document.body.innerHTML}\n----------`
+    // );
+    // <p>Just a paragraph</p>
+    // console.log(
+    //   `---dom.window.document.documentElement.outerHTML -------\n${dom.window.document.documentElement.outerHTML}\n----------`
+    // );
+    // <html><head></head><body><p>Just a paragraph</p></body></html>
+    // console.log(
+    //   `---dom.window.document.documentElement.innerHTML -------\n${dom.window.document.documentElement.innerHTML}\n----------`
+    // );
+    // <head></head><body><p>Just a paragraph</p></body>
 
     return {
       parser: "lingo",
@@ -168,6 +247,19 @@ export async function parse(
       console.warn = originalWarn;
     }
   }
+}
+
+function snippet(textContent, length = 40) {
+  if (textContent) {
+    const cleanedContent = textContent
+      .replace(/\s+/g, " ") // Replace multiple spaces with a single space
+      .replace(/\n+/g, "\n") // Replace multiple newlines with a single newline
+      .trim(); // Remove leading and trailing whitespace
+
+    const snippet = cleanedContent.slice(0, length);
+    return `${snippet}${cleanedContent.length > length ? "..." : ""}`;
+  }
+  return "";
 }
 
 function debuglog(verbosity, ...args) {
