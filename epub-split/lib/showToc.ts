@@ -1,15 +1,12 @@
 import { basename } from "node:path";
-/**
- * @typedef {import("./types.mjs").TocEntry} TocEntry
- * @typedef {import("./types.mjs").Toc} Toc
- */
+import type { TocEntry, Toc } from "./types.ts";
 
 /**
  * Displays the table of contents in a hierarchical format
- * @param {Toc} toc - The table of contents to display
- * @param {number} level - The current indentation level (default: 0)
+ * @param toc - The table of contents to display
+ * @param level - The current indentation level (default: 0)
  */
-export function showTOC(toc, level = 0) {
+export function showTOC(toc: Toc, level = 0) {
   // {
   //   "id": "8a3b7da4-92e6-45e8-b523-8b018dc12000",
   //   "href": "Text/part0030.html",
@@ -47,12 +44,15 @@ export function showTOC(toc, level = 0) {
 
 /**
  * Displays a summary of the table of contents in a markdown table format
- * @param {Toc} toc - The table of contents to summarize
- * @param {string} bookPath - Path of the book being processed
- * @param {boolean} showHeader - Whether to display the table header
- * @returns {void}
+ * @param toc - The table of contents to summarize
+ * @param bookPath - Path of the book being processed
+ * @param showHeader - Whether to display the table header
  */
-export function showSummary(toc, bookPath, showHeader) {
+export function showSummary(
+  toc: Toc,
+  bookPath: string,
+  showHeader: boolean
+): void {
   if (showHeader) {
     console.log("\n| Status | Warnings | Entries | Title |");
     console.log("|--------|---------:|--------:|-------|");
@@ -81,11 +81,11 @@ export function showSummary(toc, bookPath, showHeader) {
 
 /**
  * Collects and flattens all warning messages from the table of contents into a single array
- * @param {Toc} toc - The table of contents to process
- * @returns {string[]} Array of warning messages
+ * @param toc - The table of contents to process
+ * @returns Array of warning messages
  */
-function flattenWarnings(toc) {
-  const warnings = [];
+function flattenWarnings(toc: Toc): string[] {
+  const warnings: string[] = [];
   toc.forEach((item) => {
     if (item.warning) {
       warnings.push(item.warning);
@@ -100,10 +100,10 @@ function flattenWarnings(toc) {
 
 /**
  * Counts all entries in the table of contents, including children
- * @param {Toc} toc - The table of contents to count
- * @returns {number} Total number of entries
+ * @param toc - The table of contents to count
+ * @returns Total number of entries
  */
-function countTOC(toc) {
+function countTOC(toc: Toc): number {
   let count = toc.length;
   toc.forEach((item) => {
     if (item.children) {
@@ -116,13 +116,17 @@ function countTOC(toc) {
 /**
  * Compares two table of contents and displays their differences
  * Needs much work, and not sure it is worth diving into epubjs vs lingo differences
- * @param {Toc} tocLingo - First table of contents to compare
- * @param {Toc} tocEpubjs - Second table of contents to compare
- * @param {string} bookPath - Path of the book being compared
- * @param {boolean} showHeader - Whether to display the table header
- * @returns {void}
+ * @param tocLingo - First table of contents to compare
+ * @param tocEpubjs - Second table of contents to compare
+ * @param bookPath - Path of the book being compared
+ * @param showHeader - Whether to display the table header
  */
-export function compareToc(tocLingo, tocEpubjs, bookPath, showHeader) {
+export function compareToc(
+  tocLingo: Toc,
+  tocEpubjs: Toc,
+  bookPath: string,
+  showHeader: boolean
+): void {
   // the recursive comparison of fields: id, href, label is sketchy
   // and not sure it is worth diving into epubjs vs lingo differences
   const SHOW_DETAILS = false;
@@ -152,7 +156,7 @@ export function compareToc(tocLingo, tocEpubjs, bookPath, showHeader) {
   // showResultDetail is a helper function to display the result of a comparison
   // | ✓ |      |     | label's match |
   // | ✗ |      |     | label's differ |
-  function showResultDetail(matchBoolean, label) {
+  function showResultDetail(matchBoolean: boolean, label: string): void {
     console.log(
       `| ${checkOrXmark(matchBoolean)} | ${"".padStart(5)} | ${"".padStart(
         5
@@ -205,12 +209,16 @@ export function compareToc(tocLingo, tocEpubjs, bookPath, showHeader) {
 
 /**
  * Compares two TOC entries recursively
- * @param {TocEntry} a - First TOC entry
- * @param {TocEntry} b - Second TOC entry
- * @param {(a: TocEntry, b: TocEntry) => boolean} compare - Comparison function
- * @returns {boolean} Whether the entries and their children match
+ * @param a - First TOC entry
+ * @param b - Second TOC entry
+ * @param compare - Comparison function
+ * @returns Whether the entries and their children match
  */
-function compareEntries(a, b, compare) {
+function compareEntries(
+  a: TocEntry,
+  b: TocEntry,
+  compare: (a: TocEntry, b: TocEntry) => boolean
+): boolean {
   if (!a || !b) {
     console.debug(
       `| ✗ |       |       |   !!a:${!!a} !!b:${!!b} a:${a} b:${b}`
@@ -224,18 +232,17 @@ function compareEntries(a, b, compare) {
     );
     return false;
   }
-  return (
-    a.children?.every((childA, i) =>
-      compareEntries(childA, b.children[i], compare)
-    ) ?? true
+  if (!a.children || !b.children) return true;
+  return a.children.every((childA, i) =>
+    compareEntries(childA, b.children![i], compare)
   );
 }
 
 /**
  * Returns a checkmark or xmark based on a boolean value
- * @param {boolean} value - The value to check
- * @returns {string} "✓" or "✗"
+ * @param value - The value to check
+ * @returns "✓" or "✗"
  */
-function checkOrXmark(value) {
+function checkOrXmark(value: boolean): string {
   return value ? "✓" : "✗";
 }

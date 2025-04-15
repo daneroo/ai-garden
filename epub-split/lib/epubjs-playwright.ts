@@ -37,8 +37,8 @@ export async function parse(bookPath, opts = {}) {
 
   // we accumulate these from the browser console log
   // we detect and capture these because epubjs logs errors to console instead of throwing them
-  const errors = [];
-  const warnings = [];
+  const errors: string[] = [];
+  const warnings: string[] = [];
 
   const browser = await chromium.launch(/*{ headless: false, slowMo: 50 }*/);
   const page = await browser.newPage();

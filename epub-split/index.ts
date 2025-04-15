@@ -1,11 +1,13 @@
 import yargs from "yargs/yargs";
 import os from "node:os";
-import { walk } from "@root/walk";
+import { walk } from "./lib/walk.ts";
+
 import { extname, basename } from "node:path";
 
 import { parse as parseEpubjs } from "./lib/epubjs-playwright.ts";
 import { parse as parseLingo } from "./lib/epub-parser-lingo.ts";
 import { showTOC, showSummary, compareToc } from "./lib/showToc.ts";
+import { ParserResult } from "./lib/types.ts";
 import { exit } from "node:process";
 
 // Wrap in IIFE to support top-level await in CommonJS context (tsx default)
@@ -13,13 +15,14 @@ import { exit } from "node:process";
   try {
     await main();
     exit(0);
-  } catch (error) {
-    console.error("Error:", error.message);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error("Error:", message);
     exit(1);
   }
 })();
 
-async function main() {
+async function main(): Promise<void> {
   const argv = await yargs(process.argv.slice(2))
     .option("rootPath", {
       alias: "r",
@@ -73,7 +76,7 @@ async function main() {
   // find any books matching search criteria (case insensitive)
   // if no search criteria is specified, use all books
   const matchingBookPaths = search
-    ? bookPaths.filter((book) => {
+    ? bookPaths.filter((book: string) => {
         // make a regex from a search string
         const regex = new RegExp(search, "i");
         return regex.test(book);
@@ -89,7 +92,7 @@ async function main() {
         const { toc: tocLingo } = await parseLingo(bookPath, { verbosity });
         compareToc(tocLingo, tocEpubjs, bookPath, bkIndex === 0);
       } else {
-        let parseResult; // parseResult is the result of parsing the book
+        let parseResult: ParserResult; // parseResult is the result of parsing the book
         if (parser === "lingo") {
           parseResult = await parseLingo(bookPath, { verbosity });
         } else if (parser === "epubjs") {
@@ -145,9 +148,10 @@ async function main() {
           }
         }
       }
-    } catch (error) {
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
       console.error(`\n** Book level error: ${basename(bookPath)}`);
-      console.error(`  - ${error.message}`);
+      console.error(`  - ${message}`);
       process.exit(1);
     }
   }
@@ -155,16 +159,14 @@ async function main() {
 
 /**
  * Resolves a root path shortcut to its actual path and cleans it
- * @param {string} path - The path or shortcut to resolve
- * @returns {string} The resolved and cleaned path (no trailing slash)
  * @example
  * resolveRootPath("test") // returns "./test-books"
  * resolveRootPath("space") // returns "/Volumes/Space/Reading/audiobooks"
  * resolveRootPath("dropbox") // returns "~/Library/CloudStorage/Dropbox/A-Reading/EBook"
  * resolveRootPath("/some/path/") // returns "/some/path"
  */
-function resolveRootPath(path) {
-  const shortcuts = {
+function resolveRootPath(path: string): string {
+  const shortcuts: Record<string, string> = {
     test: "./test-books",
     space: "/Volumes/Space/Reading/audiobooks/",
     drop: `${os.homedir()}/Library/CloudStorage/Dropbox/A-Reading/EBook`,
@@ -180,18 +182,16 @@ function resolveRootPath(path) {
 
 /**
  * Finds all books in the specified directory and its subdirectories.
- * @param {string} rootPath - The root directory to search for books.
- * @returns {Promise<Array<string>>} - A promise that resolves to an array of book file paths.
  */
-async function findBookPaths(rootPath) {
-  /**
-   * An array of file paths.
-   * @type {Array<string>}
-   */
-  const files = [];
+async function findBookPaths(rootPath: string): Promise<string[]> {
+  const files: string[] = [];
 
   // use @root/walk to find all .epub files in the rootPath (recursively)
-  const walker = async (err, pathname, dirent) => {
+  const walker = async (
+    err: Error | null,
+    pathname: string,
+    dirent: { isDirectory: () => boolean; isFile: () => boolean }
+  ): Promise<boolean> => {
     if (err !== null && err !== undefined) {
       // throw an error to stop walking (or return to ignore and keep going)
       console.warn("fs stat error for %s: %s", pathname, err.message);

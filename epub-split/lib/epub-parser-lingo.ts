@@ -3,27 +3,23 @@ import { promises as fs } from "node:fs";
 import { basename } from "node:path";
 import assert from "node:assert";
 import { JSDOM } from "jsdom";
-
-/**
- * @typedef {import('./types.mjs').TocEntry} TocEntry
- * @typedef {import('./types.mjs').Toc} Toc
- * @typedef {import('./types.mjs').ParserResult} ParserResult
- * @typedef {import('./types.mjs').ParseOptions} ParseOptions
- */
+import type { TocEntry, Toc, ParserResult, ParseOptions } from "./types.ts";
 
 // This is where lingo puts it's unavoidably saved images
 const DEFAULT_RESOURCE_SAVE_DIR = "./data/images";
+
 /**
- * @param {string} bookPath
- * @param {string} [resourceSaveDir=DEFAULT_RESOURCE_SAVE_DIR]
- * @param {ParseOptions} [opts={}]
- * @returns {Promise<ParserResult>}
+ * Parse an EPUB file using the lingo-reader library
+ * @param bookPath Path to the EPUB file
+ * @param opts Optional parsing options
+ * @param resourceSaveDir Directory to save resources (default: "./data/images")
+ * @returns Promise resolving to the parsing result
  */
 export async function parse(
-  bookPath,
-  opts = {},
-  resourceSaveDir = DEFAULT_RESOURCE_SAVE_DIR
-) {
+  bookPath: string,
+  opts: ParseOptions = {},
+  resourceSaveDir: string = DEFAULT_RESOURCE_SAVE_DIR
+): Promise<ParserResult> {
   // intercept console.warn calls and catch errors
   // This is only expected to happen during call to initEpubFile
 
@@ -32,7 +28,7 @@ export async function parse(
   // - or in the finally clause if initEpubFile throws an error
   const originalWarn = console.warn;
   let warningsRestored = false;
-  const warnings = [];
+  const warnings: string[] = [];
   console.warn = (...args) => {
     warnings.push(args.join(" "));
     // do not call originalWarn any more
@@ -97,10 +93,11 @@ export async function parse(
         for (const cssItem of css) {
           debuglog(verbosity, `      - ${cssItem.id}, ${cssItem.href}`);
         }
-      } catch (error) {
+      } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : String(error);
         debuglog(
           verbosity,
-          `    -error loading chapter ${item.id} ${item.href}: ${error.message}`
+          `    -error loading chapter ${item.id} ${item.href}: ${message}`
         );
       }
     }
@@ -152,7 +149,12 @@ export async function parse(
       debuglog(verbosity, `    - looking up href:${item.href}`);
       assert(item.href, "item.href is null - this should never happen");
 
-      const { id, selector } = epub.resolveHref(item.href);
+      const resolved = epub.resolveHref(item.href);
+      if (!resolved) {
+        throw new Error(`Failed to resolve href: ${item.href}`);
+      }
+      const { id, selector } = resolved;
+
       debuglog(verbosity, `    - id:${id}, selector:'${selector}'`);
       assert(
         selector !== null,
@@ -175,7 +177,7 @@ export async function parse(
           verbosity,
           `    - text content length: ${textContent?.length ?? 0}`
         );
-        if (textContent?.length > 0) {
+        if (textContent && textContent.length > 0) {
           debuglog(
             verbosity,
             `    - text content snippet: ${snippet(textContent)}`
@@ -230,17 +232,18 @@ export async function parse(
       errors: [],
       warnings,
     };
-  } catch (error) {
+  } catch (error: unknown) {
     // throw error;
     if (error instanceof assert.AssertionError) {
       // This is an assertion failure - we might want to handle it differently
       console.error("\n\nAssertion failed:", error.message);
       process.exit(1);
     }
+    const message = error instanceof Error ? error.message : String(error);
     return {
       parser: "lingo",
       toc: [],
-      errors: [error.message],
+      errors: [message],
       warnings: [],
     };
   } finally {
@@ -250,7 +253,16 @@ export async function parse(
   }
 }
 
-function snippet(textContent, length = 40) {
+/**
+ * Get a snippet of text with a maximum length
+ * @param textContent The text to snippet
+ * @param length Maximum length of the snippet (default: 40)
+ * @returns The text snippet
+ */
+function snippet(
+  textContent: string | null | undefined,
+  length: number = 40
+): string {
   if (textContent) {
     const cleanedContent = textContent
       .replace(/\s+/g, " ") // Replace multiple spaces with a single space
@@ -263,7 +275,12 @@ function snippet(textContent, length = 40) {
   return "";
 }
 
-function debuglog(verbosity, ...args) {
+/**
+ * Log a message if verbosity level is high enough
+ * @param verbosity Current verbosity level
+ * @param args Arguments to log (same type as console.log args)
+ */
+function debuglog(verbosity: number, ...args: any[]): void {
   if (verbosity > 1) {
     // console.log("lingo:", ...args);
     console.log(...args);

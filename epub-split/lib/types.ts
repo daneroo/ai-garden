@@ -1,30 +1,46 @@
 /**
- * @typedef {Object} TocEntry
- * @property {string} id - Unique identifier for the TOC entry
- * @property {string} href - Resource path or reference
- * @property {string} label - Display text of the TOC entry
- * @property {string} [playOrder] - Reading order sequence (from lingo-reader)
- * @property {string} [textContent] - Raw text content of the entry (from epubjs)
- * @property {string} [warning] - Warning message if any issues occurred during parsing
- * @property {TocEntry[]} [children] - Nested sub-entries
+ * Represents a single entry in the table of contents
  */
+export interface TocEntry {
+  /** Unique identifier for the TOC entry */
+  id: string;
+  /** Resource path or reference */
+  href: string;
+  /** Display text of the TOC entry */
+  label: string;
+  /** Reading order sequence (from lingo-reader) */
+  playOrder?: string;
+  /** Raw text content of the entry (from epubjs) */
+  textContent?: string;
+  /** Warning message if any issues occurred during parsing */
+  warning?: string;
+  /** Nested sub-entries */
+  children?: TocEntry[];
+}
 
 /**
- * @typedef {TocEntry[]} Toc
+ * Table of contents as an array of entries
  */
+export type Toc = TocEntry[];
 
 /**
- * @typedef {Object} ParserResult
- * @property {string} parser - Name of the parser used ('lingo' or 'epubjs')
- * @property {Toc} toc - Table of contents
- * @property {string[]} errors - array of fatal issues - no content will be extracted
- * @property {string[]} warnings - array of non-fatal issues - content will be extracted
+ * Result from parsing an EPUB file
  */
+export interface ParserResult {
+  /** Name of the parser used ('lingo' or 'epubjs') */
+  parser: string;
+  /** Table of contents */
+  toc: Toc;
+  /** Array of fatal issues - no content will be extracted */
+  errors: string[];
+  /** Array of non-fatal issues - content will be extracted */
+  warnings: string[];
+}
 
 /**
- * @typedef {Object} ParseOptions
- * @property {number} [verbosity=0] - Verbosity level for logging
+ * Options for parsing an EPUB file
  */
-
-// Export as ES module without exporting any values
-export {};
+export interface ParseOptions {
+  /** Verbosity level for logging */
+  verbosity?: number;
+}

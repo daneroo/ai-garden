@@ -23,17 +23,38 @@ Context:
     - [x] `time deno run -A index.ts -p epubjs > snapshot/post-ts-migration-epubjs.md`
     - [x] `time deno run -A index.ts -p lingo > snapshot/post-ts-migration-lingo.md`
   - [x] verify digests: `sha1sum snapshot/p*-ts-migration*.md | sort`
+- [x] Re-implement `@root/walk` in typescript
+- [ ] Replace walk with `fast-glob`
 - [ ] LATER: move back to pnpx tsx (after resolving browser context issues)
 
 ## Step 2: Type Safety and Refactoring
 
+- [x] Add basic type definitions
+  - [x] `pnpm add -D @types/node @types/yargs`
 - [ ] Add proper TypeScript types
+  - [x] index.ts
+  - [x] lib/types.ts
+  - [x] lib/showToc.ts
+  - [x] lib/epub-parser-lingo.ts
+  - [ ] lib/epubjs-playwright.ts
   - [ ] Define interfaces for book parsing results
-  - [ ] Add type definitions for external modules
   - [ ] Add proper return types to functions
 - [ ] playwright ts mitigations
 
 ## Temporary testing snippets
+
+type checking:
+
+```bash
+deno check index.ts
+deno check lib/types.ts
+deno check lib/showToc.ts
+deno check lib/epub-parser-lingo.ts
+# TODO: fix
+deno check lib/epubjs-playwright.ts
+```
+
+digest invariants:
 
 ```bash
 time deno run -A index.ts -p compare > snapshot/post-ts-migration-compare.md # 697.771s
