@@ -36,6 +36,8 @@ Context:
   - [x] lib/showToc.ts
   - [x] lib/epub-parser-lingo.ts
   - [ ] lib/epubjs-playwright.ts
+    - [x] separate lib/epubjs-browser.js
+    - [ ] pass in ArrayBuffer directly instead of base64 string
 - [x] Re-implement `@root/walk` in typescript : digests match
 - [x] Replace walk with `fast-glob`: digests match
 - [ ] playwright ts mitigations
@@ -70,16 +72,20 @@ digest invariants:
 time deno run -A index.ts -p compare > snapshot/post-ts-migration-compare.md # 697.771s
 time deno run -A index.ts -p epubjs > snapshot/post-ts-migration-epubjs.md # 200.668s
 time deno run -A index.ts -p lingo > snapshot/post-ts-migration-lingo.md # 474.263s
-# only lingo still works under tsx
+# everything now works with tsx
+time pnpx tsx index.ts -p compare > snapshot/post-ts-migration-compare-tsx.md # 278.498s
 time pnpx tsx index.ts -p lingo > snapshot/post-ts-migration-lingo-tsx.md # 107.413s
+time pnpx tsx index.ts -p epubjs > snapshot/post-ts-migration-epubjs-tsx.md # 189.700s
 
 
->  sha1sum snapshot/p*-ts-migration*.md | sort
+> sha1sum snapshot/p*-ts-migration*.md | sort
 8f2992db726d47a3a26f9b0126d9bc14ac51ac59  snapshot/post-ts-migration-lingo-tsx.md
 8f2992db726d47a3a26f9b0126d9bc14ac51ac59  snapshot/post-ts-migration-lingo.md
 8f2992db726d47a3a26f9b0126d9bc14ac51ac59  snapshot/pre-ts-migration-lingo.md
+e519384c9d85d336865b2956d40c52a939f6849a  snapshot/post-ts-migration-compare-tsx.md
 e519384c9d85d336865b2956d40c52a939f6849a  snapshot/post-ts-migration-compare.md
 e519384c9d85d336865b2956d40c52a939f6849a  snapshot/pre-ts-migration-compare.md
+f2762ee222faab8a32d300f6274778aa4b763fe6  snapshot/post-ts-migration-epubjs-tsx.md
 f2762ee222faab8a32d300f6274778aa4b763fe6  snapshot/post-ts-migration-epubjs.md
-f2762ee222faab8a32d300f6274778aa4b763fe6  snapshot/pre-ts-migration-epubjs.md
+f2762ee222faab8a32d300f6274778aa4b763fe6  snapshot/pre-ts-migration-epubjs.mds
 ```
