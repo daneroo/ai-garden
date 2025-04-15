@@ -1,7 +1,5 @@
 import yargs from "yargs/yargs";
 import os from "node:os";
-// replace our walk port with fast-glob
-// import { walk } from "./lib/walk.ts";
 import fg from "fast-glob";
 
 import { extname, basename } from "node:path";
@@ -191,7 +189,7 @@ async function findBookPaths(rootPath: string): Promise<string[]> {
     followSymbolicLinks: false, //just to be safe
     // absolute: true, // not necessary,
   });
-  // sort files by path because walk/fast-glob returns potentially unsorted files but only under deno??
+  // sort files by path because walk/fast-glob returns potentially unsorted files but only under deno?
   files.sort();
   return files;
 }

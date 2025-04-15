@@ -1,6 +1,7 @@
 import { promises as fs } from "node:fs";
 import { basename } from "node:path";
 import { chromium } from "playwright";
+import { ParseOptions, ParserResult } from "./types.ts";
 
 /**
  * @typedef {import('./types.mjs').TocEntry} TocEntry
@@ -12,9 +13,14 @@ import { chromium } from "playwright";
 /**
  * @param {string} bookPath
  * @param {ParseOptions} [opts={}]
+ * @param {string} [resourceSaveDir="./data/images"] Unused
  * @returns {Promise<ParserResult>}
  */
-export async function parse(bookPath, opts = {}) {
+export async function parse(
+  bookPath: string,
+  opts: ParseOptions = {},
+  resourceSaveDir: string = "./data/images"
+): Promise<ParserResult> {
   console.error(`epubjs - invoked on ${basename(bookPath)}`);
 
   const { verbosity = 0 } = opts;

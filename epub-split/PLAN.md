@@ -16,7 +16,7 @@ Context:
 - [x] convert all file to type script, by just (git mv) renaming files to .ts
   - [x] modify index.ts top level await to IIFE
   - [x] adjust imports
-  - [x] added sort to findBookPaths/walk to make it deterministic under deno
+  - [x] added sort to findBookPaths to make it deterministic under deno
 - [x] use deno for running TypeScript
   - [x] verify deno works
     - [x] `time deno run -A index.ts -p compare > snapshot/post-ts-migration-compare.md`
@@ -58,12 +58,10 @@ const tocOutside = await page.evaluate(async (epubArrayBuffer) => {
 type checking:
 
 ```bash
-deno check index.ts
-deno check lib/types.ts
-deno check lib/showToc.ts
-deno check lib/epub-parser-lingo.ts
-# TODO: fix
-deno check lib/epubjs-playwright.ts
+# type checking - with tsc
+pnpm exec tsc --noEmit --esModuleInterop --allowImportingTsExtensions --downlevelIteration --target es2015 --moduleResolution node lib/*.ts index.ts
+# type checking - with deno
+deno check **/*.ts
 ```
 
 digest invariants:
