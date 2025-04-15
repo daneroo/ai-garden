@@ -1,6 +1,8 @@
 import yargs from "yargs/yargs";
 import os from "node:os";
-import { walk } from "./lib/walk.ts";
+// replace our walk port with fast-glob
+// import { walk } from "./lib/walk.ts";
+import fg from "fast-glob";
 
 import { extname, basename } from "node:path";
 
@@ -184,31 +186,12 @@ function resolveRootPath(path: string): string {
  * Finds all books in the specified directory and its subdirectories.
  */
 async function findBookPaths(rootPath: string): Promise<string[]> {
-  const files: string[] = [];
-
-  // use @root/walk to find all .epub files in the rootPath (recursively)
-  const walker = async (
-    err: Error | null,
-    pathname: string,
-    dirent: { isDirectory: () => boolean; isFile: () => boolean }
-  ): Promise<boolean> => {
-    if (err !== null && err !== undefined) {
-      // throw an error to stop walking (or return to ignore and keep going)
-      console.warn("fs stat error for %s: %s", pathname, err.message);
-      return false;
-    }
-    if (dirent.isDirectory()) {
-      return true;
-    } else if (dirent.isFile()) {
-      const extension = extname(pathname);
-      if (extension === ".epub") {
-        files.push(pathname);
-      }
-    }
-    return false;
-  };
-  await walk(rootPath, walker);
-  // sort files by path because walk returns unsorted files but only under deno??
+  const files = await fg(`${rootPath}/**/*.epub`, {
+    concurrency: 1, // just to be kind
+    followSymbolicLinks: false, //just to be safe
+    // absolute: true, // not necessary,
+  });
+  // sort files by path because walk/fast-glob returns potentially unsorted files but only under deno??
   files.sort();
   return files;
 }

@@ -23,8 +23,7 @@ Context:
     - [x] `time deno run -A index.ts -p epubjs > snapshot/post-ts-migration-epubjs.md`
     - [x] `time deno run -A index.ts -p lingo > snapshot/post-ts-migration-lingo.md`
   - [x] verify digests: `sha1sum snapshot/p*-ts-migration*.md | sort`
-- [x] Re-implement `@root/walk` in typescript
-- [ ] Replace walk with `fast-glob`
+- replace browser evaluate with external js file
 - [ ] LATER: move back to pnpx tsx (after resolving browser context issues)
 
 ## Step 2: Type Safety and Refactoring
@@ -37,9 +36,20 @@ Context:
   - [x] lib/showToc.ts
   - [x] lib/epub-parser-lingo.ts
   - [ ] lib/epubjs-playwright.ts
-  - [ ] Define interfaces for book parsing results
-  - [ ] Add proper return types to functions
+- [x] Re-implement `@root/walk` in typescript : digests match
+- [x] Replace walk with `fast-glob`: digests match
 - [ ] playwright ts mitigations
+
+```js
+// ## Mary Beard - Twelve Caesars.epub
+// ### Errors
+// Max file size exceeded: 248.25MiB
+// Pass the ArrayBuffer directly instead of base64 string
+const tocOutside = await page.evaluate(async (epubArrayBuffer) => {
+  // No need for base64 conversion - use the buffer directly
+  const book = ePub(epubArrayBuffer);
+  ...
+```
 
 ## Temporary testing snippets
 

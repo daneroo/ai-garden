@@ -1,6 +1,9 @@
 /**
+ * Deprecated - Switched to fast-glob
  * A direct port of @root/walk
  * https://www.npmjs.com/package/@root/walk
+ *
+ * See example of use at the bottom of this file.
  */
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -73,3 +76,37 @@ const walk = async (
 };
 
 export { walk };
+
+/**
+ * Finds all books in the specified directory and its subdirectories.
+
+async function findBookPaths(rootPath: string): Promise<string[]> {
+  const files: string[] = [];
+
+  // use @root/walk to find all .epub files in the rootPath (recursively)
+  const walker = async (
+    err: Error | null,
+    pathname: string,
+    dirent: { isDirectory: () => boolean; isFile: () => boolean }
+  ): Promise<boolean> => {
+    if (err !== null && err !== undefined) {
+      // throw an error to stop walking (or return to ignore and keep going)
+      console.warn("fs stat error for %s: %s", pathname, err.message);
+      return false;
+    }
+    if (dirent.isDirectory()) {
+      return true;
+    } else if (dirent.isFile()) {
+      const extension = extname(pathname);
+      if (extension === ".epub") {
+        files.push(pathname);
+      }
+    }
+    return false;
+  };
+  await walk(rootPath, walker);
+  // sort files by path because walk returns unsorted files but only under deno??
+  files.sort();
+  return files;
+}
+ */
