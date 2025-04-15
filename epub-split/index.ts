@@ -3,18 +3,21 @@ import os from "node:os";
 import { walk } from "@root/walk";
 import { extname, basename } from "node:path";
 
-import { parse as parseEpubjs } from "./lib/epubjs-playwright.mjs";
-import { parse as parseLingo } from "./lib/epub-parser-lingo.mjs";
-import { showTOC, showSummary, compareToc } from "./lib/showToc.mjs";
+import { parse as parseEpubjs } from "./lib/epubjs-playwright.ts";
+import { parse as parseLingo } from "./lib/epub-parser-lingo.ts";
+import { showTOC, showSummary, compareToc } from "./lib/showToc.ts";
 import { exit } from "node:process";
 
-try {
-  await main();
-  exit(0);
-} catch (error) {
-  console.error("Error:", error.message);
-  exit(1);
-}
+// Wrap in IIFE to support top-level await in CommonJS context (tsx default)
+(async () => {
+  try {
+    await main();
+    exit(0);
+  } catch (error) {
+    console.error("Error:", error.message);
+    exit(1);
+  }
+})();
 
 async function main() {
   const argv = await yargs(process.argv.slice(2))
@@ -82,8 +85,8 @@ async function main() {
     try {
       if (parser === "compare") {
         // do these sequentially
-        const { toc: tocLingo } = await parseLingo(bookPath, { verbosity });
         const { toc: tocEpubjs } = await parseEpubjs(bookPath, { verbosity });
+        const { toc: tocLingo } = await parseLingo(bookPath, { verbosity });
         compareToc(tocLingo, tocEpubjs, bookPath, bkIndex === 0);
       } else {
         let parseResult; // parseResult is the result of parsing the book
@@ -205,5 +208,7 @@ async function findBookPaths(rootPath) {
     return false;
   };
   await walk(rootPath, walker);
+  // sort files by path because walk returns unsorted files but only under deno??
+  files.sort();
   return files;
 }

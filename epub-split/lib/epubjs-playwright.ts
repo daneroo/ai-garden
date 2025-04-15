@@ -15,6 +15,8 @@ import { chromium } from "playwright";
  * @returns {Promise<ParserResult>}
  */
 export async function parse(bookPath, opts = {}) {
+  console.error(`epubjs - invoked on ${basename(bookPath)}`);
+
   const { verbosity = 0 } = opts;
   const maxBase64BufferSize = 100 * 1024 * 1024; // 100MiB
   const buffer = await fs.readFile(bookPath);

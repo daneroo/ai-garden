@@ -39,6 +39,7 @@ export async function parse(
     // originalWarn.apply(console, args);
   };
   try {
+    console.error(`lingo - invoked on ${basename(bookPath)}`);
     const { verbosity = 0 } = opts;
 
     console.log(`\n## ${basename(bookPath)}\n`);
