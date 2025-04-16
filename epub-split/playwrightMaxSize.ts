@@ -24,13 +24,24 @@ interface ProcessResult {
 }
 
 async function main(): Promise<void> {
-  console.log("First run - size only:");
-  const result1 = await doOneFile(filePath, { doDigest: false });
-  console.log("Result:", result1);
+  const doDigest = false;
+  const filePaths = [filePath, filePath, filePath, filePath, filePath];
 
-  console.log("\nSecond run - with digest:");
-  const result2 = await doOneFile(filePath, { doDigest: true });
-  console.log("Result:", result2);
+  console.log("| ✓/✗ | size | digest | file |");
+  console.log("|-----|------|--------|------|");
+
+  for (const filePath of filePaths) {
+    const result = await doOneFile(filePath, { doDigest });
+    const sizeMatch = result.size.client === result.size.server;
+    const digestMatch = result.digest.client === result.digest.server;
+    const match = sizeMatch && digestMatch;
+
+    console.log(
+      `| ${match ? "✓" : "✗"} | ${result.size.client} | ${
+        result.digest.client
+      } | ${basename(filePath)} |`
+    );
+  }
 }
 
 async function doOneFile(
@@ -54,7 +65,7 @@ async function doOneFile(
 
   // Upload and process file
   const uploadStart = +new Date();
-  console.log(`Uploading: ${filePath}`);
+  // console.log(`Uploading: ${filePath}`);
   await upload(page, filePath);
   const uploadTime = +new Date() - uploadStart;
 
