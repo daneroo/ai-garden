@@ -1,5 +1,5 @@
 import { chromium, Page } from "playwright";
-import { readFile } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { basename } from "node:path";
 
@@ -10,18 +10,33 @@ interface ProcessOptions {
   doDigest?: boolean;
 }
 
+interface ProcessResult {
+  size: {
+    client: number;
+    server: number;
+    elapsed: number; // upload time
+  };
+  digest: {
+    client: string;
+    server: string;
+    elapsed: number; // total digest time (client + server)
+  };
+}
+
 async function main(): Promise<void> {
   console.log("First run - size only:");
-  await doOneFile(filePath, { doDigest: false });
+  const result1 = await doOneFile(filePath, { doDigest: false });
+  console.log("Result:", result1);
 
   console.log("\nSecond run - with digest:");
-  await doOneFile(filePath, { doDigest: true });
+  const result2 = await doOneFile(filePath, { doDigest: true });
+  console.log("Result:", result2);
 }
 
 async function doOneFile(
   filePath: string,
   options: ProcessOptions = {}
-): Promise<void> {
+): Promise<ProcessResult> {
   const browser = await chromium.launch();
   const page = await browser.newPage();
 
@@ -38,31 +53,51 @@ async function doOneFile(
   `);
 
   // Upload and process file
-  const start = +new Date();
+  const uploadStart = +new Date();
   console.log(`Uploading: ${filePath}`);
   await upload(page, filePath);
+  const uploadTime = +new Date() - uploadStart;
 
-  const { result: size } = await timeIt(() => getClientSize(page));
-  console.log(
-    `✓ Browser file size: ${size.size} bytes - in ${+new Date() - start}ms`
-  );
+  const { result: clientSize } = await timeIt(() => getClientSize(page));
+  const { result: serverSize } = await timeIt(async () => {
+    const stats = await stat(filePath);
+    return stats.size;
+  });
 
-  if (options.doDigest) {
-    const { result: digest, elapsed } = await timeIt(() => getClientSHA(page));
-    console.log(`✓ Browser SHA-1: ${digest} - ${elapsed}ms`);
+  const result: ProcessResult = {
+    size: {
+      client: clientSize.size,
+      server: serverSize,
+      elapsed: uploadTime,
+    },
+    digest: {
+      client: "none",
+      server: "none",
+      elapsed: 0,
+    },
+  };
 
-    // Calculate hash in Node.js for comparison
-    const { result: nodeHash, elapsed: nodeTime } = await timeIt(async () => {
-      const fileBuffer = await readFile(filePath);
-      return createHash("sha1").update(fileBuffer).digest("hex");
-    });
-    console.log(`✓ Node.js  SHA-1: ${nodeHash} - ${nodeTime}ms`);
-
-    const match = digest === nodeHash;
-    console.log(match ? "✓ Hashes match!" : "✗ Hash mismatch!");
+  if (!options.doDigest) {
+    await browser.close();
+    return result;
   }
 
+  const digestStart = +new Date();
+  const { result: clientDigest } = await timeIt(() => getClientSHA(page));
+  const { result: serverDigest } = await timeIt(async () => {
+    const fileBuffer = await readFile(filePath);
+    return createHash("sha1").update(fileBuffer).digest("hex");
+  });
+  const digestTime = +new Date() - digestStart;
+
+  result.digest = {
+    client: clientDigest,
+    server: serverDigest,
+    elapsed: digestTime,
+  };
+
   await browser.close();
+  return result;
 }
 
 async function timeIt<T>(
