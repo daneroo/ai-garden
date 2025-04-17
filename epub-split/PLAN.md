@@ -41,6 +41,7 @@ Context:
 - [x] Re-implement `@root/walk` in typescript : digests match
 - [x] Replace walk with `fast-glob`: digests match
 - [ ] playwright ts mitigations
+  - [ ] replace base64 with ArrayBuffer/setInputFiles
 
 ```js
 // ## Mary Beard - Twelve Caesars.epub
@@ -55,13 +56,13 @@ const tocOutside = await page.evaluate(async (epubArrayBuffer) => {
 
 ## Temporary testing snippets
 
-type checking:
+type checking: (move to package.json)
 
 ```bash
 # type checking - with tsc
-pnpm exec tsc --noEmit --esModuleInterop --allowImportingTsExtensions --downlevelIteration --target es2015 --moduleResolution node lib/*.ts index.ts
+pnpm exec tsc --noEmit --esModuleInterop --allowImportingTsExtensions --downlevelIteration --target es2015 --moduleResolution node lib/*.ts *.ts
 # type checking - with deno
-deno check **/*.ts
+deno check *.ts **/*.ts 
 ```
 
 digest invariants:

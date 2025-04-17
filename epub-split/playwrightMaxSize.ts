@@ -3,6 +3,7 @@ import { readFile, stat } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { basename } from "node:path";
 import fg from "fast-glob";
+import { Buffer } from "node:buffer";
 
 const rootPath = "/Volumes/Space/Reading/audiobooks";
 // const filePath =
@@ -66,13 +67,11 @@ async function main(): Promise<void> {
           }|`
         );
       } catch (error) {
-        const errorMsg = error.message.padStart(40);
+        const errorMsg = error instanceof Error ? error.message : String(error);
         console.log(
-          `| ✗ |        - | ${"      -".padStart(
-            10
-          )} | ${errorMsg} | ${basename(filePath)} ${
-            useBase64 ? "(base64)" : ""
-          }|`
+          `| ✗ |        - | ${"      -".padStart(10)} | ${errorMsg.padStart(
+            40
+          )} | ${basename(filePath)} ${useBase64 ? "(base64)" : ""}|`
         );
       }
     }
