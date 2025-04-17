@@ -1,14 +1,10 @@
 import { promises as fs } from "node:fs";
 import { basename } from "node:path";
 import { chromium } from "playwright";
-import { ParseOptions, ParserResult } from "./types.ts";
-
-/**
- * @typedef {import('./types.mjs').TocEntry} TocEntry
- * @typedef {import('./types.mjs').Toc} Toc
- * @typedef {import('./types.mjs').ParserResult} ParserResult
- * @typedef {import('./types.mjs').ParseOptions} ParseOptions
- */
+import type { Page } from "playwright";
+import { TocEntry, Toc, ParserResult, ParseOptions } from "./types.ts";
+import { readFile } from "node:fs/promises";
+import { Buffer } from "node:buffer";
 
 /**
  * @param {string} bookPath
@@ -24,13 +20,21 @@ export async function parse(
   console.error(`epubjs - invoked on ${basename(bookPath)}`);
 
   const { verbosity = 0 } = opts;
-  const maxBase64BufferSize = 100 * 1024 * 1024; // 100MiB
   const buffer = await fs.readFile(bookPath);
   // console.log(`debug:node:Buffer (${buffer.byteLength}) ${basename(bookPath)}`);
   const base64Buffer = buffer.toString("base64");
-  // console.log(`debug:node:base64Buffer (${base64Buffer.length})`);
-  if (base64Buffer.length > maxBase64BufferSize) {
-    // const maxSizeMiB = (maxBase64BufferSize / 1024 / 1024).toFixed(2);
+
+  // ok I want to replace the test on base64Buffer.length with a test on buffer.byteLength
+  // base64Buffer.length is 4/3 of buffer.byteLength
+  // so base64Buffer.length>100Mib => buffer.byteLength>75MiB
+  const maxBufferByteLength = 75 * 1024 * 1024;
+  console.error(
+    ` buffer len test: ${prettySize(buffer.byteLength)} > ${prettySize(
+      maxBufferByteLength
+    )} : ${buffer.byteLength > maxBufferByteLength}`
+  );
+  // replaces:if (base64Buffer.length > maxBase64BufferSize) ...
+  if (buffer.byteLength > maxBufferByteLength) {
     const base64SizeMiB = (base64Buffer.length / 1024 / 1024).toFixed(2);
     const errorMessage = `Max file size exceeded: ${base64SizeMiB}MiB`;
     return {
@@ -48,6 +52,22 @@ export async function parse(
 
   const browser = await chromium.launch(/*{ headless: false, slowMo: 50 }*/);
   const page = await browser.newPage();
+
+  // await page.goto("about:blank");
+  // Set up the page with jsSHA,jszip,epubjs libraries
+  await page.setContent(`
+        <html>
+          <head>
+            <script src="https://cdn.jsdelivr.net/npm/jssha/dist/sha1.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/jszip@3.1.5/dist/jszip.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/epubjs@0.3.93/dist/epub.min.js"></script>
+          </head>
+          <body>
+            <input type="file" id="fileInput" />
+          </body>
+        </html>
+      `);
+
   page.on("console", async (msg) => {
     const args = msg.args();
     // evaluate runs the given function in the browser context, where the actual Error object exists
@@ -86,17 +106,19 @@ export async function parse(
     );
   });
 
-  await page.goto("about:blank");
-  await page.addScriptTag({
-    url: "https://cdn.jsdelivr.net/npm/jszip@3.1.5/dist/jszip.min.js",
-  });
-  await page.addScriptTag({
-    url: "https://cdn.jsdelivr.net/npm/epubjs@0.3.93/dist/epub.min.js",
-  });
+  // Moved to setContent above
+  // await page.addScriptTag({
+  //   url: "https://cdn.jsdelivr.net/npm/jszip@3.1.5/dist/jszip.min.js",
+  // });
+  // await page.addScriptTag({
+  //   url: "https://cdn.jsdelivr.net/npm/epubjs@0.3.93/dist/epub.min.js",
+  // });
+
   // wait for epubjs to be loaded and available on the window
   await page.waitForFunction(
     () => "ePub" in window && window.ePub !== undefined
   );
+
   // add the browser-specific code to the page
   await page.addScriptTag({ path: "./lib/epubjs-browser.js" });
   // wait for our script to be loaded and available on the window
@@ -116,4 +138,67 @@ export async function parse(
     errors: errors,
     warnings: warnings,
   };
+}
+
+async function uploadWithSetInputFiles(
+  page: Page,
+  filePath: string
+): Promise<void> {
+  await page.setInputFiles("#fileInput", filePath);
+}
+
+async function uploadWithBase64Buffer(
+  page: Page,
+  filePath: string
+): Promise<void> {
+  const fileBuffer = await readFile(filePath);
+  const base64BufferAsString = Buffer.from(fileBuffer).toString("base64");
+  const maxBase64Size = 100 * 1024 * 1024; // 100MiB
+  if (base64BufferAsString.length > maxBase64Size) {
+    const sizeMiB = (base64BufferAsString.length / 1024 / 1024).toFixed(2);
+    throw new Error(`base64 upload: ${sizeMiB}MiB > 100MiB`);
+  }
+  await page.evaluate((base64BufferAsString) => {
+    const input = document.getElementById("fileInput") as HTMLInputElement;
+    // Convert base64 to Uint8Array in one line - this is very slow
+    const bytes = Uint8Array.from(atob(base64BufferAsString), (c) =>
+      c.charCodeAt(0)
+    );
+    // Create a File object from the bytes
+    // File constructor takes: (parts, name, options)
+    // parts: Array of Blob/ArrayBuffer/Uint8Array
+    // name: String filename
+    const file = new File([bytes], "upload.epub");
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(file);
+    input.files = dataTransfer.files;
+  }, base64BufferAsString);
+}
+
+async function getClientSize(page: Page): Promise<{ size: number }> {
+  return page.evaluate(() => {
+    const input = document.getElementById("fileInput") as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file) throw new Error("No file selected");
+    return { size: file.size };
+  });
+}
+
+async function getClientSHA(page: Page): Promise<string> {
+  return page.evaluate(() => {
+    const input = document.getElementById("fileInput") as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file) throw new Error("No file selected");
+
+    return file.arrayBuffer().then((buffer) => {
+      // @ts-ignore
+      const shaObj = new jsSHA("SHA-1", "ARRAYBUFFER");
+      shaObj.update(buffer);
+      return shaObj.getHash("HEX");
+    });
+  });
+}
+
+function prettySize(bytes: number): string {
+  return (bytes / 1024 / 1024).toFixed(2).padStart(6) + " MiB";
 }

@@ -35,12 +35,14 @@ Context:
   - [x] lib/types.ts
   - [x] lib/showToc.ts
   - [x] lib/epub-parser-lingo.ts
-  - [ ] lib/epubjs-playwright.ts
+  - [x] lib/epubjs-playwright.ts
     - [x] separate lib/epubjs-browser.js
-    - [ ] pass in ArrayBuffer directly instead of base64 string
 - [x] Re-implement `@root/walk` in typescript : digests match
 - [x] Replace walk with `fast-glob`: digests match
 - [ ] playwright ts mitigations
+  - [x] replace size test with buffer.byteLength > 75MiB (not b64len>100MiB)
+  - [x] replace page.goto('about:blank') with page.setContent w/ 3 scripts
+    - [x] move on page.on(console) after setContent
   - [ ] replace base64 with ArrayBuffer/setInputFiles
 
 ```js
