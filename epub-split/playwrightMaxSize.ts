@@ -5,8 +5,8 @@ import { basename } from "node:path";
 import fg from "fast-glob";
 
 const rootPath = "/Volumes/Space/Reading/audiobooks";
-const filePath =
-  "/Volumes/Space/Reading/audiobooks/Mary Beard - Twelve Caesars/Mary Beard - Twelve Caesars.epub";
+// const filePath =
+//   "/Volumes/Space/Reading/audiobooks/Mary Beard - Twelve Caesars/Mary Beard - Twelve Caesars.epub";
 
 interface ProcessOptions {
   doDigest?: boolean;
@@ -27,21 +27,21 @@ interface ProcessResult {
 }
 
 async function main(): Promise<void> {
-  const onlyErrors = true;
-  const doDigest = false;
+  const onlyErrors = false;
+  const doDigest = true;
   // const useBase64 = true;
   // const files = [filePath, filePath, filePath, filePath, filePath];
   const files = await fg(`${rootPath}/**/*.epub`);
   files.sort(); // fast-grep does not guarantee order
   console.log("| ✓/✗ | elapsed | size | digest | file |");
-  console.log("|-----|---------|------|--------|------|");
+  console.log("|-----|--------:|-----:|--------|------|");
 
   let totalElapsed = 0;
   let totalSize = 0;
   let allMatch = true;
 
   for (const filePath of files) {
-    for (const useBase64 of [true, false]) {
+    for (const useBase64 of [/*true,*/ false]) {
       try {
         const result = await doOneFile(filePath, { doDigest, useBase64 });
         const sizeMatch = result.size.client === result.size.server;
