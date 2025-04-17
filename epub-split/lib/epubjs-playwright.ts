@@ -5,6 +5,8 @@ import type { Page } from "playwright";
 import { TocEntry, Toc, ParserResult, ParseOptions } from "./types.ts";
 import { readFile } from "node:fs/promises";
 import { Buffer } from "node:buffer";
+import { createHash } from "node:crypto";
+import assert from "node:assert";
 
 /**
  * @param {string} bookPath
@@ -28,11 +30,12 @@ export async function parse(
   // base64Buffer.length is 4/3 of buffer.byteLength
   // so base64Buffer.length>100Mib => buffer.byteLength>75MiB
   const maxBufferByteLength = 75 * 1024 * 1024;
-  console.error(
-    ` buffer len test: ${prettySize(buffer.byteLength)} > ${prettySize(
-      maxBufferByteLength
-    )} : ${buffer.byteLength > maxBufferByteLength}`
-  );
+  // console.error(
+  //   ` buffer len test: ${prettySize(buffer.byteLength)} > ${prettySize(
+  //     maxBufferByteLength
+  //   )} : ${buffer.byteLength > maxBufferByteLength}`
+  // );
+
   // replaces:if (base64Buffer.length > maxBase64BufferSize) ...
   if (buffer.byteLength > maxBufferByteLength) {
     // see if I can replace this message based on the size of the buffer
@@ -122,6 +125,21 @@ export async function parse(
       window.parseEpubFromInputFiles !== undefined
   );
 
+  // step 1 of replacing base64Buffer with ArrayBuffer
+  // upload the file - and check the sha!
+  // await uploadWithSetInputFiles(page, bookPath);
+  await uploadWithBase64Buffer(page, bookPath);
+  const clientSHA = await getClientSHA(page);
+  const serverSHA = await getServerSHA(bookPath);
+  if (serverSHA !== clientSHA) {
+    console.error(`serverSHA:${serverSHA} === ${clientSHA}`);
+  }
+  assert.equal(
+    serverSHA,
+    clientSHA,
+    `sha mismatch: server=${serverSHA} client=${clientSHA}`
+  );
+
   const tocOutside = await page.evaluate(async (base64Buffer) => {
     // Type assertion needed because this is client-side code where parseEpubFromInputFiles is injected
     return (window as any).parseEpubFromInputFiles(base64Buffer);
@@ -180,6 +198,11 @@ async function getClientSize(page: Page): Promise<{ size: number }> {
   });
 }
 
+async function getServerSHA(filePath: string): Promise<string> {
+  const fileBuffer = await readFile(filePath);
+  return createHash("sha1").update(fileBuffer).digest("hex");
+}
+
 async function getClientSHA(page: Page): Promise<string> {
   return page.evaluate(() => {
     const input = document.getElementById("fileInput") as HTMLInputElement;
@@ -197,4 +220,13 @@ async function getClientSHA(page: Page): Promise<string> {
 
 function prettySize(bytes: number): string {
   return (bytes / 1024 / 1024).toFixed(2).padStart(6) + "MiB";
+}
+
+async function timeIt<T>(
+  fn: () => Promise<T>
+): Promise<{ result: T; elapsed: number }> {
+  const t0 = +new Date();
+  const result = await fn();
+  const t1 = +new Date();
+  return { result, elapsed: t1 - t0 };
 }

@@ -45,6 +45,7 @@ Context:
     - [x] move on page.on(console) after setContent
   - [ ] replace base64 with ArrayBuffer/setInputFiles
     - [x] rename parseEpubFromInputFiles
+    - [x] parallel checksum with uploadWithBase64Buffer and uploadWithSetInputFiles
     - [ ] parseEpubFromInputFiles called with ArrayBuffer reference
 
 ```js
