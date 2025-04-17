@@ -23,23 +23,14 @@ export async function parse(
 
   const { verbosity = 0 } = opts;
   const buffer = await fs.readFile(bookPath);
-  // console.log(`debug:node:Buffer (${buffer.byteLength}) ${basename(bookPath)}`);
-  const base64Buffer = buffer.toString("base64");
 
-  // ok I want to replace the test on base64Buffer.length with a test on buffer.byteLength
+  // Legacy test: when uploading with base64Buffer parameter we had a limit of 100MiB
   // base64Buffer.length is 4/3 of buffer.byteLength
   // so base64Buffer.length>100Mib => buffer.byteLength>75MiB
   const maxBufferByteLength = 75 * 1024 * 1024;
-  // console.error(
-  //   ` buffer len test: ${prettySize(buffer.byteLength)} > ${prettySize(
-  //     maxBufferByteLength
-  //   )} : ${buffer.byteLength > maxBufferByteLength}`
-  // );
 
-  // replaces:if (base64Buffer.length > maxBase64BufferSize) ...
+  // This test is temporary to mimic exactly our base64 size limit
   if (buffer.byteLength > maxBufferByteLength) {
-    // see if I can replace this message based on the size of the buffer
-    // const base64SizeMiB = (base64Buffer.length / 1024 / 1024).toFixed(2);
     const base64SizeMiB = prettySize((buffer.byteLength * 4) / 3);
     const errorMessage = `Max file size exceeded: ${base64SizeMiB}`;
     return {
@@ -126,24 +117,33 @@ export async function parse(
   );
 
   // step 1 of replacing base64Buffer with ArrayBuffer
-  // upload the file - and check the sha!
-  // await uploadWithSetInputFiles(page, bookPath);
-  await uploadWithBase64Buffer(page, bookPath);
-  const clientSHA = await getClientSHA(page);
-  const serverSHA = await getServerSHA(bookPath);
-  if (serverSHA !== clientSHA) {
-    console.error(`serverSHA:${serverSHA} === ${clientSHA}`);
-  }
-  assert.equal(
-    serverSHA,
-    clientSHA,
-    `sha mismatch: server=${serverSHA} client=${clientSHA}`
-  );
+  // upload the file
+  await uploadWithSetInputFiles(page, bookPath);
+  // optionally we can use base64 encoding to upload the file,
+  // but this is slower and comes with a size limit of 75MiB (100MiB base64 encoded)
+  // await uploadWithBase64Buffer(page, bookPath);
 
-  const tocOutside = await page.evaluate(async (base64Buffer) => {
+  // compare the sha of the uploaded file with the original file
+  const checkSHA = false;
+  if (checkSHA) {
+    const clientSHA = await getClientSHA(page);
+    const serverSHA = await getServerSHA(bookPath);
+    if (serverSHA !== clientSHA) {
+      console.error(`serverSHA:${serverSHA} === ${clientSHA}`);
+    }
+    assert.equal(
+      serverSHA,
+      clientSHA,
+      `sha mismatch: server=${serverSHA} client=${clientSHA}`
+    );
+  }
+
+  const tocOutside = await page.evaluate(async () => {
+    // Calling parseEpubFromInputFiles() implies that:
+    //  - the file is already uploaded with uploadWithSetInputFiles
     // Type assertion needed because this is client-side code where parseEpubFromInputFiles is injected
-    return (window as any).parseEpubFromInputFiles(base64Buffer);
-  }, base64Buffer);
+    return (window as any).parseEpubFromInputFiles();
+  });
 
   await browser.close();
   return {

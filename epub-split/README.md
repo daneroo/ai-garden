@@ -16,7 +16,7 @@
 - refine error strategy
   - anything that fatal to parsing: throw - should not be captured in ParserResult
   - categorize warnings: add to ParserResult.warnings
-- [x] capture all error in epub parsing (3 corpuses)
+- [x] capture all error in epub parsing (3 corpora)
   - [x] epubjs
   - [x] lingo
 - [ ] add spine and guide: just because guide is required, but I don't know why!

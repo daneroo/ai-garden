@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.mjs",
   "scripts": {
-    "start": "node index.mjs"
+    "start": "pnpx tsx index.ts -h",
+    "test": "pnpm typecheck",
+    "typecheck": "pnpm typecheck:deno && pnpm typecheck:node",
+    "typecheck:deno": "deno check *.ts **/*.ts",
+    "typecheck:node": "pnpm exec tsc --noEmit --esModuleInterop --allowImportingTsExtensions --downlevelIteration --target es2015 --moduleResolution node lib/*.ts *.ts"
   },
   "keywords": [],
   "author": "",

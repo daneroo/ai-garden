@@ -43,21 +43,10 @@ Context:
   - [x] replace size test with buffer.byteLength > 75MiB (not b64len>100MiB)
   - [x] replace page.goto('about:blank') with page.setContent w/ 3 scripts
     - [x] move on page.on(console) after setContent
-  - [ ] replace base64 with ArrayBuffer/setInputFiles
+  - [x] replace base64 with ArrayBuffer/setInputFiles
     - [x] rename parseEpubFromInputFiles
     - [x] parallel checksum with uploadWithBase64Buffer and uploadWithSetInputFiles
-    - [ ] parseEpubFromInputFiles called with ArrayBuffer reference
-
-```js
-// ## Mary Beard - Twelve Caesars.epub
-// ### Errors
-// Max file size exceeded: 248.25MiB
-// Pass the ArrayBuffer directly instead of base64 string
-const tocOutside = await page.evaluate(async (epubArrayBuffer) => {
-  // No need for base64 conversion - use the buffer directly
-  const book = ePub(epubArrayBuffer);
-  ...
-```
+    - [x] parseEpubFromInputFiles called with implicit ArrayBuffer reference
 
 ## TODO
 
@@ -68,25 +57,16 @@ deno run -A playwrightMaxSize.ts | gum format
 
 ## Temporary testing snippets
 
-type checking: (move to package.json)
-
-```bash
-# type checking - with tsc
-pnpm exec tsc --noEmit --esModuleInterop --allowImportingTsExtensions --downlevelIteration --target es2015 --moduleResolution node lib/*.ts *.ts
-# type checking - with deno
-deno check *.ts **/*.ts 
-```
-
 digest invariants:
 
 ```bash
-time deno run -A index.ts -p compare > snapshot/post-ts-migration-compare.md # 697.771s
+time deno run -A index.ts -p compare > snapshot/post-ts-migration-compare.md # 697.771s .. 669.124s
 time deno run -A index.ts -p lingo > snapshot/post-ts-migration-lingo.md # 474.263s
-time deno run -A index.ts -p epubjs > snapshot/post-ts-migration-epubjs.md # 200.668s
+time deno run -A index.ts -p epubjs > snapshot/post-ts-migration-epubjs.md # 200.668s .. 165.635s
 # everything now works with tsx
-time pnpx tsx index.ts -p compare > snapshot/post-ts-migration-compare-tsx.md # 278.498s
-time pnpx tsx index.ts -p lingo > snapshot/post-ts-migration-lingo-tsx.md # 107.413s
-time pnpx tsx index.ts -p epubjs > snapshot/post-ts-migration-epubjs-tsx.md # 189.700s
+time pnpx tsx index.ts -p compare > snapshot/post-ts-migration-compare-tsx.md # 278.498s .. 231.761s
+time pnpx tsx index.ts -p lingo > snapshot/post-ts-migration-lingo-tsx.md # 99.617s
+time pnpx tsx index.ts -p epubjs > snapshot/post-ts-migration-epubjs-tsx.md # 189.700s .. 126.255s
 
 
 > sha1sum snapshot/p*-ts-migration*.md | sort

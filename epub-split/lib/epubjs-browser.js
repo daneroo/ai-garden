@@ -1,18 +1,7 @@
 // This code runs in the browser context
 // The main function that will be attached to window
-window.parseEpubFromInputFiles = async function (base64Buffer) {
+window.parseEpubFromInputFiles = async function () {
   const DEBUG_IN_PLAYWRIGHT = false;
-
-  function base64ToArrayBuffer(base64) {
-    const binaryString = atob(base64);
-    const len = binaryString.length;
-    const bytes = new Uint8Array(len);
-    for (let i = 0; i < len; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
-    }
-    return bytes.buffer;
-  }
-
   // get basename from path, just a regex, not thoroughly tested
   function getBasename(path) {
     const match = path.match(/([^\/\\]+)$/);
@@ -132,7 +121,17 @@ window.parseEpubFromInputFiles = async function (base64Buffer) {
     return newEntries;
   }
 
-  const buffer = base64ToArrayBuffer(base64Buffer);
+  // This retrieves the epub file as an ArrayBuffer
+  // This file is uploaded with page.setInputFiles (in uploadWithSetInputFiles)
+  async function getEpubAsArrayBuffer() {
+    const input = document.getElementById("fileInput");
+    const file = input.files?.[0];
+    if (!file) throw new Error("No file selected");
+    const buffer = await file.arrayBuffer();
+    return buffer;
+  }
+
+  const buffer = await getEpubAsArrayBuffer();
   const book = ePub(buffer);
 
   await book.opened;
