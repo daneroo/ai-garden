@@ -54,6 +54,13 @@ const tocOutside = await page.evaluate(async (epubArrayBuffer) => {
   ...
 ```
 
+## TODO
+
+```bash
+pnpx tsx playwrightMaxSize.ts | gum format
+deno run -A playwrightMaxSize.ts | gum format
+```
+
 ## Temporary testing snippets
 
 type checking: (move to package.json)
@@ -69,8 +76,8 @@ digest invariants:
 
 ```bash
 time deno run -A index.ts -p compare > snapshot/post-ts-migration-compare.md # 697.771s
-time deno run -A index.ts -p epubjs > snapshot/post-ts-migration-epubjs.md # 200.668s
 time deno run -A index.ts -p lingo > snapshot/post-ts-migration-lingo.md # 474.263s
+time deno run -A index.ts -p epubjs > snapshot/post-ts-migration-epubjs.md # 200.668s
 # everything now works with tsx
 time pnpx tsx index.ts -p compare > snapshot/post-ts-migration-compare-tsx.md # 278.498s
 time pnpx tsx index.ts -p lingo > snapshot/post-ts-migration-lingo-tsx.md # 107.413s

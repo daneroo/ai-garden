@@ -42,7 +42,7 @@ async function main(): Promise<void> {
   let allMatch = true;
 
   for (const filePath of files) {
-    for (const useBase64 of [/*true,*/ false]) {
+    for (const useBase64 of [true, false]) {
       try {
         const result = await doOneFile(filePath, { doDigest, useBase64 });
         const sizeMatch = result.size.client === result.size.server;
