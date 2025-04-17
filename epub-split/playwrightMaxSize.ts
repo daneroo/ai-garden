@@ -27,10 +27,12 @@ interface ProcessResult {
 }
 
 async function main(): Promise<void> {
+  const onlyErrors = true;
   const doDigest = false;
   // const useBase64 = true;
   // const files = [filePath, filePath, filePath, filePath, filePath];
   const files = await fg(`${rootPath}/**/*.epub`);
+  files.sort(); // fast-grep does not guarantee order
   console.log("| ✓/✗ | elapsed | size | digest | file |");
   console.log("|-----|---------|------|--------|------|");
 
@@ -50,6 +52,10 @@ async function main(): Promise<void> {
         totalElapsed += result.size.elapsed;
         totalSize += result.size.client;
 
+        if (onlyErrors && match) {
+          continue;
+        }
+
         console.log(
           `| ${match ? "✓" : "✗"} | ${result.size.elapsed
             .toString()
@@ -62,9 +68,11 @@ async function main(): Promise<void> {
       } catch (error) {
         const errorMsg = error.message.padStart(40);
         console.log(
-          `| ✗ |       - | ${"      -".padStart(10)} | ${errorMsg} | ${basename(
-            filePath
-          )} ${useBase64 ? "(base64)" : ""}|`
+          `| ✗ |        - | ${"      -".padStart(
+            10
+          )} | ${errorMsg} | ${basename(filePath)} ${
+            useBase64 ? "(base64)" : ""
+          }|`
         );
       }
     }
@@ -178,12 +186,12 @@ async function uploadWithBase64Buffer(
   filePath: string
 ): Promise<void> {
   const fileBuffer = await readFile(filePath);
-  const maxBase64BufferSize = 100 * 1024 * 1024; // 100MiB
-  if (fileBuffer.length > maxBase64BufferSize) {
-    const sizeMiB = (fileBuffer.length / 1024 / 1024).toFixed(2);
+  const base64BufferAsString = Buffer.from(fileBuffer).toString("base64");
+  const maxBase64Size = 100 * 1024 * 1024; // 100MiB
+  if (base64BufferAsString.length > maxBase64Size) {
+    const sizeMiB = (base64BufferAsString.length / 1024 / 1024).toFixed(2);
     throw new Error(`base64 upload: ${sizeMiB}MiB > 100MiB`);
   }
-  const base64BufferAsString = Buffer.from(fileBuffer).toString("base64");
   await page.evaluate((base64BufferAsString) => {
     const input = document.getElementById("fileInput") as HTMLInputElement;
     // Convert base64 to Uint8Array in one line - this is very slow
