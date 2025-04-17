@@ -1,6 +1,6 @@
 // This code runs in the browser context
 // The main function that will be attached to window
-window.myEpubjsParse = async function (base64Buffer) {
+window.parseEpubFromInputFiles = async function (base64Buffer) {
   const DEBUG_IN_PLAYWRIGHT = false;
 
   function base64ToArrayBuffer(base64) {

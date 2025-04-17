@@ -35,8 +35,10 @@ export async function parse(
   );
   // replaces:if (base64Buffer.length > maxBase64BufferSize) ...
   if (buffer.byteLength > maxBufferByteLength) {
-    const base64SizeMiB = (base64Buffer.length / 1024 / 1024).toFixed(2);
-    const errorMessage = `Max file size exceeded: ${base64SizeMiB}MiB`;
+    // see if I can replace this message based on the size of the buffer
+    // const base64SizeMiB = (base64Buffer.length / 1024 / 1024).toFixed(2);
+    const base64SizeMiB = prettySize((buffer.byteLength * 4) / 3);
+    const errorMessage = `Max file size exceeded: ${base64SizeMiB}`;
     return {
       parser: "epubjs",
       toc: [],
@@ -106,14 +108,6 @@ export async function parse(
     );
   });
 
-  // Moved to setContent above
-  // await page.addScriptTag({
-  //   url: "https://cdn.jsdelivr.net/npm/jszip@3.1.5/dist/jszip.min.js",
-  // });
-  // await page.addScriptTag({
-  //   url: "https://cdn.jsdelivr.net/npm/epubjs@0.3.93/dist/epub.min.js",
-  // });
-
   // wait for epubjs to be loaded and available on the window
   await page.waitForFunction(
     () => "ePub" in window && window.ePub !== undefined
@@ -123,12 +117,14 @@ export async function parse(
   await page.addScriptTag({ path: "./lib/epubjs-browser.js" });
   // wait for our script to be loaded and available on the window
   await page.waitForFunction(
-    () => "myEpubjsParse" in window && window.myEpubjsParse !== undefined
+    () =>
+      "parseEpubFromInputFiles" in window &&
+      window.parseEpubFromInputFiles !== undefined
   );
 
   const tocOutside = await page.evaluate(async (base64Buffer) => {
-    // Type assertion needed because this is client-side code where myEpubjsParse is injected
-    return (window as any).myEpubjsParse(base64Buffer);
+    // Type assertion needed because this is client-side code where parseEpubFromInputFiles is injected
+    return (window as any).parseEpubFromInputFiles(base64Buffer);
   }, base64Buffer);
 
   await browser.close();
@@ -200,5 +196,5 @@ async function getClientSHA(page: Page): Promise<string> {
 }
 
 function prettySize(bytes: number): string {
-  return (bytes / 1024 / 1024).toFixed(2).padStart(6) + " MiB";
+  return (bytes / 1024 / 1024).toFixed(2).padStart(6) + "MiB";
 }

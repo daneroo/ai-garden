@@ -44,6 +44,8 @@ Context:
   - [x] replace page.goto('about:blank') with page.setContent w/ 3 scripts
     - [x] move on page.on(console) after setContent
   - [ ] replace base64 with ArrayBuffer/setInputFiles
+    - [x] rename parseEpubFromInputFiles
+    - [ ] parseEpubFromInputFiles called with ArrayBuffer reference
 
 ```js
 // ## Mary Beard - Twelve Caesars.epub
