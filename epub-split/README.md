@@ -30,11 +30,11 @@
 ## Summary
 
 ```bash
-time node index.mjs -p lingo -r drop --summary > summary.lingo.drop.md
-time node index.mjs -p lingo -r space --summary > summary.lingo.space.md
+time pnpx tsx index.ts -p lingo -r drop --summary > data/summary.lingo.drop.md
+time pnpx tsx index.ts -p lingo -r space --summary > data/summary.lingo.space.md
 
-time node index.mjs -p epubjs -r drop --summary > summary.epubjs.drop.md
-time node index.mjs -p epubjs -r space --summary > summary.epubjs.space.md
+time pnpx tsx index.ts -p epubjs -r drop --summary > data/summary.epubjs.drop.md
+time pnpx tsx index.ts -p epubjs -r space --summary > data/summary.epubjs.space.md
 ```
 
 ## References
