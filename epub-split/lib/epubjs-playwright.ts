@@ -22,7 +22,7 @@ export async function parse(
   console.error(`epubjs - invoked on ${basename(bookPath)}`);
 
   const { verbosity = 0 } = opts;
-  // optional upload integrity checks on size and sha
+  // optional upload integrity checks on size and sha - well tested and not necessary
   const checkIntegrity = false;
 
   // we accumulate these from the browser console log
