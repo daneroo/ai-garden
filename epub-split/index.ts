@@ -2,11 +2,12 @@ import yargs from "yargs/yargs";
 import os from "node:os";
 import fg from "fast-glob";
 
-import { extname, basename } from "node:path";
+import { basename } from "node:path";
 
 import { parse as parseEpubjs } from "./lib/epubjs-playwright.ts";
 import { parse as parseLingo } from "./lib/epub-parser-lingo.ts";
 import { showTOC, showSummary, compareToc } from "./lib/showToc.ts";
+import { unzipOneOfMany } from "./lib/unzip.ts";
 import { ParserResult } from "./lib/types.ts";
 import { exit } from "node:process";
 
@@ -49,6 +50,11 @@ async function main(): Promise<void> {
       default: false,
       describe: "Show summary table instead of full TOC",
     })
+    .option("unzip", {
+      type: "boolean",
+      default: false,
+      describe: "Unzip the selected book into data/books/",
+    })
     .count("verbose")
     .alias("v", "verbose")
     .help()
@@ -62,6 +68,7 @@ async function main(): Promise<void> {
     parser,
     search,
     summary,
+    unzip,
   } = argv;
 
   // resolve the root path (includes cleaning)
@@ -84,6 +91,13 @@ async function main(): Promise<void> {
     : bookPaths;
   console.log(`Found ${matchingBookPaths.length} matching books.`);
 
+  if (unzip) {
+    // Quick convenience for unzipping a single book
+    // - we could unzip all of them, but this probably not what we want
+    //  so if length>1, just show the list
+    await unzipOneOfMany(matchingBookPaths, "data/ebooks");
+    return;
+  }
   for (const [bkIndex, bookPath] of matchingBookPaths.entries()) {
     try {
       if (parser === "compare") {

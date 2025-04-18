@@ -129,7 +129,7 @@ export function compareToc(
 ): void {
   // the recursive comparison of fields: id, href, label is sketchy
   // and not sure it is worth diving into epubjs vs lingo differences
-  const SHOW_DETAILS = false;
+  const SHOW_DETAILS = true;
   if (showHeader) {
     console.log(`\n## Comparing parsers\n`);
     if (SHOW_DETAILS) {

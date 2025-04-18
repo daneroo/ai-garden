@@ -27,9 +27,17 @@
   - [ ] epubjs works for Two Towers, but not Pax
   - [ ] epub-parser has content (markdown) in sections, but _I_ cannot link spine(structure) to sections(content)
 
-## Summary
+## Usage (Development)
 
 ```bash
+# unzip a book into data/ebooks/slog-of-book/
+time pnpx tsx index.ts -r space --unzip -s Real.epub
+```
+
+```bash
+time pnpx tsx index.ts -r space -p compare
+time pnpx tsx index.ts -r drop -p compare
+
 time pnpx tsx index.ts -p lingo -r drop --summary > data/summary.lingo.drop.md
 time pnpx tsx index.ts -p lingo -r space --summary > data/summary.lingo.space.md
 
