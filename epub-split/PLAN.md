@@ -24,7 +24,7 @@ Context:
     - [x] `time deno run -A index.ts -p lingo > snapshot/post-ts-migration-lingo.md`
   - [x] verify digests: `sha1sum snapshot/p*-ts-migration*.md | sort`
 - replace browser evaluate with external js file
-- [ ] LATER: move back to pnpx tsx (after resolving browser context issues)
+- [x] LATER: move back to pnpx tsx (after resolving browser context issues)
 
 ## Step 2: Type Safety and Refactoring
 
@@ -79,4 +79,19 @@ e519384c9d85d336865b2956d40c52a939f6849a  snapshot/pre-ts-migration-compare.md
 f2762ee222faab8a32d300f6274778aa4b763fe6  snapshot/post-ts-migration-epubjs-tsx.md
 f2762ee222faab8a32d300f6274778aa4b763fe6  snapshot/post-ts-migration-epubjs.md
 f2762ee222faab8a32d300f6274778aa4b763fe6  snapshot/pre-ts-migration-epubjs.mds
+
+# After I removed the size restriction for base64 encoding
+#  pre is unchanged, of course, lingi is also unchanged
+> sha1sum snapshot/pre*-ts-migration*.md | sort
+8f2992db726d47a3a26f9b0126d9bc14ac51ac59  snapshot/pre-ts-migration-lingo.md
+e519384c9d85d336865b2956d40c52a939f6849a  snapshot/pre-ts-migration-compare.md
+f2762ee222faab8a32d300f6274778aa4b763fe6  snapshot/pre-ts-migration-epubjs.md
+
+> sha1sum snapshot/post*-ts-migration*.md | sort
+3a706cf62485f751c0fe04c328e6c64985a5244f  snapshot/post-ts-migration-epubjs-tsx.md
+3a706cf62485f751c0fe04c328e6c64985a5244f  snapshot/post-ts-migration-epubjs.md
+8f2992db726d47a3a26f9b0126d9bc14ac51ac59  snapshot/post-ts-migration-lingo-tsx.md
+8f2992db726d47a3a26f9b0126d9bc14ac51ac59  snapshot/post-ts-migration-lingo.md
+ad7ebb6050d9c2817e3f52b0fa61a6e9a84825b9  snapshot/post-ts-migration-compare-tsx.md
+ad7ebb6050d9c2817e3f52b0fa61a6e9a84825b9  snapshot/post-ts-migration-compare.md
 ```

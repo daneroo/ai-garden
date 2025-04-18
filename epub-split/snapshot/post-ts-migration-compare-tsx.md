@@ -201,7 +201,7 @@ Only comparing TOC total counts
 
 ## Brandon Sanderson - Mistborn 00 - Arcanum Unbounded.epub
 
-| ✗ |    17 |     0 | Brandon Sanderson - Mistborn 00 - Arcanum Unbounded.epub |
+| ✗ |    17 |    15 | Brandon Sanderson - Mistborn 00 - Arcanum Unbounded.epub |
 
 ## Brandon Sanderson - Mistborn 01 - The Final Empire.epub
 
@@ -249,11 +249,11 @@ Only comparing TOC total counts
 
 ## Brandon Sanderson - Stormlight Archive 03 - Oathbringer.epub
 
-| ✗ |    24 |     0 | Brandon Sanderson - Stormlight Archive 03 - Oathbringer.epub |
+| ✗ |    24 |    22 | Brandon Sanderson - Stormlight Archive 03 - Oathbringer.epub |
 
 ## Brandon Sanderson - Stormlight Archive 04 - Rhythm of War.epub
 
-| ✗ |    27 |     0 | Brandon Sanderson - Stormlight Archive 04 - Rhythm of War.epub |
+| ✗ |    27 |    25 | Brandon Sanderson - Stormlight Archive 04 - Rhythm of War.epub |
 
 ## Brandon Sanderson - Warbreaker 01 - Warbreaker.epub
 
@@ -989,7 +989,7 @@ Only comparing TOC total counts
 
 ## Mary Beard - Twelve Caesars.epub
 
-| ✗ |    22 |     0 | Mary Beard - Twelve Caesars.epub |
+| ✓ |    22 |    22 | Mary Beard - Twelve Caesars.epub |
 
 ## Mary Stewart - Arthurian Saga 01 - The Crystal Cave.epub
 
@@ -1677,7 +1677,7 @@ Only comparing TOC total counts
 
 ## Walter Isaacson - Elon Musk.epub
 
-| ✗ |   106 |     0 | Walter Isaacson - Elon Musk.epub |
+| ✓ |   106 |   106 | Walter Isaacson - Elon Musk.epub |
 
 ## Warwick F. Vincent - Lakes.epub
 
