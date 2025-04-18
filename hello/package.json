@@ -1,0 +1,27 @@
+{
+  "name": "hello",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hello.tsx",
+  "type": "module",
+  "scripts": {
+    "start": "pnpm start:all",
+    "start:all": "echo 'Running all variants...' && pnpm start:pnpx && pnpm start:node && pnpm start:deno && pnpm start:bun",
+    "start:pnpx": "pnpx tsx hello.tsx",
+    "start:node": "node --import tsx hello.tsx",
+    "start:deno": "deno run -A hello.tsx",
+    "start:bun": "bun run hello.tsx",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.7.1",
+  "dependencies": {
+    "ink": "4.4.1",
+    "react": "18.2.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.3"
+  }
+}
