@@ -101,15 +101,15 @@ async function main(): Promise<void> {
           throw new Error(`Unknown parser: ${parser}`);
         }
 
-        if (verbosity > 1) {
-          const { errors, warnings, toc } = parseResult;
-          // console.log(
-          //   `## ${basename(bookPath)} ${parser} e:${errors.length} w:${
-          //     warnings.length
-          //   } toc:${toc.length}`
-          // );
-          continue;
-        }
+        // if (verbosity > 1) {
+        //   const { errors, warnings, toc } = parseResult;
+        //   // console.log(
+        //   //   `## ${basename(bookPath)} ${parser} e:${errors.length} w:${
+        //   //     warnings.length
+        //   //   } toc:${toc.length}`
+        //   // );
+        //   continue;
+        // }
 
         if (summary) {
           showSummary(parseResult.toc, bookPath, bkIndex === 0);

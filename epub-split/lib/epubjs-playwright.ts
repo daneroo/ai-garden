@@ -22,24 +22,8 @@ export async function parse(
   console.error(`epubjs - invoked on ${basename(bookPath)}`);
 
   const { verbosity = 0 } = opts;
-  const buffer = await fs.readFile(bookPath);
-
-  // Legacy test: when uploading with base64Buffer parameter we had a limit of 100MiB
-  // base64Buffer.length is 4/3 of buffer.byteLength
-  // so base64Buffer.length>100Mib => buffer.byteLength>75MiB
-  const maxBufferByteLength = 75 * 1024 * 1024;
-
-  // This test is temporary to mimic exactly our base64 size limit
-  if (buffer.byteLength > maxBufferByteLength) {
-    const base64SizeMiB = prettySize((buffer.byteLength * 4) / 3);
-    const errorMessage = `Max file size exceeded: ${base64SizeMiB}`;
-    return {
-      parser: "epubjs",
-      toc: [],
-      errors: [errorMessage],
-      warnings: [],
-    };
-  }
+  // optional upload integrity checks on size and sha
+  const checkIntegrity = false;
 
   // we accumulate these from the browser console log
   // we detect and capture these because epubjs logs errors to console instead of throwing them
@@ -119,23 +103,10 @@ export async function parse(
   // step 1 of replacing base64Buffer with ArrayBuffer
   // upload the file
   await uploadWithSetInputFiles(page, bookPath);
-  // optionally we can use base64 encoding to upload the file,
-  // but this is slower and comes with a size limit of 75MiB (100MiB base64 encoded)
-  // await uploadWithBase64Buffer(page, bookPath);
 
-  // compare the sha of the uploaded file with the original file
-  const checkSHA = false;
-  if (checkSHA) {
-    const clientSHA = await getClientSHA(page);
-    const serverSHA = await getServerSHA(bookPath);
-    if (serverSHA !== clientSHA) {
-      console.error(`serverSHA:${serverSHA} === ${clientSHA}`);
-    }
-    assert.equal(
-      serverSHA,
-      clientSHA,
-      `sha mismatch: server=${serverSHA} client=${clientSHA}`
-    );
+  // compare the size and sha digest of the uploaded file with the original file
+  if (checkIntegrity) {
+    await checkClientUploadIntegrity(page, bookPath, verbosity);
   }
 
   const tocOutside = await page.evaluate(async () => {
@@ -161,40 +132,53 @@ async function uploadWithSetInputFiles(
   await page.setInputFiles("#fileInput", filePath);
 }
 
-async function uploadWithBase64Buffer(
+async function checkClientUploadIntegrity(
   page: Page,
-  filePath: string
+  bookPath: string,
+  verbosity: number
 ): Promise<void> {
-  const fileBuffer = await readFile(filePath);
-  const base64BufferAsString = Buffer.from(fileBuffer).toString("base64");
-  const maxBase64Size = 100 * 1024 * 1024; // 100MiB
-  if (base64BufferAsString.length > maxBase64Size) {
-    const sizeMiB = (base64BufferAsString.length / 1024 / 1024).toFixed(2);
-    throw new Error(`base64 upload: ${sizeMiB}MiB > 100MiB`);
+  // compare the size of the uploaded file with the original file
+  const clientSize = await getClientSize(page);
+  const serverSize = await getServerSize(bookPath);
+  if (serverSize !== clientSize) {
+    console.error(`size mismatch: server=${serverSize} client=${clientSize}`);
+  } else {
+    if (verbosity > 0) {
+      console.error(`- size match: server=${serverSize} client=${clientSize}`);
+    }
   }
-  await page.evaluate((base64BufferAsString) => {
-    const input = document.getElementById("fileInput") as HTMLInputElement;
-    // Convert base64 to Uint8Array in one line - this is very slow
-    const bytes = Uint8Array.from(atob(base64BufferAsString), (c) =>
-      c.charCodeAt(0)
-    );
-    // Create a File object from the bytes
-    // File constructor takes: (parts, name, options)
-    // parts: Array of Blob/ArrayBuffer/Uint8Array
-    // name: String filename
-    const file = new File([bytes], "upload.epub");
-    const dataTransfer = new DataTransfer();
-    dataTransfer.items.add(file);
-    input.files = dataTransfer.files;
-  }, base64BufferAsString);
+  assert.equal(
+    serverSize,
+    clientSize,
+    `size mismatch: server=${serverSize} client=${clientSize}`
+  );
+
+  const clientSHA = await getClientSHA(page);
+  const serverSHA = await getServerSHA(bookPath);
+  if (serverSHA !== clientSHA) {
+    console.error(`sha mismatch: server=${serverSHA} client=${clientSHA}`);
+  } else {
+    if (verbosity > 0) {
+      console.error(`- sha match: server=${serverSHA} client=${clientSHA}`);
+    }
+  }
+  assert.equal(
+    serverSHA,
+    clientSHA,
+    `sha mismatch: server=${serverSHA} client=${clientSHA}`
+  );
+}
+async function getServerSize(filePath: string): Promise<number> {
+  const fileBuffer = await readFile(filePath);
+  return fileBuffer.length;
 }
 
-async function getClientSize(page: Page): Promise<{ size: number }> {
+async function getClientSize(page: Page): Promise<number> {
   return page.evaluate(() => {
     const input = document.getElementById("fileInput") as HTMLInputElement;
     const file = input.files?.[0];
     if (!file) throw new Error("No file selected");
-    return { size: file.size };
+    return file.size;
   });
 }
 
