@@ -61,6 +61,23 @@ export function compareToc(
   const orderDiff = compareLabelOrder(lingoEntries, epubEntries, labelDiff);
   const depthDiff = compareTreeDepth(lingoEntries, epubEntries, labelDiff);
 
+  /* aggregate success check – if every diff is empty, short‑circuit with one line */
+  const allPass =
+    labelDiff.onlyInLingo.length === 0 &&
+    labelDiff.onlyInEpubjs.length === 0 &&
+    hrefDiff.onlyInLingo.length === 0 &&
+    hrefDiff.onlyInEpubjs.length === 0 &&
+    orderDiff.mismatches.length === 0 &&
+    depthDiff.flatSide === null &&
+    depthDiff.mismatches.length === 0;
+
+  if (allPass) {
+    ok("All validations passed");
+    return;
+  }
+
+  /* 3 – detailed report */
+
   /* 3 – report */
   showLabelSetDiff(labelDiff, opts);
   showHrefSetDiff(hrefDiff, opts);
