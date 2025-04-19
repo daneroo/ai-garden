@@ -34,7 +34,24 @@ export function compareToc(
 ): void {
   const opts = { ...defaultOptions, ...options } as CompareOptions;
 
-  /* 1 – flatten & normalise */
+  /* quick guard – empty TOC on either side */
+  const emptyLingo = tocLingo.length === 0;
+  const emptyEpub = tocEpubjs.length === 0;
+  if (emptyLingo || emptyEpub) {
+    console.log("TOC presence check:");
+    if (emptyLingo && emptyEpub) {
+      fail(
+        "Both parsers produced an empty TOC - no further comparisons possible"
+      );
+    } else if (emptyLingo) {
+      fail("Lingo produced an empty TOC while EpubJS has entries");
+    } else {
+      fail("EpubJS produced an empty TOC while Lingo has entries");
+    }
+    return; // no meaningful comparisons beyond this point
+  }
+
+  /* 1 – flatten & normalise – flatten & normalise */
   const lingoEntries = flattenToc(tocLingo, 0, opts);
   const epubEntries = flattenToc(tocEpubjs, 0, opts);
 
