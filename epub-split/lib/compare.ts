@@ -1,32 +1,29 @@
 /*
- * compare.ts – v5: flat‑vs‑nested depth diagnostics
- * =================================================
- * Enhancement
- * -----------
- * Detect the common situation where one TOC is **fully flattened** (all depth 0)
- * while the other preserves nesting.  Instead of listing every label as a
- * mismatch we now print a single summary:
- *
- *     "✗ EpubJS is flat (depth 0) while Lingo has nesting (max depth 1)"
- *
- * If both sides are nested but individual depths differ, we fall back to the
- * previous per‑label diff (respecting `maxLines`).  Depth comparison is thus
- * both concise and general‑purpose.
+ * compare.ts – reset & final (v7.0)
+ * =================================
+ *   – Fresh, full rewrite from the last **working** version (v4) plus:
+ *       • label normalisation during flattening (trim + collapse WS)
+ *       • href normalisation (already present)
+ *       • flat‑vs‑nested tree summary
+ *       • explicit variable names throughout
+ *   – Tested with `tsc --noEmit` → passes.
  */
 
 import { Toc } from "./types";
 
-/*─────────────────────────── Public API ──────────────────────────────*/
+/*───────────────────────── Public API ─────────────────────────*/
 
 export interface CompareOptions {
-  maxLines: number;
-  normalizeHref: boolean;
-  verbose: boolean;
+  maxLines: number; // truncate long lists; Infinity = no truncation
+  normalizeHref: boolean; // strip epub:/OEBPS/ … prefixes & dirs
+  normalizeLabel: boolean; // trim + collapse whitespace
+  verbose: boolean; // reserved for future use
 }
 
-const defaultOpts: CompareOptions = {
+const defaultOptions: CompareOptions = {
   maxLines: 15,
   normalizeHref: true,
+  normalizeLabel: true,
   verbose: false,
 };
 
@@ -35,90 +32,85 @@ export function compareToc(
   tocEpubjs: Toc,
   options: Partial<CompareOptions> = {}
 ): void {
-  const opts: CompareOptions = { ...defaultOpts, ...options };
+  const opts = { ...defaultOptions, ...options } as CompareOptions;
 
-  const flatLingo = flattenToc(tocLingo);
-  const flatEpubjs = flattenToc(tocEpubjs);
+  /* 1 – flatten & normalise */
+  const lingoEntries = flattenToc(tocLingo, 0, opts);
+  const epubEntries = flattenToc(tocEpubjs, 0, opts);
 
-  const labelSetDiff = compareLabelSet(flatLingo, flatEpubjs);
-  const hrefSetDiff = compareHrefSet(flatLingo, flatEpubjs, opts);
-  const orderDiff = compareLabelOrder(flatLingo, flatEpubjs, labelSetDiff);
-  const depthDiff = compareTreeDepth(flatLingo, flatEpubjs, labelSetDiff);
+  /* 2 – compare */
+  const labelDiff = compareLabelSet(lingoEntries, epubEntries);
+  const hrefDiff = compareHrefSet(lingoEntries, epubEntries, opts);
+  const orderDiff = compareLabelOrder(lingoEntries, epubEntries, labelDiff);
+  const depthDiff = compareTreeDepth(lingoEntries, epubEntries, labelDiff);
 
-  showLabelSetDiff(labelSetDiff, opts);
-  showHrefSetDiff(hrefSetDiff, opts);
+  /* 3 – report */
+  showLabelSetDiff(labelDiff, opts);
+  showHrefSetDiff(hrefDiff, opts);
   showLabelOrderDiff(orderDiff, opts);
   showDepthDiff(depthDiff, opts);
 }
 
-/*──────────────────── Comparison helpers (logic) ─────────────────────*/
+/*──────────────────────── Logic layer ────────────────────────*/
 
 function compareLabelSet(
   lingo: FlatEntry[],
-  epubjs: FlatEntry[]
+  epub: FlatEntry[]
 ): DiffResult<string> {
-  const a = new Set(lingo.map((e) => e.label));
-  const b = new Set(epubjs.map((e) => e.label));
+  const setLingo = new Set(lingo.map((e) => e.label));
+  const setEpub = new Set(epub.map((e) => e.label));
   return {
-    onlyInLingo: [...a].filter((x) => !b.has(x)),
-    onlyInEpubjs: [...b].filter((x) => !a.has(x)),
+    onlyInLingo: [...setLingo].filter((l) => !setEpub.has(l)),
+    onlyInEpubjs: [...setEpub].filter((l) => !setLingo.has(l)),
   };
 }
 
 function compareHrefSet(
   lingo: FlatEntry[],
-  epubjs: FlatEntry[],
+  epub: FlatEntry[],
   opts: CompareOptions
 ): DiffResult<string> {
-  const norm = (s: string) => (opts.normalizeHref ? normaliseHref(s) : s);
-  const a = new Set(lingo.map((e) => norm(e.href)));
-  const b = new Set(epubjs.map((e) => norm(e.href)));
+  const norm = (h: string) => (opts.normalizeHref ? normaliseHref(h) : h);
+  const setLingo = new Set(lingo.map((e) => norm(e.href)));
+  const setEpub = new Set(epub.map((e) => norm(e.href)));
   return {
-    onlyInLingo: [...a].filter((x) => !b.has(x)),
-    onlyInEpubjs: [...b].filter((x) => !a.has(x)),
+    onlyInLingo: [...setLingo].filter((h) => !setEpub.has(h)),
+    onlyInEpubjs: [...setEpub].filter((h) => !setLingo.has(h)),
   };
 }
 
 function compareLabelOrder(
   lingo: FlatEntry[],
-  epubjs: FlatEntry[],
-  labelDiff: DiffResult<string>
+  epub: FlatEntry[],
+  diff: DiffResult<string>
 ): OrderDiff {
-  const common = (lbl: string) =>
-    !labelDiff.onlyInLingo.includes(lbl) &&
-    !labelDiff.onlyInEpubjs.includes(lbl);
-
-  const seqA = lingo.filter((e) => common(e.label)).map((e) => e.label);
-  const seqB = epubjs.filter((e) => common(e.label)).map((e) => e.label);
-
-  const len = Math.min(seqA.length, seqB.length);
-  const mismatches: {
-    index: number;
-    lingoLabel: string;
-    epubjsLabel: string;
-  }[] = [];
-  for (let i = 0; i < len; i++)
-    if (seqA[i] !== seqB[i])
-      mismatches.push({ index: i, lingoLabel: seqA[i], epubjsLabel: seqB[i] });
+  const isCommon = (lbl: string) =>
+    !diff.onlyInLingo.includes(lbl) && !diff.onlyInEpubjs.includes(lbl);
+  const seqLingo = lingo.filter((e) => isCommon(e.label)).map((e) => e.label);
+  const seqEpub = epub.filter((e) => isCommon(e.label)).map((e) => e.label);
+  const mismatches: OrderMismatch[] = [];
+  for (let i = 0; i < Math.min(seqLingo.length, seqEpub.length); i++) {
+    if (seqLingo[i] !== seqEpub[i])
+      mismatches.push({
+        index: i,
+        lingoLabel: seqLingo[i],
+        epubjsLabel: seqEpub[i],
+      });
+  }
   return { mismatches };
 }
 
 function compareTreeDepth(
   lingo: FlatEntry[],
-  epubjs: FlatEntry[],
-  labelDiff: DiffResult<string>
+  epub: FlatEntry[],
+  diff: DiffResult<string>
 ): DepthDiff {
-  const common = (lbl: string) =>
-    !labelDiff.onlyInLingo.includes(lbl) &&
-    !labelDiff.onlyInEpubjs.includes(lbl);
-
-  const lDepths = lingo.filter((e) => common(e.label)).map((e) => e.depth);
-  const eDepths = epubjs.filter((e) => common(e.label)).map((e) => e.depth);
-
-  const maxL = Math.max(...lDepths);
-  const maxE = Math.max(...eDepths);
-
-  // Detect fully flat vs nested
+  const isCommon = (lbl: string) =>
+    !diff.onlyInLingo.includes(lbl) && !diff.onlyInEpubjs.includes(lbl);
+  const depthLingo = lingo.filter((e) => isCommon(e.label)).map((e) => e.depth);
+  const depthEpub = epub.filter((e) => isCommon(e.label)).map((e) => e.depth);
+  const maxL = Math.max(...depthLingo);
+  const maxE = Math.max(...depthEpub);
   if ((maxL === 0 && maxE > 0) || (maxE === 0 && maxL > 0)) {
     return {
       flatSide: maxL === 0 ? "lingo" : "epubjs",
@@ -126,50 +118,43 @@ function compareTreeDepth(
       mismatches: [],
     };
   }
-
-  // Otherwise fall back to per‑label diff
-  const depthBy = (arr: FlatEntry[]) =>
-    Object.fromEntries(arr.map((e) => [e.label, e.depth]));
-  const lMap = depthBy(lingo);
-  const eMap = depthBy(epubjs);
-  const mismatches = Object.keys(lMap)
-    .filter(common)
-    .filter((lbl) => lMap[lbl] !== eMap[lbl])
+  const mapL = Object.fromEntries(lingo.map((e) => [e.label, e.depth]));
+  const mapE = Object.fromEntries(epub.map((e) => [e.label, e.depth]));
+  const mismatches = Object.keys(mapL)
+    .filter(isCommon)
+    .filter((lbl) => mapL[lbl] !== mapE[lbl])
     .map((lbl) => ({
       label: lbl,
-      lingoDepth: lMap[lbl],
-      epubjsDepth: eMap[lbl],
+      lingoDepth: mapL[lbl],
+      epubjsDepth: mapE[lbl],
     }));
-
   return { flatSide: null, otherMaxDepth: 0, mismatches };
 }
 
-/*────────────────── Presentation helpers (show) ──────────────────────*/
+/*──────────────────── Presentation layer ────────────────────*/
 
-function showLabelSetDiff(diff: DiffResult<string>, o: CompareOptions) {
-  console.log("\nLabel set comparison (" + summary(diff) + "):");
-  list(diff.onlyInLingo, "Lingo‑only", o);
-  list(diff.onlyInEpubjs, "EpubJS‑only", o);
-  if (!diff.onlyInLingo.length && !diff.onlyInEpubjs.length)
-    _ok("Label sets identical");
+function showLabelSetDiff(d: DiffResult<string>, o: CompareOptions) {
+  console.log(`\nLabel set comparison (${summary(d)}):`);
+  list(d.onlyInLingo, "Lingo‑only", o);
+  list(d.onlyInEpubjs, "EpubJS‑only", o);
+  if (!d.onlyInLingo.length && !d.onlyInEpubjs.length)
+    ok("Label sets identical");
 }
 
-function showHrefSetDiff(diff: DiffResult<string>, o: CompareOptions) {
-  console.log("\nHref set comparison (" + summary(diff) + "):");
-  list(diff.onlyInLingo, "Lingo‑only", o);
-  list(diff.onlyInEpubjs, "EpubJS‑only", o);
-  if (!diff.onlyInLingo.length && !diff.onlyInEpubjs.length)
-    _ok("Href sets identical");
+function showHrefSetDiff(d: DiffResult<string>, o: CompareOptions) {
+  console.log(`\nHref set comparison (${summary(d)}):`);
+  list(d.onlyInLingo, "Lingo‑only", o);
+  list(d.onlyInEpubjs, "EpubJS‑only", o);
+  if (!d.onlyInLingo.length && !d.onlyInEpubjs.length)
+    ok("Href sets identical");
 }
 
-function showLabelOrderDiff(diff: OrderDiff, o: CompareOptions) {
+function showLabelOrderDiff(d: OrderDiff, o: CompareOptions) {
   console.log("\nLabel order comparison:");
-  if (!diff.mismatches.length) {
-    _ok("Order identical after removing non‑common labels");
-    return;
-  }
+  if (!d.mismatches.length)
+    return ok("Order identical after removing non‑common labels");
   list(
-    diff.mismatches.map(
+    d.mismatches.map(
       (m) => `#${m.index}: “${m.lingoLabel}” vs “${m.epubjsLabel}”`
     ),
     undefined,
@@ -177,22 +162,18 @@ function showLabelOrderDiff(diff: OrderDiff, o: CompareOptions) {
   );
 }
 
-function showDepthDiff(diff: DepthDiff, o: CompareOptions) {
+function showDepthDiff(d: DepthDiff, o: CompareOptions) {
   console.log("\nTree depth comparison:");
-  if (diff.flatSide) {
-    const flat = diff.flatSide === "lingo" ? "Lingo" : "EpubJS";
-    const nested = diff.flatSide === "lingo" ? "EpubJS" : "Lingo";
-    _fail(
-      `${flat} is flat (depth 0) while ${nested} has nesting (max depth ${diff.otherMaxDepth})`
+  if (d.flatSide) {
+    const flat = d.flatSide === "lingo" ? "Lingo" : "EpubJS";
+    const nested = d.flatSide === "lingo" ? "EpubJS" : "Lingo";
+    return fail(
+      `${flat} is flat (depth 0) while ${nested} has nesting (max depth ${d.otherMaxDepth})`
     );
-    return;
   }
-  if (!diff.mismatches.length) {
-    _ok("Depth identical for common labels");
-    return;
-  }
+  if (!d.mismatches.length) return ok("Depth identical for common labels");
   list(
-    diff.mismatches.map(
+    d.mismatches.map(
       (m) => `${m.label} – depth lingo:${m.lingoDepth}, epubjs:${m.epubjsDepth}`
     ),
     undefined,
@@ -200,7 +181,7 @@ function showDepthDiff(diff: DepthDiff, o: CompareOptions) {
   );
 }
 
-/*──────────────────────────── Utils ───────────────────────────────────*/
+/*──────────────────── Helper utilities ──────────────────────*/
 
 interface FlatEntry {
   id: string;
@@ -212,37 +193,55 @@ interface DiffResult<T> {
   onlyInLingo: T[];
   onlyInEpubjs: T[];
 }
+interface OrderMismatch {
+  index: number;
+  lingoLabel: string;
+  epubjsLabel: string;
+}
 interface OrderDiff {
-  mismatches: { index: number; lingoLabel: string; epubjsLabel: string }[];
+  mismatches: OrderMismatch[];
+}
+interface DepthMismatch {
+  label: string;
+  lingoDepth: number;
+  epubjsDepth: number;
 }
 interface DepthDiff {
   flatSide: "lingo" | "epubjs" | null;
   otherMaxDepth: number;
-  mismatches: { label: string; lingoDepth: number; epubjsDepth: number }[];
+  mismatches: DepthMismatch[];
 }
 
-function flattenToc(t: Toc, d = 0): FlatEntry[] {
-  return t.flatMap((e) => [
-    { id: e.id, label: e.label, href: e.href, depth: d },
-    ...(e.children ? flattenToc(e.children, d + 1) : []),
+function flattenToc(
+  toc: Toc,
+  depth: number,
+  opts: CompareOptions
+): FlatEntry[] {
+  const normLabel = (s: string) =>
+    opts.normalizeLabel ? normaliseLabel(s) : s;
+  return toc.flatMap((e) => [
+    { id: e.id, label: normLabel(e.label), href: e.href, depth },
+    ...(e.children ? flattenToc(e.children, depth + 1, opts) : []),
   ]);
 }
-function normaliseHref(h: string) {
-  return h.replace(/^epub:/i, "").replace(/.*\//, "");
+
+const normaliseHref = (h: string) =>
+  h.replace(/^epub:/i, "").replace(/.*\//, "");
+const normaliseLabel = (s: string) => s.replace(/\s+/g, " ").trim();
+
+function summary<T>(d: DiffResult<T>): string {
+  const count = d.onlyInLingo.length + d.onlyInEpubjs.length;
+  return `${count} difference${count === 1 ? "" : "s"}`;
 }
-function summary<T>(d: DiffResult<T>) {
-  const n = d.onlyInLingo.length + d.onlyInEpubjs.length;
-  return `${n} difference${n === 1 ? "" : "s"}`;
+
+function list(items: string[], prefix: string | undefined, o: CompareOptions) {
+  if (!items.length) return;
+  const pre = prefix ? `${prefix}: ` : "";
+  const shown = items.slice(0, o.maxLines);
+  shown.forEach((it) => fail(pre + it));
+  const remaining = items.length - shown.length;
+  if (remaining > 0) fail(`… ${remaining} more`);
 }
-function list(a: string[], p: string | undefined, o: CompareOptions) {
-  if (!a.length) return;
-  const pre = p ? `${p}: ` : "";
-  a.slice(0, o.maxLines).forEach((t) => _fail(pre + t));
-  if (a.length > o.maxLines) _fail(`… ${a.length - o.maxLines} more`);
-}
-function _ok(m: string) {
-  console.log(`  ✓ ${m}`);
-}
-function _fail(m: string) {
-  console.log(`  ✗ ${m}`);
-}
+
+const ok = (msg: string) => console.log(`  ✓ ${msg}`);
+const fail = (msg: string) => console.log(`  ✗ ${msg}`);
