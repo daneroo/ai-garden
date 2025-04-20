@@ -4,7 +4,7 @@
 
 import { Toc } from "./types";
 
-/*───────────────────────── Public API ─────────────────────────*/
+// -- Public API
 
 export interface CompareOptions {
   maxLines: number; // truncate long lists; Infinity = no truncation
@@ -27,7 +27,7 @@ export function compareToc(
 ): void {
   const opts = { ...defaultOptions, ...options } as CompareOptions;
 
-  /* quick guard – empty TOC on either side */
+  // - quick guard – empty TOC on either side
   const emptyLingo = tocLingo.length === 0;
   const emptyEpub = tocEpubjs.length === 0;
   if (emptyLingo || emptyEpub) {
@@ -44,17 +44,17 @@ export function compareToc(
     return; // no meaningful comparisons beyond this point
   }
 
-  /* 1 – flatten & normalise – flatten & normalise */
+  // - flatten & normalize – flatten & normalize
   const lingoEntries = flattenToc(tocLingo, 0, opts);
   const epubEntries = flattenToc(tocEpubjs, 0, opts);
 
-  /* 2 – compare */
+  // - compare
   const labelDiff = compareLabelSet(lingoEntries, epubEntries);
   const hrefDiff = compareHrefSet(lingoEntries, epubEntries, opts);
   const orderDiff = compareLabelOrder(lingoEntries, epubEntries, labelDiff);
   const depthDiff = compareTreeDepth(lingoEntries, epubEntries, labelDiff);
 
-  /* aggregate success check – if every diff is empty, short‑circuit with one line */
+  // - aggregate success check – if every diff is empty, short‑circuit with one line
   const allPass =
     labelDiff.onlyInLingo.length === 0 &&
     labelDiff.onlyInEpubjs.length === 0 &&
@@ -74,16 +74,14 @@ export function compareToc(
     showSideBySide(lingoEntries, epubEntries);
   }
 
-  /* 3 – detailed report */
-
-  /* 3 – report */
+  // - 3 – report
   showLabelSetDiff(labelDiff, opts);
   showHrefSetDiff(hrefDiff, opts);
   showLabelOrderDiff(orderDiff, opts);
   showDepthDiff(depthDiff, opts);
 }
 
-/*──────────────────────── Logic layer ────────────────────────*/
+// -- Logic layer
 
 function compareLabelSet(
   lingo: FlatEntry[],
@@ -102,7 +100,7 @@ function compareHrefSet(
   epub: FlatEntry[],
   opts: CompareOptions
 ): DiffResult<string> {
-  const norm = (h: string) => (opts.normalizeHref ? normaliseHref(h) : h);
+  const norm = (h: string) => (opts.normalizeHref ? normalizeHref(h) : h);
   const setLingo = new Set(lingo.map((e) => norm(e.href)));
   const setEpub = new Set(epub.map((e) => norm(e.href)));
   return {
@@ -163,7 +161,7 @@ function compareTreeDepth(
   return { flatSide: null, otherMaxDepth: 0, mismatches };
 }
 
-/*──────────────────── Presentation layer ────────────────────*/
+// -- Presentation layer
 
 function showSideBySide(lingoEntries: FlatEntry[], epubEntries: FlatEntry[]) {
   console.log("\nLabels side by side:\n");
@@ -229,7 +227,7 @@ function showDepthDiff(d: DepthDiff, o: CompareOptions) {
   );
 }
 
-/*──────────────────── Helper utilities ──────────────────────*/
+// -- Helper utilities
 
 interface FlatEntry {
   id: string;
@@ -266,16 +264,16 @@ function flattenToc(
   opts: CompareOptions
 ): FlatEntry[] {
   const normLabel = (s: string) =>
-    opts.normalizeLabel ? normaliseLabel(s) : s;
+    opts.normalizeLabel ? normalizeLabel(s) : s;
   return toc.flatMap((e) => [
     { id: e.id, label: normLabel(e.label), href: e.href, depth },
     ...(e.children ? flattenToc(e.children, depth + 1, opts) : []),
   ]);
 }
 
-const normaliseHref = (h: string) =>
+const normalizeHref = (h: string) =>
   h.replace(/^epub:/i, "").replace(/.*\//, "");
-const normaliseLabel = (s: string) => s.replace(/\s+/g, " ").trim();
+const normalizeLabel = (s: string) => s.replace(/\s+/g, " ").trim();
 
 function summary<T>(d: DiffResult<T>): string {
   const count = d.onlyInLingo.length + d.onlyInEpubjs.length;
