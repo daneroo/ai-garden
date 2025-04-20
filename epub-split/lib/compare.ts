@@ -71,6 +71,7 @@ export function compareToc(
   }
 
   if (opts.verbosity > 0) {
+    showSideBySideTOC(lingoEntries, epubEntries, "label");
     showSideBySideTOC(lingoEntries, epubEntries, "href");
   }
 
@@ -110,6 +111,7 @@ function normalizeHref(href: string): string {
 
   // Decode the filename part but not the fragment
   return decodeURIComponent(normalized) + fragment;
+  // return normalized + fragment;
 }
 
 /**
@@ -212,8 +214,8 @@ function showSideBySideTOC(
   foi: keyof FlatEntry = "label" // field of interest, defaulting to "label"
 ) {
   console.log(`\nSide by Side: ${foi} w/depth\n`);
-  console.log("| # | D | Lingo Label | D | EpubJS Label |");
-  console.log("|---|---|-------------|---|--------------|");
+  console.log("| # | D | Lingo | D | EpubJS |");
+  console.log("|---|---|-------|---|--------|");
   const maxLength = Math.max(lingoEntries.length, epubEntries.length);
 
   function formatEntry(entry: FlatEntry | undefined): string {
