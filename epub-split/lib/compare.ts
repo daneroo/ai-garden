@@ -1,12 +1,5 @@
 /*
- * compare.ts – reset & final (v7.0)
- * =================================
- *   – Fresh, full rewrite from the last **working** version (v4) plus:
- *       • label normalisation during flattening (trim + collapse WS)
- *       • href normalisation (already present)
- *       • flat‑vs‑nested tree summary
- *       • explicit variable names throughout
- *   – Tested with `tsc --noEmit` → passes.
+  This need to be replaced with an accurate description when we are done
  */
 
 import { Toc } from "./types";
@@ -17,14 +10,14 @@ export interface CompareOptions {
   maxLines: number; // truncate long lists; Infinity = no truncation
   normalizeHref: boolean; // strip epub:/OEBPS/ … prefixes & dirs
   normalizeLabel: boolean; // trim + collapse whitespace
-  verbose: boolean; // reserved for future use
+  verbosity: number; // reserved for future use
 }
 
 const defaultOptions: CompareOptions = {
   maxLines: 15,
   normalizeHref: true,
   normalizeLabel: true,
-  verbose: false,
+  verbosity: 0,
 };
 
 export function compareToc(
@@ -38,7 +31,7 @@ export function compareToc(
   const emptyLingo = tocLingo.length === 0;
   const emptyEpub = tocEpubjs.length === 0;
   if (emptyLingo || emptyEpub) {
-    console.log("TOC presence check:");
+    console.log("\nTOC presence check:");
     if (emptyLingo && emptyEpub) {
       fail(
         "Both parsers produced an empty TOC - no further comparisons possible"
@@ -54,6 +47,10 @@ export function compareToc(
   /* 1 – flatten & normalise – flatten & normalise */
   const lingoEntries = flattenToc(tocLingo, 0, opts);
   const epubEntries = flattenToc(tocEpubjs, 0, opts);
+
+  if (opts.verbosity > 0) {
+    // show the two tocs side by side
+  }
 
   /* 2 – compare */
   const labelDiff = compareLabelSet(lingoEntries, epubEntries);
@@ -72,6 +69,7 @@ export function compareToc(
     depthDiff.mismatches.length === 0;
 
   if (allPass) {
+    console.log(``);
     ok("All validations passed");
     return;
   }
