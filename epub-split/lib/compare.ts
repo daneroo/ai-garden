@@ -2,7 +2,7 @@
   This need to be replaced with an accurate description when we are done
  */
 
-import { Toc } from "./types";
+import { Toc } from "./types.ts";
 
 // -- Public API
 
@@ -79,6 +79,30 @@ export function compareToc(
   showHrefSetDiff(hrefDiff, opts);
   showLabelOrderDiff(orderDiff, opts);
   showDepthDiff(depthDiff, opts);
+}
+
+// -- Critical Normalization Functions
+
+/**
+ * Normalizes an href by:
+ * 1. Removing the 'epub:' protocol prefix (case-insensitive)
+ * 2. Stripping directory paths, keeping only the filename
+ * @param href The href string to normalize
+ * @returns The normalized href
+ */
+function normalizeHref(href: string): string {
+  return href.replace(/^epub:/i, "").replace(/.*\//, "");
+}
+
+/**
+ * Normalizes a label by:
+ * 1. Trimming leading/trailing whitespace
+ * 2. Collapsing multiple whitespace characters into a single space
+ * @param label The label string to normalize
+ * @returns The normalized label
+ */
+function normalizeLabel(label: string): string {
+  return label.replace(/\s+/g, " ").trim();
 }
 
 // -- Logic layer
@@ -166,30 +190,31 @@ function compareTreeDepth(
 // Just a utility to show the TOC side by side
 function showSideBySideTOC(
   lingoEntries: FlatEntry[],
-  epubEntries: FlatEntry[]
+  epubEntries: FlatEntry[],
+  foi: keyof FlatEntry = "label" // field of interest, defaulting to "label"
 ) {
-  const foi = "label"; // field of interest: "label" | "href" | "id"
   console.log("\nLabels side by side:\n");
-  console.log("| # | Depth | Lingo Label | Depth | EpubJS Label |");
-  console.log("|---|-------|-------------|-------|--------------|");
+  console.log("| # | D | Lingo Label | D | EpubJS Label |");
+  console.log("|---|---|-------------|---|--------------|");
   const maxLength = Math.max(lingoEntries.length, epubEntries.length);
+
+  function formatEntry(entry: FlatEntry | undefined): string {
+    if (!entry) return "-";
+    const indentChar = "┄"; // Unicode box drawing character (U+2504)
+    const indent = indentChar.repeat(entry.depth * 2);
+    return indent + entry[foi];
+  }
+
   for (let i = 0; i < maxLength; i++) {
-    const lingoDepth = i < lingoEntries.length ? lingoEntries[i].depth : "-";
-    const epubDepth = i < epubEntries.length ? epubEntries[i].depth : "-";
-
-    const indentChar = "┄";
-    const lingoIndent = indentChar.repeat(+lingoDepth * 2);
-    const epubIndent = indentChar.repeat(+epubDepth * 2);
-
-    const lingoValue =
-      i < lingoEntries.length ? lingoIndent + lingoEntries[i][foi] : "-";
-    const epubValue =
-      i < epubEntries.length ? epubIndent + epubEntries[i][foi] : "-";
+    const lingoEntry = lingoEntries?.[i];
+    const epubEntry = epubEntries?.[i];
 
     console.log(
-      `| ${i.toString().padStart(3)} | ${lingoDepth} | ${lingoValue.padEnd(
-        40
-      )} | ${epubDepth} | ${epubValue.padEnd(40)} |`
+      `| ${i.toString().padStart(3)} | ${
+        lingoEntry?.depth ?? "-"
+      } | ${formatEntry(lingoEntry).padEnd(40)} | ${
+        epubEntry?.depth ?? "-"
+      } | ${formatEntry(epubEntry).padEnd(40)} |`
     );
   }
 }
@@ -285,10 +310,6 @@ function flattenToc(
     ...(e.children ? flattenToc(e.children, depth + 1, opts) : []),
   ]);
 }
-
-const normalizeHref = (h: string) =>
-  h.replace(/^epub:/i, "").replace(/.*\//, "");
-const normalizeLabel = (s: string) => s.replace(/\s+/g, " ").trim();
 
 function summary<T>(d: DiffResult<T>): string {
   const count = d.onlyInLingo.length + d.onlyInEpubjs.length;
