@@ -78,7 +78,7 @@ window.parseEpubFromInputFiles = async function () {
     for (let entry of entries) {
       const { id, href, label, subitems } = entry;
 
-      const shouldGetContent = true;
+      const shouldGetContent = false;
       let fixedHref;
       let section;
       let textContent;

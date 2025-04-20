@@ -1,6 +1,11 @@
 import { basename } from "node:path";
 import type { TocEntry, Toc } from "./types.ts";
 
+// Add type declaration for Set.symmetricDifference
+declare interface Set<T> {
+  symmetricDifference(other: Set<T>): Set<T>;
+}
+
 /**
  * Displays the table of contents in a hierarchical format
  * @param toc - The table of contents to display
@@ -16,12 +21,13 @@ export function showTOC(toc: Toc, level = 0) {
   //   "textContent": "...",
   //   "warning": "section not found"
   // }
+  const SHOW_CONTENT = false; // should match augmentEntriesAndChildren/shouldGetContent=true
   const indent = " ".repeat(level * 2);
   toc.forEach((item) => {
     // print the indented title of the item *trimmed* (remove leading and trailing whitespace)
     console.log(`${indent}- ${item.label.trim()} (${item?.href})`);
     // if item has textContent, print it
-    if (item.textContent) {
+    if (SHOW_CONTENT && item.textContent) {
       const cleanedContent = item.textContent
         .replace(/\s+/g, " ") // Replace multiple spaces with a single space
         .replace(/\n+/g, "\n") // Replace multiple newlines with a single newline
@@ -114,6 +120,15 @@ function countTOC(toc: Toc): number {
 }
 
 /**
+ * Flattens a table of contents into a single array of entries
+ * @param toc - The table of contents to flatten
+ * @returns Flattened table of contents
+ */
+function flattenToc(toc: Toc): TocEntry[] {
+  return toc.flatMap((item) => [item, ...flattenToc(item.children ?? [])]);
+}
+
+/**
  * Compares two table of contents and displays their differences
  * Needs much work, and not sure it is worth diving into epubjs vs lingo differences
  * @param tocLingo - First table of contents to compare
@@ -143,6 +158,9 @@ export function compareToc(
 
   // First row: total counts
   const totalMatch = tocLingo.length === tocEpubjs.length;
+  // ok as a temporary measure, we will flatten both and compare counts
+  tocLingo = flattenToc(tocLingo);
+  tocEpubjs = flattenToc(tocEpubjs);
   console.log(
     `| ${checkOrXmark(totalMatch)} | ${tocLingo.length
       .toString()
@@ -152,6 +170,33 @@ export function compareToc(
   );
 
   if (!SHOW_DETAILS) return;
+
+  if (tocLingo.length === 0 || tocEpubjs.length === 0) {
+    console.log(
+      `| ✗ | ${"".padStart(5)} | ${"".padStart(5)} | a toc is missing |`
+    );
+    return;
+  }
+  // calculate the symmetric difference of the two arrays, for a givven field
+  const lingoSet = new Set(tocLingo.map((entry) => entry.label.trim()));
+  const epubjsSet = new Set(tocEpubjs.map((entry) => entry.label.trim()));
+  const lingoMinusEpubjs = [...lingoSet].filter((x) => !epubjsSet.has(x));
+  const epubjsMinusLingo = [...epubjsSet].filter((x) => !lingoSet.has(x));
+  const emptyDiff =
+    lingoMinusEpubjs.length === 0 && epubjsMinusLingo.length === 0;
+  const msg = emptyDiff
+    ? "match |delta(lingo,epubjs)|"
+    : `lingo only: {${lingoMinusEpubjs}} epubjs only: {${epubjsMinusLingo}}`;
+  console.log(
+    `| ${checkOrXmark(emptyDiff)} | ${"".padStart(5)} | ${"".padStart(
+      5
+    )} | ${msg} |`
+  );
+  // return;
+
+  // tocLingo.forEach((entry, i) => {
+  //   console.log(`| ? ${i} |${entry.label} |${tocEpubjs?.[i]?.label} |`);
+  // });
 
   // showResultDetail is a helper function to display the result of a comparison
   // | ✓ |      |     | label's match |
