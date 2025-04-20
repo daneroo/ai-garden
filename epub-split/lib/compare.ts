@@ -44,15 +44,11 @@ export function compareToc(
     return; // no meaningful comparisons beyond this point
   }
 
-  /* 1 – flatten & normalise – flatten & normalise */
+  /* 1 – flatten & normalise – flatten & normalise */
   const lingoEntries = flattenToc(tocLingo, 0, opts);
   const epubEntries = flattenToc(tocEpubjs, 0, opts);
 
-  if (opts.verbosity > 0) {
-    // show the two tocs side by side
-  }
-
-  /* 2 – compare */
+  /* 2 – compare */
   const labelDiff = compareLabelSet(lingoEntries, epubEntries);
   const hrefDiff = compareHrefSet(lingoEntries, epubEntries, opts);
   const orderDiff = compareLabelOrder(lingoEntries, epubEntries, labelDiff);
@@ -74,9 +70,13 @@ export function compareToc(
     return;
   }
 
+  if (opts.verbosity > 0) {
+    showSideBySide(lingoEntries, epubEntries);
+  }
+
   /* 3 – detailed report */
 
-  /* 3 – report */
+  /* 3 – report */
   showLabelSetDiff(labelDiff, opts);
   showHrefSetDiff(hrefDiff, opts);
   showLabelOrderDiff(orderDiff, opts);
@@ -165,6 +165,22 @@ function compareTreeDepth(
 
 /*──────────────────── Presentation layer ────────────────────*/
 
+function showSideBySide(lingoEntries: FlatEntry[], epubEntries: FlatEntry[]) {
+  console.log("\nLabels side by side:\n");
+  console.log("| # | Lingo Label | EpubJS Label |");
+  console.log("|---|-------------|--------------|");
+  const maxLength = Math.max(lingoEntries.length, epubEntries.length);
+  for (let i = 0; i < maxLength; i++) {
+    const lingoLabel = i < lingoEntries.length ? lingoEntries[i].label : "-";
+    const epubLabel = i < epubEntries.length ? epubEntries[i].label : "-";
+    console.log(
+      `| ${i.toString().padStart(3)} | ${lingoLabel.padEnd(
+        40
+      )} | ${epubLabel} |`
+    );
+  }
+}
+
 function showLabelSetDiff(d: DiffResult<string>, o: CompareOptions) {
   console.log(`\nLabel set comparison (${summary(d)}):`);
   list(d.onlyInLingo, "Lingo‑only", o);
@@ -187,7 +203,7 @@ function showLabelOrderDiff(d: OrderDiff, o: CompareOptions) {
     return ok("Order identical after removing non‑common labels");
   list(
     d.mismatches.map(
-      (m) => `#${m.index}: “${m.lingoLabel}” vs “${m.epubjsLabel}”`
+      (m) => `#${m.index}: " ${m.lingoLabel} " vs " ${m.epubjsLabel}"`
     ),
     undefined,
     o
@@ -200,7 +216,7 @@ function showDepthDiff(d: DepthDiff, o: CompareOptions) {
     const flat = d.flatSide === "lingo" ? "Lingo" : "EpubJS";
     const nested = d.flatSide === "lingo" ? "EpubJS" : "Lingo";
     return fail(
-      `${flat} is flat (depth 0) while ${nested} has nesting (max depth ${d.otherMaxDepth})`
+      `${flat} is flat (depth 0) while ${nested} has nesting (max depth ${d.otherMaxDepth})`
     );
   }
   if (!d.mismatches.length) return ok("Depth identical for common labels");
