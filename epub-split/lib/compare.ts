@@ -71,7 +71,7 @@ export function compareToc(
   }
 
   if (opts.verbosity > 0) {
-    showSideBySideTOC(lingoEntries, epubEntries);
+    showSideBySideTOC(lingoEntries, epubEntries, "href");
   }
 
   // - 3 – report
@@ -84,14 +84,32 @@ export function compareToc(
 // -- Critical Normalization Functions
 
 /**
- * Normalizes an href by:
- * 1. Removing the 'epub:' protocol prefix (case-insensitive)
- * 2. Stripping directory paths, keeping only the filename
+ * Normalizes an href by applying these transformations in order:
+ * 1. Removes the 'epub:' protocol prefix (case-insensitive)
+ *    e.g., "epub:OEBPS/file.html" -> "OEBPS/file.html"
+ * 2. Strips directory paths, keeping only the filename
+ *    e.g., "OEBPS/Text/file.html" -> "file.html"
+ * 3. URL-decodes the filename (preserving any fragment identifier after #)
+ *    e.g., "Time_of_Contempt_%28The_Witcher%29.html" -> "Time_of_Contempt_(The_Witcher).html"
+ *
+ * Note: Fragment identifiers (#section) are preserved as they are significant for navigation
+ * e.g., "epub:OEBPS/chapter1.xhtml#section2" -> "chapter1.xhtml#section2"
+ *
  * @param href The href string to normalize
  * @returns The normalized href
  */
 function normalizeHref(href: string): string {
-  return href.replace(/^epub:/i, "").replace(/.*\//, "");
+  // Split href into base and fragment (if any)
+  const [base, ...fragments] = href.split("#");
+  const fragment = fragments.length ? "#" + fragments.join("#") : "";
+
+  // Apply transformations to base part only
+  const normalized = base
+    .replace(/^epub:/i, "") // Remove epub: prefix
+    .replace(/.*\//, ""); // Keep only filename
+
+  // Decode the filename part but not the fragment
+  return decodeURIComponent(normalized) + fragment;
 }
 
 /**
@@ -193,7 +211,7 @@ function showSideBySideTOC(
   epubEntries: FlatEntry[],
   foi: keyof FlatEntry = "label" // field of interest, defaulting to "label"
 ) {
-  console.log("\nLabels side by side:\n");
+  console.log(`\nSide by Side: ${foi} w/depth\n`);
   console.log("| # | D | Lingo Label | D | EpubJS Label |");
   console.log("|---|---|-------------|---|--------------|");
   const maxLength = Math.max(lingoEntries.length, epubEntries.length);
