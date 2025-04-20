@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock JSONL Viewer</title>
+    <!-- React from CDN -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 1rem;
+      }
+      .entry {
+        padding: 0.5rem;
+        border-bottom: 1px solid #eee;
+      }
+      .timestamp {
+        font-weight: bold;
+        margin-right: 0.5rem;
+      }
+      .counter {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Clock JSONL Viewer</h1>
+    <div id="root"></div>
+    <script>
+      const fetchURL = "data/data.jsonl";
+      const { useState, useEffect } = React;
+
+      function App() {
+        const [lines, setLines] = useState([]);
+        const [elapsed, setElapsed] = useState(0);
+
+        async function fetchLines() {
+          try {
+            const start = Date.now();
+            const res = await fetch(fetchURL + "?ts=" + Date.now());
+            const text = await res.text();
+            const end = Date.now();
+
+            setElapsed(end - start);
+
+            const objs = text
+              .trim()
+              .split("\n")
+              .filter(Boolean)
+              .map(JSON.parse);
+
+            setLines(objs);
+          } catch (err) {
+            console.error("Fetch error:", err);
+          }
+        }
+
+        useEffect(() => {
+          fetchLines();
+          const id = setInterval(fetchLines, 1000);
+          return () => clearInterval(id);
+        }, []);
+
+        // take last 20 and reverse
+        const recent = lines.slice(-20).reverse();
+
+        return React.createElement(
+          "div",
+          null,
+          // counter with elapsed time
+          React.createElement(
+            "div",
+            { className: "counter" },
+            `Count: ${lines.length}  elapsed: ${elapsed}ms`
+          ),
+          // recent entries
+          recent.map((obj, i) =>
+            React.createElement(
+              "div",
+              { key: i, className: "entry" },
+              React.createElement(
+                "span",
+                { className: "timestamp" },
+                obj.timestamp
+              ),
+              React.createElement("span", null, obj.fizzbuzz)
+            )
+          )
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(
+        React.createElement(App)
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "tui-pubsub",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "pnpx tsx index.ts -h",
+    "test": "pnpm typecheck",
+    "typecheck": "pnpm typecheck:deno && pnpm typecheck:node",
+    "typecheck:deno": "deno check *.ts **/*.ts",
+    "typecheck:node": "pnpm exec tsc --noEmit --esModuleInterop --allowImportingTsExtensions --downlevelIteration --target es2015 --moduleResolution node lib/*.ts *.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.7.1",
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^22.14.1",
+    "@types/yargs": "^17.0.33",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "yargs": "^17.7.2"
+  }
+}

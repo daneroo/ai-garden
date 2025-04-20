@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock Spans Viewer with NATS (ESM)</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 1rem;
+      }
+      .entry {
+        padding: 0.5rem;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+      }
+      .timestamp {
+        font-weight: bold;
+        margin-right: 1rem;
+      }
+      .counter {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+      .duration {
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Clock Spans Viewer</h1>
+    <div id="root"></div>
+
+    <script type="module">
+      import React, { useState, useEffect } from "https://esm.sh/react@18.2.0";
+      import ReactDOM from "https://esm.sh/react-dom@18.2.0/client";
+      import { wsconnect } from "https://esm.run/@nats-io/nats-core";
+
+      function App() {
+        const [spans, setSpans] = useState([]);
+        const [count, setCount] = useState(0);
+        const [lastDuration, setLastDuration] = useState(0);
+
+        useEffect(() => {
+          (async () => {
+            try {
+              const nc = await wsconnect({ servers: ["ws://localhost:9222"] });
+              const sub = nc.subscribe("clock");
+              let prev = null;
+
+              for await (const m of sub) {
+                const raw = new TextDecoder().decode(m.data).trim();
+
+                if (!raw.startsWith("{")) {
+                  console.warn(`Ignored non-JSON message: ${raw}`);
+                  continue;
+                }
+
+                let tick;
+                try {
+                  tick = JSON.parse(raw);
+                } catch (e) {
+                  console.error(
+                    `JSON parse error for message: ${raw}\nError: ${e.message}`
+                  );
+                  continue;
+                }
+
+                const cur = tick.timestamp;
+                const dur = prev ? new Date(cur) - new Date(prev) : 0;
+                prev = cur;
+
+                const span = {
+                  timestamp: cur,
+                  fizzbuzz: tick.fizzbuzz,
+                  duration: dur,
+                };
+                setSpans((s) => [...s.slice(-99), span]);
+                setCount((c) => c + 1);
+                setLastDuration(dur);
+              }
+            } catch (err) {
+              console.error("NATS connection error:", err);
+            }
+          })();
+        }, []);
+
+        const recent = spans.slice(-20).reverse();
+
+        return React.createElement(
+          "div",
+          null,
+          React.createElement(
+            "div",
+            { className: "counter" },
+            `Count: ${count}  last span: ${lastDuration}ms`
+          ),
+          recent.map((span, i) =>
+            React.createElement(
+              "div",
+              { key: i, className: "entry" },
+              React.createElement(
+                "div",
+                null,
+                React.createElement(
+                  "span",
+                  { className: "timestamp" },
+                  span.timestamp
+                ),
+                React.createElement("span", null, span.fizzbuzz)
+              ),
+              React.createElement(
+                "div",
+                { className: "duration" },
+                `${span.duration}ms`
+              )
+            )
+          )
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(React.createElement(App));
+    </script>
+  </body>
+</html>
