@@ -14,10 +14,11 @@
 ## General coding style
 
 - The code is TypeScript and functional (no classes).
+- When you write functions, always put **calling code before called code**.
+- Always use proper `function (){}` syntax, not arrow functions.
 - Logic and presentation **must be separated**:
   - `compareXXX` → **pure** comparison logic, no console output.
   - `showXXX` → presentation layer (console, UTF‑8 ✓/✗, never emojis).
-- If you write helper functions, always put **calling code before called code**.
 - Tiny re‑usable helpers (e.g. `_showListItem`) are allowed inside *showXXX*.
 
 ## Normalization rules
