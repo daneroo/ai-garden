@@ -222,6 +222,7 @@ function showSideBySideTOC(
     if (!entry) return "-";
     const indentChar = "┄"; // Unicode box drawing character (U+2504)
     const indent = indentChar.repeat(entry.depth * 2);
+    // TODO(daneroo): must/could/should escape special characters [|] with .toString().replace(/[|]/g, "\\|");
     return indent + entry[foi];
   }
 

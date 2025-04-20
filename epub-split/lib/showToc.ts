@@ -1,11 +1,6 @@
 import { basename } from "node:path";
 import type { TocEntry, Toc } from "./types.ts";
 
-// Add type declaration for Set.symmetricDifference
-declare interface Set<T> {
-  symmetricDifference(other: Set<T>): Set<T>;
-}
-
 /**
  * Displays the table of contents in a hierarchical format
  * @param toc - The table of contents to display
@@ -76,7 +71,7 @@ export function showSummary(
       // console.log(`- warning: ${warning}`);
       console.log(`|   |       |       | ${warning} |`);
     }
-  } catch (error) {
+  } catch (_error) {
     console.log(
       `| ✗ | ${"-1".padStart(5)} | ${"-1".padStart(5)} | ${basename(
         bookPath
@@ -117,177 +112,4 @@ function countTOC(toc: Toc): number {
     }
   });
   return count;
-}
-
-/**
- * Flattens a table of contents into a single array of entries
- * @param toc - The table of contents to flatten
- * @returns Flattened table of contents
- */
-function flattenToc(toc: Toc): TocEntry[] {
-  return toc.flatMap((item) => [item, ...flattenToc(item.children ?? [])]);
-}
-
-/**
- * Compares two table of contents and displays their differences
- * Needs much work, and not sure it is worth diving into epubjs vs lingo differences
- * @param tocLingo - First table of contents to compare
- * @param tocEpubjs - Second table of contents to compare
- * @param bookPath - Path of the book being compared
- * @param showHeader - Whether to display the table header
- */
-export function compareToc(
-  tocLingo: Toc,
-  tocEpubjs: Toc,
-  bookPath: string,
-  showHeader: boolean
-): void {
-  // the recursive comparison of fields: id, href, label is sketchy
-  // and not sure it is worth diving into epubjs vs lingo differences
-  const SHOW_DETAILS = true;
-  if (showHeader) {
-    console.log(`\n## Comparing parsers\n`);
-    if (SHOW_DETAILS) {
-      console.log(`including field comparisons: id, href, label`);
-    } else {
-      console.log(`Only comparing TOC total counts`);
-    }
-    console.log("\n| Status | Lingo | Epubjs | Book |");
-    console.log("|--------|-------|-------|------|");
-  }
-
-  // First row: total counts
-  const totalMatch = tocLingo.length === tocEpubjs.length;
-  // ok as a temporary measure, we will flatten both and compare counts
-  tocLingo = flattenToc(tocLingo);
-  tocEpubjs = flattenToc(tocEpubjs);
-  console.log(
-    `| ${checkOrXmark(totalMatch)} | ${tocLingo.length
-      .toString()
-      .padStart(5)} | ${tocEpubjs.length.toString().padStart(5)} | ${basename(
-      bookPath
-    )} |`
-  );
-
-  if (!SHOW_DETAILS) return;
-
-  if (tocLingo.length === 0 || tocEpubjs.length === 0) {
-    console.log(
-      `| ✗ | ${"".padStart(5)} | ${"".padStart(5)} | a toc is missing |`
-    );
-    return;
-  }
-  // calculate the symmetric difference of the two arrays, for a givven field
-  const lingoSet = new Set(tocLingo.map((entry) => entry.label.trim()));
-  const epubjsSet = new Set(tocEpubjs.map((entry) => entry.label.trim()));
-  const lingoMinusEpubjs = [...lingoSet].filter((x) => !epubjsSet.has(x));
-  const epubjsMinusLingo = [...epubjsSet].filter((x) => !lingoSet.has(x));
-  const emptyDiff =
-    lingoMinusEpubjs.length === 0 && epubjsMinusLingo.length === 0;
-  const msg = emptyDiff
-    ? "match |delta(lingo,epubjs)|"
-    : `lingo only: {${lingoMinusEpubjs}} epubjs only: {${epubjsMinusLingo}}`;
-  console.log(
-    `| ${checkOrXmark(emptyDiff)} | ${"".padStart(5)} | ${"".padStart(
-      5
-    )} | ${msg} |`
-  );
-  // return;
-
-  // tocLingo.forEach((entry, i) => {
-  //   console.log(`| ? ${i} |${entry.label} |${tocEpubjs?.[i]?.label} |`);
-  // });
-
-  // showResultDetail is a helper function to display the result of a comparison
-  // | ✓ |      |     | label's match |
-  // | ✗ |      |     | label's differ |
-  function showResultDetail(matchBoolean: boolean, label: string): void {
-    console.log(
-      `| ${checkOrXmark(matchBoolean)} | ${"".padStart(5)} | ${"".padStart(
-        5
-      )} | ${label}'s ${matchBoolean ? "match" : "differ"} |`
-    );
-  }
-  // Compare IDs - does not work - ebubjs and lingo have different ids
-  // console.debug("compareToc: comparing ids");
-  const idMatch = tocLingo.every((entry, i) =>
-    compareEntries(entry, tocEpubjs[i], (a, b) => {
-      if (a.id !== b.id) {
-        console.debug(`| ✗ |       |       |   a.id:${a.id} b.id:${b.id} |`);
-      }
-      return a.id === b.id;
-    })
-  );
-  showResultDetail(idMatch, "id");
-
-  // Compare hrefs
-  // console.debug("compareToc: comparing hrefs");
-  const hrefMatch = tocLingo.every((entry, i) =>
-    compareEntries(entry, tocEpubjs[i], (a, b) => {
-      // remove any epub: prefix from hrefs
-      const aHref = a.href.replace(/^epub:/, "");
-      const bHref = b.href.replace(/^epub:/, "");
-      if (aHref !== bHref) {
-        console.debug(
-          `| ✗ |       |       |   a.href:${aHref} b.href:${bHref} |`
-        );
-      }
-      return aHref === bHref;
-    })
-  );
-  showResultDetail(hrefMatch, "href");
-
-  // Compare labels
-  // console.debug("compareToc: comparing labels");
-  const labelMatch = tocLingo.every((entry, i) =>
-    compareEntries(entry, tocEpubjs[i], (a, b) => {
-      if (a.label.trim() !== b.label.trim()) {
-        console.debug(
-          `| ✗ |       |       |   a.label:${a.label} b.label:${b.label}`
-        );
-      }
-      return a.label.trim() === b.label.trim();
-    })
-  );
-  showResultDetail(labelMatch, "label");
-}
-
-/**
- * Compares two TOC entries recursively
- * @param a - First TOC entry
- * @param b - Second TOC entry
- * @param compare - Comparison function
- * @returns Whether the entries and their children match
- */
-function compareEntries(
-  a: TocEntry,
-  b: TocEntry,
-  compare: (a: TocEntry, b: TocEntry) => boolean
-): boolean {
-  if (!a || !b) {
-    console.debug(
-      `| ✗ |       |       |   !!a:${!!a} !!b:${!!b} a:${a} b:${b}`
-    );
-    return false;
-  }
-  if (!compare(a, b)) return false;
-  if ((a.children?.length ?? 0) !== (b.children?.length ?? 0)) {
-    console.debug(
-      `compareEntries: a.children?.length:${a.children?.length} b.children?.length:${b.children?.length}`
-    );
-    return false;
-  }
-  if (!a.children || !b.children) return true;
-  return a.children.every((childA, i) =>
-    compareEntries(childA, b.children![i], compare)
-  );
-}
-
-/**
- * Returns a checkmark or xmark based on a boolean value
- * @param value - The value to check
- * @returns "✓" or "✗"
- */
-function checkOrXmark(value: boolean): string {
-  return value ? "✓" : "✗";
 }

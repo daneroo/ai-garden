@@ -83,7 +83,7 @@ export type Toc = TocEntry[];
 
 ## Required implementation outline
 
-1. `flattenToc` – depth‑first traversal returning `{ id, href, label, depth }[]` with normalisation applied.
+1. `flattenToc` – depth‑first traversal returning `{ id, href, label, depth }[]` with normalization applied.
 2. `compareLabelSet` / `showLabelSetDiff`
 3. `compareHrefSet` / `showHrefSetDiff`
 4. `compareLabelOrder` / `showLabelOrderDiff`
@@ -100,7 +100,7 @@ export function compareToc(
   tocEpubjs: Toc,
   options: Partial<CompareOptions> = {}
 ): void {
-  // 1. Flatten & normalise
+  // 1. Flatten & normalize
   // 2. Run compareXXX helpers
   // 3. Run showXXX helpers
 }

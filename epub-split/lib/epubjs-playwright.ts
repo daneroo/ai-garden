@@ -19,8 +19,6 @@ export async function parse(
   opts: ParseOptions = {},
   resourceSaveDir: string = "./data/images"
 ): Promise<ParserResult> {
-  // console.error(`epubjs - invoked on ${basename(bookPath)}`);
-
   const { verbosity = 0 } = opts;
   // optional upload integrity checks on size and sha - well tested and not necessary
   const checkIntegrity = false;

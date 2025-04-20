@@ -6,7 +6,8 @@ import { basename } from "node:path";
 
 import { parse as parseEpubjs } from "./lib/epubjs-playwright.ts";
 import { parse as parseLingo } from "./lib/epub-parser-lingo.ts";
-import { showTOC, showSummary, compareToc } from "./lib/showToc.ts";
+import { showTOC, showSummary } from "./lib/showToc.ts";
+import { compareToc } from "./lib/compare.ts";
 import { unzipOneOfMany } from "./lib/unzip.ts";
 import { ParserResult } from "./lib/types.ts";
 import { exit } from "node:process";
@@ -74,7 +75,7 @@ async function main(): Promise<void> {
   // resolve the root path (includes cleaning)
   const rootPath = resolveRootPath(unverifiedRootPath);
   console.log(
-    `# Extracting structure and content of ePub books with ${parser}\n`
+    `# Extracting structure and content of ePub books with ${parser}\n<!-- spellchecker: disable -->\n`
   );
   console.log(`Searching books in ${rootPath}...`);
   const bookPaths = await findBookPaths(rootPath);
@@ -104,7 +105,9 @@ async function main(): Promise<void> {
         // do these sequentially
         const { toc: tocEpubjs } = await parseEpubjs(bookPath, { verbosity });
         const { toc: tocLingo } = await parseLingo(bookPath, { verbosity });
-        compareToc(tocLingo, tocEpubjs, bookPath, bkIndex === 0);
+        console.log(`\n## ${basename(bookPath)}\n`);
+
+        compareToc(tocLingo, tocEpubjs, { verbosity });
       } else {
         let parseResult: ParserResult; // parseResult is the result of parsing the book
         if (parser === "lingo") {
@@ -115,23 +118,12 @@ async function main(): Promise<void> {
           throw new Error(`Unknown parser: ${parser}`);
         }
 
-        // if (verbosity > 1) {
-        //   const { errors, warnings, toc } = parseResult;
-        //   // console.log(
-        //   //   `## ${basename(bookPath)} ${parser} e:${errors.length} w:${
-        //   //     warnings.length
-        //   //   } toc:${toc.length}`
-        //   // );
-        //   continue;
-        // }
-
         if (summary) {
           showSummary(parseResult.toc, bookPath, bkIndex === 0);
           if (
             parseResult.errors.length > 0 ||
             parseResult.warnings.length > 0
           ) {
-            // console.log(`\n## ${basename(bookPath)}\n`);
             if (parseResult.errors.length > 0) {
               console.log(
                 `|   |       |       | found ${parseResult.errors.length} errors |`
