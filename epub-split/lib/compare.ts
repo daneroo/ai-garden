@@ -71,7 +71,7 @@ export function compareToc(
   }
 
   if (opts.verbosity > 0) {
-    showSideBySide(lingoEntries, epubEntries);
+    showSideBySideTOC(lingoEntries, epubEntries);
   }
 
   // - 3 – report
@@ -163,18 +163,33 @@ function compareTreeDepth(
 
 // -- Presentation layer
 
-function showSideBySide(lingoEntries: FlatEntry[], epubEntries: FlatEntry[]) {
+// Just a utility to show the TOC side by side
+function showSideBySideTOC(
+  lingoEntries: FlatEntry[],
+  epubEntries: FlatEntry[]
+) {
+  const foi = "label"; // field of interest: "label" | "href" | "id"
   console.log("\nLabels side by side:\n");
-  console.log("| # | Lingo Label | EpubJS Label |");
-  console.log("|---|-------------|--------------|");
+  console.log("| # | Depth | Lingo Label | Depth | EpubJS Label |");
+  console.log("|---|-------|-------------|-------|--------------|");
   const maxLength = Math.max(lingoEntries.length, epubEntries.length);
   for (let i = 0; i < maxLength; i++) {
-    const lingoLabel = i < lingoEntries.length ? lingoEntries[i].label : "-";
-    const epubLabel = i < epubEntries.length ? epubEntries[i].label : "-";
+    const lingoDepth = i < lingoEntries.length ? lingoEntries[i].depth : "-";
+    const epubDepth = i < epubEntries.length ? epubEntries[i].depth : "-";
+
+    const indentChar = "┄";
+    const lingoIndent = indentChar.repeat(+lingoDepth * 2);
+    const epubIndent = indentChar.repeat(+epubDepth * 2);
+
+    const lingoValue =
+      i < lingoEntries.length ? lingoIndent + lingoEntries[i][foi] : "-";
+    const epubValue =
+      i < epubEntries.length ? epubIndent + epubEntries[i][foi] : "-";
+
     console.log(
-      `| ${i.toString().padStart(3)} | ${lingoLabel.padEnd(
+      `| ${i.toString().padStart(3)} | ${lingoDepth} | ${lingoValue.padEnd(
         40
-      )} | ${epubLabel} |`
+      )} | ${epubDepth} | ${epubValue.padEnd(40)} |`
     );
   }
 }
