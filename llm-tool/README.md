@@ -6,6 +6,12 @@ This covers [Simn Willison's](https://simonwillison.net/) llm tool.
 - [llm-ollama](https://github.com/taketwo/llm-ollama)
 - [llm-mlx](https://github.com/simonw/llm-mlx)
 
+## TODO
+
+- [ ] try llm-mlx
+  - [ ] figure out where it puts it's models
+  - [ ] compare speed for equivalent models
+
 ## Hello World
 
 ```bash
