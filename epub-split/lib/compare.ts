@@ -24,7 +24,7 @@ export function compareToc(
   tocLingo: Toc,
   tocEpubjs: Toc,
   options: Partial<CompareOptions> = {}
-): void {
+): boolean {
   const opts = { ...defaultOptions, ...options } as CompareOptions;
 
   // - quick guard – empty TOC on either side
@@ -41,7 +41,7 @@ export function compareToc(
     } else {
       fail("EpubJS produced an empty TOC while Lingo has entries");
     }
-    return; // no meaningful comparisons beyond this point
+    return false; // no meaningful comparisons beyond this point
   }
 
   // - flatten & normalize – flatten & normalize
@@ -67,7 +67,7 @@ export function compareToc(
   if (allPass) {
     console.log(``);
     ok("All validations passed");
-    return;
+    return true;
   }
 
   if (opts.verbosity > 0) {
@@ -80,6 +80,8 @@ export function compareToc(
   showHrefSetDiff(hrefDiff, opts);
   showLabelOrderDiff(orderDiff, opts);
   showDepthDiff(depthDiff, opts);
+
+  return false;
 }
 
 // -- Critical Normalization Functions

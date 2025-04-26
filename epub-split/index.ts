@@ -77,9 +77,10 @@ async function main(): Promise<void> {
   console.log(
     `# Extracting structure and content of ePub books with ${parser}\n<!-- spellchecker: disable -->\n`
   );
-  console.log(`Searching books in ${rootPath}...`);
+  console.log(`- verbosity: ${verbosity}`);
+  console.log(`- Searching books in ${rootPath}...`);
   const bookPaths = await findBookPaths(rootPath);
-  console.log(`Found ${bookPaths.length} books.`);
+  console.log(`- Found ${bookPaths.length} books.`);
 
   // find any books matching search criteria (case insensitive)
   // if no search criteria is specified, use all books
@@ -90,7 +91,7 @@ async function main(): Promise<void> {
         return regex.test(book);
       })
     : bookPaths;
-  console.log(`Found ${matchingBookPaths.length} matching books.`);
+  console.log(`- Found ${matchingBookPaths.length} matching books.`);
 
   if (unzip) {
     // Quick convenience for unzipping a single book
