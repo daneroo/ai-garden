@@ -21,8 +21,13 @@ const defaultOptions: CompareOptions = {
 };
 
 interface ComparisonWarning {
-  // could also have a severity?!
-  type: "toc-presence" | "label" | "href" | "order" | "depth";
+  // could also have a severity, like info,warn,error?
+  type:
+    | "toc.presence" // One or both TOCs are empty
+    | "toc.label.set" // Labels present in one TOC but not the other
+    | "toc.href.set" // Hrefs present in one TOC but not the other
+    | "toc.label.order" // Labels appear in different order in the two TOCs
+    | "toc.label.depth"; // Labels have different nesting depths in the two TOCs
   message: string;
 }
 
@@ -38,27 +43,18 @@ export function compareToc(
   const emptyLingo = tocLingo.length === 0;
   const emptyEpub = tocEpubjs.length === 0;
   if (emptyLingo || emptyEpub) {
-    // console.log("\nTOC presence check:");
     if (emptyLingo && emptyEpub) {
-      // fail(
-      //   "Both parsers produced an empty TOC - no further comparisons possible"
-      // );
       warnings.push({
-        type: "toc-presence",
+        type: "toc.presence",
         message:
           "Both parsers produced an empty TOC - no further comparisons possible",
       });
-    } else if (emptyLingo) {
-      // fail("Lingo produced an empty TOC while EpubJS has entries");
-      warnings.push({
-        type: "toc-presence",
-        message: "Lingo produced an empty TOC while EpubJS has entries",
-      });
     } else {
-      // fail("EpubJS produced an empty TOC while Lingo has entries");
+      const emptyName = emptyLingo ? "lingo" : "epubjs";
+      const otherName = emptyLingo ? "epubjs" : "lingo";
       warnings.push({
-        type: "toc-presence",
-        message: "EpubJS produced an empty TOC while Lingo has entries",
+        type: "toc.presence",
+        message: `${emptyName} produced an empty TOC while ${otherName} has entries`,
       });
     }
     showWarnings(warnings);
@@ -97,8 +93,8 @@ export function compareToc(
 
   //- 3 – warnings based reporting
   warnings.push(
-    ...diffToWarnings(labelDiff, "label"),
-    ...diffToWarnings(hrefDiff, "href"),
+    ...diffToWarnings(labelDiff, "toc.label.set"),
+    ...diffToWarnings(hrefDiff, "toc.href.set"),
     ...orderDiff,
     ...depthDiff
   );
@@ -197,7 +193,7 @@ function compareLabelOrder(
   for (let i = 0; i < Math.min(seqLingo.length, seqEpub.length); i++) {
     if (seqLingo[i] !== seqEpub[i]) {
       warnings.push({
-        type: "order",
+        type: "toc.label.order",
         message: `#${i}: lingo:"${seqLingo[i]}" vs epubjs:"${seqEpub[i]}"`,
       });
     }
@@ -225,7 +221,7 @@ function compareTreeDepth(
     const otherSide = maxL === 0 ? "epubjs" : "lingo";
     const otherMaxDepth = maxL === 0 ? maxE : maxL;
     warnings.push({
-      type: "depth",
+      type: "toc.label.depth",
       message: `${flatSide} is flat while ${otherSide} has depth ${otherMaxDepth}`,
     });
     return warnings;
@@ -245,8 +241,8 @@ function compareTreeDepth(
 
   mismatches.forEach((m) => {
     warnings.push({
-      type: "depth",
-      message: `${m.label} – depth lingo:${m.lingoDepth}, epubjs:${m.epubjsDepth}`,
+      type: "toc.label.depth",
+      message: `${m.label} - depth lingo:${m.lingoDepth}, epubjs:${m.epubjsDepth}`,
     });
   });
 
@@ -257,7 +253,7 @@ function compareTreeDepth(
 
 function diffToWarnings(
   diff: DiffResult<string>,
-  type: "label" | "href"
+  type: "toc.label.set" | "toc.href.set"
 ): ComparisonWarning[] {
   const warnings: ComparisonWarning[] = [];
   if (diff.onlyInLingo.length > 0) {
