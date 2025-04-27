@@ -66,8 +66,10 @@ export function compareToc(
   const epubEntries = flattenToc(tocEpubjs, 0, opts);
 
   // - compare
-  const labelDiff = compareLabelSet(lingoEntries, epubEntries);
-  const hrefDiff = compareHrefSet(lingoEntries, epubEntries, opts);
+  const labelDiff = compareFieldSet(lingoEntries, epubEntries, "label");
+  const hrefDiff = compareFieldSet(lingoEntries, epubEntries, "href", (h) =>
+    opts.normalizeHref ? normalizeHref(h) : h
+  );
   const orderDiff = compareLabelOrder(lingoEntries, epubEntries, labelDiff);
   const depthDiff = compareTreeDepth(lingoEntries, epubEntries, labelDiff);
 
@@ -154,29 +156,18 @@ function normalizeLabel(label: string): string {
 
 // -- Logic layer
 
-function compareLabelSet(
+function compareFieldSet(
   lingo: FlatEntry[],
-  epub: FlatEntry[]
+  epub: FlatEntry[],
+  field: keyof FlatEntry & string,
+  normalize?: (value: string) => string
 ): DiffResult<string> {
-  const setLingo = new Set(lingo.map((e) => e.label));
-  const setEpub = new Set(epub.map((e) => e.label));
+  const norm = normalize ?? ((x: string) => x);
+  const setLingo = new Set(lingo.map((e) => norm(e[field] as string)));
+  const setEpub = new Set(epub.map((e) => norm(e[field] as string)));
   return {
     onlyInLingo: [...setLingo].filter((l) => !setEpub.has(l)),
     onlyInEpubjs: [...setEpub].filter((l) => !setLingo.has(l)),
-  };
-}
-
-function compareHrefSet(
-  lingo: FlatEntry[],
-  epub: FlatEntry[],
-  opts: CompareOptions
-): DiffResult<string> {
-  const norm = (h: string) => (opts.normalizeHref ? normalizeHref(h) : h);
-  const setLingo = new Set(lingo.map((e) => norm(e.href)));
-  const setEpub = new Set(epub.map((e) => norm(e.href)));
-  return {
-    onlyInLingo: [...setLingo].filter((h) => !setEpub.has(h)),
-    onlyInEpubjs: [...setEpub].filter((h) => !setLingo.has(h)),
   };
 }
 
