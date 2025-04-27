@@ -78,6 +78,8 @@ async function main(): Promise<void> {
     `# Extracting structure and content of ePub books with ${parser}\n<!-- spellchecker: disable -->\n`
   );
   console.log(`- verbosity: ${verbosity}`);
+  console.log(``); // blank line
+
   console.log(`- Searching books in ${rootPath}...`);
   const bookPaths = await findBookPaths(rootPath);
   console.log(`- Found ${bookPaths.length} books.`);

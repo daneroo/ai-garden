@@ -20,6 +20,12 @@ const defaultOptions: CompareOptions = {
   verbosity: 0,
 };
 
+interface ComparisonWarning {
+  // could also have a severity?!
+  type: "toc-presence" | "label" | "href" | "order" | "depth";
+  message: string;
+}
+
 export function compareToc(
   tocLingo: Toc,
   tocEpubjs: Toc,
@@ -27,20 +33,35 @@ export function compareToc(
 ): boolean {
   const opts = { ...defaultOptions, ...options } as CompareOptions;
 
+  const warnings: ComparisonWarning[] = [];
   // - quick guard – empty TOC on either side
   const emptyLingo = tocLingo.length === 0;
   const emptyEpub = tocEpubjs.length === 0;
   if (emptyLingo || emptyEpub) {
-    console.log("\nTOC presence check:");
+    // console.log("\nTOC presence check:");
     if (emptyLingo && emptyEpub) {
-      fail(
-        "Both parsers produced an empty TOC - no further comparisons possible"
-      );
+      // fail(
+      //   "Both parsers produced an empty TOC - no further comparisons possible"
+      // );
+      warnings.push({
+        type: "toc-presence",
+        message:
+          "Both parsers produced an empty TOC - no further comparisons possible",
+      });
     } else if (emptyLingo) {
-      fail("Lingo produced an empty TOC while EpubJS has entries");
+      // fail("Lingo produced an empty TOC while EpubJS has entries");
+      warnings.push({
+        type: "toc-presence",
+        message: "Lingo produced an empty TOC while EpubJS has entries",
+      });
     } else {
-      fail("EpubJS produced an empty TOC while Lingo has entries");
+      // fail("EpubJS produced an empty TOC while Lingo has entries");
+      warnings.push({
+        type: "toc-presence",
+        message: "EpubJS produced an empty TOC while Lingo has entries",
+      });
     }
+    showWarnings(warnings);
     return false; // no meaningful comparisons beyond this point
   }
 
@@ -60,9 +81,8 @@ export function compareToc(
     labelDiff.onlyInEpubjs.length === 0 &&
     hrefDiff.onlyInLingo.length === 0 &&
     hrefDiff.onlyInEpubjs.length === 0 &&
-    orderDiff.mismatches.length === 0 &&
-    depthDiff.flatSide === null &&
-    depthDiff.mismatches.length === 0;
+    orderDiff.length === 0 &&
+    depthDiff.length === 0;
 
   if (allPass) {
     console.log(``);
@@ -75,11 +95,20 @@ export function compareToc(
     showSideBySideTOC(lingoEntries, epubEntries, "href");
   }
 
+  //- 3 – warnings based reporting
+  warnings.push(
+    ...diffToWarnings(labelDiff, "label"),
+    ...diffToWarnings(hrefDiff, "href"),
+    ...orderDiff,
+    ...depthDiff
+  );
+  showWarnings(warnings);
+
   // - 3 – report
-  showLabelSetDiff(labelDiff, opts);
-  showHrefSetDiff(hrefDiff, opts);
-  showLabelOrderDiff(orderDiff, opts);
-  showDepthDiff(depthDiff, opts);
+  // showLabelSetDiff(labelDiff, opts);
+  // showHrefSetDiff(hrefDiff, opts);
+  // showLabelOrderDiff(orderDiff, opts);
+  // showDepthDiff(depthDiff, opts);
 
   return false;
 }
@@ -159,41 +188,50 @@ function compareLabelOrder(
   lingo: FlatEntry[],
   epub: FlatEntry[],
   diff: DiffResult<string>
-): OrderDiff {
+): ComparisonWarning[] {
   const isCommon = (lbl: string) =>
     !diff.onlyInLingo.includes(lbl) && !diff.onlyInEpubjs.includes(lbl);
   const seqLingo = lingo.filter((e) => isCommon(e.label)).map((e) => e.label);
   const seqEpub = epub.filter((e) => isCommon(e.label)).map((e) => e.label);
-  const mismatches: OrderMismatch[] = [];
+  const warnings: ComparisonWarning[] = [];
   for (let i = 0; i < Math.min(seqLingo.length, seqEpub.length); i++) {
-    if (seqLingo[i] !== seqEpub[i])
-      mismatches.push({
-        index: i,
-        lingoLabel: seqLingo[i],
-        epubjsLabel: seqEpub[i],
+    if (seqLingo[i] !== seqEpub[i]) {
+      warnings.push({
+        type: "order",
+        message: `#${i}: lingo:"${seqLingo[i]}" vs epubjs:"${seqEpub[i]}"`,
       });
+    }
   }
-  return { mismatches };
+  return warnings;
 }
 
 function compareTreeDepth(
   lingo: FlatEntry[],
   epub: FlatEntry[],
   diff: DiffResult<string>
-): DepthDiff {
+): ComparisonWarning[] {
   const isCommon = (lbl: string) =>
     !diff.onlyInLingo.includes(lbl) && !diff.onlyInEpubjs.includes(lbl);
   const depthLingo = lingo.filter((e) => isCommon(e.label)).map((e) => e.depth);
   const depthEpub = epub.filter((e) => isCommon(e.label)).map((e) => e.depth);
   const maxL = Math.max(...depthLingo);
   const maxE = Math.max(...depthEpub);
+
+  const warnings: ComparisonWarning[] = [];
+
+  // Handle flat vs nested case
   if ((maxL === 0 && maxE > 0) || (maxE === 0 && maxL > 0)) {
-    return {
-      flatSide: maxL === 0 ? "lingo" : "epubjs",
-      otherMaxDepth: maxL === 0 ? maxE : maxL,
-      mismatches: [],
-    };
+    const flatSide = maxL === 0 ? "lingo" : "epubjs";
+    const otherSide = maxL === 0 ? "epubjs" : "lingo";
+    const otherMaxDepth = maxL === 0 ? maxE : maxL;
+    warnings.push({
+      type: "depth",
+      message: `${flatSide} is flat while ${otherSide} has depth ${otherMaxDepth}`,
+    });
+    return warnings;
   }
+
+  // Handle depth mismatches
   const mapL = Object.fromEntries(lingo.map((e) => [e.label, e.depth]));
   const mapE = Object.fromEntries(epub.map((e) => [e.label, e.depth]));
   const mismatches = Object.keys(mapL)
@@ -204,10 +242,46 @@ function compareTreeDepth(
       lingoDepth: mapL[lbl],
       epubjsDepth: mapE[lbl],
     }));
-  return { flatSide: null, otherMaxDepth: 0, mismatches };
+
+  mismatches.forEach((m) => {
+    warnings.push({
+      type: "depth",
+      message: `${m.label} – depth lingo:${m.lingoDepth}, epubjs:${m.epubjsDepth}`,
+    });
+  });
+
+  return warnings;
+}
+
+// Abstracted Presentation layer
+
+function diffToWarnings(
+  diff: DiffResult<string>,
+  type: "label" | "href"
+): ComparisonWarning[] {
+  const warnings: ComparisonWarning[] = [];
+  if (diff.onlyInLingo.length > 0) {
+    warnings.push({
+      type,
+      message: `Only in Lingo: ${diff.onlyInLingo.join(", ")}`,
+    });
+  }
+  if (diff.onlyInEpubjs.length > 0) {
+    warnings.push({
+      type,
+      message: `Only in EpubJS: ${diff.onlyInEpubjs.join(", ")}`,
+    });
+  }
+  return warnings;
 }
 
 // -- Presentation layer
+
+function showWarnings(warnings: ComparisonWarning[]) {
+  if (warnings.length === 0) return;
+  console.log("\nWarnings:");
+  warnings.forEach((w) => fail(`${w.type}: ${w.message}`));
+}
 
 // Just a utility to show the TOC side by side
 function showSideBySideTOC(
@@ -242,54 +316,6 @@ function showSideBySideTOC(
   }
 }
 
-function showLabelSetDiff(d: DiffResult<string>, o: CompareOptions) {
-  console.log(`\nLabel set comparison (${summary(d)}):`);
-  list(d.onlyInLingo, "Lingo‑only", o);
-  list(d.onlyInEpubjs, "EpubJS‑only", o);
-  if (!d.onlyInLingo.length && !d.onlyInEpubjs.length)
-    ok("Label sets identical");
-}
-
-function showHrefSetDiff(d: DiffResult<string>, o: CompareOptions) {
-  console.log(`\nHref set comparison (${summary(d)}):`);
-  list(d.onlyInLingo, "Lingo‑only", o);
-  list(d.onlyInEpubjs, "EpubJS‑only", o);
-  if (!d.onlyInLingo.length && !d.onlyInEpubjs.length)
-    ok("Href sets identical");
-}
-
-function showLabelOrderDiff(d: OrderDiff, o: CompareOptions) {
-  console.log("\nLabel order comparison:");
-  if (!d.mismatches.length)
-    return ok("Order identical after removing non‑common labels");
-  list(
-    d.mismatches.map(
-      (m) => `#${m.index}: " ${m.lingoLabel} " vs " ${m.epubjsLabel}"`
-    ),
-    undefined,
-    o
-  );
-}
-
-function showDepthDiff(d: DepthDiff, o: CompareOptions) {
-  console.log("\nTree depth comparison:");
-  if (d.flatSide) {
-    const flat = d.flatSide === "lingo" ? "Lingo" : "EpubJS";
-    const nested = d.flatSide === "lingo" ? "EpubJS" : "Lingo";
-    return fail(
-      `${flat} is flat (depth 0) while ${nested} has nesting (max depth ${d.otherMaxDepth})`
-    );
-  }
-  if (!d.mismatches.length) return ok("Depth identical for common labels");
-  list(
-    d.mismatches.map(
-      (m) => `${m.label} – depth lingo:${m.lingoDepth}, epubjs:${m.epubjsDepth}`
-    ),
-    undefined,
-    o
-  );
-}
-
 // -- Helper utilities
 
 interface FlatEntry {
@@ -301,24 +327,6 @@ interface FlatEntry {
 interface DiffResult<T> {
   onlyInLingo: T[];
   onlyInEpubjs: T[];
-}
-interface OrderMismatch {
-  index: number;
-  lingoLabel: string;
-  epubjsLabel: string;
-}
-interface OrderDiff {
-  mismatches: OrderMismatch[];
-}
-interface DepthMismatch {
-  label: string;
-  lingoDepth: number;
-  epubjsDepth: number;
-}
-interface DepthDiff {
-  flatSide: "lingo" | "epubjs" | null;
-  otherMaxDepth: number;
-  mismatches: DepthMismatch[];
 }
 
 function flattenToc(
