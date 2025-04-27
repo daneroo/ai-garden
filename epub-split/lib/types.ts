@@ -44,3 +44,15 @@ export interface ParseOptions {
   /** Verbosity level for logging */
   verbosity?: number;
 }
+
+export interface ComparisonWarning {
+  // could also have a severity, like info,warn,error?
+  type:
+    | "toc.presence" // One or both TOCs are empty
+    | "toc.id.set" // IDs present in one TOC but not the other - not used
+    | "toc.label.set" // Labels present in one TOC but not the other
+    | "toc.href.set" // Hrefs present in one TOC but not the other
+    | "toc.label.order" // Labels appear in different order in the two TOCs
+    | "toc.label.depth"; // Labels have different nesting depths in the two TOCs
+  message: string;
+}

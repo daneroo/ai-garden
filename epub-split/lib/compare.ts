@@ -2,8 +2,8 @@
   This need to be replaced with an accurate description when we are done
  */
 
-import { Toc } from "./types.ts";
-
+import { Toc, ComparisonWarning } from "./types.ts";
+import { checkMark, showWarnings } from "./show.ts";
 // -- Public API
 
 export interface CompareOptions {
@@ -19,18 +19,6 @@ const defaultOptions: CompareOptions = {
   normalizeLabel: true,
   verbosity: 0,
 };
-
-interface ComparisonWarning {
-  // could also have a severity, like info,warn,error?
-  type:
-    | "toc.presence" // One or both TOCs are empty
-    | "toc.id.set" // IDs present in one TOC but not the other - not used
-    | "toc.label.set" // Labels present in one TOC but not the other
-    | "toc.href.set" // Hrefs present in one TOC but not the other
-    | "toc.label.order" // Labels appear in different order in the two TOCs
-    | "toc.label.depth"; // Labels have different nesting depths in the two TOCs
-  message: string;
-}
 
 export function compareToc(
   tocLingo: Toc,
@@ -85,8 +73,7 @@ export function compareToc(
     depthDiff.length === 0;
 
   if (allPass) {
-    console.log(``);
-    ok("All validations passed");
+    console.log(`  ${checkMark} All validations passed`);
     return true;
   }
 
@@ -223,7 +210,7 @@ function compareFieldSet(
   if (onlyInEpubjs.length > 0) {
     warnings.push({
       type: mapFieldToWarningType(field),
-      message: `Only in EpubJS: ${JSON.stringify(onlyInEpubjs)}`,
+      message: `Only in EpubJS: ${onlyInEpubjs.join(", ")}`,
     });
   }
 
@@ -303,15 +290,7 @@ function compareTreeDepth(
   return warnings;
 }
 
-// Abstracted Presentation layer
-
 // -- Presentation layer
-
-function showWarnings(warnings: ComparisonWarning[]) {
-  if (warnings.length === 0) return;
-  console.log("\nWarnings:");
-  warnings.forEach((w) => fail(`${w.type}: ${w.message}`));
-}
 
 // Just a utility to show the TOC side by side
 function showSideBySideTOC(
@@ -367,6 +346,3 @@ function flattenToc(
     ...(e.children ? flattenToc(e.children, depth + 1, opts) : []),
   ]);
 }
-
-const ok = (msg: string) => console.log(`  ✓ ${msg}`);
-const fail = (msg: string) => console.log(`  ✗ ${msg}`);
