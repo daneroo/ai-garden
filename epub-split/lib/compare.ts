@@ -70,8 +70,8 @@ export function compareToc(
   const hrefDiff = compareFieldSet(lingoEntries, epubEntries, "href", (h) =>
     opts.normalizeHref ? normalizeHref(h) : h
   );
-  const orderDiff = compareLabelOrder(lingoEntries, epubEntries, labelDiff);
-  const depthDiff = compareTreeDepth(lingoEntries, epubEntries, labelDiff);
+  const orderDiff = compareLabelOrder(lingoEntries, epubEntries);
+  const depthDiff = compareTreeDepth(lingoEntries, epubEntries);
 
   // - aggregate success check – if every diff is empty, short‑circuit with one line
   const allPass =
@@ -205,13 +205,15 @@ function compareFieldSet(
 
 function compareLabelOrder(
   lingo: FlatEntry[],
-  epub: FlatEntry[],
-  diff: DiffResult<string>
+  epub: FlatEntry[]
 ): ComparisonWarning[] {
-  const isCommon = (lbl: string) =>
-    !diff.onlyInLingo.includes(lbl) && !diff.onlyInEpubjs.includes(lbl);
-  const seqLingo = lingo.filter((e) => isCommon(e.label)).map((e) => e.label);
-  const seqEpub = epub.filter((e) => isCommon(e.label)).map((e) => e.label);
+  const commonLabels = commonEntries(lingo, epub, "label");
+  const seqLingo = lingo
+    .filter((e) => commonLabels.has(e.label))
+    .map((e) => e.label);
+  const seqEpub = epub
+    .filter((e) => commonLabels.has(e.label))
+    .map((e) => e.label);
   const warnings: ComparisonWarning[] = [];
   for (let i = 0; i < Math.min(seqLingo.length, seqEpub.length); i++) {
     if (seqLingo[i] !== seqEpub[i]) {
@@ -226,13 +228,15 @@ function compareLabelOrder(
 
 function compareTreeDepth(
   lingo: FlatEntry[],
-  epub: FlatEntry[],
-  diff: DiffResult<string>
+  epub: FlatEntry[]
 ): ComparisonWarning[] {
-  const isCommon = (lbl: string) =>
-    !diff.onlyInLingo.includes(lbl) && !diff.onlyInEpubjs.includes(lbl);
-  const depthLingo = lingo.filter((e) => isCommon(e.label)).map((e) => e.depth);
-  const depthEpub = epub.filter((e) => isCommon(e.label)).map((e) => e.depth);
+  const commonLabels = commonEntries(lingo, epub, "label");
+  const depthLingo = lingo
+    .filter((e) => commonLabels.has(e.label))
+    .map((e) => e.depth);
+  const depthEpub = epub
+    .filter((e) => commonLabels.has(e.label))
+    .map((e) => e.depth);
   const maxL = Math.max(...depthLingo);
   const maxE = Math.max(...depthEpub);
 
@@ -250,11 +254,11 @@ function compareTreeDepth(
     return warnings;
   }
 
-  // Handle depth mismatches
+  // Handle depth mismatches - for common entries
   const mapL = Object.fromEntries(lingo.map((e) => [e.label, e.depth]));
   const mapE = Object.fromEntries(epub.map((e) => [e.label, e.depth]));
   const mismatches = Object.keys(mapL)
-    .filter(isCommon)
+    .filter((lbl) => commonLabels.has(lbl))
     .filter((lbl) => mapL[lbl] !== mapE[lbl])
     .map((lbl) => ({
       label: lbl,
