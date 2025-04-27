@@ -156,6 +156,37 @@ function normalizeLabel(label: string): string {
 
 // -- Logic layer
 
+/**
+ * Returns a Set of values that are present in both TOCs for a given field.
+ *
+ * @param lingo - Array of flattened TOC entries from Lingo parser
+ * @param epub - Array of flattened TOC entries from EpubJS parser
+ * @param field - The string-valued field to compare (e.g. "label" or "href")
+ * @param normalize - Optional function to normalize field values before comparison
+ * @returns A Set of values present in both TOCs
+ */
+function commonEntries(
+  lingo: FlatEntry[],
+  epub: FlatEntry[],
+  field: keyof FlatEntry & string,
+  normalize?: (value: string) => string
+): Set<string> {
+  const norm = normalize ?? ((x: string) => x);
+  const setLingo = new Set(lingo.map((e) => norm(e[field] as string)));
+  const setEpub = new Set(epub.map((e) => norm(e[field] as string)));
+  return new Set([...setLingo].filter((x) => setEpub.has(x)));
+}
+
+/**
+ * Compares the sets of values for a given string field between two TOC entries.
+ * TODO(daneroo): add duplicate checks
+ * TODO(daneroo): return console warning directly
+ * @param lingo - Array of flattened TOC entries from Lingo parser
+ * @param epub - Array of flattened TOC entries from EpubJS parser
+ * @param field - The string-valued field to compare (e.g. "label" or "href")
+ * @param normalize - Optional function to normalize field values before comparison
+ * @returns A DiffResult containing values only present in one set
+ */
 function compareFieldSet(
   lingo: FlatEntry[],
   epub: FlatEntry[],
@@ -165,9 +196,10 @@ function compareFieldSet(
   const norm = normalize ?? ((x: string) => x);
   const setLingo = new Set(lingo.map((e) => norm(e[field] as string)));
   const setEpub = new Set(epub.map((e) => norm(e[field] as string)));
+  const common = commonEntries(lingo, epub, field, normalize);
   return {
-    onlyInLingo: [...setLingo].filter((l) => !setEpub.has(l)),
-    onlyInEpubjs: [...setEpub].filter((l) => !setLingo.has(l)),
+    onlyInLingo: [...setLingo].filter((l) => !common.has(l)),
+    onlyInEpubjs: [...setEpub].filter((l) => !common.has(l)),
   };
 }
 
