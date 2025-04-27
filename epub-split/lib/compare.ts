@@ -24,6 +24,7 @@ interface ComparisonWarning {
   // could also have a severity, like info,warn,error?
   type:
     | "toc.presence" // One or both TOCs are empty
+    | "toc.id.set" // IDs present in one TOC but not the other
     | "toc.label.set" // Labels present in one TOC but not the other
     | "toc.href.set" // Hrefs present in one TOC but not the other
     | "toc.label.order" // Labels appear in different order in the two TOCs
@@ -75,10 +76,8 @@ export function compareToc(
 
   // - aggregate success check – if every diff is empty, short‑circuit with one line
   const allPass =
-    labelDiff.onlyInLingo.length === 0 &&
-    labelDiff.onlyInEpubjs.length === 0 &&
-    hrefDiff.onlyInLingo.length === 0 &&
-    hrefDiff.onlyInEpubjs.length === 0 &&
+    labelDiff.length === 0 &&
+    hrefDiff.length === 0 &&
     orderDiff.length === 0 &&
     depthDiff.length === 0;
 
@@ -94,12 +93,7 @@ export function compareToc(
   }
 
   //- 3 – warnings based reporting
-  warnings.push(
-    ...diffToWarnings(labelDiff, "toc.label.set"),
-    ...diffToWarnings(hrefDiff, "toc.href.set"),
-    ...orderDiff,
-    ...depthDiff
-  );
+  warnings.push(...labelDiff, ...hrefDiff, ...orderDiff, ...depthDiff);
   showWarnings(warnings);
 
   // - 3 – report
@@ -177,30 +171,60 @@ function commonEntries(
   return new Set([...setLingo].filter((x) => setEpub.has(x)));
 }
 
+// Map field names to their corresponding warning types
+function mapFieldToWarningType(
+  field: keyof Omit<FlatEntry, "depth">
+): ComparisonWarning["type"] {
+  const mapping: Record<
+    keyof Omit<FlatEntry, "depth">,
+    ComparisonWarning["type"]
+  > = {
+    id: "toc.id.set",
+    label: "toc.label.set",
+    href: "toc.href.set",
+  };
+  return mapping[field];
+}
+
 /**
  * Compares the sets of values for a given string field between two TOC entries.
  * TODO(daneroo): add duplicate checks
- * TODO(daneroo): return console warning directly
+ *
  * @param lingo - Array of flattened TOC entries from Lingo parser
  * @param epub - Array of flattened TOC entries from EpubJS parser
  * @param field - The string-valued field to compare (e.g. "label" or "href")
  * @param normalize - Optional function to normalize field values before comparison
- * @returns A DiffResult containing values only present in one set
+ * @returns Array of warnings for values only present in one set
  */
 function compareFieldSet(
   lingo: FlatEntry[],
   epub: FlatEntry[],
-  field: keyof FlatEntry & string,
+  field: keyof Omit<FlatEntry, "depth">,
   normalize?: (value: string) => string
-): DiffResult<string> {
+): ComparisonWarning[] {
   const norm = normalize ?? ((x: string) => x);
   const setLingo = new Set(lingo.map((e) => norm(e[field] as string)));
   const setEpub = new Set(epub.map((e) => norm(e[field] as string)));
   const common = commonEntries(lingo, epub, field, normalize);
-  return {
-    onlyInLingo: [...setLingo].filter((l) => !common.has(l)),
-    onlyInEpubjs: [...setEpub].filter((l) => !common.has(l)),
-  };
+  const warnings: ComparisonWarning[] = [];
+
+  const onlyInLingo = [...setLingo].filter((l) => !common.has(l));
+  const onlyInEpubjs = [...setEpub].filter((l) => !common.has(l));
+
+  if (onlyInLingo.length > 0) {
+    warnings.push({
+      type: mapFieldToWarningType(field),
+      message: `Only in Lingo: ${onlyInLingo.join(", ")}`,
+    });
+  }
+  if (onlyInEpubjs.length > 0) {
+    warnings.push({
+      type: mapFieldToWarningType(field),
+      message: `Only in EpubJS: ${onlyInEpubjs.join(", ")}`,
+    });
+  }
+
+  return warnings;
 }
 
 function compareLabelOrder(
@@ -278,26 +302,6 @@ function compareTreeDepth(
 
 // Abstracted Presentation layer
 
-function diffToWarnings(
-  diff: DiffResult<string>,
-  type: "toc.label.set" | "toc.href.set"
-): ComparisonWarning[] {
-  const warnings: ComparisonWarning[] = [];
-  if (diff.onlyInLingo.length > 0) {
-    warnings.push({
-      type,
-      message: `Only in Lingo: ${diff.onlyInLingo.join(", ")}`,
-    });
-  }
-  if (diff.onlyInEpubjs.length > 0) {
-    warnings.push({
-      type,
-      message: `Only in EpubJS: ${diff.onlyInEpubjs.join(", ")}`,
-    });
-  }
-  return warnings;
-}
-
 // -- Presentation layer
 
 function showWarnings(warnings: ComparisonWarning[]) {
@@ -347,10 +351,6 @@ interface FlatEntry {
   href: string;
   depth: number;
 }
-interface DiffResult<T> {
-  onlyInLingo: T[];
-  onlyInEpubjs: T[];
-}
 
 function flattenToc(
   toc: Toc,
@@ -363,11 +363,6 @@ function flattenToc(
     { id: e.id, label: normLabel(e.label), href: e.href, depth },
     ...(e.children ? flattenToc(e.children, depth + 1, opts) : []),
   ]);
-}
-
-function summary<T>(d: DiffResult<T>): string {
-  const count = d.onlyInLingo.length + d.onlyInEpubjs.length;
-  return `${count} difference${count === 1 ? "" : "s"}`;
 }
 
 function list(items: string[], prefix: string | undefined, o: CompareOptions) {
