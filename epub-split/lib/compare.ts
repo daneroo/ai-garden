@@ -24,7 +24,7 @@ interface ComparisonWarning {
   // could also have a severity, like info,warn,error?
   type:
     | "toc.presence" // One or both TOCs are empty
-    | "toc.id.set" // IDs present in one TOC but not the other
+    | "toc.id.set" // IDs present in one TOC but not the other - not used
     | "toc.label.set" // Labels present in one TOC but not the other
     | "toc.href.set" // Hrefs present in one TOC but not the other
     | "toc.label.order" // Labels appear in different order in the two TOCs
@@ -71,6 +71,8 @@ export function compareToc(
   const hrefDiff = compareFieldSet(lingoEntries, epubEntries, "href", (h) =>
     opts.normalizeHref ? normalizeHref(h) : h
   );
+  //  Not used: comparison not useful
+  // const idDiff = compareFieldSet(lingoEntries, epubEntries, "id");
   const orderDiff = compareLabelOrder(lingoEntries, epubEntries);
   const depthDiff = compareTreeDepth(lingoEntries, epubEntries);
 
@@ -78,6 +80,7 @@ export function compareToc(
   const allPass =
     labelDiff.length === 0 &&
     hrefDiff.length === 0 &&
+    // idDiff.length === 0 &&
     orderDiff.length === 0 &&
     depthDiff.length === 0;
 
@@ -93,14 +96,14 @@ export function compareToc(
   }
 
   //- 3 – warnings based reporting
-  warnings.push(...labelDiff, ...hrefDiff, ...orderDiff, ...depthDiff);
+  warnings.push(
+    ...labelDiff,
+    ...hrefDiff,
+    // ...idDiff,
+    ...orderDiff,
+    ...depthDiff
+  );
   showWarnings(warnings);
-
-  // - 3 – report
-  // showLabelSetDiff(labelDiff, opts);
-  // showHrefSetDiff(hrefDiff, opts);
-  // showLabelOrderDiff(orderDiff, opts);
-  // showDepthDiff(depthDiff, opts);
 
   return false;
 }
@@ -220,7 +223,7 @@ function compareFieldSet(
   if (onlyInEpubjs.length > 0) {
     warnings.push({
       type: mapFieldToWarningType(field),
-      message: `Only in EpubJS: ${onlyInEpubjs.join(", ")}`,
+      message: `Only in EpubJS: ${JSON.stringify(onlyInEpubjs)}`,
     });
   }
 
@@ -363,15 +366,6 @@ function flattenToc(
     { id: e.id, label: normLabel(e.label), href: e.href, depth },
     ...(e.children ? flattenToc(e.children, depth + 1, opts) : []),
   ]);
-}
-
-function list(items: string[], prefix: string | undefined, o: CompareOptions) {
-  if (!items.length) return;
-  const pre = prefix ? `${prefix}: ` : "";
-  const shown = items.slice(0, o.maxLines);
-  shown.forEach((it) => fail(pre + it));
-  const remaining = items.length - shown.length;
-  if (remaining > 0) fail(`… ${remaining} more`);
 }
 
 const ok = (msg: string) => console.log(`  ✓ ${msg}`);
