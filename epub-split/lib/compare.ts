@@ -3,7 +3,6 @@
  */
 
 import { Toc, ComparisonWarning } from "./types.ts";
-import { checkMark, showWarnings } from "./show.ts";
 // -- Public API
 
 export interface CompareOptions {
@@ -24,7 +23,7 @@ export function compareToc(
   tocLingo: Toc,
   tocEpubjs: Toc,
   options: Partial<CompareOptions> = {}
-): boolean {
+): ComparisonWarning[] {
   const opts = { ...defaultOptions, ...options } as CompareOptions;
 
   const warnings: ComparisonWarning[] = [];
@@ -46,8 +45,7 @@ export function compareToc(
         message: `${emptyName} produced an empty TOC while ${otherName} has entries`,
       });
     }
-    showWarnings(warnings);
-    return false; // no meaningful comparisons beyond this point
+    return warnings; // no meaningful comparisons beyond this point
   }
 
   // - flatten & normalize – flatten & normalize
@@ -64,25 +62,7 @@ export function compareToc(
   const orderDiff = compareLabelOrder(lingoEntries, epubEntries);
   const depthDiff = compareTreeDepth(lingoEntries, epubEntries);
 
-  // - aggregate success check – if every diff is empty, short‑circuit with one line
-  const allPass =
-    labelDiff.length === 0 &&
-    hrefDiff.length === 0 &&
-    // idDiff.length === 0 &&
-    orderDiff.length === 0 &&
-    depthDiff.length === 0;
-
-  if (allPass) {
-    console.log(`  ${checkMark} All validations passed`);
-    return true;
-  }
-
-  if (opts.verbosity > 0) {
-    showSideBySideTOC(lingoEntries, epubEntries, "label");
-    showSideBySideTOC(lingoEntries, epubEntries, "href");
-  }
-
-  //- 3 – warnings based reporting
+  //- aggregate warnings
   warnings.push(
     ...labelDiff,
     ...hrefDiff,
@@ -90,9 +70,13 @@ export function compareToc(
     ...orderDiff,
     ...depthDiff
   );
-  showWarnings(warnings);
 
-  return false;
+  if (opts.verbosity > 0) {
+    showSideBySideTOC(lingoEntries, epubEntries, "label");
+    showSideBySideTOC(lingoEntries, epubEntries, "href");
+  }
+
+  return warnings;
 }
 
 // -- Critical Normalization Functions

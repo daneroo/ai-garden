@@ -7,6 +7,7 @@ import { basename } from "node:path";
 import { parse as parseEpubjs } from "./lib/epubjs-playwright.ts";
 import { parse as parseLingo } from "./lib/epub-parser-lingo.ts";
 import { showTOC, showSummary } from "./lib/showToc.ts";
+import { checkMark, showWarnings } from "./lib/show.ts";
 import { compareToc } from "./lib/compare.ts";
 import { unzipOneOfMany } from "./lib/unzip.ts";
 import { ParserResult } from "./lib/types.ts";
@@ -102,15 +103,23 @@ async function main(): Promise<void> {
     await unzipOneOfMany(matchingBookPaths, "data/ebooks");
     return;
   }
+  let hasWarnings = 0;
   for (const [bkIndex, bookPath] of matchingBookPaths.entries()) {
     try {
       if (parser === "compare") {
         // do these sequentially
         const { toc: tocEpubjs } = await parseEpubjs(bookPath, { verbosity });
         const { toc: tocLingo } = await parseLingo(bookPath, { verbosity });
-        console.log(`\n## ${basename(bookPath)}\n`);
 
-        compareToc(tocLingo, tocEpubjs, { verbosity });
+        const warnings = compareToc(tocLingo, tocEpubjs, { verbosity });
+        if (warnings.length > 0) {
+          hasWarnings++;
+          console.log(`\n## ${basename(bookPath)}\n`);
+          showWarnings(warnings);
+        } else {
+          // console.log(`\n## ${basename(bookPath)}\n`);
+          // console.log(`  ${checkMark} All validations passed`);
+        }
       } else {
         let parseResult: ParserResult; // parseResult is the result of parsing the book
         if (parser === "lingo") {
@@ -163,6 +172,13 @@ async function main(): Promise<void> {
       console.error(`  - ${message}`);
       process.exit(1);
     }
+  }
+  if (hasWarnings > 0) {
+    console.log("\n## Summary\n");
+    console.log(`- found ${hasWarnings} files with warnings`);
+    console.log(
+      `- found ${matchingBookPaths.length - hasWarnings} files with no warnings`
+    );
   }
 }
 

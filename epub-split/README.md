@@ -13,6 +13,7 @@
 
 ## Development Objectives
 
+- [] use createProgress on stedd (show.ts)
 - [ ] look at [zod v4](https://v4.zod.dev/v4) - z.prettifyError?
 - [ ] look at [markitdown epub converter](https://github.com/microsoft/markitdown/blob/main/packages/markitdown/src/markitdown/converters/_epub_converter.py)
 - [ ] consider fresh for ui instead of error reporting?
