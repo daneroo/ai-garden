@@ -135,12 +135,19 @@ window.parseEpubFromInputFiles = async function () {
   const book = ePub(buffer);
 
   await book.opened;
+  await book.loaded.manifest;
   await book.loaded.navigation;
   await book.loaded.spine;
+  await book.ready;
+  // console.log("book.ready");
+  // console.log(
+  //   "book.manifest",
+  //   JSON.stringify(book.packaging.manifest, null, 2)
+  // );
 
   const toc = [];
   book.navigation.toc.forEach((item) => toc.push(item));
 
   const newTOC = await augmentEntriesAndChildren(toc);
-  return newTOC;
+  return { toc: newTOC, manifest: book.packaging.manifest };
 };

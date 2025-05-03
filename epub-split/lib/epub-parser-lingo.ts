@@ -225,6 +225,7 @@ export async function parse(
 
     return {
       parser: "lingo",
+      manifest,
       toc,
       errors: [],
       warnings,
@@ -239,6 +240,7 @@ export async function parse(
     const message = error instanceof Error ? error.message : String(error);
     return {
       parser: "lingo",
+      manifest: {},
       toc: [],
       errors: [message],
       warnings: [],

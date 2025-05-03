@@ -1,4 +1,21 @@
 /**
+ * Represents a single entry in the manifest
+ */
+export interface ManifestItem {
+  id: string;
+  href: string;
+  mediaType: string;
+  properties?: string;
+  mediaOverlay?: string;
+  fallback?: string[];
+}
+
+/**
+ * Represents the manifest of the EPUB file
+ */
+export type Manifest = Record<string, ManifestItem>;
+
+/**
  * Represents a single entry in the table of contents
  */
 export interface TocEntry {
@@ -29,6 +46,8 @@ export type Toc = TocEntry[];
 export interface ParserResult {
   /** Name of the parser used ('lingo' or 'epubjs') */
   parser: string;
+  /** manifest */
+  manifest: Manifest;
   /** Table of contents */
   toc: Toc;
   /** Array of fatal issues - no content will be extracted */

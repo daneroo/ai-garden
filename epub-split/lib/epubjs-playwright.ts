@@ -1,12 +1,11 @@
-import { promises as fs } from "node:fs";
 import { basename } from "node:path";
 import { chromium } from "playwright";
 import type { Page } from "playwright";
-import { TocEntry, Toc, ParserResult, ParseOptions } from "./types.ts";
+import { Manifest, ParserResult, ParseOptions } from "./types.ts";
 import { readFile } from "node:fs/promises";
-import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
 import assert from "node:assert";
+import { z } from "zod";
 
 /**
  * @param {string} bookPath
@@ -107,7 +106,7 @@ export async function parse(
     await checkClientUploadIntegrity(page, bookPath, verbosity);
   }
 
-  const tocOutside = await page.evaluate(async () => {
+  const { manifest, toc } = await page.evaluate(async () => {
     // Calling parseEpubFromInputFiles() implies that:
     //  - the file is already uploaded with uploadWithSetInputFiles
     // Type assertion needed because this is client-side code where parseEpubFromInputFiles is injected
@@ -117,10 +116,51 @@ export async function parse(
   await browser.close();
   return {
     parser: "epubjs",
-    toc: tocOutside,
+    manifest: fixManifest(manifest),
+    toc,
     errors: errors,
     warnings: warnings,
   };
+}
+
+function fixManifest(manifest: any): Manifest {
+  // const ex = {
+  //   BODY1: {
+  //     href: "01_cover.xhtml",
+  //     type: "application/xhtml+xml",
+  //     overlay: "",
+  //     properties: [],
+  //   },
+  //   BODY2: {
+  //     href: "02_advertisement-title.xhtml",
+  //     type: "application/xhtml+xml",
+  //     overlay: "",
+  //     properties: [],
+  //   },
+  // };
+
+  const manifestItemSchema = z.object({
+    href: z.string(),
+    type: z.string(),
+    overlay: z.string().optional(),
+    properties: z.array(z.string()).optional(),
+  });
+
+  const manifestSchema = z.record(manifestItemSchema).transform((data) => {
+    const result: Record<string, any> = {};
+    for (const [id, item] of Object.entries(data)) {
+      result[id] = {
+        id,
+        href: item.href,
+        mediaType: item.type,
+        mediaOverlay: item.overlay || undefined,
+        properties: item.properties?.join(",") || undefined,
+      };
+    }
+    return result as Manifest;
+  });
+
+  return manifestSchema.parse(manifest);
 }
 
 async function uploadWithSetInputFiles(

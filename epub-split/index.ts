@@ -12,6 +12,7 @@ import { compareToc } from "./lib/compare.ts";
 import { unzipOneOfMany } from "./lib/unzip.ts";
 import { ParserResult } from "./lib/types.ts";
 import { exit } from "node:process";
+import { showManifest } from "./lib/showManifest.ts";
 
 // Wrap in IIFE to support top-level await in CommonJS context (tsx default)
 (async () => {
@@ -155,7 +156,8 @@ async function main(): Promise<void> {
           }
         } else {
           console.log(`\n## ${basename(bookPath)}\n`);
-          showTOC(parseResult.toc);
+          showManifest(parseResult.manifest);
+          // showTOC(parseResult.toc);
           if (parseResult.errors.length > 0) {
             console.log(`\n### Errors\n`);
             console.log(parseResult.errors.join("\n"));
