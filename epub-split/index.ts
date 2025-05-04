@@ -7,7 +7,14 @@ import { basename } from "node:path";
 import { parse as parseEpubjs } from "./lib/epubjs-playwright.ts";
 import { parse as parseLingo } from "./lib/epub-parser-lingo.ts";
 import { showTOC, showSummary } from "./lib/showToc.ts";
-import { checkMark, showWarnings } from "./lib/show.ts";
+import {
+  checkMark,
+  showParserValidation,
+  showWarnings,
+  createProgress,
+  xMark,
+  warningMark,
+} from "./lib/show.ts";
 import { compareToc } from "./lib/compare.ts";
 import { unzipOneOfMany } from "./lib/unzip.ts";
 import { ParserResult } from "./lib/types.ts";
@@ -105,8 +112,20 @@ async function main(): Promise<void> {
     return;
   }
   let hasWarnings = 0;
+  const { updateProgress, leaveTrace, doneProgress } = createProgress(
+    matchingBookPaths.length,
+    `Parse (${unverifiedRootPath},${parser})`
+  );
+  // initial message
+  if (verbosity > 0) {
+    leaveTrace(
+      `- Parsing (${unverifiedRootPath},${parser}) ${matchingBookPaths.length} books`
+    );
+  }
+
   for (const [bkIndex, bookPath] of matchingBookPaths.entries()) {
     try {
+      updateProgress(bkIndex, basename(bookPath));
       if (parser === "compare") {
         // do these sequentially
         const { toc: tocEpubjs } = await parseEpubjs(bookPath, { verbosity });
@@ -155,26 +174,37 @@ async function main(): Promise<void> {
             }
           }
         } else {
-          console.log(`\n## ${basename(bookPath)}\n`);
-          showManifest(parseResult.manifest);
+          // console.log(`\n## ${basename(bookPath)}\n`);
+          // showManifest(parseResult.manifest);
           // showTOC(parseResult.toc);
-          if (parseResult.errors.length > 0) {
-            console.log(`\n### Errors\n`);
-            console.log(parseResult.errors.join("\n"));
+          // here we leave (conditionaly warning error counts
+          if (
+            verbosity > 0 &&
+            (parseResult.warnings.length > 0 || parseResult.errors.length > 0)
+          ) {
+            const marks = [
+              parseResult.errors.length > 0
+                ? `${xMark}: ${parseResult.errors.length}`
+                : "",
+              parseResult.warnings.length > 0
+                ? `${warningMark}: ${parseResult.warnings.length}`
+                : "",
+            ]
+              .filter(Boolean)
+              .join(" ");
+            leaveTrace(`  - ${marks} - ${basename(bookPath)}`);
           }
-          if (parseResult.warnings.length > 0) {
-            console.log(`\n### Warnings\n`);
-            console.log(parseResult.warnings.join("\n"));
-          }
+          showParserValidation(basename(bookPath), parseResult);
         }
       }
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : String(error);
-      console.error(`\n** Book level error: ${basename(bookPath)}`);
-      console.error(`  - ${message}`);
+      leaveTrace(`** Book level error: ${basename(bookPath)} - ${message}`);
       process.exit(1);
     }
   }
+
+  doneProgress();
   if (hasWarnings > 0) {
     console.log("\n## Summary\n");
     console.log(`- found ${hasWarnings} files with warnings`);
