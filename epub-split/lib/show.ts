@@ -10,10 +10,10 @@ export function showParserValidation(
     level: "error" | "warning";
     msg: string;
     code?:
-      | "metadata.missing.id" // lingo
+      | "metadata.id.missing" // lingo
       | "manifest.resource.missing" // lingo
-      | "archive.missing.resource" // epubjs - probably cover image
-      | "guide.missing.element" // lingo
+      | "archive.resource.missing" // epubjs - probably cover image
+      | "guide.element.missing" // lingo
       | "toc.navpoints.missing" // lingo - happens in parseNavMap when navPoints undefined rather than empty?
       | "xml.syntax.error" // lingo - happens in parsexml when XML is malformed (e.g. double closing tags)
       | "manifest.resource.readError"; // lingo - happens when trying to read a resource from filesystem
@@ -31,7 +31,7 @@ export function showParserValidation(
       messages.push({
         level: "warning",
         msg: warning,
-        code: "metadata.missing.id",
+        code: "metadata.id.missing",
       });
     } else if (
       // Warning: <path/to/resource.ext> file was not exit in <epub-file-path>
@@ -52,7 +52,7 @@ export function showParserValidation(
       messages.push({
         level: "warning",
         msg: warning,
-        code: "archive.missing.resource",
+        code: "archive.resource.missing",
       });
     } else {
       messages.push({ level: "warning", msg: warning });
@@ -68,7 +68,7 @@ export function showParserValidation(
       messages.push({
         level: "error",
         msg: error,
-        code: "guide.missing.element",
+        code: "guide.element.missing",
       });
     } else if (
       // happens in lingo parseNavMap when navPoints undefined rather than empty?
