@@ -243,7 +243,7 @@ export async function parse(
       manifest: {},
       toc: [],
       errors: [message],
-      warnings: [],
+      warnings: warnings,
     };
   } finally {
     if (!warningsRestored) {
