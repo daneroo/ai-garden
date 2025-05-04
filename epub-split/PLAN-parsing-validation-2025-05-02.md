@@ -40,6 +40,7 @@ grep -h ' Error:' snapshot/* # 16 lines - all from lingo
 
 - [ ] Enhance showParserValidation - to exclude all known warning types - that will be our record
   - [ ] add filtering/detection logic for each warning and error type
+    - [x] metadata.missing.id
 - [ ] Combine manifest, toc, spine into Book
 - [ ] add spine to ParserResult.Book
   - implement in lingo
