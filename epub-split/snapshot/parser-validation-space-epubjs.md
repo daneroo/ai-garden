@@ -2,7 +2,7 @@
 <!-- spellchecker: disable -->
 <!-- markdownlint-disable -->
 
-- verbosity: 1
+- verbosity: 0
 
 - Searching books in /Volumes/Space/Reading/audiobooks...
 - Found 438 books.

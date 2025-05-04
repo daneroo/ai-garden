@@ -2,7 +2,7 @@
 <!-- spellchecker: disable -->
 <!-- markdownlint-disable -->
 
-- verbosity: 1
+- verbosity: 0
 
 - Searching books in /Users/daniel/Library/CloudStorage/Dropbox/A-Reading/EBook...
 - Found 557 books.

@@ -16,7 +16,7 @@ export interface ManifestItem {
 export type Manifest = Record<string, ManifestItem>;
 
 /**
- * Represents a single entry in the table of contents
+ * Represents a single node in the table of contents tree
  */
 export interface TocEntry {
   /** Unique identifier for the TOC entry */
@@ -31,12 +31,13 @@ export interface TocEntry {
   textContent?: string;
   /** Warning message if any issues occurred during parsing */
   warning?: string;
-  /** Nested sub-entries */
+  /** Child nodes in the TOC tree */
   children?: TocEntry[];
 }
 
 /**
- * Table of contents as an array of entries
+ * Table of contents represented as a tree of entries
+ * Each entry can have nested children, forming a hierarchical structure
  */
 export type Toc = TocEntry[];
 

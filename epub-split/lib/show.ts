@@ -1,58 +1,50 @@
 import { ComparisonWarning, ParserResult } from "./types.ts";
 
+// This is really a validation of the ParserResult warnings and errors
 export function showParserValidation(
   bookName: string,
   parserResult: ParserResult,
   verbosity: number = 0
 ) {
   interface ClassifiedMessage {
+    level: "error" | "warning";
     msg: string;
-    known: boolean;
+    code?: "metadata.missing.id";
   }
 
-  interface ClassifiedMessages {
-    warnings: ClassifiedMessage[];
-    errors: ClassifiedMessage[];
-  }
+  const messages: ClassifiedMessage[] = [];
 
-  function classifyMessages(
-    parserResult: ParserResult,
-    keepKnown: boolean
-  ): ClassifiedMessages {
-    const classified: ClassifiedMessages = {
-      warnings: [],
-      errors: [],
-    };
-
-    // Classify warnings
-    for (const warning of parserResult.warnings) {
-      const known =
-        warning.includes("No element with id") &&
-        warning.includes("parsing <metadata>");
-      // we filter out known warnings if keepKnown is false
-      if (known && !keepKnown) continue;
-      classified.warnings.push({ msg: warning, known });
+  // Classify warnings
+  for (const warning of parserResult.warnings) {
+    if (
+      warning.includes("No element with id") &&
+      warning.includes("parsing <metadata>")
+    ) {
+      messages.push({
+        level: "warning",
+        msg: warning,
+        code: "metadata.missing.id",
+      });
+    } else {
+      messages.push({ level: "warning", msg: warning });
     }
-
-    classified.errors = parserResult.errors.map((msg) => ({
-      msg,
-      known: false,
-    }));
-
-    return classified;
   }
 
-  const classified = classifyMessages(parserResult, verbosity > 0);
+  // Add errors
+  for (const error of parserResult.errors) {
+    messages.push({ level: "error", msg: error });
+  }
 
-  if (classified.errors.length > 0 || classified.warnings.length > 0) {
+  // Filter and display
+  const filtered = verbosity > 0 ? messages : messages.filter((m) => !m.code);
+
+  if (filtered.length > 0) {
     console.log(`\n## ${bookName}\n`);
 
-    for (const error of classified.errors) {
-      console.log(`- Error: ${error.msg}`);
-    }
-
-    for (const warning of classified.warnings) {
-      console.log(`- Warning: ${warning.msg}`);
+    for (const message of filtered) {
+      console.log(
+        `- ${message.level === "error" ? "Error" : "Warning"}: ${message.msg}`
+      );
     }
   }
 }
