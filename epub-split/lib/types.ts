@@ -46,10 +46,24 @@ export type Toc = TocEntry[];
 export interface ParserResult {
   /** Name of the parser used ('lingo' or 'epubjs') */
   parser: string;
+  /** LATER: Book metadata like title, author, etc */
+  // metadata: Metadata;
   /** manifest */
   manifest: Manifest;
+  /** The reading order of the content */
+  // spine: Spine;
   /** Table of contents */
   toc: Toc;
+  /** NOT-WANTED (for now, maybe never) */
+  // guide: Guide;
+  // rootDir: string;
+  // opfPath: string;
+  // ncxPath?: string;
+  // navPath?: string;
+  // stylesheets: string[];
+  // fonts: string[];
+
+  // These should be combined into a ValidationMessage general type!
   /** Array of fatal issues - no content will be extracted */
   errors: string[];
   /** Array of non-fatal issues - content will be extracted */

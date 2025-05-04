@@ -78,7 +78,7 @@ export async function parse(
       return;
     }
     // other cases: this is me logging debug stuff mostly
-    console.log(
+    console.error(
       `[${basename(bookPath)}][${msg.type()}] browser:${formattedArgs}`
     );
   });

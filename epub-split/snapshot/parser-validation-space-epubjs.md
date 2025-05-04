@@ -1,7 +1,8 @@
 # Extracting structure and content of ePub books with epubjs
 <!-- spellchecker: disable -->
+<!-- markdownlint-disable -->
 
-- verbosity: 0
+- verbosity: 1
 
 - Searching books in /Volumes/Space/Reading/audiobooks...
 - Found 438 books.

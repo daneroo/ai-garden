@@ -84,7 +84,7 @@ async function main(): Promise<void> {
   // resolve the root path (includes cleaning)
   const rootPath = resolveRootPath(unverifiedRootPath);
   console.log(
-    `# Extracting structure and content of ePub books with ${parser}\n<!-- spellchecker: disable -->\n`
+    `# Extracting structure and content of ePub books with ${parser}\n<!-- spellchecker: disable -->\n<!-- markdownlint-disable -->\n`
   );
   console.log(`- verbosity: ${verbosity}`);
   console.log(``); // blank line
@@ -194,7 +194,7 @@ async function main(): Promise<void> {
               .join(" ");
             leaveTrace(`  - ${marks} - ${basename(bookPath)}`);
           }
-          showParserValidation(basename(bookPath), parseResult);
+          showParserValidation(basename(bookPath), parseResult, verbosity);
         }
       }
     } catch (error: unknown) {

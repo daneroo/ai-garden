@@ -2,15 +2,57 @@ import { ComparisonWarning, ParserResult } from "./types.ts";
 
 export function showParserValidation(
   bookName: string,
-  parserResult: ParserResult
+  parserResult: ParserResult,
+  verbosity: number = 0
 ) {
-  if (parserResult.errors.length > 0 || parserResult.warnings.length > 0) {
-    console.log(`\n## ${bookName}\n`);
-    for (const error of parserResult.errors) {
-      console.log(`- Error: ${error}`);
-    }
+  interface ClassifiedMessage {
+    msg: string;
+    known: boolean;
+  }
+
+  interface ClassifiedMessages {
+    warnings: ClassifiedMessage[];
+    errors: ClassifiedMessage[];
+  }
+
+  function classifyMessages(
+    parserResult: ParserResult,
+    keepKnown: boolean
+  ): ClassifiedMessages {
+    const classified: ClassifiedMessages = {
+      warnings: [],
+      errors: [],
+    };
+
+    // Classify warnings
     for (const warning of parserResult.warnings) {
-      console.log(`- Warning: ${warning}`);
+      const known =
+        warning.includes("No element with id") &&
+        warning.includes("parsing <metadata>");
+      // we filter out known warnings if keepKnown is false
+      if (known && !keepKnown) continue;
+      classified.warnings.push({ msg: warning, known });
+    }
+
+    classified.errors = parserResult.errors.map((msg) => ({
+      msg,
+      known: false,
+    }));
+
+    return classified;
+  }
+
+  const classified = classifyMessages(parserResult, verbosity > 0);
+
+  if (classified.errors.length > 0 || classified.warnings.length > 0) {
+    console.log(`\n## ${bookName}\n`);
+
+    for (const error of classified.errors) {
+      console.log(`- Error: ${error.msg}`);
+    }
+
+    for (const warning of classified.warnings) {
+      console.log(`- Warning: ${warning.msg}`);
     }
   }
 }
@@ -67,31 +109,37 @@ export function createProgress(
   total: number,
   prefix: string = "Processing"
 ): {
-  updateProgress: (current: number, message?: string) => void;
+  updateProgress: (progressIndex: number, message?: string) => void;
   leaveTrace: (message: string) => void;
   doneProgress: () => void;
 } {
   const spinner = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
   let spinnerIndex = 0;
   const startTime = Date.now();
+  /** Last known progress value, used to restore progress after trace messages */
+  let lastKnownProgressIndex = 0;
+  /** Last known message, used to restore progress after trace messages */
+  let lastKnownMessage: string | undefined;
 
   function formatTime(ms: number): string {
     const seconds = Math.floor(ms / 1000);
     return seconds.toString().padStart(3, " ");
   }
 
-  function updateProgress(current: number, message?: string) {
+  function updateProgress(progressIndex: number, message?: string) {
+    lastKnownProgressIndex = progressIndex;
+    lastKnownMessage = message;
     const spinnerChar = spinner[spinnerIndex];
     spinnerIndex = (spinnerIndex + 1) % spinner.length;
 
     const now = Date.now();
     const elapsed = now - startTime;
-    const progress = (current + 1) / total;
+    const progress = (progressIndex + 1) / total;
     const remaining = Math.floor(elapsed / progress - elapsed);
 
     const timeStr = `↑${formatTime(elapsed)}s ↓${formatTime(remaining)}s`;
 
-    const progressStr = `${current + 1}/${total}`;
+    const progressStr = `${progressIndex + 1}/${total}`;
     const messagePart = message ? ` - ${message}` : "";
 
     process.stderr.write(
@@ -104,8 +152,8 @@ export function createProgress(
     process.stderr.write(`\r\x1B[K`);
     // Write the trace message
     process.stderr.write(`${message}\n`);
-    // Redraw the progress line
-    updateProgress(current, currentMessage);
+    // Redraw the progress line with last known state
+    updateProgress(lastKnownProgressIndex, lastKnownMessage);
   }
 
   function doneProgress() {
@@ -118,15 +166,5 @@ export function createProgress(
     );
   }
 
-  // Track current state for leaveTrace
-  let current = 0;
-  let currentMessage: string | undefined;
-
-  function wrappedUpdateProgress(current: number, message?: string) {
-    current = current;
-    currentMessage = message;
-    updateProgress(current, message);
-  }
-
-  return { updateProgress: wrappedUpdateProgress, leaveTrace, doneProgress };
+  return { updateProgress, leaveTrace, doneProgress };
 }
