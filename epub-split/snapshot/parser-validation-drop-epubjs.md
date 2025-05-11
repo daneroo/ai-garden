@@ -5,5 +5,5 @@
 - verbosity: 0
 
 - Searching books in /Users/daniel/Library/CloudStorage/Dropbox/A-Reading/EBook...
-- Found 557 books.
-- Found 557 matching books.
+- Found 559 books.
+- Found 559 matching books.
