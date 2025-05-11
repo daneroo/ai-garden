@@ -87,7 +87,7 @@ export function showParserValidation(
       // - const containerAST = await parsexml(containerXml)
       // - const xml = await parsexml(rootFileOPF)
       // - const ncx = (await parsexml(tocNcxFile)).ncx
-      // the only instance we found error comes from the last one
+      // the only instance we found error comes from the last one (ncx)
       error.includes("Unexpected close tag")
     ) {
       messages.push({ level: "error", msg: error, code: "xml.syntax.error" });
