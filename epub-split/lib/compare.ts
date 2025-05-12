@@ -49,10 +49,15 @@ export function compareManifest(
 ): ComparisonWarning[] {
   const warnings: ComparisonWarning[] = [];
 
-  if (manifestLingo.length !== manifestEpubjs.length) {
+  // Compare the Manifest length: i.e. the number of entries
+  if (
+    Object.keys(manifestLingo).length !== Object.keys(manifestEpubjs).length
+  ) {
     warnings.push({
       type: "manifest.length",
-      message: `Manifest length mismatch lingo:${manifestLingo.length} epubjs:${manifestEpubjs.length}`,
+      message: `Manifest length mismatch lingo:${
+        Object.keys(manifestLingo).length
+      } epubjs:${Object.keys(manifestEpubjs).length}`,
     });
     return warnings;
   }
