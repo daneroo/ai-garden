@@ -15,7 +15,7 @@ import {
   xMark,
   warningMark,
 } from "./lib/show.ts";
-import { compareToc } from "./lib/compare.ts";
+import { compareBook } from "./lib/compare.ts";
 import { unzipOneOfMany } from "./lib/unzip.ts";
 import { ParserResult } from "./lib/types.ts";
 import { exit } from "node:process";
@@ -128,14 +128,21 @@ async function main(): Promise<void> {
       updateProgress(bkIndex, basename(bookPath));
       if (parser === "compare") {
         // do these sequentially
-        const { toc: tocEpubjs } = await parseEpubjs(bookPath, { verbosity });
-        const { toc: tocLingo } = await parseLingo(bookPath, { verbosity });
+        const bookEpubjs = await parseEpubjs(bookPath, { verbosity });
+        const bookLingo = await parseLingo(bookPath, { verbosity });
 
-        const warnings = compareToc(tocLingo, tocEpubjs, { verbosity });
+        const warnings = compareBook(bookLingo, bookEpubjs, { verbosity });
         if (warnings.length > 0) {
           hasWarnings++;
           console.log(`\n## ${basename(bookPath)}\n`);
           showWarnings(warnings);
+          if (verbosity > 0) {
+            leaveTrace(
+              `  - ${warningMark}: ${warnings.length} warnings - ${basename(
+                bookPath
+              )}`
+            );
+          }
         } else {
           // console.log(`\n## ${basename(bookPath)}\n`);
           // console.log(`  ${checkMark} All validations passed`);
@@ -174,8 +181,8 @@ async function main(): Promise<void> {
             }
           }
         } else {
-          // console.log(`\n## ${basename(bookPath)}\n`);
-          // showManifest(parseResult.manifest);
+          console.log(`\n## ${basename(bookPath)}\n`);
+          showManifest(parseResult.manifest);
           // showTOC(parseResult.toc);
           // here we leave (conditionaly warning error counts
           if (
@@ -194,7 +201,7 @@ async function main(): Promise<void> {
               .join(" ");
             leaveTrace(`  - ${marks} - ${basename(bookPath)}`);
           }
-          showParserValidation(basename(bookPath), parseResult, verbosity);
+          // showParserValidation(basename(bookPath), parseResult, verbosity);
         }
       }
     } catch (error: unknown) {
