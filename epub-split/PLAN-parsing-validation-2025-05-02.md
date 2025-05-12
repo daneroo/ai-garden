@@ -25,23 +25,42 @@ for rr in drop space; do
       pnpx tsx index.ts -p $pp -r $rr > snapshot/parser-validation-$rr-$pp.md;
   done
 done
+
+pnpx tsx index.ts -p lingo -r space > snapshot/parser-validation-space-lingo.md;
+pnpx tsx index.ts -p lingo -r drop > snapshot/parser-validation-drop-lingo.md;
+
 ```
 
-This is a categorization of the warnings and errors by parser and verbosity level.
+## Compare
+
+- [ ] compare Manifest
+- [ ] compare Spine
+- [x] compare TOC
 
 ```bash
-grep -h ' Warning:' snapshot/* #480 lines
-grep -h ' Warning:' snapshot/* |grep 'No element with id' # 417 lines - all from lingo
-grep -h ' Warning:' snapshot/* | grep -v 'No element with id' # 9 lines - from both parsers
-grep -h ' Error:' snapshot/* # 16 lines - all from lingo
+pnpx tsx index.ts -p lingo -r space > snapshot/manifest-space-lingo.md;
+pnpx tsx index.ts -p epubjs -r space > snapshot/manifest-space-epubjs.md;
+
+pnpx tsx index.ts -p lingo -r drop > snapshot/manifest-drop-lingo.md;
+pnpx tsx index.ts -p epubjs -r drop > snapshot/manifest-drop-epubjs.md;
+
+
+pnpx tsx index.ts -p compare -r space -v > snapshot/manifest-space-compare-manifest.md;
+pnpx tsx index.ts -p compare -r drop -v > snapshot/manifest-drop-compare-manifest.md;
+
+pnpx tsx index.ts -p compare -r space > snapshot/manifest-space-compare-toc.md;
+pnpx tsx index.ts -p compare -r space > snapshot/manifest-space-compare-all.md;
+
+
 ```
 
 ## Next Steps
 
 - [ ] Enhance showParserValidation - to exclude all known warning types - that will be our record
-  - [ ] add filtering/detection logic for each warning and error type
+  - [x] add filtering/detection logic for each warning and error type
     - [x] metadata.missing.id (lingo)
-  - [ ] refine the parser handling eroor/warning accumulation - fallthrough/exception test
+  - [x] refine the parser handling error/warning accumulation - fallthrough/exception test
+    - [ ] remove lingo console.warn capture
 - [ ] Combine manifest, toc, spine into Book
 - [ ] add spine to ParserResult.Book
   - implement in lingo

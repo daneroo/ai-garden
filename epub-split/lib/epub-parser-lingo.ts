@@ -1,6 +1,6 @@
 import { initEpubFile } from "@lingo-reader/epub-parser";
 import { promises as fs } from "node:fs";
-import { basename } from "node:path";
+import * as pathPosix from "node:path/posix"; // ⬅ clear that every call is POSIX
 import assert from "node:assert";
 import { JSDOM } from "jsdom";
 import type { TocEntry, Toc, ParserResult, ParseOptions } from "./types.ts";
@@ -67,8 +67,30 @@ export async function parse(
     // const guide = epub.getGuide();
     // debuglog(verbosity, `- guide [${guide.length}]`);
 
-    // const manifest: Record<string, ManifestItem> = epub.getManifest()
+    // console.error(`\nopfPath: ${epub.opfPath}`);
+    // console.error(`opfDir: ${epub.opfDir}`);
     const manifest = epub.getManifest();
+    // The manifests' items are prepended/modified with  href: path.joinPosix(contentBaseDir, href),
+    // so we need to undo this for comparison with epubjs
+    // ─────────────────────────────────────────────────────────────────────────────
+    // - The EPUB spec says every <item>@href is *relative to the OPF file*.
+    // - lingo‑epub eagerly resolves that path when it builds the manifest:
+    //       href: path.joinPosix(contentBaseDir, href),
+    //    but it should be:
+    //       href = path.joinPosix(opfDir, rawHref)        // e.g. "OEBPS/ch07.xhtml"
+    //
+    // To compare lingo‑epub’s manifest with epub.js we “undo” the join:
+    // for each item we strip the `opfDir` prefix with `pathPosix.relative()`.
+    // This converts   "OEBPS/ch07.xhtml"  →  "ch07.xhtml"  while OPFs at the
+    // ZIP root (`opfDir === "."`) are left untouched.
+    // ─────────────────────────────────────────────────────────────────────────────
+    // @ts-ignore – lingo‑epub stores it privately
+    const opfDir: string = "opfDir" in epub ? epub.opfDir : ".";
+    for (const [key, item] of Object.entries(manifest)) {
+      if (opfDir && opfDir !== ".") {
+        item.href = pathPosix.relative(opfDir, item.href);
+      }
+    }
     debuglog(verbosity, `- manifest [${Object.keys(manifest).length}]`);
     Object.entries(manifest).forEach(([id, item]) => {
       debuglog(verbosity, `  - ${id}: ${JSON.stringify(item)}`);

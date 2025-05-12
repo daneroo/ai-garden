@@ -2,7 +2,7 @@
   This need to be replaced with an accurate description when we are done
  */
 
-import { Toc, ComparisonWarning } from "./types.ts";
+import { ParserResult, Toc, Manifest, ComparisonWarning } from "./types.ts";
 // -- Public API
 
 export interface CompareOptions {
@@ -18,6 +18,81 @@ const defaultOptions: CompareOptions = {
   normalizeLabel: true,
   verbosity: 0,
 };
+
+export function compareBook(
+  bookLingo: ParserResult,
+  bookEpubjs: ParserResult,
+  options: Partial<CompareOptions> = {}
+): ComparisonWarning[] {
+  const warnings: ComparisonWarning[] = [];
+
+  const manifestWarnings = compareManifest(
+    bookLingo.manifest,
+    bookEpubjs.manifest,
+    options
+  );
+  warnings.push(...manifestWarnings);
+
+  // const spineWarnings = compareSpine(bookLingo.spine, bookEpubjs.spine, options);
+  // warnings.push(...spineWarnings);
+
+  // const tocWarnings = compareToc(bookLingo.toc, bookEpubjs.toc, options);
+  // warnings.push(...tocWarnings);
+
+  return warnings;
+}
+
+export function compareManifest(
+  manifestLingo: Manifest,
+  manifestEpubjs: Manifest,
+  options: Partial<CompareOptions> = {}
+): ComparisonWarning[] {
+  const warnings: ComparisonWarning[] = [];
+
+  if (manifestLingo.length !== manifestEpubjs.length) {
+    warnings.push({
+      type: "manifest.length",
+      message: `Manifest length mismatch lingo:${manifestLingo.length} epubjs:${manifestEpubjs.length}`,
+    });
+    return warnings;
+  }
+  // since we had an early return when lengths do not match
+  // we can assume the lengths match
+  for (const key in manifestLingo) {
+    if (!(key in manifestEpubjs)) {
+      warnings.push({
+        type: "manifest.missing.key",
+        message: `Manifest entry missing in epubjs: ${key}`,
+      });
+      continue;
+    }
+    // now we have both lingo and epubjs entries
+    const lEntry = manifestLingo[key];
+    const eEntry = manifestEpubjs[key];
+    // I think this is impossible, but just in case!!
+    if (lEntry.id !== eEntry.id) {
+      warnings.push({
+        type: "manifest.id.mismatch",
+        message: `key:${key} lingo:${lEntry.id} epubjs:${eEntry.id}`,
+      });
+    }
+    // compare hrefs, as they are.
+    if (lEntry.href !== eEntry.href) {
+      warnings.push({
+        type: "manifest.href.mismatch",
+        message: `key:${key} lingo:${lEntry.href} epubjs:${eEntry.href}`,
+      });
+    }
+    if (lEntry.mediaType !== eEntry.mediaType) {
+      warnings.push({
+        type: "manifest.mediaType.mismatch",
+        message: `key:${key} lingo:${lEntry.mediaType} epubjs:${eEntry.mediaType}`,
+      });
+    }
+  }
+
+  return warnings;
+}
 
 export function compareToc(
   tocLingo: Toc,

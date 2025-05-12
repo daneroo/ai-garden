@@ -112,7 +112,6 @@ export async function parse(
     // Type assertion needed because this is client-side code where parseEpubFromInputFiles is injected
     return (window as any).parseEpubFromInputFiles();
   });
-
   await browser.close();
   return {
     parser: "epubjs",

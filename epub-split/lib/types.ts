@@ -3,7 +3,7 @@
  */
 export interface ManifestItem {
   id: string;
-  href: string;
+  href: string; // relative to opf file: lingo is rebased from contentBaseDir to opfDir
   mediaType: string;
   properties?: string;
   mediaOverlay?: string;
@@ -82,6 +82,11 @@ export interface ParseOptions {
 export interface ComparisonWarning {
   // could also have a severity, like info,warn,error?
   type:
+    | "manifest.length" // Manifest length mismatch
+    | "manifest.missing.key" // Manifest entry missing
+    | "manifest.id.mismatch" // Manifest entry id mismatch
+    | "manifest.href.mismatch" // Manifest entry href mismatch
+    | "manifest.mediaType.mismatch" // Manifest entry mediaType mismatch
     | "toc.presence" // One or both TOCs are empty
     | "toc.id.set" // IDs present in one TOC but not the other - not used
     | "toc.label.set" // Labels present in one TOC but not the other
