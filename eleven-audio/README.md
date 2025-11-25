@@ -9,6 +9,8 @@ This is the process to capture the audio for an epub book using ElevenReader aud
 
 ## Calibre Trim epub
 
+**Working Dir**: `/Volumes/Space/Staging/ElevenReader-Trimmed-EPub`
+
 - Open original epub in calibre (makes a copy)
 - Edit in Calibre
   - Leave a title Page; make the title/author readable at the beginning
@@ -19,9 +21,11 @@ This is the process to capture the audio for an epub book using ElevenReader aud
 
 ## Capture Eleven Reader audio
 
+**Working Dir**: `/Volumes/Space/Staging/ElevenReader-Captured-Audio`
+
 - Upload the *X*-Trimmed.epu to ElevenReader
 - Record playback to .mp3 (see below)
-- Final Trim of mp3 (remove ending) - `open -a LosslessCut`
+- Final Trim of mp3 (remove ending) - `open -a Audacity`
 
 ```bash
 docker rm -f audio_ripper 2>/dev/null
@@ -70,3 +74,8 @@ docker cp audio_ripper:/config/recording.mp3 .
 # check duration
 ffmpeg -i ./recording.mp3 2>&1 | grep Duration
 ```
+
+## Set Chapter Marks (Whisper+Audiobookshelf)
+
+- use whisper to get `.vtt file` (after encoding to `.m4b`)
+- edit chapter marks in Audiobookshelf
