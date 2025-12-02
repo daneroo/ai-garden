@@ -108,6 +108,13 @@ export function showParserValidation(
     }
   }
 
+  const manifestLength = Object.keys(parserResult.manifest).length;
+  if (manifestLength === 0) {
+    messages.push({
+      level: "error",
+      msg: `manifest is empty: ${manifestLength}`,
+    });
+  }
   // Filter and display
   const filtered = verbosity > 0 ? messages : messages.filter((m) => !m.code);
 

@@ -181,8 +181,8 @@ async function main(): Promise<void> {
             }
           }
         } else {
-          console.log(`\n## ${basename(bookPath)}\n`);
-          showManifest(parseResult.manifest);
+          // console.log(`\n## ${basename(bookPath)}\n`);
+          // showManifest(parseResult.manifest);
           // showTOC(parseResult.toc);
           // here we leave (conditionaly warning error counts
           if (
@@ -201,7 +201,7 @@ async function main(): Promise<void> {
               .join(" ");
             leaveTrace(`  - ${marks} - ${basename(bookPath)}`);
           }
-          // showParserValidation(basename(bookPath), parseResult, verbosity);
+          showParserValidation(basename(bookPath), parseResult, verbosity);
         }
       }
     } catch (error: unknown) {

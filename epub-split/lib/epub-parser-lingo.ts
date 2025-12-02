@@ -54,13 +54,15 @@ export async function parse(
 
     assert(epub, "epub is null - this should never happen");
 
-    const fileInfo = epub.getFileInfo();
-    assert(fileInfo, "fileInfo is null - this should never happen");
-    debuglog(
-      verbosity,
-      `- fileInfo ${fileInfo.fileName} : ${fileInfo.mimetype}`
-    );
-
+    const performUseless = false;
+    if (performUseless) {
+      const fileInfo = epub.getFileInfo();
+      assert(fileInfo, "fileInfo is null - this should never happen");
+      debuglog(
+        verbosity,
+        `- fileInfo ${fileInfo.fileName} : ${fileInfo.mimetype}`
+      );
+    }
     // const metadata = epub.getMetadata();
     // debuglog(verbosity, `- metadata [${metadata}]`);
 
@@ -96,159 +98,144 @@ export async function parse(
       debuglog(verbosity, `  - ${id}: ${JSON.stringify(item)}`);
     });
 
-    const spine = epub.getSpine();
-    debuglog(verbosity, `- spine [${spine.length}]`);
-    // assert(spine.length > 0, "spine is empty - this should never happen");
-    for (const item of spine) {
-      debuglog(verbosity, `  - ${item.id}, ${item.href}, ${item.linear}`);
-      try {
-        const { html, css } = await epub.loadChapter(item.id);
-        debuglog(
-          verbosity,
-          `    - html [${html.length}] lines: ${html.split("\n").length}`
-        );
-        // console.log(`----------\n${html}\n----------`);
-        debuglog(verbosity, `    - css [${css.length}]`);
-        for (const cssItem of css) {
-          debuglog(verbosity, `      - ${cssItem.id}, ${cssItem.href}`);
-        }
-      } catch (error: unknown) {
-        const message = error instanceof Error ? error.message : String(error);
-        debuglog(
-          verbosity,
-          `    -error loading chapter ${item.id} ${item.href}: ${message}`
-        );
-      }
-    }
-
-    const toc = await epub.getToc();
-    debuglog(verbosity, `- toc [${toc.length}]`);
-    for (const item of toc) {
-      debuglog(
-        verbosity,
-        `  - ${item.label}: id=${item.id}, href=${item.href}, playOrder=${
-          item.playOrder
-        } children: ${item?.children?.length ?? 0}`
-      );
-    }
-
-    // get the start of the dom for each top level toc entry
-    debuglog(verbosity, `- toc first html element [${toc.length}]`);
-    for (const item of toc) {
-      if (!item.id) {
-        debuglog(
-          verbosity,
-          `  - id is null for ${item.label}: id=${item.id}, href=${
-            item.href
-          }, playOrder=${item.playOrder} children: ${
-            item?.children?.length ?? 0
-          }`
-        );
-        continue;
-      }
-
-      //  we cannot use the loadChapter because it returns the inside of the <body> tag
-      // which is bad if the id in ON the <body id="0-068e12a8c93f4ef.. /> tag
-
-      const { html } = await epub.loadChapter(item.id);
-
-      // // my own loadChapter!
-      // const xmlHref = manifest[item.id].href;
-      // // console.log(`- xmlHref: ${xmlHref}`);
-      // const xhtml = await epub.zip.readFile(xmlHref);
-      // careful xhtml may include an <?xml version='1.0' encoding='utf-8'?> declaration
-      // // console.log(`- xhtml: ${xhtml}`);
-
-      debuglog(
-        verbosity,
-        `  - ${item.label}: id=${item.id}, href=${item.href}, playOrder=${
-          item.playOrder
-        } children: ${item?.children?.length ?? 0}`
-      );
-      debuglog(verbosity, `    - looking up href:${item.href}`);
-      assert(item.href, "item.href is null - this should never happen");
-
-      const resolved = epub.resolveHref(item.href);
-      if (!resolved) {
-        throw new Error(`Failed to resolve href: ${item.href}`);
-      }
-      const { id, selector } = resolved;
-
-      debuglog(verbosity, `    - id:${id}, selector:'${selector}'`);
-      assert(
-        selector !== null,
-        `selector is null - this should never happen href:${item.href} selector:${selector}`
-      );
-
-      // Create a new JSDOM instance with the HTML content
-      // const dom = new JSDOM(html);
-      const dom = new JSDOM(html);
-      const document = dom.window.document;
-
-      const element = selector
-        ? document.querySelector(selector)
-        : document.body;
-      if (element) {
-        debuglog(verbosity, `    - found element: ${element.tagName}`);
-        // Get the text content of the element and its children
-        const textContent = element.textContent?.trim();
-        debuglog(
-          verbosity,
-          `    - text content length: ${textContent?.length ?? 0}`
-        );
-        if (textContent && textContent.length > 0) {
+    if (performUseless) {
+      const spine = epub.getSpine();
+      debuglog(verbosity, `- spine [${spine.length}]`);
+      // assert(spine.length > 0, "spine is empty - this should never happen");
+      for (const item of spine) {
+        debuglog(verbosity, `  - ${item.id}, ${item.href}, ${item.linear}`);
+        try {
+          const { html, css } = await epub.loadChapter(item.id);
           debuglog(
             verbosity,
-            `    - text content snippet: ${snippet(textContent)}`
+            `    - html [${html.length}] lines: ${html.split("\n").length}`
           );
-        } else {
-          // If no text content, look for first image's alt text
-          const firstImage = element.querySelector("img");
-          if (firstImage?.alt) {
-            debuglog(
-              verbosity,
-              `    - image alt text: ${snippet(firstImage.alt)}`
-            );
-          } else {
-            debuglog(
-              verbosity,
-              `    - no text content or image alt text found`
-            );
+          // console.log(`----------\n${html}\n----------`);
+          debuglog(verbosity, `    - css [${css.length}]`);
+          for (const cssItem of css) {
+            debuglog(verbosity, `      - ${cssItem.id}, ${cssItem.href}`);
           }
+        } catch (error: unknown) {
+          const message =
+            error instanceof Error ? error.message : String(error);
+          debuglog(
+            verbosity,
+            `    -error loading chapter ${item.id} ${item.href}: ${message}`
+          );
         }
-      } else {
+      }
+
+      const toc = await epub.getToc();
+      // debuglog(verbosity, `- toc [${toc.length}]`);
+      // for (const item of toc) {
+      //   debuglog(
+      //     verbosity,
+      //     `  - ${item.label}: id=${item.id}, href=${item.href}, playOrder=${
+      //       item.playOrder
+      //     } children: ${item?.children?.length ?? 0}`
+      //   );
+      // }
+
+      // get the start of the dom for each top level toc entry
+      debuglog(verbosity, `- toc first html element [${toc.length}]`);
+      for (const item of toc) {
+        if (!item.id) {
+          debuglog(
+            verbosity,
+            `  - id is null for ${item.label}: id=${item.id}, href=${
+              item.href
+            }, playOrder=${item.playOrder} children: ${
+              item?.children?.length ?? 0
+            }`
+          );
+          continue;
+        }
+
+        //  we cannot use the loadChapter because it returns the inside of the <body> tag
+        // which is bad if the id in ON the <body id="0-068e12a8c93f4ef.. /> tag
+
+        const { html } = await epub.loadChapter(item.id);
+
+        // // my own loadChapter!
+        // const xmlHref = manifest[item.id].href;
+        // // console.log(`- xmlHref: ${xmlHref}`);
+        // const xhtml = await epub.zip.readFile(xmlHref);
+        // careful xhtml may include an <?xml version='1.0' encoding='utf-8'?> declaration
+        // // console.log(`- xhtml: ${xhtml}`);
+
         debuglog(
           verbosity,
-          `    - element not found with selector: ${selector}`
+          `  - ${item.label}: id=${item.id}, href=${item.href}, playOrder=${
+            item.playOrder
+          } children: ${item?.children?.length ?? 0}`
         );
-        // console.log(`----------\n${html}\n----------`);
-        // process.exit(1);
+        debuglog(verbosity, `    - looking up href:${item.href}`);
+        assert(item.href, "item.href is null - this should never happen");
+
+        const resolved = epub.resolveHref(item.href);
+        if (!resolved) {
+          throw new Error(`Failed to resolve href: ${item.href}`);
+        }
+        const { id, selector } = resolved;
+
+        debuglog(verbosity, `    - id:${id}, selector:'${selector}'`);
+        assert(
+          selector !== null,
+          `selector is null - this should never happen href:${item.href} selector:${selector}`
+        );
+
+        // Create a new JSDOM instance with the HTML content
+        // const dom = new JSDOM(html);
+        const dom = new JSDOM(html);
+        const document = dom.window.document;
+
+        const element = selector
+          ? document.querySelector(selector)
+          : document.body;
+        if (element) {
+          debuglog(verbosity, `    - found element: ${element.tagName}`);
+          // Get the text content of the element and its children
+          const textContent = element.textContent?.trim();
+          debuglog(
+            verbosity,
+            `    - text content length: ${textContent?.length ?? 0}`
+          );
+          if (textContent && textContent.length > 0) {
+            debuglog(
+              verbosity,
+              `    - text content snippet: ${snippet(textContent)}`
+            );
+          } else {
+            // If no text content, look for first image's alt text
+            const firstImage = element.querySelector("img");
+            if (firstImage?.alt) {
+              debuglog(
+                verbosity,
+                `    - image alt text: ${snippet(firstImage.alt)}`
+              );
+            } else {
+              debuglog(
+                verbosity,
+                `    - no text content or image alt text found`
+              );
+            }
+          }
+        } else {
+          debuglog(
+            verbosity,
+            `    - element not found with selector: ${selector}`
+          );
+          // console.log(`----------\n${html}\n----------`);
+          // process.exit(1);
+        }
       }
     }
-
-    // Just to show the difference between the different ways to get the html
-    // const dom = new JSDOM("<p>Just a paragraph</p>");
-    // console.log(
-    //   `---dom.serialize(<p/>) -------\n${dom.serialize()}\n----------`
-    // );
-    // <html><head></head><body><p>Just a paragraph</p></body></html>
-    // console.log(
-    //   `---dom.window.document.body.innerHTML -------\n${dom.window.document.body.innerHTML}\n----------`
-    // );
-    // <p>Just a paragraph</p>
-    // console.log(
-    //   `---dom.window.document.documentElement.outerHTML -------\n${dom.window.document.documentElement.outerHTML}\n----------`
-    // );
-    // <html><head></head><body><p>Just a paragraph</p></body></html>
-    // console.log(
-    //   `---dom.window.document.documentElement.innerHTML -------\n${dom.window.document.documentElement.innerHTML}\n----------`
-    // );
-    // <head></head><body><p>Just a paragraph</p></body>
 
     return {
       parser: "lingo",
       manifest,
-      toc,
+      // toc,
+      toc: [],
       errors: [],
       warnings,
     };
@@ -264,7 +251,7 @@ export async function parse(
       parser: "lingo",
       manifest: {},
       toc: [],
-      errors: [message],
+      errors: [message, "threw an error"],
       warnings: warnings,
     };
   } finally {
