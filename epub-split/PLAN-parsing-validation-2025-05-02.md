@@ -21,35 +21,35 @@ For the moment however we will attempt to unify the approach to validation and c
 
 ```bash
 for rr in drop space; do
-  for pp in epubjs lingo; do
-      pnpx tsx index.ts -p $pp -r $rr > snapshot/parser-validation-$rr-$pp.md;
+  for pp in lingo epubjs; do
+      pnpx tsx index.ts -p $pp -r $rr > data/reports/parser-validation-$rr-$pp.md;
+      # pnpx tsx index.ts -p $pp -r $rr -v > data/reports/parser-validation-$rr-$pp-v.md;
   done
 done
-
-pnpx tsx index.ts -p lingo -r space > snapshot/parser-validation-space-lingo.md;
-pnpx tsx index.ts -p lingo -r drop > snapshot/parser-validation-drop-lingo.md;
-
 ```
+
+## Lingo - Useable or not?
+
+- Can I just replace these files?
+- Let wait for spine to decide
+
+| Parser | throw-initEpubFile | empty-manifest | total |
+|--------|-------------------:|---------------:|------:|
+| space  |                  6 |              9 |   441 |
+| drop   |                  9 |             12 |   559 |
 
 ## Compare
 
-- [ ] compare Manifest
+- [x] compare Manifest
 - [ ] compare Spine
 - [x] compare TOC
 
 ```bash
-pnpx tsx index.ts -p lingo -r space > snapshot/manifest-space-lingo.md;
-pnpx tsx index.ts -p epubjs -r space > snapshot/manifest-space-epubjs.md;
+pnpx tsx index.ts -p compare -r space -v > data/reports/manifest-space-compare.md;
+pnpx tsx index.ts -p compare -r drop -v > data/reports/manifest-drop-compare.md;
 
-pnpx tsx index.ts -p lingo -r drop > snapshot/manifest-drop-lingo.md;
-pnpx tsx index.ts -p epubjs -r drop > snapshot/manifest-drop-epubjs.md;
-
-
-pnpx tsx index.ts -p compare -r space -v > snapshot/manifest-space-compare-manifest.md;
-pnpx tsx index.ts -p compare -r drop -v > snapshot/manifest-drop-compare-manifest.md;
-
-pnpx tsx index.ts -p compare -r space > snapshot/manifest-space-compare-toc.md;
-pnpx tsx index.ts -p compare -r space > snapshot/manifest-space-compare-all.md;
+# pnpx tsx index.ts -p compare -r space > data/reports/manifest-space-compare-toc.md;
+# pnpx tsx index.ts -p compare -r space > data/reports/manifest-space-compare-all.md;
 
 
 ```
