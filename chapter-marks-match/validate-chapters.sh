@@ -70,7 +70,7 @@ for ((i=0; i<chapter_count; i++)); do
   fi
 
   # Show whisper command
-  whisper_cmd="ffmpeg -v error -ss ${start} -t 10 -i \"${AUDIO_FILE}\" -ar 16000 -ac 1 -c:a pcm_s16le -f wav - | ${WHISPER_EXEC} -m \"${WHISPER_MODELS}/ggml-base.en.bin\" -f - --max-len 1 --split-on-word --output-txt"\
+  whisper_cmd="ffmpeg -v error -ss ${start} -t 10 -i \"${AUDIO_FILE}\" -ar 16000 -ac 1 -c:a pcm_s16le -f wav - | ${WHISPER_EXEC} -m \"${WHISPER_MODELS}/ggml-base.en.bin\" -f - --max-len 1 --split-on-word --output-vtt"\
 
   echo "- whisper command: \`${whisper_cmd}\`"
   # Execute whisper command  if RUN_WHISPER is true
@@ -79,7 +79,7 @@ for ((i=0; i<chapter_count; i++)); do
     echo "### Transcribing chapter $id"
     echo ""
     echo "\`\`\`txt"
-    eval "$whisper_cmd" 2>/dev/null | tr -d '\n' | sed 's/^ *//'
+    eval "$whisper_cmd" 2>/dev/null
     echo ""
     echo "\`\`\`"
   fi
