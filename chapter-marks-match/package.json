@@ -1,7 +1,9 @@
 {
   "name": "chapter-marks-match",
-  "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "start": "bun run validate-chapters.ts"
+  },
   "private": true,
   "devDependencies": {
     "@types/bun": "latest"

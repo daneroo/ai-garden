@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 
-import { join, dirname } from "path";
+import { join } from "path";
 import { file, spawn } from "bun";
 
 // --- Types ---
@@ -55,8 +55,8 @@ function parseVtt(vtt: string): Word[] {
     // Timestamp line: 00:00:00.000 --> 00:00:00.100
     const timeMatch = line.match(/(\d{2}:\d{2}:\d{2}\.\d{3}) --> (\d{2}:\d{2}:\d{2}\.\d{3})/);
     if (timeMatch && timeMatch[1] && timeMatch[2]) {
-      currentStart = parseTime(timeMatch[1]!);
-      currentEnd = parseTime(timeMatch[2]!);
+      currentStart = parseTime(timeMatch[1]);
+      currentEnd = parseTime(timeMatch[2]);
     } else if (line && !line.startsWith('WEBVTT')) {
       // Text line (word)
       words.push({ word: line, start: currentStart, end: currentEnd });
@@ -195,41 +195,20 @@ function findTitleEndTimestamp(title: string, words: Word[]): number | null {
   }
 
   // Calculate average distance per word to determine if it's a "good enough" match
-  // Threshold: e.g., 0.4 edits per word on average?
-  // "Lies" (4) vs "Eyes" (4) -> dist 1. 1/4 = 0.25. Good.
-  // "Bazaar" (6) vs "Bizarre" (7) -> dist 3? (z->i, a->z, a->z, r->a, r->r, e->e). 
-  // Let's check: b-a-z-a-a-r vs b-i-z-a-r-r-e. 
-  // b=b, a!=i, z=z, a=a, a!=r, r=r, +e. Dist ~3. 3/6 = 0.5. Borderline.
-  
-  // Let's try a simpler threshold: Total distance < (Total Length * 0.4)
   const totalLength = titleWords.reduce((sum, w) => sum + w.length, 0);
   const threshold = totalLength * 0.4;
 
   if (bestWindowIndex !== -1 && minDistance <= threshold) {
       // Found a match!
       // Return the end time of the last word in the window
-      return words[bestWindowIndex + titleWords.length - 1]!.end;
+      const lastWordIndex = bestWindowIndex + titleWords.length - 1;
+      if (lastWordIndex >= 0 && lastWordIndex < words.length) {
+        const lastWord = words[lastWordIndex];
+        return lastWord.end;
+      }
   }
 
   return null;
-}
-
-async function findTitleEnd(start: number, expectedTitle: string, audioFile: string) {
-  // Transcribe 15s
-  const vttOutput = await runWhisper(start, "15", audioFile);
-  if (!vttOutput) return;
-
-  const words = parseVtt(vttOutput);
-  
-  const endTime = findTitleEndTimestamp(expectedTitle, words);
-  
-  if (endTime !== null) {
-    console.log(`  > Title End Found: ${endTime.toFixed(3)}s (Duration: ${(endTime).toFixed(3)}s from start)`);
-  } else {
-    console.log(`  > Title End NOT Found. Expected: "${expectedTitle}"`);
-    console.log("  > Transcribed words:");
-    console.log(words.map(w => `    [${w.start.toFixed(2)}-${w.end.toFixed(2)}] ${w.word}`).join("\n"));
-  }
 }
 
 // --- Main Execution ---
@@ -279,4 +258,22 @@ for (const chapter of metadata.chapters) {
       console.log("  (Set RUN_WHISPER=true to analyze title end)");
   }
   console.log("");
+}
+
+async function findTitleEnd(start: number, expectedTitle: string, audioFile: string) {
+  // Transcribe 15s
+  const vttOutput = await runWhisper(start, "15", audioFile);
+  if (!vttOutput) return;
+
+  const words = parseVtt(vttOutput);
+  
+  const endTime = findTitleEndTimestamp(expectedTitle, words);
+  
+  if (endTime !== null) {
+    console.log(`  > Title End Found: ${endTime.toFixed(3)}s (Duration: ${(endTime).toFixed(3)}s from start)`);
+  } else {
+    console.log(`  > Title End NOT Found. Expected: "${expectedTitle}"`);
+    console.log("  > Transcribed words:");
+    console.log(words.map(w => `    [${w.start.toFixed(2)}-${w.end.toFixed(2)}] ${w.word}`).join("\n"));
+  }
 }
