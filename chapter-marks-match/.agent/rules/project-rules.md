@@ -18,3 +18,4 @@ trigger: always_on
 - Avoid unnecessary config files (`tsconfig.json`, etc.) unless strictly needed.
 - Keep scripts self-contained.
 - Use `bun` for all execution.
+- Use `node:` prefix for built-in modules (e.g., `import { join } from "node:path"`)

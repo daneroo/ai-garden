@@ -1,0 +1,72 @@
+// This file is REQUIRED for `tsc` (TypeScript Compiler) to function correctly.
+// Even though Bun runs TS natively, we use `tsc` for static type checking.
+// Without this config, `tsc` defaults to older Node.js/CommonJS settings,
+// which would cause false errors on valid Bun/ESNext code.
+//
+// NOTE: This file is technically JSONC (JSON with Comments).
+// TypeScript tools (tsc, VS Code, Bun) explicitly support comments in `tsconfig.json`,
+// even though the file extension is standard `.json`.
+//
+// REVIEW REQUIRED: If this project is split into multiple files or projects,
+// review `allowImportingTsExtensions` (currently false). Enabling it allows
+// convenient `.ts` imports but breaks standard Web/Node compatibility.
+{
+  "compilerOptions": {
+    // Default: "ES3" (or "ES5"/"ES6" depending on version).
+    // Reason: Bun runs modern JavaScript (ESNext) natively. We want top-level await and latest features.
+    "target": "esnext",
+
+    // Default: "CommonJS" if target is ES3/ES5, "ES6" otherwise.
+    // Reason: Bun uses ES Modules (ESM) by default.
+    "module": "esnext",
+
+    // Default: "Classic" or "Node" (Node10).
+    // Reason: "bundler" is the modern standard for bundlers/runtimes like Bun/Vite that support package.json "exports" and TS-in-node_modules.
+    "moduleResolution": "bundler",
+
+    // Default: [] (no libraries included).
+    // Reason: We need standard DOM/ESNext types available globally.
+    "lib": ["esnext"],
+
+    // Default: "auto" (legacy behavior).
+    // Reason: "force" ensures every file is treated as a module (adds `export {}` if empty), matching Bun's behavior.
+    "moduleDetection": "force",
+
+    // Default: false.
+    // Reason: We keep this FALSE to align with standard TypeScript/Web practices.
+    // - Web: Browsers don't understand `.ts`.
+    // - Standard TS: Requires importing files as `.js` (e.g. `import "./foo.js"`) or without extension (if using bundler), even if source is `.ts`.
+    // - Bun: Supports `.ts` imports, but we avoid enforcing that non-standard style here.
+    "allowImportingTsExtensions": false,
+
+    // Default: false (tsc emits .js files).
+    // Reason: CRITICAL. We use `bun` to run code. `tsc` is ONLY for type checking. We do not want it generating build artifacts.
+    "noEmit": true,
+
+    // Default: false.
+    // Reason: Enables all strict type checking options (noImplicitAny, strictNullChecks, etc.) for better code safety.
+    "strict": true,
+
+    // Default: false.
+    // Reason: Speeds up type checking by ignoring errors in `node_modules`. We can't fix library types anyway.
+    "skipLibCheck": true,
+
+    // Default: false.
+    // Reason: Allows importing CommonJS modules that don't have a default export as `import foo from "foo"`. Bun supports this interop.
+    "allowSyntheticDefaultImports": true,
+
+    // Default: false.
+    // Reason: Prevents issues on case-insensitive filesystems (macOS/Windows) where `import "./File"` works but fails on Linux.
+    "forceConsistentCasingInFileNames": true,
+
+    // Default: false.
+    // Reason: Allows importing `.js` files in the project if needed.
+    "allowJs": true,
+
+    // Default: [] (only standard types).
+    // Reason: Adds Bun's global types (`Bun.file`, `Bun.serve`, etc.) to the global scope.
+    "types": [
+      "bun-types"
+    ]
+  }
+}
