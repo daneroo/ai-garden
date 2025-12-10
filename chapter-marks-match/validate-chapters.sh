@@ -59,10 +59,10 @@ for ((i=0; i<chapter_count; i++)); do
   echo "- End: ${end}s"
   
   # Show ffplay command
-  ffplay_cmd="ffplay -ss ${start} -t ${BOOKMARK_DURATION_DEFAULT} -autoexit -i \"${AUDIO_FILE}\""
+  ffplay_cmd="ffplay -ss ${start} -t ${BOOKMARK_DURATION_DEFAULT} -autoexit -nodisp -i \"${AUDIO_FILE}\""
   echo "- ffplay command: \`${ffplay_cmd}\`"
   # Execute ffplay command if RUN_FFPLAY is true
-  RUN_FFPLAY=${RUN_FFPLAY:-false}
+  RUN_FFPLAY=${RUN_FFPLAY:-true}
   if [ "$RUN_FFPLAY" = "true" ]; then
     echo "Playing chapter $id..."
     eval "$ffplay_cmd" > /dev/null 2>&1
@@ -74,7 +74,7 @@ for ((i=0; i<chapter_count; i++)); do
 
   echo "- whisper command: \`${whisper_cmd}\`"
   # Execute whisper command  if RUN_WHISPER is true
-  RUN_WHISPER=${RUN_WHISPER:-false}
+  RUN_WHISPER=${RUN_WHISPER:-true}
   if [ "$RUN_WHISPER" = "true" ]; then
     echo "### Transcribing chapter $id"
     echo ""

@@ -65,8 +65,6 @@
 
     // Default: [] (only standard types).
     // Reason: Adds Bun's global types (`Bun.file`, `Bun.serve`, etc.) to the global scope.
-    "types": [
-      "bun-types"
-    ]
+    "types": ["bun-types"]
   }
 }

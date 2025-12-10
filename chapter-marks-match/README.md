@@ -1,11 +1,21 @@
 # Chapter Marks Matching
 
+What a disaster. Tried using bun -> useless config files: `tsconfig.json`, `eslint.config.mjs`
+
 - First with Cursor
 - Then with Gemini (Antigravity)
 
+## Usage
+
+```bash
+./validate-chapters.sh
+# or
+bun run validate-chapters.ts -p -w
+```
+
 ## Ideas
 
-- use bun as my scrtipng layer, as a test for the rest
+- use bun as my scripting layer, as a test for the rest
 - audio + whisper to validate fin boundaries
 - n-gram histograms and
 
