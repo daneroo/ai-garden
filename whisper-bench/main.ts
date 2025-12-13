@@ -162,7 +162,4 @@ async function main(): Promise<void> {
       await runWhisperKit(r.exec, r.label, key, config);
     }
   }
-
-  console.log("");
-  console.log(`✓ Complete. Results in ${output}/`);
 }
