@@ -43,14 +43,18 @@ type ProgressCallback = (match: RegExpMatchArray) => void;
  * Uses node:child_process.spawn for real-time streaming, parsing progress
  * from either stdout or stderr based on the progressStream parameter.
  *
+ * Writes stdout and stderr to separate log files (.stdout.log, .stderr.log)
+ * because we process them independently for progress parsing. Combining them
+ * into a single file would lose proper ordering since data arrives asynchronously.
+ *
  * @param command - The executable to run
  * @param args - Command line arguments
- * @param logFile - Path to write combined stdout/stderr output
+ * @param logFilePrefix - Base path for log files (will append .stdout.log and .stderr.log)
  * @param onProgress - Callback invoked when progress regex matches (receives full match array)
  * @param progressStream - Which stream contains progress info: "stdout" or "stderr"
  * @param progressRegex - Regex to extract progress. Capture groups become match[1], match[2], etc.
  *                        Default matches whisper-cpp format: "progress = XX%"
- * @returns Promise with exit code and combined output
+ * @returns Promise with exit code and paths to the created log files
  *
  * @example
  * // whisper-cpp: parse "progress = XX%" from stderr
@@ -64,17 +68,18 @@ type ProgressCallback = (match: RegExpMatchArray) => void;
 function runCommandWithProgress(
   command: string,
   args: string[],
-  logFile: string,
+  logFilePrefix: string,
   onProgress?: ProgressCallback,
   progressStream: "stdout" | "stderr" = "stderr",
   progressRegex: RegExp = /progress\s*=\s*(\d+%)/,
-): Promise<{ code: number; output: string }> {
+): Promise<{ code: number; stdoutLog: string; stderrLog: string }> {
   return new Promise((resolve, reject) => {
     const proc = spawn(command, args, {
       stdio: ["inherit", "pipe", "pipe"],
     });
 
-    let output = "";
+    let stdoutOutput = "";
+    let stderrOutput = "";
     let lastProgress = "";
 
     // Update display with current progress
@@ -89,11 +94,7 @@ function runCommandWithProgress(
     };
 
     // Parse progress from a data chunk
-    const parseProgress = (data: Buffer) => {
-      const text = data.toString();
-      output += text;
-
-      // Try to extract progress
+    const parseProgress = (text: string) => {
       const lines = text.split(/[\r\n]+/);
       for (const line of lines) {
         const match = line.match(progressRegex);
@@ -105,19 +106,19 @@ function runCommandWithProgress(
 
     // Handle stdout
     proc.stdout?.on("data", (data: Buffer) => {
+      const text = data.toString();
+      stdoutOutput += text;
       if (progressStream === "stdout") {
-        parseProgress(data);
-      } else {
-        output += data.toString();
+        parseProgress(text);
       }
     });
 
     // Handle stderr
     proc.stderr?.on("data", (data: Buffer) => {
+      const text = data.toString();
+      stderrOutput += text;
       if (progressStream === "stderr") {
-        parseProgress(data);
-      } else {
-        output += data.toString();
+        parseProgress(text);
       }
     });
 
@@ -126,9 +127,12 @@ function runCommandWithProgress(
     });
 
     proc.on("close", async (code) => {
-      // Write output to log file
-      await writeFile(logFile, output, { flag: "a" });
-      resolve({ code: code ?? 0, output });
+      // Write stdout and stderr to separate log files
+      const stdoutLog = `${logFilePrefix}.stdout.log`;
+      const stderrLog = `${logFilePrefix}.stderr.log`;
+      await writeFile(stdoutLog, stdoutOutput);
+      await writeFile(stderrLog, stderrOutput);
+      resolve({ code: code ?? 0, stdoutLog, stderrLog });
     });
   });
 }
@@ -183,7 +187,7 @@ export async function runWhisperCpp(
 
   for (let i = 1; i <= config.iterations; i++) {
     const timestamp = getTimestamp();
-    const logFile = `${outputPath}/${fileLabel}-${timestamp}.log`;
+    const logPrefix = `${outputPath}/${fileLabel}-${timestamp}`;
     const outPrefix = `${outputPath}/${fileLabel}`;
 
     // Build args - only include -d if duration > 0
@@ -216,8 +220,6 @@ export async function runWhisperCpp(
       continue;
     }
 
-    await writeFile(logFile, `Command: ${cmdStr}\n`);
-
     const start = Date.now();
 
     // Run with progress tracking
@@ -226,7 +228,7 @@ export async function runWhisperCpp(
     await runCommandWithProgress(
       exec,
       args,
-      logFile,
+      logPrefix,
       (match) => showCppProgress(label, match),
       "stderr",
       /progress\s*=\s*(\d+%)/,
@@ -245,9 +247,7 @@ export async function runWhisperCpp(
       ? (audioDuration / elapsed).toFixed(1)
       : "?";
 
-    const result = `✓ Done in ${elapsed}s. Speedup: ${speedup}x.`;
-    console.log(result);
-    await writeFile(logFile, result + "\n", { flag: "a" });
+    console.log(`✓ Done in ${elapsed}s. Speedup: ${speedup}x.`);
   }
 }
 
@@ -280,7 +280,7 @@ export async function runWhisperKit(
 
   for (let i = 1; i <= config.iterations; i++) {
     const timestamp = getTimestamp();
-    const logFile = `${outputPath}/${fileLabel}-${timestamp}.log`;
+    const logPrefix = `${outputPath}/${fileLabel}-${timestamp}`;
 
     // Build args - handle duration 0 = entire file
     const args = [
@@ -310,8 +310,6 @@ export async function runWhisperKit(
       continue;
     }
 
-    await writeFile(logFile, `Command: ${cmdStr}\n`);
-
     const start = Date.now();
 
     // Run with progress tracking
@@ -327,7 +325,7 @@ export async function runWhisperKit(
     await runCommandWithProgress(
       exec,
       args,
-      logFile,
+      logPrefix,
       (match) => showKitProgress(label, match),
       "stdout",
       /]\s*(\d+%)\s*\|\s*Elapsed Time:\s*([\d.]+\s*s)\s*\|\s*Remaining:\s*([\d.]+\s*s|Estimating\.\.\.)/,
@@ -342,10 +340,11 @@ export async function runWhisperKit(
     const srtPath = `${outputPath}/${fileLabel}.srt`;
     const vttPath = `${outputPath}/${fileLabel}.vtt`;
     if (existsSync(srtPath) && commandExists("ffmpeg")) {
+      const ffmpegPrefix = `${outputPath}/${fileLabel}-ffmpeg-${timestamp}`;
       await runCommandWithProgress(
         "ffmpeg",
         ["-y", "-hide_banner", "-loglevel", "error", "-i", srtPath, vttPath],
-        logFile,
+        ffmpegPrefix,
       );
     }
 
@@ -357,8 +356,6 @@ export async function runWhisperKit(
       ? (audioDuration / elapsed).toFixed(1)
       : "?";
 
-    const result = `✓ Done in ${elapsed}s. Speedup: ${speedup}x.`;
-    console.log(result);
-    await writeFile(logFile, result + "\n", { flag: "a" });
+    console.log(`✓ Done in ${elapsed}s. Speedup: ${speedup}x.`);
   }
 }
