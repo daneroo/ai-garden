@@ -1,6 +1,8 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { basename } from "node:path";
 import { existsSync } from "node:fs";
+import { getAudioFileDuration } from "./audio.ts";
+import { commandExists } from "./preflight.ts";
 
 /**
  * Configuration for a whisper benchmark run
@@ -16,19 +18,6 @@ export interface RunConfig {
   outputDir: string; // Base output dir, engine subdir will be created
   verbosity: number;
   dryRun: boolean;
-}
-
-/**
- * Check if a command exists in PATH or as a file
- */
-export function commandExists(cmd: string): boolean {
-  if (existsSync(cmd)) return true;
-  try {
-    const result = new Deno.Command("which", { args: [cmd] }).outputSync();
-    return result.code === 0;
-  } catch {
-    return false;
-  }
 }
 
 /**
@@ -75,15 +64,10 @@ export async function runWhisperCpp(
   const engineDir = `${config.outputDir}/${flavor}`;
 
   console.log("");
-  console.log(
-    "----------------------------------------------------------------",
-  );
-  console.log(`Running: ${label}`);
-  console.log(`Binary: ${exec}`);
-  console.log(`Output: ${engineDir}/`);
-  console.log(
-    "----------------------------------------------------------------",
-  );
+  console.log(`## ${label}`);
+  console.log("");
+  console.log(`- Binary: ${exec}`);
+  console.log(`- Output: ${engineDir}/`);
 
   if (!commandExists(exec)) {
     console.log(`▲ Binary not found: ${exec}. Skipping.`);
@@ -122,7 +106,10 @@ export async function runWhisperCpp(
     const cmdStr = `${exec} ${args.join(" ")}`;
 
     if (config.dryRun) {
-      console.log(`Command (dry-run): ${cmdStr}`);
+      console.log("");
+      console.log("```");
+      console.log(cmdStr);
+      console.log("```");
       continue;
     }
 
@@ -132,8 +119,12 @@ export async function runWhisperCpp(
     await runCommand(exec, args, logFile);
     const elapsed = Math.round((Date.now() - start) / 1000);
 
-    const speedup = config.durationSec > 0
-      ? (config.durationSec / elapsed).toFixed(1)
+    // Calculate speedup using file duration if not specified
+    const audioDuration = config.durationSec > 0
+      ? config.durationSec
+      : await getAudioFileDuration(config.source);
+    const speedup = audioDuration > 0 && elapsed > 0
+      ? (audioDuration / elapsed).toFixed(1)
       : "?";
 
     const result = `✓ Done in ${elapsed}s. Speedup: ${speedup}x.`;
@@ -155,15 +146,10 @@ export async function runWhisperKit(
   const engineDir = `${config.outputDir}/${flavor}`;
 
   console.log("");
-  console.log(
-    "----------------------------------------------------------------",
-  );
-  console.log(`Running: ${label}`);
-  console.log(`Binary: ${exec}`);
-  console.log(`Output: ${engineDir}/`);
-  console.log(
-    "----------------------------------------------------------------",
-  );
+  console.log(`## ${label}`);
+  console.log("");
+  console.log(`- Binary: ${exec}`);
+  console.log(`- Output: ${engineDir}/`);
 
   if (!commandExists(exec)) {
     console.log(`▲ Binary not found: ${exec}. Skipping.`);
@@ -199,7 +185,10 @@ export async function runWhisperKit(
     const cmdStr = `${exec} ${args.join(" ")}`;
 
     if (config.dryRun) {
-      console.log(`Command (dry-run): ${cmdStr}`);
+      console.log("");
+      console.log("```");
+      console.log(cmdStr);
+      console.log("```");
       continue;
     }
 
@@ -220,8 +209,12 @@ export async function runWhisperKit(
       );
     }
 
-    const speedup = config.durationSec > 0
-      ? (config.durationSec / elapsed).toFixed(1)
+    // Calculate speedup using file duration if not specified
+    const audioDuration = config.durationSec > 0
+      ? config.durationSec
+      : await getAudioFileDuration(config.source);
+    const speedup = audioDuration > 0 && elapsed > 0
+      ? (audioDuration / elapsed).toFixed(1)
       : "?";
 
     const result = `✓ Done in ${elapsed}s. Speedup: ${speedup}x.`;

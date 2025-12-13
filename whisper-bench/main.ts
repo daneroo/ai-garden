@@ -1,6 +1,7 @@
 import yargs from "yargs";
 import process from "node:process";
 import { RunConfig, runWhisperCpp, runWhisperKit } from "./lib/runners.ts";
+import { preflightCheck } from "./lib/preflight.ts";
 
 // Configuration defaults
 const DEFAULT_SOURCE = "samples/hobbit-30m.mp3";
@@ -105,22 +106,40 @@ async function main(): Promise<void> {
     verbose: verbosity,
   } = argv;
 
+  // Determine which runners to execute
+  const runnersToExecute = runner === "all"
+    ? (Object.keys(RUNNERS) as (keyof typeof RUNNERS)[])
+    : [runner as keyof typeof RUNNERS];
+
+  // Preflight check
+  const { missing, warnings } = preflightCheck(
+    runnersToExecute.map((k) => RUNNERS[k]),
+  );
+
+  if (missing.length > 0) {
+    console.error(`Error: Required commands not found: ${missing.join(", ")}`);
+    process.exit(1);
+  }
+
   // Build model path for whisper-cpp from shortname
   const modelBin = `${WHISPER_CPP_MODELS}/ggml-${model}.bin`;
 
-  console.log(
-    "================================================================",
-  );
-  console.log("Global Configuration");
-  console.log(`Source:   ${source}`);
-  console.log(`Model:    ${model}`);
-  console.log(`Duration: ${duration === 0 ? "entire file" : `${duration}s`}`);
+  console.log("");
+  console.log("# Global Configuration");
+  console.log("");
+  console.log(`- Source: ${source}`);
+  console.log(`- Model: ${model}`);
+  console.log(`- Duration: ${duration === 0 ? "entire file" : `${duration}s`}`);
   if (dryRun) {
-    console.log("Mode:     DRY RUN");
+    console.log("- Mode: DRY RUN");
   }
-  console.log(
-    "================================================================",
-  );
+  if (warnings.length > 0) {
+    console.log("");
+    console.log("⚠ Missing runners (will be skipped):");
+    for (const w of warnings) {
+      console.log(`  - ${w}`);
+    }
+  }
 
   const config: RunConfig = {
     source,
@@ -134,11 +153,6 @@ async function main(): Promise<void> {
     verbosity,
     dryRun,
   };
-
-  // Determine which runners to execute
-  const runnersToExecute = runner === "all"
-    ? (Object.keys(RUNNERS) as (keyof typeof RUNNERS)[])
-    : [runner as keyof typeof RUNNERS];
 
   for (const key of runnersToExecute) {
     const r = RUNNERS[key];
