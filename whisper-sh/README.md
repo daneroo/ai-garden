@@ -204,8 +204,9 @@ du -sm models/ggml*bin|sort -n
 As of my 2025-02-14 update, the binary has moved to $WHISPER_HOME/build/bin/whisper-cli.
 
 ```bash
-# make clean # this target disappeared
-# build the main example - now requires cmake
+# make clean # this target disappeared, 
+# use: rm -rf build
+# build the whisper-cli executable - now requires cmake
 brew install cmake
 make
 # transcribe an audio file - base is the default model

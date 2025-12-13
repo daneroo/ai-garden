@@ -43,10 +43,16 @@ Note: For `.m4b` files with cover art, use `-vn` to strip video streams to avoid
 
 ```bash
 # Convert to MP3
-ffmpeg -y -hide_banner -loglevel info -i samples/quixote.m4b -vn -c:a libmp3lame -q:a 4 samples/quixote.mp3
+ffmpeg -y -hide_banner -loglevel info -i samples/hobbit.m4b -vn -c:a libmp3lame -q:a 4 samples/hobbit.mp3
 
 # Convert to WAV (16kHz, mono, PCM)
-ffmpeg -y -hide_banner -loglevel info -i samples/quixote.m4b -vn -ar 16000 -ac 1 -c:a pcm_s16le samples/quixote.wav
+ffmpeg -y -hide_banner -loglevel info -i samples/hobbit.m4b -vn -ar 16000 -ac 1 -c:a pcm_s16le samples/hobbit.wav
+
+# Create Exact Length Clips (30m, 1h)
+ffmpeg -y -hide_banner -loglevel info -i samples/hobbit.wav -t 1800 -c copy samples/hobbit-30m.wav
+ffmpeg -y -hide_banner -loglevel info -i samples/hobbit.wav -t 3600 -c copy samples/hobbit-1h.wav
+ffmpeg -y -hide_banner -loglevel info -i samples/hobbit-30m.wav -vn -c:a libmp3lame -q:a 4 samples/hobbit-30m.mp3
+ffmpeg -y -hide_banner -loglevel info -i samples/hobbit-1h.wav -vn -c:a libmp3lame -q:a 4 samples/hobbit-1h.mp3
 ```
 
 ### 3. Invocation Variants
@@ -118,9 +124,35 @@ Reference for invoking different Whisper implementations.
 
 ## Plan
 
-- [ ] **Invocation**: Document CLI switches for all 4 variants
-- [ ] **Compatibility**: Test M4B/MP3 direct input on all variants
-- [ ] **Smoke Test**: Create a script to run a 10-minute sample on all 4
+- [ ] **Invocation**: Document CLI switches for all 3 variants
+
+### 2. Smoke Tests
+
+We have a `smoke-test.sh` script to verify all 3 variants on a 1-hour segment of `quixote.wav`.
+
+- **Variants**: Homebrew `whisper-cli`, Self-compiled `whisper-cli`, `whisperkit-cli`.
+- **Input**: `samples/quixote.wav` (36h file, script processed 30m).
+- **Output**: `output/smoke/` containing `.json`, `.vtt` (auto-converted for Kit), and `.srt` (Kit only).
+- **Status**: ✅ All 3 variants passing.
+  - **Scenario A: Quixote (36h file, 30m sample)**:
+    - Brew: ~85s
+    - Self: ~77s
+    - Kit: ~33s
+  - **Scenario B: Hobbit (10h file, 30m sample)**:
+    - Brew: ~37s (Huge drop due to less file loading overhead)
+    - Self: ~36s
+    - Kit: ~16s
+  - **Scenario C: Hobbit (30m EXACT file)**:
+    - Brew: ~24s
+    - Self: ~23s (`MATMUL_INT8` faster than Brew)
+    - Kit: ~16s (Stable, no overhead penalty)
+    - *Conclusion*: C++ `whisper` spends ~14s loading a 10h file, but is very fast (~23s) on exact-length files. WhisperKit is consistently ~16s.
+  - **Format Support**:
+    - `whisper-cpp`: supports `.wav` and `.mp3`
+    - `whisperkit-cli`: supports `.wav`, `.mp3`, `.m4a`, and `.m4b`
+
+- [x] **Smoke Test**: Create a script to run a 10-minute/1-hour sample on all variations
+
 - [ ] **Benchmark**: Port/Adapt `bench.sh` for cross-engine comparison
 - [ ] **Parallel**: Design a split-and-process experiment
 
