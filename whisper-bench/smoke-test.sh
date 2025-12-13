@@ -2,13 +2,14 @@
 set -e
 
 # --- Configuration ---
-SOURCE_FILE="samples/hobbit-30m.wav"      # Exact 30m cut to remove loading overhead
-FILE_LABEL=$(basename "$SOURCE_FILE" .wav) # e.g. "hobbit-30m"
+SOURCE_FILE="samples/hobbit.mp3"      # Exact 30m cut to remove loading overhead
+FILE_LABEL=$(basename "$SOURCE_FILE" .mp3) # e.g. "hobbit-30m"
 MODEL_BIN="models/ggml-tiny.en.bin"
 MODEL_NAME="tiny"                         # Simple 'tiny' for WhisperKit
-ITERATIONS=3                              # Number of iterations for each test
-DURATION_MS="1800000"                     # 30 minutes
-DURATION_SEC="1800"                       # 30 minutes
+ITERATIONS=1                              # Number of iterations for each test
+WHISPER_CPP_THREADS=6                     # Threads for whisper-cpp (Default 4, 6 P-cores, Max 10 on M2 Pro)
+DURATION_MS="37482730"                     # 30 minutes
+DURATION_SEC="37482"                       # 30 minutes
 OUTPUT_DIR="output/smoke"
 
 # Executables
@@ -44,7 +45,7 @@ run_whisper_cpp() {
             local LOGFILE="$OUTPUT_DIR/${FILE_LABEL}-${FLAVOR}-${TIMESTAMP}.log"
             
             # Construct the command
-            local CMD="$EXEC -m \"$MODEL_BIN\" -f \"$SOURCE_FILE\" -d \"$DURATION_MS\" --print-progress --output-json --output-vtt -of \"$OUT_PREFIX\" >> \"$LOGFILE\" 2>&1"
+            local CMD="$EXEC -t $WHISPER_CPP_THREADS -m \"$MODEL_BIN\" -f \"$SOURCE_FILE\" -d \"$DURATION_MS\" --print-progress --output-json --output-vtt -of \"$OUT_PREFIX\" >> \"$LOGFILE\" 2>&1"
             
             echo "Command: $CMD" >> "$LOGFILE"
             
@@ -59,8 +60,11 @@ run_whisper_cpp() {
             
             local END=$(date +%s)
             local ELAPSED=$((END - START))
+            local SPEEDUP=$(echo "scale=1; $DURATION_SEC / $ELAPSED" | bc -l 2>/dev/null || echo "N/A")
+            # Fallback if bc/awk fails or duration is 0
+            if [ "$SPEEDUP" = "" ]; then SPEEDUP="?"; fi
             
-            echo "✓ Done in ${ELAPSED}s. Log: $LOGFILE" | tee -a "$LOGFILE"
+            echo "✓ Done in ${ELAPSED}s. Speedup: ${SPEEDUP}x." | tee -a "$LOGFILE"
         done
     else
         echo "▲  Binary not found: $EXEC. Skipping."
@@ -102,6 +106,7 @@ run_whisper_kit() {
             
             local END=$(date +%s)
             local ELAPSED=$((END - START))
+            local SPEEDUP=$(echo "scale=1; $DURATION_SEC / $ELAPSED" | bc -l 2>/dev/null || echo "N/A")
 
             # Move and rename artifacts
             if [ -f "$TEMP_DIR/${FILE_LABEL}.json" ]; then
@@ -121,7 +126,7 @@ run_whisper_kit() {
 
             rm -rf "$TEMP_DIR"
             
-            echo "✓ Done in ${ELAPSED}s. Log: $LOGFILE" | tee -a "$LOGFILE"
+            echo "✓ Done in ${ELAPSED}s. Speedup: ${SPEEDUP}x." | tee -a "$LOGFILE"
         done
     else
         echo "▲  Binary not found: $EXEC. Skipping."

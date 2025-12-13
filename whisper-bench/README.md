@@ -4,8 +4,20 @@ Experimental area for whisper-related workflows, separate from `../whisper-sh`.
 
 ## Purpose
 
-To perform experiments that "look a lot like the code in `../whisper-sh`" but need to be isolated.
-We aim to compare multiple Whisper implementations, verify input compatibility, and establish benchmarks.
+To perform experiments that "look a lot like the code in `../whisper-sh`" but
+need to be isolated. We aim to compare multiple Whisper implementations, verify
+input compatibility, and establish benchmarks.
+
+## Conclusions
+
+- whisperkit-cli is the fastest. can do word level timestamps, and can handle
+  `.m4b` files.
+
+We should now focus on an overlap/matching metric, to compare
+
+- tiny, base, large (v3?)
+- whisperkit-cli word level timestamps
+- whisper-cpp (Homebrew) - word level timestamps
 
 ## Experiments
 
@@ -20,7 +32,8 @@ We need to figure out how to invoke and configure the following four engines:
 
 ### 2. Input Compatibility
 
-Previously, `whisper.cpp` was limited to 16kHz WAV files. We need to verify if newer versions support:
+Previously, `whisper.cpp` was limited to 16kHz WAV files. We need to verify if
+newer versions support:
 
 - MP3
 - M4A
@@ -28,18 +41,24 @@ Previously, `whisper.cpp` was limited to 16kHz WAV files. We need to verify if n
 
 #### Findings (32-bit Integer Limit)
 
-Current `whisper-cpp` (Homebrew build) uses a signed 32-bit integer for sample counts, leading to an overflow for files longer than **~37 hours, 17 minutes** (at 16kHz).
+Current `whisper-cpp` (Homebrew build) uses a signed 32-bit integer for sample
+counts, leading to an overflow for files longer than **~37 hours, 17 minutes**
+(at 16kHz).
 
 - **Stalin2.m4b** (49h): **FAILED** (Integer Overflow / Hang)
 - **Stalin1.m4b** (38h): **FAILED** (Integer Overflow / Hang)
-- **Don Quixote.m4b** (36h 05m): **PASSED** (2,079,233,671 samples < 2,147,483,647 max)
-- `samples/quixote.mp3`: 130k seconds (36h 05m). **PASSED**. Scanned successfully, 2.08 billion samples.
-  - **Smoke Test**: `whisper-cli ... -d 3600000` (1 hour) PASSED. Generated valid JSON/VTT.
+- **Don Quixote.m4b** (36h 05m): **PASSED** (2,079,233,671 samples <
+  2,147,483,647 max)
+- `samples/quixote.mp3`: 130k seconds (36h 05m). **PASSED**. Scanned
+  successfully, 2.08 billion samples.
+  - **Smoke Test**: `whisper-cli ... -d 3600000` (1 hour) PASSED. Generated
+    valid JSON/VTT.
 
 #### Prototype Conversion
 
-If direct input is not supported or files are too large, we convert using `ffmpeg`.
-Note: For `.m4b` files with cover art, use `-vn` to strip video streams to avoid hanging.
+If direct input is not supported or files are too large, we convert using
+`ffmpeg`. Note: For `.m4b` files with cover art, use `-vn` to strip video
+streams to avoid hanging.
 
 ```bash
 # Convert to MP3
@@ -71,7 +90,8 @@ Reference for invoking different Whisper implementations.
   - `-of <path>`: Output filename prefix (strip extension).
   - `-oj`, `-ovtt`: Output JSON and VTT files.
   - `-pp`: Print progress.
-  - `-dtw <model>`: **Important**: Compute token-level timestamps (Dynamic Time Warping). May help with Jitter.
+  - `-dtw <model>`: **Important**: Compute token-level timestamps (Dynamic Time
+    Warping). May help with Jitter.
 
 #### 2. `whisper-server` (whisper.cpp - Server)
 
@@ -105,22 +125,32 @@ Reference for invoking different Whisper implementations.
 ### 5. Parallel Execution (Future)
 
 - Explore performance gains from running multiple concurrent instances.
-- Test strategies like splitting audiobooks into 1-hour segments for parallel processing.
+- Test strategies like splitting audiobooks into 1-hour segments for parallel
+  processing.
 
 #### Findings: Split & Stitch Risks
 
-- **Timestamp Jitter**: Timestamps are not just "drifting" (linear error) but "jittering" (local inaccuracy).
-  - **Global Inaccuracy**: Timestamps can be **3-4 seconds off** from the actual audio utterance anywhere in the file.
+- **Timestamp Jitter**: Timestamps are not just "drifting" (linear error) but
+  "jittering" (local inaccuracy).
+  - **Global Inaccuracy**: Timestamps can be **3-4 seconds off** from the actual
+    audio utterance anywhere in the file.
   - **Constraints**:
-    - **Bookmarks**: High precision is needed. 4s error is unacceptable for chapter navigation.
-    - **Stitching**: VTT files require **non-decreasing timestamps**. If Segment A ends at `01:00:02` and Segment B (hard-split at 1h) starts effectively at `01:00:00`, concatenating them creates a time regression (`...02` -> `...00`), breaking players. A mere concatenation strategy will fail; we need overlap and monotonicity enforcement.
+    - **Bookmarks**: High precision is needed. 4s error is unacceptable for
+      chapter navigation.
+    - **Stitching**: VTT files require **non-decreasing timestamps**. If Segment
+      A ends at `01:00:02` and Segment B (hard-split at 1h) starts effectively
+      at `01:00:00`, concatenating them creates a time regression (`...02` ->
+      `...00`), breaking players. A mere concatenation strategy will fail; we
+      need overlap and monotonicity enforcement.
 
 ## Stretch Goals
 
 ### Jitter / Timestamp Precision
 
-- Verified: Timestamps are approximate and can drift beyond the strict audio cut-off.
-- Need to determine if this error accumulates or is local to the segment boundary.
+- Verified: Timestamps are approximate and can drift beyond the strict audio
+  cut-off.
+- Need to determine if this error accumulates or is local to the segment
+  boundary.
 
 ## Plan
 
@@ -128,11 +158,14 @@ Reference for invoking different Whisper implementations.
 
 ### 2. Smoke Tests
 
-We have a `smoke-test.sh` script to verify all 3 variants on a 1-hour segment of `quixote.wav`.
+We have a `smoke-test.sh` script to verify all 3 variants on a 1-hour segment of
+`quixote.wav`.
 
-- **Variants**: Homebrew `whisper-cli`, Self-compiled `whisper-cli`, `whisperkit-cli`.
+- **Variants**: Homebrew `whisper-cli`, Self-compiled `whisper-cli`,
+  `whisperkit-cli`.
 - **Input**: `samples/quixote.wav` (36h file, script processed 30m).
-- **Output**: `output/smoke/` containing `.json`, `.vtt` (auto-converted for Kit), and `.srt` (Kit only).
+- **Output**: `output/smoke/` containing `.json`, `.vtt` (auto-converted for
+  Kit), and `.srt` (Kit only).
 - **Status**: ✅ All 3 variants passing.
   - **Scenario A: Quixote (36h file, 30m sample)**:
     - Brew: ~85s
@@ -146,21 +179,47 @@ We have a `smoke-test.sh` script to verify all 3 variants on a 1-hour segment of
     - Brew: ~24s
     - Self: ~23s (`MATMUL_INT8` faster than Brew)
     - Kit: ~16s (Stable, no overhead penalty)
-    - *Conclusion*: C++ `whisper` spends ~14s loading a 10h file, but is very fast (~23s) on exact-length files. WhisperKit is consistently ~16s.
+    - _Conclusion_: C++ `whisper` spends ~14s loading a 10h file, but is very
+      fast (~23s) on exact-length files. WhisperKit is consistently ~16s.
   - **Format Support**:
     - `whisper-cpp`: supports `.wav` and `.mp3`
     - `whisperkit-cli`: supports `.wav`, `.mp3`, `.m4a`, and `.m4b`
 
-- [x] **Smoke Test**: Create a script to run a 10-minute/1-hour sample on all variations
+### 3. "Hero" Benchmark
 
-- [ ] **Benchmark**: Port/Adapt `bench.sh` for cross-engine comparison
-- [ ] **Parallel**: Design a split-and-process experiment
+- **File**: `samples/stalin2.m4b` (Duration: 49h 44m)
+- **Engine**: `whisperkit-cli` (v0.8.0)
+- **Time**: ~1149s (~19m)
+- **Speed**: **156x Realtime**
+- **Status**: ✅ Success. This confirms the pipeline can handle massive
+  audiobooks directly in compressed format.
+
+- [x] **Smoke Test**: Create a script to run a 10-minute/1-hour sample on all
+      variations
+
+- [x] **Benchmark**: Cross-engine comparison completed via `smoke-test.sh`
+      (Scenario A/B/C).
+- [x] **Parallel**: Tested 2x split. Gain (~19%) deemed insufficient for added
+      complexity vs 156x single-stream speed.
 
 ### Helper Scripts
 
+### Show Progress until 'string' found - preserving progress
+
+**Note**: Could also split output to put progress on stderr.
+
+```bash
+whisperkit-cli transcribe --audio-path "samples/hobbit-30m.mp3" --model "tiny" --verbose --report-path output --report --word-timestamps 2>&1 | bun -e "process.stdin.on('data',d=>{let s=d.toString(),i=s.indexOf('Generating reports...');if(i!==-1){process.stdout.write(s.slice(0,i));process.exit()}process.stdout.write(s)})"
+```
+
 #### Find Audiobooks by Duration
 
-Finds all `.m4b` files, extracts their duration, and sorts them to help find test candidates (e.g., just under the 37h limit).
+Finds all `.m4b` files, extracts their duration, and sorts them to help find
+test candidates (e.g., just under the 37h limit).
+
+- Total: 45275132.73s (12576h 25m 32s)
+- **Projected Time @ 100x Speedup**: ~125.8 hours (~5.2 days)
+- **Projected Time @ 156x Speedup**: ~80.6 hours (~3.4 days)
 
 ```bash
 find /Volumes/Space/Reading/audiobooks/ -name "*.m4b" -exec bash -c '
@@ -172,3 +231,27 @@ find /Volumes/Space/Reading/audiobooks/ -name "*.m4b" -exec bash -c '
     fi
 ' \; | sort -n
 ```
+
+## TypeScript (Deno)
+
+Porting `smoke-test.sh` to TypeScript using Deno for better maintainability and
+cross-platform support.
+
+```bash
+# Initialize
+deno init --empty
+
+# Add dependencies
+deno add npm:yargs npm:@types/yargs
+
+# Check for updates
+deno outdated
+
+# Run
+deno run main.ts --help
+```
+
+**Patterns borrowed from:**
+
+- `deno-one/` - deno.json tasks (lint, format, test, ci)
+- `epub-split/index.ts` - yargs argument parsing

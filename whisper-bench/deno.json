@@ -1,0 +1,16 @@
+{
+  "tasks": {
+    "start": "deno run -A main.ts --help",
+    "lint": "deno lint",
+    "format:check": "deno fmt --check",
+    "format:fix": "deno fmt",
+    "test": "deno test --doc",
+    "outdated": "deno outdated",
+    "ci": "deno task format:check && deno task lint && deno task test"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1",
+    "@types/yargs": "npm:@types/yargs@^17.0.35",
+    "yargs": "npm:yargs@^18.0.0"
+  }
+}
