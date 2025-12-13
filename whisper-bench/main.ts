@@ -94,6 +94,11 @@ async function main(): Promise<void> {
       default: false,
       describe: "Show commands without executing",
     })
+    .option("word-timestamps", {
+      type: "boolean",
+      default: false,
+      describe: "Enable word-level timestamps (kit only)",
+    })
     .count("verbose")
     .alias("v", "verbose")
     .help()
@@ -110,6 +115,7 @@ async function main(): Promise<void> {
     output,
     runner,
     "dry-run": dryRun,
+    "word-timestamps": wordTimestamps,
     verbose: verbosity,
   } = argv;
 
@@ -162,6 +168,7 @@ async function main(): Promise<void> {
     outputDir: output,
     verbosity,
     dryRun,
+    wordTimestamps,
   };
 
   for (const key of runnersToExecute) {

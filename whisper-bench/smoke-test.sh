@@ -2,14 +2,14 @@
 set -e
 
 # --- Configuration ---
-SOURCE_FILE="samples/hobbit.mp3"      # Exact 30m cut to remove loading overhead
+SOURCE_FILE="samples/hobbit-30m.mp3"      # Exact 30m cut to remove loading overhead
 FILE_LABEL=$(basename "$SOURCE_FILE" .mp3) # e.g. "hobbit-30m"
 MODEL_BIN="models/ggml-tiny.en.bin"
 MODEL_NAME="tiny"                         # Simple 'tiny' for WhisperKit
 ITERATIONS=1                              # Number of iterations for each test
 WHISPER_CPP_THREADS=6                     # Threads for whisper-cpp (Default 4, 6 P-cores, Max 10 on M2 Pro)
-DURATION_MS="37482730"                     # 30 minutes
-DURATION_SEC="37482"                       # 30 minutes
+DURATION_MS="1800000"                     # 30 minutes
+DURATION_SEC="1800"                       # 30 minutes
 OUTPUT_DIR="output/smoke"
 
 # Executables

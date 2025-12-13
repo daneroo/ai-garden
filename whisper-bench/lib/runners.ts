@@ -21,6 +21,7 @@ export interface RunConfig {
   outputDir: string; // Base output dir, engine subdir will be created
   verbosity: number;
   dryRun: boolean;
+  wordTimestamps: boolean;
 }
 
 /**
@@ -81,6 +82,7 @@ export async function runWhisperCpp(
       "--print-progress",
       "--threads",
       String(config.threads),
+      ...(config.wordTimestamps ? ["--max-len", "1", "--split-on-word"] : []),
     ];
 
     const cmdStr = `${exec} ${args.join(" ")}`;
@@ -179,6 +181,7 @@ export async function runWhisperKit(
       "--report-path",
       outputPath,
       "--verbose",
+      ...(config.wordTimestamps ? ["--word-timestamps"] : []),
     ];
 
     const cmdStr = `${exec} ${args.join(" ")}`;

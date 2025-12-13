@@ -12,6 +12,7 @@ const mockConfig: RunConfig = {
   outputDir: "output",
   verbosity: 1,
   dryRun: false,
+  wordTimestamps: false,
 };
 
 Deno.test("calculateSpeedup - explicit duration", async () => {
