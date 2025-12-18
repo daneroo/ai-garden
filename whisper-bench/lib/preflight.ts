@@ -26,14 +26,12 @@ const REQUIRED_COMMANDS = ["ffmpeg", "ffprobe"];
  * Run preflight checks - verify required commands exist
  * Returns list of missing commands, empty if all present
  */
-export function preflightCheck(runners: { exec: string; label: string }[]): {
+export function preflightCheck(commands: string[]): {
   missing: string[];
-  warnings: string[];
 } {
   const missing: string[] = [];
-  const warnings: string[] = [];
 
-  // Check required commands
+  // Check required global commands
   for (const cmd of REQUIRED_COMMANDS) {
     if (!commandExists(cmd)) {
       missing.push(cmd);
@@ -41,11 +39,11 @@ export function preflightCheck(runners: { exec: string; label: string }[]): {
   }
 
   // Check runner-specific commands
-  for (const runner of runners) {
-    if (!commandExists(runner.exec)) {
-      warnings.push(`${runner.label}: ${runner.exec}`);
+  for (const cmd of commands) {
+    if (!commandExists(cmd)) {
+      missing.push(cmd);
     }
   }
 
-  return { missing, warnings };
+  return { missing };
 }

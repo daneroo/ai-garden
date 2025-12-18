@@ -56,7 +56,16 @@ export async function runWhisper(config: RunConfig): Promise<void> {
 }
 
 /**
- * Run whisper-cpp benchmark
+ * Get the executable name for a given runner type
+ */
+export function getRequiredCommands(config: RunConfig): string[] {
+  if (config.runner === "whispercpp") return [WHISPER_CPP_EXEC];
+  if (config.runner === "whisperkit") return [WHISPER_KIT_EXEC];
+  return [];
+}
+
+/**
+ * Run whisper-cpp command
  */
 async function runWhisperCpp(config: RunConfig): Promise<void> {
   const exec = WHISPER_CPP_EXEC;
@@ -70,11 +79,6 @@ async function runWhisperCpp(config: RunConfig): Promise<void> {
   console.log("");
   console.log(`- Executable: ${exec}`);
   console.log(`- Output: ${outputPath}/`);
-
-  if (!commandExists(exec)) {
-    console.log(`▲ Binary not found: ${exec}. Skipping.`);
-    return;
-  }
 
   if (!config.dryRun) {
     await mkdir(outputPath, { recursive: true });
@@ -167,11 +171,6 @@ async function runWhisperKit(config: RunConfig): Promise<void> {
   console.log("");
   console.log(`- Executable: ${exec}`);
   console.log(`- Output: ${outputPath}/`);
-
-  if (!commandExists(exec)) {
-    console.log(`▲ Binary not found: ${exec}. Skipping.`);
-    return;
-  }
 
   if (!config.dryRun) {
     await mkdir(outputPath, { recursive: true });

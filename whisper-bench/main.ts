@@ -1,6 +1,11 @@
 import yargs from "yargs";
 import process from "node:process";
-import { ModelShortName, RunConfig, runWhisper } from "./lib/runners.ts";
+import {
+  getRequiredCommands,
+  ModelShortName,
+  RunConfig,
+  runWhisper,
+} from "./lib/runners.ts";
 import { preflightCheck } from "./lib/preflight.ts";
 
 // Configuration defaults
@@ -109,12 +114,24 @@ async function main(): Promise<void> {
     ? (Object.keys(RUNNERS) as (keyof typeof RUNNERS)[])
     : [runner as keyof typeof RUNNERS];
 
+  const runConfigs: RunConfig[] = runnersToExecute.map((key) => ({
+    input,
+    modelShortName: model as ModelShortName,
+    iterations,
+    threads,
+    startSec: start,
+    durationSec: duration,
+    outputDir: output,
+    verbosity,
+    dryRun,
+    wordTimestamps,
+    runner: RUNNERS[key],
+  }));
+
   // Preflight check
-  // Executables are now private in runners.ts, but we check specific binaries here
-  // based on the planned usage.
-  const requiredCommands = [];
-  if (runnersToExecute.includes("cpp")) requiredCommands.push("whisper-cli");
-  if (runnersToExecute.includes("kit")) requiredCommands.push("whisperkit-cli");
+  const requiredCommands = runConfigs.flatMap((cfg) =>
+    getRequiredCommands(cfg)
+  );
 
   const { missing } = preflightCheck(requiredCommands);
 
@@ -136,24 +153,7 @@ async function main(): Promise<void> {
     console.log("- Mode: DRY RUN");
   }
 
-  const config: RunConfig = {
-    input,
-    modelShortName: model as ModelShortName,
-    iterations,
-    threads,
-    startSec: start,
-    durationSec: duration,
-    outputDir: output,
-    verbosity,
-    dryRun,
-    wordTimestamps,
-  };
-
-  for (const key of runnersToExecute) {
-    const currentRunConfig: RunConfig = {
-      ...config,
-      runner: RUNNERS[key],
-    };
-    await runWhisper(currentRunConfig);
+  for (const cfg of runConfigs) {
+    await runWhisper(cfg);
   }
 }
