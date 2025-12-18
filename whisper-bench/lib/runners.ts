@@ -64,11 +64,6 @@ export interface ProgressInfo {
  * Callbacks for runner output (optional, silent if not provided)
  */
 export interface RunCallbacks {
-  onStart?: (info: {
-    runner: RunnerName;
-    exec: string;
-    outputPath: string;
-  }) => void;
   onProgress?: (info: ProgressInfo) => void;
   onComplete?: (result: RunResult) => void;
 }
@@ -118,8 +113,6 @@ async function runWhisperCpp(
   const flavor = "cpp";
   const fileLabel = basename(config.input, extname(config.input));
   const outputPath = `${config.outputDir}/${flavor}`;
-
-  callbacks?.onStart?.({ runner: "whispercpp", exec, outputPath });
 
   if (!config.dryRun) {
     await mkdir(outputPath, { recursive: true });
@@ -207,8 +200,6 @@ async function runWhisperKit(
   const flavor = "kit";
   const fileLabel = basename(config.input, extname(config.input));
   const outputPath = `${config.outputDir}/${flavor}`;
-
-  callbacks?.onStart?.({ runner: "whisperkit", exec, outputPath });
 
   if (!config.dryRun) {
     await mkdir(outputPath, { recursive: true });

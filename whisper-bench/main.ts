@@ -150,14 +150,6 @@ async function main(): Promise<void> {
 
   // Callbacks for console output
   const callbacks: RunCallbacks = {
-    onStart: (info) => {
-      const label = info.runner === "whispercpp" ? "WhisperCPP" : "WhisperKit";
-      console.log("");
-      console.log(`## ${label}`);
-      console.log("");
-      console.log(`- Executable: ${info.exec}`);
-      console.log(`- Output: ${info.outputPath}/`);
-    },
     onProgress: (info: ProgressInfo) => {
       const suffix = info.elapsed
         ? ` | Elapsed: ${info.elapsed} | Remaining: ${info.remaining}`
@@ -171,6 +163,11 @@ async function main(): Promise<void> {
       );
     },
   };
+
+  // Print runner header
+  const label = runner === "whispercpp" ? "WhisperCPP" : "WhisperKit";
+  console.log("");
+  console.log(`## ${label}`);
 
   // Iteration loop (now handled in main)
   const results: RunResult[] = [];
