@@ -14,6 +14,13 @@ const WHISPER_CPP_MODELS = "models";
 const WHISPER_CPP_EXEC = "whisper-cli";
 const WHISPER_KIT_EXEC = "whisperkit-cli";
 
+// RunnerName must be a non-empty array of valid runner names
+export type RunnerName = "whisperkit" | "whispercpp";
+export const RUNNER_NAMES: [RunnerName, ...RunnerName[]] = [
+  "whisperkit",
+  "whispercpp",
+];
+
 export type ModelShortName = "tiny.en" | "base.en" | "small.en";
 
 /**
@@ -21,7 +28,7 @@ export type ModelShortName = "tiny.en" | "base.en" | "small.en";
  */
 export interface RunConfig {
   input: string; // Path to the audio file to transcribe
-  runner: "whispercpp" | "whisperkit";
+  runner: RunnerName;
   modelShortName: ModelShortName;
   iterations: number;
   threads: number;

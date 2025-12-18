@@ -4,6 +4,8 @@ import {
   getRequiredCommands,
   ModelShortName,
   RunConfig,
+  RUNNER_NAMES,
+  RunnerName,
   runWhisper,
 } from "./lib/runners.ts";
 import { preflightCheck } from "./lib/preflight.ts";
@@ -17,11 +19,7 @@ const DEFAULT_START_SECS = 0; // Starting offset in seconds
 const DEFAULT_DURATION_SECS = 0; // 0 = entire file
 const DEFAULT_ITERATIONS = 1;
 
-// Runner definitions
-const RUNNERS = {
-  cpp: "whispercpp",
-  kit: "whisperkit",
-} as const;
+// Runner definitions removed in favor of direct Use of RUNNER_NAMES
 
 if (import.meta.main) {
   await main();
@@ -74,8 +72,8 @@ async function main(): Promise<void> {
     .option("runner", {
       alias: "r",
       type: "string",
-      choices: ["cpp", "kit", "all"],
-      default: "all",
+      choices: RUNNER_NAMES,
+      default: RUNNER_NAMES[0],
       describe: "Which whisper runner to use",
     })
     .option("dry-run", {
@@ -109,12 +107,8 @@ async function main(): Promise<void> {
     verbose: verbosity,
   } = argv;
 
-  // Determine which runners to execute
-  const runnersToExecute = runner === "all"
-    ? (Object.keys(RUNNERS) as (keyof typeof RUNNERS)[])
-    : [runner as keyof typeof RUNNERS];
-
-  const runConfigs: RunConfig[] = runnersToExecute.map((key) => ({
+  // Single runner execution
+  const config: RunConfig = {
     input,
     modelShortName: model as ModelShortName,
     iterations,
@@ -125,13 +119,11 @@ async function main(): Promise<void> {
     verbosity,
     dryRun,
     wordTimestamps,
-    runner: RUNNERS[key],
-  }));
+    runner: runner as RunnerName,
+  };
 
   // Preflight check
-  const requiredCommands = runConfigs.flatMap((cfg) =>
-    getRequiredCommands(cfg)
-  );
+  const requiredCommands = getRequiredCommands(config);
 
   const { missing } = preflightCheck(requiredCommands);
 
@@ -153,7 +145,5 @@ async function main(): Promise<void> {
     console.log("- Mode: DRY RUN");
   }
 
-  for (const cfg of runConfigs) {
-    await runWhisper(cfg);
-  }
+  await runWhisper(config);
 }
