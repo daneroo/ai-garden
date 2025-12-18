@@ -161,26 +161,23 @@ Reference for invoking different Whisper implementations.
 We have a `smoke-test.sh` script to verify all 3 variants on a 1-hour segment of
 `quixote.wav`.
 
-- **Variants**: Homebrew `whisper-cli`, Self-compiled `whisper-cli`,
-  `whisperkit-cli`.
-- **Input**: `samples/quixote.wav` (36h file, script processed 30m).
-- **Output**: `output/smoke/` containing `.json`, `.vtt` (auto-converted for
+- **Variants**: CPP:`whisper-cli`, Kit:`whisperkit-cli`.
+- **Input**: `samples/hobbit<**>.mp3` (10h file).
+- **Output**: `output/<variant>/` containing `.json`, `.vtt` (auto-converted for
   Kit), and `.srt` (Kit only).
 - **Status**: ✅ All 3 variants passing.
-  - **Scenario A: Quixote (36h file, 30m sample)**:
-    - Brew: ~85s
-    - Self: ~77s
-    - Kit: ~33s
-  - **Scenario B: Hobbit (10h file, 30m sample)**:
-    - Brew: ~37s (Huge drop due to less file loading overhead)
-    - Self: ~36s
-    - Kit: ~16s
-  - **Scenario C: Hobbit (30m EXACT file)**:
-    - Brew: ~24s
-    - Self: ~23s (`MATMUL_INT8` faster than Brew)
-    - Kit: ~16s (Stable, no overhead penalty)
-    - _Conclusion_: C++ `whisper` spends ~14s loading a 10h file, but is very
-      fast (~23s) on exact-length files. WhisperKit is consistently ~16s.
+  - **Scenario A: Hobbit (10h file full duration)**:
+    - CPP: 444s Speedup: 84.4x
+    - Kit: 299s Speedup: 125.4x
+  - **Scenario B: Hobbit (10h file mp3, 30m sample)**:
+    - CPP: 58s Speedup: 31.0x.
+    - Kit: 58s Speedup: 31.0x.
+  - **Scenario C: Hobbit (30m EXACT file wav)**:
+    - CPP: 20s Speedup: 90.0x
+    - Kit: 16s Speedup: 112.5x
+  - **Scenario C: Hobbit (30m EXACT file mp3)**:
+    - CPP: 21s Speedup: 85.7x
+    - Kit: 14s Speedup: 128.6x
   - **Format Support**:
     - `whisper-cpp`: supports `.wav` and `.mp3`
     - `whisperkit-cli`: supports `.wav`, `.mp3`, `.m4a`, and `.m4b`
@@ -203,14 +200,6 @@ We have a `smoke-test.sh` script to verify all 3 variants on a 1-hour segment of
       complexity vs 156x single-stream speed.
 
 ### Helper Scripts
-
-### Show Progress until 'string' found - preserving progress
-
-**Note**: Could also split output to put progress on stderr.
-
-```bash
-whisperkit-cli transcribe --audio-path "samples/hobbit-30m.mp3" --model "tiny" --verbose --report-path output --report --word-timestamps 2>&1 | bun -e "process.stdin.on('data',d=>{let s=d.toString(),i=s.indexOf('Generating reports...');if(i!==-1){process.stdout.write(s.slice(0,i));process.exit()}process.stdout.write(s)})"
-```
 
 #### Find Audiobooks by Duration
 

@@ -1,5 +1,5 @@
 import { mkdir, writeFile } from "node:fs/promises";
-import { basename } from "node:path";
+import { basename, extname } from "node:path";
 import { existsSync } from "node:fs";
 import { spawn } from "node:child_process";
 import { Buffer } from "node:buffer";
@@ -7,13 +7,22 @@ import process from "node:process";
 import { getAudioFileDuration } from "./audio.ts";
 import { commandExists } from "./preflight.ts";
 
+// Model directory for whisper-cpp
+const WHISPER_CPP_MODELS = "models";
+
+// Private executable constants
+const WHISPER_CPP_EXEC = "whisper-cli";
+const WHISPER_KIT_EXEC = "whisperkit-cli";
+
+export type ModelShortName = "tiny.en" | "base.en" | "small.en";
+
 /**
  * Configuration for a whisper benchmark run
  */
 export interface RunConfig {
   input: string; // Path to the audio file to transcribe
-  model: string;
-  modelBin: string; // Path to ggml model file for whisper-cpp
+  runner: "whispercpp" | "whisperkit";
+  modelShortName: ModelShortName;
   iterations: number;
   threads: number;
   startSec: number; // Starting offset in seconds
@@ -32,15 +41,28 @@ export interface RunConfig {
 type ProgressCallback = (match: RegExpMatchArray) => void;
 
 /**
- * Run whisper-cpp benchmark (brew or self-compiled)
+ * Run whisper-cpp benchmark
  */
-export async function runWhisperCpp(
-  exec: string,
-  label: string,
-  flavor: string,
-  config: RunConfig,
-): Promise<void> {
-  const fileLabel = basename(config.input, ".mp3");
+export async function runWhisper(config: RunConfig): Promise<void> {
+  if (config.runner === "whispercpp") {
+    await runWhisperCpp(config);
+  } else if (config.runner === "whisperkit") {
+    await runWhisperKit(config);
+  } else {
+    // Compile-time check to ensure all runner types are handled
+    const _exhaustiveCheck: never = config.runner;
+    throw new Error(`Unknown runner: ${_exhaustiveCheck}`);
+  }
+}
+
+/**
+ * Run whisper-cpp benchmark
+ */
+async function runWhisperCpp(config: RunConfig): Promise<void> {
+  const exec = WHISPER_CPP_EXEC;
+  const label = "WhisperCPP";
+  const flavor = "cpp";
+  const fileLabel = basename(config.input, extname(config.input));
   const outputPath = `${config.outputDir}/${flavor}`;
 
   console.log("");
@@ -68,7 +90,7 @@ export async function runWhisperCpp(
       "--file",
       config.input,
       "--model",
-      config.modelBin,
+      `${WHISPER_CPP_MODELS}/ggml-${config.modelShortName}.bin`,
       ...(config.startSec > 0
         ? ["--offset-t", String(config.startSec * 1000)]
         : []),
@@ -133,13 +155,14 @@ function showCppProgress(label: string, match: RegExpMatchArray): void {
 /**
  * Run whisperkit-cli benchmark
  */
-export async function runWhisperKit(
-  exec: string,
-  label: string,
-  flavor: string,
-  config: RunConfig,
-): Promise<void> {
-  const fileLabel = basename(config.input, ".mp3");
+/**
+ * Run whisperkit-cli benchmark
+ */
+async function runWhisperKit(config: RunConfig): Promise<void> {
+  const exec = WHISPER_KIT_EXEC;
+  const label = "WhisperKit";
+  const flavor = "kit";
+  const fileLabel = basename(config.input, extname(config.input));
   const outputPath = `${config.outputDir}/${flavor}`;
 
   console.log("");
@@ -167,7 +190,7 @@ export async function runWhisperKit(
       "--audio-path",
       config.input,
       "--model",
-      config.model,
+      config.modelShortName,
       ...(config.startSec > 0 || config.durationSec > 0
         ? [
           "--clip-timestamps",

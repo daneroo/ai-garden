@@ -3,8 +3,8 @@ import { calculateSpeedup, RunConfig } from "./runners.ts";
 
 const mockConfig: RunConfig = {
   input: "test.mp3",
-  model: "tiny",
-  modelBin: "model.bin",
+  runner: "whispercpp",
+  modelShortName: "tiny.en",
   iterations: 1,
   threads: 4,
   startSec: 0,
