@@ -155,9 +155,6 @@ function showCppProgress(label: string, match: RegExpMatchArray): void {
 /**
  * Run whisperkit-cli benchmark
  */
-/**
- * Run whisperkit-cli benchmark
- */
 async function runWhisperKit(config: RunConfig): Promise<void> {
   const exec = WHISPER_KIT_EXEC;
   const label = "WhisperKit";
