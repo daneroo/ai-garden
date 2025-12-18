@@ -3,9 +3,12 @@ import process from "node:process";
 import {
   getRequiredCommands,
   ModelShortName,
+  ProgressInfo,
+  RunCallbacks,
   RunConfig,
   RUNNER_NAMES,
   RunnerName,
+  RunResult,
   runWhisper,
 } from "./lib/runners.ts";
 import { preflightCheck } from "./lib/preflight.ts";
@@ -18,8 +21,6 @@ const DEFAULT_THREADS = 6;
 const DEFAULT_START_SECS = 0; // Starting offset in seconds
 const DEFAULT_DURATION_SECS = 0; // 0 = entire file
 const DEFAULT_ITERATIONS = 1;
-
-// Runner definitions removed in favor of direct Use of RUNNER_NAMES
 
 if (import.meta.main) {
   await main();
@@ -107,11 +108,10 @@ async function main(): Promise<void> {
     verbose: verbosity,
   } = argv;
 
-  // Single runner execution
+  // Configuration for runner (iterations handled in main)
   const config: RunConfig = {
     input,
     modelShortName: model as ModelShortName,
-    iterations,
     threads,
     startSec: start,
     durationSec: duration,
@@ -141,9 +141,52 @@ async function main(): Promise<void> {
     console.log(`- Start: ${start}s`);
   }
   console.log(`- Duration: ${duration === 0 ? "entire file" : `${duration}s`}`);
+  if (iterations > 1) {
+    console.log(`- Iterations: ${iterations}`);
+  }
   if (dryRun) {
     console.log("- Mode: DRY RUN");
   }
 
-  await runWhisper(config);
+  // Callbacks for console output
+  const callbacks: RunCallbacks = {
+    onStart: (info) => {
+      const label = info.runner === "whispercpp" ? "WhisperCPP" : "WhisperKit";
+      console.log("");
+      console.log(`## ${label}`);
+      console.log("");
+      console.log(`- Executable: ${info.exec}`);
+      console.log(`- Output: ${info.outputPath}/`);
+    },
+    onProgress: (info: ProgressInfo) => {
+      const suffix = info.elapsed
+        ? ` | Elapsed: ${info.elapsed} | Remaining: ${info.remaining}`
+        : "";
+      process.stdout.write(`\x1b[2K\r- [${info.percent}]${suffix}`);
+    },
+    onComplete: (result: RunResult) => {
+      process.stdout.write("\x1b[2K\r");
+      console.log(
+        `✓ Done in ${result.elapsedSec}s. Speedup: ${result.speedup}x.`,
+      );
+    },
+  };
+
+  // Iteration loop (now handled in main)
+  const results: RunResult[] = [];
+  for (let i = 1; i <= iterations; i++) {
+    if (iterations > 1 && !dryRun) {
+      console.log(`\n### Iteration ${i}/${iterations}`);
+    }
+    const result = await runWhisper(config, callbacks);
+    results.push(result);
+
+    // Handle dry-run output after return
+    if (result.dryRun) {
+      console.log("");
+      console.log("```");
+      console.log(result.command);
+      console.log("```");
+    }
+  }
 }

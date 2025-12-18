@@ -3,7 +3,6 @@ import { basename, extname } from "node:path";
 import { existsSync } from "node:fs";
 import { spawn } from "node:child_process";
 import { Buffer } from "node:buffer";
-import process from "node:process";
 import { getAudioFileDuration } from "./audio.ts";
 import { commandExists } from "./preflight.ts";
 
@@ -30,7 +29,6 @@ export interface RunConfig {
   input: string; // Path to the audio file to transcribe
   runner: RunnerName;
   modelShortName: ModelShortName;
-  iterations: number;
   threads: number;
   startSec: number; // Starting offset in seconds
   durationSec: number; // Duration in seconds (0 = entire file)
@@ -41,6 +39,41 @@ export interface RunConfig {
 }
 
 /**
+ * Result of a single transcription run
+ */
+export interface RunResult {
+  runner: RunnerName;
+  command: string;
+  dryRun: boolean;
+  elapsedSec: number;
+  speedup: string;
+  outputPath: string;
+  logFiles: { stdout: string; stderr: string };
+}
+
+/**
+ * Normalized progress information for callbacks
+ */
+export interface ProgressInfo {
+  percent: string;
+  elapsed?: string;
+  remaining?: string;
+}
+
+/**
+ * Callbacks for runner output (optional, silent if not provided)
+ */
+export interface RunCallbacks {
+  onStart?: (info: {
+    runner: RunnerName;
+    exec: string;
+    outputPath: string;
+  }) => void;
+  onProgress?: (info: ProgressInfo) => void;
+  onComplete?: (result: RunResult) => void;
+}
+
+/**
  * Progress update callback type - receives full regex match array
  * match[0] = full matched string
  * match[1..n] = captured groups from the regex
@@ -48,13 +81,16 @@ export interface RunConfig {
 type ProgressCallback = (match: RegExpMatchArray) => void;
 
 /**
- * Run whisper-cpp benchmark
+ * Run whisper transcription - side-effect-free entry point
  */
-export async function runWhisper(config: RunConfig): Promise<void> {
+export async function runWhisper(
+  config: RunConfig,
+  callbacks?: RunCallbacks,
+): Promise<RunResult> {
   if (config.runner === "whispercpp") {
-    await runWhisperCpp(config);
+    return await runWhisperCpp(config, callbacks);
   } else if (config.runner === "whisperkit") {
-    await runWhisperKit(config);
+    return await runWhisperKit(config, callbacks);
   } else {
     // Compile-time check to ensure all runner types are handled
     const _exhaustiveCheck: never = config.runner;
@@ -74,207 +110,204 @@ export function getRequiredCommands(config: RunConfig): string[] {
 /**
  * Run whisper-cpp command
  */
-async function runWhisperCpp(config: RunConfig): Promise<void> {
+async function runWhisperCpp(
+  config: RunConfig,
+  callbacks?: RunCallbacks,
+): Promise<RunResult> {
   const exec = WHISPER_CPP_EXEC;
-  const label = "WhisperCPP";
   const flavor = "cpp";
   const fileLabel = basename(config.input, extname(config.input));
   const outputPath = `${config.outputDir}/${flavor}`;
 
-  console.log("");
-  console.log(`## ${label}`);
-  console.log("");
-  console.log(`- Executable: ${exec}`);
-  console.log(`- Output: ${outputPath}/`);
+  callbacks?.onStart?.({ runner: "whispercpp", exec, outputPath });
 
   if (!config.dryRun) {
     await mkdir(outputPath, { recursive: true });
   }
 
-  for (let i = 1; i <= config.iterations; i++) {
-    const timestamp = getUTCTimestampForFilePath();
-    const logPrefix = `${outputPath}/${fileLabel}-${timestamp}`;
-    const outPrefix = `${outputPath}/${fileLabel}`;
+  const timestamp = getUTCTimestampForFilePath();
+  const logPrefix = `${outputPath}/${fileLabel}-${timestamp}`;
+  const outPrefix = `${outputPath}/${fileLabel}`;
 
-    // Build args
-    const args = [
-      "--file",
-      config.input,
-      "--model",
-      `${WHISPER_CPP_MODELS}/ggml-${config.modelShortName}.bin`,
-      ...(config.startSec > 0
-        ? ["--offset-t", String(config.startSec * 1000)]
-        : []),
-      ...(config.durationSec > 0
-        ? ["--duration", String(config.durationSec * 1000)]
-        : []),
-      "--output-file",
-      outPrefix,
-      "--output-json",
-      "--output-vtt",
-      "--print-progress",
-      "--threads",
-      String(config.threads),
-      ...(config.wordTimestamps ? ["--max-len", "1", "--split-on-word"] : []),
-    ];
+  // Build args
+  const args = [
+    "--file",
+    config.input,
+    "--model",
+    `${WHISPER_CPP_MODELS}/ggml-${config.modelShortName}.bin`,
+    ...(config.startSec > 0
+      ? ["--offset-t", String(config.startSec * 1000)]
+      : []),
+    ...(config.durationSec > 0
+      ? ["--duration", String(config.durationSec * 1000)]
+      : []),
+    "--output-file",
+    outPrefix,
+    "--output-json",
+    "--output-vtt",
+    "--print-progress",
+    "--threads",
+    String(config.threads),
+    ...(config.wordTimestamps ? ["--max-len", "1", "--split-on-word"] : []),
+  ];
 
-    const cmdStr = `${exec} ${args.join(" ")}`;
+  const cmdStr = `${exec} ${args.join(" ")}`;
 
-    if (config.dryRun) {
-      console.log("");
-      console.log("```");
-      console.log(cmdStr);
-      console.log("```");
-      continue;
-    }
-
-    const start = Date.now();
-
-    // Run with progress tracking
-    // whisper-cpp outputs progress to stderr in format: "whisper_print_progress_callback: progress = XX%"
-    // Regex captures: match[1] = "XX%" (percentage)
-    await runCommandWithProgress(
-      exec,
-      args,
-      logPrefix,
-      (match) => showCppProgress(label, match),
-      "stderr",
-      /progress\s*=\s*(\d+%)/,
-    );
-
-    // Clear progress line
-    process.stdout.write("\x1b[2K\r");
-
-    const elapsed = Math.round((Date.now() - start) / 1000);
-
-    // Calculate speedup
-    const speedup = await calculateSpeedup(config, elapsed);
-
-    console.log(`✓ Done in ${elapsed}s. Speedup: ${speedup}x.`);
+  if (config.dryRun) {
+    return {
+      runner: "whispercpp",
+      command: cmdStr,
+      dryRun: true,
+      elapsedSec: 0,
+      speedup: "N/A",
+      outputPath,
+      logFiles: { stdout: "", stderr: "" },
+    };
   }
+
+  const start = Date.now();
+
+  // Run with progress tracking
+  // whisper-cpp outputs progress to stderr in format: "whisper_print_progress_callback: progress = XX%"
+  // Regex captures: match[1] = "XX%" (percentage)
+  const { stdoutLog, stderrLog } = await runCommandWithProgress(
+    exec,
+    args,
+    logPrefix,
+    (match) => callbacks?.onProgress?.({ percent: match[1] }),
+    "stderr",
+    /progress\s*=\s*(\d+%)/,
+  );
+
+  const elapsedSec = Math.round((Date.now() - start) / 1000);
+  const speedup = await calculateSpeedup(config, elapsedSec);
+
+  const result: RunResult = {
+    runner: "whispercpp",
+    command: cmdStr,
+    dryRun: false,
+    elapsedSec,
+    speedup,
+    outputPath,
+    logFiles: { stdout: stdoutLog, stderr: stderrLog },
+  };
+
+  callbacks?.onComplete?.(result);
+  return result;
 }
 
 /**
- * Display inline progress update for whisper-cpp
+ * Run whisperkit-cli command
  */
-function showCppProgress(label: string, match: RegExpMatchArray): void {
-  const progress = match[1]; // XX%
-  const prefix = `- [${progress}] ${label}`;
-  process.stdout.write(`\x1b[2K\r${prefix}`);
-}
-
-/**
- * Run whisperkit-cli benchmark
- */
-async function runWhisperKit(config: RunConfig): Promise<void> {
+async function runWhisperKit(
+  config: RunConfig,
+  callbacks?: RunCallbacks,
+): Promise<RunResult> {
   const exec = WHISPER_KIT_EXEC;
-  const label = "WhisperKit";
   const flavor = "kit";
   const fileLabel = basename(config.input, extname(config.input));
   const outputPath = `${config.outputDir}/${flavor}`;
 
-  console.log("");
-  console.log(`## ${label}`);
-  console.log("");
-  console.log(`- Executable: ${exec}`);
-  console.log(`- Output: ${outputPath}/`);
+  callbacks?.onStart?.({ runner: "whisperkit", exec, outputPath });
 
   if (!config.dryRun) {
     await mkdir(outputPath, { recursive: true });
   }
 
-  for (let i = 1; i <= config.iterations; i++) {
-    const timestamp = getUTCTimestampForFilePath();
-    const logPrefix = `${outputPath}/${fileLabel}-${timestamp}`;
+  const timestamp = getUTCTimestampForFilePath();
+  const logPrefix = `${outputPath}/${fileLabel}-${timestamp}`;
 
-    // Build args
-    const args = [
-      "transcribe",
-      "--audio-path",
-      config.input,
-      "--model",
-      config.modelShortName,
-      ...(config.startSec > 0 || config.durationSec > 0
-        ? [
-          "--clip-timestamps",
-          String(config.startSec),
-          ...(config.durationSec > 0
-            ? [String(config.startSec + config.durationSec)]
-            : []),
-        ]
-        : []),
-      "--report",
-      "--report-path",
+  // Build args
+  const args = [
+    "transcribe",
+    "--audio-path",
+    config.input,
+    "--model",
+    config.modelShortName,
+    ...(config.startSec > 0 || config.durationSec > 0
+      ? [
+        "--clip-timestamps",
+        String(config.startSec),
+        ...(config.durationSec > 0
+          ? [String(config.startSec + config.durationSec)]
+          : []),
+      ]
+      : []),
+    "--report",
+    "--report-path",
+    outputPath,
+    "--verbose",
+    ...(config.wordTimestamps ? ["--word-timestamps"] : []),
+  ];
+
+  const cmdStr = `${exec} ${args.join(" ")}`;
+
+  if (config.dryRun) {
+    return {
+      runner: "whisperkit",
+      command: cmdStr,
+      dryRun: true,
+      elapsedSec: 0,
+      speedup: "N/A",
       outputPath,
-      "--verbose",
-      ...(config.wordTimestamps ? ["--word-timestamps"] : []),
-    ];
-
-    const cmdStr = `${exec} ${args.join(" ")}`;
-
-    if (config.dryRun) {
-      console.log("");
-      console.log("```");
-      console.log(cmdStr);
-      console.log("```");
-      continue;
-    }
-
-    const start = Date.now();
-
-    // Run with progress tracking
-    // whisperkit outputs progress to stdout with ANSI escape codes for inline updates:
-    //   "] XX% | Elapsed Time: X.XX s | Remaining: X.XX s"
-    // or when estimating:
-    //   "] XX% | Elapsed Time: X.XX s | Remaining: Estimating..."
-    //
-    // Regex captures:
-    //   match[1] = "XX%"              (percentage)
-    //   match[2] = "X.XX s"           (elapsed time)
-    //   match[3] = "X.XX s" or "Estimating..." (remaining time)
-    await runCommandWithProgress(
-      exec,
-      args,
-      logPrefix,
-      (match) => showKitProgress(label, match),
-      "stdout",
-      /]\s*(\d+%)\s*\|\s*Elapsed Time:\s*([\d.]+\s*s)\s*\|\s*Remaining:\s*([\d.]+\s*s|Estimating\.\.\.)/,
-    );
-
-    // Clear progress line
-    process.stdout.write("\x1b[2K\r");
-
-    const elapsed = Math.round((Date.now() - start) / 1000);
-
-    // Convert SRT to VTT using ffmpeg if SRT exists
-    const srtPath = `${outputPath}/${fileLabel}.srt`;
-    const vttPath = `${outputPath}/${fileLabel}.vtt`;
-    if (existsSync(srtPath) && commandExists("ffmpeg")) {
-      const ffmpegPrefix = `${outputPath}/${fileLabel}-ffmpeg-${timestamp}`;
-      await runCommandWithProgress(
-        "ffmpeg",
-        ["-y", "-hide_banner", "-loglevel", "error", "-i", srtPath, vttPath],
-        ffmpegPrefix,
-      );
-    }
-
-    // Calculate speedup
-    const speedup = await calculateSpeedup(config, elapsed);
-
-    console.log(`✓ Done in ${elapsed}s. Speedup: ${speedup}x.`);
+      logFiles: { stdout: "", stderr: "" },
+    };
   }
-}
 
-/**
- * Display inline progress update for whisperkit with richer info
- */
-function showKitProgress(label: string, match: RegExpMatchArray): void {
-  const progress = match[1]; // XX%
-  const elapsed = match[2]; // X.XX s
-  const remaining = match[3]; // X.XX s or Estimating...
-  const prefix =
-    `- [${progress}] ${label} | Elapsed: ${elapsed} | Remaining: ${remaining}`;
-  process.stdout.write(`\x1b[2K\r${prefix}`);
+  const start = Date.now();
+
+  // Run with progress tracking
+  // whisperkit outputs progress to stdout with ANSI escape codes for inline updates:
+  //   "] XX% | Elapsed Time: X.XX s | Remaining: X.XX s"
+  // or when estimating:
+  //   "] XX% | Elapsed Time: X.XX s | Remaining: Estimating..."
+  //
+  // Regex captures:
+  //   match[1] = "XX%"              (percentage)
+  //   match[2] = "X.XX s"           (elapsed time)
+  //   match[3] = "X.XX s" or "Estimating..." (remaining time)
+  const { stdoutLog, stderrLog } = await runCommandWithProgress(
+    exec,
+    args,
+    logPrefix,
+    (match) =>
+      callbacks?.onProgress?.({
+        percent: match[1],
+        elapsed: match[2],
+        remaining: match[3],
+      }),
+    "stdout",
+    /]\s*(\d+%)\s*\|\s*Elapsed Time:\s*([\d.]+\s*s)\s*\|\s*Remaining:\s*([\d.]+\s*s|Estimating\.\.\.)/,
+  );
+
+  const elapsedSec = Math.round((Date.now() - start) / 1000);
+
+  // Convert SRT to VTT using ffmpeg if SRT exists
+  const srtPath = `${outputPath}/${fileLabel}.srt`;
+  const vttPath = `${outputPath}/${fileLabel}.vtt`;
+  if (existsSync(srtPath) && commandExists("ffmpeg")) {
+    const ffmpegPrefix = `${outputPath}/${fileLabel}-ffmpeg-${timestamp}`;
+    await runCommandWithProgress(
+      "ffmpeg",
+      ["-y", "-hide_banner", "-loglevel", "error", "-i", srtPath, vttPath],
+      ffmpegPrefix,
+    );
+  }
+
+  const speedup = await calculateSpeedup(config, elapsedSec);
+
+  const result: RunResult = {
+    runner: "whisperkit",
+    command: cmdStr,
+    dryRun: false,
+    elapsedSec,
+    speedup,
+    outputPath,
+    logFiles: { stdout: stdoutLog, stderr: stderrLog },
+  };
+
+  callbacks?.onComplete?.(result);
+  return result;
 }
 
 /**

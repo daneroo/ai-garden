@@ -5,7 +5,6 @@ const mockConfig: RunConfig = {
   input: "test.mp3",
   runner: "whispercpp",
   modelShortName: "tiny.en",
-  iterations: 1,
   threads: 4,
   startSec: 0,
   durationSec: 0,
