@@ -7,7 +7,7 @@ import { getAudioFileDuration } from "./audio.ts";
 import { commandExists } from "./preflight.ts";
 
 // Model directory for whisper-cpp
-const WHISPER_CPP_MODELS = "models";
+const WHISPER_CPP_MODELS = "data/models";
 
 // Private executable constants
 const WHISPER_CPP_EXEC = "whisper-cli";
@@ -32,7 +32,9 @@ export interface RunConfig {
   threads: number;
   startSec: number; // Starting offset in seconds
   durationSec: number; // Duration in seconds (0 = entire file)
-  outputDir: string; // Base output dir, engine subdir will be created
+  outputDir: string; // Final output dir for .vtt
+  workDir: string; // Temp work dir for logs, json, srt, vtt
+  tag?: string; // Optional tag appended to output filename
   verbosity: number;
   dryRun: boolean;
   wordTimestamps: boolean;
@@ -110,19 +112,23 @@ async function runWhisperCpp(
   callbacks?: RunCallbacks,
 ): Promise<RunResult> {
   const exec = WHISPER_CPP_EXEC;
-  const flavor = "cpp";
   const fileLabel = basename(config.input, extname(config.input));
-  const outputPath = `${config.outputDir}/${flavor}`;
+  const finalName = config.tag ? `${fileLabel}.${config.tag}` : fileLabel;
+  const finalVtt = `${config.outputDir}/${finalName}.vtt`;
+
+  // Work directory for intermediate files
+  const workPath = config.workDir;
 
   if (!config.dryRun) {
-    await mkdir(outputPath, { recursive: true });
+    await mkdir(config.outputDir, { recursive: true });
+    await mkdir(workPath, { recursive: true });
   }
 
   const timestamp = getUTCTimestampForFilePath();
-  const logPrefix = `${outputPath}/${fileLabel}-${timestamp}`;
-  const outPrefix = `${outputPath}/${fileLabel}`;
+  const logPrefix = `${workPath}/${fileLabel}-${timestamp}`;
+  const outPrefix = `${workPath}/${fileLabel}`;
 
-  // Build args
+  // Build args - outputs go to work dir
   const args = [
     "--file",
     config.input,
@@ -153,7 +159,7 @@ async function runWhisperCpp(
       dryRun: true,
       elapsedSec: 0,
       speedup: "N/A",
-      outputPath,
+      outputPath: finalVtt,
       logFiles: { stdout: "", stderr: "" },
     };
   }
@@ -175,13 +181,21 @@ async function runWhisperCpp(
   const elapsedSec = Math.round((Date.now() - start) / 1000);
   const speedup = await calculateSpeedup(config, elapsedSec);
 
+  // Move VTT from work dir to final output dir
+  // TODO: Validate VTT and extract metadata (segment count, duration, etc.)
+  const workVtt = `${outPrefix}.vtt`;
+  if (existsSync(workVtt)) {
+    const { copyFile } = await import("node:fs/promises");
+    await copyFile(workVtt, finalVtt);
+  }
+
   const result: RunResult = {
     runner: "whispercpp",
     command: cmdStr,
     dryRun: false,
     elapsedSec,
     speedup,
-    outputPath,
+    outputPath: finalVtt,
     logFiles: { stdout: stdoutLog, stderr: stderrLog },
   };
 
@@ -197,18 +211,22 @@ async function runWhisperKit(
   callbacks?: RunCallbacks,
 ): Promise<RunResult> {
   const exec = WHISPER_KIT_EXEC;
-  const flavor = "kit";
   const fileLabel = basename(config.input, extname(config.input));
-  const outputPath = `${config.outputDir}/${flavor}`;
+  const finalName = config.tag ? `${fileLabel}.${config.tag}` : fileLabel;
+  const finalVtt = `${config.outputDir}/${finalName}.vtt`;
+
+  // Work directory for intermediate files
+  const workPath = config.workDir;
 
   if (!config.dryRun) {
-    await mkdir(outputPath, { recursive: true });
+    await mkdir(config.outputDir, { recursive: true });
+    await mkdir(workPath, { recursive: true });
   }
 
   const timestamp = getUTCTimestampForFilePath();
-  const logPrefix = `${outputPath}/${fileLabel}-${timestamp}`;
+  const logPrefix = `${workPath}/${fileLabel}-${timestamp}`;
 
-  // Build args
+  // Build args - whisperkit outputs to --report-path
   const args = [
     "transcribe",
     "--audio-path",
@@ -226,7 +244,7 @@ async function runWhisperKit(
       : []),
     "--report",
     "--report-path",
-    outputPath,
+    workPath,
     "--verbose",
     ...(config.wordTimestamps ? ["--word-timestamps"] : []),
   ];
@@ -240,7 +258,7 @@ async function runWhisperKit(
       dryRun: true,
       elapsedSec: 0,
       speedup: "N/A",
-      outputPath,
+      outputPath: finalVtt,
       logFiles: { stdout: "", stderr: "" },
     };
   }
@@ -274,15 +292,22 @@ async function runWhisperKit(
   const elapsedSec = Math.round((Date.now() - start) / 1000);
 
   // Convert SRT to VTT using ffmpeg if SRT exists
-  const srtPath = `${outputPath}/${fileLabel}.srt`;
-  const vttPath = `${outputPath}/${fileLabel}.vtt`;
+  const srtPath = `${workPath}/${fileLabel}.srt`;
+  const workVtt = `${workPath}/${fileLabel}.vtt`;
   if (existsSync(srtPath) && commandExists("ffmpeg")) {
-    const ffmpegPrefix = `${outputPath}/${fileLabel}-ffmpeg-${timestamp}`;
+    const ffmpegPrefix = `${workPath}/${fileLabel}-ffmpeg-${timestamp}`;
     await runCommandWithProgress(
       "ffmpeg",
-      ["-y", "-hide_banner", "-loglevel", "error", "-i", srtPath, vttPath],
+      ["-y", "-hide_banner", "-loglevel", "error", "-i", srtPath, workVtt],
       ffmpegPrefix,
     );
+  }
+
+  // Copy final VTT to output directory
+  // TODO: Validate VTT and extract metadata (segment count, duration, etc.)
+  if (existsSync(workVtt)) {
+    const { copyFile } = await import("node:fs/promises");
+    await copyFile(workVtt, finalVtt);
   }
 
   const speedup = await calculateSpeedup(config, elapsedSec);
@@ -293,7 +318,7 @@ async function runWhisperKit(
     dryRun: false,
     elapsedSec,
     speedup,
-    outputPath,
+    outputPath: finalVtt,
     logFiles: { stdout: stdoutLog, stderr: stderrLog },
   };
 

@@ -14,9 +14,10 @@ import {
 import { preflightCheck } from "./lib/preflight.ts";
 
 // Configuration defaults
-const DEFAULT_INPUT = "samples/hobbit-30m.mp3";
+const DEFAULT_INPUT = "data/samples/hobbit-30m.mp3";
 const DEFAULT_MODEL = "tiny.en";
-const DEFAULT_OUTPUT = "output";
+const DEFAULT_OUTPUT = "data/output";
+const DEFAULT_WORK = "data/work";
 const DEFAULT_THREADS = 6;
 const DEFAULT_START_SECS = 0; // Starting offset in seconds
 const DEFAULT_DURATION_SECS = 0; // 0 = entire file
@@ -47,7 +48,6 @@ async function main(): Promise<void> {
       describe: "Number of iterations for each test",
     })
     .option("threads", {
-      alias: "t",
       type: "number",
       default: DEFAULT_THREADS,
       describe: "Number of threads for whisper-cpp",
@@ -88,6 +88,12 @@ async function main(): Promise<void> {
       default: false,
       describe: "Enable word-level timestamps",
     })
+    .option("tag", {
+      alias: "t",
+      type: "string",
+      describe:
+        "Tag appended to output filename (e.g., 'kit-tiny' → input.kit-tiny.vtt)",
+    })
     .count("verbose")
     .alias("v", "verbose")
     .help()
@@ -103,6 +109,7 @@ async function main(): Promise<void> {
     duration,
     output,
     runner,
+    tag,
     "dry-run": dryRun,
     "word-timestamps": wordTimestamps,
     verbose: verbosity,
@@ -116,6 +123,8 @@ async function main(): Promise<void> {
     startSec: start,
     durationSec: duration,
     outputDir: output,
+    workDir: DEFAULT_WORK,
+    tag,
     verbosity,
     dryRun,
     wordTimestamps,
@@ -132,58 +141,44 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  console.log("");
-  console.log("# Global Configuration");
-  console.log("");
-  console.log(`- Input: ${input}`);
-  console.log(`- Model: ${model}`);
-  if (start > 0) {
-    console.log(`- Start: ${start}s`);
-  }
-  console.log(`- Duration: ${duration === 0 ? "entire file" : `${duration}s`}`);
-  if (iterations > 1) {
-    console.log(`- Iterations: ${iterations}`);
-  }
-  if (dryRun) {
-    console.log("- Mode: DRY RUN");
-  }
+  // Build compact config string
+  const configParts = [`input=${input}`, `model=${model}`, `runner=${runner}`];
+  if (start > 0) configParts.push(`start=${start}s`);
+  if (duration > 0) configParts.push(`duration=${duration}s`);
+  if (iterations > 1) configParts.push(`iterations=${iterations}`);
+  if (dryRun) configParts.push("dry-run");
 
-  // Callbacks for console output
+  const configStr = configParts.join(" ");
+  console.error(`[config] ${configStr}`);
+
+  // Callbacks: progress to stderr
   const callbacks: RunCallbacks = {
     onProgress: (info: ProgressInfo) => {
       const suffix = info.elapsed
-        ? ` | Elapsed: ${info.elapsed} | Remaining: ${info.remaining}`
+        ? ` | ${info.elapsed} | ${info.remaining}`
         : "";
-      process.stdout.write(`\x1b[2K\r- [${info.percent}]${suffix}`);
+      process.stderr.write(`\x1b[2K\r[${info.percent}]${suffix}`);
     },
-    onComplete: (result: RunResult) => {
-      process.stdout.write("\x1b[2K\r");
-      console.log(
-        `✓ Done in ${result.elapsedSec}s. Speedup: ${result.speedup}x.`,
-      );
+    onComplete: () => {
+      process.stderr.write("\x1b[2K\r");
     },
   };
 
-  // Print runner header
-  const label = runner === "whispercpp" ? "WhisperCPP" : "WhisperKit";
-  console.log("");
-  console.log(`## ${label}`);
-
-  // Iteration loop (now handled in main)
+  // Iteration loop
   const results: RunResult[] = [];
   for (let i = 1; i <= iterations; i++) {
-    if (iterations > 1 && !dryRun) {
-      console.log(`\n### Iteration ${i}/${iterations}`);
-    }
     const result = await runWhisper(config, callbacks);
     results.push(result);
 
-    // Handle dry-run output after return
-    if (result.dryRun) {
-      console.log("");
-      console.log("```");
-      console.log(result.command);
-      console.log("```");
+    // Compact result to stderr
+    if (!result.dryRun) {
+      const iterPart = iterations > 1 ? ` ${i}/${iterations}` : "";
+      console.error(
+        `[result${iterPart}] elapsed=${result.elapsedSec}s speedup=${result.speedup}x`
+      );
     }
+
+    // Output single-line JSON to stdout
+    console.log(JSON.stringify(result));
   }
 }
