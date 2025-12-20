@@ -1,6 +1,7 @@
 import yargs from "yargs";
 import process from "node:process";
 import {
+  createRunWorkDir,
   getRequiredCommands,
   ModelShortName,
   ProgressInfo,
@@ -17,8 +18,8 @@ import { getAudioFileDuration } from "./lib/audio.ts";
 // Configuration defaults
 const DEFAULT_INPUT = "data/samples/hobbit-30m.mp3";
 const DEFAULT_MODEL = "tiny.en";
-const DEFAULT_OUTPUT = "data/output";
-const DEFAULT_WORK = "data/work";
+const DEFAULT_OUTPUT_DIR = "data/output";
+const DEFAULT_WORKDIR_ROOT = "data/work";
 const DEFAULT_THREADS = 6;
 const DEFAULT_START_SECS = 0; // Starting offset in seconds
 const DEFAULT_DURATION_SECS = 0; // 0 = entire file
@@ -68,7 +69,7 @@ async function main(): Promise<void> {
     .option("output", {
       alias: "o",
       type: "string",
-      default: DEFAULT_OUTPUT,
+      default: DEFAULT_OUTPUT_DIR,
       describe: "Output directory for results",
     })
     .option("runner", {
@@ -116,6 +117,13 @@ async function main(): Promise<void> {
     verbose: verbosity,
   } = argv;
 
+  // Create per-run work directory (depends on: input, tag)
+  const runWorkDir = createRunWorkDir({
+    workDirRoot: DEFAULT_WORKDIR_ROOT,
+    inputPath: input,
+    tag,
+  });
+
   // Configuration for runner (iterations handled in main)
   const config: RunConfig = {
     input,
@@ -124,7 +132,7 @@ async function main(): Promise<void> {
     startSec: start,
     durationSec: duration,
     outputDir: output,
-    workDir: DEFAULT_WORK,
+    runWorkDir,
     tag,
     verbosity,
     dryRun,

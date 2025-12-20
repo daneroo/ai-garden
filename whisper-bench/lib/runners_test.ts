@@ -9,7 +9,7 @@ const mockConfig: RunConfig = {
   startSec: 0,
   durationSec: 0,
   outputDir: "data/output",
-  workDir: "data/work",
+  runWorkDir: "data/work/test-2025-01-01T00-00-00Z",
   verbosity: 1,
   dryRun: false,
   wordTimestamps: false,

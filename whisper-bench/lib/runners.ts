@@ -34,11 +34,32 @@ export interface RunConfig {
   startSec: number; // Starting offset in seconds
   durationSec: number; // Duration in seconds (0 = entire file)
   outputDir: string; // Final output dir for .vtt
-  workDir: string; // Temp work dir for logs, json, srt, vtt
+  runWorkDir: string; // Per-run work dir for logs, json, srt, vtt
   tag?: string; // Optional tag appended to output filename
   verbosity: number;
   dryRun: boolean;
   wordTimestamps: boolean;
+}
+
+/**
+ * Options for creating a per-run work directory
+ * These are the minimal params needed for work dir naming
+ */
+export interface CreateRunWorkDirOptions {
+  workDirRoot: string; // Base work dir (e.g., "data/work")
+  inputPath: string; // Input file path
+  tag?: string; // Optional tag
+}
+
+/**
+ * Create a unique work directory path for a single run
+ * Format: {workDirRoot}/{inputName}[.{tag}]-{timestamp}
+ */
+export function createRunWorkDir(opts: CreateRunWorkDirOptions): string {
+  const inputName = basename(opts.inputPath, extname(opts.inputPath));
+  const timestamp = getUTCTimestampForFilePath();
+  const namePart = opts.tag ? `${inputName}.${opts.tag}` : inputName;
+  return `${opts.workDirRoot}/${namePart}-${timestamp}`;
 }
 
 /**
@@ -86,6 +107,15 @@ export async function runWhisper(
   config: RunConfig,
   callbacks?: RunCallbacks,
 ): Promise<RunResult> {
+  // Save RunConfig to work directory for reproducibility
+  if (!config.dryRun) {
+    await mkdir(config.runWorkDir, { recursive: true });
+    await writeFile(
+      `${config.runWorkDir}/runconfig.json`,
+      JSON.stringify(config, null, 2),
+    );
+  }
+
   let result: RunResult;
 
   if (config.runner === "whispercpp") {
@@ -124,21 +154,20 @@ async function runWhisperCpp(
   callbacks?: RunCallbacks,
 ): Promise<RunResult> {
   const exec = WHISPER_CPP_EXEC;
-  const fileLabel = basename(config.input, extname(config.input));
-  const finalName = config.tag ? `${fileLabel}.${config.tag}` : fileLabel;
+  const inputName = basename(config.input, extname(config.input));
+  const finalName = config.tag ? `${inputName}.${config.tag}` : inputName;
   const finalVtt = `${config.outputDir}/${finalName}.vtt`;
 
-  // Work directory for intermediate files
-  const workPath = config.workDir;
+  // Work directory for intermediate files (already includes timestamp)
+  const workPath = config.runWorkDir;
 
   if (!config.dryRun) {
     await mkdir(config.outputDir, { recursive: true });
     await mkdir(workPath, { recursive: true });
   }
 
-  const timestamp = getUTCTimestampForFilePath();
-  const logPrefix = `${workPath}/${fileLabel}-${timestamp}`;
-  const outPrefix = `${workPath}/${fileLabel}`;
+  // File prefix for outputs and logs - work dir is unique per run
+  const outPrefix = `${workPath}/${inputName}`;
 
   // Build args - outputs go to work dir
   const args = [
@@ -184,7 +213,7 @@ async function runWhisperCpp(
   const { stdoutLog, stderrLog } = await runCommandWithProgress(
     exec,
     args,
-    logPrefix,
+    outPrefix,
     (match) => callbacks?.onProgress?.({ percent: match[1] }),
     "stderr",
     /progress\s*=\s*(\d+%)/,
@@ -223,20 +252,20 @@ async function runWhisperKit(
   callbacks?: RunCallbacks,
 ): Promise<RunResult> {
   const exec = WHISPER_KIT_EXEC;
-  const fileLabel = basename(config.input, extname(config.input));
-  const finalName = config.tag ? `${fileLabel}.${config.tag}` : fileLabel;
+  const inputName = basename(config.input, extname(config.input));
+  const finalName = config.tag ? `${inputName}.${config.tag}` : inputName;
   const finalVtt = `${config.outputDir}/${finalName}.vtt`;
 
-  // Work directory for intermediate files
-  const workPath = config.workDir;
+  // Work directory for intermediate files (already includes timestamp)
+  const workPath = config.runWorkDir;
 
   if (!config.dryRun) {
     await mkdir(config.outputDir, { recursive: true });
     await mkdir(workPath, { recursive: true });
   }
 
-  const timestamp = getUTCTimestampForFilePath();
-  const logPrefix = `${workPath}/${fileLabel}-${timestamp}`;
+  // File prefix for outputs and logs - work dir is unique per run
+  const outPrefix = `${workPath}/${inputName}`;
 
   // Build args - whisperkit outputs to --report-path
   const args = [
@@ -290,7 +319,7 @@ async function runWhisperKit(
   const { stdoutLog, stderrLog } = await runCommandWithProgress(
     exec,
     args,
-    logPrefix,
+    outPrefix,
     (match) =>
       callbacks?.onProgress?.({
         percent: match[1],
@@ -304,14 +333,14 @@ async function runWhisperKit(
   const elapsedSec = Math.round((Date.now() - start) / 1000);
 
   // Convert SRT to VTT using ffmpeg if SRT exists
-  const srtPath = `${workPath}/${fileLabel}.srt`;
-  const workVtt = `${workPath}/${fileLabel}.vtt`;
+  const srtPath = `${workPath}/${inputName}.srt`;
+  const workVtt = `${workPath}/${inputName}.vtt`;
   if (existsSync(srtPath) && commandExists("ffmpeg")) {
-    const ffmpegPrefix = `${workPath}/${fileLabel}-ffmpeg-${timestamp}`;
+    const srtToVttLogPrefix = `${workPath}/${inputName}-srt-to-vtt`;
     await runCommandWithProgress(
       "ffmpeg",
       ["-y", "-hide_banner", "-loglevel", "error", "-i", srtPath, workVtt],
-      ffmpegPrefix,
+      srtToVttLogPrefix,
     );
   }
 
