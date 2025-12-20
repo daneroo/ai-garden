@@ -5,6 +5,7 @@ import { spawn } from "node:child_process";
 import { Buffer } from "node:buffer";
 import { getAudioFileDuration } from "./audio.ts";
 import { commandExists } from "./preflight.ts";
+import { readVtt, summarizeVtt, VttSummary } from "./vtt.ts";
 
 // Model directory for whisper-cpp
 const WHISPER_CPP_MODELS = "data/models";
@@ -51,6 +52,7 @@ export interface RunResult {
   speedup: string;
   outputPath: string;
   logFiles: { stdout: string; stderr: string };
+  vttSummary?: VttSummary;
 }
 
 /**
@@ -84,15 +86,25 @@ export async function runWhisper(
   config: RunConfig,
   callbacks?: RunCallbacks,
 ): Promise<RunResult> {
+  let result: RunResult;
+
   if (config.runner === "whispercpp") {
-    return await runWhisperCpp(config, callbacks);
+    result = await runWhisperCpp(config, callbacks);
   } else if (config.runner === "whisperkit") {
-    return await runWhisperKit(config, callbacks);
+    result = await runWhisperKit(config, callbacks);
   } else {
     // Compile-time check to ensure all runner types are handled
     const _exhaustiveCheck: never = config.runner;
     throw new Error(`Unknown runner: ${_exhaustiveCheck}`);
   }
+
+  // Validate VTT and add summary (only for real runs with output)
+  if (!result.dryRun && existsSync(result.outputPath)) {
+    const cues = await readVtt(result.outputPath);
+    result.vttSummary = summarizeVtt(cues);
+  }
+
+  return result;
 }
 
 /**

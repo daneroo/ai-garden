@@ -12,11 +12,13 @@ MODEL="tiny.en"
 OUTPUT_MD="BENCHMARK.md"
 
 # Helper function to run a benchmark and extract JSON
+# Usage: run_bench <runner> <input> [extra_args]
+# Tag is the runner name, so output is: input.runner.vtt
 run_bench() {
   local runner=$1
   local input=$2
   local extra_args=${3:-}
-  deno run -A main.ts --runner "$runner" --input "$input" --model "$MODEL" $extra_args
+  deno run -A main.ts --runner "$runner" --input "$input" --model "$MODEL" --tag "$runner" $extra_args
 }
 
 # Helper to format result row
@@ -54,8 +56,8 @@ Full-length transcription of hobbit.mp3 (10h24m).
 |--------|------------:|--------:|
 EOF
 
-KIT_JSON=$(run_bench whisperkit samples/hobbit.mp3)
-CPP_JSON=$(run_bench whispercpp samples/hobbit.mp3)
+KIT_JSON=$(run_bench whisperkit data/samples/hobbit.mp3)
+CPP_JSON=$(run_bench whispercpp data/samples/hobbit.mp3)
 format_row "WhisperKit" "$KIT_JSON" >> "$OUTPUT_MD"
 format_row "WhisperCPP" "$CPP_JSON" >> "$OUTPUT_MD"
 echo "" >> "$OUTPUT_MD"
@@ -73,7 +75,7 @@ Native M4B format support (whisperkit only).
 |--------|------------:|--------:|
 EOF
 
-KIT_JSON=$(run_bench whisperkit samples/hobbit.m4b)
+KIT_JSON=$(run_bench whisperkit data/samples/hobbit.m4b)
 format_row "WhisperKit" "$KIT_JSON" >> "$OUTPUT_MD"
 echo "" >> "$OUTPUT_MD"
 
@@ -90,7 +92,7 @@ Files exceeding 37h WAV limit. WhisperCPP fails on these.
 |--------|------------:|--------:|
 EOF
 
-KIT_JSON=$(run_bench whisperkit samples/stalin2.mp3)
+KIT_JSON=$(run_bench whisperkit data/samples/stalin2.mp3)
 format_row "WhisperKit" "$KIT_JSON" >> "$OUTPUT_MD"
 echo "| WhisperCPP | N/A | N/A (exceeds WAV limit) |" >> "$OUTPUT_MD"
 echo "" >> "$OUTPUT_MD"
@@ -109,20 +111,20 @@ Comparing --duration extraction vs native short file.
 EOF
 
 # hobbit.mp3 --duration 3600 (first hour)
-KIT_JSON=$(run_bench whisperkit samples/hobbit.mp3 "--duration 3600")
-CPP_JSON=$(run_bench whispercpp samples/hobbit.mp3 "--duration 3600")
+KIT_JSON=$(run_bench whisperkit data/samples/hobbit.mp3 "--duration 3600")
+CPP_JSON=$(run_bench whispercpp data/samples/hobbit.mp3 "--duration 3600")
 echo "| hobbit.mp3 --duration 3600 | WhisperKit | $(echo "$KIT_JSON" | jq -r '.elapsedSec') | $(echo "$KIT_JSON" | jq -r '.speedup')x |" >> "$OUTPUT_MD"
 echo "| hobbit.mp3 --duration 3600 | WhisperCPP | $(echo "$CPP_JSON" | jq -r '.elapsedSec') | $(echo "$CPP_JSON" | jq -r '.speedup')x |" >> "$OUTPUT_MD"
 
 # hobbit.mp3 --start 32400 --duration 3600 (hour 9-10)
-KIT_JSON=$(run_bench whisperkit samples/hobbit.mp3 "--start 32400 --duration 3600")
-CPP_JSON=$(run_bench whispercpp samples/hobbit.mp3 "--start 32400 --duration 3600")
+KIT_JSON=$(run_bench whisperkit data/samples/hobbit.mp3 "--start 32400 --duration 3600")
+CPP_JSON=$(run_bench whispercpp data/samples/hobbit.mp3 "--start 32400 --duration 3600")
 echo "| hobbit.mp3 offset 9h, 1h | WhisperKit | $(echo "$KIT_JSON" | jq -r '.elapsedSec') | $(echo "$KIT_JSON" | jq -r '.speedup')x |" >> "$OUTPUT_MD"
 echo "| hobbit.mp3 offset 9h, 1h | WhisperCPP | $(echo "$CPP_JSON" | jq -r '.elapsedSec') | $(echo "$CPP_JSON" | jq -r '.speedup')x |" >> "$OUTPUT_MD"
 
 # hobbit-1h.mp3 (native 1h file)
-KIT_JSON=$(run_bench whisperkit samples/hobbit-1h.mp3)
-CPP_JSON=$(run_bench whispercpp samples/hobbit-1h.mp3)
+KIT_JSON=$(run_bench whisperkit data/samples/hobbit-1h.mp3)
+CPP_JSON=$(run_bench whispercpp data/samples/hobbit-1h.mp3)
 echo "| hobbit-1h.mp3 (native) | WhisperKit | $(echo "$KIT_JSON" | jq -r '.elapsedSec') | $(echo "$KIT_JSON" | jq -r '.speedup')x |" >> "$OUTPUT_MD"
 echo "| hobbit-1h.mp3 (native) | WhisperCPP | $(echo "$CPP_JSON" | jq -r '.elapsedSec') | $(echo "$CPP_JSON" | jq -r '.speedup')x |" >> "$OUTPUT_MD"
 echo "" >> "$OUTPUT_MD"

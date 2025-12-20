@@ -12,6 +12,7 @@ import {
   runWhisper,
 } from "./lib/runners.ts";
 import { preflightCheck } from "./lib/preflight.ts";
+import { getAudioFileDuration } from "./lib/audio.ts";
 
 // Configuration defaults
 const DEFAULT_INPUT = "data/samples/hobbit-30m.mp3";
@@ -141,10 +142,23 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
+  // Calculate effective duration for display
+  let effectiveDuration: number;
+  if (duration > 0) {
+    effectiveDuration = duration;
+  } else {
+    const fileDuration = await getAudioFileDuration(input);
+    effectiveDuration = Math.round(fileDuration - start);
+  }
+
   // Build compact config string
-  const configParts = [`input=${input}`, `model=${model}`, `runner=${runner}`];
+  const configParts = [
+    `input=${input}`,
+    `model=${model}`,
+    `runner=${runner}`,
+    `duration=${effectiveDuration}s`,
+  ];
   if (start > 0) configParts.push(`start=${start}s`);
-  if (duration > 0) configParts.push(`duration=${duration}s`);
   if (iterations > 1) configParts.push(`iterations=${iterations}`);
   if (dryRun) configParts.push("dry-run");
 
@@ -173,8 +187,9 @@ async function main(): Promise<void> {
     // Compact result to stderr
     if (!result.dryRun) {
       const iterPart = iterations > 1 ? ` ${i}/${iterations}` : "";
+      const vttDur = result.vttSummary?.durationSec ?? "none";
       console.error(
-        `[result${iterPart}] elapsed=${result.elapsedSec}s speedup=${result.speedup}x`
+        `[result${iterPart}] elapsed=${result.elapsedSec}s speedup=${result.speedup}x vttDuration=${vttDur}s`,
       );
     }
 
