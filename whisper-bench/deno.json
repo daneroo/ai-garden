@@ -4,7 +4,7 @@
     "lint": "deno lint",
     "format:check": "deno fmt --check",
     "format:fix": "deno fmt",
-    "test": "deno test --doc",
+    "test": "deno test -A --doc",
     "outdated": "deno outdated",
     "ci": "deno task format:check && deno task lint && deno task test"
   },

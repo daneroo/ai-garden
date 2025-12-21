@@ -1,17 +1,17 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { basename, extname } from "node:path";
 import { existsSync } from "node:fs";
-import process from "node:process";
 import { getAudioFileDuration } from "./audio.ts";
-import { commandExists } from "./preflight.ts";
 import { readVtt, summarizeVtt, VttSummary } from "./vtt.ts";
 import {
-  ffmpegConvertHandler,
-  runSubTask,
-  SubTaskConfig,
-  whisperCppHandler,
-  whisperkitHandler,
-} from "./command.ts";
+  createWhisperCppMonitor,
+  createWhisperKitMonitor,
+  FFMPEG_AUDIO_PROGRESS_REGEX,
+  runTask,
+  TaskConfig,
+  WHISPER_CPP_PROGRESS_REGEX,
+  WHISPERKIT_PROGRESS_REGEX,
+} from "./task.ts";
 
 // Model directory for whisper-cpp
 const WHISPER_CPP_MODELS = "data/models";
@@ -83,36 +83,9 @@ export interface RunResult {
 }
 
 /**
- * Normalized progress information for callbacks
- */
-export interface ProgressInfo {
-  percent: string;
-  elapsed?: string;
-  remaining?: string;
-}
-
-/**
- * Callbacks for runner output (optional, silent if not provided)
- */
-export interface RunCallbacks {
-  onProgress?: (info: ProgressInfo) => void;
-  onComplete?: (result: RunResult) => void;
-}
-
-/**
- * Progress update callback type - receives full regex match array
- * match[0] = full matched string
- * match[1..n] = captured groups from the regex
- */
-type ProgressCallback = (match: RegExpMatchArray) => void;
-
-/**
  * Run whisper transcription - side-effect-free entry point
  */
-export async function runWhisper(
-  config: RunConfig,
-  callbacks?: RunCallbacks,
-): Promise<RunResult> {
+export async function runWhisper(config: RunConfig): Promise<RunResult> {
   // Save RunConfig to work directory for reproducibility
   if (!config.dryRun) {
     await mkdir(config.runWorkDir, { recursive: true });
@@ -125,9 +98,9 @@ export async function runWhisper(
   let result: RunResult;
 
   if (config.runner === "whispercpp") {
-    result = await runWhisperCpp(config, callbacks);
+    result = await runWhisperCpp(config);
   } else if (config.runner === "whisperkit") {
-    result = await runWhisperKit(config, callbacks);
+    result = await runWhisperKit(config);
   } else {
     // Compile-time check to ensure all runner types are handled
     const _exhaustiveCheck: never = config.runner;
@@ -144,21 +117,19 @@ export async function runWhisper(
 }
 
 /**
- * Get the executable name for a given runner type
+ * Get the executable names for a given runner type
  */
 export function getRequiredCommands(config: RunConfig): string[] {
-  if (config.runner === "whispercpp") return [WHISPER_CPP_EXEC];
-  if (config.runner === "whisperkit") return [WHISPER_KIT_EXEC];
-  return [];
+  const commands = ["ffmpeg"];
+  if (config.runner === "whispercpp") commands.push(WHISPER_CPP_EXEC);
+  if (config.runner === "whisperkit") commands.push(WHISPER_KIT_EXEC);
+  return commands;
 }
 
 /**
  * Run whisper-cpp command
  */
-async function runWhisperCpp(
-  config: RunConfig,
-  callbacks?: RunCallbacks,
-): Promise<RunResult> {
+async function runWhisperCpp(config: RunConfig): Promise<RunResult> {
   const exec = WHISPER_CPP_EXEC;
   const inputName = basename(config.input, extname(config.input));
   const finalName = config.tag ? `${inputName}.${config.tag}` : inputName;
@@ -175,28 +146,29 @@ async function runWhisperCpp(
   // File prefix for outputs and logs - work dir is unique per run
   const outPrefix = `${workPath}/${inputName}`;
 
-  // Convert unsupported formats (whisper-cpp doesn't support M4B)
+  // Build task plan
+  const tasks: TaskConfig[] = [];
+
+  // Convert unsupported formats (conditional task)
   let audioInput = config.input;
   if (extname(config.input).toLowerCase() === ".m4b") {
     // Use wav for speed (change to "mp3" for smaller files)
     const format = "wav" as const;
     const convertedAudioPath = `${workPath}/${inputName}.${format}`;
-    if (!config.dryRun) {
-      await runSubTask(
-        convertAudioSubTask(
-          config.input,
-          format,
-          convertedAudioPath,
-          workPath,
-          inputName,
-        ),
-      );
-    }
+    tasks.push(
+      convertAudioTask(
+        config.input,
+        format,
+        convertedAudioPath,
+        workPath,
+        inputName,
+      ),
+    );
     audioInput = convertedAudioPath;
   }
 
-  // Build args - outputs go to work dir
-  const args = [
+  // Transcribe audio using whisper-cpp
+  const transcriptionArgs = [
     "--file",
     audioInput,
     "--model",
@@ -217,7 +189,21 @@ async function runWhisperCpp(
     ...(config.wordTimestamps ? ["--max-len", "1", "--split-on-word"] : []),
   ];
 
-  const cmdStr = `${exec} ${args.join(" ")}`;
+  const stdoutLogPath = `${outPrefix}.stdout.log`;
+  const stderrLogPath = `${outPrefix}.stderr.log`;
+
+  tasks.push({
+    label: "transcribe",
+    command: exec,
+    args: transcriptionArgs,
+    stdoutLogPath,
+    stderrLogPath,
+    stderrFilter: WHISPER_CPP_PROGRESS_REGEX,
+  });
+
+  const cmdStr = tasks
+    .map((t) => `${t.command} ${t.args.join(" ")}`)
+    .join(" && ");
 
   if (config.dryRun) {
     return {
@@ -231,24 +217,18 @@ async function runWhisperCpp(
     };
   }
 
-  // Run with progress tracking
-  // whisper-cpp outputs progress to stderr: "whisper_print_progress_callback: progress = XX%"
-  const stdoutLogPath = `${outPrefix}.stdout.log`;
-  const stderrLogPath = `${outPrefix}.stderr.log`;
-  const cmdResult = await runSubTask({
-    label: "transcribe",
-    command: exec,
-    args,
-    stdoutLogPath,
-    stderrLogPath,
-    stderr: whisperCppHandler((percent) => process.stderr.write(percent)),
-  });
+  // Execute tasks with monitor
+  const monitor = createWhisperCppMonitor(config.runner);
+  let totalElapsedMs = 0;
+  for (const task of tasks) {
+    const res = await runTask(task, monitor);
+    totalElapsedMs += res.elapsedMs;
+  }
 
-  const elapsedSec = Math.round(cmdResult.elapsedMs / 1000);
+  const elapsedSec = Math.round(totalElapsedMs / 1000);
   const speedup = await calculateSpeedup(config, elapsedSec);
 
   // Move VTT from work dir to final output dir
-  // TODO: Validate VTT and extract metadata (segment count, duration, etc.)
   const workVtt = `${outPrefix}.vtt`;
   if (existsSync(workVtt)) {
     const { copyFile } = await import("node:fs/promises");
@@ -265,17 +245,13 @@ async function runWhisperCpp(
     logFiles: { stdout: stdoutLogPath, stderr: stderrLogPath },
   };
 
-  callbacks?.onComplete?.(result);
   return result;
 }
 
 /**
  * Run whisperkit-cli command
  */
-async function runWhisperKit(
-  config: RunConfig,
-  callbacks?: RunCallbacks,
-): Promise<RunResult> {
+async function runWhisperKit(config: RunConfig): Promise<RunResult> {
   const exec = WHISPER_KIT_EXEC;
   const inputName = basename(config.input, extname(config.input));
   const finalName = config.tag ? `${inputName}.${config.tag}` : inputName;
@@ -292,8 +268,11 @@ async function runWhisperKit(
   // File prefix for outputs and logs - work dir is unique per run
   const outPrefix = `${workPath}/${inputName}`;
 
-  // Build args - whisperkit outputs to --report-path
-  const args = [
+  // Build task plan
+  const tasks: TaskConfig[] = [];
+
+  // Transcribe audio using whisperkit-cli
+  const transcriptionArgs = [
     "transcribe",
     "--audio-path",
     config.input,
@@ -315,7 +294,32 @@ async function runWhisperKit(
     ...(config.wordTimestamps ? ["--word-timestamps"] : []),
   ];
 
-  const cmdStr = `${exec} ${args.join(" ")}`;
+  const stdoutLogPath = `${outPrefix}.stdout.log`;
+  const stderrLogPath = `${outPrefix}.stderr.log`;
+
+  tasks.push({
+    label: "transcribe",
+    command: exec,
+    args: transcriptionArgs,
+    stdoutLogPath,
+    stderrLogPath,
+    stdoutFilter: WHISPERKIT_PROGRESS_REGEX,
+  });
+
+  // Convert SRT to VTT using ffmpeg if available
+  const srtPath = `${workPath}/${inputName}.srt`;
+  const workVtt = `${workPath}/${inputName}.vtt`;
+  tasks.push({
+    label: "SRT→VTT",
+    command: "ffmpeg",
+    args: ["-y", "-hide_banner", "-loglevel", "error", "-i", srtPath, workVtt],
+    stdoutLogPath: `${workPath}/${inputName}-srt-to-vtt.stdout.log`,
+    stderrLogPath: `${workPath}/${inputName}-srt-to-vtt.stderr.log`,
+  });
+
+  const cmdStr = tasks
+    .map((t) => `${t.command} ${t.args.join(" ")}`)
+    .join(" && ");
 
   if (config.dryRun) {
     return {
@@ -329,46 +333,17 @@ async function runWhisperKit(
     };
   }
 
-  // Run with progress tracking
-  // whisperkit outputs progress to stdout: "] XX% | Elapsed Time: X.XX s | Remaining: X.XX s"
-  const stdoutLogPath = `${outPrefix}.stdout.log`;
-  const stderrLogPath = `${outPrefix}.stderr.log`;
-  const cmdResult = await runSubTask({
-    label: "transcribe",
-    command: exec,
-    args,
-    stdoutLogPath,
-    stderrLogPath,
-    stdout: whisperkitHandler((formatted) => process.stderr.write(formatted)),
-  });
-
-  const elapsedSec = Math.round(cmdResult.elapsedMs / 1000);
-
-  // Convert SRT to VTT using ffmpeg if SRT exists
-  const srtPath = `${workPath}/${inputName}.srt`;
-  const workVtt = `${workPath}/${inputName}.vtt`;
-  if (existsSync(srtPath) && commandExists("ffmpeg")) {
-    const srtToVttStdout = `${workPath}/${inputName}-srt-to-vtt.stdout.log`;
-    const srtToVttStderr = `${workPath}/${inputName}-srt-to-vtt.stderr.log`;
-    await runSubTask({
-      label: "SRT→VTT",
-      command: "ffmpeg",
-      args: [
-        "-y",
-        "-hide_banner",
-        "-loglevel",
-        "error",
-        "-i",
-        srtPath,
-        workVtt,
-      ],
-      stdoutLogPath: srtToVttStdout,
-      stderrLogPath: srtToVttStderr,
-    });
+  // Execute tasks with monitor
+  const monitor = createWhisperKitMonitor(config.runner);
+  let totalElapsedMs = 0;
+  for (const task of tasks) {
+    const res = await runTask(task, monitor);
+    totalElapsedMs += res.elapsedMs;
   }
 
+  const elapsedSec = Math.round(totalElapsedMs / 1000);
+
   // Copy final VTT to output directory
-  // TODO: Validate VTT and extract metadata (segment count, duration, etc.)
   if (existsSync(workVtt)) {
     const { copyFile } = await import("node:fs/promises");
     await copyFile(workVtt, finalVtt);
@@ -386,22 +361,21 @@ async function runWhisperKit(
     logFiles: { stdout: stdoutLogPath, stderr: stderrLogPath },
   };
 
-  callbacks?.onComplete?.(result);
   return result;
 }
 
 /**
- * Create SubTaskConfig for audio format conversion via ffmpeg.
+ * Factory for audio conversion TaskConfig.
  * wav: faster encoding (1300x), larger files (~1GB for 10h)
  * mp3: slower encoding (174x), smaller files (~470MB for 10h)
  */
-function convertAudioSubTask(
+function convertAudioTask(
   inputPath: string,
   format: "wav" | "mp3",
   outputPath: string,
   workPath: string,
   inputName: string,
-): SubTaskConfig {
+): TaskConfig {
   // wav: 16-bit PCM, 16kHz mono (fast, large files)
   const wavArgs = ["-acodec", "pcm_s16le", "-ar", "16000", "-ac", "1"];
   // mp3: libmp3lame VBR quality 4 (CBR 128k tested: slower at 130x vs VBR 174x)
@@ -423,20 +397,10 @@ function convertAudioSubTask(
     ],
     stdoutLogPath: `${workPath}/${inputName}-to-${format}.stdout.log`,
     stderrLogPath: `${workPath}/${inputName}-to-${format}.stderr.log`,
-    stderr: ffmpegConvertHandler((line) => process.stderr.write(line)),
+    stderrFilter: FFMPEG_AUDIO_PROGRESS_REGEX,
   };
 }
 
-/**
- * Calculate speedup factor (Effective Audio Duration / Elapsed Time).
- *
- * Effective duration is determined by:
- * 1. config.durationSec: If > 0, use this explicit limit.
- * 2. (File Duration - config.startSec): If duration is 0 (rest of file),
- *    calculate remaining audio from start offset.
- *
- * Returns formatted string "XX.X"x or "?" if invalid.
- */
 /**
  * Calculate speedup factor (Effective Audio Duration / Elapsed Time).
  *

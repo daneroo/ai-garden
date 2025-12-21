@@ -14,7 +14,8 @@ Full-length transcription of hobbit.mp3 (10h24m).
 
 ## 2. Native M4B
 
-M4B format support. WhisperKit handles natively, WhisperCPP auto-converts to WAV.
+M4B format support. WhisperKit handles natively, WhisperCPP auto-converts to
+WAV.
 
 | Runner     | Elapsed (s) | Speedup |
 | ---------- | ----------: | ------: |

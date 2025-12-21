@@ -4,8 +4,6 @@ import {
   createRunWorkDir,
   getRequiredCommands,
   ModelShortName,
-  ProgressInfo,
-  RunCallbacks,
   RunConfig,
   RUNNER_NAMES,
   RunnerName,
@@ -85,6 +83,11 @@ async function main(): Promise<void> {
       default: false,
       describe: "Show commands without executing",
     })
+    .option("json", {
+      type: "boolean",
+      default: false,
+      describe: "Output result as JSON instead of pretty summary",
+    })
     .option("word-timestamps", {
       type: "boolean",
       default: false,
@@ -113,6 +116,7 @@ async function main(): Promise<void> {
     runner,
     tag,
     "dry-run": dryRun,
+    json,
     "word-timestamps": wordTimestamps,
     verbose: verbosity,
   } = argv;
@@ -173,35 +177,44 @@ async function main(): Promise<void> {
   const configStr = configParts.join(" ");
   console.error(`[config] ${configStr}`);
 
-  // Callbacks: progress to stderr
-  const callbacks: RunCallbacks = {
-    onProgress: (info: ProgressInfo) => {
-      const suffix = info.elapsed
-        ? ` | ${info.elapsed} | ${info.remaining}`
-        : "";
-      process.stderr.write(`\x1b[2K\r[${info.percent}]${suffix}`);
-    },
-    onComplete: () => {
-      process.stderr.write("\x1b[2K\r");
-    },
-  };
-
   // Iteration loop
   const results: RunResult[] = [];
   for (let i = 1; i <= iterations; i++) {
-    const result = await runWhisper(config, callbacks);
+    const result = await runWhisper(config);
     results.push(result);
 
     // Compact result to stderr
     if (!result.dryRun) {
       const iterPart = iterations > 1 ? ` ${i}/${iterations}` : "";
-      const vttDur = result.vttSummary?.durationSec ?? "none";
+      const vttDur = result.vttSummary
+        ? `${result.vttSummary.durationSec}s`
+        : "none";
       console.error(
-        `[result${iterPart}] elapsed=${result.elapsedSec}s speedup=${result.speedup}x vttDuration=${vttDur}s`,
+        `[result${iterPart}] elapsed=${result.elapsedSec}s speedup=${result.speedup}x vttDuration=${vttDur}`,
       );
     }
 
-    // Output single-line JSON to stdout
-    console.log(JSON.stringify(result));
+    // Output to STDOUT
+    if (json) {
+      // Output single-line JSON to stdout for scriptability
+      console.log(JSON.stringify(result));
+    } else {
+      // Pretty summary for human readability
+      const label = iterations > 1
+        ? `Iteration ${i}/${iterations}:`
+        : "Result:";
+      const vttDur = result.vttSummary
+        ? `${result.vttSummary.durationSec}s`
+        : "none";
+      console.log(`\n${label}`);
+      console.log(`  Runner:    ${result.runner}`);
+      console.log(`  Elapsed:   ${result.elapsedSec}s`);
+      console.log(`  Speedup:   ${result.speedup}x`);
+      console.log(`  Output:    ${result.outputPath}`);
+      console.log(`  VTT Dur:   ${vttDur}`);
+      console.log(
+        `  Logs:      ${result.logFiles.stdout} / ${result.logFiles.stderr}`,
+      );
+    }
   }
 }

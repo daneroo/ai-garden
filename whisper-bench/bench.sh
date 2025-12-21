@@ -18,7 +18,7 @@ run_bench() {
   local runner=$1
   local input=$2
   local extra_args=${3:-}
-  deno run -A main.ts --runner "$runner" --input "$input" --model "$MODEL" --tag "$runner" $extra_args
+  deno run -A main.ts --runner "$runner" --input "$input" --model "$MODEL" --tag "$runner" --json $extra_args
 }
 
 # Helper to format result row
