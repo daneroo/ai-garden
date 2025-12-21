@@ -1,5 +1,5 @@
 import { assertEquals } from "@std/assert";
-import { calculateSpeedup, RunConfig } from "./runners.ts";
+import { getProcessedAudioDuration, type RunConfig } from "./runners.ts";
 
 const mockConfig: RunConfig = {
   input: "test.mp3",
@@ -15,42 +15,52 @@ const mockConfig: RunConfig = {
   wordTimestamps: false,
 };
 
-Deno.test("calculateSpeedup - explicit duration", async () => {
+Deno.test("getProcessedAudioDuration - explicit duration", async () => {
   const config = { ...mockConfig, durationSec: 10 };
-  const getDuration = () => Promise.resolve(100); // Should be ignored
+  const getDuration = () => Promise.resolve(100); // Should be ignored (capped)
 
-  // 10s audio / 2s elapsed = 5.0x
-  assertEquals(await calculateSpeedup(config, 2, getDuration), "5.0");
+  // Explicitly requested 10s, file is 100s -> 10s
+  assertEquals(await getProcessedAudioDuration(config, getDuration), 10);
 
-  // 10s audio / 5s elapsed = 2.0x
-  assertEquals(await calculateSpeedup(config, 5, getDuration), "2.0");
+  // Explicitly requested 10s, file is 5s -> 5s (capped)
+  const configSmallFile = { ...mockConfig, durationSec: 10 };
+  const getDurationSmall = () => Promise.resolve(5);
+  assertEquals(
+    await getProcessedAudioDuration(configSmallFile, getDurationSmall),
+    5,
+  );
 });
 
-Deno.test("calculateSpeedup - implicit duration (full file)", async () => {
-  const config = { ...mockConfig, durationSec: 0, startSec: 0 };
-  const getDuration = () => Promise.resolve(60); // 60s file
+Deno.test(
+  "getProcessedAudioDuration - implicit duration (full file)",
+  async () => {
+    const config = { ...mockConfig, durationSec: 0, startSec: 0 };
+    const getDuration = () => Promise.resolve(60); // 60s file
 
-  // 60s audio / 20s elapsed = 3.0x
-  assertEquals(await calculateSpeedup(config, 20, getDuration), "3.0");
-});
+    // 0 duration means until end of file -> 60s
+    assertEquals(await getProcessedAudioDuration(config, getDuration), 60);
+  },
+);
 
-Deno.test("calculateSpeedup - implicit duration (start offset)", async () => {
-  const config = { ...mockConfig, durationSec: 0, startSec: 10 };
-  const getDuration = () => Promise.resolve(60); // 60s file
+Deno.test(
+  "getProcessedAudioDuration - implicit duration (start offset)",
+  async () => {
+    const config = { ...mockConfig, durationSec: 0, startSec: 10 };
+    const getDuration = () => Promise.resolve(60); // 60s file
 
-  // Effective duration = 60 - 10 = 50s
-  // 50s audio / 25s elapsed = 2.0x
-  assertEquals(await calculateSpeedup(config, 25, getDuration), "2.0");
-});
+    // Effective duration = 60 - 10 = 50s
+    assertEquals(await getProcessedAudioDuration(config, getDuration), 50);
+  },
+);
 
-Deno.test("calculateSpeedup - edge cases", async () => {
-  const config = { ...mockConfig, durationSec: 0 };
+Deno.test("getProcessedAudioDuration - edge cases", async () => {
   const getDuration = () => Promise.resolve(60);
-
-  // Zero elapsed time
-  assertEquals(await calculateSpeedup(config, 0, getDuration), "?");
 
   // Start offset beyond file duration
   const invalidConfig = { ...mockConfig, startSec: 70 };
-  assertEquals(await calculateSpeedup(invalidConfig, 10, getDuration), "?");
+  assertEquals(await getProcessedAudioDuration(invalidConfig, getDuration), 0);
+
+  // Explicit duration 0 is treated as until end of file
+  const configZeroDur = { ...mockConfig, durationSec: 0 };
+  assertEquals(await getProcessedAudioDuration(configZeroDur, getDuration), 60);
 });

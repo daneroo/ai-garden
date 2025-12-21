@@ -8,7 +8,8 @@ import {
   createWhisperKitMonitor,
   FFMPEG_AUDIO_PROGRESS_REGEX,
   runTask,
-  TaskConfig,
+  type TaskConfig,
+  type TaskResult,
   WHISPER_CPP_PROGRESS_REGEX,
   WHISPERKIT_PROGRESS_REGEX,
 } from "./task.ts";
@@ -73,12 +74,12 @@ export function createRunWorkDir(opts: CreateRunWorkDirOptions): string {
  */
 export interface RunResult {
   runner: RunnerName;
-  command: string;
-  dryRun: boolean;
-  elapsedSec: number;
-  speedup: string;
+  processedAudioDurationSec: number;
+  tasks: Array<{
+    config: TaskConfig;
+    result?: TaskResult;
+  }>;
   outputPath: string;
-  logFiles: { stdout: string; stderr: string };
   vttSummary?: VttSummary;
 }
 
@@ -108,7 +109,8 @@ export async function runWhisper(config: RunConfig): Promise<RunResult> {
   }
 
   // Validate VTT and add summary (only for real runs with output)
-  if (!result.dryRun && existsSync(result.outputPath)) {
+  const hasExecuted = result.tasks.some((t) => t.result);
+  if (hasExecuted && existsSync(result.outputPath)) {
     const cues = await readVtt(result.outputPath);
     result.vttSummary = summarizeVtt(cues);
   }
@@ -201,32 +203,27 @@ async function runWhisperCpp(config: RunConfig): Promise<RunResult> {
     stderrFilter: WHISPER_CPP_PROGRESS_REGEX,
   });
 
-  const cmdStr = tasks
-    .map((t) => `${t.command} ${t.args.join(" ")}`)
-    .join(" && ");
+  // Calculate processed duration
+  const processedAudioDurationSec = await getProcessedAudioDuration(config);
+
+  // Final result object (will be populated with task results)
+  const result: RunResult = {
+    runner: "whispercpp",
+    processedAudioDurationSec,
+    tasks: tasks.map((t) => ({ config: t })),
+    outputPath: finalVtt,
+  };
 
   if (config.dryRun) {
-    return {
-      runner: "whispercpp",
-      command: cmdStr,
-      dryRun: true,
-      elapsedSec: 0,
-      speedup: "N/A",
-      outputPath: finalVtt,
-      logFiles: { stdout: "", stderr: "" },
-    };
+    return result;
   }
 
   // Execute tasks with monitor
   const monitor = createWhisperCppMonitor(config.runner);
-  let totalElapsedMs = 0;
-  for (const task of tasks) {
-    const res = await runTask(task, monitor);
-    totalElapsedMs += res.elapsedMs;
+  for (let i = 0; i < tasks.length; i++) {
+    const taskResult = await runTask(tasks[i], monitor);
+    result.tasks[i].result = taskResult;
   }
-
-  const elapsedSec = Math.round(totalElapsedMs / 1000);
-  const speedup = await calculateSpeedup(config, elapsedSec);
 
   // Move VTT from work dir to final output dir
   const workVtt = `${outPrefix}.vtt`;
@@ -234,16 +231,6 @@ async function runWhisperCpp(config: RunConfig): Promise<RunResult> {
     const { copyFile } = await import("node:fs/promises");
     await copyFile(workVtt, finalVtt);
   }
-
-  const result: RunResult = {
-    runner: "whispercpp",
-    command: cmdStr,
-    dryRun: false,
-    elapsedSec,
-    speedup,
-    outputPath: finalVtt,
-    logFiles: { stdout: stdoutLogPath, stderr: stderrLogPath },
-  };
 
   return result;
 }
@@ -317,49 +304,33 @@ async function runWhisperKit(config: RunConfig): Promise<RunResult> {
     stderrLogPath: `${workPath}/${inputName}-srt-to-vtt.stderr.log`,
   });
 
-  const cmdStr = tasks
-    .map((t) => `${t.command} ${t.args.join(" ")}`)
-    .join(" && ");
+  // Calculate processed duration
+  const processedAudioDurationSec = await getProcessedAudioDuration(config);
+
+  // Final result object
+  const result: RunResult = {
+    runner: "whisperkit",
+    processedAudioDurationSec,
+    tasks: tasks.map((t) => ({ config: t })),
+    outputPath: finalVtt,
+  };
 
   if (config.dryRun) {
-    return {
-      runner: "whisperkit",
-      command: cmdStr,
-      dryRun: true,
-      elapsedSec: 0,
-      speedup: "N/A",
-      outputPath: finalVtt,
-      logFiles: { stdout: "", stderr: "" },
-    };
+    return result;
   }
 
   // Execute tasks with monitor
   const monitor = createWhisperKitMonitor(config.runner);
-  let totalElapsedMs = 0;
-  for (const task of tasks) {
-    const res = await runTask(task, monitor);
-    totalElapsedMs += res.elapsedMs;
+  for (let i = 0; i < tasks.length; i++) {
+    const taskResult = await runTask(tasks[i], monitor);
+    result.tasks[i].result = taskResult;
   }
-
-  const elapsedSec = Math.round(totalElapsedMs / 1000);
 
   // Copy final VTT to output directory
   if (existsSync(workVtt)) {
     const { copyFile } = await import("node:fs/promises");
     await copyFile(workVtt, finalVtt);
   }
-
-  const speedup = await calculateSpeedup(config, elapsedSec);
-
-  const result: RunResult = {
-    runner: "whisperkit",
-    command: cmdStr,
-    dryRun: false,
-    elapsedSec,
-    speedup,
-    outputPath: finalVtt,
-    logFiles: { stdout: stdoutLogPath, stderr: stderrLogPath },
-  };
 
   return result;
 }
@@ -402,35 +373,27 @@ function convertAudioTask(
 }
 
 /**
- * Calculate speedup factor (Effective Audio Duration / Elapsed Time).
+ * Get the precise duration of audio to be processed.
  *
- * Effective duration is determined by:
- * 1. config.durationSec: If > 0, use this explicit limit.
+ * The duration is determined by:
+ * 1. config.durationSec: If > 0, use this explicit limit (capped by file end).
  * 2. (File Duration - config.startSec): If duration is 0 (rest of file),
  *    calculate remaining audio from start offset.
- *
- * Returns formatted string "XX.X"x or "?" if invalid.
  */
-export async function calculateSpeedup(
+export async function getProcessedAudioDuration(
   config: RunConfig,
-  elapsedSec: number,
   getDuration: (path: string) => Promise<number> = getAudioFileDuration,
-): Promise<string> {
-  if (elapsedSec <= 0) {
-    return "?";
+): Promise<number> {
+  const fullDuration = await getDuration(config.input);
+  const available = Math.max(0, fullDuration - config.startSec);
+
+  // If duration is 0, transcribe until the end of the file
+  if (config.durationSec === 0) {
+    return available;
   }
 
-  let duration = config.durationSec;
-  if (duration <= 0) {
-    const fullDuration = await getDuration(config.input);
-    duration = Math.max(0, fullDuration - config.startSec);
-  }
-
-  if (duration <= 0) {
-    return "?";
-  }
-
-  return (duration / elapsedSec).toFixed(1);
+  // Otherwise, use the specified duration, but don't go beyond file end
+  return Math.min(config.durationSec, available);
 }
 
 /**

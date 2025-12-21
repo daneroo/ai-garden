@@ -2,6 +2,7 @@ import yargs from "yargs";
 import process from "node:process";
 import {
   createRunWorkDir,
+  getProcessedAudioDuration,
   getRequiredCommands,
   ModelShortName,
   RunConfig,
@@ -11,7 +12,6 @@ import {
   runWhisper,
 } from "./lib/runners.ts";
 import { preflightCheck } from "./lib/preflight.ts";
-import { getAudioFileDuration } from "./lib/audio.ts";
 
 // Configuration defaults
 const DEFAULT_INPUT = "data/samples/hobbit-30m.mp3";
@@ -155,13 +155,7 @@ async function main(): Promise<void> {
   }
 
   // Calculate effective duration for display
-  let effectiveDuration: number;
-  if (duration > 0) {
-    effectiveDuration = duration;
-  } else {
-    const fileDuration = await getAudioFileDuration(input);
-    effectiveDuration = Math.round(fileDuration - start);
-  }
+  const effectiveDuration = await getProcessedAudioDuration(config);
 
   // Build compact config string
   const configParts = [
@@ -180,24 +174,38 @@ async function main(): Promise<void> {
   // Iteration loop
   const results: RunResult[] = [];
   for (let i = 1; i <= iterations; i++) {
+    const startMs = Date.now();
     const result = await runWhisper(config);
+    const elapsedMs = Date.now() - startMs;
+    const elapsedSec = Math.round(elapsedMs / 1000);
+    const speedup = (
+      result.processedAudioDurationSec /
+      (elapsedMs / 1000)
+    ).toFixed(1);
+
     results.push(result);
 
     // Compact result to stderr
-    if (!result.dryRun) {
+    const hasExecuted = result.tasks.some((t) => t.result);
+    if (hasExecuted) {
       const iterPart = iterations > 1 ? ` ${i}/${iterations}` : "";
       const vttDur = result.vttSummary
         ? `${result.vttSummary.durationSec}s`
         : "none";
       console.error(
-        `[result${iterPart}] elapsed=${result.elapsedSec}s speedup=${result.speedup}x vttDuration=${vttDur}`,
+        `[result${iterPart}] elapsed=${elapsedSec}s speedup=${speedup}x vttDuration=${vttDur}`,
       );
     }
 
     // Output to STDOUT
     if (json) {
-      // Output single-line JSON to stdout for scriptability
-      console.log(JSON.stringify(result));
+      // Reconstruct compatible JSON for bench.sh
+      const jsonOutput = {
+        ...result,
+        elapsedSec,
+        speedup,
+      };
+      console.log(JSON.stringify(jsonOutput));
     } else {
       // Pretty summary for human readability
       const label = iterations > 1
@@ -208,13 +216,27 @@ async function main(): Promise<void> {
         : "none";
       console.log(`\n${label}`);
       console.log(`  Runner:    ${result.runner}`);
-      console.log(`  Elapsed:   ${result.elapsedSec}s`);
-      console.log(`  Speedup:   ${result.speedup}x`);
+      console.log(`  Processed: ${result.processedAudioDurationSec}s audio`);
+      console.log(`  Elapsed:   ${elapsedSec}s (wall-clock)`);
+      console.log(`  Speedup:   ${speedup}x`);
       console.log(`  Output:    ${result.outputPath}`);
       console.log(`  VTT Dur:   ${vttDur}`);
-      console.log(
-        `  Logs:      ${result.logFiles.stdout} / ${result.logFiles.stderr}`,
-      );
+
+      // Detailed task breakdown
+      console.log("  Tasks:");
+      for (const task of result.tasks) {
+        const timePart = task.result
+          ? ` (${Math.round(task.result.elapsedMs / 1000)}s)`
+          : " (dry-run)";
+        console.log(
+          `    - ${task.config.label}: ${task.config.command}${timePart}`,
+        );
+        if (task.result && iterations === 1) {
+          console.log(
+            `      Logs: ${task.config.stdoutLogPath} / ${task.config.stderrLogPath}`,
+          );
+        }
+      }
     }
   }
 }
