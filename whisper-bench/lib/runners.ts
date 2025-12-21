@@ -169,10 +169,48 @@ async function runWhisperCpp(
   // File prefix for outputs and logs - work dir is unique per run
   const outPrefix = `${workPath}/${inputName}`;
 
+  // Convert M4B to MP3 if needed (whisper-cpp doesn't support M4B)
+  let audioInput = config.input;
+  if (extname(config.input).toLowerCase() === ".m4b") {
+    const mp3Path = `${workPath}/${inputName}.mp3`;
+    const convertLogPrefix = `${workPath}/${inputName}-m4b-to-mp3`;
+
+    if (!config.dryRun) {
+      // Convert M4B to MP3 using ffmpeg
+      // -vn strips cover art (video stream) which can cause hangs
+      //
+      // ffmpeg stderr progress line format:
+      //   size=   22016KiB time=00:28:01.01 bitrate= 107.3kbits/s speed= 175x elapsed=0:00:09.57
+      // Regex matches from "size=" to the end of "elapsed=H:MM:SS.ss"
+      await runCommandWithProgress(
+        "ffmpeg",
+        [
+          "-y",
+          "-hide_banner",
+          "-loglevel",
+          "info",
+          "-i",
+          config.input,
+          "-vn",
+          "-c:a",
+          "libmp3lame",
+          "-q:a",
+          "4",
+          mp3Path,
+        ],
+        convertLogPrefix,
+        (match) => callbacks?.onProgress?.({ percent: `M4B→MP3: ${match[0]}` }),
+        "stderr",
+        /size=.*elapsed=\d+:\d+:\d+\.\d+/,
+      );
+    }
+    audioInput = mp3Path;
+  }
+
   // Build args - outputs go to work dir
   const args = [
     "--file",
-    config.input,
+    audioInput,
     "--model",
     `${WHISPER_CPP_MODELS}/ggml-${config.modelShortName}.bin`,
     ...(config.startSec > 0
