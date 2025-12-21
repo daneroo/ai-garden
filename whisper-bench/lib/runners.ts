@@ -1,11 +1,17 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { basename, extname } from "node:path";
 import { existsSync } from "node:fs";
-import { spawn } from "node:child_process";
-import { Buffer } from "node:buffer";
+import process from "node:process";
 import { getAudioFileDuration } from "./audio.ts";
 import { commandExists } from "./preflight.ts";
 import { readVtt, summarizeVtt, VttSummary } from "./vtt.ts";
+import {
+  ffmpegConvertHandler,
+  runSubTask,
+  SubTaskConfig,
+  whisperCppHandler,
+  whisperkitHandler,
+} from "./command.ts";
 
 // Model directory for whisper-cpp
 const WHISPER_CPP_MODELS = "data/models";
@@ -169,42 +175,24 @@ async function runWhisperCpp(
   // File prefix for outputs and logs - work dir is unique per run
   const outPrefix = `${workPath}/${inputName}`;
 
-  // Convert M4B to MP3 if needed (whisper-cpp doesn't support M4B)
+  // Convert unsupported formats (whisper-cpp doesn't support M4B)
   let audioInput = config.input;
   if (extname(config.input).toLowerCase() === ".m4b") {
-    const mp3Path = `${workPath}/${inputName}.mp3`;
-    const convertLogPrefix = `${workPath}/${inputName}-m4b-to-mp3`;
-
+    // Use wav for speed (change to "mp3" for smaller files)
+    const format = "wav" as const;
+    const convertedAudioPath = `${workPath}/${inputName}.${format}`;
     if (!config.dryRun) {
-      // Convert M4B to MP3 using ffmpeg
-      // -vn strips cover art (video stream) which can cause hangs
-      //
-      // ffmpeg stderr progress line format:
-      //   size=   22016KiB time=00:28:01.01 bitrate= 107.3kbits/s speed= 175x elapsed=0:00:09.57
-      // Regex matches from "size=" to the end of "elapsed=H:MM:SS.ss"
-      await runCommandWithProgress(
-        "ffmpeg",
-        [
-          "-y",
-          "-hide_banner",
-          "-loglevel",
-          "info",
-          "-i",
+      await runSubTask(
+        convertAudioSubTask(
           config.input,
-          "-vn",
-          "-c:a",
-          "libmp3lame",
-          "-q:a",
-          "4",
-          mp3Path,
-        ],
-        convertLogPrefix,
-        (match) => callbacks?.onProgress?.({ percent: `M4B→MP3: ${match[0]}` }),
-        "stderr",
-        /size=.*elapsed=\d+:\d+:\d+\.\d+/,
+          format,
+          convertedAudioPath,
+          workPath,
+          inputName,
+        ),
       );
     }
-    audioInput = mp3Path;
+    audioInput = convertedAudioPath;
   }
 
   // Build args - outputs go to work dir
@@ -243,21 +231,20 @@ async function runWhisperCpp(
     };
   }
 
-  const start = Date.now();
-
   // Run with progress tracking
-  // whisper-cpp outputs progress to stderr in format: "whisper_print_progress_callback: progress = XX%"
-  // Regex captures: match[1] = "XX%" (percentage)
-  const { stdoutLog, stderrLog } = await runCommandWithProgress(
-    exec,
+  // whisper-cpp outputs progress to stderr: "whisper_print_progress_callback: progress = XX%"
+  const stdoutLogPath = `${outPrefix}.stdout.log`;
+  const stderrLogPath = `${outPrefix}.stderr.log`;
+  const cmdResult = await runSubTask({
+    label: "transcribe",
+    command: exec,
     args,
-    outPrefix,
-    (match) => callbacks?.onProgress?.({ percent: match[1] }),
-    "stderr",
-    /progress\s*=\s*(\d+%)/,
-  );
+    stdoutLogPath,
+    stderrLogPath,
+    stderr: whisperCppHandler((percent) => process.stderr.write(percent)),
+  });
 
-  const elapsedSec = Math.round((Date.now() - start) / 1000);
+  const elapsedSec = Math.round(cmdResult.elapsedMs / 1000);
   const speedup = await calculateSpeedup(config, elapsedSec);
 
   // Move VTT from work dir to final output dir
@@ -275,7 +262,7 @@ async function runWhisperCpp(
     elapsedSec,
     speedup,
     outputPath: finalVtt,
-    logFiles: { stdout: stdoutLog, stderr: stderrLog },
+    logFiles: { stdout: stdoutLogPath, stderr: stderrLogPath },
   };
 
   callbacks?.onComplete?.(result);
@@ -342,44 +329,42 @@ async function runWhisperKit(
     };
   }
 
-  const start = Date.now();
-
   // Run with progress tracking
-  // whisperkit outputs progress to stdout with ANSI escape codes for inline updates:
-  //   "] XX% | Elapsed Time: X.XX s | Remaining: X.XX s"
-  // or when estimating:
-  //   "] XX% | Elapsed Time: X.XX s | Remaining: Estimating..."
-  //
-  // Regex captures:
-  //   match[1] = "XX%"              (percentage)
-  //   match[2] = "X.XX s"           (elapsed time)
-  //   match[3] = "X.XX s" or "Estimating..." (remaining time)
-  const { stdoutLog, stderrLog } = await runCommandWithProgress(
-    exec,
+  // whisperkit outputs progress to stdout: "] XX% | Elapsed Time: X.XX s | Remaining: X.XX s"
+  const stdoutLogPath = `${outPrefix}.stdout.log`;
+  const stderrLogPath = `${outPrefix}.stderr.log`;
+  const cmdResult = await runSubTask({
+    label: "transcribe",
+    command: exec,
     args,
-    outPrefix,
-    (match) =>
-      callbacks?.onProgress?.({
-        percent: match[1],
-        elapsed: match[2],
-        remaining: match[3],
-      }),
-    "stdout",
-    /]\s*(\d+%)\s*\|\s*Elapsed Time:\s*([\d.]+\s*s)\s*\|\s*Remaining:\s*([\d.]+\s*s|Estimating\.\.\.)/,
-  );
+    stdoutLogPath,
+    stderrLogPath,
+    stdout: whisperkitHandler((formatted) => process.stderr.write(formatted)),
+  });
 
-  const elapsedSec = Math.round((Date.now() - start) / 1000);
+  const elapsedSec = Math.round(cmdResult.elapsedMs / 1000);
 
   // Convert SRT to VTT using ffmpeg if SRT exists
   const srtPath = `${workPath}/${inputName}.srt`;
   const workVtt = `${workPath}/${inputName}.vtt`;
   if (existsSync(srtPath) && commandExists("ffmpeg")) {
-    const srtToVttLogPrefix = `${workPath}/${inputName}-srt-to-vtt`;
-    await runCommandWithProgress(
-      "ffmpeg",
-      ["-y", "-hide_banner", "-loglevel", "error", "-i", srtPath, workVtt],
-      srtToVttLogPrefix,
-    );
+    const srtToVttStdout = `${workPath}/${inputName}-srt-to-vtt.stdout.log`;
+    const srtToVttStderr = `${workPath}/${inputName}-srt-to-vtt.stderr.log`;
+    await runSubTask({
+      label: "SRT→VTT",
+      command: "ffmpeg",
+      args: [
+        "-y",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-i",
+        srtPath,
+        workVtt,
+      ],
+      stdoutLogPath: srtToVttStdout,
+      stderrLogPath: srtToVttStderr,
+    });
   }
 
   // Copy final VTT to output directory
@@ -398,7 +383,7 @@ async function runWhisperKit(
     elapsedSec,
     speedup,
     outputPath: finalVtt,
-    logFiles: { stdout: stdoutLog, stderr: stderrLog },
+    logFiles: { stdout: stdoutLogPath, stderr: stderrLogPath },
   };
 
   callbacks?.onComplete?.(result);
@@ -406,103 +391,40 @@ async function runWhisperKit(
 }
 
 /**
- * Run a command with streaming output and progress parsing.
- *
- * Uses node:child_process.spawn for real-time streaming, parsing progress
- * from either stdout or stderr based on the progressStream parameter.
- *
- * Writes stdout and stderr to separate log files (.stdout.log, .stderr.log)
- * because we process them independently for progress parsing. Combining them
- * into a single file would lose proper ordering since data arrives asynchronously.
- *
- * @param command - The executable to run
- * @param args - Command line arguments
- * @param logFilePrefix - Base path for log files (will append .stdout.log and .stderr.log)
- * @param onProgress - Callback invoked when progress regex matches (receives full match array)
- * @param progressStream - Which stream contains progress info: "stdout" or "stderr"
- * @param progressRegex - Regex to extract progress. Capture groups become match[1], match[2], etc.
- *                        Default matches whisper-cpp format: "progress = XX%"
- * @returns Promise with exit code and paths to the created log files
- *
- * @example
- * // whisper-cpp: parse "progress = XX%" from stderr
- * await runCommandWithProgress(cmd, args, log, onProgress, "stderr", /progress\s*=\s*(\d+%)/);
- *
- * // whisperkit: parse "XX% | Elapsed Time: X.XX s | Remaining: X.XX s" from stdout
- * await runCommandWithProgress(cmd, args, log, onProgress, "stdout",
- *   /]\s*(\d+%)\s*\|\s*Elapsed Time:\s*([\d.]+\s*s)\s*\|\s*Remaining:\s*([\d.]+\s*s|Estimating\.\.\.)/
- * );
+ * Create SubTaskConfig for audio format conversion via ffmpeg.
+ * wav: faster encoding (1300x), larger files (~1GB for 10h)
+ * mp3: slower encoding (174x), smaller files (~470MB for 10h)
  */
-function runCommandWithProgress(
-  command: string,
-  args: string[],
-  logFilePrefix: string,
-  onProgress?: ProgressCallback,
-  progressStream: "stdout" | "stderr" = "stderr",
-  progressRegex: RegExp = /progress\s*=\s*(\d+%)/,
-): Promise<{ code: number; stdoutLog: string; stderrLog: string }> {
-  return new Promise((resolve, reject) => {
-    const proc = spawn(command, args, {
-      stdio: ["inherit", "pipe", "pipe"],
-    });
+function convertAudioSubTask(
+  inputPath: string,
+  format: "wav" | "mp3",
+  outputPath: string,
+  workPath: string,
+  inputName: string,
+): SubTaskConfig {
+  // wav: 16-bit PCM, 16kHz mono (fast, large files)
+  const wavArgs = ["-acodec", "pcm_s16le", "-ar", "16000", "-ac", "1"];
+  // mp3: libmp3lame VBR quality 4 (CBR 128k tested: slower at 130x vs VBR 174x)
+  const mp3Args = ["-c:a", "libmp3lame", "-q:a", "4"];
 
-    let stdoutOutput = "";
-    let stderrOutput = "";
-    let lastProgress = "";
-
-    // Update display with current progress
-    const updateDisplay = (match: RegExpMatchArray) => {
-      const key = match[0]; // Use full match as change key
-      if (key !== lastProgress) {
-        lastProgress = key;
-        if (onProgress) {
-          onProgress(match);
-        }
-      }
-    };
-
-    // Parse progress from a data chunk
-    const parseProgress = (text: string) => {
-      const lines = text.split(/[\r\n]+/);
-      for (const line of lines) {
-        const match = line.match(progressRegex);
-        if (match) {
-          updateDisplay(match);
-        }
-      }
-    };
-
-    // Handle stdout
-    proc.stdout?.on("data", (data: Buffer) => {
-      const text = data.toString();
-      stdoutOutput += text;
-      if (progressStream === "stdout") {
-        parseProgress(text);
-      }
-    });
-
-    // Handle stderr
-    proc.stderr?.on("data", (data: Buffer) => {
-      const text = data.toString();
-      stderrOutput += text;
-      if (progressStream === "stderr") {
-        parseProgress(text);
-      }
-    });
-
-    proc.on("error", (error) => {
-      reject(error);
-    });
-
-    proc.on("close", async (code) => {
-      // Write stdout and stderr to separate log files
-      const stdoutLog = `${logFilePrefix}.stdout.log`;
-      const stderrLog = `${logFilePrefix}.stderr.log`;
-      await writeFile(stdoutLog, stdoutOutput);
-      await writeFile(stderrLog, stderrOutput);
-      resolve({ code: code ?? 0, stdoutLog, stderrLog });
-    });
-  });
+  return {
+    label: `to-${format}`,
+    command: "ffmpeg",
+    args: [
+      "-y",
+      "-hide_banner",
+      "-loglevel",
+      "info",
+      "-i",
+      inputPath,
+      "-vn",
+      ...(format === "wav" ? wavArgs : mp3Args),
+      outputPath,
+    ],
+    stdoutLogPath: `${workPath}/${inputName}-to-${format}.stdout.log`,
+    stderrLogPath: `${workPath}/${inputName}-to-${format}.stderr.log`,
+    stderr: ffmpegConvertHandler((line) => process.stderr.write(line)),
+  };
 }
 
 /**

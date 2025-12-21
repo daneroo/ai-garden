@@ -63,20 +63,22 @@ format_row "WhisperCPP" "$CPP_JSON" >> "$OUTPUT_MD"
 echo "" >> "$OUTPUT_MD"
 
 # ============================================================
-# Section 2: Native M4B - whisperkit only
+# Section 2: Native M4B support
 # ============================================================
 echo "## 2. Native M4B (hobbit.m4b - 10h24m)" >&2
 cat >> "$OUTPUT_MD" << 'EOF'
 ## 2. Native M4B
 
-Native M4B format support (whisperkit only).
+M4B format support. WhisperKit handles natively, WhisperCPP auto-converts to WAV.
 
 | Runner | Elapsed (s) | Speedup |
 |--------|------------:|--------:|
 EOF
 
 KIT_JSON=$(run_bench whisperkit data/samples/hobbit.m4b)
+CPP_JSON=$(run_bench whispercpp data/samples/hobbit.m4b)
 format_row "WhisperKit" "$KIT_JSON" >> "$OUTPUT_MD"
+format_row "WhisperCPP" "$CPP_JSON" >> "$OUTPUT_MD"
 echo "" >> "$OUTPUT_MD"
 
 # ============================================================
