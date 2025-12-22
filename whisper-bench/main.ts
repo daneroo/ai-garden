@@ -2,7 +2,6 @@ import yargs from "yargs";
 import process from "node:process";
 import {
   createRunWorkDir,
-  getProcessedAudioDuration,
   getRequiredCommands,
   ModelShortName,
   RunConfig,
@@ -154,58 +153,16 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  // Calculate effective duration for display
-  const effectiveDuration = await getProcessedAudioDuration(config);
-
-  // Build compact config string
-  const configParts = [
-    `input=${input}`,
-    `model=${model}`,
-    `runner=${runner}`,
-    `duration=${effectiveDuration}s`,
-  ];
-  if (start > 0) configParts.push(`start=${start}s`);
-  if (iterations > 1) configParts.push(`iterations=${iterations}`);
-  if (dryRun) configParts.push("dry-run");
-
-  const configStr = configParts.join(" ");
-  console.error(`[config] ${configStr}`);
-
   // Iteration loop
   const results: RunResult[] = [];
   for (let i = 1; i <= iterations; i++) {
-    const startMs = Date.now();
     const result = await runWhisper(config);
-    const elapsedMs = Date.now() - startMs;
-    const elapsedSec = Math.round(elapsedMs / 1000);
-    const speedup = (
-      result.processedAudioDurationSec /
-      (elapsedMs / 1000)
-    ).toFixed(1);
-
     results.push(result);
-
-    // Compact result to stderr
-    const hasExecuted = result.tasks.some((t) => t.result);
-    if (hasExecuted) {
-      const iterPart = iterations > 1 ? ` ${i}/${iterations}` : "";
-      const vttDur = result.vttSummary
-        ? `${result.vttSummary.durationSec}s`
-        : "none";
-      console.error(
-        `[result${iterPart}] elapsed=${elapsedSec}s speedup=${speedup}x vttDuration=${vttDur}`,
-      );
-    }
 
     // Output to STDOUT
     if (json) {
-      // Reconstruct compatible JSON for bench.sh
-      const jsonOutput = {
-        ...result,
-        elapsedSec,
-        speedup,
-      };
-      console.log(JSON.stringify(jsonOutput));
+      // JSON output for bench.sh (result already includes elapsedSec/speedup)
+      console.log(JSON.stringify(result));
     } else {
       // Pretty summary for human readability
       const label = iterations > 1
@@ -217,8 +174,8 @@ async function main(): Promise<void> {
       console.log(`\n${label}`);
       console.log(`  Runner:    ${result.runner}`);
       console.log(`  Processed: ${result.processedAudioDurationSec}s audio`);
-      console.log(`  Elapsed:   ${elapsedSec}s (wall-clock)`);
-      console.log(`  Speedup:   ${speedup}x`);
+      console.log(`  Elapsed:   ${result.elapsedSec}s (wall-clock)`);
+      console.log(`  Speedup:   ${result.speedup.toFixed(1)}x`);
       console.log(`  Output:    ${result.outputPath}`);
       console.log(`  VTT Dur:   ${vttDur}`);
 

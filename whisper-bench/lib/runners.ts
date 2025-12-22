@@ -2,6 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { basename, extname } from "node:path";
 import { existsSync } from "node:fs";
 import { getAudioFileDuration } from "./audio.ts";
+import { createProgressReporter, type ProgressReporter } from "./progress.ts";
 import { readVtt, summarizeVtt, VttSummary } from "./vtt.ts";
 import {
   createWhisperCppMonitor,
@@ -75,6 +76,8 @@ export function createRunWorkDir(opts: CreateRunWorkDirOptions): string {
 export interface RunResult {
   runner: RunnerName;
   processedAudioDurationSec: number;
+  elapsedSec: number; // Wall-clock time from runWhisper
+  speedup: number; // Calculated inside runWhisper
   tasks: Array<{
     config: TaskConfig;
     result?: TaskResult;
@@ -96,23 +99,47 @@ export async function runWhisper(config: RunConfig): Promise<RunResult> {
     );
   }
 
+  // Create progress reporter for stderr output
+  const inputBasename = basename(config.input);
+  const reporter = createProgressReporter({
+    inputBasename,
+    runner: config.runner,
+    modelShortName: config.modelShortName,
+  });
+
+  // Start wall-clock timer
+  const startMs = Date.now();
+
   let result: RunResult;
 
   if (config.runner === "whispercpp") {
-    result = await runWhisperCpp(config);
+    result = await runWhisperCpp(config, reporter);
   } else if (config.runner === "whisperkit") {
-    result = await runWhisperKit(config);
+    result = await runWhisperKit(config, reporter);
   } else {
     // Compile-time check to ensure all runner types are handled
     const _exhaustiveCheck: never = config.runner;
     throw new Error(`Unknown runner: ${_exhaustiveCheck}`);
   }
 
+  // Calculate timing metrics
+  const elapsedMs = Date.now() - startMs;
+  result.elapsedSec = Math.round(elapsedMs / 1000);
+  result.speedup = result.processedAudioDurationSec / (elapsedMs / 1000);
+
   // Validate VTT and add summary (only for real runs with output)
   const hasExecuted = result.tasks.some((t) => t.result);
   if (hasExecuted && existsSync(result.outputPath)) {
     const cues = await readVtt(result.outputPath);
     result.vttSummary = summarizeVtt(cues);
+  }
+
+  // Write final result line to stderr
+  if (hasExecuted) {
+    const vttDur = result.vttSummary
+      ? `${result.vttSummary.durationSec}s`
+      : undefined;
+    reporter.finish(result.elapsedSec, result.speedup, vttDur);
   }
 
   return result;
@@ -131,7 +158,10 @@ export function getRequiredCommands(config: RunConfig): string[] {
 /**
  * Run whisper-cpp command
  */
-async function runWhisperCpp(config: RunConfig): Promise<RunResult> {
+async function runWhisperCpp(
+  config: RunConfig,
+  reporter: ProgressReporter,
+): Promise<RunResult> {
   const exec = WHISPER_CPP_EXEC;
   const inputName = basename(config.input, extname(config.input));
   const finalName = config.tag ? `${inputName}.${config.tag}` : inputName;
@@ -210,6 +240,8 @@ async function runWhisperCpp(config: RunConfig): Promise<RunResult> {
   const result: RunResult = {
     runner: "whispercpp",
     processedAudioDurationSec,
+    elapsedSec: 0, // Will be set by runWhisper
+    speedup: 0, // Will be set by runWhisper
     tasks: tasks.map((t) => ({ config: t })),
     outputPath: finalVtt,
   };
@@ -219,7 +251,7 @@ async function runWhisperCpp(config: RunConfig): Promise<RunResult> {
   }
 
   // Execute tasks with monitor
-  const monitor = createWhisperCppMonitor(config.runner);
+  const monitor = createWhisperCppMonitor(reporter);
   for (let i = 0; i < tasks.length; i++) {
     const taskResult = await runTask(tasks[i], monitor);
     result.tasks[i].result = taskResult;
@@ -238,7 +270,10 @@ async function runWhisperCpp(config: RunConfig): Promise<RunResult> {
 /**
  * Run whisperkit-cli command
  */
-async function runWhisperKit(config: RunConfig): Promise<RunResult> {
+async function runWhisperKit(
+  config: RunConfig,
+  reporter: ProgressReporter,
+): Promise<RunResult> {
   const exec = WHISPER_KIT_EXEC;
   const inputName = basename(config.input, extname(config.input));
   const finalName = config.tag ? `${inputName}.${config.tag}` : inputName;
@@ -311,6 +346,8 @@ async function runWhisperKit(config: RunConfig): Promise<RunResult> {
   const result: RunResult = {
     runner: "whisperkit",
     processedAudioDurationSec,
+    elapsedSec: 0, // Will be set by runWhisper
+    speedup: 0, // Will be set by runWhisper
     tasks: tasks.map((t) => ({ config: t })),
     outputPath: finalVtt,
   };
@@ -320,7 +357,7 @@ async function runWhisperKit(config: RunConfig): Promise<RunResult> {
   }
 
   // Execute tasks with monitor
-  const monitor = createWhisperKitMonitor(config.runner);
+  const monitor = createWhisperKitMonitor(reporter);
   for (let i = 0; i < tasks.length; i++) {
     const taskResult = await runTask(tasks[i], monitor);
     result.tasks[i].result = taskResult;

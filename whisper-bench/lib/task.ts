@@ -35,7 +35,7 @@
 import { spawn } from "node:child_process";
 import { createWriteStream } from "node:fs";
 import { Buffer } from "node:buffer";
-import process from "node:process";
+import { type ProgressReporter } from "./progress.ts";
 
 // ============================================================================
 // Types
@@ -176,12 +176,12 @@ export function runTask(
 /**
  * Creates a base console monitor that prints raw matching lines.
  */
-export function createConsoleMonitor(parentLabel: string): TaskMonitor {
+export function createConsoleMonitor(reporter: ProgressReporter): TaskMonitor {
   let currentTaskLabel = "";
 
   return {
     onEvent(event: TaskEvent): void {
-      renderConsoleEvent(parentLabel, event, () => {
+      renderConsoleEvent(reporter, event, () => {
         if (event.type === "start") currentTaskLabel = event.label ?? "";
         return currentTaskLabel;
       });
@@ -190,31 +190,28 @@ export function createConsoleMonitor(parentLabel: string): TaskMonitor {
 }
 
 /**
- * Internal helper for consistent console rendering.
+ * Internal helper for consistent console rendering using ProgressReporter.
  */
 function renderConsoleEvent(
-  parentLabel: string,
+  reporter: ProgressReporter,
   event: TaskEvent,
   getTaskLabel: () => string,
 ) {
   const taskLabel = getTaskLabel();
   switch (event.type) {
     case "start":
-      process.stderr.write(`[${parentLabel}] ${event.label} starting...\n`);
+      reporter.update(event.label ?? "", "starting...");
       break;
     case "line":
-      // Carriage return to update in place
-      process.stderr.write(`[${parentLabel}] ${event.line}\r`);
+      reporter.update(taskLabel, event.line ?? "");
       break;
     case "done": {
       const secs = Math.round((event.result?.elapsedMs ?? 0) / 1000);
-      process.stderr.write(`\n[${parentLabel}] ${taskLabel} done (${secs}s)\n`);
+      reporter.update(taskLabel, `done (${secs}s)`);
       break;
     }
     case "error":
-      process.stderr.write(
-        `[${parentLabel}] ${taskLabel} error: ${event.error}\n`,
-      );
+      reporter.update(taskLabel, `error: ${event.error}`);
       break;
   }
 }
@@ -222,7 +219,7 @@ function renderConsoleEvent(
 /**
  * Monitor for FFmpeg audio conversion.
  */
-export function createFFmpegMonitor(parentLabel: string): TaskMonitor {
+export function createFFmpegMonitor(reporter: ProgressReporter): TaskMonitor {
   let currentTaskLabel = "";
   const regex = /size=\s*(\d+.*time=[\d:.]+)/;
 
@@ -231,11 +228,11 @@ export function createFFmpegMonitor(parentLabel: string): TaskMonitor {
       if (event.type === "line" && event.line) {
         const m = event.line.match(regex);
         if (m) {
-          process.stderr.write(`[${parentLabel}] ${m[1]}\r`);
+          reporter.update(currentTaskLabel, m[1]);
           return;
         }
       }
-      renderConsoleEvent(parentLabel, event, () => {
+      renderConsoleEvent(reporter, event, () => {
         if (event.type === "start") currentTaskLabel = event.label ?? "";
         return currentTaskLabel;
       });
@@ -246,7 +243,9 @@ export function createFFmpegMonitor(parentLabel: string): TaskMonitor {
 /**
  * Monitor for whisper-cpp.
  */
-export function createWhisperCppMonitor(parentLabel: string): TaskMonitor {
+export function createWhisperCppMonitor(
+  reporter: ProgressReporter,
+): TaskMonitor {
   let currentTaskLabel = "";
   const regex = /progress\s*=\s*(\d+%)/;
 
@@ -255,11 +254,11 @@ export function createWhisperCppMonitor(parentLabel: string): TaskMonitor {
       if (event.type === "line" && event.line) {
         const m = event.line.match(regex);
         if (m) {
-          process.stderr.write(`[${parentLabel}] ${m[1]}\r`);
+          reporter.update(currentTaskLabel, m[1]);
           return;
         }
       }
-      renderConsoleEvent(parentLabel, event, () => {
+      renderConsoleEvent(reporter, event, () => {
         if (event.type === "start") currentTaskLabel = event.label ?? "";
         return currentTaskLabel;
       });
@@ -270,7 +269,9 @@ export function createWhisperCppMonitor(parentLabel: string): TaskMonitor {
 /**
  * Monitor for whisperkit.
  */
-export function createWhisperKitMonitor(parentLabel: string): TaskMonitor {
+export function createWhisperKitMonitor(
+  reporter: ProgressReporter,
+): TaskMonitor {
   let currentTaskLabel = "";
   const regex =
     /]\s*(\d+%)\s*\|\s*Elapsed Time:\s*([\d.]+\s*s)\s*\|\s*Remaining:\s*([\d.]+\s*s|Estimating\.\.\.)/;
@@ -280,13 +281,11 @@ export function createWhisperKitMonitor(parentLabel: string): TaskMonitor {
       if (event.type === "line" && event.line) {
         const m = event.line.match(regex);
         if (m) {
-          process.stderr.write(
-            `[${parentLabel}] ${m[1]} | ${m[2]} | ${m[3]}\r`,
-          );
+          reporter.update(currentTaskLabel, `${m[1]} | ${m[2]} | ${m[3]}`);
           return;
         }
       }
-      renderConsoleEvent(parentLabel, event, () => {
+      renderConsoleEvent(reporter, event, () => {
         if (event.type === "start") currentTaskLabel = event.label ?? "";
         return currentTaskLabel;
       });

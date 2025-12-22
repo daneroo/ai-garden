@@ -82,7 +82,16 @@ Deno.test("createConsoleMonitor - handles lifecycle", () => {
   };
 
   try {
-    const monitor = createConsoleMonitor("test");
+    // Create a mock ProgressReporter that captures updates
+    const mockReporter = {
+      update: (taskLabel: string, status: string) => {
+        outputs.push(`[task=${taskLabel}] : ${status}`);
+      },
+      finish: (_elapsed: number, _speedup: number, _vttDuration?: string) => {
+        outputs.push("finished");
+      },
+    };
+    const monitor = createConsoleMonitor(mockReporter);
 
     // Should not throw and should write to our mock
     monitor.onEvent({ type: "start", label: "task1" });
