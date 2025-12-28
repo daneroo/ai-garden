@@ -25,7 +25,7 @@ export interface ProgressReporter {
   update(taskLabel: string, status: string): void;
 
   /** Write final result line and add newline */
-  finish(elapsed: number, speedup: number, vttDuration?: string): void;
+  finish(elapsed: number, speedup: string, vttDuration?: string): void;
 }
 
 /** Config subset needed for progress reporting */
@@ -60,13 +60,9 @@ export function createProgressReporter(
     },
 
     finish(elapsed, speedup, vttDuration) {
-      // Build final status string (format speedup at display time)
+      // Build final status string
       const vttPart = vttDuration ? ` vttDuration=${vttDuration}` : "";
-      const status = `elapsed=${elapsed}s speedup=${
-        speedup.toFixed(
-          1,
-        )
-      }x${vttPart}`;
+      const status = `elapsed=${elapsed}s speedup=${speedup}x${vttPart}`;
 
       // Clear line, write final status, add newline to persist
       process.stderr.write(`\x1b[2K\r${formatLine("", status)}\n`);

@@ -175,7 +175,7 @@ async function main(): Promise<void> {
       console.log(`  Runner:    ${result.runner}`);
       console.log(`  Processed: ${result.processedAudioDurationSec}s audio`);
       console.log(`  Elapsed:   ${result.elapsedSec}s (wall-clock)`);
-      console.log(`  Speedup:   ${result.speedup.toFixed(1)}x`);
+      console.log(`  Speedup:   ${result.speedup}x`);
       console.log(`  Output:    ${result.outputPath}`);
       console.log(`  VTT Dur:   ${vttDur}`);
 

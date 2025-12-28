@@ -29,7 +29,8 @@
 - Process and File Management:
   - Spawn: Use node:child_process via spawn
   - Paths: Always use absolute paths for tool arguments
-  - Cleanup: Ensure temporary work files in data/work/ are organized by timestamped directories
+  - Cleanup: Ensure temporary work files in data/work/ are organized by
+    timestamped directories
 
 - Execution Standard:
   - Prioritize deno task commands defined in deno.json

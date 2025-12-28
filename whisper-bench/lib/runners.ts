@@ -77,7 +77,7 @@ export interface RunResult {
   runner: RunnerName;
   processedAudioDurationSec: number;
   elapsedSec: number; // Wall-clock time from runWhisper
-  speedup: number; // Calculated inside runWhisper
+  speedup: string; // Formatted as "72.6" for clean JSON output
   tasks: Array<{
     config: TaskConfig;
     result?: TaskResult;
@@ -125,7 +125,10 @@ export async function runWhisper(config: RunConfig): Promise<RunResult> {
   // Calculate timing metrics
   const elapsedMs = Date.now() - startMs;
   result.elapsedSec = Math.round(elapsedMs / 1000);
-  result.speedup = result.processedAudioDurationSec / (elapsedMs / 1000);
+  result.speedup = (
+    result.processedAudioDurationSec /
+    (elapsedMs / 1000)
+  ).toFixed(1);
 
   // Validate VTT and add summary (only for real runs with output)
   const hasExecuted = result.tasks.some((t) => t.result);
@@ -241,7 +244,7 @@ async function runWhisperCpp(
     runner: "whispercpp",
     processedAudioDurationSec,
     elapsedSec: 0, // Will be set by runWhisper
-    speedup: 0, // Will be set by runWhisper
+    speedup: "0", // Will be set by runWhisper
     tasks: tasks.map((t) => ({ config: t })),
     outputPath: finalVtt,
   };
@@ -347,7 +350,7 @@ async function runWhisperKit(
     runner: "whisperkit",
     processedAudioDurationSec,
     elapsedSec: 0, // Will be set by runWhisper
-    speedup: 0, // Will be set by runWhisper
+    speedup: "0", // Will be set by runWhisper
     tasks: tasks.map((t) => ({ config: t })),
     outputPath: finalVtt,
   };

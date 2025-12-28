@@ -87,7 +87,7 @@ Deno.test("createConsoleMonitor - handles lifecycle", () => {
       update: (taskLabel: string, status: string) => {
         outputs.push(`[task=${taskLabel}] : ${status}`);
       },
-      finish: (_elapsed: number, _speedup: number, _vttDuration?: string) => {
+      finish: (_elapsed: number, _speedup: string, _vttDuration?: string) => {
         outputs.push("finished");
       },
     };
