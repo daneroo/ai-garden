@@ -50,9 +50,28 @@ async function main(): Promise<void> {
   console.log(`Transcript B: ${wordsB.length} words`);
   printSampleWords(wordsB, 10);
 
-  // Phase 2: TODO
+  // Phase 2: Build n-gram indices
   console.log("\n--- Phase 2: Build N-gram Indices ---\n");
-  console.log("(not yet implemented)\n");
+
+  const n = 4; // n-gram size
+  const indexA = buildNgramIndex(wordsA, n);
+  const indexB = buildNgramIndex(wordsB, n);
+
+  console.log(`N-gram size: ${n}`);
+  console.log(`Transcript A: ${indexA.size} unique n-grams`);
+  console.log(`Transcript B: ${indexB.size} unique n-grams`);
+
+  // Count n-grams that appear exactly once in each transcript
+  let uniqueInA = 0;
+  let uniqueInB = 0;
+  for (const positions of indexA.values()) {
+    if (positions.length === 1) uniqueInA++;
+  }
+  for (const positions of indexB.values()) {
+    if (positions.length === 1) uniqueInB++;
+  }
+  console.log(`Unique in A (appear once): ${uniqueInA}`);
+  console.log(`Unique in B (appear once): ${uniqueInB}`);
 
   // Phase 3: TODO
   console.log("--- Phase 3: Find Unique Anchors ---\n");
@@ -82,7 +101,7 @@ function cuesToTimedWords(cues: VttCue[]): TimedWord[] {
     if (!cleanText.trim()) {
       if (verbose) {
         console.error(
-          `  cueIndex: ${cueIndex} - EMPTY CUE: ${cue.startTime} --> ${cue.endTime} "${cue.text}"`
+          `  cueIndex: ${cueIndex} - EMPTY CUE: ${cue.startTime} --> ${cue.endTime} "${cue.text}"`,
         );
       }
       continue;
@@ -93,7 +112,7 @@ function cuesToTimedWords(cues: VttCue[]): TimedWord[] {
     if (rawWords.length === 0) {
       if (verbose) {
         console.error(
-          `  cueIndex: ${cueIndex} - NO RAW WORDS: ${cue.startTime} --> ${cue.endTime} "${cue.text}"`
+          `  cueIndex: ${cueIndex} - NO RAW WORDS: ${cue.startTime} --> ${cue.endTime} "${cue.text}"`,
         );
       }
       continue;
@@ -150,7 +169,46 @@ function normalize(word: string): string {
 // PHASE 2: N-gram Indexing
 // ═══════════════════════════════════════════════════════════════════════════
 
-// TODO: Implement buildNgramIndex()
+/**
+ * N-gram index: hash -> array of positions where this n-gram starts
+ */
+type NgramIndex = Map<string, NgramPosition[]>;
+
+interface NgramPosition {
+  wordIndex: number; // Index of first word in the n-gram
+  time: number; // Timestamp of first word
+}
+
+/**
+ * Build an index of all n-grams in the word sequence
+ */
+function buildNgramIndex(words: TimedWord[], n: number): NgramIndex {
+  const index: NgramIndex = new Map();
+
+  for (let i = 0; i <= words.length - n; i++) {
+    // Build the n-gram hash from normalized words
+    const ngramWords: string[] = [];
+    for (let j = 0; j < n; j++) {
+      ngramWords.push(words[i + j].normalized);
+    }
+    const hash = ngramWords.join(" ");
+
+    // Add this position to the index
+    const position: NgramPosition = {
+      wordIndex: words[i].wordIndex,
+      time: words[i].time,
+    };
+
+    const existing = index.get(hash);
+    if (existing) {
+      existing.push(position);
+    } else {
+      index.set(hash, [position]);
+    }
+  }
+
+  return index;
+}
 
 // ═══════════════════════════════════════════════════════════════════════════
 // PHASE 3: Find Unique Anchors
@@ -172,9 +230,9 @@ function printSampleWords(words: TimedWord[], count: number): void {
   const sample = words.slice(0, count);
   for (const w of sample) {
     console.log(
-      `  [${w.wordIndex}] ${w.time.toFixed(2)}s: "${w.word}" → "${
-        w.normalized
-      }"`
+      `  [${w.wordIndex}] ${
+        w.time.toFixed(2)
+      }s: "${w.word}" → "${w.normalized}"`,
     );
   }
   if (words.length > count) {

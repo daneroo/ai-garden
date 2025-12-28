@@ -113,14 +113,14 @@ Comparing --duration extraction vs native short file.
 EOF
 
 # hobbit.mp3 --duration 3600 (first hour)
-KIT_JSON=$(run_bench whisperkit data/samples/hobbit.mp3 "--duration 3600")
-CPP_JSON=$(run_bench whispercpp data/samples/hobbit.mp3 "--duration 3600")
+KIT_JSON=$(run_bench whisperkit data/samples/hobbit.mp3 "--duration 3600 --tag whisperkit-00h-01h")
+CPP_JSON=$(run_bench whispercpp data/samples/hobbit.mp3 "--duration 3600 --tag whispercpp-00h-01h")
 echo "| hobbit.mp3 --duration 3600 | WhisperKit | $(echo "$KIT_JSON" | jq -r '.elapsedSec') | $(echo "$KIT_JSON" | jq -r '.speedup')x |" >> "$OUTPUT_MD"
 echo "| hobbit.mp3 --duration 3600 | WhisperCPP | $(echo "$CPP_JSON" | jq -r '.elapsedSec') | $(echo "$CPP_JSON" | jq -r '.speedup')x |" >> "$OUTPUT_MD"
 
 # hobbit.mp3 --start 32400 --duration 3600 (hour 9-10)
-KIT_JSON=$(run_bench whisperkit data/samples/hobbit.mp3 "--start 32400 --duration 3600")
-CPP_JSON=$(run_bench whispercpp data/samples/hobbit.mp3 "--start 32400 --duration 3600")
+KIT_JSON=$(run_bench whisperkit data/samples/hobbit.mp3 "--start 32400 --duration 3600 --tag whisperkit-09h-10h")
+CPP_JSON=$(run_bench whispercpp data/samples/hobbit.mp3 "--start 32400 --duration 3600 --tag whispercpp-09h-10h")
 echo "| hobbit.mp3 offset 9h, 1h | WhisperKit | $(echo "$KIT_JSON" | jq -r '.elapsedSec') | $(echo "$KIT_JSON" | jq -r '.speedup')x |" >> "$OUTPUT_MD"
 echo "| hobbit.mp3 offset 9h, 1h | WhisperCPP | $(echo "$CPP_JSON" | jq -r '.elapsedSec') | $(echo "$CPP_JSON" | jq -r '.speedup')x |" >> "$OUTPUT_MD"
 
