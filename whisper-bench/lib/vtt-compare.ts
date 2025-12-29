@@ -10,7 +10,7 @@
 import { readVtt, type VttCue, vttTimeToSeconds } from "./vtt.ts";
 
 // Global verbose flag for diagnostics
-const verbose = false;
+const verbose = true;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // ENTRY POINT
@@ -25,8 +25,19 @@ if (import.meta.main) {
 // ═══════════════════════════════════════════════════════════════════════════
 
 async function main(): Promise<void> {
-  const pathA = "data/output/hobbit.whispercpp.vtt";
-  const pathB = "data/output/hobbit.whisperkit.vtt";
+  // Available VTT files - uncomment pairs to compare:
+  // const pathA = "data/output/hobbit.whispercpp-tiny.en-w1.vtt";
+  // const pathA = "data/output/hobbit.whispercpp-tiny.en-wN.vtt";
+  // const pathA = "data/output/hobbit.whispercpp-small.en-w1.vtt";
+  // const pathA = "data/output/hobbit.whispercpp-small.en-wN.vtt";
+  // const pathA = "data/output/hobbit.whisperkit-tiny.en-w1.vtt";
+  // const pathA = "data/output/hobbit.whisperkit-tiny.en-wN.vtt";
+  // const pathA = "data/output/hobbit.whisperkit-small.en-w1.vtt";
+  // const pathA = "data/output/hobbit.whisperkit-small.en-wN.vtt";
+
+  // Compare tiny vs small (same runner, same word-ts mode)
+  const pathA = "data/output/hobbit.whisperkit-tiny.en-wN.vtt";
+  const pathB = "data/output/hobbit.whisperkit-small.en-wN.vtt";
 
   console.log("=== VTT-VTT Comparison ===\n");
 
@@ -73,13 +84,67 @@ async function main(): Promise<void> {
   console.log(`Unique in A (appear once): ${uniqueInA}`);
   console.log(`Unique in B (appear once): ${uniqueInB}`);
 
-  // Phase 3: TODO
-  console.log("--- Phase 3: Find Unique Anchors ---\n");
-  console.log("(not yet implemented)\n");
+  // Phase 3: Find unique anchors
+  console.log("\n--- Phase 3: Find Unique Anchors ---\n");
 
-  // Phase 4: TODO
-  console.log("--- Phase 4: Score ---\n");
-  console.log("(not yet implemented)\n");
+  const anchors = findUniqueAnchors(indexA, indexB);
+  console.log(`Matched anchors (unique in both): ${anchors.length}`);
+  if (anchors.length > 0) {
+    console.log(`\nFirst 5 anchors:`);
+    for (const anchor of anchors.slice(0, 5)) {
+      const drift = Math.abs(anchor.timeA - anchor.timeB).toFixed(2);
+      console.log(
+        `  "${anchor.hash}" posA:${anchor.posA} posB:${anchor.posB} drift:${drift}s`,
+      );
+    }
+    console.log(`\nLast 5 anchors:`);
+    for (const anchor of anchors.slice(-5)) {
+      const drift = Math.abs(anchor.timeA - anchor.timeB).toFixed(2);
+      console.log(
+        `  "${anchor.hash}" posA:${anchor.posA} posB:${anchor.posB} drift:${drift}s`,
+      );
+    }
+  }
+
+  // Phase 4: Score
+  console.log("\n--- Phase 4: Score ---\n");
+
+  const score = computeScore(anchors, wordsA.length, wordsB.length);
+  console.log(`Anchor count:      ${score.anchorCount}`);
+  console.log(`Anchor density:    ${(score.anchorDensity * 100).toFixed(2)}%`);
+  console.log(`Avg temporal drift: ${score.avgTemporalDrift.toFixed(3)}s`);
+  console.log(`Max temporal drift: ${score.maxTemporalDrift.toFixed(3)}s`);
+  console.log(`Coverage:          ${(score.coverage * 100).toFixed(2)}%`);
+
+  // Find and show the max drift anchor
+  if (anchors.length > 0) {
+    let maxDriftAnchor = anchors[0];
+    for (const anchor of anchors) {
+      const drift = Math.abs(anchor.timeA - anchor.timeB);
+      if (drift > Math.abs(maxDriftAnchor.timeA - maxDriftAnchor.timeB)) {
+        maxDriftAnchor = anchor;
+      }
+    }
+    const maxDrift = Math.abs(maxDriftAnchor.timeA - maxDriftAnchor.timeB);
+    console.log(`\nMax drift anchor: "${maxDriftAnchor.hash}"`);
+    console.log(
+      `  in A: pos:${maxDriftAnchor.posA} time:${
+        maxDriftAnchor.timeA.toFixed(
+          2,
+        )
+      }s`,
+    );
+    console.log(
+      `  in B: pos:${maxDriftAnchor.posB} time:${
+        maxDriftAnchor.timeB.toFixed(
+          2,
+        )
+      }s`,
+    );
+    console.log(`  drift: ${maxDrift.toFixed(2)}s`);
+  }
+
+  console.log(`\nOverall score:     ${score.overallScore.toFixed(1)}/100`);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -214,13 +279,162 @@ function buildNgramIndex(words: TimedWord[], n: number): NgramIndex {
 // PHASE 3: Find Unique Anchors
 // ═══════════════════════════════════════════════════════════════════════════
 
-// TODO: Implement findUniqueAnchors()
+/**
+ * Find n-grams that appear exactly once in BOTH transcripts.
+ * These are reliable anchor points for alignment.
+ */
+function findUniqueAnchors(
+  indexA: NgramIndex,
+  indexB: NgramIndex,
+): NGramMatch[] {
+  const MAX_TIME_DELTA = 10; // seconds - reject anchors with larger drift
+  const anchors: NGramMatch[] = [];
+
+  // For each n-gram in A that appears exactly once
+  for (const [hash, positionsA] of indexA) {
+    if (positionsA.length !== 1) continue;
+
+    // Check if it also appears exactly once in B
+    const positionsB = indexB.get(hash);
+    if (!positionsB || positionsB.length !== 1) continue;
+
+    // Filter out anchors with time drift > MAX_TIME_DELTA
+    const timeDelta = Math.abs(positionsA[0].time - positionsB[0].time);
+    if (timeDelta > MAX_TIME_DELTA) {
+      if (verbose) {
+        console.error(
+          `  REJECTED: "${hash}" drift:${
+            timeDelta.toFixed(
+              2,
+            )
+          }s > ${MAX_TIME_DELTA}s`,
+        );
+        console.error(
+          `    in A: pos:${positionsA[0].wordIndex} time:${
+            positionsA[0].time.toFixed(2)
+          }s`,
+        );
+        console.error(
+          `    in B: pos:${positionsB[0].wordIndex} time:${
+            positionsB[0].time.toFixed(2)
+          }s`,
+        );
+      }
+      continue;
+    }
+
+    // Found a unique anchor!
+    anchors.push({
+      hash,
+      posA: positionsA[0].wordIndex,
+      posB: positionsB[0].wordIndex,
+      timeA: positionsA[0].time,
+      timeB: positionsB[0].time,
+    });
+  }
+
+  // Sort anchors - can change sort criteria as needed:
+  // anchors.sort((a, b) => a.posA - b.posA);  // by position in A
+  // anchors.sort((a, b) => a.posB - b.posB);  // by position in B
+  // anchors.sort((a, b) => a.timeA - b.timeA); // by time in A
+  // anchors.sort((a, b) => a.timeB - b.timeB); // by time in B
+  anchors.sort((a, b) => a.posA - b.posA); // current: by position in A
+
+  // Validate monotonicity of all 4 fields
+  const violations = checkMonotonicity(anchors);
+  const hasViolations = violations.posA > 0 ||
+    violations.posB > 0 ||
+    violations.timeA > 0 ||
+    violations.timeB > 0;
+  if (hasViolations) {
+    console.log(`\nMonotonicity violations:`);
+    console.log(`  posA:  ${violations.posA} violations`);
+    console.log(`  posB:  ${violations.posB} violations`);
+    console.log(`  timeA: ${violations.timeA} violations`);
+    console.log(`  timeB: ${violations.timeB} violations`);
+  }
+
+  return anchors;
+}
+
+/**
+ * Check monotonicity of all 4 fields.
+ * Returns count of violations for each field.
+ */
+function checkMonotonicity(anchors: NGramMatch[]): {
+  posA: number;
+  posB: number;
+  timeA: number;
+  timeB: number;
+} {
+  let posA = 0;
+  let posB = 0;
+  let timeA = 0;
+  let timeB = 0;
+
+  for (let i = 1; i < anchors.length; i++) {
+    if (anchors[i].posA < anchors[i - 1].posA) posA++;
+    if (anchors[i].posB < anchors[i - 1].posB) posB++;
+    if (anchors[i].timeA < anchors[i - 1].timeA) timeA++;
+    if (anchors[i].timeB < anchors[i - 1].timeB) timeB++;
+  }
+
+  return { posA, posB, timeA, timeB };
+}
 
 // ═══════════════════════════════════════════════════════════════════════════
 // PHASE 4: Score
 // ═══════════════════════════════════════════════════════════════════════════
 
-// TODO: Implement score()
+/**
+ * Compute comparison score from anchors.
+ */
+function computeScore(
+  anchors: NGramMatch[],
+  wordsA: number,
+  wordsB: number,
+): ComparisonScore {
+  const anchorCount = anchors.length;
+  const avgWords = (wordsA + wordsB) / 2;
+
+  // Anchor density: anchors per word (how many words are "pinned")
+  // Each anchor covers n words, but we count the starting word
+  const anchorDensity = anchorCount / avgWords;
+
+  // Temporal drift statistics
+  let totalDrift = 0;
+  let maxDrift = 0;
+  for (const anchor of anchors) {
+    const drift = Math.abs(anchor.timeA - anchor.timeB);
+    totalDrift += drift;
+    if (drift > maxDrift) maxDrift = drift;
+  }
+  const avgTemporalDrift = anchorCount > 0 ? totalDrift / anchorCount : 0;
+  const maxTemporalDrift = maxDrift;
+
+  // Coverage: rough estimate of how much of the text is covered by anchors
+  // If we have many anchors distributed throughout, coverage is high
+  const coverage = Math.min(1.0, anchorCount / (avgWords / 4)); // Rough: 1 anchor per 4 words = 100%
+
+  // Overall score: weighted combination (0-100)
+  // Higher is better: more anchors, lower drift, higher coverage
+  const densityScore = Math.min(100, anchorDensity * 100 * 1.5); // Weight density
+  const driftPenalty = Math.min(50, avgTemporalDrift * 5); // Penalize drift
+  const coverageBonus = coverage * 30;
+  const overallScore = Math.max(
+    0,
+    Math.min(100, densityScore - driftPenalty + coverageBonus),
+  );
+
+  return {
+    anchorCount,
+    anchorDensity,
+    avgTemporalDrift,
+    maxTemporalDrift,
+    coverage,
+    overallScore,
+  };
+}
 
 // ═══════════════════════════════════════════════════════════════════════════
 // OUTPUT HELPERS
