@@ -40,7 +40,7 @@ Compare two VTT transcript files to score their similarity.
 
 ### TimedWord
 
-```typescript
+```txt
 interface TimedWord {
   word: string; // After prenormalize (tags stripped)
   normalized: string; // Lowercase, no punctuation
@@ -69,7 +69,7 @@ interface NGramMatch {
 
 ## Algorithm Overview (4 Phases)
 
-```
+```txt
 ┌─────────────┐     ┌─────────────┐
 │   VTT A     │     │   VTT B     │
 └──────┬──────┘     └──────┬──────┘
@@ -106,8 +106,10 @@ interface NGramMatch {
 ### Phase 3 Logic
 
 - **Uniqueness**: Identify n-grams appearing exactly once in _both_ transcripts.
-- **Drift Filter**: Reject matches where `|timeA - timeB| > 10s`.
-- **Monotonicity**: Filter matches that violate time sequence ordering.
+- **Drift Filter**: Reject matches where
+  `|timeA - timeB| > MAX_TIME_DELTA (10s)`.
+- **Monotonicity**: Detect matches that violate time sequence ordering. (might
+  filter later)
 
 ### Phase 4 Metrics
 
@@ -117,7 +119,7 @@ interface NGramMatch {
 
 ### Phase 1 Functions
 
-```typescript
+```txt
 // Strip <|XX.XX|> tags from whisperkit output
 function prenormalize(text: string): string;
 
@@ -146,7 +148,7 @@ TimedWords: [{word:"read", normalized:"read", time:10.08, cueIndex:0, wordIndex:
 
 ## Scoring
 
-```typescript
+```txt
 interface ComparisonScore {
   anchorCount: number; // Matched unique n-grams
   anchorDensity: number; // anchors / total words
@@ -182,7 +184,7 @@ interface ComparisonScore {
 
 **Calling code precedes called code:**
 
-```typescript
+```txt
 // ═══════════════════════════════════════════════════════════════════════════
 // ENTRY POINT
 // ═══════════════════════════════════════════════════════════════════════════

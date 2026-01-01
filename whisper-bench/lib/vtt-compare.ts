@@ -4,13 +4,14 @@
  * Single self-contained experimental module for comparing transcripts
  * from different Whisper engines/models/modes.
  *
- * Run: bun run lib/vtt-compare.ts
+ * Run: deno run -A lib/vtt-compare.ts
  */
 
 import { readVtt, type VttCue, vttTimeToSeconds } from "./vtt.ts";
 
 // Global verbose flag for diagnostics
 const verbose = true;
+const VERBOSITY_EMPTY_CUES = false;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // ENTRY POINT
@@ -64,7 +65,7 @@ async function main(): Promise<void> {
   // Phase 2: Build n-gram indices
   console.log("\n--- Phase 2: Build N-gram Indices ---\n");
 
-  const n = 4; // n-gram size
+  const n = 6; // n-gram size
   const indexA = buildNgramIndex(wordsA, n);
   const indexB = buildNgramIndex(wordsB, n);
 
@@ -164,7 +165,7 @@ function cuesToTimedWords(cues: VttCue[]): TimedWord[] {
     // Prenormalize: strip <|XX.XX|> tags
     const cleanText = prenormalize(cue.text);
     if (!cleanText.trim()) {
-      if (verbose) {
+      if (verbose && VERBOSITY_EMPTY_CUES) {
         console.error(
           `  cueIndex: ${cueIndex} - EMPTY CUE: ${cue.startTime} --> ${cue.endTime} "${cue.text}"`,
         );
