@@ -70,20 +70,23 @@ async function main(): Promise<void> {
   const indexB = buildNgramIndex(wordsB, n);
 
   console.log(`N-gram size: ${n}`);
-  console.log(`Transcript A: ${indexA.size} unique n-grams`);
-  console.log(`Transcript B: ${indexB.size} unique n-grams`);
 
-  // Count n-grams that appear exactly once in each transcript
-  let uniqueInA = 0;
-  let uniqueInB = 0;
+  // Count singleton n-grams (appear exactly once) - these are anchor candidates
+  // An n-gram that appears multiple times in a transcript cannot reliably anchor
+  let singletonsInA = 0;
+  let singletonsInB = 0;
   for (const positions of indexA.values()) {
-    if (positions.length === 1) uniqueInA++;
+    if (positions.length === 1) singletonsInA++;
   }
   for (const positions of indexB.values()) {
-    if (positions.length === 1) uniqueInB++;
+    if (positions.length === 1) singletonsInB++;
   }
-  console.log(`Unique in A (appear once): ${uniqueInA}`);
-  console.log(`Unique in B (appear once): ${uniqueInB}`);
+  console.log(
+    `Transcript A: ${indexA.size} distinct n-grams, ${singletonsInA} appear only once`,
+  );
+  console.log(
+    `Transcript B: ${indexB.size} distinct n-grams, ${singletonsInB} appear only once`,
+  );
 
   // Phase 3: Find unique anchors
   console.log("\n--- Phase 3: Find Unique Anchors ---\n");
