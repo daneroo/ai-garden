@@ -88,7 +88,7 @@ async function main(): Promise<void> {
   // Phase 3: Find unique anchors
   console.log("\n--- Phase 3: Find Unique Anchors ---\n");
 
-  const anchors = findUniqueAnchors(indexA, indexB);
+  const anchors = findUniqueAnchors(indexA, indexB, wordsA, wordsB);
   console.log(`Matched anchors (unique in both): ${anchors.length}`);
   if (anchors.length > 0) {
     console.log(`\nFirst 5 anchors:`);
@@ -287,8 +287,10 @@ function buildNgramIndex(words: TimedWord[], n: number): NgramIndex {
 function findUniqueAnchors(
   indexA: NgramIndex,
   indexB: NgramIndex,
+  wordsA: TimedWord[],
+  wordsB: TimedWord[],
 ): NGramMatch[] {
-  const MAX_TIME_DELTA = 10; // seconds - reject anchors with larger drift
+  const MAX_DRIFT_THRESHOLD = 10; // seconds - reject anchors with larger drift
   const anchors: NGramMatch[] = [];
 
   // For each n-gram in A that appears exactly once
@@ -299,26 +301,17 @@ function findUniqueAnchors(
     const positionsB = indexB.get(hash);
     if (!positionsB || positionsB.length !== 1) continue;
 
-    // Filter out anchors with time drift > MAX_TIME_DELTA
+    // Filter out anchors with time drift > MAX_DRIFT_THRESHOLD
     const timeDelta = Math.abs(positionsA[0].time - positionsB[0].time);
-    if (timeDelta > MAX_TIME_DELTA) {
+    if (timeDelta > MAX_DRIFT_THRESHOLD) {
       if (verbose) {
-        console.error(
-          `  REJECTED: "${hash}" drift:${
-            timeDelta.toFixed(
-              2,
-            )
-          }s > ${MAX_TIME_DELTA}s`,
-        );
-        console.error(
-          `    in A: pos:${positionsA[0].wordIndex} time:${
-            positionsA[0].time.toFixed(2)
-          }s`,
-        );
-        console.error(
-          `    in B: pos:${positionsB[0].wordIndex} time:${
-            positionsB[0].time.toFixed(2)
-          }s`,
+        printRejectionContext(
+          hash,
+          positionsA[0],
+          positionsB[0],
+          wordsA,
+          wordsB,
+          MAX_DRIFT_THRESHOLD,
         );
       }
       continue;
@@ -454,6 +447,85 @@ function printSampleWords(words: TimedWord[], count: number): void {
     console.log(`  ... and ${words.length - count} more`);
   }
   console.log();
+}
+
+/**
+ * Print detailed context for a rejected anchor match.
+ * Shows words before and after the n-gram in both transcripts.
+ */
+function printRejectionContext(
+  hash: string,
+  posA: NgramPosition,
+  posB: NgramPosition,
+  wordsA: TimedWord[],
+  wordsB: TimedWord[],
+  maxTimeDelta: number,
+): void {
+  const timeDelta = Math.abs(posA.time - posB.time);
+  const contextSize = 10; // words before and after
+
+  console.error(
+    `  REJECTED: "${hash}" drift:${timeDelta.toFixed(2)}s > ${maxTimeDelta}s`,
+  );
+  console.error(
+    `    in A: pos:${posA.wordIndex} time:${posA.time.toFixed(2)}s (${
+      toHMS(
+        posA.time,
+      )
+    })`,
+  );
+  console.error(
+    `    in B: pos:${posB.wordIndex} time:${posB.time.toFixed(2)}s (${
+      toHMS(
+        posB.time,
+      )
+    })`,
+  );
+
+  // Extract context for A
+  const startA = Math.max(0, posA.wordIndex - contextSize);
+  const endA = Math.min(
+    wordsA.length,
+    posA.wordIndex + hash.split(" ").length + contextSize,
+  );
+  const contextWordsA = wordsA.slice(startA, endA).map((w) => w.normalized);
+  const ngramLen = hash.split(" ").length;
+  const highlightStartA = posA.wordIndex - startA;
+  const highlightEndA = highlightStartA + ngramLen;
+
+  // Build context string with markers
+  const beforeA = contextWordsA.slice(0, highlightStartA).join(" ");
+  const matchA = contextWordsA.slice(highlightStartA, highlightEndA).join(" ");
+  const afterA = contextWordsA.slice(highlightEndA).join(" ");
+  console.error(`    A context: ...${beforeA} [${matchA}] ${afterA}...`);
+
+  // Extract context for B
+  const startB = Math.max(0, posB.wordIndex - contextSize);
+  const endB = Math.min(wordsB.length, posB.wordIndex + ngramLen + contextSize);
+  const contextWordsB = wordsB.slice(startB, endB).map((w) => w.normalized);
+  const highlightStartB = posB.wordIndex - startB;
+  const highlightEndB = highlightStartB + ngramLen;
+
+  // Build context string with markers
+  const beforeB = contextWordsB.slice(0, highlightStartB).join(" ");
+  const matchB = contextWordsB.slice(highlightStartB, highlightEndB).join(" ");
+  const afterB = contextWordsB.slice(highlightEndB).join(" ");
+  console.error(`    B context: ...${beforeB} [${matchB}] ${afterB}...`);
+  console.error(); // blank line for readability
+}
+
+/**
+ * Convert seconds to VTT-style HH:MM:SS.mmm format
+ */
+function toHMS(seconds: number): string {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${
+    s
+      .toFixed(3)
+      .padStart(6, "0")
+  }`;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

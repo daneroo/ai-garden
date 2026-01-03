@@ -106,10 +106,10 @@ interface NGramMatch {
 ### Phase 3 Logic
 
 - **Uniqueness**: Identify n-grams appearing exactly once in _both_ transcripts.
-- **Drift Filter**: Reject matches where
-  `|timeA - timeB| > MAX_TIME_DELTA (10s)`.
-- **Monotonicity**: Detect matches that violate time sequence ordering. (might
-  filter later)
+- **Drift Filter**: Reject matches where `|timeA - timeB| > MAX_DRIFT_THRESHOLD`
+  (default: 10s).
+- **Monotonicity**: Advisory only; detects matches that violate time sequence
+  ordering but does not reject them.
 
 ### Phase 4 Metrics
 
@@ -226,10 +226,43 @@ interface ComparisonScore { ... }
 
 ---
 
-## Next Steps
+## Validation
 
-1. [x] Implement Phase 1: `cuesToTimedWords()`, `prenormalize()`, `normalize()`
-2. [x] Implement Phase 2: n-gram indexing
-3. [x] Implement Phase 3: anchor matching (with drift & monotonicity filters)
-4. [x] Implement Phase 4: scoring (density, drift metrics)
-5. [ ] (Validation Pending) Validate Phase 3/4 filtering on challenging inputs
+### Phase 1-2: Tokenization and N-gram Indexing
+
+Working as expected. Cues are correctly parsed, words are normalized, and n-gram
+indices are built with accurate occurrence counts.
+
+### Phase 3: Anchor Matching
+
+Validated with `n=6` and `MAX_DRIFT_THRESHOLD=10s`:
+
+- **Uniqueness filter**: Correctly identifies n-grams appearing exactly once in
+  both transcripts.
+- **Drift threshold (10s)**: Rejects false matches where the same phrase appears
+  at different times in the narrative (e.g., repeated song lyrics, common
+  phrases in different scenes). Manual inspection confirmed these rejections are
+  legitimate.
+- **Monotonicity check**: Advisory only. Reports violations but does not reject
+  anchors. Some time-ordering violations occur due to minor timestamp
+  interpolation differences.
+
+**Example validated rejection** (n=6):
+
+```txt
+REJECTED: "as soon as the door was" drift:69.93s > 10s
+  A context: ...dark green hood [as soon as the door was] opened he pushed inside...
+  B context: ...scarlet hood [as soon as the door was] open just as if hed been...
+```
+
+This phrase appears when different dwarves arrive at Bilbo's door ~70 seconds
+apart — a legitimate false match correctly filtered out.
+
+### Phase 4: Scoring
+
+Metrics computed correctly. With n=6 on whisperkit-tiny vs whisperkit-small:
+
+- Anchor count: ~67,000
+- Anchor density: ~76%
+- Average drift: ~0.26s
+- Coverage: 100%
