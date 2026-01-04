@@ -12,6 +12,7 @@ import { readVtt, type VttCue, vttTimeToSeconds } from "./vtt.ts";
 // Global verbose flag for diagnostics
 const verbose = true;
 const VERBOSITY_EMPTY_CUES = false;
+const VERBOSITY_DUPLICATE_NGRAMS = false;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // ENTRY POINT
@@ -71,22 +72,8 @@ async function main(): Promise<void> {
 
   console.log(`N-gram size: ${n}`);
 
-  // Count singleton n-grams (appear exactly once) - these are anchor candidates
-  // An n-gram that appears multiple times in a transcript cannot reliably anchor
-  let singletonsInA = 0;
-  let singletonsInB = 0;
-  for (const positions of indexA.values()) {
-    if (positions.length === 1) singletonsInA++;
-  }
-  for (const positions of indexB.values()) {
-    if (positions.length === 1) singletonsInB++;
-  }
-  console.log(
-    `Transcript A: ${indexA.size} distinct n-grams, ${singletonsInA} appear only once`,
-  );
-  console.log(
-    `Transcript B: ${indexB.size} distinct n-grams, ${singletonsInB} appear only once`,
-  );
+  showNGramIndex("A", indexA);
+  showNGramIndex("B", indexB);
 
   // Phase 3: Find unique anchors
   console.log("\n--- Phase 3: Find Unique Anchors ---\n");
@@ -277,6 +264,35 @@ function buildNgramIndex(words: TimedWord[], n: number): NgramIndex {
   }
 
   return index;
+}
+
+/**
+ * Display statistics for an n-gram index: distinct count, singletons, and optionally duplicates.
+ */
+function showNGramIndex(label: string, index: NgramIndex): void {
+  // Count singleton n-grams (appear exactly once) - these are anchor candidates
+  let singletons = 0;
+  for (const positions of index.values()) {
+    if (positions.length === 1) singletons++;
+  }
+
+  const duplicateCount = index.size - singletons;
+  console.log(
+    `Transcript ${label}: ${index.size} distinct n-grams, ${singletons} appear only once`,
+  );
+
+  // Show duplicate n-grams if verbose
+  if (verbose && VERBOSITY_DUPLICATE_NGRAMS && duplicateCount > 0) {
+    console.log(`  Duplicates (${duplicateCount}):`);
+    for (const [hash, positions] of index) {
+      if (positions.length > 1) {
+        const locs = positions
+          .map((p) => `(${p.wordIndex}, ${toHMS(p.time)})`)
+          .join(", ");
+        console.log(`    "${hash}" × ${positions.length}: ${locs}`);
+      }
+    }
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

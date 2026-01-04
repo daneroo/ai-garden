@@ -233,6 +233,13 @@ interface ComparisonScore { ... }
 Working as expected. Cues are correctly parsed, words are normalized, and n-gram
 indices are built with accurate occurrence counts.
 
+**N-gram deduplication validated**: With n=6, 153 n-grams (out of 90,966) appear
+more than once in transcript A. These duplicates are legitimate repeated
+elements: audiobook metadata (title/author at start and end), song lyrics
+("under the mountain dark and tall"), catchphrases ("yes yes yes yes yes yes"),
+and common narrative phrases. The `showNGramIndex()` function can display all
+duplicates when `VERBOSITY_DUPLICATE_NGRAMS=true`.
+
 ### Phase 3: Anchor Matching
 
 Validated with `n=6` and `MAX_DRIFT_THRESHOLD=10s`:
