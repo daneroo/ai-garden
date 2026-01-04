@@ -12,6 +12,7 @@ import { readVtt, summarizeVtt, type VttCue, vttTimeToSeconds } from "./vtt.ts";
 // Global verbose flag for diagnostics
 const verbose = true;
 const VERBOSITY_EMPTY_CUES = false;
+const VERBOSITY_TIMEWORDS = false;
 const VERBOSITY_DUPLICATE_NGRAMS = false;
 const VERBOSITY_REJECTED_ANCHORS = false;
 const VERBOSITY_MATCHED_ANCHORS = false;
@@ -91,12 +92,12 @@ async function main(): Promise<void> {
   console.log("--- Phase 1: Tokenize to Words ---\n");
 
   const wordsA = cuesToTimedWords(cuesA);
-  console.log(`Transcript A: ${wordsA.length} words`);
-  printSampleWords(wordsA, 10);
+  console.log(`Transcript A: ${cuesA.length} cues -> ${wordsA.length} words`);
+  if (verbose && VERBOSITY_TIMEWORDS) printSampleWords(wordsA, 10);
 
   const wordsB = cuesToTimedWords(cuesB);
-  console.log(`Transcript B: ${wordsB.length} words`);
-  printSampleWords(wordsB, 10);
+  console.log(`Transcript B: ${cuesB.length} cues -> ${wordsB.length} words`);
+  if (verbose && VERBOSITY_TIMEWORDS) printSampleWords(wordsB, 10);
 
   // Phase 2: Build n-gram indices
   console.log("\n--- Phase 2: Build N-gram Indices ---\n");
