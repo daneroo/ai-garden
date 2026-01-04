@@ -15,6 +15,7 @@ const VERBOSITY_EMPTY_CUES = false;
 const VERBOSITY_DUPLICATE_NGRAMS = false;
 const VERBOSITY_REJECTED_ANCHORS = false;
 const VERBOSITY_MATCHED_ANCHORS = false;
+const VERBOSITY_MONOTONICITY_VIOLATIONS = false;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // ENTRY POINT
@@ -40,7 +41,7 @@ async function main(): Promise<void> {
   // const pathA = "data/output/hobbit.whisperkit-small.en-wN.vtt";
 
   // Compare tiny vs small (same runner, same word-ts mode)
-  const pathA = "data/output/hobbit.whisperkit-tiny.en-wN.vtt";
+  const pathA = "data/output/hobbit.whispercpp-tiny.en-wN.vtt";
   const pathB = "data/output/hobbit.whisperkit-small.en-wN.vtt";
 
   console.log("=== VTT-VTT Comparison ===\n");
@@ -386,23 +387,20 @@ function showUniqueAnchors(anchors: NGramMatch[]): void {
   }
 
   // Check and display monotonicity violations
-  const violations = checkMonotonicity(anchors);
-  const hasViolations = violations.posA > 0 ||
-    violations.posB > 0 ||
-    violations.timeA > 0 ||
-    violations.timeB > 0;
-  if (hasViolations) {
-    console.log(`\nMonotonicity violations:`);
-    console.log(`  posA:  ${violations.posA} violations`);
-    console.log(`  posB:  ${violations.posB} violations`);
-    console.log(`  timeA: ${violations.timeA} violations`);
-    console.log(`  timeB: ${violations.timeB} violations`);
-  }
+  checkMonotonicity(anchors);
 }
 
 /**
  * Check monotonicity of all 4 fields.
- * Returns count of violations for each field.
+ * Returns count of violations for each field and displays them if verbose.
+ *
+/**
+ * Check monotonicity of all 4 fields.
+ * Returns count of violations for each field and displays them if verbose.
+ *
+ * NOTE: The matching algorithm assumes monotonic timestamps and does NOT attempt
+ * to compensate for monotonicity violations in the original VTT files (e.g. from WhisperKit).
+ * Such violations in the source will appear here as violations in the matches.
  */
 function checkMonotonicity(anchors: NGramMatch[]): {
   posA: number;
@@ -410,19 +408,98 @@ function checkMonotonicity(anchors: NGramMatch[]): {
   timeA: number;
   timeB: number;
 } {
-  let posA = 0;
-  let posB = 0;
-  let timeA = 0;
-  let timeB = 0;
+  const RED = "\x1b[31m";
+  const RESET = "\x1b[0m";
 
-  for (let i = 1; i < anchors.length; i++) {
-    if (anchors[i].posA < anchors[i - 1].posA) posA++;
-    if (anchors[i].posB < anchors[i - 1].posB) posB++;
-    if (anchors[i].timeA < anchors[i - 1].timeA) timeA++;
-    if (anchors[i].timeB < anchors[i - 1].timeB) timeB++;
+  let posACount = 0;
+  let posBCount = 0;
+  let timeACount = 0;
+  let timeBCount = 0;
+
+  // First pass: count violations
+  for (let i = 0; i < anchors.length - 1; i++) {
+    if (anchors[i + 1].posA < anchors[i].posA) posACount++;
+    if (anchors[i + 1].posB < anchors[i].posB) posBCount++;
+    if (anchors[i + 1].timeA < anchors[i].timeA) timeACount++;
+    if (anchors[i + 1].timeB < anchors[i].timeB) timeBCount++;
   }
 
-  return { posA, posB, timeA, timeB };
+  const hasViolations = posACount > 0 || posBCount > 0 || timeACount > 0 ||
+    timeBCount > 0;
+  if (verbose) {
+    if (!hasViolations) {
+      console.log(`\nMonotonicity violations: none`);
+    } else {
+      console.log(`\nMonotonicity violations:`);
+
+      if (VERBOSITY_MONOTONICITY_VIOLATIONS) {
+        // Helper to format row
+        const fmtRow = (
+          a: NGramMatch,
+          vPosA: boolean,
+          vPosB: boolean,
+          vTimeA: boolean,
+          vTimeB: boolean,
+        ) => {
+          const posA = vPosA
+            ? `${RED}${a.posA.toString().padStart(6)}${RESET}`
+            : a.posA.toString().padStart(6);
+          const posB = vPosB
+            ? `${RED}${a.posB.toString().padStart(6)}${RESET}`
+            : a.posB.toString().padStart(6);
+          const timeA = vTimeA
+            ? `${RED}${toHMS(a.timeA)}${RESET}`
+            : toHMS(a.timeA);
+          const timeB = vTimeB
+            ? `${RED}${toHMS(a.timeB)}${RESET}`
+            : toHMS(a.timeB);
+          return `  | ${posA} | ${posB} | ${timeA} | ${timeB} | ${a.hash}`;
+        };
+
+        // Table output with lookahead
+        console.log();
+        console.log(`  | posA   | posB   | timeA        | timeB        | hash`);
+        console.log(
+          `  |--------|--------|--------------|--------------|------`,
+        );
+
+        let lastPrinted = -1;
+        for (let i = 0; i < anchors.length - 1; i++) {
+          const curr = anchors[i];
+          const next = anchors[i + 1];
+
+          const vPosA = next.posA < curr.posA;
+          const vPosB = next.posB < curr.posB;
+          const vTimeA = next.timeA < curr.timeA;
+          const vTimeB = next.timeB < curr.timeB;
+
+          if (vPosA || vPosB || vTimeA || vTimeB) {
+            // Print current row as context if not already printed
+            if (lastPrinted !== i) {
+              console.log(fmtRow(curr, false, false, false, false));
+            }
+            // Print next row with violations highlighted
+            console.log(fmtRow(next, vPosA, vPosB, vTimeA, vTimeB));
+            lastPrinted = i + 1;
+          }
+        }
+      }
+
+      // Summary at the end
+      console.log();
+      console.log(`  posA:  ${posACount} violations`);
+      console.log(`  posB:  ${posBCount} violations`);
+      console.log(`  timeA: ${timeACount} violations`);
+      console.log(`  timeB: ${timeBCount} violations`);
+    }
+  }
+
+  return {
+    posA: posACount,
+    posB: posBCount,
+    timeA: timeACount,
+    timeB: timeBCount,
+  };
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

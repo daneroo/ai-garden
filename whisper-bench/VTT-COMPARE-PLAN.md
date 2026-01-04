@@ -250,9 +250,10 @@ Validated with `n=6` and `MAX_DRIFT_THRESHOLD=10s`:
   at different times in the narrative (e.g., repeated song lyrics, common
   phrases in different scenes). Manual inspection confirmed these rejections are
   legitimate.
-- **Monotonicity check**: Advisory only. Reports violations but does not reject
-  anchors. Some time-ordering violations occur due to minor timestamp
-  interpolation differences.
+- **Monotonicity check**: Advisory only. Reports "monotonicity violations: none"
+  if clean, or lists specific violations. Note that source VTT monotonicity
+  errors (e.g. from WhisperKit) will appear here, as the matcher assumes
+  monotonic input.
 
 **Example validated rejection** (n=6):
 
