@@ -96,12 +96,26 @@ export interface VttSummary {
   firstCueStart: string;
   lastCueEnd: string;
   durationSec: number;
+  /** Number of cues that start before the previous cue ends */
+  monotonicityViolations: number;
+  /** Maximum time (in seconds) that a cue overlaps with the previous one */
+  monotonicityViolationMaxOverlap: number;
 }
 
 export function summarizeVtt(cues: VttCue[]): VttSummary {
   if (cues.length === 0) {
-    return { cueCount: 0, firstCueStart: "", lastCueEnd: "", durationSec: 0 };
+    return {
+      cueCount: 0,
+      firstCueStart: "",
+      lastCueEnd: "",
+      durationSec: 0,
+      monotonicityViolations: 0,
+      monotonicityViolationMaxOverlap: 0,
+    };
   }
+
+  const { violations, maxOverlap } = checkMonotonicity(cues);
+
   const firstCueStart = cues[0].startTime;
   const lastCueEnd = cues[cues.length - 1].endTime;
   const durationSec = vttTimeToSeconds(lastCueEnd) -
@@ -111,5 +125,40 @@ export function summarizeVtt(cues: VttCue[]): VttSummary {
     firstCueStart,
     lastCueEnd,
     durationSec,
+    monotonicityViolations: violations,
+    monotonicityViolationMaxOverlap: maxOverlap,
   };
+}
+
+/**
+ * Check for monotonicity violations in cues
+ * (where a cue starts before the previous one ends)
+ */
+export function checkMonotonicity(cues: VttCue[]): {
+  violations: number;
+  maxOverlap: number;
+} {
+  let violations = 0;
+  let maxOverlap = 0;
+
+  if (cues.length === 0) {
+    return { violations, maxOverlap };
+  }
+
+  let prevEndTimeSec = vttTimeToSeconds(cues[0].endTime);
+
+  for (let i = 1; i < cues.length; i++) {
+    const startTimeSec = vttTimeToSeconds(cues[i].startTime);
+    const endTimeSec = vttTimeToSeconds(cues[i].endTime);
+
+    if (startTimeSec < prevEndTimeSec) {
+      violations++;
+      const overlap = prevEndTimeSec - startTimeSec;
+      if (overlap > maxOverlap) {
+        maxOverlap = overlap;
+      }
+    }
+    prevEndTimeSec = endTimeSec;
+  }
+  return { violations, maxOverlap };
 }

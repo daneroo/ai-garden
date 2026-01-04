@@ -7,7 +7,7 @@
  * Run: deno run -A lib/vtt-compare.ts
  */
 
-import { readVtt, type VttCue, vttTimeToSeconds } from "./vtt.ts";
+import { readVtt, summarizeVtt, type VttCue, vttTimeToSeconds } from "./vtt.ts";
 
 // Global verbose flag for diagnostics
 const verbose = true;
@@ -16,6 +16,10 @@ const VERBOSITY_DUPLICATE_NGRAMS = false;
 const VERBOSITY_REJECTED_ANCHORS = false;
 const VERBOSITY_MATCHED_ANCHORS = false;
 const VERBOSITY_MONOTONICITY_VIOLATIONS = false;
+
+const RED = "\x1b[31m";
+const GREEN = "\x1b[32m";
+const RESET = "\x1b[0m";
 
 // ═══════════════════════════════════════════════════════════════════════════
 // ENTRY POINT
@@ -47,13 +51,41 @@ async function main(): Promise<void> {
   console.log("=== VTT-VTT Comparison ===\n");
 
   // Load VTT files
-  console.log(`Loading: ${pathA}`);
   const cuesA = await readVtt(pathA);
-  console.log(`  → ${cuesA.length} cues\n`);
+  const summaryA = summarizeVtt(cuesA);
+  console.log(`Loaded: ${pathA}`);
+  console.log(
+    `  ${summaryA.cueCount} cues, ${
+      summaryA.durationSec.toFixed(2)
+    }s (${summaryA.firstCueStart} -> ${summaryA.lastCueEnd})`,
+  );
+  if (summaryA.monotonicityViolations === 0) {
+    console.log(`  ${GREEN}✔${RESET} monotonicity violations: none\n`);
+  } else {
+    console.log(
+      `  ${RED}✘${RESET} monotonicity violations: ${summaryA.monotonicityViolations} (max ${
+        summaryA.monotonicityViolationMaxOverlap.toFixed(2)
+      }s)\n`,
+    );
+  }
 
-  console.log(`Loading: ${pathB}`);
   const cuesB = await readVtt(pathB);
-  console.log(`  → ${cuesB.length} cues\n`);
+  const summaryB = summarizeVtt(cuesB);
+  console.log(`Loaded: ${pathB}`);
+  console.log(
+    `  ${summaryB.cueCount} cues, ${
+      summaryB.durationSec.toFixed(2)
+    }s (${summaryB.firstCueStart} -> ${summaryB.lastCueEnd})`,
+  );
+  if (summaryB.monotonicityViolations === 0) {
+    console.log(`  ${GREEN}✔${RESET} monotonicity violations: none\n`);
+  } else {
+    console.log(
+      `  ${RED}✘${RESET} monotonicity violations: ${summaryB.monotonicityViolations} (max ${
+        summaryB.monotonicityViolationMaxOverlap.toFixed(2)
+      }s)\n`,
+    );
+  }
 
   // Phase 1: Convert to TimedWords
   console.log("--- Phase 1: Tokenize to Words ---\n");
@@ -408,9 +440,6 @@ function checkMonotonicity(anchors: NGramMatch[]): {
   timeA: number;
   timeB: number;
 } {
-  const RED = "\x1b[31m";
-  const RESET = "\x1b[0m";
-
   let posACount = 0;
   let posBCount = 0;
   let timeACount = 0;
