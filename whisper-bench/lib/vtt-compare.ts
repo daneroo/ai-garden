@@ -13,6 +13,8 @@ import { readVtt, type VttCue, vttTimeToSeconds } from "./vtt.ts";
 const verbose = true;
 const VERBOSITY_EMPTY_CUES = false;
 const VERBOSITY_DUPLICATE_NGRAMS = false;
+const VERBOSITY_REJECTED_ANCHORS = false;
+const VERBOSITY_MATCHED_ANCHORS = false;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // ENTRY POINT
@@ -79,23 +81,7 @@ async function main(): Promise<void> {
   console.log("\n--- Phase 3: Find Unique Anchors ---\n");
 
   const anchors = findUniqueAnchors(indexA, indexB, wordsA, wordsB);
-  console.log(`Matched anchors (unique in both): ${anchors.length}`);
-  if (anchors.length > 0) {
-    console.log(`\nFirst 5 anchors:`);
-    for (const anchor of anchors.slice(0, 5)) {
-      const drift = Math.abs(anchor.timeA - anchor.timeB).toFixed(2);
-      console.log(
-        `  "${anchor.hash}" posA:${anchor.posA} posB:${anchor.posB} drift:${drift}s`,
-      );
-    }
-    console.log(`\nLast 5 anchors:`);
-    for (const anchor of anchors.slice(-5)) {
-      const drift = Math.abs(anchor.timeA - anchor.timeB).toFixed(2);
-      console.log(
-        `  "${anchor.hash}" posA:${anchor.posA} posB:${anchor.posB} drift:${drift}s`,
-      );
-    }
-  }
+  showUniqueAnchors(anchors);
 
   // Phase 4: Score
   console.log("\n--- Phase 4: Score ---\n");
@@ -312,6 +298,10 @@ function findUniqueAnchors(
   const MAX_DRIFT_THRESHOLD = 10; // seconds - reject anchors with larger drift
   const anchors: NGramMatch[] = [];
 
+  // Track statistics
+  let matchedSingletons = 0; // n-grams that are singletons in BOTH transcripts
+  let rejectedForDrift = 0; // rejected due to exceeding MAX_DRIFT_THRESHOLD
+
   // For each n-gram in A that appears exactly once
   for (const [hash, positionsA] of indexA) {
     if (positionsA.length !== 1) continue;
@@ -320,10 +310,14 @@ function findUniqueAnchors(
     const positionsB = indexB.get(hash);
     if (!positionsB || positionsB.length !== 1) continue;
 
+    // This n-gram is a singleton in both A and B
+    matchedSingletons++;
+
     // Filter out anchors with time drift > MAX_DRIFT_THRESHOLD
     const timeDelta = Math.abs(positionsA[0].time - positionsB[0].time);
     if (timeDelta > MAX_DRIFT_THRESHOLD) {
-      if (verbose) {
+      rejectedForDrift++;
+      if (verbose && VERBOSITY_REJECTED_ANCHORS) {
         printRejectionContext(
           hash,
           positionsA[0],
@@ -346,14 +340,52 @@ function findUniqueAnchors(
     });
   }
 
-  // Sort anchors - can change sort criteria as needed:
-  // anchors.sort((a, b) => a.posA - b.posA);  // by position in A
-  // anchors.sort((a, b) => a.posB - b.posB);  // by position in B
-  // anchors.sort((a, b) => a.timeA - b.timeA); // by time in A
-  // anchors.sort((a, b) => a.timeB - b.timeB); // by time in B
-  anchors.sort((a, b) => a.posA - b.posA); // current: by position in A
+  // Output statistics
+  console.log(`Singleton n-grams in both: ${matchedSingletons}`);
+  console.log(
+    `  Rejected for drift > ${MAX_DRIFT_THRESHOLD}s: ${rejectedForDrift}`,
+  );
+  console.log(`Matched anchors: ${anchors.length}`);
 
-  // Validate monotonicity of all 4 fields
+  // Sort anchors by position in A - but could be another criteria
+  anchors.sort((a, b) => a.posA - b.posA);
+
+  return anchors;
+}
+
+/**
+ * Display unique anchor statistics and optionally list matched anchors.
+ */
+function showUniqueAnchors(anchors: NGramMatch[]): void {
+  // Show matched anchors if verbose
+  if (verbose && VERBOSITY_MATCHED_ANCHORS) {
+    console.log(`\nMatched anchors:`);
+    if (anchors.length === 0) {
+      console.log(`  (none)`);
+    } else {
+      const n = 5;
+      for (const anchor of anchors.slice(0, n)) {
+        const drift = Math.abs(anchor.timeA - anchor.timeB).toFixed(2);
+        console.log(
+          `  "${anchor.hash}" posA:${anchor.posA} posB:${anchor.posB} drift:${drift}s`,
+        );
+      }
+      if (anchors.length > n) {
+        const hiddenCount = anchors.length - n * 2;
+        if (hiddenCount > 0) {
+          console.log(`  ... ${hiddenCount} more`);
+        }
+        for (const anchor of anchors.slice(-n)) {
+          const drift = Math.abs(anchor.timeA - anchor.timeB).toFixed(2);
+          console.log(
+            `  "${anchor.hash}" posA:${anchor.posA} posB:${anchor.posB} drift:${drift}s`,
+          );
+        }
+      }
+    }
+  }
+
+  // Check and display monotonicity violations
   const violations = checkMonotonicity(anchors);
   const hasViolations = violations.posA > 0 ||
     violations.posB > 0 ||
@@ -366,8 +398,6 @@ function findUniqueAnchors(
     console.log(`  timeA: ${violations.timeA} violations`);
     console.log(`  timeB: ${violations.timeB} violations`);
   }
-
-  return anchors;
 }
 
 /**
