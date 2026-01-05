@@ -52,8 +52,8 @@ echo "" >> "$OUTPUT_MD"
 cat >> "$OUTPUT_MD" << 'EOF'
 ## Combinations
 
-| Runner | Model | Word TS | Tag | Elapsed (s) | Speedup |
-|--------|-------|---------|-----|------------:|--------:|
+| Runner | Model | Word TS | Tag | Elapsed (s) | Speedup | Monotonicity |
+|--------|-------|---------|-----|------------:|--------:|---|
 EOF
 
 # Nested loops: runner × model × word_ts
@@ -67,7 +67,17 @@ for runner in $RUNNERS; do
       elapsed=$(echo "$JSON" | jq -r '.elapsedSec')
       speedup=$(echo "$JSON" | jq -r '.speedup')
       
-      echo "| $runner | $model | $word_ts | $tag | $elapsed | ${speedup}x |" >> "$OUTPUT_MD"
+      # Extract monotonicity info
+      # Use jq to format: "0" or "count (max Xs)"
+      monotonicity=$(echo "$JSON" | jq -r '
+        if .vttSummary.monotonicityViolations == 0 then
+          "0"
+        else
+          "\(.vttSummary.monotonicityViolations) (max \(.vttSummary.monotonicityViolationMaxOverlap * 100 | round / 100)s)"
+        end
+      ')
+      
+      echo "| $runner | $model | $word_ts | $tag | $elapsed | ${speedup}x | $monotonicity |" >> "$OUTPUT_MD"
     done
   done
 done
