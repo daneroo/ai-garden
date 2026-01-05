@@ -17,7 +17,6 @@ const VERBOSITY_DUPLICATE_NGRAMS = false;
 const VERBOSITY_REJECTED_ANCHORS = false;
 const VERBOSITY_MATCHED_ANCHORS = false;
 const VERBOSITY_MONOTONICITY_VIOLATIONS = false;
-const VERBOSITY_SPANS_GAPS = true;
 
 const RED = "\x1b[31m";
 const GREEN = "\x1b[32m";
@@ -92,18 +91,32 @@ async function main(): Promise<void> {
   // Tokenize: Convert to TimedWords
   console.log("## Tokenize\n");
 
-  const wordsA = cuesToTimedWords(cuesA);
-  console.log(`Transcript A: ${cuesA.length} cues -> ${wordsA.length} words`);
+  const resultA = cuesToTimedWords(cuesA);
+  const wordsA = resultA.words;
+  console.log(
+    `Transcript A: ${cuesA.length} cues -> ${wordsA.length} words (cue duration [${
+      resultA.minCueDuration.toFixed(
+        2,
+      )
+    }s, ${resultA.maxCueDuration.toFixed(2)}s])`,
+  );
   if (verbose && VERBOSITY_TIMEWORDS) printSampleWords(wordsA, 10);
 
-  const wordsB = cuesToTimedWords(cuesB);
-  console.log(`Transcript B: ${cuesB.length} cues -> ${wordsB.length} words`);
+  const resultB = cuesToTimedWords(cuesB);
+  const wordsB = resultB.words;
+  console.log(
+    `Transcript B: ${cuesB.length} cues -> ${wordsB.length} words (cue duration [${
+      resultB.minCueDuration.toFixed(
+        2,
+      )
+    }s, ${resultB.maxCueDuration.toFixed(2)}s])`,
+  );
   if (verbose && VERBOSITY_TIMEWORDS) printSampleWords(wordsB, 10);
 
   // Build n-gram indices
   console.log("\n## Build N-gram Indices\n");
 
-  const n = 6; // n-gram size
+  const n = 5; // n-gram size
   const indexA = buildNgramIndex(wordsA, n);
   const indexB = buildNgramIndex(wordsB, n);
 
@@ -142,10 +155,17 @@ async function main(): Promise<void> {
 
 /**
  * Convert VTT cues to a flat array of timed words
+ * Returns words and cue duration statistics
  */
-function cuesToTimedWords(cues: VttCue[]): TimedWord[] {
+function cuesToTimedWords(cues: VttCue[]): {
+  words: TimedWord[];
+  minCueDuration: number;
+  maxCueDuration: number;
+} {
   const result: TimedWord[] = [];
   let wordIndex = 0;
+  let minCueDuration = Infinity;
+  let maxCueDuration = 0;
 
   for (let cueIndex = 0; cueIndex < cues.length; cueIndex++) {
     const cue = cues[cueIndex];
@@ -177,6 +197,17 @@ function cuesToTimedWords(cues: VttCue[]): TimedWord[] {
     const endSec = vttTimeToSeconds(cue.endTime);
     const duration = endSec - startSec;
 
+    // Track cue duration stats
+    if (duration < minCueDuration) minCueDuration = duration;
+    if (duration > maxCueDuration) maxCueDuration = duration;
+
+    // Assert: all cues must have positive duration
+    if (duration <= 0) {
+      console.error(
+        `WARNING: cueIndex ${cueIndex} has duration=${duration}s: "${cue.text}"`,
+      );
+    }
+
     for (let i = 0; i < rawWords.length; i++) {
       const word = rawWords[i];
       const normalized = normalize(word);
@@ -185,7 +216,8 @@ function cuesToTimedWords(cues: VttCue[]): TimedWord[] {
       }
 
       // Interpolate time: distribute words evenly across cue duration
-      const time = startSec + (duration * i) / Math.max(rawWords.length - 1, 1);
+      // Use rawWords.length as divisor so last word is at startSec + duration*(N-1)/N, NOT at endSec
+      const time = startSec + (duration * i) / rawWords.length;
 
       result.push({
         word,
@@ -197,7 +229,11 @@ function cuesToTimedWords(cues: VttCue[]): TimedWord[] {
     }
   }
 
-  return result;
+  return {
+    words: result,
+    minCueDuration: minCueDuration === Infinity ? 0 : minCueDuration,
+    maxCueDuration,
+  };
 }
 
 /**
@@ -608,38 +644,45 @@ function computeScoreFromSpans(
   // Gap count: number of regions between spans (including before first and after last)
   // If spans are sorted, gaps = spanCount + 1, but we only count non-empty gaps
   let gapCount = 0;
-  const gapHistoWords: Record<string, number> = {
-    "1": 0,
-    "2": 0,
-    "3": 0,
-    "4+": 0,
+  const gapHistoWords: Record<number, number> = {};
+  // Dynamic log-scale time buckets using log10, rounded to half-decade
+  // Buckets: 0.3, 1, 3, 10, 30, 100, ... (powers of 10^0.5 ≈ 3.16)
+  const gapHistoTime: Record<number, number> = {};
+  const getTimeBucket = (duration: number): number => {
+    if (duration <= 0) return Math.pow(10, -0.5); // edge case: should not happen, return ~0.316
+    const log = Math.log10(duration);
+    const rounded = Math.ceil(log * 2) / 2; // round UP to nearest 0.5
+    return Math.pow(10, rounded);
   };
-  const gapHistoTime: Record<string, number> = {
-    "<=1s": 0,
-    "<=5s": 0,
-    "<=10s": 0,
-    ">10s": 0,
-  };
+  // Track min/avg/max
+  let gapMinWords = Infinity;
+  let gapMaxWords = 0;
+  let gapTotalWords = 0;
+  let gapMinTime = Infinity;
+  let gapMaxTime = 0;
+  let gapTotalTime = 0;
 
   if (spans.length > 0) {
     const recordGap = (wordCount: number, duration: number) => {
       gapCount++;
-      // Word histogram
-      if (wordCount === 1) gapHistoWords["1"]++;
-      else if (wordCount === 2) gapHistoWords["2"]++;
-      else if (wordCount === 3) gapHistoWords["3"]++;
-      else gapHistoWords["4+"]++;
-      // Time histogram
-      if (duration <= 1) gapHistoTime["<=1s"]++;
-      else if (duration <= 5) gapHistoTime["<=5s"]++;
-      else if (duration <= 10) gapHistoTime["<=10s"]++;
-      else gapHistoTime[">10s"]++;
+      gapTotalWords += wordCount;
+      gapTotalTime += duration;
+      if (wordCount < gapMinWords) gapMinWords = wordCount;
+      if (wordCount > gapMaxWords) gapMaxWords = wordCount;
+      if (duration < gapMinTime) gapMinTime = duration;
+      if (duration > gapMaxTime) gapMaxTime = duration;
+      // Word histogram (integer keys)
+      gapHistoWords[wordCount] = (gapHistoWords[wordCount] || 0) + 1;
+      // Time histogram (log-scale buckets)
+      const bucket = getTimeBucket(duration);
+      gapHistoTime[bucket] = (gapHistoTime[bucket] || 0) + 1;
     };
 
     // Gap before first span
     if (spans[0].spanA.start > 0) {
-      const duration = wordsA[spans[0].spanA.start].time - wordsA[0].time;
-      recordGap(spans[0].spanA.start, duration);
+      const gapEnd = spans[0].spanA.start;
+      const duration = wordsA[gapEnd].time - wordsA[0].time;
+      recordGap(gapEnd, duration);
     }
     // Gaps between spans
     for (let i = 1; i < spans.length; i++) {
@@ -658,17 +701,12 @@ function computeScoreFromSpans(
     }
   }
 
-  // Log gap histograms if verbose
-  if (verbose && VERBOSITY_SPANS_GAPS && gapCount > 0) {
-    const wordHistoParts = Object.entries(gapHistoWords)
-      .filter(([_, count]) => count > 0)
-      .map(([words, count]) => `${words} -> ${count}`);
-    console.log(`  Gap Histo (words): ${wordHistoParts.join(", ")}`);
-
-    const timeHistoParts = Object.entries(gapHistoTime)
-      .filter(([_, count]) => count > 0)
-      .map(([time, count]) => `${time} -> ${count}`);
-    console.log(`  Gap Histo (time):  ${timeHistoParts.join(", ")}`);
+  // Finalize min/avg/max (handle no gaps case)
+  const gapAvgWords = gapCount > 0 ? gapTotalWords / gapCount : 0;
+  const gapAvgTime = gapCount > 0 ? gapTotalTime / gapCount : 0;
+  if (gapCount === 0) {
+    gapMinWords = 0;
+    gapMinTime = 0;
   }
 
   // Drift metrics: computed from span start positions
@@ -706,6 +744,14 @@ function computeScoreFromSpans(
     coverageA,
     coverageB,
     gapCount,
+    gapHistoWords,
+    gapHistoTime,
+    gapMinWords,
+    gapAvgWords,
+    gapMaxWords,
+    gapMinTime,
+    gapAvgTime,
+    gapMaxTime,
     avgDrift,
     maxDrift,
   };
@@ -748,6 +794,38 @@ function showSpanScore(spanScore: SpanScore): void {
     }%`,
   );
   console.log(`Gap count:         ${spanScore.gapCount}`);
+
+  // Gap histograms
+  if (spanScore.gapCount > 0) {
+    const wordHistoParts = Object.entries(spanScore.gapHistoWords)
+      .sort(([a], [b]) => Number(a) - Number(b))
+      .map(([words, count]) => `${words} -> ${count}`);
+    console.log(`  Gap Histo (words): ${wordHistoParts.join(", ")}`);
+
+    const timeHistoParts = Object.entries(spanScore.gapHistoTime)
+      .sort(([a], [b]) => Number(a) - Number(b))
+      .map(([time, count]) => `<=${Number(time).toFixed(2)}s -> ${count}`);
+    console.log(`  Gap Histo (time):  ${timeHistoParts.join(", ")}`);
+
+    // Gap min/avg/max
+    console.log(
+      `  Gap words (min/avg/max): ${spanScore.gapMinWords} / ${
+        spanScore.gapAvgWords.toFixed(1)
+      } / ${spanScore.gapMaxWords}`,
+    );
+    console.log(
+      `  Gap time  (min/avg/max): ${
+        spanScore.gapMinTime.toFixed(
+          2,
+        )
+      }s / ${
+        spanScore.gapAvgTime.toFixed(
+          2,
+        )
+      }s / ${spanScore.gapMaxTime.toFixed(2)}s`,
+    );
+  }
+
   console.log(`Avg drift:         ${spanScore.avgDrift.toFixed(3)}s`);
   console.log(`Max drift:         ${spanScore.maxDrift.toFixed(3)}s`);
 }
@@ -876,8 +954,16 @@ interface SpanScore {
   coverageA: number; // matchedWords / totalWordsA
   coverageB: number; // matchedWords / totalWordsB
 
-  // Gap metrics
+  // Gap metrics (NOTE: calculated from stream A only - rough estimate)
   gapCount: number; // Regions between spans
+  gapHistoWords: Record<number, number>; // Histogram by word count (integer keys)
+  gapHistoTime: Record<number, number>; // Histogram by duration (log-scale bucket keys)
+  gapMinWords: number;
+  gapAvgWords: number;
+  gapMaxWords: number;
+  gapMinTime: number;
+  gapAvgTime: number;
+  gapMaxTime: number;
 
   // Drift metrics
   avgDrift: number; // Mean |timeA - timeB| at span starts
