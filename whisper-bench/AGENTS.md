@@ -32,4 +32,3 @@ async function phase1(): Promise<void> {
   // Phase 1
 }
 ```
-
