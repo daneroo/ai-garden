@@ -67,7 +67,7 @@ interface NGramMatch {
 
 ---
 
-## Algorithm Overview (4 Phases)
+## Algorithm Overview
 
 ```txt
 ┌─────────────┐     ┌─────────────┐
@@ -76,7 +76,7 @@ interface NGramMatch {
        │                   │
        ▼                   ▼
 ┌─────────────────────────────────┐
-│  Phase 1: VttCue[] → TimedWord[]│
+│  Tokenize: VttCue[] → TimedWord[]│
 │  • prenormalize (strip <|X|>)   │
 │  • filter empty cues            │
 │  • split to words               │
@@ -86,24 +86,24 @@ interface NGramMatch {
                │
                ▼
 ┌─────────────────────────────────┐
-│  Phase 2: Build N-gram Indices  │
+│  Build N-gram Indices           │
 │  (count occurrences in each)    │
 └──────────────┬──────────────────┘
                │
                ▼
 ┌─────────────────────────────────┐
-│  Phase 3: Find Unique Anchors   │
+│  Find Unique Anchors            │
 │  (filtered unique n-grams)      │
 └──────────────┬──────────────────┘
                │
                ▼
 ┌─────────────────────────────────┐
-│  Phase 4: Score                 │
+│  Score                          │
 │  (metrics & coverage)           │
 └─────────────────────────────────┘
 ```
 
-### Phase 3 Logic
+### Find Anchors Logic
 
 - **Uniqueness**: Identify n-grams appearing exactly once in _both_ transcripts.
 - **Drift Filter**: Reject matches where `|timeA - timeB| > MAX_DRIFT_THRESHOLD`
@@ -111,13 +111,13 @@ interface NGramMatch {
 - **Monotonicity**: Advisory only; detects matches that violate time sequence
   ordering but does not reject them.
 
-### Phase 4 Metrics
+### Scoring Metrics
 
 - **Anchor Density**: % of words "pinned" by anchors.
 - **Temporal Drift**: Average and max time difference.
 - **Coverage**: Estimate of text covered by anchors.
 
-### Phase 1 Functions
+### Tokenize Functions
 
 ```txt
 // Strip <|XX.XX|> tags from whisperkit output
@@ -130,7 +130,7 @@ function normalize(word: string): string;
 function cuesToTimedWords(cues: VttCue[]): TimedWord[];
 ```
 
-### Phase 1 Pipeline
+### Tokenize Pipeline
 
 ```txt
 Raw:   "<|10.08|> read by Andy Serkis.<|12.16|>"
@@ -163,13 +163,13 @@ interface ComparisonScore {
 
 ## Design Decisions
 
-| Decision           | Choice                    | Rationale                      |
-| ------------------ | ------------------------- | ------------------------------ |
-| Code location      | Single `vtt-compare.ts`   | Isolated experiment            |
-| Empty cues         | Filter out during Phase 1 | Some VTT cues are empty        |
-| Temporal filtering | Part of scoring           | Simpler first pass             |
-| Prenormalization   | Strip `<\|XX.XX\|>` tags  | Unify engine formats           |
-| N-gram size        | n=4 (parameterizable)     | Balance uniqueness vs coverage |
+| Decision           | Choice                     | Rationale                      |
+| ------------------ | -------------------------- | ------------------------------ |
+| Code location      | Single `vtt-compare.ts`    | Isolated experiment            |
+| Empty cues         | Filter out during Tokenize | Some VTT cues are empty        |
+| Temporal filtering | Part of scoring            | Simpler first pass             |
+| Prenormalization   | Strip `<\|XX.XX\|>` tags   | Unify engine formats           |
+| N-gram size        | n=4 (parameterizable)      | Balance uniqueness vs coverage |
 
 ## Resolved Decisions
 
@@ -198,11 +198,11 @@ if (import.meta.main) {
 // ═══════════════════════════════════════════════════════════════════════════
 
 async function main(): Promise<void> {
-  // Phase 1, 2, 3, 4...
+  // Tokenize, Build Index, Find Anchors, Score
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// PHASE 1: VttCue[] → TimedWord[]
+// TOKENIZE: VttCue[] → TimedWord[]
 // ═══════════════════════════════════════════════════════════════════════════
 
 function cuesToTimedWords(cues: VttCue[]): TimedWord[] { ... }
@@ -210,7 +210,7 @@ function prenormalize(text: string): string { ... }
 function normalize(word: string): string { ... }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// PHASE 2: N-gram Indexing
+// N-GRAM INDEXING
 // ═══════════════════════════════════════════════════════════════════════════
 
 // ...
@@ -228,7 +228,7 @@ interface ComparisonScore { ... }
 
 ## Validation
 
-### Phase 1-2: Tokenization and N-gram Indexing
+### Tokenize and N-gram Indexing
 
 Working as expected. Cues are correctly parsed, words are normalized, and n-gram
 indices are built with accurate occurrence counts.
@@ -240,7 +240,7 @@ elements: audiobook metadata (title/author at start and end), song lyrics
 and common narrative phrases. The `showNGramIndex()` function can display all
 duplicates when `VERBOSITY_DUPLICATE_NGRAMS=true`.
 
-### Phase 3: Anchor Matching
+### Anchor Matching
 
 Validated with `n=6` and `MAX_DRIFT_THRESHOLD=10s`:
 
@@ -266,7 +266,7 @@ REJECTED: "as soon as the door was" drift:69.93s > 10s
 This phrase appears when different dwarves arrive at Bilbo's door ~70 seconds
 apart — a legitimate false match correctly filtered out.
 
-### Phase 4: Scoring
+### Scoring
 
 Metrics computed correctly. With n=6 on whisperkit-tiny vs whisperkit-small:
 
@@ -274,3 +274,139 @@ Metrics computed correctly. With n=6 on whisperkit-tiny vs whisperkit-small:
 - Anchor density: ~76%
 - Average drift: ~0.26s
 - Coverage: 100%
+
+---
+
+## Proposed Changes: Merge Phase & Scoring
+
+> **Problem**: Current anchors (n-gram matches) overlap heavily. With n=6 and
+> ~67,000 anchors, consecutive words each spawn their own anchor — the same
+> coverage is counted up to 6 times. Current scoring metrics are not meaningful.
+
+### Data Structure Changes
+
+Replace `NGramMatch` with `AlignedSpan`:
+
+```typescript
+// Current (remove)
+interface NGramMatch {
+  hash: string; // Only used for debugging
+  posA: number;
+  posB: number;
+  timeA: number;
+  timeB: number;
+}
+
+// Proposed (add)
+interface WordSpan {
+  start: number; // wordIndex (inclusive)
+  end: number; // wordIndex (exclusive)
+  // Derived: length = end - start
+}
+
+interface AlignedSpan {
+  spanA: WordSpan;
+  spanB: WordSpan;
+  // For matches: spanA.length === spanB.length
+  // For gaps: lengths may differ
+}
+```
+
+The `hash` field was only used for debug output — text can be reconstructed from
+`wordsA.slice(span.spanA.start, span.spanA.end)` when needed.
+
+### Merge Phase
+
+After `findUniqueAnchors()`, add `mergeAnchorsToSpans()`:
+
+```txt
+function mergeAnchorsToSpans(
+  anchors: NGramMatch[], // sorted by posA
+  n: number,
+): AlignedSpan[] {
+  // Merge criteria (preserves high-confidence property):
+  // 1. Contiguous in A: next.posA === current.posA + 1
+  // 2. Contiguous in B: next.posB === current.posB + 1
+  // 3. Same offset: (posB - posA) constant across chain
+  //
+  // If all hold, extend the span; otherwise start a new span.
+}
+```
+
+### Revised Scoring
+
+With spans instead of overlapping anchors:
+
+```typescript
+interface ComparisonScore {
+  // Word counts
+  totalWordsA: number;
+  totalWordsB: number;
+
+  // Span metrics
+  spanCount: number; // Number of aligned spans
+  matchedWords: number; // Sum of span lengths (no double-counting)
+  coverageA: number; // matchedWords / totalWordsA
+  coverageB: number; // matchedWords / totalWordsB
+
+  // Gap metrics
+  gapCount: number; // Regions between spans
+
+  // Drift metrics
+  avgDrift: number; // Mean |timeA - timeB| at span starts
+  maxDrift: number; // Worst drift
+}
+```
+
+### Implementation Tasks
+
+See [VTT-COMPARE-TASKS.md](./VTT-COMPARE-TASKS.md) for implementation checklist.
+
+## Next Phase: Recursive Refinement
+
+> **Future work** — notes from design discussion.
+
+Once spans are working, the gaps between spans become independent subproblems:
+
+```txt
+A: [───]●●●●[─────]●●●●●●[────]●●●[──]
+B: [───]●●●●[─────]●●●●●●[────]●●●[──]
+     ↑     ↑      ↑            ↑
+    gap1  span1  gap2   span2  gap3  ...
+
+● = solved (high-confidence span)
+─ = gap (subproblem)
+```
+
+**Recursive approach**:
+
+- Within each gap, re-run matching with same or smaller n
+- Continue until gaps are too small or no unique matches found
+- Preserve "purity" (zero false positives) as long as possible
+- Only apply heuristics (substitutions, skips) to remaining gaps
+
+**Unified representation**:
+
+The entire stream can be represented as an alternating array of segments:
+
+```txt
+type SegmentType = "match" | "gap";
+
+interface Segment {
+  type: SegmentType;
+  span: AlignedSpan; // Works for both matches and gaps
+}
+
+// Full alignment: [gap?, match, gap?, match, ..., gap?]
+type Alignment = Segment[];
+```
+
+Both matches and gaps are `AlignedSpan` — a gap is just a span where the content
+differs (rangeA and rangeB may have different lengths in gaps).
+
+**Comparison with `audio-deno-match/`**:
+
+- That code aligns VTT to epub text (different sources)
+- Uses approximate heuristics from the start (`maxSkip` tolerance)
+- Here we start pure, defer heuristics to gaps only
+- Data structures are similar (`AlignedSpan` ≈ `AlignmentResult`)

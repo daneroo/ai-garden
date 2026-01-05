@@ -23,12 +23,13 @@ if (import.meta.main) {
 
 // MAIN
 async function main(): Promise<void> {
-  // Phase 1, 2, ...
-  await phase1();
-  await phase2();
+  await tokenize();
+  await buildIndex();
+  await findAnchors();
+  await score();
 }
 
-async function phase1(): Promise<void> {
-  // Phase 1
+async function tokenize(): Promise<void> {
+  // Convert cues to words
 }
 ```

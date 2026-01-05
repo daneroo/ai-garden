@@ -17,6 +17,7 @@ const VERBOSITY_DUPLICATE_NGRAMS = false;
 const VERBOSITY_REJECTED_ANCHORS = false;
 const VERBOSITY_MATCHED_ANCHORS = false;
 const VERBOSITY_MONOTONICITY_VIOLATIONS = false;
+const VERBOSITY_SPANS_GAPS = true;
 
 const RED = "\x1b[31m";
 const GREEN = "\x1b[32m";
@@ -47,9 +48,9 @@ async function main(): Promise<void> {
 
   // Compare tiny vs small (same runner, same word-ts mode)
   const pathA = "data/output/hobbit.whispercpp-tiny.en-wN.vtt";
-  const pathB = "data/output/hobbit.whisperkit-small.en-wN.vtt";
+  const pathB = "data/output/hobbit.whispercpp-small.en-wN.vtt";
 
-  console.log("=== VTT-VTT Comparison ===\n");
+  console.log("# VTT-VTT Comparison\n");
 
   // Load VTT files
   const cuesA = await readVtt(pathA);
@@ -88,8 +89,8 @@ async function main(): Promise<void> {
     );
   }
 
-  // Phase 1: Convert to TimedWords
-  console.log("--- Phase 1: Tokenize to Words ---\n");
+  // Tokenize: Convert to TimedWords
+  console.log("## Tokenize\n");
 
   const wordsA = cuesToTimedWords(cuesA);
   console.log(`Transcript A: ${cuesA.length} cues -> ${wordsA.length} words`);
@@ -99,8 +100,8 @@ async function main(): Promise<void> {
   console.log(`Transcript B: ${cuesB.length} cues -> ${wordsB.length} words`);
   if (verbose && VERBOSITY_TIMEWORDS) printSampleWords(wordsB, 10);
 
-  // Phase 2: Build n-gram indices
-  console.log("\n--- Phase 2: Build N-gram Indices ---\n");
+  // Build n-gram indices
+  console.log("\n## Build N-gram Indices\n");
 
   const n = 6; // n-gram size
   const indexA = buildNgramIndex(wordsA, n);
@@ -111,55 +112,32 @@ async function main(): Promise<void> {
   showNGramIndex("A", indexA);
   showNGramIndex("B", indexB);
 
-  // Phase 3: Find unique anchors
-  console.log("\n--- Phase 3: Find Unique Anchors ---\n");
+  // Find unique anchors
+  console.log("\n## Find Unique Anchors\n");
 
   const anchors = findUniqueAnchors(indexA, indexB, wordsA, wordsB);
   showUniqueAnchors(anchors);
 
-  // Phase 4: Score
-  console.log("\n--- Phase 4: Score ---\n");
+  // Merge anchors to spans
+  console.log("\n## Merge Anchors to Spans\n");
 
-  const score = computeScore(anchors, wordsA.length, wordsB.length);
-  console.log(`Anchor count:      ${score.anchorCount}`);
-  console.log(`Anchor density:    ${(score.anchorDensity * 100).toFixed(2)}%`);
-  console.log(`Avg temporal drift: ${score.avgTemporalDrift.toFixed(3)}s`);
-  console.log(`Max temporal drift: ${score.maxTemporalDrift.toFixed(3)}s`);
-  console.log(`Coverage:          ${(score.coverage * 100).toFixed(2)}%`);
+  const spans = mergeAnchorsToSpans(anchors, n);
+  const totalMatchedWords = spans.reduce(
+    (sum, span) => sum + (span.spanA.end - span.spanA.start),
+    0,
+  );
+  console.log(`Anchors: ${anchors.length} → Spans: ${spans.length}`);
+  console.log(`Total matched words: ${totalMatchedWords}`);
 
-  // Find and show the max drift anchor
-  if (anchors.length > 0) {
-    let maxDriftAnchor = anchors[0];
-    for (const anchor of anchors) {
-      const drift = Math.abs(anchor.timeA - anchor.timeB);
-      if (drift > Math.abs(maxDriftAnchor.timeA - maxDriftAnchor.timeB)) {
-        maxDriftAnchor = anchor;
-      }
-    }
-    const maxDrift = Math.abs(maxDriftAnchor.timeA - maxDriftAnchor.timeB);
-    console.log(`\nMax drift anchor: "${maxDriftAnchor.hash}"`);
-    console.log(
-      `  in A: pos:${maxDriftAnchor.posA} time:${
-        maxDriftAnchor.timeA.toFixed(
-          2,
-        )
-      }s`,
-    );
-    console.log(
-      `  in B: pos:${maxDriftAnchor.posB} time:${
-        maxDriftAnchor.timeB.toFixed(
-          2,
-        )
-      }s`,
-    );
-    console.log(`  drift: ${maxDrift.toFixed(2)}s`);
-  }
+  // Score
+  console.log("\n## Score\n");
 
-  console.log(`\nOverall score:     ${score.overallScore.toFixed(1)}/100`);
+  const spanScore = computeScoreFromSpans(spans, wordsA, wordsB);
+  showSpanScore(spanScore);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// PHASE 1: VttCue[] → TimedWord[]
+// TOKENIZE: VttCue[] → TimedWord[]
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
@@ -242,7 +220,7 @@ function normalize(word: string): string {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// PHASE 2: N-gram Indexing
+// N-GRAM INDEXING
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
@@ -316,7 +294,7 @@ function showNGramIndex(label: string, index: NgramIndex): void {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// PHASE 3: Find Unique Anchors
+// FIND UNIQUE ANCHORS
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
@@ -329,7 +307,7 @@ function findUniqueAnchors(
   wordsA: TimedWord[],
   wordsB: TimedWord[],
 ): NGramMatch[] {
-  const MAX_DRIFT_THRESHOLD = 10; // seconds - reject anchors with larger drift
+  const MAX_DRIFT_THRESHOLD = 6; // seconds - reject anchors with larger drift
   const anchors: NGramMatch[] = [];
 
   // Track statistics
@@ -381,7 +359,7 @@ function findUniqueAnchors(
   );
   console.log(`Matched anchors: ${anchors.length}`);
 
-  // Sort anchors by position in A - but could be another criteria
+  // Sort anchors by position in A (required for mergeAnchorsToSpans)
   anchors.sort((a, b) => a.posA - b.posA);
 
   return anchors;
@@ -423,10 +401,6 @@ function showUniqueAnchors(anchors: NGramMatch[]): void {
   checkMonotonicity(anchors);
 }
 
-/**
- * Check monotonicity of all 4 fields.
- * Returns count of violations for each field and displays them if verbose.
- *
 /**
  * Check monotonicity of all 4 fields.
  * Returns count of violations for each field and displays them if verbose.
@@ -533,56 +507,207 @@ function checkMonotonicity(anchors: NGramMatch[]): {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// PHASE 4: Score
+// MERGE ANCHORS TO SPANS
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
- * Compute comparison score from anchors.
+ * Merge overlapping n-gram anchors into contiguous aligned spans.
+ *
+ * REQUIRES: anchors must be sorted by posA (as returned by findUniqueAnchors).
+ *
+ * Anchors are merged if they are contiguous in both A and B:
+ * - next.posA === current.posA + 1
+ * - next.posB === current.posB + 1
+ * - (posB - posA) offset remains constant
+ *
+ * This preserves the high-confidence property of the matches.
  */
-function computeScore(
-  anchors: NGramMatch[],
-  wordsA: number,
-  wordsB: number,
-): ComparisonScore {
-  const anchorCount = anchors.length;
-  const avgWords = (wordsA + wordsB) / 2;
+function mergeAnchorsToSpans(anchors: NGramMatch[], n: number): AlignedSpan[] {
+  if (anchors.length === 0) {
+    return [];
+  }
 
-  // Anchor density: anchors per word (how many words are "pinned")
-  // Each anchor covers n words, but we count the starting word
-  const anchorDensity = anchorCount / avgWords;
+  // Assert sorted by posA
+  // TODO: refactor to reuse checkMonotonicity() in a flexible way
+  for (let i = 1; i < anchors.length; i++) {
+    if (anchors[i].posA < anchors[i - 1].posA) {
+      throw new Error(
+        `mergeAnchorsToSpans: anchors not sorted by posA at index ${i}`,
+      );
+    }
+  }
 
-  // Temporal drift statistics
+  const spans: AlignedSpan[] = [];
+
+  // Initialize first span from first anchor
+  let currentSpan: AlignedSpan = {
+    spanA: { start: anchors[0].posA, end: anchors[0].posA + n },
+    spanB: { start: anchors[0].posB, end: anchors[0].posB + n },
+  };
+
+  for (let i = 1; i < anchors.length; i++) {
+    const curr = anchors[i];
+
+    // Check if this anchor overlaps with or is contiguous to current span
+    // Overlap means the anchor starts before the span ends
+    const overlapsInA = curr.posA < currentSpan.spanA.end;
+    const overlapsInB = curr.posB < currentSpan.spanB.end;
+
+    if (overlapsInA && overlapsInB) {
+      // Extend current span to include this anchor
+      currentSpan.spanA.end = Math.max(currentSpan.spanA.end, curr.posA + n);
+      currentSpan.spanB.end = Math.max(currentSpan.spanB.end, curr.posB + n);
+    } else {
+      // Push completed span and start a new one
+      spans.push(currentSpan);
+      currentSpan = {
+        spanA: { start: curr.posA, end: curr.posA + n },
+        spanB: { start: curr.posB, end: curr.posB + n },
+      };
+    }
+  }
+
+  // Push final span
+  spans.push(currentSpan);
+
+  return spans;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SCORE
+// ═══════════════════════════════════════════════════════════════════════════
+
+/**
+ * Compute comparison score from aligned spans.
+ * This provides accurate metrics without double-counting overlapping anchors.
+ */
+function computeScoreFromSpans(
+  spans: AlignedSpan[],
+  wordsA: TimedWord[],
+  wordsB: TimedWord[],
+): SpanScore {
+  const totalWordsA = wordsA.length;
+  const totalWordsB = wordsB.length;
+
+  // Span metrics
+  const spanCount = spans.length;
+  const matchedWords = spans.reduce(
+    (sum, span) => sum + (span.spanA.end - span.spanA.start),
+    0,
+  );
+  const coverageA = totalWordsA > 0 ? matchedWords / totalWordsA : 0;
+  const coverageB = totalWordsB > 0 ? matchedWords / totalWordsB : 0;
+
+  // TODO: IMPORTANT - Gap calculation is a ROUGH ESTIMATE only!
+  // Currently, gaps are calculated entirely with respect to stream A.
+  // This works well when the two streams align closely, but gaps in A
+  // may not correspond to gaps in B at all. The word indices and durations
+  // are for stream A only. A proper gap analysis would need to consider
+  // both streams and potentially show mismatched regions between them.
+  //
+  // Gap count: number of regions between spans (including before first and after last)
+  // If spans are sorted, gaps = spanCount + 1, but we only count non-empty gaps
+  let gapCount = 0;
+  const gapHistoWords: Record<string, number> = {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4+": 0,
+  };
+  const gapHistoTime: Record<string, number> = {
+    "<=1s": 0,
+    "<=5s": 0,
+    "<=10s": 0,
+    ">10s": 0,
+  };
+
+  if (spans.length > 0) {
+    const recordGap = (wordCount: number, duration: number) => {
+      gapCount++;
+      // Word histogram
+      if (wordCount === 1) gapHistoWords["1"]++;
+      else if (wordCount === 2) gapHistoWords["2"]++;
+      else if (wordCount === 3) gapHistoWords["3"]++;
+      else gapHistoWords["4+"]++;
+      // Time histogram
+      if (duration <= 1) gapHistoTime["<=1s"]++;
+      else if (duration <= 5) gapHistoTime["<=5s"]++;
+      else if (duration <= 10) gapHistoTime["<=10s"]++;
+      else gapHistoTime[">10s"]++;
+    };
+
+    // Gap before first span
+    if (spans[0].spanA.start > 0) {
+      const duration = wordsA[spans[0].spanA.start].time - wordsA[0].time;
+      recordGap(spans[0].spanA.start, duration);
+    }
+    // Gaps between spans
+    for (let i = 1; i < spans.length; i++) {
+      const gapStart = spans[i - 1].spanA.end;
+      const gapEnd = spans[i].spanA.start;
+      if (gapEnd > gapStart) {
+        const duration = wordsA[gapEnd].time - wordsA[gapStart].time;
+        recordGap(gapEnd - gapStart, duration);
+      }
+    }
+    // Gap after last span
+    if (spans[spans.length - 1].spanA.end < totalWordsA) {
+      const gapStart = spans[spans.length - 1].spanA.end;
+      const duration = wordsA[totalWordsA - 1].time - wordsA[gapStart].time;
+      recordGap(totalWordsA - gapStart, duration);
+    }
+  }
+
+  // Log gap histograms if verbose
+  if (verbose && VERBOSITY_SPANS_GAPS && gapCount > 0) {
+    const wordHistoParts = Object.entries(gapHistoWords)
+      .filter(([_, count]) => count > 0)
+      .map(([words, count]) => `${words} -> ${count}`);
+    console.log(`  Gap Histo (words): ${wordHistoParts.join(", ")}`);
+
+    const timeHistoParts = Object.entries(gapHistoTime)
+      .filter(([_, count]) => count > 0)
+      .map(([time, count]) => `${time} -> ${count}`);
+    console.log(`  Gap Histo (time):  ${timeHistoParts.join(", ")}`);
+  }
+
+  // Drift metrics: computed from span start positions
   let totalDrift = 0;
   let maxDrift = 0;
-  for (const anchor of anchors) {
-    const drift = Math.abs(anchor.timeA - anchor.timeB);
+  for (const span of spans) {
+    const timeA = wordsA[span.spanA.start].time;
+    const timeB = wordsB[span.spanB.start].time;
+    const drift = Math.abs(timeA - timeB);
     totalDrift += drift;
     if (drift > maxDrift) maxDrift = drift;
   }
-  const avgTemporalDrift = anchorCount > 0 ? totalDrift / anchorCount : 0;
-  const maxTemporalDrift = maxDrift;
+  const avgDrift = spanCount > 0 ? totalDrift / spanCount : 0;
 
-  // Coverage: rough estimate of how much of the text is covered by anchors
-  // If we have many anchors distributed throughout, coverage is high
-  const coverage = Math.min(1.0, anchorCount / (avgWords / 4)); // Rough: 1 anchor per 4 words = 100%
+  // Matched duration: sum of time spans covered by matched regions
+  let matchedDurationA = 0;
+  let matchedDurationB = 0;
+  for (const span of spans) {
+    const startTimeA = wordsA[span.spanA.start].time;
+    const endTimeA = wordsA[span.spanA.end - 1].time;
+    matchedDurationA += endTimeA - startTimeA;
 
-  // Overall score: weighted combination (0-100)
-  // Higher is better: more anchors, lower drift, higher coverage
-  const densityScore = Math.min(100, anchorDensity * 100 * 1.5); // Weight density
-  const driftPenalty = Math.min(50, avgTemporalDrift * 5); // Penalize drift
-  const coverageBonus = coverage * 30;
-  const overallScore = Math.max(
-    0,
-    Math.min(100, densityScore - driftPenalty + coverageBonus),
-  );
+    const startTimeB = wordsB[span.spanB.start].time;
+    const endTimeB = wordsB[span.spanB.end - 1].time;
+    matchedDurationB += endTimeB - startTimeB;
+  }
 
   return {
-    anchorCount,
-    anchorDensity,
-    avgTemporalDrift,
-    maxTemporalDrift,
-    coverage,
-    overallScore,
+    totalWordsA,
+    totalWordsB,
+    spanCount,
+    matchedWords,
+    matchedDurationA,
+    matchedDurationB,
+    coverageA,
+    coverageB,
+    gapCount,
+    avgDrift,
+    maxDrift,
   };
 }
 
@@ -603,6 +728,28 @@ function printSampleWords(words: TimedWord[], count: number): void {
     console.log(`  ... and ${words.length - count} more`);
   }
   console.log();
+}
+
+function showSpanScore(spanScore: SpanScore): void {
+  console.log(`Span count:        ${spanScore.spanCount}`);
+  console.log(`Matched words:     ${spanScore.matchedWords}`);
+  console.log(
+    `Matched duration A/B: ${toHMS(spanScore.matchedDurationA)}, ${
+      toHMS(
+        spanScore.matchedDurationB,
+      )
+    }`,
+  );
+  console.log(
+    `Coverage A/B:      ${(spanScore.coverageA * 100).toFixed(2)}%, ${
+      (
+        spanScore.coverageB * 100
+      ).toFixed(2)
+    }%`,
+  );
+  console.log(`Gap count:         ${spanScore.gapCount}`);
+  console.log(`Avg drift:         ${spanScore.avgDrift.toFixed(3)}s`);
+  console.log(`Max drift:         ${spanScore.maxDrift.toFixed(3)}s`);
 }
 
 /**
@@ -704,21 +851,45 @@ interface NGramMatch {
   timeB: number; // Timestamp in B
 }
 
-interface ComparisonScore {
-  anchorCount: number; // Matched unique n-grams
-  anchorDensity: number; // anchors / total words
-  avgTemporalDrift: number; // Mean |timeA - timeB| at anchors
-  maxTemporalDrift: number; // Worst drift
-  coverage: number; // % of words covered by anchors
-  overallScore: number; // 0-100 composite
+interface WordSpan {
+  start: number; // wordIndex (inclusive)
+  end: number; // wordIndex (exclusive)
+}
+
+interface AlignedSpan {
+  spanA: WordSpan;
+  spanB: WordSpan;
+  // For matches: spanA.end - spanA.start === spanB.end - spanB.start
+  // For gaps: lengths may differ
+}
+
+interface SpanScore {
+  // Word counts
+  totalWordsA: number;
+  totalWordsB: number;
+
+  // Span metrics
+  spanCount: number; // Number of aligned spans
+  matchedWords: number; // Sum of span lengths (no double-counting)
+  matchedDurationA: number; // Sum of time spans in A (seconds)
+  matchedDurationB: number; // Sum of time spans in B (seconds)
+  coverageA: number; // matchedWords / totalWordsA
+  coverageB: number; // matchedWords / totalWordsB
+
+  // Gap metrics
+  gapCount: number; // Regions between spans
+
+  // Drift metrics
+  avgDrift: number; // Mean |timeA - timeB| at span starts
+  maxDrift: number; // Worst drift
 }
 
 // Export for potential testing
 export {
-  type ComparisonScore,
   cuesToTimedWords,
   type NGramMatch,
   normalize,
   prenormalize,
+  type SpanScore,
   type TimedWord,
 };
