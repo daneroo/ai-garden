@@ -4,122 +4,55 @@ A Deno workspace with shared packages and multiple apps.
 
 ## TODO
 
-- [ ]Consolidate/refactor docs - create docs/WORKSPACE-MONOREPO.md
-  this should include most of the fresh/tailwind shenanigans we figured out
-  as well as the dependencies management, and directory structure and tasks conventions
+- [ ] Consolidate/refactor docs - create docs/WORKSPACE-MONOREPO.md this should
+      include most of the fresh/tailwind shenanigans we figured out as well as
+      the dependencies management, and directory structure and tasks conventions
 - [ ] rename deno-one to prosodio - this is our new blessed name!
   - [x] update all src/references to use prosodio
 - [ ] make a distinct `packages/` sibling directory for `components/`
-  - [ ] make the `deno-one/apps/web/styles/tailwind.src.css` refer to all those components
+  - [ ] make the `deno-one/apps/web/styles/tailwind.src.css` refer to all those
+        components
 
-## Structure
+## Directory Structure
 
-| Path             | Description                              |
-| ---------------- | ---------------------------------------- |
-| `packages/vtt/`  | VTT parsing library (`@deno-one/vtt`)    |
-| `packages/epub/` | EPUB handling library (`@deno-one/epub`) |
-| `apps/cli/`      | CLI app using yargs                      |
-| `apps/web/`      | **Prosodio** (Fresh 2.0 Web App)          |
+- `packages`: libraries like `vtt` and `epub`
+- `apps`: both cli and web apps
 
-## Quick Start
+## Usage
 
 ```bash
-# CLI examples (using -A for simplicity in dev)
-deno run -A apps/cli/cli.ts time 3661.5
-deno run -A apps/cli/cli.ts --help
-
-# Prosodio (Web App)
-## development (with Islands)
-(cd apps/web && deno task dev)
-## production
-(cd apps/web && deno task start)
-```
-
-### Prosodio (`apps/web`)
-
-A web application using Fresh 2.0 with Islands (interactive components).
-
-#### Architecture: Zero NPM, Zero Vite
-
-We wanted client-side interactivity (Islands) **without** the usual Node/Vite
-toolchain explosion. Here's how we achieved it:
-
-| Constraint          | Solution                                                              |
-| ------------------- | --------------------------------------------------------------------- |
-| No `node_modules`   | All imports via JSR (`jsr:@fresh/core`) or Deno specifiers            |
-| No `vite.config.ts` | Use Fresh's built-in `Builder` from `fresh/dev` (Deno-native bundler) |
-| No `package.json`   | Only `deno.jsonc` for tasks and imports                               |
-| Islands hydration   | `dev.ts` uses `Builder.listen()` to JIT-compile island components     |
-
-#### Key Files
-
-| File            | Purpose                                                  |
-| --------------- | -------------------------------------------------------- |
-| `main.tsx`      | App routes and SSR (exports `app`)                       |
-| `dev.ts`        | Development server (Builder + file watching)             |
-| `prod.ts`       | Production server (Builder without watching)             |
-| `routes/*.tsx`  | Server-rendered page components                          |
-| `islands/*.tsx` | Client-side interactive components (hydrated in browser) |
-
-#### Why `dev.ts` is Necessary
-
-<!-- deno-fmt-ignore-file -->
-
-```ts ignore
-// dev.ts - Required for Islands (Fresh's Builder bundles client-side JS)
-import { Builder } from "fresh/dev";
-import { app } from "./main.tsx";
-
-const builder = new Builder();
-await builder.listen(() => Promise.resolve(app));
-```
-
-- **Without `dev.ts`**: `deno serve main.tsx` renders SSR but islands are dead
-  (no client JS).
-- **With `dev.ts`**: `Builder` compiles `islands/*.tsx` into browser bundles
-  automatically.
-
-#### Island Constraints
-
-Islands cannot import modules that use Node APIs (like `node:fs/promises`). If
-your island needs logic from a server-side library, **inline it** or create a
-browser-safe version.
-
-Example: We inlined `vttTimeToSeconds()` in `VttViewer.tsx` to avoid importing
-`@deno-one/vtt` (which uses `node:fs`).
-
-#### Tasks
-
-| Environment | Task              | Command                            | Description                         |
-| :---------- | :---------------- | :--------------------------------- | :---------------------------------- |
-| Development | `deno task dev`   | `deno run -A --env --watch dev.ts` | Builder + file watching + Islands   |
-| Production  | `deno task start` | `deno run -A --env prod.ts`        | Builder + Islands (no file watcher) |
-
-#### Compiler Options
-
-Fresh Islands require `jsxPrecompileSkipElements` in `deno.jsonc`:
-
-```jsonc
-"compilerOptions": {
-  "jsx": "precompile",
-  "jsxImportSource": "preact",
-  "jsxPrecompileSkipElements": ["a", "img", "source", "body", "html", "head", "title", "meta", "script", "link", "style", "base", "noscript", "template"]
-}
-```
-
-This tells Deno's JSX compiler to skip certain elements that Fresh handles
-specially.
-
-## Monorepo Tasks
-
-```bash
+# Monorepo Tasks
 deno task          # List all tasks
 deno task ci       # Format + lint + check + test
 deno task fmt      # Format code
 deno task check    # Type check (recursive)
 deno task test     # Run tests (recursive)
 deno task outdated # Check for outdated deps (recursive)
+
+# CLI Example (using -A for simplicity in dev)
+deno run -A apps/cli/cli.ts time 3661.5
+deno run -A apps/cli/cli.ts --help
+
+# Prosodio (Web App) - Development (Islands + Tailwind Watcher)
+(cd apps/web && deno task dev)
+
+# Prosodio (Web App) - Production (Build + Serve)
+(cd apps/web && deno task start)
 ```
+
+### Prosodio (`apps/web`)
+
+A web application using Fresh 2.0 with Islands (interactive components) and
+Tailwind CSS v4.
+
+#### Architecture: Deno Native + Manual Tailwind v4
+
+We use the "Native" Fresh strategy (avoiding Vite) for simplicity. However,
+because native plugins don't yet support Tailwind v4, we use a custom
+`server.ts` entry point.
+
+> See `apps/web/server.ts` for detailed architectural documentation and
+> rationale.
 
 ## Add a New Package
 
@@ -139,7 +72,3 @@ cd packages/vtt && deno add  # Add to specific member
 deno outdated -r             # Check for updates (all members)
 deno outdated -r --update    # Update versions
 ```
-
-## VSCode
-
-Install Deno extension (denoland.vscode-deno).

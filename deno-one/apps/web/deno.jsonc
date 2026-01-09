@@ -14,6 +14,8 @@
     // Standard Preact JSX optimization for Deno
     "jsx": "precompile",
     "jsxImportSource": "preact",
+    // Fresh Islands require skipping these elements during precompilation
+    // to ensure proper hydration control.
     "jsxPrecompileSkipElements": [
       "a",
       "img",
