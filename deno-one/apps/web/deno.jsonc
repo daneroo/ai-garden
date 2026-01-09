@@ -1,7 +1,7 @@
 {
   "tasks": {
     // Development: JIT compilation with hot-restart
-    "dev": "deno serve -A --watch main.tsx",
+    "dev": "deno serve -A --env --watch main.tsx",
     // Production: Optimized Native SSR (No Build Step needed for SSR-only)
     "start": "deno serve -A --env main.tsx"
   },

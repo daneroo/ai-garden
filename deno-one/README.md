@@ -9,7 +9,7 @@ A Deno workspace with shared packages and multiple apps.
 | `packages/vtt/`  | VTT parsing library (`@deno-one/vtt`)    |
 | `packages/epub/` | EPUB handling library (`@deno-one/epub`) |
 | `apps/cli/`      | CLI app using yargs                      |
-| `apps/web/`      | Web app using Fresh 2.0 Native (No Vite) |
+| `apps/web/`      | **Prosody** (Fresh 2.0 Native Web App)   |
 
 ## Quick Start
 
@@ -18,11 +18,14 @@ A Deno workspace with shared packages and multiple apps.
 deno run -A apps/cli/cli.ts time 3661.5
 deno run -A apps/cli/cli.ts --help
 
-# Web app (Hono)
+# Prosody (Web App)
+## development
+cd apps/web && deno task dev
+## production
 cd apps/web && deno task start
 ```
 
-### Web App (`apps/web`)
+### Prosody (`apps/web`)
 
 An SSR-Only web application using Fresh 2.0 Native Mode.
 
