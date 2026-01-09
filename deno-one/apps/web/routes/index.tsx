@@ -131,7 +131,12 @@ export default function Home(props: HomeProps) {
                           class="hover:bg-gray-50 transition-colors"
                         >
                           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            {s.filename}
+                            <a
+                              href={`/file/${s.filename}`}
+                              class="text-blue-600 hover:text-blue-900 hover:underline"
+                            >
+                              {s.filename}
+                            </a>
                           </td>
                           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 font-mono">
                             {s.firstCueStart}

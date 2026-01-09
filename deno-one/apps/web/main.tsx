@@ -8,9 +8,39 @@ import {
 } from "@deno-one/vtt";
 import { join, resolve } from "@std/path";
 
+import Detail from "./routes/detail.tsx";
+
 const app = new App();
 
 app.use(staticFiles());
+
+app.get("/file/:name", async (ctx) => {
+  const filename = ctx.params.name;
+  const vttDirEnv = Deno.env.get("VTT_DIR");
+
+  if (!vttDirEnv) {
+    return new Response("VTT_DIR not set", { status: 500 });
+  }
+
+  try {
+    const resolvedPath = resolve(Deno.cwd(), vttDirEnv);
+    const filePath = join(resolvedPath, filename);
+
+    // Basic security check to prevent directory traversal
+    if (!filePath.startsWith(resolvedPath)) {
+      return new Response("Invalid file path", { status: 403 });
+    }
+
+    const cues = await readVtt(filePath);
+    const summary = summarizeVtt(cues);
+
+    return ctx.render(
+      <Detail summary={summary} filename={filename} cues={cues} />,
+    );
+  } catch (e) {
+    return new Response(`Error reading file: ${e}`, { status: 500 });
+  }
+});
 
 app.get("/", async (ctx) => {
   const time = formatTimestamp(3661.5);
