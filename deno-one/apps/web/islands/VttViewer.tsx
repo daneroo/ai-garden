@@ -95,6 +95,20 @@ export default function VttViewer({ cues }: VttViewerProps) {
             // Is this cue a predecessor to a violation? (its end time is the problem)
             const isPredecessor = violationIndices.has(originalIndex + 1);
 
+            // Calculate overlap duration
+            let overlapSec = 0;
+            if (hasViolation && originalIndex > 0) {
+              const prevEnd = vttTimeToSeconds(cues[originalIndex - 1].endTime);
+              const currStart = vttTimeToSeconds(cue.startTime);
+              overlapSec = prevEnd - currStart;
+            } else if (isPredecessor) {
+              const currEnd = vttTimeToSeconds(cue.endTime);
+              const nextStart = vttTimeToSeconds(
+                cues[originalIndex + 1].startTime,
+              );
+              overlapSec = currEnd - nextStart;
+            }
+
             return (
               <li
                 key={originalIndex}
@@ -106,21 +120,21 @@ export default function VttViewer({ cues }: VttViewerProps) {
                   <span
                     class={hasViolation ? "text-red-600 font-semibold" : ""}
                   >
-                    {cue.startTime.split(".")[0]}
+                    {cue.startTime}
                   </span>
                   {" – "}
                   <span
                     class={isPredecessor ? "text-red-600 font-semibold" : ""}
                   >
-                    {cue.endTime.split(".")[0]}
+                    {cue.endTime}
                   </span>
                 </div>
                 <div class="text-gray-800 text-base leading-relaxed">
                   {cue.text}
                 </div>
-                {hasViolation && (
+                {(hasViolation || isPredecessor) && (
                   <div class="flex-shrink-0 text-xs text-red-600 font-medium pt-1">
-                    ⚠ overlap
+                    ⚠ overlap {overlapSec.toFixed(3)}s
                   </div>
                 )}
               </li>
