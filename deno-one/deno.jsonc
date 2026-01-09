@@ -8,7 +8,13 @@
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
     "@std/path": "jsr:@std/path@1",
-    "yargs": "npm:yargs@^18.0.0"
+    "yargs": "npm:yargs@^18.0.0",
+    // UI framework - centralized to ensure single version across all packages
+    "preact": "npm:preact@^10.22.0",
+    "preact/hooks": "npm:preact@^10.22.0/hooks",
+
+    // Dev/test dependencies (Deno has no devDependencies distinction)
+    "preact-render-to-string": "npm:preact-render-to-string@^6.0.0"
   },
 
   // Tasks run recursively across all workspace members
