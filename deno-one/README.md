@@ -1,54 +1,57 @@
-# Deno 2 typescript project
+# Deno Workspaces Monorepo
 
-## TODO
+A Deno workspace with shared packages and multiple apps.
 
-- [ ] Workspaces to share common code
-- [ ] dependency management - update/upgrade/outdated
+## Structure
 
-## Setup
+| Path             | Description                              |
+| ---------------- | ---------------------------------------- |
+| `packages/vtt/`  | VTT parsing library (`@deno-one/vtt`)    |
+| `packages/epub/` | EPUB handling library (`@deno-one/epub`) |
+| `apps/cli/`      | CLI app using yargs                      |
+| `apps/web/`      | Web app using Fresh + Tailwind           |
+
+## Quick Start
 
 ```bash
-mkdir deno-one
-cd deno-one
-deno init --name deno-one --template typescript
+# CLI examples (using -A for simplicity in dev)
+deno run -A apps/cli/cli.ts time 3661.5
+deno run -A apps/cli/cli.ts --help
+
+# Web app (Fresh)
+cd apps/web && deno task dev
 ```
-
-## Dependencies
-
-pure deno way with `deno add [--dev]`
-
-## VSCode Extensions
-
-- Deno (denoland.vscode-deno)
-
-Not sure how to handle default formatter yet. For JSON, .ts .json, .jsonc,...
-
-- Prettier
-- Deno
-- JavaScript and Typescript Language featres (default)
 
 ## Tasks
 
-List all available tasks:
+```bash
+deno task          # List all tasks
+deno task ci       # Format + lint + check + test
+deno task fmt      # Format code
+deno task check    # Type check (recursive)
+deno task test     # Run tests (recursive)
+deno task outdated # Check for outdated deps (recursive)
+```
+
+## Add a New Package
 
 ```bash
-deno task
+mkdir -p packages/foo
+echo '{"name":"@deno-one/foo","version":"0.1.0","exports":"./foo.ts"}' > packages/foo/deno.json
+touch packages/foo/foo.ts
 ```
 
-### Testing
+Import anywhere: `import { bar } from "@deno-one/foo";`
 
-We include testing example is JSDoc and markdown files
+## Manage Dependencies
 
 ```bash
-deno task test
+deno add @std/path           # Add to root (shared)
+cd packages/vtt && deno add  # Add to specific member
+deno outdated -r             # Check for updates (all members)
+deno outdated -r --update    # Update versions
 ```
 
-### Markdown test example
+## VSCode
 
-```ts
-import { assertEquals } from "jsr:@std/assert/equals";
-import { add } from "./main.ts";
-
-const sum = add(1, 2);
-assertEquals(sum, 3);
-```
+Install **Deno** extension (denoland.vscode-deno).

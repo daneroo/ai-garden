@@ -1,0 +1,9 @@
+{
+  "version": "0.1.0",
+  "tasks": {
+    // --allow-env required: yargs (npm) checks YARGS_MIN_NODE_VERSION at startup
+    // TODO: Remove when yargs supports Deno without env checks, or switch to Deno-native alternative
+    // using -A (for simplicity in dev)
+    "start": "deno run -A cli.ts"
+  }
+}
