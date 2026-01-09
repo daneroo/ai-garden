@@ -9,7 +9,7 @@ A Deno workspace with shared packages and multiple apps.
 | `packages/vtt/`  | VTT parsing library (`@deno-one/vtt`)    |
 | `packages/epub/` | EPUB handling library (`@deno-one/epub`) |
 | `apps/cli/`      | CLI app using yargs                      |
-| `apps/web/`      | Web app using Fresh + Tailwind           |
+| `apps/web/`      | Web app using Fresh 2.0 Native (No Vite) |
 
 ## Quick Start
 
@@ -18,9 +18,33 @@ A Deno workspace with shared packages and multiple apps.
 deno run -A apps/cli/cli.ts time 3661.5
 deno run -A apps/cli/cli.ts --help
 
-# Web app (Fresh)
-cd apps/web && deno task dev
+# Web app (Hono)
+cd apps/web && deno task start
 ```
+
+### Web App (`apps/web`)
+
+An SSR-Only web application using Fresh 2.0 Native Mode.
+
+- Zero NPM: Uses JSR imports (`jsr:@fresh/core`) exclusively. No `node_modules`.
+- JSR: Leverages the Deno-native package registry for security and performance.
+- No Build Step: Uses Deno's JIT compilation for Server-Side Rendering.
+- Architecture:
+  - Native: Uses `jsr:@fresh/core` directly with `deno serve`.
+  - SSR Only: Client-side hydration (Islands) is disabled because Fresh 2.0
+    requires Vite for bundling. Since we mandated "No Vite/NPM", we accept the
+    SSR Only constraint.
+
+#### Tasks (Development vs. Production)
+
+| Environment | Task              | Command                       | Description                                      |
+| :---------- | :---------------- | :---------------------------- | :----------------------------------------------- |
+| Development | `deno task dev`   | `deno serve --watch main.tsx` | Runs server with file watcher for hot reloading. |
+| Production  | `deno task start` | `deno serve main.tsx`         | Runs server in production mode.                  |
+
+> Note: This architecture is intentionally minimalist. By avoiding the build
+> step (Vite), we gain simplicity but trade off client-side interactivity
+> (Islands).
 
 ## Tasks
 
@@ -54,4 +78,4 @@ deno outdated -r --update    # Update versions
 
 ## VSCode
 
-Install **Deno** extension (denoland.vscode-deno).
+Install Deno extension (denoland.vscode-deno).

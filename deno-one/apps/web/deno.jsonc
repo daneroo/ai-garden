@@ -1,0 +1,18 @@
+{
+  "tasks": {
+    // Development: JIT compilation with hot-restart
+    "dev": "deno serve -A --watch main.tsx",
+    // Production: Optimized Native SSR (No Build Step needed for SSR-only)
+    "start": "deno serve -A --env main.tsx"
+  },
+  "imports": {
+    // Fresh 2.0 Native Core (No Vite, No Islands)
+    "fresh": "jsr:@fresh/core@^2.0.0",
+    "preact": "npm:preact@^10.22.0"
+  },
+  "compilerOptions": {
+    // Standard Preact JSX optimization for Deno
+    "jsx": "precompile",
+    "jsxImportSource": "preact"
+  }
+}

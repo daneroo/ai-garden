@@ -1,8 +1,8 @@
 {
-  // Required for Fresh + Vite + Tailwind (npm packages)
-  // TODO: Remove when Deno/Fresh supports running without node_modules
-  "nodeModulesDir": "auto",
-  "workspace": ["./packages/*", "./apps/*"],
+  "workspace": [
+    "./packages/*",
+    "./apps/*"
+  ],
 
   // Shared imports inherited by all workspace members
   "imports": {
