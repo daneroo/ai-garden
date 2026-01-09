@@ -9,7 +9,7 @@ A Deno workspace with shared packages and multiple apps.
 | `packages/vtt/`  | VTT parsing library (`@deno-one/vtt`)    |
 | `packages/epub/` | EPUB handling library (`@deno-one/epub`) |
 | `apps/cli/`      | CLI app using yargs                      |
-| `apps/web/`      | **Prosody** (Fresh 2.0 Native Web App)   |
+| `apps/web/`      | **Prosody** (Fresh 2.0 Web App)          |
 
 ## Quick Start
 
@@ -19,7 +19,7 @@ deno run -A apps/cli/cli.ts time 3661.5
 deno run -A apps/cli/cli.ts --help
 
 # Prosody (Web App)
-## development
+## development (with Islands)
 cd apps/web && deno task dev
 ## production
 cd apps/web && deno task start
@@ -27,29 +27,80 @@ cd apps/web && deno task start
 
 ### Prosody (`apps/web`)
 
-An SSR-Only web application using Fresh 2.0 Native Mode.
+A web application using Fresh 2.0 with Islands (interactive components).
 
-- Zero NPM: Uses JSR imports (`jsr:@fresh/core`) exclusively. No `node_modules`.
-- JSR: Leverages the Deno-native package registry for security and performance.
-- No Build Step: Uses Deno's JIT compilation for Server-Side Rendering.
-- Architecture:
-  - Native: Uses `jsr:@fresh/core` directly with `deno serve`.
-  - SSR Only: Client-side hydration (Islands) is disabled because Fresh 2.0
-    requires Vite for bundling. Since we mandated "No Vite/NPM", we accept the
-    SSR Only constraint.
+#### Architecture: Zero NPM, Zero Vite
 
-#### Tasks (Development vs. Production)
+We wanted client-side interactivity (Islands) **without** the usual Node/Vite
+toolchain explosion. Here's how we achieved it:
 
-| Environment | Task              | Command                       | Description                                      |
-| :---------- | :---------------- | :---------------------------- | :----------------------------------------------- |
-| Development | `deno task dev`   | `deno serve --watch main.tsx` | Runs server with file watcher for hot reloading. |
-| Production  | `deno task start` | `deno serve main.tsx`         | Runs server in production mode.                  |
+| Constraint          | Solution                                                              |
+| ------------------- | --------------------------------------------------------------------- |
+| No `node_modules`   | All imports via JSR (`jsr:@fresh/core`) or Deno specifiers            |
+| No `vite.config.ts` | Use Fresh's built-in `Builder` from `fresh/dev` (Deno-native bundler) |
+| No `package.json`   | Only `deno.jsonc` for tasks and imports                               |
+| Islands hydration   | `dev.ts` uses `Builder.listen()` to JIT-compile island components     |
 
-> Note: This architecture is intentionally minimalist. By avoiding the build
-> step (Vite), we gain simplicity but trade off client-side interactivity
-> (Islands).
+#### Key Files
 
-## Tasks
+| File            | Purpose                                                  |
+| --------------- | -------------------------------------------------------- |
+| `main.tsx`      | App routes and SSR (exports `app`)                       |
+| `dev.ts`        | Development server (Builder + file watching)             |
+| `prod.ts`       | Production server (Builder without watching)             |
+| `routes/*.tsx`  | Server-rendered page components                          |
+| `islands/*.tsx` | Client-side interactive components (hydrated in browser) |
+
+#### Why `dev.ts` is Necessary
+
+<!-- deno-fmt-ignore-file -->
+
+```ts ignore
+// dev.ts - Required for Islands (Fresh's Builder bundles client-side JS)
+import { Builder } from "fresh/dev";
+import { app } from "./main.tsx";
+
+const builder = new Builder();
+await builder.listen(() => Promise.resolve(app));
+```
+
+- **Without `dev.ts`**: `deno serve main.tsx` renders SSR but islands are dead
+  (no client JS).
+- **With `dev.ts`**: `Builder` compiles `islands/*.tsx` into browser bundles
+  automatically.
+
+#### Island Constraints
+
+Islands cannot import modules that use Node APIs (like `node:fs/promises`). If
+your island needs logic from a server-side library, **inline it** or create a
+browser-safe version.
+
+Example: We inlined `vttTimeToSeconds()` in `VttViewer.tsx` to avoid importing
+`@deno-one/vtt` (which uses `node:fs`).
+
+#### Tasks
+
+| Environment | Task              | Command                            | Description                         |
+| :---------- | :---------------- | :--------------------------------- | :---------------------------------- |
+| Development | `deno task dev`   | `deno run -A --env --watch dev.ts` | Builder + file watching + Islands   |
+| Production  | `deno task start` | `deno run -A --env prod.ts`        | Builder + Islands (no file watcher) |
+
+#### Compiler Options
+
+Fresh Islands require `jsxPrecompileSkipElements` in `deno.jsonc`:
+
+```jsonc
+"compilerOptions": {
+  "jsx": "precompile",
+  "jsxImportSource": "preact",
+  "jsxPrecompileSkipElements": ["a", "img", "source", "body", "html", "head", "title", "meta", "script", "link", "style", "base", "noscript", "template"]
+}
+```
+
+This tells Deno's JSX compiler to skip certain elements that Fresh handles
+specially.
+
+## Monorepo Tasks
 
 ```bash
 deno task          # List all tasks

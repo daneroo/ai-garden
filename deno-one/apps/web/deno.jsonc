@@ -1,9 +1,9 @@
 {
   "tasks": {
-    // Development: JIT compilation with hot-restart
+    // Development: JIT compilation with file watching
     "dev": "deno run -A --env --watch dev.ts",
-    // Production: Optimized Native SSR (No Build Step needed for SSR-only)
-    "start": "deno serve -A --env main.tsx"
+    // Production: Build islands and serve
+    "start": "deno run -A --env prod.ts"
   },
   "imports": {
     // Fresh 2.0 Native Core (No Vite, No Islands)
