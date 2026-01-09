@@ -16,8 +16,9 @@ export default function Home(props: HomeProps) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Prosody</title>
-        <script src="https://cdn.tailwindcss.com"></script>
+        <title>Prosodio</title>
+        {/* Built Tailwind CSS */}
+        <link rel="stylesheet" href="/tailwind.dist.css" />
       </head>
       <body class="bg-gray-50 min-h-screen">
         <div class="p-8 font-sans">
@@ -26,7 +27,7 @@ export default function Home(props: HomeProps) {
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
                 <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight">
-                  Prosody
+                  Prosodio
                 </h1>
                 <p class="text-gray-500 mt-2">
                   Fresh 2.0 Native • SSR Only • Deno Workspace

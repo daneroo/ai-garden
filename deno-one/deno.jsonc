@@ -3,6 +3,8 @@
     "./packages/*",
     "./apps/*"
   ],
+  // Enable npm binary resolution (Deno manages node_modules automatically)
+  "nodeModulesDir": "auto",
 
   // Shared imports inherited by all workspace members
   "imports": {
@@ -14,6 +16,7 @@
     "preact/hooks": "npm:preact@^10.22.0/hooks",
 
     // Dev/test dependencies (Deno has no devDependencies distinction)
+    "tailwindcss": "npm:tailwindcss@^4.1.18",
     "preact-render-to-string": "npm:preact-render-to-string@^6.0.0"
   },
 

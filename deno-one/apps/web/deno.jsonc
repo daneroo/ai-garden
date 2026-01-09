@@ -1,9 +1,9 @@
 {
   "tasks": {
-    // Development: JIT compilation with file watching
-    "dev": "deno run -A --env --watch dev.ts",
-    // Production: Build islands and serve
-    "start": "deno run -A --env prod.ts"
+    // Development: Fresh JIT + Tailwind Watcher
+    "dev": "deno run -A --env --watch server.ts --watch",
+    // Production: Fresh Build + Tailwind Build + Serve
+    "start": "deno run -A --env server.ts"
   },
   "imports": {
     // Fresh 2.0 Native Core (No Vite, No Islands)

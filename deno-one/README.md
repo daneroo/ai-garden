@@ -2,6 +2,16 @@
 
 A Deno workspace with shared packages and multiple apps.
 
+## TODO
+
+- [ ]Consolidate/refactor docs - create docs/WORKSPACE-MONOREPO.md
+  this should include most of the fresh/tailwind shenanigans we figured out
+  as well as the dependencies management, and directory structure and tasks conventions
+- [ ] rename deno-one to prosodio - this is our new blessed name!
+  - [x] update all src/references to use prosodio
+- [ ] make a distinct `packages/` sibling directory for `components/`
+  - [ ] make the `deno-one/apps/web/styles/tailwind.src.css` refer to all those components
+
 ## Structure
 
 | Path             | Description                              |
@@ -9,7 +19,7 @@ A Deno workspace with shared packages and multiple apps.
 | `packages/vtt/`  | VTT parsing library (`@deno-one/vtt`)    |
 | `packages/epub/` | EPUB handling library (`@deno-one/epub`) |
 | `apps/cli/`      | CLI app using yargs                      |
-| `apps/web/`      | **Prosody** (Fresh 2.0 Web App)          |
+| `apps/web/`      | **Prosodio** (Fresh 2.0 Web App)          |
 
 ## Quick Start
 
@@ -18,14 +28,14 @@ A Deno workspace with shared packages and multiple apps.
 deno run -A apps/cli/cli.ts time 3661.5
 deno run -A apps/cli/cli.ts --help
 
-# Prosody (Web App)
+# Prosodio (Web App)
 ## development (with Islands)
-cd apps/web && deno task dev
+(cd apps/web && deno task dev)
 ## production
-cd apps/web && deno task start
+(cd apps/web && deno task start)
 ```
 
-### Prosody (`apps/web`)
+### Prosodio (`apps/web`)
 
 A web application using Fresh 2.0 with Islands (interactive components).
 

@@ -1,0 +1,15 @@
+/* Tailwind CSS v4 input */
+@import "tailwindcss";
+
+/* Explicitly register ALL content sources relative to this file (apps/web/styles/) */
+
+/* Local App Sources */
+@source "../routes";
+@source "../islands";
+
+/* 
+  External Package Sources
+  This explicitly registers shared packages (like `timer`) to ensure their 
+  Tailwind classes are scanned and included in the build.
+*/
+@source "../../../packages/timer";
