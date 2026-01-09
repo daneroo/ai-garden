@@ -10,7 +10,7 @@ import { join, resolve } from "@std/path";
 
 import Detail from "./routes/detail.tsx";
 
-const app = new App();
+export const app = new App();
 
 app.use(staticFiles());
 
