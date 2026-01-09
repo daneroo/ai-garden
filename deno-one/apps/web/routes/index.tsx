@@ -1,4 +1,5 @@
 import { formatTimestamp, type VttSummary } from "@deno-one/vtt";
+import Timer from "../islands/Timer.tsx";
 
 interface HomeProps {
   time: string;
@@ -31,13 +32,16 @@ export default function Home(props: HomeProps) {
                   Fresh 2.0 Native • SSR Only • Deno Workspace
                 </p>
               </div>
-              <div class="px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200 text-sm md:text-right">
-                <span class="block text-gray-400 text-xs uppercase tracking-wide font-semibold">
-                  Shared Library Output
-                </span>
-                <span class="font-mono text-green-600 font-bold text-lg">
-                  {time}
-                </span>
+              <div class="flex items-center gap-6">
+                <Timer />
+                <div class="px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200 text-sm md:text-right">
+                  <span class="block text-gray-400 text-xs uppercase tracking-wide font-semibold">
+                    Shared Library Output
+                  </span>
+                  <span class="font-mono text-green-600 font-bold text-lg">
+                    {time}
+                  </span>
+                </div>
               </div>
             </div>
 
