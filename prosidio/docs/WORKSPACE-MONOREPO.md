@@ -150,7 +150,7 @@ Components using JSX need compiler options:
 
 Any workspace member can import from another using the package name:
 
-```ts
+```ts ignore
 import { parseVtt } from "@deno-one/vtt";
 import { Timer } from "@deno-one/timer";
 ```

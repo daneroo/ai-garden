@@ -4,8 +4,11 @@
     "./components/*",
     "./apps/*"
   ],
-  // Exclude docs from checking - they contain exemplar code with @deno-one scope
-  "exclude": ["./docs"],
+  // No global excludes needed - exemplar code in docs uses `ignore` attribute
+  // Exclude generated CSS from formatting
+  "fmt": {
+    "exclude": ["./apps/web/static/tailwind.dist.css"]
+  },
   // Enable npm binary resolution (Deno manages node_modules automatically)
   // this is for tailwind only so far
   "nodeModulesDir": "auto",

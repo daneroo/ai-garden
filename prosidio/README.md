@@ -4,8 +4,9 @@ A Deno workspace with shared packages and multiple apps.
 
 ## TODO
 
-- [ ] fix linting for `prosidio/apps/web/static/tailwind.dist.css`
-- [ ] Decide if we want to keep excluding: "exclude": ["./docs"], for formatting?
+- [x] fix linting for `prosidio/apps/web/static/tailwind.dist.css` ✓
+- [x] ~~Decide if we want to keep excluding: "exclude": ["./docs"]~~ → Using
+      `ignore` attribute on exemplar code blocks instead ✓
 - [x] rename deno-one to prosidio ✓
   - [x] update all src/references to use prosidio
 - [x] Consolidate/refactor docs - create docs/WORKSPACE-MONOREPO.md this should
