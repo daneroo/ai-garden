@@ -1,9 +1,11 @@
 {
   "workspace": [
     "./packages/*",
+    "./components/*",
     "./apps/*"
   ],
   // Enable npm binary resolution (Deno manages node_modules automatically)
+  // this is for tailwind only so far
   "nodeModulesDir": "auto",
 
   // Shared imports inherited by all workspace members

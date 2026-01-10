@@ -12,4 +12,5 @@
   This explicitly registers shared packages (like `timer`) to ensure their 
   Tailwind classes are scanned and included in the build.
 */
-@source "../../../packages/timer";
+
+@source "../../../components";

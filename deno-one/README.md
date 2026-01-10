@@ -9,9 +9,10 @@ A Deno workspace with shared packages and multiple apps.
       the dependencies management, and directory structure and tasks conventions
 - [ ] rename deno-one to prosodio - this is our new blessed name!
   - [x] update all src/references to use prosodio
-- [ ] make a distinct `packages/` sibling directory for `components/`
-  - [ ] make the `deno-one/apps/web/styles/tailwind.src.css` refer to all those
+- [x] make a distinct `packages/` sibling directory for `components/`
+  - [x] make the `deno-one/apps/web/styles/tailwind.src.css` refer to all those
         components
+- [x] Move Timer to components
 
 ## Directory Structure
 
