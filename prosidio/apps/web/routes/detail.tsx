@@ -1,4 +1,4 @@
-import { formatTimestamp, type VttCue, type VttSummary } from "@deno-one/vtt";
+import { formatTimestamp, type VttCue, type VttSummary } from "@prosidio/vtt";
 import VttViewer from "../islands/VttViewer.tsx";
 
 interface DetailProps {

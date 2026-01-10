@@ -4,8 +4,10 @@ A Deno workspace with shared packages and multiple apps.
 
 ## TODO
 
-- [ ] rename deno-one to prosodio - this is our new blessed name!
-  - [x] update all src/references to use prosodio
+- [ ] fix linting for `prosidio/apps/web/static/tailwind.dist.css`
+- [ ] Decide if we want to keep excluding: "exclude": ["./docs"], for formatting?
+- [x] rename deno-one to prosidio ✓
+  - [x] update all src/references to use prosidio
 - [x] Consolidate/refactor docs - create docs/WORKSPACE-MONOREPO.md this should
       include most of the fresh/tailwind shenanigans we figured out as well as
       the dependencies management, and directory structure and tasks conventions
@@ -59,11 +61,11 @@ because native plugins don't yet support Tailwind v4, we use a custom
 
 ```bash
 mkdir -p packages/foo
-echo '{"name":"@deno-one/foo","version":"0.1.0","exports":"./foo.ts"}' > packages/foo/deno.json
+echo '{"name":"@prosidio/foo","version":"0.1.0","exports":"./foo.ts"}' > packages/foo/deno.json
 touch packages/foo/foo.ts
 ```
 
-Import anywhere: `import { bar } from "@deno-one/foo";`
+Import anywhere: `import { bar } from "@prosidio/foo";`
 
 ## Manage Dependencies
 

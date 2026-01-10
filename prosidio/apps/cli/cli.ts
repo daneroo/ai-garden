@@ -1,7 +1,7 @@
 import yargs from "yargs";
 import process from "node:process";
-import { formatTimestamp, parseVtt } from "@deno-one/vtt";
-import { getMetadata } from "@deno-one/epub";
+import { formatTimestamp, parseVtt } from "@prosidio/vtt";
+import { getMetadata } from "@prosidio/epub";
 
 if (import.meta.main) {
   await main();

@@ -4,6 +4,8 @@
     "./components/*",
     "./apps/*"
   ],
+  // Exclude docs from checking - they contain exemplar code with @deno-one scope
+  "exclude": ["./docs"],
   // Enable npm binary resolution (Deno manages node_modules automatically)
   // this is for tailwind only so far
   "nodeModulesDir": "auto",

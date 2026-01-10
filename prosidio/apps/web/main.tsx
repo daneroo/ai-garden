@@ -5,7 +5,7 @@ import {
   readVtt,
   summarizeVtt,
   type VttSummary,
-} from "@deno-one/vtt";
+} from "@prosidio/vtt";
 import { join, resolve } from "@std/path";
 
 import Detail from "./routes/detail.tsx";
