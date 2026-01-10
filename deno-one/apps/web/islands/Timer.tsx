@@ -10,5 +10,5 @@
  * This allows the Timer logic to live in a reusable package while
  * satisfying Fresh's island requirements.
  */
-import { Timer } from "@prosidio/timer";
+import { Timer } from "@deno-one/timer";
 export default Timer;

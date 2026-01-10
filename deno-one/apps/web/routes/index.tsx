@@ -1,4 +1,4 @@
-import { formatTimestamp, type VttSummary } from "@prosidio/vtt";
+import { formatTimestamp, type VttSummary } from "@deno-one/vtt";
 import Timer from "../islands/Timer.tsx";
 
 interface HomeProps {

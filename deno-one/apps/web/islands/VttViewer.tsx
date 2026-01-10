@@ -6,7 +6,7 @@ interface VttCue {
   text: string;
 }
 
-// Inline to avoid importing @prosidio/vtt which pulls in node:fs/promises
+// Inline to avoid importing @deno-one/vtt which pulls in node:fs/promises
 // Handles both MM:SS.mmm and HH:MM:SS.mmm formats
 function vttTimeToSeconds(time: string): number {
   const parts = time.split(":");

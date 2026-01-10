@@ -54,11 +54,11 @@ because native plugins don't yet support Tailwind v4, we use a custom
 
 ```bash
 mkdir -p packages/foo
-echo '{"name":"@prosidio/foo","version":"0.1.0","exports":"./foo.ts"}' > packages/foo/deno.json
+echo '{"name":"@deno-one/foo","version":"0.1.0","exports":"./foo.ts"}' > packages/foo/deno.json
 touch packages/foo/foo.ts
 ```
 
-Import anywhere: `import { bar } from "@prosidio/foo";`
+Import anywhere: `import { bar } from "@deno-one/foo";`
 
 ## Manage Dependencies
 
