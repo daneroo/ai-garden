@@ -4,20 +4,12 @@ A Deno workspace with shared packages and multiple apps.
 
 ## TODO
 
-- [x] fix linting for `prosidio/apps/web/static/tailwind.dist.css` ✓
-- [x] ~~Decide if we want to keep excluding: "exclude": ["./docs"]~~ → Using
-      `ignore` attribute on exemplar code blocks instead ✓
-- [x] rename deno-one to prosidio ✓
-  - [x] update all src/references to use prosidio
-- [x] Consolidate/refactor docs - create docs/WORKSPACE-MONOREPO.md this should
-      include most of the fresh/tailwind shenanigans we figured out as well as
-      the dependencies management, and directory structure and tasks conventions
-- [x] make a distinct `packages/` sibling directory for `components/`
-  - [x] make the `deno-one/apps/web/styles/tailwind.src.css` refer to all those
-        components
-- [x] Move Timer to components
+- [ ] Undo - rename prosidio back to deno-one
+  - [ ] update all src/references to use deno-one
 
 ## Directory Structure
+
+See `docs/WORKSPACE-DENO.md` for a detailed directory structure.
 
 - `packages`: libraries like `vtt` and `epub`
 - `apps`: both cli and web apps
