@@ -4,8 +4,7 @@ A Deno workspace with shared packages and multiple apps.
 
 ## TODO
 
-- [ ] Undo - rename prosidio back to deno-one
-  - [ ] update all src/references to use deno-one
+- [ ] Create a bun clone of this workspace
 
 ## Directory Structure
 
