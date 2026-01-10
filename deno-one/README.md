@@ -4,11 +4,11 @@ A Deno workspace with shared packages and multiple apps.
 
 ## TODO
 
-- [ ] Consolidate/refactor docs - create docs/WORKSPACE-MONOREPO.md this should
-      include most of the fresh/tailwind shenanigans we figured out as well as
-      the dependencies management, and directory structure and tasks conventions
 - [ ] rename deno-one to prosodio - this is our new blessed name!
   - [x] update all src/references to use prosodio
+- [x] Consolidate/refactor docs - create docs/WORKSPACE-MONOREPO.md this should
+      include most of the fresh/tailwind shenanigans we figured out as well as
+      the dependencies management, and directory structure and tasks conventions
 - [x] make a distinct `packages/` sibling directory for `components/`
   - [x] make the `deno-one/apps/web/styles/tailwind.src.css` refer to all those
         components
