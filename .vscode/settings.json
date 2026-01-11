@@ -32,5 +32,9 @@
   "[typescript]": {
     // "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[markdown]": {
+    // THis is to get propoer tble formatting!
+    "editor.defaultFormatter": "denoland.vscode-deno"
   }
 }
