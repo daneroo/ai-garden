@@ -1,0 +1,13 @@
+{
+  "name": "@bun-one/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "cli": "./cli.ts"
+  },
+  "dependencies": {
+    "@bun-one/vtt": "workspace:*",
+    "@types/yargs": "^17.0.35",
+    "yargs": "^18.0.0"
+  }
+}

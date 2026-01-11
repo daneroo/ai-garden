@@ -1,0 +1,36 @@
+{
+  "name": "bun-one",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "components/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "test": "bun test",
+    "check": "tsc --noEmit",
+    "fmt": "bunx prettier --write .",
+    "fmt:check": "bunx prettier --check .",
+    "lint": "bunx eslint .",
+    "ci": "bun run fmt:check && bun run lint && bun run check && bun run test",
+    "clean-reinstall": "rm -rf node_modules **/node_modules && bun install",
+    "outdated": "bun outdated -r"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@happy-dom/global-registrator": "^20.1.0",
+    "@testing-library/react": "^16.3.1",
+    "@types/bun": "latest",
+    "@types/react": "^19.2.8",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.2",
+    "happy-dom": "^20.1.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "typescript-eslint": "^8.52.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
