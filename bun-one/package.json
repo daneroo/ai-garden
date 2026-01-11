@@ -10,6 +10,7 @@
   "scripts": {
     "test": "bun test",
     "check": "tsc --noEmit",
+    "check:starlight": "echo Fix: bun run --cwd apps/starlight check",
     "fmt": "bunx prettier --write .",
     "fmt:check": "bunx prettier --check .",
     "lint": "bunx eslint .",

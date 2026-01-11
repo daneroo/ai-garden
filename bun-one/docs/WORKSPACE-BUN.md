@@ -226,6 +226,25 @@ packages for Tailwind classes, add a `@source` directive to your CSS:
 This is why UI components are in `components/` (not `packages/`) - it keeps the
 `@source` path clean and separates styled components from pure logic libraries.
 
+### Astro Starlight (Documentation Sites)
+
+Use the `starlight/tailwind` template for pre-configured Tailwind support:
+
+```bash
+bun create astro apps/starlight --template starlight/tailwind --no-git --install
+
+# Add React integration for shared components
+cd apps/starlight && bun add @astrojs/react react react-dom
+
+# Add workspace dependency
+# Edit package.json: "@bun-one/timer": "workspace:*"
+cd ../.. && bun install
+```
+
+**Note:** Astro uses virtual modules (`astro:content`) that the root `tsc`
+doesn't understand. Starlight is excluded from root type checking - use
+`astro check` instead.
+
 ---
 
 ## Package Configuration
@@ -323,6 +342,39 @@ bun run apps/cli/cli.ts --help
 
 # Run specific package tests
 bun test packages/vtt
+```
+
+---
+
+## Configuration Exceptions
+
+### TypeScript (`tsconfig.json`)
+
+Astro/Starlight uses virtual modules (`astro:content`) that the root `tsc`
+doesn't understand. Starlight apps are excluded from root type checking:
+
+```json
+"exclude": ["apps/starlight"]
+```
+
+**Astro Check:** A placeholder script exists for future integration:
+
+```json
+"check:starlight": "echo Fix: bun run --cwd apps/starlight check"
+```
+
+> **Known Issue:** Vite version conflict between `@tailwindcss/vite` (vite@7)
+> and Astro (vite@6) causes type errors in `astro.config.mjs`. The dev server
+> works correctly; only `astro check` fails. Remove the `echo Fix:` placeholder
+> once versions align.
+
+### ESLint (`eslint.config.js`)
+
+Generated `.astro/` directories contain auto-generated code that fails lint
+rules:
+
+```javascript
+ignores: ["node_modules/", "dist/", "out/", "**/.astro/"];
 ```
 
 ---

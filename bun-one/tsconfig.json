@@ -25,5 +25,8 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
-  }
+  },
+  // Astro/Starlight uses virtual modules (astro:content) that tsc doesn't understand.
+  // Starlight has its own build system - type checking happens via `astro check`.
+  "exclude": ["apps/starlight"]
 }
