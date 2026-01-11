@@ -12,9 +12,9 @@ from solving a specific set of constraints:
 **Core Requirements:**
 
 - Shared TypeScript libraries consumable by all workspace members
-- Shared Preact components with proper JSX compilation
-- A CLI application using shared packages
-- A Fresh 2.0 web application with interactive islands
+- Shared Web (React-like)components with proper JSX/TSX compilation
+- Multiple CLI applications using shared packages
+- Multiple web applications with - server side and client side components
 
 **Nice-to-Haves:**
 
