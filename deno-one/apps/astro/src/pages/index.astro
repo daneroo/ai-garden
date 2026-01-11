@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import DocLayout from "../layouts/DocLayout.astro";
+
+const docs = await getCollection("docs");
+---
+
+<DocLayout title="Benchmark Docs">
+  <h1>Whisper Benchmark Documentation</h1>
+  <p>Technical documentation for audiobook transcription benchmarks.</p>
+
+  <h2>VTT Library</h2>
+  <p>View raw VTT output files from the benchmark.</p>
+  <ul>
+    <li><a href="/vtt">Browse VTT Files</a></li>
+  </ul>
+
+  <h2>Documents</h2>
+  <p>Read about the benchmarks and methodologies.</p>
+  <ul>
+    <li><a href="/docs">Browse Documentation</a></li>
+  </ul>
+</DocLayout>

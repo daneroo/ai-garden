@@ -1,0 +1,62 @@
+---
+import DocLayout from "../../layouts/DocLayout.astro";
+import DocMetadata from "../../components/DocMetadata.astro";
+import { resolve, join } from "node:path";
+import { stat } from "node:fs/promises";
+
+export async function getStaticPaths() {
+  const VTT_DIR = resolve(Deno.cwd(), "../../../whisper-bench/data/output");
+  const paths = [];
+  
+  try {
+    for (const dirEntry of Deno.readDirSync(VTT_DIR)) {
+      if (dirEntry.isFile && dirEntry.name.endsWith(".vtt")) {
+        paths.push({ 
+          params: { slug: dirEntry.name },
+          props: { filename: dirEntry.name } 
+        });
+      }
+    }
+  } catch (e) {
+    console.error("Error reading VTT directory for static paths:", e);
+  }
+  
+  return paths;
+}
+
+const { slug } = Astro.params;
+const { filename } = Astro.props;
+
+const VTT_DIR = resolve(Deno.cwd(), "../../../whisper-bench/data/output");
+const filePath = join(VTT_DIR, filename);
+
+let content = "";
+let fileSize = 0;
+let lastModified;
+
+try {
+  content = await Deno.readTextFile(filePath);
+  const fileStat = await stat(filePath);
+  fileSize = fileStat.size;
+  lastModified = new Date(fileStat.mtimeMs);
+} catch (e) {
+  content = `Error reading file: ${e}`;
+}
+---
+
+<DocLayout title={filename}>
+  <h1>{filename}</h1>
+  
+  <DocMetadata 
+    File={filename}
+    Size={fileSize + " bytes"}
+    Modified={lastModified}
+    Path={filePath}
+  />
+
+  <pre style="background: var(--bg-secondary); padding: 1rem; overflow-x: auto; border-radius: 4px;"><code>{content}</code></pre>
+  
+  <p style="margin-top: 2rem;">
+    <a href="/vtt">← Back to Library</a>
+  </p>
+</DocLayout>

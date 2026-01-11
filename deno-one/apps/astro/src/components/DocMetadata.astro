@@ -1,0 +1,47 @@
+---
+interface Props {
+  [key: string]: string | Date | undefined;
+}
+
+const props = Astro.props;
+const entries = Object.entries(props).filter(([_, value]) => value !== undefined);
+---
+
+{entries.length > 0 && (
+  <dl class="metadata-grid">
+    {entries.map(([key, value]) => (
+      <>
+        <dt>{key.charAt(0).toUpperCase() + key.slice(1)}</dt>
+        <dd>
+          {value instanceof Date ? (
+            value.toLocaleDateString()
+          ) : (
+            <code>{value}</code>
+          )}
+        </dd>
+      </>
+    ))}
+  </dl>
+)}
+
+<style>
+  .metadata-grid {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 4px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 1rem;
+    align-items: baseline;
+  }
+
+  dt {
+    font-weight: bold;
+    color: var(--text-muted);
+  }
+
+  dd {
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,185 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <!-- Prevent flash of wrong theme -->
+    <script is:inline>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        // If stored is 'system' or null, we don't set data-theme initially, ensuring system pref applies via CSS media query
+        if (stored === 'dark' || (!stored && prefersDark)) {
+           document.documentElement.dataset.theme = 'dark';
+        } else if (stored === 'light') {
+           document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
+    
+    <!-- 1. Global styles for Markdown content (tables, etc.) and Variables -->
+    <style is:global>
+      /* Light theme (default) */
+      :root {
+        --bg: #f8f9fa;
+        --bg-secondary: #e9ecef;
+        --text: #212529;
+        --text-muted: #6c757d;
+        --accent: #0066cc;
+        --border: #dee2e6;
+      }
+
+      /* Dark theme */
+      :root[data-theme="dark"] {
+        --bg: #1a1a2e;
+        --bg-secondary: #2a2a4a;
+        --text: #eaeaea;
+        --text-muted: #adb5bd;
+        --accent: #4cc9f0;
+        --border: #444;
+      }
+
+      /* System preference when no explicit choice (or explicit system choice) */
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #1a1a2e;
+          --bg-secondary: #2a2a4a;
+          --text: #eaeaea;
+          --text-muted: #adb5bd;
+          --accent: #4cc9f0;
+          --border: #444;
+        }
+      }
+
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem;
+        line-height: 1.6;
+        transition: background 0.2s, color 0.2s;
+      }
+
+      /* Global Markdown Styles */
+      h1, h2, h3 {
+        color: var(--accent);
+      }
+      a {
+        color: var(--accent);
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 1rem 0;
+      }
+      th, td {
+        border: 1px solid var(--border);
+        padding: 0.5rem 1rem;
+        text-align: left;
+      }
+      th {
+        background: var(--bg-secondary);
+      }
+      code {
+        background: var(--bg-secondary);
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+      }
+    </style>
+
+    <!-- 2. Scoped styles for Layout components (Nav, Button) -->
+    <style>
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .theme-toggle {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 0.4rem 0.8rem;
+        cursor: pointer;
+        color: var(--text);
+        font-size: 0.9rem;
+        transition: background 0.2s;
+      }
+
+      .theme-toggle:hover {
+        background: var(--accent);
+        color: var(--bg);
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/">← Home</a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme">
+        Waiting...
+      </button>
+    </nav>
+    <main>
+      <slot />
+    </main>
+
+    <!-- Theme toggle logic -->
+    <script>
+      const toggle = document.getElementById('theme-toggle');
+      const themes = ['light', 'dark', 'system'];
+
+      function getCurrentTheme() {
+        return localStorage.getItem('theme') || 'system';
+      }
+
+      function getNextTheme(current: string) {
+        const idx = themes.indexOf(current);
+        return themes[(idx + 1) % themes.length];
+      }
+
+      function applyTheme(theme: string) {
+        if (theme === 'system') {
+          delete document.documentElement.dataset.theme;
+          localStorage.removeItem('theme');
+        } else {
+          document.documentElement.dataset.theme = theme;
+          localStorage.setItem('theme', theme);
+        }
+        updateButton(theme);
+      }
+
+      function updateButton(theme: string) {
+        if (!toggle) return;
+        const icons: Record<string, string> = { light: '☀️', dark: '🌙', system: '🌓' };
+        // Capitalize first letter
+        const label = theme.charAt(0).toUpperCase() + theme.slice(1);
+        toggle.textContent = `${icons[theme]} ${label}`;
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const current = getCurrentTheme();
+          const next = getNextTheme(current);
+          applyTheme(next);
+        });
+
+        // Initialize button text immediately
+        updateButton(getCurrentTheme());
+      }
+    </script>
+  </body>
+</html>

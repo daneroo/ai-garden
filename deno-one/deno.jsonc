@@ -24,7 +24,10 @@
 
     // Dev/test dependencies (Deno has no devDependencies distinction)
     "tailwindcss": "npm:tailwindcss@^4.1.18",
-    "preact-render-to-string": "npm:preact-render-to-string@^6.0.0"
+    "preact-render-to-string": "npm:preact-render-to-string@^6.0.0",
+    // Workaround: Astro's p-limit dependency requires yocto-queue, but Deno's
+    // npm resolution doesn't auto-resolve this transitive dep in workspace context
+    "yocto-queue": "npm:yocto-queue@^1.0.0"
   },
 
   // Tasks run recursively across all workspace members
