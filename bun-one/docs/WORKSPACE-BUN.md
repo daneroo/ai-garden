@@ -211,6 +211,21 @@ cd apps/my-app && bun run dev
 > **Note**: `bun add @scope/pkg` tries npm first. For workspace deps, manually
 > add `"workspace:*"` to package.json and run `bun install` from root.
 
+### Tailwind CSS with Shared Components
+
+Tailwind v4 ignores `node_modules` by default. To scan workspace component
+packages for Tailwind classes, add a `@source` directive to your CSS:
+
+```css
+@import "tailwindcss";
+
+/* Scan shared components for Tailwind classes */
+@source "../../../components";
+```
+
+This is why UI components are in `components/` (not `packages/`) - it keeps the
+`@source` path clean and separates styled components from pure logic libraries.
+
 ---
 
 ## Package Configuration
