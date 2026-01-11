@@ -5,7 +5,6 @@ A Deno workspace with shared packages and multiple apps.
 ## TODO
 
 - [ ] Create a bun clone of this workspace
-- [x] Create an Astro Spike
 
 ## Directory Structure
 
