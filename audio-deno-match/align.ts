@@ -17,7 +17,7 @@ export function alignWords(
   textWords: string[],
   maxSkip: number,
   cueStartIndex: number = 0,
-  textStartIndex: number = 0
+  textStartIndex: number = 0,
 ): AlignmentResult {
   const m = cueWords.length;
   const n = textWords.length;
@@ -157,7 +157,7 @@ export function alignWords(
 
 export function alignedMatchingRate(alignedMatches: AlignedMatch[]): number {
   const matchedCount = alignedMatches.filter(
-    (match) => match.type === "match"
+    (match) => match.type === "match",
   ).length;
   return matchedCount / alignedMatches.length;
 }
@@ -177,7 +177,7 @@ function red(str: string): string {
 export function prettyPrint(
   alignedMatches: AlignedMatch[],
   cueWords: string[],
-  textWords: string[]
+  textWords: string[],
 ): void {
   let cueLine = "";
   let textLine = "";
@@ -239,10 +239,10 @@ export function prettyPrint(
   outputAndReset();
   const matchingRate = alignedMatchingRate(alignedMatches);
   const matchedCount = alignedMatches.filter(
-    (match) => match.type === "match"
+    (match) => match.type === "match",
   ).length;
   console.log(
-    `Matching Rate: ${matchingRate} matches: ${matchedCount} of (${cueWords.length}, ${textWords.length})`
+    `Matching Rate: ${matchingRate} matches: ${matchedCount} of (${cueWords.length}, ${textWords.length})`,
   );
 }
 

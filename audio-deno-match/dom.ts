@@ -1,8 +1,4 @@
-import {
-  DOMParser,
-  type HTMLDocument,
-  Node,
-} from 'https://deno.land/x/deno_dom@v0.1.45/deno-dom-wasm.ts';
+import { DOMParser, type HTMLDocument, Node } from "@b-fuze/deno-dom";
 
 export type { HTMLDocument };
 // This returns an HTMLDocument object

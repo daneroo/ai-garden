@@ -21,12 +21,12 @@ export function matchWordSequences(
   options: { normalize: boolean; verbose: boolean } = {
     normalize: false,
     verbose: false,
-  }
+  },
 ): MultipleAlignment {
   const { normalize, verbose } = options;
   // map all cues (possibly normalized) to an array of strings, then split into words
   const cueWords = linesToWords(
-    cues.map((cue) => (normalize ? normalizeText(cue.text) : cue.text))
+    cues.map((cue) => (normalize ? normalizeText(cue.text) : cue.text)),
   );
   const maxWords = 180;
   console.log(`- cueWords: ${cueWords.length} from ${cues.length} cues`);
@@ -36,7 +36,7 @@ export function matchWordSequences(
 
   const textWords = linesToWords([textContent]);
   console.log(
-    `- textWords: ${textWords.length} from ${textRanges.length} ranges`
+    `- textWords: ${textWords.length} from ${textRanges.length} ranges`,
   );
   if (verbose) {
     console.log(`  ... ${textWords.slice(0, maxWords).join(", ")}`);
@@ -58,7 +58,7 @@ export function matchWordSequences(
       initialTextStartIndex,
       cueWords,
       textWords,
-      minWordsForStart
+      minWordsForStart,
     );
     if (textStartIndex < 0) {
       // console.error(
@@ -69,7 +69,7 @@ export function matchWordSequences(
     const elapsed = Date.now() - start;
     if (elapsed < 0) {
       console.log(
-        `  - match: |words|:${minWordsForStart} wordIndexes - cue:${cueStartIndex} text:${textStartIndex}  in ${elapsed}ms`
+        `  - match: |words|:${minWordsForStart} wordIndexes - cue:${cueStartIndex} text:${textStartIndex}  in ${elapsed}ms`,
       );
     }
     const maxSkip = 4;
@@ -78,7 +78,7 @@ export function matchWordSequences(
       textWords,
       maxSkip,
       cueStartIndex,
-      textStartIndex
+      textStartIndex,
     );
     const { alignedMatches } = alignmentResult;
 
@@ -88,7 +88,7 @@ export function matchWordSequences(
       console.error(
         `\n- Last alignment is not a match: ${
           alignedMatches[alignedMatches.length - 1].type
-        }\n`
+        }\n`,
       );
     }
     const lastMatch = alignedMatches[alignedMatches.length - 1];
@@ -103,7 +103,7 @@ export function matchWordSequences(
   }
   const elapsed = Date.now() - start;
   console.log(
-    `- (matchWordSequences) alignments: ${alignmentResults.length} in ${elapsed}ms`
+    `- (matchWordSequences) alignments: ${alignmentResults.length} in ${elapsed}ms`,
   );
 
   return { cueWords, textWords, alignmentResults };
@@ -113,19 +113,17 @@ export function matchWordSequences(
 // get the end indices of the previous alignment (current alignment is index)
 function getPrevWordIndices(
   alignments: AlignmentResult[],
-  index: number
+  index: number,
 ): { lastCueWordIndex: number; lastTextWordIndex: number } {
   if (index < 0 || index > alignments.length) {
     throw new Error(
-      `- getPrevWordIndices: index out of range: ${index}/${alignments.length}`
+      `- getPrevWordIndices: index out of range: ${index}/${alignments.length}`,
     );
   }
-  return index === 0
-    ? { lastCueWordIndex: 0, lastTextWordIndex: 0 }
-    : {
-        lastCueWordIndex: alignments[index - 1].endCueWordIndex,
-        lastTextWordIndex: alignments[index - 1].endTextWordIndex,
-      };
+  return index === 0 ? { lastCueWordIndex: 0, lastTextWordIndex: 0 } : {
+    lastCueWordIndex: alignments[index - 1].endCueWordIndex,
+    lastTextWordIndex: alignments[index - 1].endTextWordIndex,
+  };
 }
 function multipleAlignmentMetrics(multipleAlignment: MultipleAlignment) {
   const { cueWords, textWords, alignmentResults } = multipleAlignment;
@@ -137,18 +135,18 @@ function multipleAlignmentMetrics(multipleAlignment: MultipleAlignment) {
     const { alignedMatches, startCueWordIndex, startTextWordIndex } = alignment;
     const { lastCueWordIndex, lastTextWordIndex } = getPrevWordIndices(
       alignments,
-      index
+      index,
     );
     const skippedCueWords = startCueWordIndex - lastCueWordIndex;
     const skippedTextWords = startTextWordIndex - lastTextWordIndex;
     console.log(
-      `- Alignment ${index + 1} of ${
-        alignments.length
-      }: skipped cue: ${skippedCueWords} text: ${skippedTextWords}`
+      `- Alignment ${
+        index + 1
+      } of ${alignments.length}: skipped cue: ${skippedCueWords} text: ${skippedTextWords}`,
     );
 
     const matchedWords = alignedMatches.filter(
-      (match) => match.type === "match"
+      (match) => match.type === "match",
     ).length;
     totalMatchedWords += matchedWords;
     totalSkippedCueWords += skippedCueWords;
@@ -156,15 +154,17 @@ function multipleAlignmentMetrics(multipleAlignment: MultipleAlignment) {
   });
   const { lastCueWordIndex, lastTextWordIndex } = getPrevWordIndices(
     alignmentResults,
-    alignmentResults.length
+    alignmentResults.length,
   );
   totalSkippedCueWords += cueWords.length - lastCueWordIndex;
   totalSkippedTextWords += textWords.length - lastTextWordIndex;
   const cueMatchRate = totalMatchedWords / cueWords.length;
   console.log(
-    `  - Cue Match Rate: ${(cueMatchRate * 100).toFixed(
-      2
-    )} Total matchedWords: ${totalMatchedWords} skippedCueWords: ${totalSkippedCueWords} skippedTextWords: ${totalSkippedTextWords}`
+    `  - Cue Match Rate: ${
+      (cueMatchRate * 100).toFixed(
+        2,
+      )
+    } Total matchedWords: ${totalMatchedWords} skippedCueWords: ${totalSkippedCueWords} skippedTextWords: ${totalSkippedTextWords}`,
   );
   return {
     totalMatchedWords,
@@ -177,7 +177,7 @@ function multipleAlignmentMetrics(multipleAlignment: MultipleAlignment) {
 export function viewMultipleAlignments(multipleAlignment: MultipleAlignment) {
   const { cueWords, textWords, alignmentResults } = multipleAlignment;
   console.log(
-    `- (viewMultipleAlignments) alignments: ${alignmentResults.length}`
+    `- (viewMultipleAlignments) alignments: ${alignmentResults.length}`,
   );
   const {
     totalMatchedWords,
@@ -233,29 +233,35 @@ export function viewMultipleAlignments(multipleAlignment: MultipleAlignment) {
   <p>totalSkippedTextWords: ${totalSkippedTextWords}</p>
   <p>cueMatchRate: ${(cueMatchRate * 100).toFixed(2)}%</p>
   <hr>
-  ${alignmentResults
-    .map((alignment, index) => {
-      const { alignedMatches } = alignment;
-      return `<div>
+  ${
+    alignmentResults
+      .map((alignment, index) => {
+        const { alignedMatches } = alignment;
+        return `<div>
       <h2>Skip before ${index + 1} of ${alignmentResults.length}</h2>
-      ${skipBetweenAlignmentsToHTML(
-        alignmentResults,
-        index,
-        cueWords,
-        textWords
-      )}
+      ${
+          skipBetweenAlignmentsToHTML(
+            alignmentResults,
+            index,
+            cueWords,
+            textWords,
+          )
+        }
       <h2>Alignment ${index + 1} of ${alignmentResults.length}</h2>
       ${alignmentsToHTML(alignedMatches, cueWords, textWords)}
     </div>`;
-    })
-    .join("\n")}
+      })
+      .join("\n")
+  }
     <h2>Skip after ${alignmentResults.length} of ${alignmentResults.length}</h2>
-    ${skipBetweenAlignmentsToHTML(
+    ${
+    skipBetweenAlignmentsToHTML(
       alignmentResults,
       alignmentResults.length,
       cueWords,
-      textWords
-    )}
+      textWords,
+    )
+  }
   </body>
 </html>`;
   Deno.writeTextFileSync("output/align.html", html);
@@ -265,13 +271,13 @@ export function skipBetweenAlignmentsToHTML(
   alignments: AlignmentResult[],
   index: number,
   cueWords: string[],
-  textWords: string[]
+  textWords: string[],
 ) {
   if (index === alignments.length) {
     // After the Last alignment
     const { lastCueWordIndex, lastTextWordIndex } = getPrevWordIndices(
       alignments,
-      index
+      index,
     );
     const skippedCueWords = cueWords.length - lastCueWordIndex;
     const skippedTextWords = textWords.length - lastTextWordIndex;
@@ -287,7 +293,7 @@ export function skipBetweenAlignmentsToHTML(
   const { startCueWordIndex, startTextWordIndex } = alignments[index];
   const { lastCueWordIndex, lastTextWordIndex } = getPrevWordIndices(
     alignments,
-    index
+    index,
   );
   const skippedCueWords = startCueWordIndex - lastCueWordIndex;
   const skippedTextWords = startTextWordIndex - lastTextWordIndex;
@@ -295,63 +301,69 @@ export function skipBetweenAlignmentsToHTML(
   return `
     <div class="skip-container">
       <p>Skipped ${skippedCueWords} cue words</p>
-      <p>${cueWords
-        .slice(lastCueWordIndex + 1, startCueWordIndex)
-        .join(" ")}</p>
+      <p>${
+    cueWords
+      .slice(lastCueWordIndex + 1, startCueWordIndex)
+      .join(" ")
+  }</p>
       <p>Skipped ${skippedTextWords} text words</p>
-      <p>${textWords
-        .slice(lastTextWordIndex + 1, startTextWordIndex)
-        .join(" ")}</p>
+      <p>${
+    textWords
+      .slice(lastTextWordIndex + 1, startTextWordIndex)
+      .join(" ")
+  }</p>
     </div>
   `;
 }
 export function alignmentsToHTML(
   alignedMatches: AlignedMatch[],
   cueWords: string[],
-  textWords: string[]
+  textWords: string[],
 ): string {
   return `
     <div class="aligned-containerNOT">
-      ${alignedMatches
-        .map((match) => {
-          const { cueWordIndex, textWordIndex, type } = match;
-          const cueWord = cueWordIndex !== -1 ? cueWords[cueWordIndex] : "";
-          const textWord = textWordIndex !== -1 ? textWords[textWordIndex] : "";
+      ${
+    alignedMatches
+      .map((match) => {
+        const { cueWordIndex, textWordIndex, type } = match;
+        const cueWord = cueWordIndex !== -1 ? cueWords[cueWordIndex] : "";
+        const textWord = textWordIndex !== -1 ? textWords[textWordIndex] : "";
 
-          switch (type) {
-            case "match":
-              // return `<div class="aligned-match match">${cueWord}</div>`;
-              // return `<span class="aligned-match match">${cueWord}</span>`;
-              return ` ${cueWord} `;
-            case "substitution":
-              // return `
-              //   <div class="aligned-match substitution">
-              //     <div class="cue-word">${cueWord}</div>
-              //     <div class="text-word">${textWord}</div>
-              //   </div>`;
-              return `<span class="substitution">{${cueWord}↔${textWord}}</span> `;
-            case "insertion":
-              return `<span class="insertion">${
-                cueWordIndex === -1 ? "↑" + textWord : "↓" + cueWord
-              }</span> `;
-            // if (cueWordIndex === -1) {
-            //   return `
-            //     <div class="aligned-match insertion">
-            //       <div class="cue-word">&nbsp;</div>
-            //       <div class="text-word">${textWord}</div>
-            //     </div>`;
-            // } else {
-            //   return `
-            //     <div class="aligned-match insertion">
-            //       <div class="cue-word">${cueWord}</div>
-            //       <div class="text-word">&nbsp;</div>
-            //     </div>`;
-            // }
-            default:
-              return "";
-          }
-        })
-        .join("")}
+        switch (type) {
+          case "match":
+            // return `<div class="aligned-match match">${cueWord}</div>`;
+            // return `<span class="aligned-match match">${cueWord}</span>`;
+            return ` ${cueWord} `;
+          case "substitution":
+            // return `
+            //   <div class="aligned-match substitution">
+            //     <div class="cue-word">${cueWord}</div>
+            //     <div class="text-word">${textWord}</div>
+            //   </div>`;
+            return `<span class="substitution">{${cueWord}↔${textWord}}</span> `;
+          case "insertion":
+            return `<span class="insertion">${
+              cueWordIndex === -1 ? "↑" + textWord : "↓" + cueWord
+            }</span> `;
+          // if (cueWordIndex === -1) {
+          //   return `
+          //     <div class="aligned-match insertion">
+          //       <div class="cue-word">&nbsp;</div>
+          //       <div class="text-word">${textWord}</div>
+          //     </div>`;
+          // } else {
+          //   return `
+          //     <div class="aligned-match insertion">
+          //       <div class="cue-word">${cueWord}</div>
+          //       <div class="text-word">&nbsp;</div>
+          //     </div>`;
+          // }
+          default:
+            return "";
+        }
+      })
+      .join("")
+  }
     </div>
   `;
 }
@@ -361,7 +373,7 @@ function findConsecutiveWordMatches(
   initialTextStartIndex: number,
   cueWords: string[],
   textWords: string[],
-  minWordsForStart: number
+  minWordsForStart: number,
 ) {
   const cueLength = cueWords.length;
   const textLength = textWords.length;
@@ -384,7 +396,7 @@ function findConsecutiveWordMatches(
       for (let offset = 0; offset < minWordsForStart; offset++) {
         if (
           cueWords[cueStartIndex + offset] !==
-          textWords[textStartIndex + offset]
+            textWords[textStartIndex + offset]
         ) {
           match = false;
           break;
@@ -405,10 +417,10 @@ function findConsecutiveWordMatches(
         if (cc !== tt) {
           console.log(`- (arr) Mismatch: cueWords[..] !== textWords[..]`);
           console.log(
-            `  ..  cueWords[${cueStartIndex},...,+${minWordsForStart}]: ${cc}`
+            `  ..  cueWords[${cueStartIndex},...,+${minWordsForStart}]: ${cc}`,
           );
           console.log(
-            `  .. textWords[${textStartIndex},...,+${minWordsForStart}]: ${tt}`
+            `  .. textWords[${textStartIndex},...,+${minWordsForStart}]: ${tt}`,
           );
         }
 
@@ -428,7 +440,7 @@ export function matchCuesToTextRanges(
   options: { normalize: boolean; verbose: boolean } = {
     normalize: false,
     verbose: false,
-  }
+  },
 ) {
   const { normalize, verbose } = options;
   let cueMatches = 0;
@@ -450,7 +462,7 @@ export function matchCuesToTextRanges(
   }
   const cueMatchRate = ((cueMatches / cues.length) * 100.0).toFixed(2);
   console.log(
-    `- metric (matchCuesToTextRanges) cue match rate (normalize:${normalize}): ${cueMatchRate}% (${cueMatches}/${cues.length})`
+    `- metric (matchCuesToTextRanges) cue match rate (normalize:${normalize}): ${cueMatchRate}% (${cueMatches}/${cues.length})`,
   );
 }
 
@@ -478,7 +490,7 @@ export type TextRange = {
 // 2- textContent.slice(reverseMap[i-1].end, reverseMap[i].start) is all whitespace
 export function createTextRanges(
   textContent: string,
-  textNodes: string[]
+  textNodes: string[],
 ): TextRange[] {
   // unnormalized text matching
   const normalizedText = textContent; //normalizeText(textContent);
@@ -521,11 +533,11 @@ export function validateTextRanges(
   reverseMap: TextRange[],
   textContent: string,
   textNodes: string[],
-  verbose: boolean = false
+  verbose: boolean = false,
 ): boolean {
   if (reverseMap.length !== textNodes.length) {
     console.error(
-      `ReverseMap length (${reverseMap.length}) does not match textNodes length (${textNodes.length})`
+      `ReverseMap length (${reverseMap.length}) does not match textNodes length (${textNodes.length})`,
     );
     return false;
   }
@@ -542,8 +554,9 @@ export function validateTextRanges(
     // 1. text should match textNodes[i]
     const mapIndexMatchesTextNodes = text === textNodes[i];
     // 2. text between previous entry and current should be all whitespace (skip i=0)
-    const textBetween =
-      i === 0 ? "" : textContent.slice(reverseMap[i - 1].end, start);
+    const textBetween = i === 0
+      ? ""
+      : textContent.slice(reverseMap[i - 1].end, start);
     const textBetweenIsWhitespace = /^[\s]*$/.test(textBetween);
 
     const ok = mapIndexMatchesTextNodes && textBetweenIsWhitespace;
@@ -555,14 +568,26 @@ export function validateTextRanges(
     if (verbose) {
       const okMark = ok ? "✓" : "✗";
       // prettier-ignore
-      console.log(` - ${okMark} text[${nPad(start)}..${nPad(end)})  l:${nPad(len,3)} text: |${text}|`);
+      console.log(
+        ` - ${okMark} text[${nPad(start)}..${nPad(end)})  l:${
+          nPad(len, 3)
+        } text: |${text}|`,
+      );
       if (!mapIndexMatchesTextNodes) {
         // prettier-ignore
-        console.log(`   ${okMark} != textNode[${i}] l:${nPad(textNodes[i].length,3)} text: |${textNodes[i]}|`);
+        console.log(
+          `   ${okMark} != textNode[${i}] l:${
+            nPad(textNodes[i].length, 3)
+          } text: |${textNodes[i]}|`,
+        );
       }
       if (!textBetweenIsWhitespace) {
         // prettier-ignore
-        console.log(`   - ${okMark} textBetween l:${nPad(textBetween.length,3)} text: |${JSON.stringify(textBetween)}|`);
+        console.log(
+          `   - ${okMark} textBetween l:${nPad(textBetween.length, 3)} text: |${
+            JSON.stringify(textBetween)
+          }|`,
+        );
       }
     }
   }

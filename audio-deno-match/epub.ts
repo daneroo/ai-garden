@@ -1,4 +1,4 @@
-import { parseEpub } from "npm:@gxl/epub-parser@2.0.4";
+import { parseEpub } from "epub-parser";
 
 import { parseHTML } from "./dom.ts";
 

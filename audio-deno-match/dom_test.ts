@@ -1,9 +1,6 @@
-import { assertEquals } from 'https://deno.land/std@0.106.0/testing/asserts.ts';
+import { assertEquals } from "@std/assert";
 
-import {
-  getTextNodes,
-  parseHTML,
-} from './dom.ts';
+import { getTextNodes, parseHTML } from "./dom.ts";
 
 Deno.test("Testing parseHTML", () => {
   const html = "<html><body><h1>Hello, world!</h1></body></html>";
@@ -18,7 +15,7 @@ Deno.test("Testing parseHTML - malformed - so forgiving", () => {
   const doc = parseHTML(html);
   assertEquals(
     doc?.body.innerHTML.trim(),
-    "<div>some good</div><div>some bad</div>"
+    "<div>some good</div><div>some bad</div>",
   );
 });
 
@@ -27,7 +24,7 @@ Deno.test("Testing parseHTML - no body", () => {
   const doc = parseHTML(html);
   assertEquals(
     doc?.body.innerHTML.trim(),
-    "<p>paragraph 1</p><p>paragraph 2</p>"
+    "<p>paragraph 1</p><p>paragraph 2</p>",
   );
 });
 
@@ -36,7 +33,7 @@ Deno.test("Testing parseHTML - no top body", () => {
   const doc = parseHTML(html);
   assertEquals(
     doc.body.innerHTML.trim(),
-    "<p>paragraph 1</p><p>paragraph 2</p>"
+    "<p>paragraph 1</p><p>paragraph 2</p>",
   );
 });
 
@@ -52,7 +49,7 @@ Deno.test("Testing set innerHTML", () => {
   doc.body.innerHTML = html;
   assertEquals(
     doc.body.innerHTML.trim(),
-    "<p>paragraph 1</p><p>paragraph 2</p>"
+    "<p>paragraph 1</p><p>paragraph 2</p>",
   );
   const texts = getTextNodes(doc);
   assertEquals(texts, ["paragraph 1", "paragraph 2"]);
@@ -63,7 +60,7 @@ Deno.test("Testing replace innerHTML", () => {
   const doc = parseHTML(html);
   assertEquals(
     doc.body.innerHTML.trim(),
-    "<p>paragraph 1</p><p>paragraph 2</p>"
+    "<p>paragraph 1</p><p>paragraph 2</p>",
   );
   assertEquals(doc.body.childElementCount, 2);
   const secondPara = doc.body.children[1];
@@ -81,7 +78,7 @@ Deno.test("Testing construct body by appending", () => {
   doc.body.appendChild(div1);
   assertEquals(
     doc.body.innerHTML,
-    "<h1>Hello, world!</h1><div><p>paragraph 1 with <em>emphasis</em></p></div>"
+    "<h1>Hello, world!</h1><div><p>paragraph 1 with <em>emphasis</em></p></div>",
   );
 });
 

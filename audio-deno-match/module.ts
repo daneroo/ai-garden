@@ -163,7 +163,7 @@ export async function main() {
       cues,
       textRanges,
       textContent,
-      { normalize, verbose }
+      { normalize, verbose },
     );
     viewMultipleAlignments(multipleAlignment);
     console.log(`- matchWordSequences took: ${+new Date() - start}ms`);
