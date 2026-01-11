@@ -190,6 +190,29 @@ Individual packages can extend this config as needed.
 
 ---
 
+## Web Application Integration
+
+### Creating a Web App with Shared Components
+
+```bash
+# From workspace root
+bun create vite apps/my-app --template react-ts --no-interactive
+
+# Add workspace dependency (manually edit package.json)
+# "dependencies": { "@bun-one/timer": "workspace:*" }
+
+# Install from workspace root (resolves workspace: protocol)
+bun install
+
+# Run dev server
+cd apps/my-app && bun run dev
+```
+
+> **Note**: `bun add @scope/pkg` tries npm first. For workspace deps, manually
+> add `"workspace:*"` to package.json and run `bun install` from root.
+
+---
+
 ## Package Configuration
 
 ### Library Package (`packages/`)

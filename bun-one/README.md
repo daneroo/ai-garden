@@ -23,8 +23,8 @@ bun test             # Run tests (recursive)
 bun run apps/cli/cli.ts time 3661.5
 bun run apps/cli/cli.ts --help
 
-# Web App (Deferred)
-# (cd apps/web && bun run dev)
+# Vite Web App
+(cd apps/vite-one && bun run dev)
 ```
 
 ## Add a New Package
