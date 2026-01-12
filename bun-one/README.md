@@ -36,6 +36,7 @@ bun run apps/cli/cli.ts --help
 
 # TanStack Start
 (cd apps/tan-one && bun run dev)
+(cd apps/tan-one && bun run build && bun run start)
 ```
 
 ## Add a New Package

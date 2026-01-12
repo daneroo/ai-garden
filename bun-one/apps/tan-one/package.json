@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "bun --bun vite dev",
     "build": "bun --bun vite build",
+    "start": "bun run .output/server/index.mjs",
     "preview": "bun --bun vite preview",
     "check": "tsc --noEmit",
     "test": "vitest run"
