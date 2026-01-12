@@ -2,6 +2,11 @@
 
 A Bun workspace with shared packages and multiple apps.
 
+## TODO
+
+- [ ] Refine per-app type checking (Vite version conflicts - see
+      docs/WORKSPACE-BUN.md)
+
 ## Directory Structure
 
 See `docs/WORKSPACE-BUN.md` for a detailed directory structure.
@@ -25,6 +30,12 @@ bun run apps/cli/cli.ts --help
 
 # Vite Web App
 (cd apps/vite-one && bun run dev)
+
+# Starlight Docs
+(cd apps/starlight && bun run dev)
+
+# TanStack Start
+(cd apps/tan-one && bun run dev)
 ```
 
 ## Add a New Package

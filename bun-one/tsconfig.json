@@ -26,7 +26,9 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
   },
-  // Astro/Starlight uses virtual modules (astro:content) that tsc doesn't understand.
-  // Starlight has its own build system - type checking happens via `astro check`.
-  "exclude": ["apps/starlight"]
+  // Apps with their own tsconfig.json are excluded from root tsc.
+  // They should be type-checked using their own configuration via their check scripts.
+  // - Starlight: Uses virtual modules (astro:content)
+  // - tan-one: Has its own tsconfig for TanStack Start compatibility
+  "exclude": ["apps/starlight", "apps/tan-one"]
 }

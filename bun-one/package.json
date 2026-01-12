@@ -11,6 +11,7 @@
     "test": "bun test",
     "check": "tsc --noEmit",
     "check:starlight": "echo Fix: bun run --cwd apps/starlight check",
+    "check:tan-one": "echo Fix Demo Files: bun run --cwd apps/tan-one check",
     "fmt": "bunx prettier --write .",
     "fmt:check": "bunx prettier --check .",
     "lint": "bunx eslint .",
