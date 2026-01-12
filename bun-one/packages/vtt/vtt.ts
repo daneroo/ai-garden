@@ -1,5 +1,3 @@
-import { readFile } from "node:fs/promises";
-
 /**
  * A single VTT cue (subtitle segment)
  */
@@ -59,16 +57,6 @@ export function parseVtt(vtt: string): VttCue[] {
     endTime: cue.endTime,
     text: cue.text.trim(),
   }));
-}
-
-/**
- * Read and parse a VTT file
- * @param path - Path to the VTT file
- * @returns Array of cues
- */
-export async function readVtt(path: string): Promise<VttCue[]> {
-  const content = await readFile(path, "utf-8");
-  return parseVtt(content);
 }
 
 /**

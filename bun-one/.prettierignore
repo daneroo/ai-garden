@@ -1,0 +1,9 @@
+# Ignore artifacts:
+out
+dist
+coverage
+.bun
+
+# Ignore auto-generated files
+**/*.gen.ts
+**/routeTree.gen.ts
