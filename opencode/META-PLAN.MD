@@ -1,7 +1,8 @@
 # META-PLAN: OpenCode/Oh-My-OpenCode Experiment Workflow
 
 **Purpose**  
-Provide a repeatable, teachable workflow for running learning experiments with `opencode` + `oh-my-opencode` in this repository. Each experiment is isolated in its own subdirectory to ensure clean separation and focused learning.
+Provide a repeatable, teachable workflow for running learning experiments with `opencode` + various kits in this repository.
+Each experiment is isolated in its own subdirectory to ensure clean separation and focused learning.
 
 ## Directory Strategy
 
@@ -22,50 +23,4 @@ Provide a repeatable, teachable workflow for running learning experiments with `
   - Scope: "Only modify files under this directory."
   - Validation: How we will verify success (e.g., "CLI prints version").
 
-## Configure Context for Oh-My-OpenCode
-
-- Model Check: Confirm we are using OpenAI (Oracle) + Gemini (Frontend/Docs) as per root `opencode.jsonc`. No Claude.
-- Agent Roles:
-  - `@oracle`: Use for high-level architecture, stack choice, and trade-off analysis.
-  - `@librarian`: Use to find external documentation, library comparisons, and usage examples.
-  - `@explore`: Use to scan this repo for patterns or similar existing code (if any).
-
-## Discovery Phase (Before Coding)
-
-**CRITICAL**: User involvement required here.
-
-- Research:
-  - Ask `@oracle` for 2–3 stack options suitable for the goal (listing pros/cons).
-  - Ask `@librarian` for examples of specific libraries if chosen.
-- **Consult**: Present options to the user and **WAIT** for approval or selection.
-  - Do NOT assume a stack.
-  - Do NOT proceed to coding without user confirmation.
-- Decision:
-  - Select the stack/approach based on goals and user feedback.
-  - Document the decision in `README.md` or `notes/decision.md`.
-
-## Planning Phase
-
-**CRITICAL**: User approval required here.
-
-- Draft Plan: Write a short execution plan in the experiment's `notes/` or `README.md`.
-  - 3–6 clear, checkable steps.
-  - Define "Done" for each step.
-- **Review**: Ask the user to review and approve the plan.
-  - Do NOT start building until the plan is approved.
-
-## Build Phase
-
-- Implement: Execute the plan in small increments.
-- Focus: Use agents for specific, targeted tasks (e.g., "Generate boilerplate for X", "Write a test for Y").
-- Containment: Ensure all generated files land in the experiment directory.
-
-## Validation Phase
-
-- Verify: Run the minimal verification steps (build, test, `--help` output).
-- Record: Detailed results in `notes/results.md` (what worked, what failed).
-
-## Retrospective Phase
-
-- Reflect: Summarize key learnings in `notes/retro.md`.
-- Iterate: If a better workflow or pattern emerges, update this `META-PLAN.MD` to improve future experiments.
+## Use the agentic-cli for
