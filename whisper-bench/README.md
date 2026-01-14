@@ -10,14 +10,32 @@ input compatibility, and establish benchmarks.
 
 ## Conclusions
 
-- whisperkit-cli is the fastest. can do word level timestamps, and can handle
-  `.m4b` files.
+- whisperkit-cli (VAD) is the fastest (138x) but produces **broken timestamps**
+  (large backward jumps), making it unusable.
+- whisperkit-cli (None) eliminates large jumps but **still has micro-overlaps**
+  (non-monotonic) and is **slower** (48x) than whisper-cpp.
+- whisper-cpp (Homebrew) is the superior choice: **82x speed** and **perfect
+  timestamps** (0 violations).
+- **Constraint**: whisper-cpp is limited to ~37h files due to 32-bit integer
+  overflow.
 
-We should now focus on an overlap/matching metric, to compare
+**Recommendation**: Use `whisper-cpp` for everything. For files > 37h, implement
+a split/stitch workflow.
 
-- tiny, base, large (v3?)
-- whisperkit-cli word level timestamps
-- whisper-cpp (Homebrew) - word level timestamps
+## TODO
+
+- [ ] Completely remove whisperkit
+  - from the code here!!
+  - [ ] brew uninstall
+  - [ ] clean up models: /Users/daniel/Documents/huggingface ?
+  - [ ] also remove `../whisperkit-cli/`
+- [ ] **Segmentation Plan**: Design a split/stitch workflow to bypass the 37h
+      limit for `whisper-cpp`.
+  - Splitting: `ffmpeg` (mp3/wav) to <37h chunks (e.g. 10h).
+  - Stitching: VTT timestamp adjustment (offset).
+- [ ] **Artifact Management**: Redesign `data/work` to handle multi-segment
+      artifacts.
+- [ ] **Deprecation**: Remove `whisperkit` support from active workflows.
 
 ## Experiments
 
