@@ -20,7 +20,7 @@ describe("Scanner & Prober", () => {
 		if (frost) {
 			const metadata = await probeFile(frost.path);
 			expect(metadata.duration).toBeCloseTo(76.19, 1);
-			expect(metadata.artist).toBe("Robert Frost");
+			expect(metadata.author).toBe("Robert Frost");
 			expect(metadata.title).toBe("The Road not Taken");
 			expect(metadata.codec_name).toBe("aac");
 		}

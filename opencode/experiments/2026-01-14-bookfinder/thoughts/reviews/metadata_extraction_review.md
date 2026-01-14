@@ -12,7 +12,7 @@ implemented
 expects) ✓ `src/index.ts`: Correctly implements `parallelMap` with concurrency
 limit 8. ✓ `src/index.ts`: Correctly outputs raw bytes in JSON mode. ✓
 `src/scanner.ts`: Correctly supports `.m4b`, `.mp3`, `.m4a`. ✓ `src/prober.ts`:
-Correctly extracts duration, bitrate, and tags via `ffprobe`.
+Correctly extracts duration, bitrate, and tags (author/title) via `ffprobe`.
 
 ## Code Review Findings
 

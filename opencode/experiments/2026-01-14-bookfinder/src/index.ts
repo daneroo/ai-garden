@@ -69,9 +69,9 @@ async function main() {
 				}),
 			);
 		} else {
-			const { duration, artist, title } = file.metadata;
+			const { duration, author, title } = file.metadata;
 			console.log(
-				`${file.basename} | ${formatSize(file.size)} | ${formatDuration(duration)} | ${artist || "Unknown"} | ${title || "Unknown"}`,
+				`${file.basename} | ${formatSize(file.size)} | ${formatDuration(duration)} | ${author || "Unknown"} | ${title || "Unknown"}`,
 			);
 		}
 	}

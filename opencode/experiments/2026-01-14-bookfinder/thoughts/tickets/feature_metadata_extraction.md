@@ -35,7 +35,8 @@ complete fixture will be used for testing:
   - Use the command:
     `ffprobe -v error -show_format -show_streams -of json [file]`.
   - Extract: `duration` (seconds), `bitrate` (bps), `codec_name`, and common
-    tags (`title`, `artist`/`author`, `album`).
+    tags (`title`, `author`, `album`).
+
   - Implement a standard timeout for `ffprobe` calls (e.g., 10 seconds).
   - **Fail Fast**: If `ffprobe` fails to parse a file, the application should
     exit with an error.
@@ -44,7 +45,8 @@ complete fixture will be used for testing:
 - **Output Sorting**: Sort the final output by `basename` (ascending).
 - **Output Format Modification**:
   - **Default (Human)**:
-    `basename | size (human) | duration (h:mm:ss) | artist | title`.
+    `basename | size (human) | duration (h:mm:ss) | author | title`.
+
   - **JSON Mode**:
     - `size`: Output as raw **bytes** (integer).
     - Include all extracted metadata fields in a flat structure.

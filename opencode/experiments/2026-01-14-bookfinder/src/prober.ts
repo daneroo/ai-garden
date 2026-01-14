@@ -5,15 +5,14 @@ export interface Metadata {
 	bit_rate: number;
 	codec_name: string;
 	title?: string;
-	artist?: string;
-	album?: string;
+	author?: string;
 }
 
 export async function probeFile(path: string): Promise<Metadata> {
 	const proc = spawn([
 		"ffprobe",
 		"-v",
-		"error",
+		"quiet",
 		"-show_format",
 		"-show_streams",
 		"-of",
@@ -41,8 +40,7 @@ export async function probeFile(path: string): Promise<Metadata> {
 		duration: Number.parseFloat(format.duration || "0"),
 		bit_rate: Number.parseInt(format.bit_rate || "0", 10),
 		codec_name: audioStream.codec_name || "unknown",
-		title: format.tags?.title,
-		artist: format.tags?.artist || format.tags?.album_artist,
-		album: format.tags?.album,
+		title: format.tags?.album || format.tags?.title,
+		author: format.tags?.artist || format.tags?.album_artist,
 	};
 }

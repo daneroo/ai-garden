@@ -128,7 +128,7 @@ Update tests to use the new fixture and verify metadata.
 **File**: `tests/scanner.test.ts`
 
 - Add test for `Robert Frost - The Road Not Taken.m4b`.
-- Verify duration (76.19s), artist ("Robert Frost"), and title ("The Road not
+- Verify duration (76.19s), author ("Robert Frost"), and title ("The Road not
   Taken").
 
 ### Phase 3 Success Criteria
