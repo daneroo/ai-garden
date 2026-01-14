@@ -2,6 +2,13 @@
 
 A production-ready CLI scaffold using Bun, TypeScript, Yargs, and Biome.
 
+## TODO
+
+- [ ] Merge CLAUDE.md into AGENTS.md, and remove CLAUDE.md after confirmed ok
+- [ ] How to ensure formatting rules are respected? - especially markdown (deno
+      fmt ?)
+- [ ] Make this project actually do something that finds books!
+
 ## Features
 
 - **Runtime**: [Bun](https://bun.sh)
