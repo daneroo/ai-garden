@@ -85,10 +85,12 @@ dist
 ### Success Criteria
 
 #### Automated Verification
+
 - [x] `bun test` passes.
 - [x] `bun run lint` passes (no errors).
 
 #### Manual Verification
+
 - [x] `README.md` is accurate and helpful.
 
 ---
