@@ -17,6 +17,10 @@ mix archive | grep -qE '(^|/)igniter_new-[0-9]' \
 
 # 2 - Generate Phoenix app (directory must NOT already exist)
 # ref: mix igniter.new flags: --with/--with-args/--install :contentReference[oaicite:1]{index=1}
+
+# *********************************************
+# *** should have used  --no-git ? CHECK ******
+# *********************************************
 mix igniter.new my_app \
   --with phx.new \
   --with-args="--no-ecto" \
