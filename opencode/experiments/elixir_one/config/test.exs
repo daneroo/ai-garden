@@ -1,7 +1,11 @@
 import Config
 
 config :elixir_one, ElixirOne.Repo,
-  database: Path.join(__DIR__, "../path/to/your#{System.get_env("MIX_TEST_PARTITION")}.db"),
+  database:
+    Path.join(
+      __DIR__,
+      "../data/mybooks_test#{System.get_env("MIX_TEST_PARTITION")}.db"
+    ),
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 

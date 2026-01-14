@@ -1,7 +1,7 @@
 import Config
 
 config :elixir_one, ElixirOne.Repo,
-  database: "../path/to/your.db",
+  database: Path.join(__DIR__, "../data/mybooks.db"),
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
