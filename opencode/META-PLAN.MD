@@ -16,11 +16,10 @@ Each experiment is isolated in its own subdirectory to ensure clean separation a
 - Scaffold: Create the directory and minimal structure:
   - `README.md`: Describes the purpose, success criteria, and constraints.
   - `AGENTS.md`: Experiment-specific rules (overrides or additions to root AGENTS.md).
-  - `notes/`: Directory for logs, architectural decisions, and learnings.
+  - `thoughts/`: Directory for logs, architectural decisions, and learnings.
 - Configure: Add an `AGENTS.md` in the experiment folder containing:
   - Goal: One sentence describing what we are building/learning.
   - Constraints: Timebox, target environment, specific tools to use/avoid.
   - Scope: "Only modify files under this directory."
   - Validation: How we will verify success (e.g., "CLI prints version").
-
-## Use the agentic-cli for
+- Use the agentic-cli: ticket, research, plan, execute, commit, review
