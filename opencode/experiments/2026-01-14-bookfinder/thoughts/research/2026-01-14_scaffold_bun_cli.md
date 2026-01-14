@@ -8,7 +8,7 @@ tags: bun, cli, scaffolding, yargs, biome
 last_updated: 2026-01-14T13:15:00Z
 ---
 
-# Scaffold Enhanced Bun TypeScript CLI
+# Scaffold Enhanced Bun TypeScript CLI Research
 
 ## Ticket Synopsis
 
@@ -52,7 +52,7 @@ significant productivity booster.
 
 The scaffold will establish the following structure:
 
-```
+```text
 .
 ├── biome.json          # Linter/Formatter config
 ├── bun.lockb          # Lockfile

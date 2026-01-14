@@ -52,11 +52,11 @@ We will follow a standard sequential approach:
 
 ## Phase 1: Project Initialization & Dependencies
 
-### Overview
+### Phase 1 Overview
 
 Bootstrap the project with Bun and install necessary packages.
 
-### Changes Required
+### Phase 1 Changes Required
 
 #### 1. Initialize Project
 

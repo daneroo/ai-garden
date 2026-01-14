@@ -5,6 +5,8 @@ tags: documentation, markdown, deno, markdownlint, ci
 last_updated: 2026-01-14T14:45:00Z
 ---
 
+# Documentation Consolidation and Markdown Enforcement Research
+
 ## Ticket Synopsis
 
 The goal is to merge `CLAUDE.md` into `AGENTS.md` and enforce strict Markdown

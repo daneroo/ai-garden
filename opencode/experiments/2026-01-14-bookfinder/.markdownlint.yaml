@@ -1,5 +1,2 @@
 # Ignore line length (MD013) as we rely on Deno fmt for wrapping
 MD013: false
-# Ignore node_modules
-globs:
-  - "!node_modules/**/*"

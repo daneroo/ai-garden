@@ -5,6 +5,8 @@ tags: opencode, configuration, markdown, enforcement, research
 last_updated: 2026-01-14T15:15:00Z
 ---
 
+# OpenCode Configuration and Markdown Enforcement Research
+
 ## Ticket Synopsis
 
 The user requires strict "continual enforcement" of Markdown formatting

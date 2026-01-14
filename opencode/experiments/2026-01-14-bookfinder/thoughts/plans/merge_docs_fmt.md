@@ -39,13 +39,13 @@ standards proactively.
 
 ---
 
-## Phase 1: Configuration & Tooling
+## Phase 1 Configuration & Tooling
 
-### Overview
+### Phase 1 Overview
 
 Set up the linting/formatting configuration and OpenCode hooks.
 
-### Changes Required
+### Phase 1 Changes Required
 
 #### 1. OpenCode Configuration
 
@@ -93,7 +93,7 @@ globs:
 }
 ```
 
-### Success Criteria
+### Phase 1 Success Criteria
 
 - [ ] `bun run lint:md` runs without checking `node_modules`.
 - [ ] `bun run check:md` validates formatting.
@@ -101,13 +101,13 @@ globs:
 
 ---
 
-## Phase 2: Documentation Consolidation
+## Phase 2 Documentation Consolidation
 
-### Overview
+### Phase 2 Overview
 
 Merge `CLAUDE.md` content into `AGENTS.md` and delete the old file.
 
-### Changes Required
+### Phase 2 Changes Required
 
 #### 1. Update AGENTS.md
 
@@ -132,7 +132,7 @@ Merge `CLAUDE.md` content into `AGENTS.md` and delete the old file.
 
 **Action**: Run `bun run fmt:md` to ensure the new `AGENTS.md` is compliant.
 
-### Success Criteria
+### Phase 2 Success Criteria
 
 - [ ] `AGENTS.md` contains all technical rules.
 - [ ] `CLAUDE.md` is gone.
@@ -140,17 +140,17 @@ Merge `CLAUDE.md` content into `AGENTS.md` and delete the old file.
 
 ---
 
-## Phase 3: Validation
+## Phase 3 Validation
 
-### Overview
+### Phase 3 Overview
 
 Verify the entire pipeline works as expected.
 
-### Steps
+### Phase 3 Steps
 
 1. Run `bun run ci`.
 2. Check that `deno fmt` is working (files should remain formatted).
 
-### Success Criteria
+### Phase 3 Success Criteria
 
 - [ ] `bun run ci` passes green.
