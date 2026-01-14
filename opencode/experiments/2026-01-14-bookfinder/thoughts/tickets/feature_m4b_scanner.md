@@ -3,7 +3,7 @@ type: feature
 priority: high
 created: 2026-01-14T16:00:00Z
 created_by: Antigravity
-status: implemented
+status: reviewed
 tags: [cli, recursion, fs, m4b, json]
 keywords: [yargs, glob, recursive scan, file metadata, m4b]
 patterns: [recursive file search, metadata extraction, json output]
