@@ -1,25 +1,27 @@
-# META-PLAN: OpenCode/Oh-My-OpenCode Experiment Workflow
+# META-PLAN: OpenCode/Agentic-CLI Experiment Workflow
 
-**Purpose**  
-Provide a repeatable, teachable workflow for running learning experiments with `opencode` + various kits in this repository.
-Each experiment is isolated in its own subdirectory to ensure clean separation and focused learning.
+**Purpose** Provide a repeatable, teachable workflow for running learning
+experiments with `opencode` + `agentic-cli`.
+
+Each experiment is isolated in its own subdirectory to ensure clean separation
+and focused learning.
 
 ## Directory Strategy
 
-- Location: All experiments reside in `./experiments/<YYYY-MM-DD>-<short-name>/`.
-- Isolation: Keep all code, configuration, notes, and outputs strictly inside that directory.
-- Hygiene: Do not modify unrelated directories or root configuration during an experiment unless the goal explicitly requires it.
+- Location: All experiments reside in
+  `./experiments/<YYYY-MM-DD>-<short-name>/`.
+- Isolation: Keep all code, configuration, notes, and outputs strictly inside
+  that directory.
+- Hygiene: Do not modify unrelated directories or root configuration during an
+  experiment unless the goal explicitly requires it.
 
 ## Start an Experiment (Create the Workspace)
 
-- Define: Pick an experiment name and a clear goal (e.g., "tiny CLI tool to test arg parsing").
+- Define: Pick an experiment name
 - Scaffold: Create the directory and minimal structure:
-  - `README.md`: Describes the purpose, success criteria, and constraints.
-  - `AGENTS.md`: Experiment-specific rules (overrides or additions to root AGENTS.md).
-  - `thoughts/`: Directory for logs, architectural decisions, and learnings.
-- Configure: Add an `AGENTS.md` in the experiment folder containing:
-  - Goal: One sentence describing what we are building/learning.
-  - Constraints: Timebox, target environment, specific tools to use/avoid.
-  - Scope: "Only modify files under this directory."
-  - Validation: How we will verify success (e.g., "CLI prints version").
-- Use the agentic-cli: ticket, research, plan, execute, commit, review
+  - Create README.md with the experiment name as level 1 header (#)
+  - Create `thoughts/`: Directory for logs, architectural decisions, and
+    learnings.
+- Use the agentic-cli command: /ticket to initiate the first ticket
+- After that is done propose the rest of the flow for that ticket
+  - /research, /plan, /execute, /commit, /review
