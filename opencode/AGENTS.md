@@ -16,7 +16,10 @@ Global guidance for experiments in this repository using `opencode` + `oh-my-ope
 
 - Make markdown content **markdownlint friendly**.
 - Use unnumbered lists (`-`) instead of numbered lists (`1.`) to ease editing.
+- Use unnumbered headers (no `1.`, `2.`) to ease reordering.
 - Use **bold** and _italics_ sparingly (exceptions only, not for every list item).
+- MD022/blanks-around-headings: Headings should be surrounded by blank lines.
+- MD032/blanks-around-lists: Lists should be surrounded by blank lines.
 
 ## Standard Workflow
 

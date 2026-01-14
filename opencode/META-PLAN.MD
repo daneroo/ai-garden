@@ -32,19 +32,27 @@ Provide a repeatable, teachable workflow for running learning experiments with `
 
 ## Discovery Phase (Before Coding)
 
+**CRITICAL**: User involvement required here.
+
 - Research:
   - Ask `@oracle` for 2–3 stack options suitable for the goal (listing pros/cons).
   - Ask `@librarian` for examples of specific libraries if chosen.
+- **Consult**: Present options to the user and **WAIT** for approval or selection.
+  - Do NOT assume a stack.
+  - Do NOT proceed to coding without user confirmation.
 - Decision:
-  - Select the stack/approach based on goals and constraints.
+  - Select the stack/approach based on goals and user feedback.
   - Document the decision in `README.md` or `notes/decision.md`.
 
 ## Planning Phase
 
+**CRITICAL**: User approval required here.
+
 - Draft Plan: Write a short execution plan in the experiment's `notes/` or `README.md`.
   - 3–6 clear, checkable steps.
   - Define "Done" for each step.
-- Review: Ensure the plan is feasible within the timebox.
+- **Review**: Ask the user to review and approve the plan.
+  - Do NOT start building until the plan is approved.
 
 ## Build Phase
 
