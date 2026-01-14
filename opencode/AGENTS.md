@@ -15,6 +15,8 @@ Global guidance for experiments in this repository using `opencode` + `oh-my-ope
 ## Markdown Guidelines
 
 - Make markdown content **markdownlint friendly**.
+  - Verify with `bunx markdownlint-cli2 "**/*.md"` or
+  - Verify with `npx markdownlint-cli2 "**/*.md"`
 - Use unnumbered lists (`-`) instead of numbered lists (`1.`) to ease editing.
 - Use unnumbered headers (no `1.`, `2.`) to ease reordering.
 - Use **bold** and _italics_ sparingly (exceptions only, not for every list item).
