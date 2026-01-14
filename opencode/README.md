@@ -1,25 +1,29 @@
-# OpenCode + Oh-My-OpenCode Installation Guide
+# OpenCode + agentic-cli Installation Guide
 
-This document describes installing OpenCode with
-Google Antigravity OAuth and OpenAI OAuth.
+This document describes installing OpenCode with Google Antigravity OAuth and
+OpenAI OAuth.
 
 ## TODO
 
 - [ ] Try Desktop App
-- [ ] opencode config [custom formatter for markdown](https://opencode.ai/docs/formatters/#custom-formatters) - use deno?!
+- [ ] opencode config
+      [custom formatter for markdown](https://opencode.ai/docs/formatters/#custom-formatters) -
+      use deno?!
 
 ## Current State
 
-As of 2026-01-14, I removed [oh-my-opencode](./oh-my-opencode/README.md)
-in favor of [agentic-cli](./agentic-cli/README.md)
+As of 2026-01-14, I removed [oh-my-opencode](./oh-my-opencode/README.md) in
+favor of [agentic-cli](./agentic-cli/README.md)
 
 ## Antigravity OAuth
 
-Fetch the list of models from <https://github.com/NoeFabris/opencode-antigravity-auth#available-models>
+Fetch the list of models from
+<https://github.com/NoeFabris/opencode-antigravity-auth#available-models>
 
 ### Antigravity Claude Models
 
-The Claude models caused immediate rate limiting errors, and caused quota limit delay of >3 days, so we ended up disabling them.
+The Claude models caused immediate rate limiting errors, and caused quota limit
+delay of >3 days, so we ended up disabling them.
 
 - comment out google/antigravity-claude-\* models
   - `scp -p opencode.json opencode-bak.json`

@@ -1,8 +1,9 @@
 # Global Agent Guidelines
 
-**Purpose**\
+## Purpose
+
 Global guidance for experiments in this repository using `opencode` +
-`oh-my-opencode`.
+`agentic-cli` workflow.
 
 ## Rules
 

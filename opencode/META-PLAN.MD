@@ -1,7 +1,9 @@
 # META-PLAN: OpenCode/Agentic-CLI Experiment Workflow
 
-**Purpose** Provide a repeatable, teachable workflow for running learning
-experiments with `opencode` + `agentic-cli`.
+## Purpose
+
+Provide a repeatable, teachable workflow for running learning experiments with
+`opencode` + `agentic-cli`.
 
 Each experiment is isolated in its own subdirectory to ensure clean separation
 and focused learning.
@@ -17,11 +19,13 @@ and focused learning.
 
 ## Start an Experiment (Create the Workspace)
 
-- Define: Pick an experiment name
+- Pick an experiment name. e.g. bookfinder
 - Scaffold: Create the directory and minimal structure:
-  - Create README.md with the experiment name as level 1 header (#)
-  - Create `thoughts/`: Directory for logs, architectural decisions, and
-    learnings.
-- Use the agentic-cli command: /ticket to initiate the first ticket
-- After that is done propose the rest of the flow for that ticket
-  - /research, /plan, /execute, /commit, /review
+  - Create the directory `./experiments/<YYYY-MM-DD>-<short-name>/`
+  - Create README.md with
+    - the experiment name as level 1 header (#)
+    - Create `thoughts/` subdirectory for tickets/plans/reviews
+- Open a new session of opencode in that directory
+  - Use the agentic-cli command: /ticket to initiate the first ticket
+  - After that is done propose the rest of the flow for that ticket
+    - /research, /plan, /execute, /commit, /review
