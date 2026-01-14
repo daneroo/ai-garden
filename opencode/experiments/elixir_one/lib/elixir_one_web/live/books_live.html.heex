@@ -1,0 +1,43 @@
+<Layouts.app flash={@flash}>
+  <.header>
+    Books
+    <:subtitle>
+      Files from {Application.get_env(:elixir_one, :audiobooks_root_dir) || "(not set)"}
+    </:subtitle>
+  </.header>
+
+  <.form for={@form} id="books-filter" phx-change="filter" class="max-w-lg">
+    <.input
+      field={@form[:filter]}
+      type="text"
+      placeholder="Filter by filename or path"
+      label="Filter"
+    />
+  </.form>
+
+  <div :if={@filtered_entries == []} class="rounded-box bg-base-200 p-6 text-sm text-base-content/70">
+    No books found.
+  </div>
+
+  <div :if={@filtered_entries != []} class="overflow-x-auto rounded-box border border-base-200">
+    <.table id="books-table" rows={@filtered_entries}>
+      <:col :let={entry} label="Name">
+        {Map.get(entry, :basename, "-")}
+      </:col>
+      <:col :let={entry} label="Path">
+        <span class="font-mono text-xs break-all">{Map.get(entry, :path, "-")}</span>
+      </:col>
+      <:col :let={entry} label="Size">
+        {Map.get(entry, :size, "-")}
+      </:col>
+      <:col :let={entry} label="MTime">
+        {Map.get(entry, :mtime, "-")}
+      </:col>
+      <:col :let={entry} label="Status">
+        <span class={if entry.type == :warning, do: "text-warning", else: "text-success"}>
+          {if entry.type == :warning, do: Map.get(entry, :error, "warning"), else: "ok"}
+        </span>
+      </:col>
+    </.table>
+  </div>
+</Layouts.app>

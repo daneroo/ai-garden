@@ -64,7 +64,7 @@
     </p>
     <div class="flex">
       <div class="w-full sm:w-auto">
-        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-3">
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-4">
           <a
             href="https://hexdocs.pm/phoenix/overview.html"
             class="group relative rounded-box px-6 py-4 text-sm font-semibold leading-6 sm:py-6"
@@ -133,6 +133,32 @@
               Changelog
             </span>
           </a>
+          <.link
+            navigate={~p"/books"}
+            class="group relative rounded-box px-6 py-4 text-sm font-semibold leading-6 sm:py-6"
+          >
+            <span class="absolute inset-0 rounded-box bg-base-200 transition group-hover:bg-base-300 sm:group-hover:scale-105">
+            </span>
+            <span class="relative flex items-center gap-4 sm:flex-col">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="h-6 w-6">
+                <path
+                  d="M4 6c0-1.104.896-2 2-2h10a2 2 0 0 1 2 2v12a1 1 0 0 1-1 1H6a2 2 0 0 1-2-2V6Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8 4v16"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Books
+            </span>
+          </.link>
         </div>
         <div class="mt-10 grid grid-cols-1 gap-y-4 text-sm leading-6 text-base-content/80 sm:grid-cols-2">
           <div>

@@ -4,6 +4,10 @@
 
 - Bootstrap Phoenix + Ash + LiveView + SQLite app using Igniter.
 
+## TODO
+
+- [ ] Install MCPs Context7, Tidewave, ...
+
 ## Running the server
 
 - Run `mix setup` to install and setup dependencies.
