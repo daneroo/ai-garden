@@ -3,6 +3,11 @@
 This document describes installing OpenCode with
 Google Antigravity OAuth and OpenAI OAuth.
 
+## TODO
+
+- [ ] Try Desktop App
+- [ ] opencode config [custom formatter for markdown](https://opencode.ai/docs/formatters/#custom-formatters) - use deno?!
+
 ## Current State
 
 As of 2026-01-14, I removed [oh-my-opencode](./oh-my-opencode/README.md)

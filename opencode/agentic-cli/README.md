@@ -7,6 +7,13 @@ This is right from the docs
 
 ```bash
 bun add -g agentic-cli
+
+# asdf nonsense
+# must use this to get it to work
+~/.bun/bin/agentic pull
+# else add
+export PATH="/Users/daniel/.bun/bin:$PATH"
+
 ```
 
 ### Deploy to Your Project
@@ -15,10 +22,15 @@ This will pull all agents/commands into a local `.opencode` directory.
 
 ```bash
 cd ~/projects/my-app
+mkdir -p .opencode
 agentic pull
+# asdf nonsense
+# must use this to get it to work
+~/.bun/bin/agentic pull
+
 ```
 
-### Deploy globally
+### Deploy globally (NOT NOW)
 
 This will pull all agents/commands into your global `~/.config/opencode/` directory.
 
