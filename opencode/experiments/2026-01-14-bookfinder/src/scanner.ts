@@ -8,6 +8,8 @@ export interface AudiobookFile {
 	mtime: Date;
 }
 
+const EXTENSIONS = [".m4b", ".mp3", ".m4a"];
+
 export async function* scanDirectory(
 	dir: string,
 ): AsyncGenerator<AudiobookFile> {
@@ -23,7 +25,7 @@ export async function* scanDirectory(
 				}
 				if (stats.isDirectory()) {
 					yield* scanDirectory(fullPath);
-				} else if (file.endsWith(".m4b")) {
+				} else if (EXTENSIONS.some((ext) => file.endsWith(ext))) {
 					yield {
 						path: fullPath,
 						basename: file,

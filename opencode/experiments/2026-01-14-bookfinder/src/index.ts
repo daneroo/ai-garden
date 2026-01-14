@@ -1,8 +1,9 @@
 #!/usr/bin/env bun
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
+import { probeFile } from "./prober";
 import { scanDirectory } from "./scanner";
-import { formatDate, formatSize } from "./utils";
+import { formatDate, formatDuration, formatSize } from "./utils";
 
 const argv = yargs(hideBin(process.argv))
 	.option("rootpath", {
@@ -20,19 +21,57 @@ const argv = yargs(hideBin(process.argv))
 	.alias("h", "help")
 	.parseSync();
 
+async function parallelMap<T, R>(
+	items: T[],
+	limit: number,
+	fn: (item: T) => Promise<R>,
+): Promise<R[]> {
+	const results: R[] = [];
+	const running = new Set<Promise<void>>();
+	for (const item of items) {
+		const promise = fn(item).then((res) => {
+			results.push(res);
+			running.delete(promise);
+		});
+		running.add(promise);
+		if (running.size >= limit) {
+			await Promise.race(running);
+		}
+	}
+	await Promise.all(running);
+	return results;
+}
+
 async function main() {
+	const files = [];
 	for await (const file of scanDirectory(argv.rootpath)) {
+		files.push(file);
+	}
+
+	const probedFiles = await parallelMap(files, 8, async (file) => {
+		const metadata = await probeFile(file.path);
+		return {
+			...file,
+			metadata,
+		};
+	});
+
+	probedFiles.sort((a, b) => a.basename.localeCompare(b.basename));
+
+	for (const file of probedFiles) {
 		if (argv.json) {
 			console.log(
 				JSON.stringify({
 					basename: file.basename,
-					size: formatSize(file.size),
+					size: file.size, // Bytes in JSON as requested
 					mtime: formatDate(file.mtime),
+					...file.metadata,
 				}),
 			);
 		} else {
+			const { duration, artist, title } = file.metadata;
 			console.log(
-				`File: ${file.basename} | Size: ${formatSize(file.size)} | Date: ${formatDate(file.mtime)}`,
+				`${file.basename} | ${formatSize(file.size)} | ${formatDuration(duration)} | ${artist || "Unknown"} | ${title || "Unknown"}`,
 			);
 		}
 	}
