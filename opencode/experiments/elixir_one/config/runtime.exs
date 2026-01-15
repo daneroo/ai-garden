@@ -23,7 +23,9 @@ end
 config :elixir_one, ElixirOneWeb.Endpoint,
   http: [port: String.to_integer(System.get_env("PORT", "4000"))]
 
-config :elixir_one, :audiobooks_root_dir, System.get_env("AUDIOBOOKS_ROOT_DIR")
+config :elixir_one,
+       :audiobooks_root_dir,
+       System.get_env("AUDIOBOOKS_ROOT_DIR") || "/Volumes/Space/Reading/audiobooks"
 
 if config_env() == :prod do
   # The secret key base is used to sign/encrypt cookies and other secrets.
