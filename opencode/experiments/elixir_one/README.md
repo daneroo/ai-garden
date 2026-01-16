@@ -6,8 +6,8 @@
 
 ## TODO
 
-- [ ] Add `.m4b` diration and metadata to the scanner/library.
-  - [ ] decide if we use [ffmpex](https://github.com/talklittle/ffmpex) or raw `ffprobe` command
+- [ ] See [LIVEVIEW_ASYNC_TASK.md](LIVEVIEW_ASYNC_TASK.md) `Next Steps` section
+  - [ ] Like Add sorting and pagination, progressive loading, etc.
 
 ## Tidewave Setup
 

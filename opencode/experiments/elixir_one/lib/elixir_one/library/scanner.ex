@@ -1,5 +1,12 @@
 defmodule ElixirOne.Library.Scanner do
-  @moduledoc false
+  @moduledoc """
+  Walks the audiobooks directory tree and returns file entries with both
+  `:path` (for filtering/tooltips/actions) and `:basename` (precomputed name
+  for display and for warning rows where a path might be missing). Keeping both
+  avoids repeated `Path.basename/1` in the UI and keeps warning entries readable.
+  """
+
+  alias ElixirOne.Library.Prober
 
   @allowed_extensions [".m4b", ".mp3", ".m4a"]
 
@@ -19,6 +26,41 @@ defmodule ElixirOne.Library.Scanner do
         "~#{entry.path}"
       end
     end)
+  end
+
+  @doc """
+  Enriches the given entries using `ffprobe` and returns a Stream of results.
+  This allows the caller to process each result as it becomes available.
+  """
+  def enrich_stream(entries) do
+    # Only probe valid files, skip warnings
+    files_to_probe = Enum.filter(entries, &(&1.type == :file))
+
+    files_to_probe
+    |> Task.async_stream(
+      fn entry ->
+        case Prober.probe(entry.path) do
+          {:ok, metadata} -> Map.merge(entry, metadata)
+          {:error, _} -> entry
+        end
+      end,
+      # Don't kill the machine, but be fast
+      max_concurrency: System.schedulers_online() * 2,
+      timeout: 60_000,
+      ordered: false
+    )
+    |> Stream.map(fn {:ok, entry} -> entry end)
+  end
+
+  @doc """
+  Enriches the given entries with metadata using `ffprobe` (Blocking/Batch).
+  Returns the full list once complete.
+  """
+  def enrich(entries) do
+    other_entries = Enum.reject(entries, &(&1.type == :file))
+    enriched_files = enrich_stream(entries) |> Enum.to_list()
+
+    (other_entries ++ enriched_files) |> Enum.sort_by(& &1.path)
   end
 
   defp traverse(path) do
@@ -115,12 +157,12 @@ defmodule ElixirOne.Library.Scanner do
     {bytes, unit}
   end
 
-  defp scale_size(bytes, [unit | _rest]) when bytes < 1024 do
+  defp scale_size(bytes, [unit | _rest]) when bytes < 1000 do
     {bytes, unit}
   end
 
   defp scale_size(bytes, [_unit | rest]) do
-    scale_size(bytes / 1024, rest)
+    scale_size(bytes / 1000, rest)
   end
 
   defp format_error(reason) when is_atom(reason), do: Atom.to_string(reason)

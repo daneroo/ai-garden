@@ -12,6 +12,7 @@ defmodule ElixirOne.Application do
       ElixirOneWeb.Telemetry,
       {DNSCluster, query: Application.get_env(:elixir_one, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: ElixirOne.PubSub},
+      ElixirOne.Library.Server,
       # Start a worker by calling: ElixirOne.Worker.start_link(arg)
       # {ElixirOne.Worker, arg},
       # Start to serve requests, typically the last entry

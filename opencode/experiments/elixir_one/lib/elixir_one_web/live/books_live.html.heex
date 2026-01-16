@@ -15,6 +15,18 @@
     />
   </.form>
 
+  <div class="mt-4 flex items-center justify-between text-sm text-base-content/70">
+    <div>
+      {@filtered_count} of {@total_count} books visible
+      <span class="ml-1 text-base-content/50">
+        ({Enum.count(@entries, &Map.get(&1, :bit_rate_bps))} enriched in {@elapsed_s}s)
+      </span>
+    </div>
+    <button class="btn btn-xs btn-outline" phx-click="global_reset">
+      Rescan Library ↻
+    </button>
+  </div>
+
   <div
     :if={@filtered_entries == []}
     class="rounded-box bg-base-200 p-6 text-sm text-base-content/70"
@@ -24,16 +36,32 @@
 
   <div :if={@filtered_entries != []} class="overflow-x-auto rounded-box border border-base-200">
     <.table id="books-table" rows={@filtered_entries}>
-      <:col :let={entry} label="Name">
-        {Map.get(entry, :basename, "-")}
+      <:col :let={entry} label="Name/Series">
+        <div class="flex flex-col" title={entry.path}>
+          <span class="font-medium text-zinc-900">
+            {Map.get(entry, :title) || Map.get(entry, :basename, "-") |> Path.rootname()}
+          </span>
+          <span :if={Map.get(entry, :series)} class="text-xs text-zinc-500">
+            {entry.series} {if Map.get(entry, :series_part), do: "##{entry.series_part}"}
+          </span>
+        </div>
       </:col>
-      <:col :let={entry} label="Path">
-        <span class="font-mono text-xs break-all">{Map.get(entry, :path, "-")}</span>
+      <:col :let={entry} label="Author">
+        {Map.get(entry, :author, "-")}
+      </:col>
+      <:col :let={entry} label="Duration">
+        {if Map.get(entry, :duration), do: format_duration(entry.duration), else: "-"}
+      </:col>
+      <:col :let={entry} label="Bitrate">
+        <span :if={Map.get(entry, :bit_rate_bps)} class="text-xs text-zinc-500">
+          {div(entry.bit_rate_bps, 1000)} kb/s
+        </span>
+        <span :if={!Map.get(entry, :bit_rate_bps)}>-</span>
       </:col>
       <:col :let={entry} label="Size">
         {Map.get(entry, :size, "-")}
       </:col>
-      <:col :let={entry} label="MTime">
+      <:col :let={entry} label="Modified">
         {Map.get(entry, :mtime, "-")}
       </:col>
       <:col :let={entry} label="Status">
