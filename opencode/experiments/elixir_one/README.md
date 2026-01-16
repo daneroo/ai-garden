@@ -7,7 +7,7 @@
 ## TODO
 
 - [ ] Add `.m4b` diration and metadata to the scanner/library.
-  - [ ] decide if we use `ffmpex` or raw `ffprobe` command
+  - [ ] decide if we use [ffmpex](https://github.com/talklittle/ffmpex) or raw `ffprobe` command
 
 ## Tidewave Setup
 
@@ -25,6 +25,17 @@ if Code.ensure_loaded?(Tidewave) do
 end
 ```
 
+## VS Code Setup
+
+**Extensions:**
+
+- ElixirLS (`elixir-lsp.elixir-ls`): Core support (Intellisense, Debugging, Formatting).
+- Phoenix Framework (`phoenixframework.phoenix`): Syntax highlighting for `.heex` files. (Open VSX users: Fork `victorbjorklund.phoenix` is outdated, but we use it because it works).
+- Tailwind CSS IntelliSense (`bradlc.vscode-tailwindcss`): Class autocomplete.
+
+**Settings:**
+Associate `.ex/.exs` with Elixir and `.heex` with Phoenix.
+
 ## Running the server
 
 - Run `mix setup` to install and setup dependencies.
@@ -37,8 +48,8 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 ## Learn more
 
-- Official website: https://www.phoenixframework.org/
-- Guides: https://hexdocs.pm/phoenix/overview.html
-- Docs: https://hexdocs.pm/phoenix
-- Forum: https://elixirforum.com/c/phoenix-forum
-- Source: https://github.com/phoenixframework/phoenix
+- [Official website](https://www.phoenixframework.org/)
+- [Guides](https://hexdocs.pm/phoenix/overview.html)
+- [Docs](https://hexdocs.pm/phoenix)
+- [Forum](https://elixirforum.com/c/phoenix-forum)
+- [Source](https://github.com/phoenixframework/phoenix)

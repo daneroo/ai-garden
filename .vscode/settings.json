@@ -36,5 +36,20 @@
   "[markdown]": {
     // This is to get proper table formatting!
     "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  // Elixir - Phoenix section
+  // Redundant defaults (handled by extensions):
+  // "files.associations": {
+  //   "*.ex": "elixir",
+  //   "*.exs": "elixir",
+  //   "*.heex": "phoenix-heex"
+  // },
+  "[elixir]": {
+    "editor.defaultFormatter": "elixir-lsp.elixir-ls"
+  },
+  "[phoenix-heex]": {
+    // Open VSX users: "victorbjorklund.phoenix" is available but old (v0.1.0).
+    // Recommendation: Install official .vsix manually or use "phoenixframework.phoenix" if available.
+    "editor.defaultFormatter": "elixir-lsp.elixir-ls"
   }
 }

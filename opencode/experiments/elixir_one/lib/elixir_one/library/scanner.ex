@@ -1,6 +1,8 @@
 defmodule ElixirOne.Library.Scanner do
   @moduledoc false
 
+  @allowed_extensions [".m4b", ".mp3", ".m4a"]
+
   def scan(nil),
     do: [%{type: :warning, path: "", basename: "", error: "AUDIOBOOKS_ROOT_DIR not set"}]
 
@@ -34,15 +36,19 @@ defmodule ElixirOne.Library.Scanner do
               traverse(entry_path)
 
             {:ok, %{type: :regular} = stat} ->
-              [
-                %{
-                  type: :file,
-                  basename: entry,
-                  path: entry_path,
-                  size: format_size(stat.size),
-                  mtime: format_mtime(stat.mtime)
-                }
-              ]
+              if allowed_extension?(entry_path) do
+                [
+                  %{
+                    type: :file,
+                    basename: entry,
+                    path: entry_path,
+                    size: format_size(stat.size),
+                    mtime: format_mtime(stat.mtime)
+                  }
+                ]
+              else
+                []
+              end
 
             {:ok, %{type: other}} ->
               [warning_entry(entry_path, "unsupported type #{other}")]
@@ -66,9 +72,30 @@ defmodule ElixirOne.Library.Scanner do
     }
   end
 
-  defp format_mtime(%NaiveDateTime{} = mtime), do: NaiveDateTime.to_iso8601(mtime)
-  defp format_mtime(%DateTime{} = mtime), do: DateTime.to_iso8601(mtime)
+  defp format_mtime(%NaiveDateTime{} = mtime), do: format_naive_mtime(mtime)
+  defp format_mtime(%DateTime{} = mtime), do: format_naive_mtime(DateTime.to_naive(mtime))
+
+  defp format_mtime({{year, month, day}, {hour, minute, second}})
+       when is_integer(year) and is_integer(month) and is_integer(day) and is_integer(hour) and
+              is_integer(minute) and is_integer(second) do
+    case NaiveDateTime.new(year, month, day, hour, minute, second) do
+      {:ok, naive} -> format_naive_mtime(naive)
+      _ -> inspect({{year, month, day}, {hour, minute, second}})
+    end
+  end
+
   defp format_mtime(mtime), do: inspect(mtime)
+
+  defp format_naive_mtime(%NaiveDateTime{} = mtime) do
+    Calendar.strftime(mtime, "%Y-%m-%d %H:%M:%S")
+  end
+
+  defp allowed_extension?(path) do
+    path
+    |> Path.extname()
+    |> String.downcase()
+    |> then(&(&1 in @allowed_extensions))
+  end
 
   defp format_size(bytes) when is_integer(bytes) and bytes >= 0 do
     units = ["B", "KB", "MB", "GB", "TB"]

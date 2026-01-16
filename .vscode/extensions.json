@@ -2,6 +2,10 @@
   "recommendations": [
     "denoland.vscode-deno",
     "bradlc.vscode-tailwindcss",
-    "astro-build.astro-vscode"
+    "astro-build.astro-vscode",
+    "elixir-lsp.elixir-ls",
+    // Official extension (use "victorbjorklund.phoenix" on Open VSX if needed, but it is outdated).
+    // Better: Download standard .vsix from https://github.com/phoenixframework/vscode-phoenix/releases
+    "phoenixframework.phoenix"
   ]
 }
