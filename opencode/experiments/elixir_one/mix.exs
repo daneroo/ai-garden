@@ -41,6 +41,8 @@ defmodule ElixirOne.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      # This is how I added tidewave to the project.
+      {:tidewave, "~> 0.5", only: :dev},
       {:sourceror, "~> 1.8", only: [:dev, :test]},
       {:ash_sqlite, "~> 0.2"},
       {:ash_phoenix, "~> 2.0"},

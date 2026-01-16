@@ -6,7 +6,24 @@
 
 ## TODO
 
-- [ ] Install MCPs Context7, Tidewave, ...
+- [ ] Add `.m4b` diration and metadata to the scanner/library.
+  - [ ] decide if we use `ffmpex` or raw `ffprobe` command
+
+## Tidewave Setup
+
+Dependency in `mix.exs`:
+
+```elixir
+{:tidewave, "~> 0.5", only: :dev}
+```
+
+Endpoint Plug in `lib/elixir_one_web/endpoint.ex`:
+
+```elixir
+if Code.ensure_loaded?(Tidewave) do
+  plug Tidewave
+end
+```
 
 ## Running the server
 

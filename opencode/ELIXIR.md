@@ -82,3 +82,20 @@ mix ash_phoenix.gen.live --domain MyApp.Shop --resource MyApp.Shop.Product
 - Phoenix generator: scaffolds a new app.
 - Igniter: applies codemods/installers/upgrades to your app.
 - Ash generators: scaffold domain/resources/LiveViews on top of that.
+
+## Tidewave
+
+Dependency in `mix.exs`:
+
+```elixir
+{:tidewave, "~> 0.5", only: :dev}
+```
+
+Endpoint Plug in `lib/elixir_one_web/endpoint.ex`:
+
+```elixir
+    if Code.ensure_loaded?(Tidewave) do
+      plug Tidewave
+    end
+    `
+```

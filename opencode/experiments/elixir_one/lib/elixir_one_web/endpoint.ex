@@ -27,6 +27,11 @@ defmodule ElixirOneWeb.Endpoint do
     only: ElixirOneWeb.static_paths(),
     raise_on_missing_only: code_reloading?
 
+  # This is where I added tidewave
+  if Code.ensure_loaded?(Tidewave) do
+    plug Tidewave
+  end
+
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
