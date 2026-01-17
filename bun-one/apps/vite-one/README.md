@@ -13,7 +13,7 @@ These are the components of our stack:
 
 - [x] add at least a single test
 - [x] Make a first stab at AGENTS.md
-- [x] Add a second page
+- [x] Add a second page - Using react-router-dom
 - [ ] Add DaisyUI
   - [ ] Include Light Dark Theme
   - [ ] Use a Navbar to get to the second page
