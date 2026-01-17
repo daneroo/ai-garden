@@ -7,7 +7,14 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "bun test",
+    "check": "tsc --noEmit",
+    "fmt": "bunx prettier --write .",
+    "fmt:check": "bunx prettier --check .",
+    "ci": "bun run fmt:check && bun run lint && bun run check && bun run test",
+    "clean-reinstall": "rm -rf node_modules **/node_modules && bun install",
+    "outdated": "bun outdated -r"
   },
   "dependencies": {
     "@bun-one/timer": "workspace:*",
