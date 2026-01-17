@@ -35,6 +35,27 @@ defmodule ElixirOneWeb.Layouts do
 
   def app(assigns) do
     ~H"""
+    <.site_header active_tab={:books} />
+
+    <main class="px-4 py-20 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl space-y-4">
+        {render_slot(@inner_block)}
+      </div>
+    </main>
+
+    <.site_footer />
+
+    <.flash_group flash={@flash} />
+    """
+  end
+
+  @doc """
+  Renders the shared site header.
+  """
+  attr :active_tab, :atom, default: nil
+
+  def site_header(assigns) do
+    ~H"""
     <header class="navbar px-4 sm:px-6 lg:px-8 bg-base-100/50 backdrop-blur-md border-b border-base-content/5 sticky top-0 z-50">
       <div class="flex-1">
         <a href="/" class="flex items-center gap-3 group">
@@ -47,29 +68,100 @@ defmodule ElixirOneWeb.Layouts do
         </a>
       </div>
       <div class="flex-none">
-        <ul class="flex flex-column px-1 space-x-4 items-center">
-          <li>
-            <.theme_toggle />
-          </li>
+        <ul class="menu menu-horizontal px-1 gap-2 items-center">
           <li>
             <.link
               navigate={~p"/books"}
-              class="btn btn-primary btn-sm shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300"
+              class={[
+                "btn btn-sm",
+                if(@active_tab == :books,
+                  do: "btn-active",
+                  else:
+                    "btn-ghost text-base-content/80 hover:text-base-content hover:bg-base-content/5"
+                )
+              ]}
             >
               Books
             </.link>
           </li>
+          <li>
+            <.link
+              navigate={~p"/logo"}
+              class={[
+                "btn btn-sm",
+                if(@active_tab == :logo,
+                  do: "btn-active",
+                  else:
+                    "btn-ghost text-base-content/80 hover:text-base-content hover:bg-base-content/5"
+                )
+              ]}
+            >
+              Logo
+            </.link>
+          </li>
+          <li>
+            <.theme_toggle />
+          </li>
         </ul>
       </div>
     </header>
+    """
+  end
 
-    <main class="px-4 py-20 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl space-y-4">
-        {render_slot(@inner_block)}
+  @doc """
+  Renders the shared site footer.
+  """
+  def site_footer(assigns) do
+    ~H"""
+    <footer class="mt-20 max-w-7xl mx-auto w-full pt-10 px-4 sm:px-6 lg:px-8 border-t border-base-content/10 text-center sm:text-left">
+      <div class="flex flex-col sm:flex-row justify-between gap-8 text-sm text-base-content/60">
+        <div class="space-y-4">
+          <h4 class="font-medium text-base-content mb-2">Project</h4>
+          <div class="flex flex-wrap gap-x-6 gap-y-2">
+            <a
+              href="https://github.com/phoenixframework/phoenix"
+              class="hover:text-rose-500 transition-colors"
+            >
+              Source Code
+            </a>
+            <a
+              href="https://hexdocs.pm/phoenix/overview.html"
+              class="hover:text-rose-500 transition-colors"
+            >
+              Guides & Docs
+            </a>
+            <a href="#" class="hover:text-rose-500 transition-colors">Changelog</a>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h4 class="font-medium text-base-content mb-2">Community</h4>
+          <div class="flex flex-wrap gap-x-6 gap-y-2">
+            <a href="https://elixirforum.com" class="hover:text-purple-500 transition-colors">
+              Elixir Forum
+            </a>
+            <a href="https://discord.gg/elixir" class="hover:text-purple-500 transition-colors">
+              Discord
+            </a>
+            <a
+              href="https://elixir-slack.community/"
+              class="hover:text-purple-500 transition-colors"
+            >
+              Slack
+            </a>
+            <a
+              href="https://fly.io/docs/elixir/getting-started/"
+              class="hover:text-purple-500 transition-colors"
+            >
+              Deploy
+            </a>
+          </div>
+        </div>
       </div>
-    </main>
-
-    <.flash_group flash={@flash} />
+      <div class="mt-12 text-xs text-base-content/40">
+        &copy; {Date.utc_today().year} Prosodio Experiment. Built with Phoenix LiveView.
+      </div>
+    </footer>
     """
   end
 
