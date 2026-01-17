@@ -35,28 +35,29 @@ defmodule ElixirOneWeb.Layouts do
 
   def app(assigns) do
     ~H"""
-    <header class="navbar px-4 sm:px-6 lg:px-8">
+    <header class="navbar px-4 sm:px-6 lg:px-8 bg-base-100/50 backdrop-blur-md border-b border-base-content/5 sticky top-0 z-50">
       <div class="flex-1">
-        <a href="/" class="flex-1 flex w-fit items-center gap-2">
-          <img src={~p"/images/logo.svg"} width="36" />
-          <span class="text-sm font-semibold">v{Application.spec(:phoenix, :vsn)}</span>
+        <a href="/" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl ring-2 ring-base-content/10 shadow-lg shadow-rose-500/20 group-hover:scale-105 transition-transform duration-300">
+            P
+          </div>
+          <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-base-content to-base-content/70 tracking-tight">
+            Prosodio
+          </span>
         </a>
       </div>
       <div class="flex-none">
         <ul class="flex flex-column px-1 space-x-4 items-center">
           <li>
-            <a href="https://phoenixframework.org/" class="btn btn-ghost">Website</a>
-          </li>
-          <li>
-            <a href="https://github.com/phoenixframework/phoenix" class="btn btn-ghost">GitHub</a>
-          </li>
-          <li>
             <.theme_toggle />
           </li>
           <li>
-            <a href="https://hexdocs.pm/phoenix/overview.html" class="btn btn-primary">
-              Get Started <span aria-hidden="true">&rarr;</span>
-            </a>
+            <.link
+              navigate={~p"/books"}
+              class="btn btn-primary btn-sm shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300"
+            >
+              Books
+            </.link>
           </li>
         </ul>
       </div>

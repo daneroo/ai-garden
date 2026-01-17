@@ -18,6 +18,7 @@ defmodule ElixirOneWeb.Router do
     pipe_through(:browser)
 
     get("/", PageController, :home)
+    get("/logo", PageController, :logo)
     live("/books", BooksLive)
   end
 
