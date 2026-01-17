@@ -1,12 +1,19 @@
 # React + TypeScript + Vite
 
-This is a Vite + React + TypeScript + Tailwind CSS + Bun template.
+These are the components of our stack:
+
+- Bun: Runtime (used in a monorepo / workspaces context)
+- React: Component runtime
+  - Including shared components
+- Vite: Bundler
+- Tailwind CSS: Styling
+- React Router DOM: Routing
 
 ## TODO
 
 - [x] add at least a single test
 - [x] Make a first stab at AGENTS.md
-- [ ] Add a second page
+- [x] Add a second page
 - [ ] Add DaisyUI
   - [ ] Include Light Dark Theme
   - [ ] Use a Navbar to get to the second page
