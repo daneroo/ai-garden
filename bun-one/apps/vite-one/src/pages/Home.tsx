@@ -8,7 +8,7 @@ import "../index.css";
  */
 function Home() {
   return (
-    <div className="min-h-screen pt-20 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10">
+    <div className="min-h-screen pt-20 bg-linear-to-br from-primary/10 via-transparent to-secondary/10">
       {/* Hero Section */}
       <div className="hero min-h-[70vh]">
         <div className="hero-content flex-col lg:flex-row-reverse gap-8 lg:gap-16">

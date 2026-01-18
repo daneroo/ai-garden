@@ -106,7 +106,7 @@ For pages that need edge-to-edge control:
 // Home.tsx - handles its own full-screen gradient
 function Home() {
   return (
-    <div className="min-h-screen pt-20 bg-gradient-to-br from-primary/10 to-secondary/10">
+    <div className="min-h-screen pt-20 bg-linear-to-br from-primary/10 to-secondary/10">
       <div className="hero min-h-[70vh]">{/* Hero content */}</div>
     </div>
   );
@@ -207,7 +207,7 @@ where possible:
 
 ```jsx
 // Themed gradients using CSS custom properties
-<div className="bg-gradient-to-br from-primary to-secondary">
+<div className="bg-linear-to-br from-primary to-secondary">
 
 // Decorative overlays that respect theme
 <div className="bg-base-100/30 backdrop-blur-sm border border-base-content/5">
