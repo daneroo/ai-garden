@@ -26,8 +26,8 @@ These are the components of our stack:
     - [x] Document how to evolve the current implementation into best practices
     - [x] Include Light Dark Theme
   - [x] Use a Navbar to get to the second page
-- [ ] Redo Exercise styling on about page, and perhaps Landing page
-- [ ] Port Logo experiments from elixir_one/logo
+- [x] Redo Exercise styling on about page, and perhaps Landing page
+- [x] Port Logo experiments from elixir_one/logo
 - [ ] Cleanup Legacy README below
 
 ---

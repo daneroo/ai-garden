@@ -105,11 +105,21 @@ export default function Layout() {
               </li>
               <li>
                 <NavLink
-                  to="/about"
+                  to="/logo"
                   className={({ isActive }) => (isActive ? "menu-active" : "")}
                 >
-                  About
+                  Logo
                 </NavLink>
+                <li>
+                  <NavLink
+                    to="/about"
+                    className={({ isActive }) =>
+                      isActive ? "menu-active" : ""
+                    }
+                  >
+                    About
+                  </NavLink>
+                </li>
               </li>
             </ul>
           </div>
@@ -134,6 +144,14 @@ export default function Layout() {
                 className={({ isActive }) => (isActive ? "menu-active" : "")}
               >
                 About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/logo"
+                className={({ isActive }) => (isActive ? "menu-active" : "")}
+              >
+                Logo
               </NavLink>
             </li>
           </ul>

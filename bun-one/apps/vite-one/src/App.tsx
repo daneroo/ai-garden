@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Logo from "./pages/Logo";
 import Layout from "./components/Layout";
 import "./index.css";
 
@@ -21,6 +22,11 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<Layout />}>
       <Route path="/" element={<Home />} handle={{ layoutMode: "fullBleed" }} />
+      <Route
+        path="/logo"
+        element={<Logo />}
+        handle={{ layoutMode: "fullBleed" }}
+      />
       <Route path="/about" element={<About />} /> {/* default: contained */}
     </Route>,
   ),
