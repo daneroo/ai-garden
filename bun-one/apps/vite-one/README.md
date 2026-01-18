@@ -15,10 +15,13 @@ These are the components of our stack:
 - [x] add at least a single test
 - [x] Make a first stab at AGENTS.md
 - [x] Add a second page - Using react-router-dom
-- [ ] Add DaisyUI
-  - [ ] Add a single button to prove it works
+- [x] Add DaisyUI
+  - [x] Add a single button to prove it works
+- [ ] Properly theme with DaisyUI
+  - [ ] Do research to understand best practices (common layout, dark mode, etc)
   - [ ] Include Light Dark Theme
   - [ ] Use a Navbar to get to the second page
+  - [ ] Exercise styling on about page, and perhaps Landing page
 - [ ] Port Logo experiments from elixir_one/logo
 - [ ] Cleanup Legacy README below
 
