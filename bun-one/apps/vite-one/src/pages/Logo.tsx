@@ -29,7 +29,7 @@ function LogoContainer({
 }) {
   return (
     <div className="flex flex-col items-center gap-4 group cursor-pointer">
-      <div className="w-24 h-24 rounded-2xl bg-linear-to-tr from-rose-500 to-purple-600 flex items-center justify-center text-white ring-4 ring-base-content/10 shadow-xl shadow-rose-500/20 group-hover:scale-110 transition-transform relative overflow-hidden">
+      <div className="w-24 h-24 rounded-2xl bg-linear-to-tr from-secondary to-primary flex items-center justify-center text-primary-content ring-4 ring-base-content/10 shadow-xl shadow-primary/20 group-hover:scale-110 transition-transform relative overflow-hidden">
         {children}
       </div>
       <span className="text-base-content/70 text-sm">{label}</span>
@@ -110,7 +110,7 @@ function LogoMD({
             y1={y}
             x2="90"
             y2={y}
-            stroke="white"
+            stroke="currentColor"
             strokeWidth="1.5"
             opacity="0.5"
           />
@@ -125,7 +125,7 @@ function LogoMD({
           fontFamily="sans-serif"
           fontWeight="normal"
           fontSize={g.glyph === "¶" ? "32" : "20"}
-          fill="white"
+          fill="currentColor"
           dominantBaseline="middle"
           textAnchor="middle"
         >
@@ -154,28 +154,28 @@ function Logo() {
         fontFamily="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
         fontWeight="bold"
         fontSize="50"
-        fill="white"
+        fill="currentColor"
       >
         ¶
       </text>
       <path
         d="M 60 40 A 15 15 0 0 1 60 60"
         fill="none"
-        stroke="white"
+        stroke="currentColor"
         strokeWidth="6"
         strokeLinecap="round"
       />
       <path
         d="M 68 35 A 25 25 0 0 1 68 65"
         fill="none"
-        stroke="white"
+        stroke="currentColor"
         strokeWidth="6"
         strokeLinecap="round"
       />
       <path
         d="M 78 30 A 35 35 0 0 1 78 70"
         fill="none"
-        stroke="white"
+        stroke="currentColor"
         strokeWidth="6"
         strokeLinecap="round"
       />
