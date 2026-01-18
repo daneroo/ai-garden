@@ -1,9 +1,16 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes:
+    light --default,
+    dark --prefersdark;
+}
 
-/* 
+/* Enable Tailwind dark: variant with DaisyUI themes */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/*
   External Package Sources
-  This explicitly registers shared packages (like `timer`) to ensure their 
+  This explicitly registers shared packages (like `timer`) to ensure their
   Tailwind classes are scanned and included in the build.
 */
 @source "../../../components";

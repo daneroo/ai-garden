@@ -1,22 +1,38 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ThemeController } from "./ThemeController";
+import { ThemeController, type Theme } from "./ThemeController";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  // Initialize theme from localStorage or default to 'light'
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("theme") || "light";
+  // Initialize theme from localStorage (may be null for "system")
+  const [theme, setTheme] = useState<Theme>(() => {
+    const stored = localStorage.getItem("theme");
+    if (stored === "light" || stored === "dark") {
+      return stored;
+    }
+    return "system";
   });
 
-  // Sync theme to document and localStorage
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  // Apply theme changes to document and localStorage
+  const applyTheme = (newTheme: Theme) => {
+    if (newTheme === "system") {
+      localStorage.removeItem("theme");
+      document.documentElement.removeAttribute("data-theme");
+    } else {
+      localStorage.setItem("theme", newTheme);
+      document.documentElement.setAttribute("data-theme", newTheme);
+    }
+    setTheme(newTheme);
   };
+
+  // Sync with index.html script on initial render (avoid mismatch)
+  useEffect(() => {
+    const stored = localStorage.getItem("theme");
+    if (stored === "light" || stored === "dark") {
+      document.documentElement.setAttribute("data-theme", stored);
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+    }
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-base-100 text-base-content">
@@ -67,7 +83,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </ul>
         </div>
         <div className="navbar-end">
-          <ThemeController theme={theme} toggleTheme={toggleTheme} />
+          <ThemeController theme={theme} setTheme={applyTheme} />
         </div>
       </div>
 
