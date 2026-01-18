@@ -9,6 +9,7 @@ React environment.
 ## Table of Contents
 
 - [Overview](#overview)
+- [Layout Modes](#layout-modes)
 - [Best Practices](#best-practices)
 - [Theme Configuration](#theme-configuration)
 - [Resources](#resources)
@@ -31,6 +32,91 @@ interfere with React's state management. This means:
 - Use DaisyUI classes for styling (`btn`, `navbar`, `card`, etc.)
 - Use React state for behavior and interactivity
 - Use Tailwind utilities for layout, spacing, and custom styling
+
+---
+
+## Layout Modes
+
+The application uses a `Layout` component with a `mode` prop to abstract common
+layout patterns. This eliminates cognitive overhead—pages don't need to remember
+CSS incantations for navbar offsets or container constraints.
+
+### Available Modes
+
+| Mode        | Horizontal                              | Vertical                           | Use Case                                               |
+| ----------- | --------------------------------------- | ---------------------------------- | ------------------------------------------------------ |
+| `contained` | Centered with max-width, `px-4` padding | Below navbar with `pt-20` offset   | Standard content pages                                 |
+| `fullBleed` | Edge-to-edge, no constraints            | No navbar offset (page handles it) | Hero pages, landing pages with full-screen backgrounds |
+
+### Router Integration
+
+Layout mode is declared per-route via the `handle` prop. This keeps the layout
+configuration co-located with the route definition:
+
+```tsx
+// App.tsx
+export interface RouteHandle {
+  layoutMode?: "contained" | "fullBleed";
+}
+
+export const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route element={<Layout />}>
+      <Route path="/" element={<Home />} handle={{ layoutMode: "fullBleed" }} />
+      <Route path="/about" element={<About />} />
+    </Route>,
+  ),
+);
+```
+
+Layout reads the mode from the matched route's handle using `useMatches()`.
+Routes without a `handle.layoutMode` default to `contained`.
+
+### Mode Details
+
+#### `contained` (default)
+
+The standard mode for most pages:
+
+- Horizontal: `container mx-auto px-4` centers content with responsive max-width
+- Vertical: `pt-20` offsets content below the fixed navbar
+- Pages receive a clean content area—no layout CSS needed
+
+```tsx
+// About.tsx - just content, no layout concerns
+function About() {
+  return (
+    <div className="max-w-3xl mx-auto py-12">
+      <h1>About</h1>
+      {/* Content here */}
+    </div>
+  );
+}
+```
+
+#### `fullBleed`
+
+For pages that need edge-to-edge control:
+
+- Horizontal: No constraints—content fills viewport width
+- Vertical: No navbar offset—page must add `pt-20` where content starts
+- Use for: hero sections, landing pages, full-screen backgrounds/gradients
+
+```tsx
+// Home.tsx - handles its own full-screen gradient
+function Home() {
+  return (
+    <div className="min-h-screen pt-20 bg-gradient-to-br from-primary/10 to-secondary/10">
+      <div className="hero min-h-[70vh]">{/* Hero content */}</div>
+    </div>
+  );
+}
+```
+
+### Extending Layout Modes
+
+The current modes cover common cases. To add new patterns (e.g., sidebar),
+extend the `LayoutMode` type in `App.tsx` and handle it in `Layout.tsx`.
 
 ---
 
@@ -114,20 +200,6 @@ Use semantic footer classes:
 </footer>
 ```
 
-### Layout Structure
-
-Recommended page structure:
-
-```jsx
-<div className="min-h-screen flex flex-col bg-base-100 text-base-content">
-  <Navbar /> {/* Fixed/sticky */}
-  <main className="grow container mx-auto px-4 pt-20">
-    {/* Page content */}
-  </main>
-  <Footer />
-</div>
-```
-
 ### Gradient and Visual Effects
 
 When using gradients or decorative elements, combine DaisyUI semantic colors
@@ -185,9 +257,9 @@ Include more built-in themes:
 
 The app implements a system/light/dark toggle:
 
-- **System:** Removes `data-theme` attribute, respects OS preference via
+- System: Removes `data-theme` attribute, respects OS preference via
   `--prefersdark`
-- **Light/Dark:** Explicitly sets `data-theme` and persists to `localStorage`
+- Light/Dark: Explicitly sets `data-theme` and persists to `localStorage`
 
 FOUC prevention script in `index.html` applies theme before React hydrates.
 

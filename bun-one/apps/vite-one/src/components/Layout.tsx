@@ -1,8 +1,36 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Outlet, useMatches } from "react-router-dom";
 import { ThemeController, type Theme } from "./ThemeController";
+import type { RouteHandle } from "../App";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+/**
+ * Layout mode controls how the main content area is styled.
+ *
+ * @mode "contained" - Standard pages
+ *   - Horizontal: Centered with max-width (`container mx-auto px-4`)
+ *   - Vertical: Below navbar with `pt-20` offset
+ *
+ * @mode "fullBleed" - Hero/landing pages
+ *   - Horizontal: Edge-to-edge, no width constraints
+ *   - Vertical: No navbar offset (page adds `pt-20` where content starts)
+ *
+ * @see STYLING.md for detailed documentation and examples
+ */
+export type LayoutMode = "contained" | "fullBleed";
+
+/**
+ * Root layout component providing navbar, footer, and content area.
+ * Uses React Router's Outlet for nested route rendering.
+ *
+ * Layout mode is read from the matched route's `handle.layoutMode` property.
+ */
+export default function Layout() {
+  // Read layout mode from current route's handle
+  const matches = useMatches();
+  const currentMatch = matches[matches.length - 1];
+  const handle = currentMatch?.handle as RouteHandle | undefined;
+  const mode: LayoutMode = handle?.layoutMode ?? "contained";
+
   // Initialize theme from localStorage (may be null for "system")
   const [theme, setTheme] = useState<Theme>(() => {
     const stored = localStorage.getItem("theme");
@@ -34,6 +62,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  // Main content styles based on mode
+  const mainStyles =
+    mode === "fullBleed"
+      ? "grow" // No padding - page handles its own spacing
+      : "grow pt-20 px-4 container mx-auto"; // Contained with navbar offset
+
   return (
     <div className="min-h-screen flex flex-col bg-base-100 text-base-content">
       {/* Navbar */}
@@ -61,24 +95,46 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               className="menu menu-sm dropdown-content mt-3 z-1 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to="/">Home</Link>
+                <NavLink
+                  to="/"
+                  end
+                  className={({ isActive }) => (isActive ? "menu-active" : "")}
+                >
+                  Home
+                </NavLink>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) => (isActive ? "menu-active" : "")}
+                >
+                  About
+                </NavLink>
               </li>
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost text-xl">
+          <NavLink to="/" className="btn btn-ghost text-xl">
             ViteOne
-          </Link>
+          </NavLink>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal bg-base-200 rounded-box">
             <li>
-              <Link to="/">Home</Link>
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) => (isActive ? "menu-active" : "")}
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <NavLink
+                to="/about"
+                className={({ isActive }) => (isActive ? "menu-active" : "")}
+              >
+                About
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -88,14 +144,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Main Content */}
-      <main className="grow pt-20 px-4 container mx-auto">{children}</main>
+      <main className={mainStyles}>
+        <Outlet />
+      </main>
 
       {/* Footer */}
       <footer className="footer footer-center p-4 bg-base-300 text-base-content mt-8">
         <aside>
           <p>
-            Copyright © {new Date().getFullYear()} - All right reserved by ACME
-            Industries Ltd
+            Copyright © {new Date().getFullYear()} - All right reserved by
+            iMetrical
           </p>
         </aside>
       </footer>
