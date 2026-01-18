@@ -18,8 +18,13 @@ These are the components of our stack:
 - [x] Add DaisyUI
   - [x] Add a single button to prove it works
 - [ ] Properly theme with DaisyUI
-  - [ ] Do research to understand best practices (common layout, dark mode, etc)
-  - [ ] Include Light Dark Theme
+  - [ ] Write `STYLING.md` with result of research and best practices
+    - [ ] Redo research to understand best practices (common layout, dark mode,
+          etc)
+    - [ ] compare with use of DaisyUI in elixir_one
+    - [ ] Document how current implemntation is inadequate
+    - [ ] Document how to evolve the current implementation into best practices
+    - [ ] Include Light Dark Theme
   - [ ] Use a Navbar to get to the second page
   - [ ] Exercise styling on about page, and perhaps Landing page
 - [ ] Port Logo experiments from elixir_one/logo

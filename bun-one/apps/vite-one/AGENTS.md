@@ -7,6 +7,8 @@
 - Runtime: [Bun](https://bun.sh) (v1.x)
 - Framework: React + Vite + TypeScript
 
+Use only bun commands, not npm or pnpm.
+
 ## Workflow Rules
 
 - Verification: ALWAYS run `bun run ci` after making any code or markdown
@@ -19,6 +21,7 @@
 
 - Avoid spurious bolding in markdown files.
 - Do not use numbered lists; use bullet points instead.
+- Do not use emojis unless directed to do so. utf8 symbols are ok.
 
 ## Key Paths
 
