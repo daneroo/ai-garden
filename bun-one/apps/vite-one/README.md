@@ -7,6 +7,7 @@ These are the components of our stack:
   - Including shared components
 - Vite: Bundler
 - Tailwind CSS: Styling
+- DaisyUI: Tailwind component classes
 - React Router DOM: Routing
 
 ## TODO
@@ -15,6 +16,7 @@ These are the components of our stack:
 - [x] Make a first stab at AGENTS.md
 - [x] Add a second page - Using react-router-dom
 - [ ] Add DaisyUI
+  - [ ] Add a single button to prove it works
   - [ ] Include Light Dark Theme
   - [ ] Use a Navbar to get to the second page
 - [ ] Port Logo experiments from elixir_one/logo

@@ -18,6 +18,11 @@ function Home() {
         </p>
         <Timer initialSeconds={10} />
       </div>
+
+      <div className="mt-8 flex gap-4">
+        <button className="btn btn-primary">DaisyUI Button</button>
+        <button className="btn btn-secondary">Secondary</button>
+      </div>
     </div>
   );
 }

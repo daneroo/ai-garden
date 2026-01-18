@@ -24,6 +24,7 @@ function About() {
           </li>
           <li>Vite: Bundler</li>
           <li>Tailwind CSS: Styling</li>
+          <li>DaisyUI: Tailwind component classes</li>
           <li>React Router DOM: Routing</li>
         </ul>
       </div>
