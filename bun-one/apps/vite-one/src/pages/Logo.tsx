@@ -207,14 +207,17 @@ function LogoHero() {
   // Line height in em units for the ruled-paper effect
   const lineHeight = 1.75;
   // Staff line thickness in pixels
-  const lineWidth = 4;
+  const lineWidth = 2;
   // Number of text lines
   const numLines = 4;
 
   return (
     // Outer container: clips the gradient to exact height
+    // text-2xl - for main flowing text
+    // text-[8rem] - pilcrow clef ¶ + plu nudge -mt-6 to adjust centering
+    // TODO(daneroo) adjust colors!
     <div
-      className="p-8 rounded-3xl max-w-2xl w-full bg-base-200/80 overflow-hidden text-lg"
+      className="p-8 rounded-3xl max-w-2xl w-full bg-base-200/80 overflow-hidden text-2xl"
       style={{
         // Height = numLines * lineHeight + one line of staff line at top
         maxHeight: `calc(${lineHeight}em * ${numLines} + ${lineWidth}px + 4rem)`, // 4rem for padding
@@ -237,7 +240,7 @@ function LogoHero() {
         }}
       >
         {/* Pilcrow Clef - fixed size, vertically centered within stretched container */}
-        <span className="text-8xl font-bold text-primary shrink-0 font-sans self-center">
+        <span className="text-[8rem] font-bold text-primary shrink-0 font-sans self-center -mt-6">
           ¶
         </span>
 
