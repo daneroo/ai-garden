@@ -199,6 +199,12 @@ function LogoContainer({
  * Drop cap pilcrow with flowing justified text.
  * Staff lines via repeating gradient, clipped by outer container.
  * 5 staff lines visible: 1 at top + 4 after each text line.
+ *
+ * DESIGN NOTE:
+ * This component deliberately overrides standard DaisyUI semantic themes (base-*, primary-*)
+ * to achieve a specific "Physical Paper" aesthetic (Cream/Amber for light, Stone for dark).
+ * Standard Tailwind colors are used to ensure this "object" looks consistent regardless of
+ * the broader app theme, simulating a real book page.
  */
 function LogoHero() {
   const quote =
@@ -213,11 +219,19 @@ function LogoHero() {
 
   return (
     // Outer container: clips the gradient to exact height
-    // text-2xl - for main flowing text
-    // text-[8rem] - pilcrow clef ¶ + plu nudge -mt-6 to adjust centering
-    // TODO(daneroo) adjust colors!
+    //
+    // MATERIAL OVERRIDES:
+    // - bg-amber-50 (Light): Warm cream paper
+    // - dark:bg-stone-950 (Dark): Deep warm charcoal (Darker/Richer than stone-900)
+    // - text-amber-950 (Light): Deep brown/black ink
+    // - dark:text-stone-200 (Dark): Bright warm gray (Higher contrast than stone-300)
+    // - shadow-stone-900/10: Subtle organic shadow separate from theme
+    //
+    // LAYOUT:
+    // - text-2xl: for main flowing text
+    // - text-[8rem]: pilcrow clef ¶ + plus nudge -mt-6 to adjust centering
     <div
-      className="p-8 rounded-3xl max-w-2xl w-full bg-base-200/80 overflow-hidden text-2xl"
+      className="p-8 rounded-3xl max-w-2xl w-full overflow-hidden text-2xl bg-amber-50 dark:bg-stone-950 text-amber-950 dark:text-stone-200 shadow-xl shadow-stone-900/10"
       style={{
         // Height = numLines * lineHeight + one line of staff line at top
         maxHeight: `calc(${lineHeight}em * ${numLines} + ${lineWidth}px + 4rem)`, // 4rem for padding
@@ -227,30 +241,66 @@ function LogoHero() {
       <div
         className="flex gap-4 items-stretch"
         style={{
-          // Staff lines starting with gray at top
+          // Staff lines starting with matching ink color at low opacity
+          // Light: rgba(69, 26, 3, 0.1) -> Matches text-amber-950 (#451a03)
+          // Dark: rgba(231, 229, 228, 0.1) -> Matches text-stone-200 (#e7e5e4)
+          // Note: using explicit rgba() for the gradient stops to ensure perfect transparency matching
           backgroundImage: `repeating-linear-gradient(
             to bottom,
-            rgba(128, 128, 128, 0.4) 0,
-            rgba(128, 128, 128, 0.4) ${lineWidth}px,
+            rgb(from var(--color-amber-950) r g b / 0.3) 0,
+            rgb(from var(--color-amber-950) r g b / 0.3) ${lineWidth}px,
             transparent ${lineWidth}px,
             transparent ${lineHeight}em
           )`,
-          // Height = 4 text rows + final staff line thickness
-          minHeight: `calc(${lineHeight}em * ${numLines} + ${lineWidth}px)`,
         }}
+      // We handle Dark mode gradient override via a separate style object or class if needed,
+      // but since we can't easily put dark:modifiers in inline styles, we'll use a CSS variable technique
+      // or a simple media query style block.
+      // Actually, Tailwind v4 allows `dark:` variants for arbitrary properties but complex gradients are hard.
+      // BETTER APPROACH: Use `text-current` opacity? No, lines need to be specific.
+      // Let's use a class-based utility or simply component-level CSS variables for the line color.
       >
-        {/* Pilcrow Clef - fixed size, vertically centered within stretched container */}
-        <span className="text-[8rem] font-bold text-primary shrink-0 font-sans self-center -mt-6">
-          ¶
-        </span>
-
-        {/* Text Content */}
-        <p
-          className="font-serif italic text-base-content/80 text-justify line-clamp-4 grow"
-          style={{ lineHeight: lineHeight }}
+        <style>{`
+          .staff-lines {
+            --line-color: rgba(69, 26, 3, 0.3); /* amber-950 @ 30% */
+          }
+          @media (prefers-color-scheme: dark) {
+            .staff-lines {
+              --line-color: rgba(231, 229, 228, 0.3); /* stone-200 @ 30% */
+            }
+          }
+          :where([data-theme="dark"]) .staff-lines {
+             --line-color: rgba(231, 229, 228, 0.3); /* stone-200 @ 30% */
+          }
+        `}</style>
+        <div
+          className="flex gap-4 items-stretch grow staff-lines"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
+            to bottom,
+            var(--line-color) 0,
+            var(--line-color) ${lineWidth}px,
+            transparent ${lineWidth}px,
+            transparent ${lineHeight}em
+          )`,
+            // Height = 4 text rows + final staff line thickness
+            minHeight: `calc(${lineHeight}em * ${numLines} + ${lineWidth}px)`,
+          }}
         >
-          {quote}
-        </p>
+          {/* Pilcrow Clef - Inherits text color ("Ink") */}
+          {/* fixed size, vertically centered within stretched container */}
+          <span className="text-[8rem] font-bold shrink-0 font-sans self-center -mt-6">
+            ¶
+          </span>
+
+          {/* Text Content - Inherits text color ("Ink") */}
+          <p
+            className="font-serif italic text-justify line-clamp-4 grow opacity-90"
+            style={{ lineHeight: lineHeight }}
+          >
+            {quote}
+          </p>
+        </div>
       </div>
     </div>
   );
