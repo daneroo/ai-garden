@@ -5,47 +5,6 @@ import "../index.css";
  * Experiments with Prosodio logo designs
  */
 export default function Logo() {
-  // Helper for broadcast SVG content
-  const broadcastSVG = (
-    <svg
-      viewBox="0 0 100 100"
-      className="w-full h-full"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <text
-        x="20"
-        y="68"
-        fontFamily="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
-        fontWeight="bold"
-        fontSize="50"
-        fill="currentColor"
-      >
-        ¶
-      </text>
-      <path
-        d="M 60 40 A 15 15 0 0 1 60 60"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M 68 35 A 25 25 0 0 1 68 65"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M 78 30 A 35 35 0 0 1 78 70"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="6"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-
   return (
     <div className="min-h-screen bg-base-100 font-sans text-base-content selection:bg-rose-500/30">
       {/* Decorative Background Blobs */}
@@ -58,93 +17,114 @@ export default function Logo() {
       </div>
 
       <div className="relative z-10 flex flex-col min-h-screen">
-        <main className="grow container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 pt-24 flex flex-col justify-center items-center">
-          {/* Row SM (SVG) - New implementation for comparison */}
-          <div className="w-full mt-12 sm:mt-16">
-            <h3 className="text-xl font-semibold text-center mb-6 text-base-content/50 uppercase tracking-widest">
-              Row SM (SVG)
-            </h3>
-            <div className="flex flex-wrap justify-center gap-8">
-              <LogoContainer label="SVG-0 (Ref)">
-                <LogoSMSVG leftGlyph="♫" rightGlyph="¶" />
-              </LogoContainer>
-              <LogoContainer label="SVG-1 (Swap)">
-                <LogoSMSVG leftGlyph="¶" rightGlyph="♫" />
-              </LogoContainer>
-              <LogoContainer label="SVG-2 (Note)">
-                <LogoSMSVG leftGlyph="¶" rightGlyph="♪" />
-              </LogoContainer>
-              <LogoContainer label="SVG-3 (Broadcast)">
-                <LogoSMSVG leftGlyph="¶" rightGlyph=")" />
-              </LogoContainer>
-              <LogoContainer label="SVG-4 (Receive)">
-                <LogoSMSVG leftGlyph="(" rightGlyph="¶" />
-              </LogoContainer>
-              <LogoContainer label="SVG-5 (L-Bcast)">
-                <LogoSMSVG leftGlyph=")" rightGlyph="¶" />
-              </LogoContainer>
-              <LogoContainer label="SVG-6 (R-Recv)">
-                <LogoSMSVG leftGlyph="¶" rightGlyph="(" />
-              </LogoContainer>
+        <main className="grow container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 pt-24 flex flex-col justify-center items-center gap-16">
+          {/* ===========================================================================
+             SECTION: Small (SM)
+             =========================================================================== */}
+          <div className="w-full">
+            <h2 className="text-3xl font-bold text-center mb-10 text-primary">
+              Small (SM)
+            </h2>
+
+            {/* Row: Variants */}
+            <div className="w-full mb-12">
+              <h3 className="text-lg font-semibold text-center mb-6 text-base-content/50 uppercase tracking-widest">
+                Variants
+              </h3>
+              <div className="flex flex-wrap justify-center gap-8">
+                {(["¶)", "¶♫", "¶♪", "(¶", ")¶"] as LogoGlyphs[]).map(
+                  (glyphs, index) => (
+                    <LogoContainer
+                      key={glyphs}
+                      label={`SVG-${index} (${glyphs})`}
+                    >
+                      <LogoSM glyphs={glyphs} />
+                    </LogoContainer>
+                  ),
+                )}
+              </div>
+            </div>
+
+            {/* Row: Sized */}
+            <div className="w-full">
+              <h3 className="text-lg font-semibold text-center mb-6 text-base-content/50 uppercase tracking-widest">
+                Sized
+              </h3>
+              <div className="flex flex-wrap items-center justify-center gap-8">
+                {([8, 12, 16, 24, 32] satisfies LogoSize[]).map((size) => (
+                  <LogoContainer key={size} label={`Size ${size}`} size={size}>
+                    <LogoSM glyphs="¶)" />
+                  </LogoContainer>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Row SM (Minimal) */}
-          <div className="w-full mt-12 sm:mt-16">
-            <h3 className="text-xl font-semibold text-center mb-6 text-base-content/50 uppercase tracking-widest">
-              Row SM (Minimal)
-            </h3>
-            <div className="flex flex-wrap justify-center gap-8">
-              <LogoContainer label="SM-0 (Ref)">
-                <LogoSM content="♫¶" />
-              </LogoContainer>
-              <LogoContainer label="SM-1 (Swap)">
-                <LogoSM content="¶♫" />
-              </LogoContainer>
-              <LogoContainer label="SM-2 (Note)">
-                <LogoSM content="¶♪" />
-              </LogoContainer>
-              <LogoContainer label="SM-3 (Broadcast)">
-                <LogoSM content={broadcastSVG} />
-              </LogoContainer>
+          <div className="divider opacity-10"></div>
+
+          {/* ===========================================================================
+             SECTION: Medium (MD)
+             =========================================================================== */}
+          <div className="w-full">
+            <h2 className="text-3xl font-bold text-center mb-10 text-secondary">
+              Medium (MD)
+            </h2>
+
+            {/* Row: Variants */}
+            <div className="w-full mb-12">
+              <h3 className="text-lg font-semibold text-center mb-6 text-base-content/50 uppercase tracking-widest">
+                Variants
+              </h3>
+              <div className="flex flex-wrap justify-center gap-8">
+                {/* MD-0: Reference (3-Line) */}
+                <LogoContainer label="MD-0 (3-Line)">
+                  <LogoMD
+                    staffLines={5}
+                    minY={30}
+                    maxY={70}
+                    notesYs={[6, 3, 5, 2]}
+                  />
+                </LogoContainer>
+
+                {/* MD-1: Random A (5-Line) */}
+                <LogoContainer label="MD-1 (Rand A)">
+                  <LogoMD staffLines={5} minY={30} maxY={70} />
+                </LogoContainer>
+
+                {/* MD-1.1: Random (4-Line) */}
+                <LogoContainer label="MD-1.1 (4-Line Rand)">
+                  <LogoMD staffLines={4} minY={35} maxY={65} />
+                </LogoContainer>
+
+                {/* MD-2: Random B (3-Line) */}
+                <LogoContainer label="MD-2 (3-Line Rand B)">
+                  <LogoMD staffLines={3} minY={35} maxY={65} />
+                </LogoContainer>
+
+                {/* MD-3: Random C (3-Line) */}
+                <LogoContainer label="MD-3 (3-Line Rand C)">
+                  <LogoMD staffLines={3} minY={35} maxY={65} />
+                </LogoContainer>
+              </div>
             </div>
-          </div>
 
-          {/* Row MD (Staff) */}
-          <div className="w-full mt-12 sm:mt-16 border-t border-base-content/10 pt-10">
-            <h3 className="text-xl font-semibold text-center mb-6 text-base-content/50 uppercase tracking-widest">
-              Row MD (Staff)
-            </h3>
-            <div className="flex flex-wrap justify-center gap-8">
-              {/* MD-0: Reference (3-Line) */}
-              <LogoContainer label="MD-0 (3-Line)">
-                <LogoMD
-                  staffLines={5}
-                  minY={30}
-                  maxY={70}
-                  notesYs={[6, 3, 5, 2]}
-                />
-              </LogoContainer>
-
-              {/* MD-1: Random A (5-Line) */}
-              <LogoContainer label="MD-1 (Rand A)">
-                <LogoMD staffLines={5} minY={30} maxY={70} />
-              </LogoContainer>
-
-              {/* MD-1.1: Random (4-Line) */}
-              <LogoContainer label="MD-1.1 (4-Line Rand)">
-                <LogoMD staffLines={4} minY={35} maxY={65} />
-              </LogoContainer>
-
-              {/* MD-2: Random B (3-Line) */}
-              <LogoContainer label="MD-2 (3-Line Rand B)">
-                <LogoMD staffLines={3} minY={35} maxY={65} />
-              </LogoContainer>
-
-              {/* MD-3: Random C (3-Line) */}
-              <LogoContainer label="MD-3 (3-Line Rand C)">
-                <LogoMD staffLines={3} minY={35} maxY={65} />
-              </LogoContainer>
+            {/* Row: Sized */}
+            <div className="w-full">
+              <h3 className="text-lg font-semibold text-center mb-6 text-base-content/50 uppercase tracking-widest">
+                Sized
+              </h3>
+              <div className="flex flex-wrap items-center justify-center gap-8">
+                {([16, 24, 48, 64] satisfies LogoSize[]).map((size) => (
+                  <LogoContainer key={size} label={`Size ${size}`} size={size}>
+                    <LogoMD
+                      staffLines={5}
+                      minY={30}
+                      maxY={70}
+                      notesYs={[6, 3, 5, 2]}
+                    />
+                  </LogoContainer>
+                ))}
+              </div>
             </div>
           </div>
         </main>
@@ -159,32 +139,44 @@ export default function Logo() {
 
 /**
  * Container providing the common outer shape, gradient, and hover effects.
+ * Supports multiple standard sizes via safe class mapping (no interpolation).
  */
+const SIZE_MAP = {
+  4: "w-4 h-4 rounded-sm", // 16px (Favicon/Micro)
+  6: "w-6 h-6 rounded-md", // 24px (Toolbar/Menu)
+  8: "w-8 h-8 rounded-lg", // 32px (Icon)
+  10: "w-10 h-10 rounded-xl", // 40px
+  12: "w-12 h-12 rounded-xl", // 48px
+  16: "w-16 h-16 rounded-2xl", // 64px
+  24: "w-24 h-24 rounded-2xl", // 96px (Default)
+  32: "w-32 h-32 rounded-3xl", // 128px
+  48: "w-48 h-48 rounded-[2.5rem]", // 192px
+  64: "w-64 h-64 rounded-[3rem]", // 256px
+} as const;
+
+type LogoSize = keyof typeof SIZE_MAP;
+
 function LogoContainer({
   label,
   children,
+  size = 24,
 }: {
   label: string;
   children: React.ReactNode;
+  size?: LogoSize;
 }) {
+  const sizeClass = SIZE_MAP[size];
+
   return (
     <div className="flex flex-col items-center gap-4 group cursor-pointer">
-      <div className="w-24 h-24 rounded-2xl bg-linear-to-tr from-secondary to-primary flex items-center justify-center text-primary-content ring-4 ring-base-content/10 shadow-xl shadow-primary/20 group-hover:scale-110 transition-transform relative overflow-hidden">
+      <div
+        className={`${sizeClass} bg-linear-to-tr from-secondary to-primary flex items-center justify-center text-primary-content ring-4 ring-base-content/10 shadow-xl shadow-primary/20 group-hover:scale-110 transition-transform relative overflow-hidden`}
+      >
         {children}
       </div>
       <span className="text-base-content/70 text-sm">{label}</span>
     </div>
   );
-}
-
-/**
- * Minimal Logo (SM) - renders simple text or a passed node (SVG).
- */
-function LogoSM({ content }: { content: string | React.ReactNode }) {
-  if (typeof content === "string") {
-    return <span className="font-bold text-[50px]">{content}</span>;
-  }
-  return <>{content}</>;
 }
 
 /**
@@ -195,16 +187,19 @@ function LogoSM({ content }: { content: string | React.ReactNode }) {
  * - Left glyph: right edge anchored at (CENTER_X - GAP/2)
  * - Right glyph: left edge anchored at (CENTER_X + GAP/2)
  */
-function LogoSMSVG({
-  leftGlyph = "¶",
-  rightGlyph = ")",
+type LogoGlyphs = "¶)" | "¶♫" | "¶♪" | "(¶" | ")¶";
+// Note: "¶)" is the default
+
+function LogoSM({
+  glyphs = "¶)",
   gap = 3,
 }: {
-  leftGlyph?: string;
-  rightGlyph?: string;
+  glyphs?: LogoGlyphs;
   gap?: number;
 }) {
   const CENTER_X = 50;
+  const leftGlyph = glyphs[0]!;
+  const rightGlyph = glyphs[1]!;
   const leftEdge = CENTER_X - gap / 2;
   const rightEdge = CENTER_X + gap / 2;
 

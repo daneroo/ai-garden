@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "bun test",
-    "check": "tsc --noEmit",
+    "check": "tsc --noEmit -p tsconfig.app.json",
     "fmt": "bunx prettier --write .",
     "fmt:check": "bunx prettier --check .",
     "ci": "bun run fmt:check && bun run lint && bun run check && bun run test",
