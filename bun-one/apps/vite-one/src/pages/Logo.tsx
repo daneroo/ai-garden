@@ -19,6 +19,20 @@ export default function Logo() {
       <div className="relative z-10 flex flex-col min-h-screen">
         <main className="grow container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 pt-24 flex flex-col justify-center items-center gap-16">
           {/* ===========================================================================
+             SECTION: Hero
+             =========================================================================== */}
+          <div className="w-full">
+            <h2 className="text-3xl font-bold text-center mb-10 text-accent">
+              Hero
+            </h2>
+            <div className="flex justify-center">
+              <LogoHero />
+            </div>
+          </div>
+
+          <div className="divider opacity-10"></div>
+
+          {/* ===========================================================================
              SECTION: Small (SM)
              =========================================================================== */}
           <div className="w-full">
@@ -176,6 +190,65 @@ function LogoContainer({
         {children}
       </div>
       <span className="text-base-content/70 text-sm">{label}</span>
+    </div>
+  );
+}
+
+/**
+ * Hero Logo - text-based staff design.
+ * Drop cap pilcrow with flowing justified text.
+ * Staff lines via repeating gradient, clipped by outer container.
+ * 5 staff lines visible: 1 at top + 4 after each text line.
+ */
+function LogoHero() {
+  const quote =
+    "It was night again. The Waystone Inn lay in silence, and it was a silence of three parts. The most obvious part was a hollow, echoing quiet, made by things that were lacking. If there had been a wind it would have sighed through the trees, set the inn's sign creaking on its hooks, and brushed the silence down the road like trailing autumn leaves.";
+
+  // Line height in em units for the ruled-paper effect
+  const lineHeight = 1.75;
+  // Staff line thickness in pixels
+  const lineWidth = 4;
+  // Number of text lines
+  const numLines = 4;
+
+  return (
+    // Outer container: clips the gradient to exact height
+    <div
+      className="p-8 rounded-3xl max-w-2xl w-full bg-base-200/80 overflow-hidden text-lg"
+      style={{
+        // Height = numLines * lineHeight + one line of staff line at top
+        maxHeight: `calc(${lineHeight}em * ${numLines} + ${lineWidth}px + 4rem)`, // 4rem for padding
+      }}
+    >
+      {/* Inner container: has the infinite repeating gradient */}
+      <div
+        className="flex gap-4 items-stretch"
+        style={{
+          // Staff lines starting with gray at top
+          backgroundImage: `repeating-linear-gradient(
+            to bottom,
+            rgba(128, 128, 128, 0.4) 0,
+            rgba(128, 128, 128, 0.4) ${lineWidth}px,
+            transparent ${lineWidth}px,
+            transparent ${lineHeight}em
+          )`,
+          // Height = 4 text rows + final staff line thickness
+          minHeight: `calc(${lineHeight}em * ${numLines} + ${lineWidth}px)`,
+        }}
+      >
+        {/* Pilcrow Clef - fixed size, vertically centered within stretched container */}
+        <span className="text-8xl font-bold text-primary shrink-0 font-sans self-center">
+          ¶
+        </span>
+
+        {/* Text Content */}
+        <p
+          className="font-serif italic text-base-content/80 text-justify line-clamp-4 grow"
+          style={{ lineHeight: lineHeight }}
+        >
+          {quote}
+        </p>
+      </div>
     </div>
   );
 }
