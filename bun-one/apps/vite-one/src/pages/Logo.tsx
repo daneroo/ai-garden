@@ -22,7 +22,7 @@ export default function Logo() {
              SECTION: Hero
              =========================================================================== */}
           <div className="w-full">
-            <h2 className="text-3xl font-bold text-center mb-10 text-accent">
+            <h2 className="text-3xl font-bold text-center mb-10 text-primary">
               Hero
             </h2>
             <div className="flex justify-center">
@@ -42,7 +42,7 @@ export default function Logo() {
 
             {/* Row: Variants */}
             <div className="w-full mb-12">
-              <h3 className="text-lg font-semibold text-center mb-6 text-base-content/50 uppercase tracking-widest">
+              <h3 className="text-lg font-semibold text-center mb-6 text-base-content/70 uppercase tracking-widest">
                 Variants
               </h3>
               <div className="flex flex-wrap justify-center gap-8">
@@ -62,7 +62,7 @@ export default function Logo() {
 
             {/* Row: Sized */}
             <div className="w-full">
-              <h3 className="text-lg font-semibold text-center mb-6 text-base-content/50 uppercase tracking-widest">
+              <h3 className="text-lg font-semibold text-center mb-6 text-base-content/70 uppercase tracking-widest">
                 Sized
               </h3>
               <div className="flex flex-wrap items-center justify-center gap-8">
@@ -81,13 +81,13 @@ export default function Logo() {
              SECTION: Medium (MD)
              =========================================================================== */}
           <div className="w-full">
-            <h2 className="text-3xl font-bold text-center mb-10 text-secondary">
+            <h2 className="text-3xl font-bold text-center mb-10 text-primary">
               Medium (MD)
             </h2>
 
             {/* Row: Variants */}
             <div className="w-full mb-12">
-              <h3 className="text-lg font-semibold text-center mb-6 text-base-content/50 uppercase tracking-widest">
+              <h3 className="text-lg font-semibold text-center mb-6 text-base-content/70 uppercase tracking-widest">
                 Variants
               </h3>
               <div className="flex flex-wrap justify-center gap-8">
@@ -125,7 +125,7 @@ export default function Logo() {
 
             {/* Row: Sized */}
             <div className="w-full">
-              <h3 className="text-lg font-semibold text-center mb-6 text-base-content/50 uppercase tracking-widest">
+              <h3 className="text-lg font-semibold text-center mb-6 text-base-content/70 uppercase tracking-widest">
                 Sized
               </h3>
               <div className="flex flex-wrap items-center justify-center gap-8">
@@ -253,12 +253,12 @@ function LogoHero() {
             transparent ${lineHeight}em
           )`,
         }}
-      // We handle Dark mode gradient override via a separate style object or class if needed,
-      // but since we can't easily put dark:modifiers in inline styles, we'll use a CSS variable technique
-      // or a simple media query style block.
-      // Actually, Tailwind v4 allows `dark:` variants for arbitrary properties but complex gradients are hard.
-      // BETTER APPROACH: Use `text-current` opacity? No, lines need to be specific.
-      // Let's use a class-based utility or simply component-level CSS variables for the line color.
+        // We handle Dark mode gradient override via a separate style object or class if needed,
+        // but since we can't easily put dark:modifiers in inline styles, we'll use a CSS variable technique
+        // or a simple media query style block.
+        // Actually, Tailwind v4 allows `dark:` variants for arbitrary properties but complex gradients are hard.
+        // BETTER APPROACH: Use `text-current` opacity? No, lines need to be specific.
+        // Let's use a class-based utility or simply component-level CSS variables for the line color.
       >
         <style>{`
           .staff-lines {
