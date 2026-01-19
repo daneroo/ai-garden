@@ -37,6 +37,7 @@ export default function Logo() {
                     <LogoContainer
                       key={glyphs}
                       label={`SVG-${index} (${glyphs})`}
+                      size={16}
                     >
                       <LogoSM glyphs={glyphs} />
                     </LogoContainer>
