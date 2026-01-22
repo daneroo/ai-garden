@@ -25,8 +25,8 @@ const WHISPER_KIT_EXEC = "whisperkit-cli";
 // RunnerName must be a non-empty array of valid runner names
 export type RunnerName = "whisperkit" | "whispercpp";
 export const RUNNER_NAMES: [RunnerName, ...RunnerName[]] = [
-  "whisperkit",
   "whispercpp",
+  "whisperkit",
 ];
 
 export type ModelShortName = "tiny.en" | "base.en" | "small.en";
