@@ -114,6 +114,13 @@
         "vite": "^7.2.4",
       },
     },
+    "apps/whisper": {
+      "name": "@bun-one/whisper",
+      "dependencies": {
+        "@types/yargs": "^17.0.35",
+        "yargs": "^18.0.0",
+      },
+    },
     "components/timer": {
       "name": "@bun-one/timer",
       "version": "0.1.0",
@@ -216,6 +223,8 @@
     "@bun-one/timer": ["@bun-one/timer@workspace:components/timer"],
 
     "@bun-one/vtt": ["@bun-one/vtt@workspace:packages/vtt"],
+
+    "@bun-one/whisper": ["@bun-one/whisper@workspace:apps/whisper"],
 
     "@capsizecss/unpack": ["@capsizecss/unpack@4.0.0", "", { "dependencies": { "fontkitten": "^1.0.0" } }, "sha512-VERIM64vtTP1C4mxQ5thVT9fK0apjPFobqybMtA1UdUujWka24ERHbRHFGmpbbhp73MhV+KSsHQH9C6uOTdEQA=="],
 
