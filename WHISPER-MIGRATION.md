@@ -21,6 +21,8 @@ Why this approach:
 Implementation steps:
 
 - Copy whisper-bench to `bun-one/apps/whisper/`
+  - This should fail to run with bun - prove with failing ci!
+- We should relocate our `data/*` working directories!
 - Port Deno APIs to Bun (`Deno.Command` → `Bun.spawn`)
 - Refactor runners.ts: remove whisperkit, eliminate multi-engine abstraction
 - Simplify task.ts: remove engine-specific monitors, keep core TaskMonitor
@@ -28,6 +30,8 @@ Implementation steps:
 - Add segmentation logic from whisper-sh (ffmpeg segment muxer)
 - Implement VTT stitching with offset adjustment (new)
 - Update work directory naming to support segmented runs
+- Decide what to do with current bash scripts? convert to `.ts`?
+- Decide what to do with vtt-compare? move to new app?
 
 ### Target Features
 
@@ -48,10 +52,13 @@ Port of current whisper-bench features, and inital features:
 - Word timestamps
 - Verbosity levels
 
-Current bash scripts: consider integrating into the bun/typescript version
+Current bash scripts: consider integrating into the bun/typescript version. This
+might involve leveraging the monorepo/worspaces nature of bun-one.
 
 - Multiple model comparison
 - Benchmark script
+- VTT compare script - might be a separate app, if core whisper also becomes a
+  package instead of an app?
 
 Second phase:
 
