@@ -1,5 +1,8 @@
 # Whisper Migration - Feature Inventory
 
+**Note:** This document is superseded by `CONSOLIDATING-whisper-v2.md`. Consider
+it;s work either done or account for in the new plan.
+
 This document inventories the features of `whisper-sh/` and `whisper-bench/`
 implementations to plan consolidation into a single Bun/TypeScript
 implementation.
@@ -37,28 +40,28 @@ Implementation steps:
 
 Port of current whisper-bench features, and inital features:
 
-- Single engine (whisper-cpp via whisper-cli)
-  - make sure we simplyfy the unneded complexity and establish proper names for
-    our types. Runnoer
-- Progress reporting (TaskMonitor pattern)
-- Per-run work directory
-- Preflight checks
-- Dry-run mode
-- Skip existing outputs
-- JSON output mode
-- Duration/offset limits
-- VTT validation (monotonicity)
-- Log persistence
-- Word timestamps
-- Verbosity levels
+- [x] Single engine (whisper-cpp via whisper-cli)
+  - [x] make sure we simplyfy the unneded complexity and establish proper names
+        for our types. Runnoer
+- [x] Progress reporting (TaskMonitor pattern)
+- [x] Per-run work directory
+- [x] Preflight checks
+- [x] Dry-run mode
+- [ ] Skip existing outputs
+- [x] JSON output mode
+- [x] Duration/offset limits
+- [x] VTT validation (monotonicity)
+- [x] Log persistence
+- [x] Word timestamps
+- [x] Verbosity levels
 
 Current bash scripts: consider integrating into the bun/typescript version. This
 might involve leveraging the monorepo/worspaces nature of bun-one.
 
-- Multiple model comparison
-- Benchmark script
-- VTT compare script - might be a separate app, if core whisper also becomes a
-  package instead of an app?
+- [x] Multiple model comparison
+- [x] Benchmark script
+- [x] VTT compare script - might be a separate app, if core whisper also becomes
+      a package instead of an app?
 
 Second phase:
 
