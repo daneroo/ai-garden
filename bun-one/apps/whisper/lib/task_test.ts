@@ -1,81 +1,89 @@
-import { assertEquals } from "@std/assert";
+import { expect, test } from "bun:test";
 import process from "node:process";
 import {
   createConsoleMonitor,
   FFMPEG_AUDIO_PROGRESS_REGEX,
   runTask,
-  TaskConfig,
-  TaskEvent,
+  type TaskConfig,
+  type TaskEvent,
 } from "./task.ts";
 
+import { join, resolve } from "node:path";
+import { mkdirSync } from "node:fs";
+
+// Resolve paths relative to this file (lib/task_test.ts)
+const PKG_ROOT = resolve(import.meta.dirname, "..");
+const FIXTURES_DIR = join(PKG_ROOT, "test", "fixtures");
+const WORK_DIR = join(PKG_ROOT, "data", "work");
+
+// Ensure work dir exists
+mkdirSync(WORK_DIR, { recursive: true });
+
 // Test fixture: jfk.m4b (11 seconds of audio)
-const JFK_M4B = "test/fixtures/jfk.m4b";
+const JFK_M4B = join(FIXTURES_DIR, "jfk.m4b");
 
-Deno.test({
-  name: "runTask - M4B to WAV conversion emits events",
-  // Node streams may not fully close before test ends
-  sanitizeResources: false,
-  sanitizeOps: false,
-  fn: async () => {
-    const events: TaskEvent[] = [];
-    const monitor = {
-      onEvent(event: TaskEvent) {
-        events.push({ ...event });
-      },
-    };
+test("runTask - M4B to WAV conversion emits events", async () => {
+  const events: TaskEvent[] = [];
+  const monitor = {
+    onEvent(event: TaskEvent) {
+      events.push({ ...event });
+    },
+  };
 
-    const config: TaskConfig = {
-      label: "to-wav",
-      command: "ffmpeg",
-      args: [
-        "-y",
-        "-hide_banner",
-        "-loglevel",
-        "info",
-        "-i",
-        JFK_M4B,
-        "-vn",
-        "-acodec",
-        "pcm_s16le",
-        "-ar",
-        "16000",
-        "-ac",
-        "1",
-        "data/work/jfk_test.wav",
-      ],
-      stdoutLogPath: "data/work/jfk_test.stdout.log",
-      stderrLogPath: "data/work/jfk_test.stderr.log",
-      stderrFilter: FFMPEG_AUDIO_PROGRESS_REGEX,
-    };
+  const stdoutLogPath = join(WORK_DIR, "jfk_test.stdout.log");
+  const stderrLogPath = join(WORK_DIR, "jfk_test.stderr.log");
+  const wavPath = join(WORK_DIR, "jfk_test.wav");
 
-    const result = await runTask(config, monitor);
+  const config: TaskConfig = {
+    label: "to-wav",
+    command: "ffmpeg",
+    args: [
+      "-y",
+      "-hide_banner",
+      "-loglevel",
+      "info",
+      "-i",
+      JFK_M4B,
+      "-vn",
+      "-acodec",
+      "pcm_s16le",
+      "-ar",
+      "16000",
+      "-ac",
+      "1",
+      wavPath,
+    ],
+    stdoutLogPath,
+    stderrLogPath,
+    stderrFilter: FFMPEG_AUDIO_PROGRESS_REGEX,
+  };
 
-    // Check result
-    assertEquals(result.code, 0);
+  const result = await runTask(config, monitor);
 
-    // Check lifecycle events
-    const startEvents = events.filter((e) => e.type === "start");
-    const doneEvents = events.filter((e) => e.type === "done");
-    const lineEvents = events.filter((e) => e.type === "line");
+  // Check result
+  expect(result.code).toBe(0);
 
-    assertEquals(startEvents.length, 1);
-    assertEquals(startEvents[0].label, "to-wav");
+  // Check lifecycle events
+  const startEvents = events.filter((e) => e.type === "start");
+  const doneEvents = events.filter((e) => e.type === "done");
+  const lineEvents = events.filter((e) => e.type === "line");
 
-    assertEquals(doneEvents.length, 1);
-    assertEquals(doneEvents[0].result?.code, 0);
+  expect(startEvents.length).toBe(1);
+  expect(startEvents[0]!.label).toBe("to-wav");
 
-    // Should have at least one progress line
-    assertEquals(lineEvents.length >= 1, true);
-    assertEquals(lineEvents[0].stream, "stderr");
-  },
+  expect(doneEvents.length).toBe(1);
+  expect(doneEvents[0]!.result?.code).toBe(0);
+
+  // Should have at least one progress line
+  expect(lineEvents.length >= 1).toBe(true);
+  expect(lineEvents[0]!.stream).toBe("stderr");
 });
 
-Deno.test("createConsoleMonitor - handles lifecycle", () => {
+test("createConsoleMonitor - handles lifecycle", () => {
   const originalWrite = process.stderr.write;
   const outputs: string[] = [];
 
   // Mock stderr.write to capture output instead of printing it
-  // @ts-ignore: Mocking for test
   process.stderr.write = (data: string) => {
     outputs.push(data);
     return true;
@@ -87,7 +95,7 @@ Deno.test("createConsoleMonitor - handles lifecycle", () => {
       update: (taskLabel: string, status: string) => {
         outputs.push(`[task=${taskLabel}] : ${status}`);
       },
-      finish: (_elapsed: number, _speedup: string, _vttDuration?: string) => {
+      finish: () => {
         outputs.push("finished");
       },
     };
@@ -98,15 +106,9 @@ Deno.test("createConsoleMonitor - handles lifecycle", () => {
     monitor.onEvent({ type: "line", stream: "stderr", line: "progress 50%" });
     monitor.onEvent({ type: "done", result: { code: 0, elapsedMs: 1000 } });
 
-    assertEquals(outputs.length > 0, true);
-    assertEquals(
-      outputs.some((o) => o.includes("task1")),
-      true,
-    );
-    assertEquals(
-      outputs.some((o) => o.includes("progress 50%")),
-      true,
-    );
+    expect(outputs.length > 0).toBe(true);
+    expect(outputs.some((o) => o.includes("task1"))).toBe(true);
+    expect(outputs.some((o) => o.includes("progress 50%"))).toBe(true);
   } finally {
     process.stderr.write = originalWrite;
   }

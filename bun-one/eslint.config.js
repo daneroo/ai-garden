@@ -5,6 +5,13 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    ignores: ["node_modules/", "dist/", "out/", "**/.astro/"],
+    ignores: [
+      "node_modules/",
+      "dist/",
+      "**/dist/",
+      "out/",
+      "**/.astro/",
+      "apps/whisper/data/",
+    ],
   },
 );

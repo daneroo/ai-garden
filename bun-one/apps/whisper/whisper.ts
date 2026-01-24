@@ -3,11 +3,11 @@ import process from "node:process";
 import {
   createRunWorkDir,
   getRequiredCommands,
-  ModelShortName,
-  RunConfig,
+  type ModelShortName,
+  type RunConfig,
   RUNNER_NAMES,
-  RunnerName,
-  RunResult,
+  type RunnerName,
+  type RunResult,
   runWhisper,
 } from "./lib/runners.ts";
 import { preflightCheck } from "./lib/preflight.ts";
@@ -165,9 +165,8 @@ async function main(): Promise<void> {
       console.log(JSON.stringify(result));
     } else {
       // Pretty summary for human readability
-      const label = iterations > 1
-        ? `Iteration ${i}/${iterations}:`
-        : "Result:";
+      const label =
+        iterations > 1 ? `Iteration ${i}/${iterations}:` : "Result:";
       const vttDur = result.vttSummary
         ? `${result.vttSummary.durationSec}s`
         : "none";

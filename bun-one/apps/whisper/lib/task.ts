@@ -32,7 +32,7 @@
  *   - whisperkitMonitor: transcription progress (stdout)
  */
 
-import { spawn } from "node:child_process";
+import { type ChildProcess, spawn } from "node:child_process";
 import { createWriteStream } from "node:fs";
 import { Buffer } from "node:buffer";
 import { type ProgressReporter } from "./progress.ts";
@@ -112,7 +112,7 @@ export function runTask(
   return new Promise((resolve, reject) => {
     const proc = spawn(config.command, config.args, {
       stdio: ["inherit", "pipe", "pipe"],
-    });
+    }) as ChildProcess;
 
     // Create line parser with optional filter
     function createLineEmitter(stream: "stdout" | "stderr", filter?: RegExp) {
@@ -143,14 +143,14 @@ export function runTask(
       }
     });
 
-    proc.on("error", (error) => {
+    proc.on("error", (error: Error) => {
       monitor.onEvent({ type: "error", error });
       stdoutLog.end();
       stderrLog.end();
       reject(error);
     });
 
-    proc.on("close", (code) => {
+    proc.on("close", (code: number | null) => {
       const elapsedMs = Date.now() - start;
       const result: TaskResult = { code: code ?? 0, elapsedMs };
       monitor.onEvent({ type: "done", result });
@@ -228,7 +228,7 @@ export function createFFmpegMonitor(reporter: ProgressReporter): TaskMonitor {
       if (event.type === "line" && event.line) {
         const m = event.line.match(regex);
         if (m) {
-          reporter.update(currentTaskLabel, m[1]);
+          reporter.update(currentTaskLabel, m[1]!);
           return;
         }
       }
@@ -254,7 +254,7 @@ export function createWhisperCppMonitor(
       if (event.type === "line" && event.line) {
         const m = event.line.match(regex);
         if (m) {
-          reporter.update(currentTaskLabel, m[1]);
+          reporter.update(currentTaskLabel, m[1]!);
           return;
         }
       }

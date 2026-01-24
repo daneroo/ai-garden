@@ -19,11 +19,22 @@
  * If no files specified, analyzes all VTT files in data/output/
  */
 
+import { readdir } from "node:fs/promises";
 import { readVtt, type VttCue, vttTimeToSeconds } from "./vtt.ts";
+
+/**
+ * Yield consecutive pairs from an array: [arr[0], arr[1]], [arr[1], arr[2]], ...
+ */
+function* pairs<T>(arr: T[]): Generator<[T, T, number], void, unknown> {
+  for (let i = 0; i < arr.length - 1; i++) {
+    yield [arr[i] as T, arr[i + 1] as T, i];
+  }
+}
 
 // Run if main
 if (import.meta.main) {
-  const files = Deno.args.length > 0 ? Deno.args : await getDefaultVttFiles();
+  const args = Bun.argv.slice(2);
+  const files = args.length > 0 ? args : await getDefaultVttFiles();
 
   // Markdown header
   console.log(`# Cue Monotonicity Violation Analysis\n`);
@@ -36,10 +47,15 @@ if (import.meta.main) {
 
 async function getDefaultVttFiles(): Promise<string[]> {
   const files: string[] = [];
-  for await (const entry of Deno.readDir("data/output")) {
-    if (entry.isFile && entry.name.endsWith(".vtt")) {
-      files.push(`data/output/${entry.name}`);
+  try {
+    const entries = await readdir("data/output", { withFileTypes: true });
+    for (const entry of entries) {
+      if (entry.isFile() && entry.name.endsWith(".vtt")) {
+        files.push(`data/output/${entry.name}`);
+      }
     }
+  } catch {
+    // Ignore error if dir doesn't exist
   }
   return files.sort();
 }
@@ -92,11 +108,9 @@ async function analyzeFile(path: string): Promise<void> {
         .padEnd(40)
         .replace(/\|/g, "\\|");
 
-      return `| ${start.padStart(13)} | ${
-        end.padStart(
-          13,
-        )
-      } | ${overlapStr.padStart(7)} | ${text} |`;
+      return `| ${start.padStart(13)} | ${end.padStart(
+        13,
+      )} | ${overlapStr.padStart(7)} | ${text} |`;
     };
 
     let lastPrinted = -1;
@@ -107,12 +121,16 @@ async function analyzeFile(path: string): Promise<void> {
       const nextIndex = v.index; // The violating cue (current in list)
 
       // Print context row if not already printed
+      const currCue = cues[currIndex];
+      const nextCue = cues[nextIndex];
+      if (!currCue || !nextCue) continue;
+
       if (lastPrinted !== currIndex) {
-        console.log(fmtRow(cues[currIndex]));
+        console.log(fmtRow(currCue));
       }
 
       // Print violating row with highlighted start time
-      console.log(fmtRow(cues[nextIndex], v.overlap));
+      console.log(fmtRow(nextCue, v.overlap));
       lastPrinted = nextIndex;
     }
     console.log(`</details>`);
@@ -137,10 +155,7 @@ function analyzeCueMonotonicity(cues: VttCue[]): MonotonicityResult {
   let overlapsWithTag = 0;
   let maxViolation = 0;
 
-  for (let i = 0; i < cues.length - 1; i++) {
-    const curr = cues[i];
-    const next = cues[i + 1];
-
+  for (const [curr, next, i] of pairs(cues)) {
     const currEnd = vttTimeToSeconds(curr.endTime);
     const nextStart = vttTimeToSeconds(next.startTime);
 

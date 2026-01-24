@@ -10,8 +10,8 @@ import { existsSync } from "node:fs";
 export function commandExists(cmd: string): boolean {
   if (existsSync(cmd)) return true;
   try {
-    const result = new Deno.Command("which", { args: [cmd] }).outputSync();
-    return result.code === 0;
+    const proc = Bun.spawnSync(["which", cmd]);
+    return proc.exitCode === 0;
   } catch {
     return false;
   }

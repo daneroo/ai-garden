@@ -3,7 +3,7 @@ import { basename, extname } from "node:path";
 import { existsSync } from "node:fs";
 import { getAudioFileDuration } from "./audio.ts";
 import { createProgressReporter, type ProgressReporter } from "./progress.ts";
-import { readVtt, summarizeVtt, VttSummary } from "./vtt.ts";
+import { readVtt, summarizeVtt, type VttSummary } from "./vtt.ts";
 import {
   createWhisperCppMonitor,
   createWhisperKitMonitor,
@@ -256,8 +256,9 @@ async function runWhisperCpp(
   // Execute tasks with monitor
   const monitor = createWhisperCppMonitor(reporter);
   for (let i = 0; i < tasks.length; i++) {
-    const taskResult = await runTask(tasks[i], monitor);
-    result.tasks[i].result = taskResult;
+    const task = tasks[i]!;
+    const taskResult = await runTask(task, monitor);
+    result.tasks[i] = { config: task, result: taskResult };
   }
 
   // Move VTT from work dir to final output dir
@@ -305,12 +306,12 @@ async function runWhisperKit(
     config.modelShortName,
     ...(config.startSec > 0 || config.durationSec > 0
       ? [
-        "--clip-timestamps",
-        String(config.startSec),
-        ...(config.durationSec > 0
-          ? [String(config.startSec + config.durationSec)]
-          : []),
-      ]
+          "--clip-timestamps",
+          String(config.startSec),
+          ...(config.durationSec > 0
+            ? [String(config.startSec + config.durationSec)]
+            : []),
+        ]
       : []),
     "--report",
     "--report-path",
@@ -362,8 +363,9 @@ async function runWhisperKit(
   // Execute tasks with monitor
   const monitor = createWhisperKitMonitor(reporter);
   for (let i = 0; i < tasks.length; i++) {
-    const taskResult = await runTask(tasks[i], monitor);
-    result.tasks[i].result = taskResult;
+    const task = tasks[i]!;
+    const taskResult = await runTask(task, monitor);
+    result.tasks[i] = { config: task, result: taskResult };
   }
 
   // Copy final VTT to output directory

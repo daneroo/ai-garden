@@ -16,8 +16,9 @@ export async function getAudioFileDuration(audioFile: string): Promise<number> {
   // default=          : Default format settings
   // noprint_wrappers=1: Don't print section headers
   // nokey=1           : Don't print key names
-  const cmd = new Deno.Command("ffprobe", {
-    args: [
+  const proc = Bun.spawn(
+    [
+      "ffprobe",
       "-v",
       "error",
       "-show_entries",
@@ -26,18 +27,20 @@ export async function getAudioFileDuration(audioFile: string): Promise<number> {
       "default=noprint_wrappers=1:nokey=1",
       audioFile,
     ],
-    stdout: "piped",
-    stderr: "piped",
-  });
+    {
+      stdout: "pipe",
+      stderr: "pipe",
+    },
+  );
 
   try {
-    const { code, stdout } = await cmd.output();
-    if (code !== 0) {
+    const exitCode = await proc.exited;
+    if (exitCode !== 0) {
       console.warn(`Could not get duration of ${audioFile}`);
       return -1;
     }
-    const output = new TextDecoder().decode(stdout).trim();
-    return parseFloat(output);
+    const output = await new Response(proc.stdout).text();
+    return parseFloat(output.trim());
   } catch {
     console.warn(`Could not get duration of ${audioFile}`);
     return -1;

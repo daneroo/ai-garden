@@ -23,6 +23,21 @@ const GREEN = "\x1b[32m";
 const RESET = "\x1b[0m";
 
 // ═══════════════════════════════════════════════════════════════════════════
+// ITERATOR HELPERS
+// ═══════════════════════════════════════════════════════════════════════════
+
+/**
+ * Yield consecutive pairs from an array: [arr[0], arr[1]], [arr[1], arr[2]], ...
+ * Useful for comparing adjacent elements without manual index math.
+ */
+function* pairs<T>(arr: T[]): Generator<[T, T, number], void, unknown> {
+  for (let i = 0; i < arr.length - 1; i++) {
+    // Safe: i and i+1 are always in bounds when i < arr.length - 1
+    yield [arr[i] as T, arr[i + 1] as T, i];
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 // ENTRY POINT
 // ═══════════════════════════════════════════════════════════════════════════
 
@@ -56,17 +71,17 @@ async function main(): Promise<void> {
   const summaryA = summarizeVtt(cuesA);
   console.log(`Loaded: ${pathA}`);
   console.log(
-    `  ${summaryA.cueCount} cues, ${
-      summaryA.durationSec.toFixed(2)
-    }s (${summaryA.firstCueStart} -> ${summaryA.lastCueEnd})`,
+    `  ${summaryA.cueCount} cues, ${summaryA.durationSec.toFixed(
+      2,
+    )}s (${summaryA.firstCueStart} -> ${summaryA.lastCueEnd})`,
   );
   if (summaryA.monotonicityViolations === 0) {
     console.log(`  ${GREEN}✔${RESET} monotonicity violations: none\n`);
   } else {
     console.log(
-      `  ${RED}✘${RESET} monotonicity violations: ${summaryA.monotonicityViolations} (max ${
-        summaryA.monotonicityViolationMaxOverlap.toFixed(2)
-      }s)\n`,
+      `  ${RED}✘${RESET} monotonicity violations: ${summaryA.monotonicityViolations} (max ${summaryA.monotonicityViolationMaxOverlap.toFixed(
+        2,
+      )}s)\n`,
     );
   }
 
@@ -74,17 +89,17 @@ async function main(): Promise<void> {
   const summaryB = summarizeVtt(cuesB);
   console.log(`Loaded: ${pathB}`);
   console.log(
-    `  ${summaryB.cueCount} cues, ${
-      summaryB.durationSec.toFixed(2)
-    }s (${summaryB.firstCueStart} -> ${summaryB.lastCueEnd})`,
+    `  ${summaryB.cueCount} cues, ${summaryB.durationSec.toFixed(
+      2,
+    )}s (${summaryB.firstCueStart} -> ${summaryB.lastCueEnd})`,
   );
   if (summaryB.monotonicityViolations === 0) {
     console.log(`  ${GREEN}✔${RESET} monotonicity violations: none\n`);
   } else {
     console.log(
-      `  ${RED}✘${RESET} monotonicity violations: ${summaryB.monotonicityViolations} (max ${
-        summaryB.monotonicityViolationMaxOverlap.toFixed(2)
-      }s)\n`,
+      `  ${RED}✘${RESET} monotonicity violations: ${summaryB.monotonicityViolations} (max ${summaryB.monotonicityViolationMaxOverlap.toFixed(
+        2,
+      )}s)\n`,
     );
   }
 
@@ -94,22 +109,18 @@ async function main(): Promise<void> {
   const resultA = cuesToTimedWords(cuesA);
   const wordsA = resultA.words;
   console.log(
-    `Transcript A: ${cuesA.length} cues -> ${wordsA.length} words (cue duration [${
-      resultA.minCueDuration.toFixed(
-        2,
-      )
-    }s, ${resultA.maxCueDuration.toFixed(2)}s])`,
+    `Transcript A: ${cuesA.length} cues -> ${wordsA.length} words (cue duration [${resultA.minCueDuration.toFixed(
+      2,
+    )}s, ${resultA.maxCueDuration.toFixed(2)}s])`,
   );
   if (verbose && VERBOSITY_TIMEWORDS) printSampleWords(wordsA, 10);
 
   const resultB = cuesToTimedWords(cuesB);
   const wordsB = resultB.words;
   console.log(
-    `Transcript B: ${cuesB.length} cues -> ${wordsB.length} words (cue duration [${
-      resultB.minCueDuration.toFixed(
-        2,
-      )
-    }s, ${resultB.maxCueDuration.toFixed(2)}s])`,
+    `Transcript B: ${cuesB.length} cues -> ${wordsB.length} words (cue duration [${resultB.minCueDuration.toFixed(
+      2,
+    )}s, ${resultB.maxCueDuration.toFixed(2)}s])`,
   );
   if (verbose && VERBOSITY_TIMEWORDS) printSampleWords(wordsB, 10);
 
@@ -169,6 +180,7 @@ function cuesToTimedWords(cues: VttCue[]): {
 
   for (let cueIndex = 0; cueIndex < cues.length; cueIndex++) {
     const cue = cues[cueIndex];
+    if (!cue) continue;
 
     // Prenormalize: strip <|XX.XX|> tags
     const cleanText = prenormalize(cue.text);
@@ -208,8 +220,7 @@ function cuesToTimedWords(cues: VttCue[]): {
       );
     }
 
-    for (let i = 0; i < rawWords.length; i++) {
-      const word = rawWords[i];
+    for (const [i, word] of rawWords.entries()) {
       const normalized = normalize(word);
       if (!normalized) {
         continue; // Skip words that normalize to empty
@@ -277,16 +288,16 @@ function buildNgramIndex(words: TimedWord[], n: number): NgramIndex {
 
   for (let i = 0; i <= words.length - n; i++) {
     // Build the n-gram hash from normalized words
-    const ngramWords: string[] = [];
-    for (let j = 0; j < n; j++) {
-      ngramWords.push(words[i + j].normalized);
-    }
+    const ngramWords = words.slice(i, i + n).map((w) => w.normalized);
     const hash = ngramWords.join(" ");
 
     // Add this position to the index
+    const currentWord = words[i];
+    if (!currentWord) continue;
+
     const position: NgramPosition = {
-      wordIndex: words[i].wordIndex,
-      time: words[i].time,
+      wordIndex: currentWord.wordIndex,
+      time: currentWord.time,
     };
 
     const existing = index.get(hash);
@@ -362,14 +373,18 @@ function findUniqueAnchors(
     matchedSingletons++;
 
     // Filter out anchors with time drift > MAX_DRIFT_THRESHOLD
-    const timeDelta = Math.abs(positionsA[0].time - positionsB[0].time);
+    const posA = positionsA[0];
+    const posB = positionsB[0];
+    if (!posA || !posB) continue;
+
+    const timeDelta = Math.abs(posA.time - posB.time);
     if (timeDelta > MAX_DRIFT_THRESHOLD) {
       rejectedForDrift++;
       if (verbose && VERBOSITY_REJECTED_ANCHORS) {
         printRejectionContext(
           hash,
-          positionsA[0],
-          positionsB[0],
+          posA,
+          posB,
           wordsA,
           wordsB,
           MAX_DRIFT_THRESHOLD,
@@ -381,10 +396,10 @@ function findUniqueAnchors(
     // Found a unique anchor!
     anchors.push({
       hash,
-      posA: positionsA[0].wordIndex,
-      posB: positionsB[0].wordIndex,
-      timeA: positionsA[0].time,
-      timeB: positionsB[0].time,
+      posA: posA.wordIndex,
+      posB: posB.wordIndex,
+      timeA: posA.time,
+      timeB: posB.time,
     });
   }
 
@@ -458,14 +473,18 @@ function checkMonotonicity(anchors: NGramMatch[]): {
 
   // First pass: count violations
   for (let i = 0; i < anchors.length - 1; i++) {
-    if (anchors[i + 1].posA < anchors[i].posA) posACount++;
-    if (anchors[i + 1].posB < anchors[i].posB) posBCount++;
-    if (anchors[i + 1].timeA < anchors[i].timeA) timeACount++;
-    if (anchors[i + 1].timeB < anchors[i].timeB) timeBCount++;
+    const curr = anchors[i];
+    const next = anchors[i + 1];
+    if (!curr || !next) continue;
+
+    if (next.posA < curr.posA) posACount++;
+    if (next.posB < curr.posB) posBCount++;
+    if (next.timeA < curr.timeA) timeACount++;
+    if (next.timeB < curr.timeB) timeBCount++;
   }
 
-  const hasViolations = posACount > 0 || posBCount > 0 || timeACount > 0 ||
-    timeBCount > 0;
+  const hasViolations =
+    posACount > 0 || posBCount > 0 || timeACount > 0 || timeBCount > 0;
   if (verbose) {
     if (!hasViolations) {
       console.log(`\nMonotonicity violations: none`);
@@ -507,6 +526,8 @@ function checkMonotonicity(anchors: NGramMatch[]): {
         for (let i = 0; i < anchors.length - 1; i++) {
           const curr = anchors[i];
           const next = anchors[i + 1];
+
+          if (!curr || !next) continue;
 
           const vPosA = next.posA < curr.posA;
           const vPosB = next.posB < curr.posB;
@@ -564,11 +585,10 @@ function mergeAnchorsToSpans(anchors: NGramMatch[], n: number): AlignedSpan[] {
   }
 
   // Assert sorted by posA
-  // TODO: refactor to reuse checkMonotonicity() in a flexible way
-  for (let i = 1; i < anchors.length; i++) {
-    if (anchors[i].posA < anchors[i - 1].posA) {
+  for (const [prev, curr, i] of pairs(anchors)) {
+    if (curr.posA < prev.posA) {
       throw new Error(
-        `mergeAnchorsToSpans: anchors not sorted by posA at index ${i}`,
+        `mergeAnchorsToSpans: anchors not sorted by posA at index ${i + 1}`,
       );
     }
   }
@@ -576,13 +596,15 @@ function mergeAnchorsToSpans(anchors: NGramMatch[], n: number): AlignedSpan[] {
   const spans: AlignedSpan[] = [];
 
   // Initialize first span from first anchor
+  const firstAnchor = anchors[0]!; // Length checked above
   let currentSpan: AlignedSpan = {
-    spanA: { start: anchors[0].posA, end: anchors[0].posA + n },
-    spanB: { start: anchors[0].posB, end: anchors[0].posB + n },
+    spanA: { start: firstAnchor.posA, end: firstAnchor.posA + n },
+    spanB: { start: firstAnchor.posB, end: firstAnchor.posB + n },
   };
 
   for (let i = 1; i < anchors.length; i++) {
     const curr = anchors[i];
+    if (!curr) continue;
 
     // Check if this anchor overlaps with or is contiguous to current span
     // Overlap means the anchor starts before the span ends
@@ -678,25 +700,33 @@ function computeScoreFromSpans(
       gapHistoTime[bucket] = (gapHistoTime[bucket] || 0) + 1;
     };
 
+    // Safe word time lookup helper
+    const wordTime = (idx: number): number => wordsA[idx]?.time ?? 0;
+
+    const firstSpan = spans[0];
+    const lastSpan = spans[spans.length - 1];
+
     // Gap before first span
-    if (spans[0].spanA.start > 0) {
-      const gapEnd = spans[0].spanA.start;
-      const duration = wordsA[gapEnd].time - wordsA[0].time;
+    if (firstSpan && firstSpan.spanA.start > 0) {
+      const gapEnd = firstSpan.spanA.start;
+      const duration = wordTime(gapEnd) - wordTime(0);
       recordGap(gapEnd, duration);
     }
-    // Gaps between spans
-    for (let i = 1; i < spans.length; i++) {
-      const gapStart = spans[i - 1].spanA.end;
-      const gapEnd = spans[i].spanA.start;
+
+    // Gaps between spans (using pairs helper)
+    for (const [prevSpan, currSpan] of pairs(spans)) {
+      const gapStart = prevSpan.spanA.end;
+      const gapEnd = currSpan.spanA.start;
       if (gapEnd > gapStart) {
-        const duration = wordsA[gapEnd].time - wordsA[gapStart].time;
+        const duration = wordTime(gapEnd) - wordTime(gapStart);
         recordGap(gapEnd - gapStart, duration);
       }
     }
+
     // Gap after last span
-    if (spans[spans.length - 1].spanA.end < totalWordsA) {
-      const gapStart = spans[spans.length - 1].spanA.end;
-      const duration = wordsA[totalWordsA - 1].time - wordsA[gapStart].time;
+    if (lastSpan && lastSpan.spanA.end < totalWordsA) {
+      const gapStart = lastSpan.spanA.end;
+      const duration = wordTime(totalWordsA - 1) - wordTime(gapStart);
       recordGap(totalWordsA - gapStart, duration);
     }
   }
@@ -713,9 +743,10 @@ function computeScoreFromSpans(
   let totalDrift = 0;
   let maxDrift = 0;
   for (const span of spans) {
-    const timeA = wordsA[span.spanA.start].time;
-    const timeB = wordsB[span.spanB.start].time;
-    const drift = Math.abs(timeA - timeB);
+    const wordA = wordsA[span.spanA.start];
+    const wordB = wordsB[span.spanB.start];
+    if (!wordA || !wordB) continue;
+    const drift = Math.abs(wordA.time - wordB.time);
     totalDrift += drift;
     if (drift > maxDrift) maxDrift = drift;
   }
@@ -725,13 +756,13 @@ function computeScoreFromSpans(
   let matchedDurationA = 0;
   let matchedDurationB = 0;
   for (const span of spans) {
-    const startTimeA = wordsA[span.spanA.start].time;
-    const endTimeA = wordsA[span.spanA.end - 1].time;
-    matchedDurationA += endTimeA - startTimeA;
+    const startA = wordsA[span.spanA.start];
+    const endA = wordsA[span.spanA.end - 1];
+    if (startA && endA) matchedDurationA += endA.time - startA.time;
 
-    const startTimeB = wordsB[span.spanB.start].time;
-    const endTimeB = wordsB[span.spanB.end - 1].time;
-    matchedDurationB += endTimeB - startTimeB;
+    const startB = wordsB[span.spanB.start];
+    const endB = wordsB[span.spanB.end - 1];
+    if (startB && endB) matchedDurationB += endB.time - startB.time;
   }
 
   return {
@@ -765,9 +796,9 @@ function printSampleWords(words: TimedWord[], count: number): void {
   const sample = words.slice(0, count);
   for (const w of sample) {
     console.log(
-      `  [${w.wordIndex}] ${
-        w.time.toFixed(2)
-      }s: "${w.word}" → "${w.normalized}"`,
+      `  [${w.wordIndex}] ${w.time.toFixed(
+        2,
+      )}s: "${w.word}" → "${w.normalized}"`,
     );
   }
   if (words.length > count) {
@@ -780,18 +811,14 @@ function showSpanScore(spanScore: SpanScore): void {
   console.log(`Span count:        ${spanScore.spanCount}`);
   console.log(`Matched words:     ${spanScore.matchedWords}`);
   console.log(
-    `Matched duration A/B: ${toHMS(spanScore.matchedDurationA)}, ${
-      toHMS(
-        spanScore.matchedDurationB,
-      )
-    }`,
+    `Matched duration A/B: ${toHMS(spanScore.matchedDurationA)}, ${toHMS(
+      spanScore.matchedDurationB,
+    )}`,
   );
   console.log(
-    `Coverage A/B:      ${(spanScore.coverageA * 100).toFixed(2)}%, ${
-      (
-        spanScore.coverageB * 100
-      ).toFixed(2)
-    }%`,
+    `Coverage A/B:      ${(spanScore.coverageA * 100).toFixed(2)}%, ${(
+      spanScore.coverageB * 100
+    ).toFixed(2)}%`,
   );
   console.log(`Gap count:         ${spanScore.gapCount}`);
 
@@ -809,20 +836,16 @@ function showSpanScore(spanScore: SpanScore): void {
 
     // Gap min/avg/max
     console.log(
-      `  Gap words (min/avg/max): ${spanScore.gapMinWords} / ${
-        spanScore.gapAvgWords.toFixed(1)
-      } / ${spanScore.gapMaxWords}`,
+      `  Gap words (min/avg/max): ${spanScore.gapMinWords} / ${spanScore.gapAvgWords.toFixed(
+        1,
+      )} / ${spanScore.gapMaxWords}`,
     );
     console.log(
-      `  Gap time  (min/avg/max): ${
-        spanScore.gapMinTime.toFixed(
-          2,
-        )
-      }s / ${
-        spanScore.gapAvgTime.toFixed(
-          2,
-        )
-      }s / ${spanScore.gapMaxTime.toFixed(2)}s`,
+      `  Gap time  (min/avg/max): ${spanScore.gapMinTime.toFixed(
+        2,
+      )}s / ${spanScore.gapAvgTime.toFixed(
+        2,
+      )}s / ${spanScore.gapMaxTime.toFixed(2)}s`,
     );
   }
 
@@ -849,18 +872,14 @@ function printRejectionContext(
     `  REJECTED: "${hash}" drift:${timeDelta.toFixed(2)}s > ${maxTimeDelta}s`,
   );
   console.error(
-    `    in A: pos:${posA.wordIndex} time:${posA.time.toFixed(2)}s (${
-      toHMS(
-        posA.time,
-      )
-    })`,
+    `    in A: pos:${posA.wordIndex} time:${posA.time.toFixed(2)}s (${toHMS(
+      posA.time,
+    )})`,
   );
   console.error(
-    `    in B: pos:${posB.wordIndex} time:${posB.time.toFixed(2)}s (${
-      toHMS(
-        posB.time,
-      )
-    })`,
+    `    in B: pos:${posB.wordIndex} time:${posB.time.toFixed(2)}s (${toHMS(
+      posB.time,
+    )})`,
   );
 
   // Extract context for A
@@ -902,11 +921,9 @@ function toHMS(seconds: number): string {
   const h = Math.floor(seconds / 3600);
   const m = Math.floor((seconds % 3600) / 60);
   const s = seconds % 60;
-  return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${
-    s
-      .toFixed(3)
-      .padStart(6, "0")
-  }`;
+  return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s
+    .toFixed(3)
+    .padStart(6, "0")}`;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

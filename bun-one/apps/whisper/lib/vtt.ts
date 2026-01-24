@@ -35,8 +35,9 @@ export function parseVtt(vtt: string): VttCue[] {
         currentCue = { startTime: "", endTime: "", text: "" };
       }
       const times = line.split("-->");
-      currentCue.startTime = times[0].trim();
-      currentCue.endTime = times[1].trim();
+      const [start = "", end = ""] = times;
+      currentCue.startTime = start.trim();
+      currentCue.endTime = end.trim();
     } else if (line.trim() === "") {
       if (currentCue.text) {
         // Push the current cue if it has text and reset
@@ -77,12 +78,12 @@ export async function readVtt(path: string): Promise<VttCue[]> {
 export function vttTimeToSeconds(time: string): number {
   const parts = time.split(":");
   if (parts.length === 3) {
-    const [hours, minutes, seconds] = parts;
+    const [hours = "0", minutes = "0", seconds = "0"] = parts;
     return (
       parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseFloat(seconds)
     );
   } else if (parts.length === 2) {
-    const [minutes, seconds] = parts;
+    const [minutes = "0", seconds = "0"] = parts;
     return parseInt(minutes) * 60 + parseFloat(seconds);
   }
   return parseFloat(time);
@@ -114,12 +115,26 @@ export function summarizeVtt(cues: VttCue[]): VttSummary {
     };
   }
 
+  const firstCue = cues[0];
+  const lastCue = cues[cues.length - 1];
+  if (!firstCue || !lastCue) {
+    return {
+      cueCount: cues.length,
+      firstCueStart: "",
+      lastCueEnd: "",
+      durationSec: 0,
+      monotonicityViolations: 0,
+      monotonicityViolationMaxOverlap: 0,
+    };
+  }
+
+  const firstCueStart = firstCue.startTime;
+  const lastCueEnd = lastCue.endTime;
+  const durationSec =
+    vttTimeToSeconds(lastCueEnd) - vttTimeToSeconds(firstCueStart);
+
   const { violations, maxOverlap } = checkMonotonicity(cues);
 
-  const firstCueStart = cues[0].startTime;
-  const lastCueEnd = cues[cues.length - 1].endTime;
-  const durationSec = vttTimeToSeconds(lastCueEnd) -
-    vttTimeToSeconds(firstCueStart);
   return {
     cueCount: cues.length,
     firstCueStart,
@@ -145,11 +160,16 @@ export function checkMonotonicity(cues: VttCue[]): {
     return { violations, maxOverlap };
   }
 
-  let prevEndTimeSec = vttTimeToSeconds(cues[0].endTime);
+  const firstCue = cues[0];
+  if (!firstCue) {
+    return { violations, maxOverlap };
+  }
 
-  for (let i = 1; i < cues.length; i++) {
-    const startTimeSec = vttTimeToSeconds(cues[i].startTime);
-    const endTimeSec = vttTimeToSeconds(cues[i].endTime);
+  let prevEndTimeSec = vttTimeToSeconds(firstCue.endTime);
+
+  for (const cue of cues.slice(1)) {
+    const startTimeSec = vttTimeToSeconds(cue.startTime);
+    const endTimeSec = vttTimeToSeconds(cue.endTime);
 
     if (startTimeSec < prevEndTimeSec) {
       violations++;

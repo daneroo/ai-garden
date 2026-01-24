@@ -253,12 +253,12 @@ function LogoHero() {
             transparent ${lineHeight}em
           )`,
         }}
-      // We handle Dark mode gradient override via a separate style object or class if needed,
-      // but since we can't easily put dark:modifiers in inline styles, we'll use a CSS variable technique
-      // or a simple media query style block.
-      // Actually, Tailwind v4 allows `dark:` variants for arbitrary properties but complex gradients are hard.
-      // BETTER APPROACH: Use `text-current` opacity? No, lines need to be specific.
-      // Let's use a class-based utility or simply component-level CSS variables for the line color.
+        // We handle Dark mode gradient override via a separate style object or class if needed,
+        // but since we can't easily put dark:modifiers in inline styles, we'll use a CSS variable technique
+        // or a simple media query style block.
+        // Actually, Tailwind v4 allows `dark:` variants for arbitrary properties but complex gradients are hard.
+        // BETTER APPROACH: Use `text-current` opacity? No, lines need to be specific.
+        // Let's use a class-based utility or simply component-level CSS variables for the line color.
       >
         <style>{`
           .staff-lines {
@@ -510,5 +510,5 @@ function getStaffYs(lineCount: number, minY: number, maxY: number): number[] {
 
 /** Pick a random element from an array */
 function pickRandom<T>(options: T[]): T {
-  return options[Math.floor(Math.random() * options.length)];
+  return options[Math.floor(Math.random() * options.length)]!;
 }

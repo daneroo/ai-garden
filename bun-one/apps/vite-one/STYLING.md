@@ -153,7 +153,7 @@ Preferred approach:
 <div className="bg-base-100 text-base-content">
   <button className="btn btn-primary">Action</button>
   <p className="text-base-content/70">Subdued text</p>
-</div>;
+</div>
 ```
 
 Avoid:
@@ -162,7 +162,7 @@ Avoid:
 // Hardcoded colors - does not adapt to theme
 <div className="bg-white text-gray-800">
   <button className="bg-blue-500 text-white">Action</button>
-</div>;
+</div>
 ```
 
 ### DaisyUI Semantic Color Palette
@@ -192,7 +192,7 @@ Use DaisyUI's navbar structure with `navbar-start`, `navbar-center`,
     <ul className="menu menu-horizontal px-1">{/* Navigation items */}</ul>
   </div>
   <div className="navbar-end">{/* Actions (theme toggle, etc.) */}</div>
-</div>;
+</div>
 ```
 
 #### Responsive Mobile Menu
@@ -207,7 +207,7 @@ Use a dropdown for mobile, horizontal menu for desktop:
   <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
     {/* Mobile menu items */}
   </ul>
-</div>;
+</div>
 ```
 
 #### Footer
@@ -219,7 +219,7 @@ Use semantic footer classes:
   <aside>
     <p>Copyright © {year} - Your Company</p>
   </aside>
-</footer>;
+</footer>
 ```
 
 ### Gradient and Visual Effects
@@ -249,7 +249,9 @@ The current `index.css` configuration:
 ```css
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark;
+  themes:
+    light --default,
+    dark --prefersdark;
 }
 
 /* Enable Tailwind dark: variant with DaisyUI themes */
@@ -265,7 +267,11 @@ Include more built-in themes:
 
 ```css
 @plugin "daisyui" {
-  themes: light --default, dark --prefersdark, nord, dracula;
+  themes:
+    light --default,
+    dark --prefersdark,
+    nord,
+    dracula;
 }
 ```
 
