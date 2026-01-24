@@ -3,7 +3,6 @@ import { getProcessedAudioDuration, type RunConfig } from "./runners.ts";
 
 const mockConfig: RunConfig = {
   input: "test.mp3",
-  runner: "whispercpp",
   modelShortName: "tiny.en",
   threads: 4,
   startSec: 0,

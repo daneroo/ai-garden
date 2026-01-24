@@ -50,9 +50,8 @@ export interface TaskConfig {
   args: string[];
   stdoutLogPath: string;
   stderrLogPath: string;
-  /** Lines matching this regex are emitted as events (optional) */
-  stdoutFilter?: RegExp;
-  stderrFilter?: RegExp;
+  /** Monitor to receive events from this task */
+  monitor: TaskMonitor;
 }
 
 /**
@@ -84,6 +83,10 @@ export interface TaskEvent {
 /**
  * Receives events from task execution.
  * One monitor can receive events from multiple sequential tasks.
+ *
+ * All lines from both stdout and stderr are emitted as events.
+ * Monitors decide which stream(s) to observe and what regex to apply.
+ * Use event.stream to distinguish between stdout and stderr.
  */
 export interface TaskMonitor {
   onEvent(event: TaskEvent): void;
@@ -94,13 +97,14 @@ export interface TaskMonitor {
 // ============================================================================
 
 /**
- * Run a task, emitting events to the monitor.
+ * Run a task, emitting events to its monitor.
+ *
+ * All lines from both stdout and stderr are emitted as "line" events.
+ * The monitor decides which lines to act on based on event.stream and its own regex.
  */
-export function runTask(
-  config: TaskConfig,
-  monitor: TaskMonitor,
-): Promise<TaskResult> {
+export function runTask(config: TaskConfig): Promise<TaskResult> {
   const start = Date.now();
+  const monitor = config.monitor;
 
   // Emit start event
   monitor.onEvent({ type: "start", label: config.label });
@@ -114,33 +118,27 @@ export function runTask(
       stdio: ["inherit", "pipe", "pipe"],
     }) as ChildProcess;
 
-    // Create line parser with optional filter
-    function createLineEmitter(stream: "stdout" | "stderr", filter?: RegExp) {
-      return (data: Buffer) => {
-        const text = data.toString();
-        const lines = text.split(/[\r\n]+/);
-        for (const line of lines) {
-          if (line.trim() && (!filter || filter.test(line))) {
-            monitor.onEvent({ type: "line", stream, line });
-          }
+    // Emit all non-empty lines as events
+    function emitLines(stream: "stdout" | "stderr", data: Buffer) {
+      const text = data.toString();
+      const lines = text.split(/[\r\n]+/);
+      for (const line of lines) {
+        if (line.trim()) {
+          monitor.onEvent({ type: "line", stream, line });
         }
-      };
+      }
     }
 
-    // Handle stdout
+    // Handle stdout: log + emit events
     proc.stdout?.on("data", (data: Buffer) => {
       stdoutLog.write(data);
-      if (config.stdoutFilter) {
-        createLineEmitter("stdout", config.stdoutFilter)(data);
-      }
+      emitLines("stdout", data);
     });
 
-    // Handle stderr
+    // Handle stderr: log + emit events
     proc.stderr?.on("data", (data: Buffer) => {
       stderrLog.write(data);
-      if (config.stderrFilter) {
-        createLineEmitter("stderr", config.stderrFilter)(data);
-      }
+      emitLines("stderr", data);
     });
 
     proc.on("error", (error: Error) => {
@@ -217,101 +215,72 @@ function renderConsoleEvent(
 }
 
 /**
- * Monitor for FFmpeg audio conversion.
+ * Monitor for FFmpeg audio format conversion.
+ * Observes stderr only (FFmpeg writes progress to stderr).
+ * Note: Monitors can observe either stream or both by checking event.stream.
  */
-export function createFFmpegMonitor(reporter: ProgressReporter): TaskMonitor {
+export function createAudioConversionMonitor(
+  reporter: ProgressReporter,
+): TaskMonitor {
   let currentTaskLabel = "";
+  // Example: size=  26154KiB time=00:13:58.33 bitrate= 255.8kbits/s speed=1.31e+03x
+  // Captures: "26154KiB time=00:13:58.33" for display
   const regex = /size=\s*(\d+.*time=[\d:.]+)/;
 
   return {
     onEvent(event: TaskEvent): void {
-      if (event.type === "line" && event.line) {
+      // Handle lifecycle events (start, done, error)
+      if (event.type !== "line") {
+        renderConsoleEvent(reporter, event, () => {
+          if (event.type === "start") currentTaskLabel = event.label ?? "";
+          return currentTaskLabel;
+        });
+        return;
+      }
+
+      // Only display stderr lines matching progress regex
+      if (event.stream === "stderr" && event.line) {
         const m = event.line.match(regex);
         if (m) {
           reporter.update(currentTaskLabel, m[1]!);
-          return;
         }
       }
-      renderConsoleEvent(reporter, event, () => {
-        if (event.type === "start") currentTaskLabel = event.label ?? "";
-        return currentTaskLabel;
-      });
+      // Non-matching lines are silently ignored
     },
   };
 }
 
 /**
  * Monitor for whisper-cpp.
+ * Observes stderr only (whisper-cpp writes progress to stderr).
+ * Note: Monitors can observe either stream or both by checking event.stream.
  */
 export function createWhisperCppMonitor(
   reporter: ProgressReporter,
 ): TaskMonitor {
   let currentTaskLabel = "";
+  // Captures: "50%" for display
   const regex = /progress\s*=\s*(\d+%)/;
 
   return {
     onEvent(event: TaskEvent): void {
-      if (event.type === "line" && event.line) {
+      // Handle lifecycle events (start, done, error)
+      if (event.type !== "line") {
+        renderConsoleEvent(reporter, event, () => {
+          if (event.type === "start") currentTaskLabel = event.label ?? "";
+          return currentTaskLabel;
+        });
+        return;
+      }
+
+      // Only display stderr lines matching progress regex
+      if (event.stream === "stderr" && event.line) {
         const m = event.line.match(regex);
         if (m) {
           reporter.update(currentTaskLabel, m[1]!);
-          return;
         }
       }
-      renderConsoleEvent(reporter, event, () => {
-        if (event.type === "start") currentTaskLabel = event.label ?? "";
-        return currentTaskLabel;
-      });
+      // Non-matching lines are silently ignored
     },
   };
 }
-
-/**
- * Monitor for whisperkit.
- */
-export function createWhisperKitMonitor(
-  reporter: ProgressReporter,
-): TaskMonitor {
-  let currentTaskLabel = "";
-  const regex =
-    /]\s*(\d+%)\s*\|\s*Elapsed Time:\s*([\d.]+\s*s)\s*\|\s*Remaining:\s*([\d.]+\s*s|Estimating\.\.\.)/;
-
-  return {
-    onEvent(event: TaskEvent): void {
-      if (event.type === "line" && event.line) {
-        const m = event.line.match(regex);
-        if (m) {
-          reporter.update(currentTaskLabel, `${m[1]} | ${m[2]} | ${m[3]}`);
-          return;
-        }
-      }
-      renderConsoleEvent(reporter, event, () => {
-        if (event.type === "start") currentTaskLabel = event.label ?? "";
-        return currentTaskLabel;
-      });
-    },
-  };
-}
-
-// ============================================================================
-// Filter Regexes (for TaskConfig)
-// ============================================================================
-
-/**
- * FFmpeg audio conversion progress line.
- * Example: size=  26154KiB time=00:13:58.33 bitrate= 255.8kbits/s speed=1.31e+03x
- */
-export const FFMPEG_AUDIO_PROGRESS_REGEX = /size=\s*\d+.*time=/;
-
-/**
- * whisper-cpp progress line.
- * Example: whisper_print_progress_callback: progress = 50%
- */
-export const WHISPER_CPP_PROGRESS_REGEX = /progress\s*=\s*\d+%/;
-
-/**
- * whisperkit progress line.
- * Example: ] 50% | Elapsed Time: 1.23 s | Remaining: 1.23 s
- * or: ] 50% | Elapsed Time: 1.23 s | Remaining: Estimating...
- */
-export const WHISPERKIT_PROGRESS_REGEX = /]\s*\d+%\s*\|/;

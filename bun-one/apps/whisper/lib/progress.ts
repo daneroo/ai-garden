@@ -31,7 +31,6 @@ export interface ProgressReporter {
 /** Config subset needed for progress reporting */
 export interface ProgressConfig {
   inputBasename: string;
-  runner: string;
   modelShortName: string;
 }
 
@@ -42,15 +41,15 @@ export interface ProgressConfig {
 export function createProgressReporter(
   config: ProgressConfig,
 ): ProgressReporter {
-  const { inputBasename, runner, modelShortName } = config;
+  const { inputBasename, modelShortName } = config;
 
   /**
    * Format a progress line. Isolated for easy customization.
-   * Format: - [i=BASENAME m=MODEL RUNNER - task=LABEL] : STATUS
+   * Format: - [i=BASENAME m=MODEL - task=LABEL] : STATUS
    */
   function formatLine(taskLabel: string, status: string): string {
     const taskPart = taskLabel ? ` - task=${taskLabel}` : "";
-    return `- [i=${inputBasename} m=${modelShortName} ${runner}${taskPart}] : ${status}`;
+    return `- [i=${inputBasename} m=${modelShortName}${taskPart}] : ${status}`;
   }
 
   return {

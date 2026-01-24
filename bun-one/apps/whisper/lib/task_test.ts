@@ -2,7 +2,6 @@ import { expect, test } from "bun:test";
 import process from "node:process";
 import {
   createConsoleMonitor,
-  FFMPEG_AUDIO_PROGRESS_REGEX,
   runTask,
   type TaskConfig,
   type TaskEvent,
@@ -34,6 +33,7 @@ test("runTask - M4B to WAV conversion emits events", async () => {
   const stderrLogPath = join(WORK_DIR, "jfk_test.stderr.log");
   const wavPath = join(WORK_DIR, "jfk_test.wav");
 
+  // Note: No filter needed - all lines are emitted, monitor decides what to parse
   const config: TaskConfig = {
     label: "to-wav",
     command: "ffmpeg",
@@ -55,10 +55,10 @@ test("runTask - M4B to WAV conversion emits events", async () => {
     ],
     stdoutLogPath,
     stderrLogPath,
-    stderrFilter: FFMPEG_AUDIO_PROGRESS_REGEX,
+    monitor,
   };
 
-  const result = await runTask(config, monitor);
+  const result = await runTask(config);
 
   // Check result
   expect(result.code).toBe(0);

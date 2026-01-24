@@ -5,8 +5,6 @@ import {
   getRequiredCommands,
   type ModelShortName,
   type RunConfig,
-  RUNNER_NAMES,
-  type RunnerName,
   type RunResult,
   runWhisper,
 } from "./lib/runners.ts";
@@ -69,13 +67,6 @@ async function main(): Promise<void> {
       default: DEFAULT_OUTPUT_DIR,
       describe: "Output directory for results",
     })
-    .option("runner", {
-      alias: "r",
-      type: "string",
-      choices: RUNNER_NAMES,
-      default: RUNNER_NAMES[0],
-      describe: "Which whisper runner to use",
-    })
     .option("dry-run", {
       alias: "n",
       type: "boolean",
@@ -112,7 +103,6 @@ async function main(): Promise<void> {
     start,
     duration,
     output,
-    runner,
     tag,
     "dry-run": dryRun,
     json,
@@ -140,11 +130,10 @@ async function main(): Promise<void> {
     verbosity,
     dryRun,
     wordTimestamps,
-    runner: runner as RunnerName,
   };
 
   // Preflight check
-  const requiredCommands = getRequiredCommands(config);
+  const requiredCommands = getRequiredCommands();
 
   const { missing } = preflightCheck(requiredCommands);
 
@@ -171,7 +160,6 @@ async function main(): Promise<void> {
         ? `${result.vttSummary.durationSec}s`
         : "none";
       console.log(`\n${label}`);
-      console.log(`  Runner:    ${result.runner}`);
       console.log(`  Processed: ${result.processedAudioDurationSec}s audio`);
       console.log(`  Elapsed:   ${result.elapsedSec}s (wall-clock)`);
       console.log(`  Speedup:   ${result.speedup}x`);
