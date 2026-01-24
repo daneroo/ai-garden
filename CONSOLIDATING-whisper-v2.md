@@ -36,9 +36,10 @@ The core transcription pipeline now runs under Bun with all tests passing.
 - Benchmarking: bash or ts? output location?
   - compare: models, durations, word-level-timestamps,
   - sources: whisper-sh/bench.sh, whisper-bench/bench.sh,
-    whisper-sh/whisperBench.mjs
-- Project documentation: Write README.md mostly to capture content of originals
-  - sources: whisper-sh/README.md, whisper-bench/README.md
+    whisper-sh/whisperBench.mjs, WHISPER-MIGRATION.md, CONSOLIDATING-whisper.md
+- Project documentation: Write `README.md`, `docs/`, `thoughts/` mostly to
+  capture content of originals
+  - sources: whisper-sh/README.md, whisper-bench/README.md,
 - Monotonicity analysis: This informed the decision to drop whisperkit but the
   documentation itself was not migrated. should also be included in vtt output
   validation?
