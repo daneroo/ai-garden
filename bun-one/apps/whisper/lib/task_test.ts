@@ -1,4 +1,4 @@
-import { expect, test } from "bun:test";
+import { afterAll, expect, test } from "bun:test";
 import process from "node:process";
 import {
   createConsoleMonitor,
@@ -8,12 +8,12 @@ import {
 } from "./task.ts";
 
 import { join, resolve } from "node:path";
-import { mkdirSync } from "node:fs";
+import { existsSync, mkdirSync, rmSync } from "node:fs";
 
 // Resolve paths relative to this file (lib/task_test.ts)
 const PKG_ROOT = resolve(import.meta.dirname, "..");
 const FIXTURES_DIR = join(PKG_ROOT, "test", "fixtures");
-const WORK_DIR = join(PKG_ROOT, "data", "work");
+const WORK_DIR = join(PKG_ROOT, "data", "work", "unit-test-task");
 
 // Ensure work dir exists
 mkdirSync(WORK_DIR, { recursive: true });
@@ -77,6 +77,13 @@ test("runTask - M4B to WAV conversion emits events", async () => {
   // Should have at least one progress line
   expect(lineEvents.length >= 1).toBe(true);
   expect(lineEvents[0]!.stream).toBe("stderr");
+});
+
+// Cleanup artifacts
+afterAll(() => {
+  if (existsSync(WORK_DIR)) {
+    rmSync(WORK_DIR, { recursive: true });
+  }
 });
 
 test("createConsoleMonitor - handles lifecycle", () => {
