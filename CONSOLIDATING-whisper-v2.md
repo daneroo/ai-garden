@@ -31,7 +31,11 @@ The core transcription pipeline now runs under Bun with all tests passing.
 
 ## Remaining Work
 
-- Validate the --start (-s) , --duration (-d), --word-timestamps options
+- Validate the --start (-s), --duration (-d), --word-timestamps options
+  - [x] Integration tests in `test/integration_test.ts` (roadnottaken.m4b
+        sample)
+  - Observed: whisper-cpp uses absolute timestamps (start=30 → VTT at 00:00:30)
+  - **Pending:** Define semantic - absolute or relative timestamps for segments
 - Cache the output of the .wav file if it has already been converted
 - Benchmarking: bash or ts? output location?
   - compare: models, durations, word-level-timestamps,

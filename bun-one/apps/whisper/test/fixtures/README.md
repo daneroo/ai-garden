@@ -6,19 +6,21 @@ Audio samples for testing.
 
 JFK's inaugural address excerpt (~11 seconds).
 
-### Origin
+- Source:
+  [whisper.cpp samples](https://github.com/ggerganov/whisper.cpp/tree/master/samples)
+- Derived: `jfk.m4b` via
+  `ffmpeg -y -hide_banner -i jfk.wav -c:a aac -b:a 64k jfk.m4b`
 
-`jfk.wav` and `jfk.mp3` are from the
-[whisper.cpp samples](https://github.com/ggerganov/whisper.cpp/tree/master/samples).
+## roadnottaken.m4b
 
-### Derived files
+Robert Frost's "The Road Not Taken" poem (~76 seconds, ~1:16). Used for
+integration tests with start/duration options.
 
-```bash
-# M4B (for testing M4B conversion)
-ffmpeg -y -hide_banner -i jfk.wav -c:a aac -b:a 64k jfk.m4b
-```
+- Source:
+  [Poetry Foundation](https://www.poetryfoundation.org/poems/44272/the-road-not-taken)
+  MP3, converted via Audiobookshelf.
 
-### Checksums
+## Checksums
 
 See [sha256sums.txt](sha256sums.txt)
 
@@ -27,4 +29,5 @@ $ sha256sum -c sha256sums.txt
 jfk.m4b: OK
 jfk.mp3: OK
 jfk.wav: OK
+roadnottaken.m4b: OK
 ```
