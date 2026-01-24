@@ -13,8 +13,11 @@ import {
   type TaskResult,
 } from "./task.ts";
 
-// Model directory for whisper-cpp
-const WHISPER_CPP_MODELS = "data/models";
+import { join } from "node:path";
+
+// Model directory for whisper-cpp (absolute path)
+// TODO:this will probably need to evolve with an ENV based configuration
+const WHISPER_CPP_MODELS = join(import.meta.dir, "..", "data", "models");
 
 // Private executable constant
 const WHISPER_CPP_EXEC = "whisper-cli";

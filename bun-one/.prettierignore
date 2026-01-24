@@ -4,8 +4,8 @@ dist
 coverage
 .bun
 
-# whisper data
-apps/whisper/data
+# whisper data - may eveolve when whisper get's an env based configuration
+apps/whisper/data/**
 
 # Ignore auto-generated files
 **/*.gen.ts

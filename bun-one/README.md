@@ -39,6 +39,12 @@ bun run apps/cli/cli.ts --help
 (cd apps/tan-one && bun run build && bun run start)
 ```
 
+## Testing
+
+We have started adding integrations tests, we may have to define a common
+strategy for excluding longer running tests from CI, if the times get too long;
+i.e. quick,unit,e2e,slow,...
+
 ## Add a New Package
 
 ```bash
