@@ -28,17 +28,15 @@ The core transcription pipeline now runs under Bun with all tests passing.
 - [x] Initial Port: Copied whisper-bench to bun-one/apps/whisper
 - [x] API Migration: Ported Deno.* to bun compatible
 - [x] Simplification: Removed whisperkit, refactored monitor architecture
+- [x] Offset/Duration: Validated --start/-s, --duration/-d options with
+      integration tests; whisper-cpp uses absolute timestamps
+- [x] WAV Caching: Cache converted WAV files to avoid redundant ffmpeg runs;
+      verified with integration test
 
 ## Remaining Work
 
-- Validate the --start (-s), --duration (-d), --word-timestamps options
-  - [x] Smoke integration tests added: `test/integration_smoke_test.ts`
-  - [x] Semantic decision pending: Absolute vs Relative timestamps for
-        segmentation
-  - [x] Current behavior: whisper-cpp uses absolute timestamps
-  - [x] current behavior captured in integration tests
-- Cache the output of the .wav file if it has already been converted
-- Benchmarking: bash or ts? output location?
+- [ ] Benchmarking: bash or ts? output location? Needs Research and Planning!
+- [ ] Validate --word-timestamps option
   - compare: models, durations, word-level-timestamps,
   - sources: whisper-sh/bench.sh, whisper-bench/bench.sh,
     whisper-sh/whisperBench.mjs, WHISPER-MIGRATION.md, CONSOLIDATING-whisper.md

@@ -188,6 +188,24 @@ export function createConsoleMonitor(reporter: ProgressReporter): TaskMonitor {
 }
 
 /**
+ * Quiet monitor - only shows start/done, ignores line output.
+ * Use for simple commands like cp that don't have progress output.
+ */
+export function createQuietMonitor(reporter: ProgressReporter): TaskMonitor {
+  let currentTaskLabel = "";
+
+  return {
+    onEvent(event: TaskEvent): void {
+      if (event.type === "line") return; // Ignore all lines
+      renderConsoleEvent(reporter, event, () => {
+        if (event.type === "start") currentTaskLabel = event.label ?? "";
+        return currentTaskLabel;
+      });
+    },
+  };
+}
+
+/**
  * Internal helper for consistent console rendering using ProgressReporter.
  */
 function renderConsoleEvent(

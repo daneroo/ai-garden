@@ -1,6 +1,7 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile, copyFile } from "node:fs/promises";
 import { basename, extname } from "node:path";
 import { existsSync } from "node:fs";
+import { ensureCacheDir, getCachePath } from "./cache.ts";
 import { getAudioFileDuration } from "./audio.ts";
 import {
   createNullProgressReporter,
@@ -10,10 +11,10 @@ import {
 import { readVtt, summarizeVtt, type VttSummary } from "./vtt.ts";
 import {
   createAudioConversionMonitor,
+  createQuietMonitor,
   createWhisperCppMonitor,
   runTask,
   type TaskConfig,
-  type TaskMonitor,
   type TaskResult,
 } from "./task.ts";
 
@@ -171,24 +172,21 @@ async function runWhisperTasks(
   // Build task plan
   const tasks: TaskConfig[] = [];
 
-  // Convert unsupported formats (conditional task)
+  // Convert unsupported formats (with caching)
   let audioInput = config.input;
+
   if (extname(config.input).toLowerCase() === ".m4b") {
-    // Use wav for speed (change to "mp3" for smaller files)
     const format = "wav" as const;
-    const convertedAudioPath = `${workPath}/${inputName}.${format}`;
-    const monitor = createAudioConversionMonitor(reporter);
     tasks.push(
-      createAudioConversionTask(
+      ...createAudioConversionTasks(
         config.input,
         format,
-        convertedAudioPath,
         workPath,
         inputName,
-        monitor,
+        reporter,
       ),
     );
-    audioInput = convertedAudioPath;
+    audioInput = `${workPath}/${inputName}.${format}`;
   }
 
   // Transcribe audio using whisper-cpp
@@ -252,7 +250,6 @@ async function runWhisperTasks(
   // Move VTT from work dir to final output dir
   const workVtt = `${outPrefix}.vtt`;
   if (existsSync(workVtt)) {
-    const { copyFile } = await import("node:fs/promises");
     await copyFile(workVtt, finalVtt);
   }
 
@@ -260,41 +257,70 @@ async function runWhisperTasks(
 }
 
 /**
- * Factory for audio conversion TaskConfig.
- * wav: faster encoding (1300x), larger files (~1GB for 10h)
- * mp3: slower encoding (174x), smaller files (~470MB for 10h)
+ * Create audio conversion tasks with caching support.
+ * If cached: returns [cp from cache to work]
+ * If not cached: returns [ffmpeg to work, cp to cache]
  */
-function createAudioConversionTask(
+function createAudioConversionTasks(
   inputPath: string,
   format: "wav" | "mp3",
-  outputPath: string,
   workPath: string,
   inputName: string,
-  monitor: TaskMonitor,
-): TaskConfig {
+  reporter: ProgressReporter,
+): TaskConfig[] {
+  const cachePath = getCachePath(inputPath, format);
+  const workAudioPath = `${workPath}/${inputName}.${format}`;
+
+  // Cache hit: copy from cache to work dir
+  if (existsSync(cachePath)) {
+    return [
+      {
+        label: `to-${format}[cached]`,
+        command: "cp",
+        args: ["-n", cachePath, workAudioPath],
+        stdoutLogPath: `${workPath}/${inputName}-to-${format}.stdout.log`,
+        stderrLogPath: `${workPath}/${inputName}-to-${format}.stderr.log`,
+        monitor: createQuietMonitor(reporter),
+      },
+    ];
+  }
+
+  // Cache miss: convert with ffmpeg, then copy to cache
+  ensureCacheDir();
+
   // wav: 16-bit PCM, 16kHz mono (fast, large files)
   const wavArgs = ["-acodec", "pcm_s16le", "-ar", "16000", "-ac", "1"];
   // mp3: libmp3lame VBR quality 4 (CBR 128k tested: slower at 130x vs VBR 174x)
   const mp3Args = ["-c:a", "libmp3lame", "-q:a", "4"];
 
-  return {
-    label: `to-${format}`,
-    command: "ffmpeg",
-    args: [
-      "-y",
-      "-hide_banner",
-      "-loglevel",
-      "info",
-      "-i",
-      inputPath,
-      "-vn",
-      ...(format === "wav" ? wavArgs : mp3Args),
-      outputPath,
-    ],
-    stdoutLogPath: `${workPath}/${inputName}-to-${format}.stdout.log`,
-    stderrLogPath: `${workPath}/${inputName}-to-${format}.stderr.log`,
-    monitor,
-  };
+  return [
+    {
+      label: `to-${format}`,
+      command: "ffmpeg",
+      args: [
+        "-y",
+        "-hide_banner",
+        "-loglevel",
+        "info",
+        "-i",
+        inputPath,
+        "-vn",
+        ...(format === "wav" ? wavArgs : mp3Args),
+        workAudioPath,
+      ],
+      stdoutLogPath: `${workPath}/${inputName}-to-${format}.stdout.log`,
+      stderrLogPath: `${workPath}/${inputName}-to-${format}.stderr.log`,
+      monitor: createAudioConversionMonitor(reporter),
+    },
+    {
+      label: `cache-${format}`,
+      command: "cp",
+      args: ["-n", workAudioPath, cachePath],
+      stdoutLogPath: `${workPath}/${inputName}-cache.stdout.log`,
+      stderrLogPath: `${workPath}/${inputName}-cache.stderr.log`,
+      monitor: createQuietMonitor(reporter),
+    },
+  ];
 }
 
 /**
