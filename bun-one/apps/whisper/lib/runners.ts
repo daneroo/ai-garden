@@ -2,7 +2,11 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { basename, extname } from "node:path";
 import { existsSync } from "node:fs";
 import { getAudioFileDuration } from "./audio.ts";
-import { createProgressReporter, type ProgressReporter } from "./progress.ts";
+import {
+  createNullProgressReporter,
+  createProgressReporter,
+  type ProgressReporter,
+} from "./progress.ts";
 import { readVtt, summarizeVtt, type VttSummary } from "./vtt.ts";
 import {
   createAudioConversionMonitor,
@@ -39,6 +43,7 @@ export interface RunConfig {
   verbosity: number;
   dryRun: boolean;
   wordTimestamps: boolean;
+  quiet?: boolean; // Suppress progress output to stderr
 }
 
 /**
@@ -90,12 +95,14 @@ export async function runWhisper(config: RunConfig): Promise<RunResult> {
     );
   }
 
-  // Create progress reporter for stderr output
+  // Create progress reporter for stderr output (or null reporter for quiet mode)
   const inputBasename = basename(config.input);
-  const reporter = createProgressReporter({
-    inputBasename,
-    modelShortName: config.modelShortName,
-  });
+  const reporter = config.quiet
+    ? createNullProgressReporter()
+    : createProgressReporter({
+        inputBasename,
+        modelShortName: config.modelShortName,
+      });
 
   // Start wall-clock timer
   const startMs = Date.now();

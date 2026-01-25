@@ -38,6 +38,20 @@ export interface ProgressConfig {
  * Create a progress reporter for a single run.
  * All stderr output for the run will use this reporter.
  */
+/**
+ * Create a no-op progress reporter (for quiet mode / tests).
+ */
+export function createNullProgressReporter(): ProgressReporter {
+  return {
+    update() {},
+    finish() {},
+  };
+}
+
+/**
+ * Create a progress reporter for a single run.
+ * All stderr output for the run will use this reporter.
+ */
 export function createProgressReporter(
   config: ProgressConfig,
 ): ProgressReporter {

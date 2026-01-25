@@ -33,9 +33,10 @@ The core transcription pipeline now runs under Bun with all tests passing.
 
 - Validate the --start (-s), --duration (-d), --word-timestamps options
   - [x] Smoke integration tests added: `test/integration_smoke_test.ts`
-  - [ ] Semantic decision pending: Absolute vs Relative timestamps for
+  - [x] Semantic decision pending: Absolute vs Relative timestamps for
         segmentation
-  - Current behavior: whisper-cpp uses absolute timestamps
+  - [x] Current behavior: whisper-cpp uses absolute timestamps
+  - [x] current behavior captured in integration tests
 - Cache the output of the .wav file if it has already been converted
 - Benchmarking: bash or ts? output location?
   - compare: models, durations, word-level-timestamps,

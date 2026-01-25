@@ -6,54 +6,46 @@
  */
 
 import { afterAll, beforeAll, describe, expect, test } from "bun:test";
-import { mkdir, rm } from "node:fs/promises";
 import { existsSync } from "node:fs";
+import { join } from "node:path";
 import {
   createRunWorkDir,
   type RunConfig,
   runWhisper,
 } from "../lib/runners.ts";
+import {
+  cleanupOutputDir,
+  createWorkDirCleanup,
+  FIXTURE_JFK,
+  PACKAGE_ROOT,
+  resetOutputDir,
+  TEST_WORK_DIR_ROOT,
+} from "./helpers.ts";
 
-import { join } from "node:path";
-
-const PACKAGE_ROOT = join(import.meta.dir, "..");
-const FIXTURE_JFK_M4B = join(PACKAGE_ROOT, "test/fixtures/jfk.m4b");
 const TEST_OUTPUT_DIR = join(PACKAGE_ROOT, "data/output/smoke-test");
-const TEST_WORK_DIR_ROOT = join(PACKAGE_ROOT, "data/work");
 
-// Track work directories to clean up
-const workDirsToClean: string[] = [];
+const workDirCleanup = createWorkDirCleanup();
 
 describe("smoke: whisper pipeline", () => {
   beforeAll(async () => {
-    if (existsSync(TEST_OUTPUT_DIR)) {
-      await rm(TEST_OUTPUT_DIR, { recursive: true });
-    }
-    await mkdir(TEST_OUTPUT_DIR, { recursive: true });
+    await resetOutputDir(TEST_OUTPUT_DIR);
   });
 
   afterAll(async () => {
-    if (existsSync(TEST_OUTPUT_DIR)) {
-      await rm(TEST_OUTPUT_DIR, { recursive: true });
-    }
-    // Clean up work directories
-    for (const dir of workDirsToClean) {
-      if (existsSync(dir)) {
-        await rm(dir, { recursive: true });
-      }
-    }
+    await cleanupOutputDir(TEST_OUTPUT_DIR);
+    await workDirCleanup.run();
   });
 
   test("dry-run: no files produced, tasks populated", async () => {
     const runWorkDir = createRunWorkDir({
       workDirRoot: TEST_WORK_DIR_ROOT,
-      inputPath: FIXTURE_JFK_M4B,
+      inputPath: FIXTURE_JFK,
       tag: "smoke-dry",
     });
-    workDirsToClean.push(runWorkDir);
+    workDirCleanup.track(runWorkDir);
 
     const config: RunConfig = {
-      input: FIXTURE_JFK_M4B,
+      input: FIXTURE_JFK,
       modelShortName: "tiny.en",
       threads: 4,
       startSec: 0,
@@ -64,6 +56,7 @@ describe("smoke: whisper pipeline", () => {
       verbosity: 0,
       dryRun: true,
       wordTimestamps: false,
+      quiet: true,
     };
 
     const result = await runWhisper(config);
@@ -79,13 +72,13 @@ describe("smoke: whisper pipeline", () => {
   test("full: M4B transcription produces VTT and WAV", async () => {
     const runWorkDir = createRunWorkDir({
       workDirRoot: TEST_WORK_DIR_ROOT,
-      inputPath: FIXTURE_JFK_M4B,
+      inputPath: FIXTURE_JFK,
       tag: "smoke-full",
     });
-    workDirsToClean.push(runWorkDir);
+    workDirCleanup.track(runWorkDir);
 
     const config: RunConfig = {
-      input: FIXTURE_JFK_M4B,
+      input: FIXTURE_JFK,
       modelShortName: "tiny.en",
       threads: 4,
       startSec: 0,
@@ -96,6 +89,7 @@ describe("smoke: whisper pipeline", () => {
       verbosity: 0,
       dryRun: false,
       wordTimestamps: false,
+      quiet: true,
     };
 
     const result = await runWhisper(config);
