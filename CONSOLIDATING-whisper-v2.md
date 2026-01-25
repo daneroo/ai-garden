@@ -36,6 +36,10 @@ The core transcription pipeline now runs under Bun with all tests passing.
 ## Remaining Work
 
 - [ ] Benchmarking: bash or ts? output location? Needs Research and Planning!
+  - examine what was done in whisper-sh/bench.sh and whisper-bench/bench.sh
+  - source: `whisper-sh/bench.sh` and `whisper-bench/bench.sh` and
+    `whisper-sh/whisperBench.mjs` - also there was a plot in
+    `whisper-sh/bench-results/`
 - [ ] Validate --word-timestamps option
   - compare: models, durations, word-level-timestamps,
   - sources: whisper-sh/bench.sh, whisper-bench/bench.sh,
@@ -55,7 +59,6 @@ The core transcription pipeline now runs under Bun with all tests passing.
   - source: whisper-sh/AUDIOBOOK-DURATIONS.md
 - Segmentation pipeline: Handle files over 37 hours by splitting into segments,
   transcribe each, then stitch VTTs with offset adjustment
-  - source: `whisper-sh/whisper.mjs` and `whisper-sh/whisperBench.mjs`
   - we may look to `whisper-sh/whisper.mjs` for ideas, but this will be a new
     implementation (with overlap of segments)
 - VTT stitching: After segmented transcription, multiple VTT files must be
