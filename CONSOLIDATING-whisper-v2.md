@@ -32,16 +32,11 @@ The core transcription pipeline now runs under Bun with all tests passing.
       integration tests; whisper-cpp uses absolute timestamps
 - [x] WAV Caching: Cache converted WAV files to avoid redundant ffmpeg runs;
       verified with integration test
+- [x] Benchmarking: Implement runner based on plan.
+  - Plan 3: `bun-one/plans/WHISPER-BENCHMARK-PLAN-claude.md` (adopted)
 
 ## Remaining Work
 
-- [ ] Benchmarking: Implement runner based on plan.
-  - Plan 1: `bun-one/plans/WHISPER-BENCHMARK-PLAN-opencode.md`
-  - Plan 2: `bun-one/plans/WHISPER-BENCHMARK-PLAN-gemini.md`
-  - Plan 3: `bun-one/plans/WHISPER-BENCHMARK-PLAN-claude.md` (adopted)
-  - source: `whisper-sh/bench.sh` and `whisper-bench/bench.sh` and
-    `whisper-sh/whisperBench.mjs` - also there was a plot in
-    `whisper-sh/bench-results/`
 - [ ] Validate --word-timestamps option
   - compare: models, durations, word-level-timestamps,
   - sources: whisper-sh/bench.sh, whisper-bench/bench.sh,

@@ -1,0 +1,71 @@
+{
+  "processedAudioDurationSec": 7200,
+  "elapsedSec": 266,
+  "speedup": "27.1",
+  "tasks": [
+    {
+      "config": {
+        "label": "to-wav[cached]",
+        "command": "cp",
+        "args": [
+          "-n",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/cache/quixote.wav",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-25T21-54-21Z/quixote.wav"
+        ],
+        "stdoutLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-25T21-54-21Z/quixote-to-wav.stdout.log",
+        "stderrLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-25T21-54-21Z/quixote-to-wav.stderr.log",
+        "monitor": {}
+      },
+      "result": {
+        "code": 0,
+        "elapsedMs": 2096
+      }
+    },
+    {
+      "config": {
+        "label": "transcribe",
+        "command": "whisper-cli",
+        "args": [
+          "--file",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-25T21-54-21Z/quixote.wav",
+          "--model",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/models/ggml-small.en.bin",
+          "--duration",
+          "7200000",
+          "--output-file",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-25T21-54-21Z/quixote",
+          "--output-json",
+          "--output-vtt",
+          "--print-progress",
+          "--threads",
+          "6"
+        ],
+        "stdoutLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-25T21-54-21Z/quixote.stdout.log",
+        "stderrLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-25T21-54-21Z/quixote.stderr.log",
+        "monitor": {}
+      },
+      "result": {
+        "code": 0,
+        "elapsedMs": 263683
+      }
+    }
+  ],
+  "outputPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/output/benchmarks/quixote.bench-small.en.vtt",
+  "vttSummary": {
+    "cueCount": 1230,
+    "firstCueStart": "00:00:00.000",
+    "lastCueEnd": "02:00:03.280",
+    "durationSec": 7203.28,
+    "monotonicityViolations": 0,
+    "monotonicityViolationMaxOverlap": 0
+  },
+  "benchmarkKey": {
+    "input": "quixote.m4b",
+    "model": "small.en",
+    "duration": 7200,
+    "wordTimestamps": false
+  },
+  "timestamp": "2026-01-25T21:58:47.070Z",
+  "hostname": "galois.imetrical.com",
+  "arch": "arm64"
+}

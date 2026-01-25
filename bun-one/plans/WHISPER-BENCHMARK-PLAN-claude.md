@@ -1,12 +1,5 @@
 # Whisper Benchmark Plan
 
-## TODO
-
-- [ ] Implement plots via embedded Python template with `uvx` and matplotlib
-  - Suggested plots from plan:
-    - X: duration, Y: speedup, grouped by model
-    - X: model, Y: elapsed time, grouped by duration
-
 ## Context
 
 Task derived from `CONSOLIDATING-whisper-v2.md`:

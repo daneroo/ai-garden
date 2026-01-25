@@ -1,0 +1,71 @@
+{
+  "processedAudioDurationSec": 7200,
+  "elapsedSec": 92,
+  "speedup": "78.5",
+  "tasks": [
+    {
+      "config": {
+        "label": "to-wav[cached]",
+        "command": "cp",
+        "args": [
+          "-n",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/cache/hobbit.wav",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-01-25T21-25-00Z/hobbit.wav"
+        ],
+        "stdoutLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-01-25T21-25-00Z/hobbit-to-wav.stdout.log",
+        "stderrLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-01-25T21-25-00Z/hobbit-to-wav.stderr.log",
+        "monitor": {}
+      },
+      "result": {
+        "code": 0,
+        "elapsedMs": 276
+      }
+    },
+    {
+      "config": {
+        "label": "transcribe",
+        "command": "whisper-cli",
+        "args": [
+          "--file",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-01-25T21-25-00Z/hobbit.wav",
+          "--model",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/models/ggml-tiny.en.bin",
+          "--duration",
+          "7200000",
+          "--output-file",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-01-25T21-25-00Z/hobbit",
+          "--output-json",
+          "--output-vtt",
+          "--print-progress",
+          "--threads",
+          "6"
+        ],
+        "stdoutLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-01-25T21-25-00Z/hobbit.stdout.log",
+        "stderrLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-01-25T21-25-00Z/hobbit.stderr.log",
+        "monitor": {}
+      },
+      "result": {
+        "code": 0,
+        "elapsedMs": 91425
+      }
+    }
+  ],
+  "outputPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/output/benchmarks/hobbit.bench-tiny.en.vtt",
+  "vttSummary": {
+    "cueCount": 1131,
+    "firstCueStart": "00:00:00.000",
+    "lastCueEnd": "02:00:01.920",
+    "durationSec": 7201.92,
+    "monotonicityViolations": 0,
+    "monotonicityViolationMaxOverlap": 0
+  },
+  "benchmarkKey": {
+    "input": "hobbit.m4b",
+    "model": "tiny.en",
+    "duration": 7200,
+    "wordTimestamps": false
+  },
+  "timestamp": "2026-01-25T21:26:32.484Z",
+  "hostname": "galois.imetrical.com",
+  "arch": "arm64"
+}

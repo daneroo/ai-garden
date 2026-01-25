@@ -30,9 +30,10 @@ import {
 // ============================================================================
 
 const GRID = {
-  inputs: ["test/fixtures/roadnottaken.m4b"],
+  // inputs: ["test/fixtures/roadnottaken.m4b"],
+  inputs: ["data/samples/hobbit.m4b", "data/samples/quixote.m4b"],
   models: ["tiny.en", "small.en"] as ModelShortName[],
-  durations: [45, 0], // 0 = full file
+  durations: [3600, 7200, 10800, 0], // 1h, 2h, 3h // 0 for full
   wordTimestamps: [false],
 };
 
@@ -148,11 +149,8 @@ async function main(): Promise<void> {
   console.log(`Missing: ${missing.length} to execute\n`);
 
   if (missing.length > 0) {
-    // Phase 3: Execute missing benchmarks
-    const newResults = await executeBenchmarks(missing);
-
-    // Write new results
-    await writeResults(newResults);
+    // Phase 3: Execute missing benchmarks (results written immediately)
+    await executeBenchmarks(missing);
   }
 
   // Phase 4: Regenerate presentation
@@ -297,13 +295,13 @@ async function executeBenchmarks(
 
     const inputPath = GRID.inputs.find((p) => basename(p) === key.input);
     if (!inputPath) {
-      console.error(`  ⚠️  Input not found in grid: ${key.input}`);
+      console.error(`Warning: Input not found in grid: ${key.input}`);
       continue;
     }
 
     const fullInputPath = join(PACKAGE_ROOT, inputPath);
     if (!existsSync(fullInputPath)) {
-      console.error(`  ⚠️  Input file not found: ${fullInputPath}`);
+      console.error(`Warning: Input file not found: ${fullInputPath}`);
       continue;
     }
 
@@ -340,6 +338,9 @@ async function executeBenchmarks(
       arch: arch(),
     };
 
+    // Write result immediately (don't lose data if later benchmarks fail)
+    await writeResult(record);
+
     results.push(record);
     console.log(
       `  ✓ ${result.elapsedSec}s elapsed, ${result.speedup}x speedup`,
@@ -349,25 +350,22 @@ async function executeBenchmarks(
   return results;
 }
 
-async function writeResults(records: BenchmarkRecord[]): Promise<void> {
+async function writeResult(record: BenchmarkRecord): Promise<void> {
   await mkdir(REPORTS_DIR, { recursive: true });
 
-  for (const record of records) {
-    // Use full ISO8601 timestamp (colons replaced for filesystem compatibility)
-    const ts = record.timestamp.replace(/:/g, "-");
-    const model = record.benchmarkKey.model;
-    const input = record.benchmarkKey.input.replace(/\.[^.]+$/, ""); // Remove extension
-    const dur =
-      record.benchmarkKey.duration === 0
-        ? "full"
-        : `${record.benchmarkKey.duration}s`;
+  // Use full ISO8601 timestamp (colons replaced for filesystem compatibility)
+  const ts = record.timestamp.replace(/:/g, "-");
+  const model = record.benchmarkKey.model;
+  const input = record.benchmarkKey.input.replace(/\.[^.]+$/, ""); // Remove extension
+  const dur = record.benchmarkKey.duration === 0
+    ? "full"
+    : `${record.benchmarkKey.duration}s`;
 
-    const filename = `${ts}-${input}-${model}-${dur}.json`;
-    const path = join(REPORTS_DIR, filename);
+  const filename = `${ts}-${input}-${model}-${dur}.json`;
+  const path = join(REPORTS_DIR, filename);
 
-    await writeFile(path, JSON.stringify(record, null, 2));
-    console.log(`  Wrote: ${filename}`);
-  }
+  await writeFile(path, JSON.stringify(record, null, 2));
+  console.log(`  Wrote: ${filename}`);
 }
 
 // ============================================================================
@@ -413,12 +411,122 @@ async function generateSummary(records: LoadedRecord[]): Promise<void> {
 
   lines.push("");
 
+  // Side-by-side plots (scaled 40%)
+  lines.push("## Plots (side-by-side)");
+  lines.push("");
+  lines.push("<!-- markdownlint-disable MD033 -->");
+  lines.push("<table><tr>");
+  lines.push(
+    '<td><img alt="Execution Time" src="execution-time.png" width="400"></td>',
+  );
+  lines.push('<td><img alt="Speedup" src="speedup.png" width="400"></td>');
+  lines.push("</tr></table>");
+  lines.push("");
+
+  // Sequential plots (full size)
+  lines.push("## Execution Time");
+  lines.push("");
+  lines.push("![Execution Time](execution-time.png)");
+  lines.push("");
+  lines.push("## Speedup");
+  lines.push("");
+  lines.push("![Speedup](speedup.png)");
+  lines.push("");
+
   const summaryPath = join(REPORTS_DIR, "summary.md");
   await writeFile(summaryPath, lines.join("\n"));
   console.log(`\nGenerated: summary.md`);
 
+  // Generate plots
+  await generatePlots(records);
+
   // Format outputs with Prettier
   await formatOutputs();
+}
+
+async function generatePlots(records: LoadedRecord[]): Promise<void> {
+  if (records.length === 0) return;
+
+  // Prepare data for plotting: group by input+model
+  const plotData = records.map(({ record: r }) => ({
+    input: r.benchmarkKey.input.replace(/\.[^.]+$/, ""), // Remove extension
+    model: r.benchmarkKey.model,
+    duration: r.processedAudioDurationSec,
+    elapsed: r.elapsedSec,
+    speedup: parseFloat(r.speedup),
+  }));
+
+  const pythonScript = `
+import json
+import sys
+import matplotlib.pyplot as plt
+
+data = json.loads(sys.argv[1])
+output_dir = sys.argv[2]
+
+# Group by input+model
+series = {}
+for d in data:
+    key = f"{d['input']} {d['model']}"
+    if key not in series:
+        series[key] = {'duration': [], 'elapsed': [], 'speedup': []}
+    series[key]['duration'].append(d['duration'])
+    series[key]['elapsed'].append(d['elapsed'])
+    series[key]['speedup'].append(d['speedup'])
+
+# Plot 1: Execution Time vs Duration
+plt.figure(figsize=(10, 6))
+for label, values in sorted(series.items()):
+    # Sort by duration for proper line plot
+    pairs = sorted(zip(values['duration'], values['elapsed']))
+    durations, elapsed = zip(*pairs) if pairs else ([], [])
+    plt.plot(durations, elapsed, 'o-', label=label, markersize=8)
+
+plt.xlabel('Audio Duration (seconds)')
+plt.ylabel('Execution Time (seconds)')
+plt.title('Whisper Execution Time vs Audio Duration')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.savefig(f'{output_dir}/execution-time.png', dpi=150)
+plt.close()
+print('Generated: execution-time.png')
+
+# Plot 2: Speedup vs Duration
+plt.figure(figsize=(10, 6))
+for label, values in sorted(series.items()):
+    pairs = sorted(zip(values['duration'], values['speedup']))
+    durations, speedup = zip(*pairs) if pairs else ([], [])
+    plt.plot(durations, speedup, 'o-', label=label, markersize=8)
+
+plt.xlabel('Audio Duration (seconds)')
+plt.ylabel('Speedup (x realtime)')
+plt.title('Whisper Speedup vs Audio Duration')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.savefig(f'{output_dir}/speedup.png', dpi=150)
+plt.close()
+print('Generated: speedup.png')
+`;
+
+  const proc = Bun.spawn(
+    [
+      "uvx",
+      "--with",
+      "matplotlib",
+      "python",
+      "-c",
+      pythonScript,
+      JSON.stringify(plotData),
+      REPORTS_DIR,
+    ],
+    {
+      stdout: "inherit",
+      stderr: "inherit",
+    },
+  );
+  await proc.exited;
 }
 
 async function formatOutputs(): Promise<void> {
