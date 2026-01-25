@@ -35,11 +35,9 @@ The core transcription pipeline now runs under Bun with all tests passing.
 
 ## Remaining Work
 
-- [ ] Benchmarking: bash or ts? output location? Needs Research and Planning!
-  - leaning to `.ts` script - isolated from orther sources: `scripts/` or
-    `reporting`
-  - results: single/itemized `.json` files - one per run, plus markdown summary
-    perhaps incrementally regenerated from .json and call `uvx` to make plots?
+- [ ] Benchmarking: Implement runner based on plan.
+  - Plan 1: `bun-one/plans/WHISPER-BENCHMARK-PLAN-opencode.md`
+  - Plan 2: `bun-one/plans/WHISPER-BENCHMARK-PLAN-gemini.md`
   - source: `whisper-sh/bench.sh` and `whisper-bench/bench.sh` and
     `whisper-sh/whisperBench.mjs` - also there was a plot in
     `whisper-sh/bench-results/`
