@@ -3,12 +3,15 @@
 ## Context
 
 Task derived from `CONSOLIDATING-whisper-v2.md`:
+
 > **Benchmarking: bash or ts? output location? Needs Research and Planning!**
+>
 > - leaning to `.ts` script - isolated from other sources
 > - results: single/itemized `.json` files + markdown summary
 > - perhaps incrementally regenerated from .json and call `uvx` to make plots?
 
 Decisions:
+
 - Runner: TypeScript (bun) instead of Bash, for better integration and maintenance.
 - Location: `bun-one/apps/whisper/scripts/benchmarks/` for code, `bun-one/reports/benchmarks/` for outputs.
 - Strategy: Micro-benchmarking with a specific grid (Input × Model × Duration).
@@ -37,6 +40,7 @@ Decisions:
 ## Data Schema (per result)
 
 Core fields:
+
 - input_file_name
 - model
 - duration_hours
@@ -44,6 +48,7 @@ Core fields:
 - speedup
 
 Provenance fields (captured, not emphasized):
+
 - date_utc
 - hostname
 - arch
@@ -53,7 +58,7 @@ Provenance fields (captured, not emphasized):
 
 ## Behavior
 
-- Load all bun-one/reports/benchmarks/*.json
+- Load all bun-one/reports/benchmarks/\*.json
 - Build the desired grid (inputs × models × durations)
 - Compute missing entries using {input_file_name, model, duration_hours}
 - Run only missing entries

@@ -38,6 +38,7 @@ The core transcription pipeline now runs under Bun with all tests passing.
 - [ ] Benchmarking: Implement runner based on plan.
   - Plan 1: `bun-one/plans/WHISPER-BENCHMARK-PLAN-opencode.md`
   - Plan 2: `bun-one/plans/WHISPER-BENCHMARK-PLAN-gemini.md`
+  - Plan 3: `bun-one/plans/WHISPER-BENCHMARK-PLAN-claude.md` (adopted)
   - source: `whisper-sh/bench.sh` and `whisper-bench/bench.sh` and
     `whisper-sh/whisperBench.mjs` - also there was a plot in
     `whisper-sh/bench-results/`

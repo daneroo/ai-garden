@@ -1,0 +1,71 @@
+{
+  "processedAudioDurationSec": 45,
+  "elapsedSec": 1,
+  "speedup": "40.8",
+  "tasks": [
+    {
+      "config": {
+        "label": "to-wav[cached]",
+        "command": "cp",
+        "args": [
+          "-n",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/cache/roadnottaken.wav",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/roadnottaken.bench-tiny.en-2026-01-25T11-58-43Z/roadnottaken.wav"
+        ],
+        "stdoutLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/roadnottaken.bench-tiny.en-2026-01-25T11-58-43Z/roadnottaken-to-wav.stdout.log",
+        "stderrLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/roadnottaken.bench-tiny.en-2026-01-25T11-58-43Z/roadnottaken-to-wav.stderr.log",
+        "monitor": {}
+      },
+      "result": {
+        "code": 0,
+        "elapsedMs": 5
+      }
+    },
+    {
+      "config": {
+        "label": "transcribe",
+        "command": "whisper-cli",
+        "args": [
+          "--file",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/roadnottaken.bench-tiny.en-2026-01-25T11-58-43Z/roadnottaken.wav",
+          "--model",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/models/ggml-tiny.en.bin",
+          "--duration",
+          "45000",
+          "--output-file",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/roadnottaken.bench-tiny.en-2026-01-25T11-58-43Z/roadnottaken",
+          "--output-json",
+          "--output-vtt",
+          "--print-progress",
+          "--threads",
+          "6"
+        ],
+        "stdoutLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/roadnottaken.bench-tiny.en-2026-01-25T11-58-43Z/roadnottaken.stdout.log",
+        "stderrLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/roadnottaken.bench-tiny.en-2026-01-25T11-58-43Z/roadnottaken.stderr.log",
+        "monitor": {}
+      },
+      "result": {
+        "code": 0,
+        "elapsedMs": 1082
+      }
+    }
+  ],
+  "outputPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/output/benchmarks/roadnottaken.bench-tiny.en.vtt",
+  "vttSummary": {
+    "cueCount": 6,
+    "firstCueStart": "00:00:00.000",
+    "lastCueEnd": "00:00:48.960",
+    "durationSec": 48.96,
+    "monotonicityViolations": 0,
+    "monotonicityViolationMaxOverlap": 0
+  },
+  "benchmarkKey": {
+    "input": "roadnottaken.m4b",
+    "model": "tiny.en",
+    "duration": 45,
+    "wordTimestamps": false
+  },
+  "timestamp": "2026-01-25T11:58:44.546Z",
+  "hostname": "galois.imetrical.com",
+  "arch": "arm64"
+}
