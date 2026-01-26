@@ -10,26 +10,36 @@ stitching VTTs with timestamp offset adjustment.
 
 ## Design Decisions
 
-- **CLI flags**: `--segment <duration>` and `--overlap <duration>` (yargs
-  requires value when flag is used)
-- **segmentSec**: NOT optional, default = 0 (no `--segment` flag provided)
+- **CLI flags**: `--segment <duration>` and `--overlap <duration>`
+  - Both flags, if present, MUST have a value (yargs enforces)
+  - `--segment` value must be <= 37 hours
 - **Behavior**:
-  - segmentSec = 0 AND file <= 37h → no segmentation
-  - segmentSec = 0 AND file > 37h → **ERROR**
-  - segmentSec > 0 → segment the file
+  - file <= 37h, no `--segment` → no segmentation
+  - file <= 37h, `--segment Xh` → segment at Xh
+  - file > 37h, no `--segment` → auto segment at 37h (implied)
+  - file > 37h, `--segment Xh` → segment at Xh
 - **No `--offset-t` for whisper-cli**: Each segment transcribed from time 0;
   stitcher offsets VTT cues by segment start time
-- **VTT caching**: Implement now (transcription ~30m vs audio conversion ~30s).
-  Cache key includes `modelShortName` and `wordTimestamps`
+- **VTT caching**: Mandatory (transcription expensive, audio conversion cheap)
 - **Generalize audio conversion**: Treat non-segmented as single segment case
-- **Smart stitching**: Deferred; concat stitcher first (still offsets
-  timestamps)
+- **Smart stitching**: Deferred; concat stitcher first
 - **No interaction with --start/--duration**: Not used with segmentation
 - **--word-timestamps**: Does not affect stitching logic
 
+## Overlap Model (suffix-overlap)
+
+Let S = segmentSec, O = overlapSec, i = segment index (0..N-1):
+
+- Segment `i` starts at: `start = i * S`
+- Segment `i` duration: `dur = min(S + (i < N-1 ? O : 0), totalDuration - start)`
+- Overlap extends the END of each segment (except last)
+- Overlap region between segment i and i+1: `[(i+1)*S, (i+1)*S + O]`
+
+VTT timestamp rewrite: shift all cues by `i * S` (the segment start).
+
 ## Implementation Phases
 
-### Phase 1: Duration Parsing Utilities
+### Phase 1: Duration Utilities
 
 **File:** `lib/duration.ts` (new)
 
@@ -42,8 +52,8 @@ stitching VTTs with timestamp offset adjustment.
 
 **File:** `whisper.ts`
 
-- Add `--segment <duration>` (alias `-S`), default not provided = 0
-- Add `--overlap <duration>`, default "0"
+- Add `--segment <duration>` (alias `-S`), requires value, must be <= 37h
+- Add `--overlap <duration>`, requires value, default "0"
 
 **File:** `lib/runners.ts`
 
@@ -54,31 +64,45 @@ stitching VTTs with timestamp offset adjustment.
 
 **File:** `lib/runners.ts`
 
-- Validate: error if segmentSec == 0 AND audioDuration > 37h
-- Calculate segments with overlap
-- Segment naming: `{basename}-seg{NN}-d{duration}-ov{overlap}.wav`
+- If audioDuration > 37h and segmentSec == 0, derive segmentSec = 37h
+- Calculate segments using suffix-overlap model
+- Segment naming: `{basename}-seg{NN}-d{dur}-ov{ov}.wav`
 - Generalize `createAudioConversionTasks()` to handle segments
 
 ### Phase 4: VTT Caching
 
 **File:** `lib/cache.ts`
 
-- Add VTT cache directory: `data/cache/vtt/`
-- Cache key includes: basename, segment info, modelShortName, wordTimestamps
-- Move WAV cache to `data/cache/wav/`
+- Cache layout:
+  - `data/cache/wav/{basename}-seg{NN}-d{dur}-ov{ov}.wav`
+  - `data/cache/vtt/{basename}-seg{NN}-d{dur}-ov{ov}-m{model}-wt{0|1}.vtt`
+- VTT caching is mandatory and always used
 
 ### Phase 5: VTT Stitching
 
 **File:** `lib/vtt-stitch.ts` (new)
 
-- Concat stitcher: offset each cue by segment startSec, combine in order
-- Smart stitcher: deferred (TODO for overlap > 0)
+VTT utilities:
+- `secondsToVttTime(sec)` → "HH:MM:SS.mmm"
+- `shiftVttCues(cues, offsetSec)` → shifted cues
+- `writeVtt(path, cues)`
+
+Concat stitcher (overlap == 0):
+- Read each segment VTT
+- Shift cues by `i * S`
+- Concatenate in order, write final VTT
+
+Smart stitcher (overlap > 0) - deferred:
+- Overlap window: `[(i+1)*S, (i+1)*S + O]`
+- Find matching anchor cues via text, or earliest non-overlap cut
+- Fallback to boundary
 
 ### Phase 6: Integration
 
 **File:** `lib/runners.ts`
 
-- Modify `runWhisper()` to validate, calculate segments, and stitch
+- Modify `runWhisper()` to check audioDuration, derive segmentSec if needed
+- Calculate segments, run audio/transcription tasks, stitch VTTs
 
 ## File Changes Summary
 
@@ -96,8 +120,8 @@ stitching VTTs with timestamp offset adjustment.
 ## Testing Strategy
 
 - Unit tests for duration parsing, segment calculation, VTT stitching
-- Integration test with short segments on small file
-- Verify error when file > 37h without --segment
+- Integration test with short segments on small file (e.g., segment=10s)
+- Verify auto-segmentation triggers for files > 37h (mock duration)
 
 ## Verification
 
