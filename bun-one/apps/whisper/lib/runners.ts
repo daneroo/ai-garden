@@ -1,14 +1,15 @@
-import { mkdir, writeFile, copyFile } from "node:fs/promises";
-import { basename, extname } from "node:path";
+import { mkdir, writeFile } from "node:fs/promises";
+import { basename, extname, join } from "node:path";
 import { existsSync } from "node:fs";
-import { ensureCacheDir, getCachePath } from "./cache.ts";
+import { getVttCachePath, getWavCachePath } from "./cache.ts";
 import { getAudioFileDuration } from "./audio.ts";
 import {
   createNullProgressReporter,
   createProgressReporter,
   type ProgressReporter,
 } from "./progress.ts";
-import { readVtt, summarizeVtt, type VttSummary } from "./vtt.ts";
+import { readVtt, summarizeVtt, type VttCue, type VttSummary } from "./vtt.ts";
+import { stitchVttConcat, writeVtt } from "./vtt-stitch.ts";
 import {
   createAudioConversionMonitor,
   createQuietMonitor,
@@ -17,8 +18,7 @@ import {
   type TaskConfig,
   type TaskResult,
 } from "./task.ts";
-
-import { join } from "node:path";
+import { formatDuration } from "./duration.ts";
 
 // Model directory for whisper-cpp (absolute path)
 // TODO:this will probably need to evolve with an ENV based configuration
@@ -26,6 +26,18 @@ const WHISPER_CPP_MODELS = join(import.meta.dir, "..", "data", "models");
 
 // Private executable constant
 const WHISPER_CPP_EXEC = "whisper-cli";
+
+// Maximum WAV duration due to RIFF 32-bit size limit (~37h for 16kHz mono 16-bit)
+const MAX_WAV_DURATION_SEC = 37 * 3600;
+
+/**
+ * Represents a segment of audio to be transcribed.
+ */
+export interface Segment {
+  index: number;
+  startSec: number;
+  durationSec: number; // Actual duration (may include overlap, may be shorter for last segment)
+}
 
 export type ModelShortName = "tiny.en" | "base.en" | "small.en";
 
@@ -45,27 +57,27 @@ export interface RunConfig {
   dryRun: boolean;
   wordTimestamps: boolean;
   quiet?: boolean; // Suppress progress output to stderr
-}
-
-/**
- * Options for creating a per-run work directory
- * These are the minimal params needed for work dir naming
- */
-export interface CreateRunWorkDirOptions {
-  workDirRoot: string; // Base work dir (e.g., "data/work")
-  inputPath: string; // Input file path
-  tag?: string; // Optional tag
+  segmentSec: number; // Segment duration in seconds (0 = no segmentation)
+  overlapSec: number; // Overlap between segments in seconds (0 = no overlap)
 }
 
 /**
  * Create a unique work directory path for a single run
  * Format: {workDirRoot}/{inputName}[.{tag}]-{timestamp}
  */
-export function createRunWorkDir(opts: CreateRunWorkDirOptions): string {
-  const inputName = basename(opts.inputPath, extname(opts.inputPath));
+export function createRunWorkDir({
+  workDirRoot,
+  inputPath,
+  tag,
+}: {
+  workDirRoot: string;
+  inputPath: string;
+  tag?: string;
+}): string {
+  const inputName = basename(inputPath, extname(inputPath));
   const timestamp = getUTCTimestampForFilePath();
-  const namePart = opts.tag ? `${inputName}.${opts.tag}` : inputName;
-  return `${opts.workDirRoot}/${namePart}-${timestamp}`;
+  const namePart = tag ? `${inputName}.${tag}` : inputName;
+  return `${workDirRoot}/${namePart}-${timestamp}`;
 }
 
 /**
@@ -83,11 +95,19 @@ export interface RunResult {
   vttSummary?: VttSummary;
 }
 
+/** Dependencies that can be injected for testing */
+export interface RunDeps {
+  getAudioDuration?: (path: string) => Promise<number>;
+  checkCache?: (path: string) => boolean;
+}
+
 /**
  * Run whisper transcription - side-effect-free entry point
  */
-export async function runWhisper(config: RunConfig): Promise<RunResult> {
-  // Save RunConfig to work directory for reproducibility
+export async function runWhisper(
+  config: RunConfig,
+  deps?: RunDeps,
+): Promise<RunResult> {
   if (!config.dryRun) {
     await mkdir(config.runWorkDir, { recursive: true });
     await writeFile(
@@ -96,22 +116,10 @@ export async function runWhisper(config: RunConfig): Promise<RunResult> {
     );
   }
 
-  // Create progress reporter for stderr output (or null reporter for quiet mode)
-  const inputBasename = basename(config.input);
-  const reporter = config.quiet
-    ? createNullProgressReporter()
-    : createProgressReporter({
-        inputBasename,
-        modelShortName: config.modelShortName,
-      });
-
-  // Start wall-clock timer
+  const reporter = createReporter(config);
   const startMs = Date.now();
+  const result = await runWhisperPipeline(config, reporter, deps);
 
-  // Run the transcription pipeline
-  const result = await runWhisperTasks(config, reporter);
-
-  // Calculate timing metrics
   const elapsedMs = Date.now() - startMs;
   result.elapsedSec = Math.round(elapsedMs / 1000);
   result.speedup = (
@@ -119,19 +127,14 @@ export async function runWhisper(config: RunConfig): Promise<RunResult> {
     (elapsedMs / 1000)
   ).toFixed(1);
 
-  // Validate VTT and add summary (only for real runs with output)
   const hasExecuted = result.tasks.some((t) => t.result);
   if (hasExecuted && existsSync(result.outputPath)) {
-    const cues = await readVtt(result.outputPath);
-    result.vttSummary = summarizeVtt(cues);
-  }
-
-  // Write final result line to stderr
-  if (hasExecuted) {
-    const vttDur = result.vttSummary
-      ? `${result.vttSummary.durationSec}s`
-      : undefined;
-    reporter.finish(result.elapsedSec, result.speedup, vttDur);
+    result.vttSummary = summarizeVtt(await readVtt(result.outputPath));
+    reporter.finish(
+      result.elapsedSec,
+      result.speedup,
+      result.vttSummary ? `${result.vttSummary.durationSec}s` : undefined,
+    );
   }
 
   return result;
@@ -146,92 +149,69 @@ export function getRequiredCommands(): string[] {
   return ["ffmpeg", WHISPER_CPP_EXEC];
 }
 
-/**
- * Run the whisper transcription pipeline (optional convert + transcribe)
- */
-async function runWhisperTasks(
+async function runWhisperPipeline(
   config: RunConfig,
   reporter: ProgressReporter,
+  deps?: RunDeps,
 ): Promise<RunResult> {
-  const exec = WHISPER_CPP_EXEC;
-  const inputName = basename(config.input, extname(config.input));
-  const finalName = config.tag ? `${inputName}.${config.tag}` : inputName;
-  const finalVtt = `${config.outputDir}/${finalName}.vtt`;
+  const getAudioDuration = deps?.getAudioDuration ?? getAudioFileDuration;
+  const checkCache = deps?.checkCache ?? existsSync;
 
-  // Work directory for intermediate files (already includes timestamp)
-  const workPath = config.runWorkDir;
+  const audioDuration = await getAudioDuration(config.input);
+  const segmentSec = resolveSegmentSec(audioDuration, config.segmentSec);
+  const segmentCount =
+    segmentSec > 0 ? Math.ceil(audioDuration / segmentSec) : 1;
 
+  const { inputName, finalVtt } = getFinalPaths(config);
   if (!config.dryRun) {
     await mkdir(config.outputDir, { recursive: true });
-    await mkdir(workPath, { recursive: true });
+    await mkdir(config.runWorkDir, { recursive: true });
   }
 
-  // File prefix for outputs and logs - work dir is unique per run
-  const outPrefix = `${workPath}/${inputName}`;
+  // Compute which segments need transcription based on --start/--duration
+  const { firstTranscribeIdx, lastTranscribeIdx } = computeTranscribeRange(
+    config,
+    audioDuration,
+    segmentSec,
+    segmentCount,
+  );
 
-  // Build task plan
-  const tasks: TaskConfig[] = [];
+  // Build tasks using functional approach
+  const segmentIndices = Array.from({ length: segmentCount }, (_, i) => i);
 
-  // Convert unsupported formats (with caching)
-  let audioInput = config.input;
+  const wavTasks = segmentIndices.flatMap((i) =>
+    buildWavTasks({
+      config,
+      reporter,
+      inputName,
+      segmentSec,
+      segIndex: i,
+      segmentCount,
+      audioDuration,
+      checkCache,
+    }),
+  );
 
-  if (extname(config.input).toLowerCase() === ".m4b") {
-    const format = "wav" as const;
-    tasks.push(
-      ...createAudioConversionTasks(
-        config.input,
-        format,
-        workPath,
-        inputName,
+  const transcribeTasks = segmentIndices
+    .filter((i) => i >= firstTranscribeIdx && i <= lastTranscribeIdx)
+    .flatMap((i) =>
+      buildTranscribeTasks({
+        config,
         reporter,
-      ),
+        inputName,
+        segmentSec,
+        segIndex: i,
+        segmentCount,
+        audioDuration,
+        checkCache,
+      }),
     );
-    audioInput = `${workPath}/${inputName}.${format}`;
-  }
 
-  // Transcribe audio using whisper-cpp
-  const transcriptionArgs = [
-    "--file",
-    audioInput,
-    "--model",
-    `${WHISPER_CPP_MODELS}/ggml-${config.modelShortName}.bin`,
-    ...(config.startSec > 0
-      ? ["--offset-t", String(config.startSec * 1000)]
-      : []),
-    ...(config.durationSec > 0
-      ? ["--duration", String(config.durationSec * 1000)]
-      : []),
-    "--output-file",
-    outPrefix,
-    "--output-json",
-    "--output-vtt",
-    "--print-progress",
-    "--threads",
-    String(config.threads),
-    ...(config.wordTimestamps ? ["--max-len", "1", "--split-on-word"] : []),
-  ];
-
-  const stdoutLogPath = `${outPrefix}.stdout.log`;
-  const stderrLogPath = `${outPrefix}.stderr.log`;
-  const monitor = createWhisperCppMonitor(reporter);
-
-  tasks.push({
-    label: "transcribe",
-    command: exec,
-    args: transcriptionArgs,
-    stdoutLogPath,
-    stderrLogPath,
-    monitor,
-  });
-
-  // Calculate processed duration
-  const processedAudioDurationSec = await getProcessedAudioDuration(config);
-
-  // Final result object (will be populated with task results)
+  const tasks = [...wavTasks, ...transcribeTasks];
   const result: RunResult = {
-    processedAudioDurationSec,
-    elapsedSec: 0, // Will be set by runWhisper
-    speedup: "0", // Will be set by runWhisper
+    processedAudioDurationSec: audioDuration,
+    elapsedSec: 0,
+    speedup: "0",
     tasks: tasks.map((t) => ({ config: t })),
     outputPath: finalVtt,
   };
@@ -240,87 +220,354 @@ async function runWhisperTasks(
     return result;
   }
 
-  // Execute tasks (each has its own monitor)
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i]!;
-    const taskResult = await runTask(task);
-    result.tasks[i] = { config: task, result: taskResult };
+    result.tasks[i] = { config: task, result: await runTask(task) };
   }
 
-  // Move VTT from work dir to final output dir
-  const workVtt = `${outPrefix}.vtt`;
-  if (existsSync(workVtt)) {
-    await copyFile(workVtt, finalVtt);
-  }
+  // Stitch VTTs from transcribed segments
+  const segmentVtts = segmentIndices
+    .filter((i) => i >= firstTranscribeIdx && i <= lastTranscribeIdx)
+    .map((i) => {
+      const segSuffix = getSegmentSuffix(i, segmentSec, config.overlapSec);
+      const segName = `${inputName}${segSuffix}`;
+      return {
+        path: `${config.runWorkDir}/${segName}.vtt`,
+        startSec: i * segmentSec,
+      };
+    });
 
+  await stitchSegments(segmentVtts, result.outputPath);
   return result;
 }
 
-/**
- * Create audio conversion tasks with caching support.
- * If cached: returns [cp from cache to work]
- * If not cached: returns [ffmpeg to work, cp to cache]
- */
-function createAudioConversionTasks(
-  inputPath: string,
-  format: "wav" | "mp3",
-  workPath: string,
-  inputName: string,
-  reporter: ProgressReporter,
-): TaskConfig[] {
-  const cachePath = getCachePath(inputPath, format);
-  const workAudioPath = `${workPath}/${inputName}.${format}`;
+/** Compute which segments need transcription based on --start/--duration */
+function computeTranscribeRange(
+  config: RunConfig,
+  audioDuration: number,
+  segmentSec: number,
+  segmentCount: number,
+): { firstTranscribeIdx: number; lastTranscribeIdx: number } {
+  const { startSec, durationSec } = config;
 
-  // Cache hit: copy from cache to work dir
-  if (existsSync(cachePath)) {
-    return [
-      {
-        label: `to-${format}[cached]`,
-        command: "cp",
-        args: ["-n", cachePath, workAudioPath],
-        stdoutLogPath: `${workPath}/${inputName}-to-${format}.stdout.log`,
-        stderrLogPath: `${workPath}/${inputName}-to-${format}.stderr.log`,
-        monitor: createQuietMonitor(reporter),
-      },
-    ];
+  // First segment to transcribe: contains startSec
+  const firstTranscribeIdx =
+    startSec > 0 && segmentSec > 0 ? Math.floor(startSec / segmentSec) : 0;
+
+  // Last segment to transcribe: contains endSec (or last segment if no duration)
+  if (durationSec <= 0) {
+    return { firstTranscribeIdx, lastTranscribeIdx: segmentCount - 1 };
   }
 
-  // Cache miss: convert with ffmpeg, then copy to cache
-  ensureCacheDir();
+  const endSec = Math.min(audioDuration, startSec + durationSec);
+  if (endSec >= audioDuration) {
+    return { firstTranscribeIdx, lastTranscribeIdx: segmentCount - 1 };
+  }
 
-  // wav: 16-bit PCM, 16kHz mono (fast, large files)
-  const wavArgs = ["-acodec", "pcm_s16le", "-ar", "16000", "-ac", "1"];
-  // mp3: libmp3lame VBR quality 4 (CBR 128k tested: slower at 130x vs VBR 174x)
-  const mp3Args = ["-c:a", "libmp3lame", "-q:a", "4"];
+  const lastTranscribeIdx =
+    segmentSec > 0 ? Math.ceil(endSec / segmentSec) - 1 : 0;
 
-  return [
-    {
-      label: `to-${format}`,
-      command: "ffmpeg",
-      args: [
-        "-y",
-        "-hide_banner",
-        "-loglevel",
-        "info",
-        "-i",
-        inputPath,
-        "-vn",
-        ...(format === "wav" ? wavArgs : mp3Args),
-        workAudioPath,
-      ],
-      stdoutLogPath: `${workPath}/${inputName}-to-${format}.stdout.log`,
-      stderrLogPath: `${workPath}/${inputName}-to-${format}.stderr.log`,
-      monitor: createAudioConversionMonitor(reporter),
-    },
-    {
-      label: `cache-${format}`,
-      command: "cp",
-      args: ["-n", workAudioPath, cachePath],
-      stdoutLogPath: `${workPath}/${inputName}-cache.stdout.log`,
-      stderrLogPath: `${workPath}/${inputName}-cache.stderr.log`,
-      monitor: createQuietMonitor(reporter),
-    },
-  ];
+  return { firstTranscribeIdx, lastTranscribeIdx };
+}
+
+/** Compute --offset-t value in ms for a segment (0 = no offset) */
+function getOffsetMsForSegment(
+  segIndex: number,
+  config: RunConfig,
+  segmentSec: number,
+  segmentCount: number,
+): number {
+  const { startSec } = config;
+  if (startSec <= 0) return 0;
+
+  if (segmentCount === 1) {
+    return segIndex === 0 ? startSec * 1000 : 0;
+  }
+
+  const startSegIndex = Math.floor(startSec / segmentSec);
+  if (segIndex !== startSegIndex) return 0;
+
+  const offsetInSegSec = startSec - startSegIndex * segmentSec;
+  return offsetInSegSec * 1000;
+}
+
+/** Compute --duration value in ms for a segment (0 = no duration limit) */
+function getDurationMsForSegment(
+  segIndex: number,
+  config: RunConfig,
+  audioDuration: number,
+  segmentSec: number,
+  segmentCount: number,
+): number {
+  const { startSec, durationSec } = config;
+  if (durationSec <= 0) return 0;
+
+  if (segmentCount === 1) {
+    return segIndex === 0 ? durationSec * 1000 : 0;
+  }
+
+  const endSec = Math.min(audioDuration, startSec + durationSec);
+  if (endSec >= audioDuration) return 0;
+
+  const endSegIndex = Math.ceil(endSec / segmentSec) - 1;
+  if (segIndex !== endSegIndex) return 0;
+
+  const startSegIndex = Math.floor(startSec / segmentSec);
+  if (endSegIndex === startSegIndex) {
+    return durationSec * 1000;
+  }
+
+  const endSegStartSec = endSegIndex * segmentSec;
+  const localDurationSec = endSec - endSegStartSec;
+  return localDurationSec * 1000;
+}
+
+function createReporter(config: RunConfig): ProgressReporter {
+  if (config.quiet) {
+    return createNullProgressReporter();
+  }
+  return createProgressReporter({
+    inputBasename: basename(config.input),
+    modelShortName: config.modelShortName,
+  });
+}
+
+function resolveSegmentSec(
+  audioDurationSec: number,
+  requestedSegmentSec: number,
+) {
+  if (requestedSegmentSec > 0) {
+    return requestedSegmentSec;
+  }
+  return audioDurationSec > MAX_WAV_DURATION_SEC
+    ? MAX_WAV_DURATION_SEC
+    : audioDurationSec;
+}
+
+function getFinalPaths(config: RunConfig): {
+  inputName: string;
+  finalVtt: string;
+} {
+  const inputName = basename(config.input, extname(config.input));
+  const finalName = config.tag ? `${inputName}.${config.tag}` : inputName;
+  return { inputName, finalVtt: `${config.outputDir}/${finalName}.vtt` };
+}
+
+interface SegmentContext {
+  config: RunConfig;
+  reporter: ProgressReporter;
+  inputName: string;
+  segmentSec: number;
+  segIndex: number;
+  segmentCount: number;
+  audioDuration: number;
+  checkCache: (path: string) => boolean;
+}
+
+function segLabel(segIndex: number, segmentCount: number): string {
+  return `seg:${segIndex + 1} of ${segmentCount}`;
+}
+
+function buildWavTasks(ctx: SegmentContext): TaskConfig[] {
+  const {
+    config,
+    reporter,
+    inputName,
+    segmentSec,
+    segIndex,
+    segmentCount,
+    audioDuration,
+    checkCache,
+  } = ctx;
+  const segSuffix = getSegmentSuffix(segIndex, segmentSec, config.overlapSec);
+  const segName = `${inputName}${segSuffix}`;
+  const segOutPrefix = `${config.runWorkDir}/${segName}`;
+  const segWavPath = `${segOutPrefix}.wav`;
+  const wavCachePath = getWavCachePath(segName);
+  const label = `to-wav[${segLabel(segIndex, segmentCount)}]`;
+
+  // Calculate segment duration (with overlap for non-last segments)
+  const startSec = segIndex * segmentSec;
+  const remaining = audioDuration - startSec;
+  const isLast = segIndex === segmentCount - 1;
+  const durationSec = isLast
+    ? remaining
+    : Math.min(segmentSec + config.overlapSec, remaining);
+
+  return checkCache(wavCachePath)
+    ? [
+        copyTask({
+          label: `${label}[cached]`,
+          from: wavCachePath,
+          to: segWavPath,
+          logPrefix: `${segOutPrefix}-wav-cache`,
+          reporter,
+        }),
+      ]
+    : [
+        {
+          label,
+          command: "ffmpeg",
+          args: [
+            "-y",
+            "-hide_banner",
+            "-loglevel",
+            "info",
+            "-i",
+            config.input,
+            "-ss",
+            String(startSec),
+            "-t",
+            String(durationSec),
+            "-acodec",
+            "pcm_s16le",
+            "-ar",
+            "16000",
+            "-ac",
+            "1",
+            segWavPath,
+          ],
+          stdoutLogPath: `${segOutPrefix}-ffmpeg.stdout.log`,
+          stderrLogPath: `${segOutPrefix}-ffmpeg.stderr.log`,
+          monitor: createAudioConversionMonitor(reporter),
+        },
+        copyTask({
+          label: `cache-wav[${segLabel(segIndex, segmentCount)}]`,
+          from: segWavPath,
+          to: wavCachePath,
+          logPrefix: `${segOutPrefix}-cache-wav`,
+          reporter,
+        }),
+      ];
+}
+
+function buildTranscribeTasks(ctx: SegmentContext): TaskConfig[] {
+  const {
+    config,
+    reporter,
+    inputName,
+    segmentSec,
+    segIndex,
+    segmentCount,
+    audioDuration,
+    checkCache,
+  } = ctx;
+  const segSuffix = getSegmentSuffix(segIndex, segmentSec, config.overlapSec);
+  const segName = `${inputName}${segSuffix}`;
+  const segOutPrefix = `${config.runWorkDir}/${segName}`;
+  const segWavPath = `${segOutPrefix}.wav`;
+  const segVttPath = `${segOutPrefix}.vtt`;
+  const label = `transcribe[${segLabel(segIndex, segmentCount)}]`;
+
+  // Compute whisper --offset-t and --duration values (in ms)
+  const offsetMs = getOffsetMsForSegment(
+    segIndex,
+    config,
+    segmentSec,
+    segmentCount,
+  );
+  const durationMs = getDurationMsForSegment(
+    segIndex,
+    config,
+    audioDuration,
+    segmentSec,
+    segmentCount,
+  );
+
+  const offsetArgs = offsetMs > 0 ? ["--offset-t", String(offsetMs)] : [];
+  const durationArgs = durationMs > 0 ? ["--duration", String(durationMs)] : [];
+
+  // Cache key includes offset/duration since they affect output
+  const vttCachePath = getVttCachePath(
+    segName,
+    config.modelShortName,
+    config.wordTimestamps,
+    offsetMs,
+    durationMs,
+  );
+
+  return checkCache(vttCachePath)
+    ? [
+        copyTask({
+          label: `${label}[cached]`,
+          from: vttCachePath,
+          to: segVttPath,
+          logPrefix: `${segOutPrefix}-vtt-cache`,
+          reporter,
+        }),
+      ]
+    : [
+        {
+          label,
+          command: WHISPER_CPP_EXEC,
+          args: [
+            "--file",
+            segWavPath,
+            "--model",
+            `${WHISPER_CPP_MODELS}/ggml-${config.modelShortName}.bin`,
+            "--output-file",
+            segOutPrefix,
+            "--output-vtt",
+            "--print-progress",
+            "--threads",
+            String(config.threads),
+            ...offsetArgs,
+            ...durationArgs,
+            ...(config.wordTimestamps
+              ? ["--max-len", "1", "--split-on-word"]
+              : []),
+          ],
+          stdoutLogPath: `${segOutPrefix}.stdout.log`,
+          stderrLogPath: `${segOutPrefix}.stderr.log`,
+          monitor: createWhisperCppMonitor(reporter),
+        },
+        copyTask({
+          label: `cache-vtt[${segLabel(segIndex, segmentCount)}]`,
+          from: segVttPath,
+          to: vttCachePath,
+          logPrefix: `${segOutPrefix}-cache-vtt`,
+          reporter,
+        }),
+      ];
+}
+
+function copyTask({
+  label,
+  from,
+  to,
+  logPrefix,
+  reporter,
+}: {
+  label: string;
+  from: string;
+  to: string;
+  logPrefix: string;
+  reporter: ProgressReporter;
+}): TaskConfig {
+  return {
+    label,
+    command: "cp",
+    args: ["-n", from, to],
+    stdoutLogPath: `${logPrefix}.stdout.log`,
+    stderrLogPath: `${logPrefix}.stderr.log`,
+    monitor: createQuietMonitor(reporter),
+  };
+}
+
+async function stitchSegments(
+  segmentVtts: Array<{ path: string; startSec: number }>,
+  finalVttPath: string,
+): Promise<void> {
+  const infos: Array<{ cues: VttCue[]; startSec: number }> = [];
+  for (const seg of segmentVtts) {
+    if (existsSync(seg.path)) {
+      infos.push({ cues: await readVtt(seg.path), startSec: seg.startSec });
+    }
+  }
+  if (infos.length === 0) {
+    return;
+  }
+  await writeVtt(finalVttPath, stitchVttConcat(infos));
 }
 
 /**
@@ -352,4 +599,56 @@ export async function getProcessedAudioDuration(
  */
 function getUTCTimestampForFilePath(): string {
   return new Date().toISOString().replace(/:/g, "-").slice(0, 19) + "Z";
+}
+
+/**
+ * Calculate segments for audio file using suffix-overlap model.
+ *
+ * Suffix-overlap: Each segment (except the last) is extended by overlapSec at the end.
+ * - Segment i starts at: i * segmentSec
+ * - Segment i duration: min(segmentSec + overlap, remaining audio)
+ * - Last segment has no overlap extension
+ *
+ * @param totalDurationSec - Total audio duration in seconds
+ * @param segmentSec - Segment duration in seconds
+ * @param overlapSec - Overlap between segments in seconds
+ * @returns Array of segments
+ */
+export function calculateSegments(
+  totalDurationSec: number,
+  segmentSec: number,
+  overlapSec: number,
+): Segment[] {
+  if (segmentSec <= 0) throw new Error("segmentSec must be positive");
+  if (overlapSec < 0 || overlapSec >= segmentSec)
+    throw new Error("overlapSec must be >= 0 and < segmentSec");
+
+  const n = Math.ceil(totalDurationSec / segmentSec);
+  return Array.from({ length: n }, (_, i) => {
+    const startSec = i * segmentSec;
+    const remaining = totalDurationSec - startSec;
+    const isLast = i === n - 1;
+    return {
+      index: i,
+      startSec,
+      durationSec: isLast
+        ? remaining
+        : Math.min(segmentSec + overlapSec, remaining),
+    };
+  });
+}
+
+/**
+ * Generate segment filename suffix.
+ * Format: -seg{NN}-d{dur}-ov{ov}
+ */
+export function getSegmentSuffix(
+  index: number,
+  segmentSec: number,
+  overlapSec: number,
+): string {
+  const segNum = String(index).padStart(2, "0");
+  const durStr = formatDuration(segmentSec);
+  const ovStr = formatDuration(overlapSec);
+  return `-seg${segNum}-d${durStr}-ov${ovStr}`;
 }

@@ -324,6 +324,8 @@ async function executeBenchmarks(
       dryRun: false,
       wordTimestamps: key.wordTimestamps,
       quiet: false, // Show progress
+      segmentSec: 0,
+      overlapSec: 0,
     };
 
     await mkdir(OUTPUT_DIR, { recursive: true });
@@ -357,9 +359,10 @@ async function writeResult(record: BenchmarkRecord): Promise<void> {
   const ts = record.timestamp.replace(/:/g, "-");
   const model = record.benchmarkKey.model;
   const input = record.benchmarkKey.input.replace(/\.[^.]+$/, ""); // Remove extension
-  const dur = record.benchmarkKey.duration === 0
-    ? "full"
-    : `${record.benchmarkKey.duration}s`;
+  const dur =
+    record.benchmarkKey.duration === 0
+      ? "full"
+      : `${record.benchmarkKey.duration}s`;
 
   const filename = `${ts}-${input}-${model}-${dur}.json`;
   const path = join(REPORTS_DIR, filename);

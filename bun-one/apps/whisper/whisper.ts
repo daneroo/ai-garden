@@ -9,6 +9,7 @@ import {
   runWhisper,
 } from "./lib/runners.ts";
 import { preflightCheck } from "./lib/preflight.ts";
+import { parseDuration } from "./lib/duration.ts";
 
 // Configuration defaults
 const DEFAULT_INPUT = "data/samples/hobbit-30m.mp3";
@@ -89,6 +90,25 @@ async function main(): Promise<void> {
       describe:
         "Tag appended to output filename (e.g., 'kit-tiny' → input.kit-tiny.vtt)",
     })
+    .option("segment", {
+      alias: "S",
+      type: "string",
+      describe:
+        "Segment duration for long files (e.g., 1h, 30m). Must be <= 37h.",
+      coerce: (val: string) => {
+        const secs = parseDuration(val);
+        const maxSecs = 37 * 3600;
+        if (secs > maxSecs) {
+          throw new Error(`Segment duration must be <= 37h, got ${val}`);
+        }
+        return secs;
+      },
+    })
+    .option("overlap", {
+      type: "string",
+      describe: "Overlap between segments (e.g., 1m, 30s). Default: 0",
+      coerce: (val: string) => parseDuration(val),
+    })
     .count("verbose")
     .alias("v", "verbose")
     .help()
@@ -104,6 +124,8 @@ async function main(): Promise<void> {
     duration,
     output,
     tag,
+    segment,
+    overlap,
     "dry-run": dryRun,
     json,
     "word-timestamps": wordTimestamps,
@@ -130,6 +152,8 @@ async function main(): Promise<void> {
     verbosity,
     dryRun,
     wordTimestamps,
+    segmentSec: segment ?? 0,
+    overlapSec: overlap ?? 0,
   };
 
   // Preflight check

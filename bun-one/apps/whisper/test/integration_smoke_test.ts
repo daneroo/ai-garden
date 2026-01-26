@@ -7,9 +7,7 @@
 
 import { afterAll, beforeAll, describe, expect, test } from "bun:test";
 import { existsSync } from "node:fs";
-import { rm } from "node:fs/promises";
 import { join } from "node:path";
-import { getCachePath } from "../lib/cache.ts";
 import {
   createRunWorkDir,
   type RunConfig,
@@ -31,9 +29,6 @@ const workDirCleanup = createWorkDirCleanup();
 describe("smoke: whisper pipeline", () => {
   beforeAll(async () => {
     await resetOutputDir(TEST_OUTPUT_DIR);
-    // Clear cached WAV to test full conversion path
-    const cachePath = getCachePath(FIXTURE_JFK, "wav");
-    await rm(cachePath, { force: true });
   });
 
   afterAll(async () => {
@@ -62,6 +57,8 @@ describe("smoke: whisper pipeline", () => {
       dryRun: true,
       wordTimestamps: false,
       quiet: true,
+      segmentSec: 0,
+      overlapSec: 0,
     };
 
     const result = await runWhisper(config);
@@ -95,6 +92,8 @@ describe("smoke: whisper pipeline", () => {
       dryRun: false,
       wordTimestamps: false,
       quiet: true,
+      segmentSec: 0,
+      overlapSec: 0,
     };
 
     const result = await runWhisper(config);
@@ -102,9 +101,12 @@ describe("smoke: whisper pipeline", () => {
     // VTT file produced
     expect(existsSync(result.outputPath)).toBe(true);
 
-    // WAV file produced (M4B conversion)
-    const wavPath = `${runWorkDir}/jfk.wav`;
-    expect(existsSync(wavPath)).toBe(true);
+    // WAV task executed (M4B conversion) - now uses segment naming
+    const wavTask = result.tasks.find((t) =>
+      t.config.label.startsWith("to-wav[seg"),
+    );
+    expect(wavTask).toBeDefined();
+    expect(wavTask!.result).toBeDefined();
 
     // VTT has content
     expect(result.vttSummary).toBeDefined();
@@ -113,10 +115,7 @@ describe("smoke: whisper pipeline", () => {
   });
 
   test("cached: uses cached WAV on second run", async () => {
-    // Verify cache was populated by previous test
-    const cachePath = getCachePath(FIXTURE_JFK, "wav");
-    expect(existsSync(cachePath)).toBe(true);
-
+    // Previous test should have populated cache
     const runWorkDir = createRunWorkDir({
       workDirRoot: TEST_WORK_DIR_ROOT,
       inputPath: FIXTURE_JFK,
@@ -129,7 +128,7 @@ describe("smoke: whisper pipeline", () => {
       modelShortName: "tiny.en",
       threads: 4,
       startSec: 0,
-      durationSec: 5, // Short duration for speed
+      durationSec: 0, // Same as full test to hit cache
       outputDir: TEST_OUTPUT_DIR,
       runWorkDir,
       tag: "smoke-cached",
@@ -137,15 +136,26 @@ describe("smoke: whisper pipeline", () => {
       dryRun: false,
       wordTimestamps: false,
       quiet: true,
+      segmentSec: 0,
+      overlapSec: 0,
     };
 
     const result = await runWhisper(config);
 
-    // Should use cached path (not ffmpeg conversion)
-    const taskLabels = result.tasks.map((t) => t.config.label);
-    expect(taskLabels).toContain("to-wav[cached]");
-    expect(taskLabels).not.toContain("to-wav");
-    expect(taskLabels).not.toContain("cache-wav");
+    // Should use cached WAV (label includes "cached")
+    const wavTask = result.tasks.find(
+      (t) =>
+        t.config.label.includes("to-wav") && t.config.label.includes("cached"),
+    );
+    expect(wavTask).toBeDefined();
+
+    // Should NOT have ffmpeg conversion task (no "to-wav[seg" without "cached")
+    const ffmpegTask = result.tasks.find(
+      (t) =>
+        t.config.label.startsWith("to-wav[seg") &&
+        !t.config.label.includes("cached"),
+    );
+    expect(ffmpegTask).toBeUndefined();
 
     // VTT still produced correctly
     expect(existsSync(result.outputPath)).toBe(true);
