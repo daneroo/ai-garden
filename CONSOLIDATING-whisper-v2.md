@@ -37,7 +37,14 @@ The core transcription pipeline now runs under Bun with all tests passing.
 
 ## Remaining Work
 
-- [ ] Validate --word-timestamps option
+- [ ] Segmentation pipeline: Handle files over 37 hours by splitting into
+      segments, transcribe each, then stitch VTTs with offset adjustment
+  - we may look to `whisper-sh/whisper.mjs` for ideas, but this will be a new
+    implementation (with overlap of segments)
+  - VTT stitching: After segmented transcription, multiple VTT files must be
+    combined with offset adjustment. Neither implementation has this; it was
+    identified as a critical gap.
+- Validate --word-timestamps option
   - compare: models, durations, word-level-timestamps,
   - sources: whisper-sh/bench.sh, whisper-bench/bench.sh,
     whisper-sh/whisperBench.mjs, WHISPER-MIGRATION.md, CONSOLIDATING-whisper.md
@@ -54,13 +61,6 @@ The core transcription pipeline now runs under Bun with all tests passing.
   - might want to split sample,work,models, and cache(new) directories
 - List audiobooks by duration
   - source: whisper-sh/AUDIOBOOK-DURATIONS.md
-- Segmentation pipeline: Handle files over 37 hours by splitting into segments,
-  transcribe each, then stitch VTTs with offset adjustment
-  - we may look to `whisper-sh/whisper.mjs` for ideas, but this will be a new
-    implementation (with overlap of segments)
-- VTT stitching: After segmented transcription, multiple VTT files must be
-  combined with offset adjustment. Neither implementation has this; it was
-  identified as a critical gap.
 - VTT comparison tooling: Decide where 34KB vtt-compare code should live and
   whether to maintain it
   - sources: whisper-bench/lib/vtt-compare.ts, VTT-COMPARE-PLAN.md

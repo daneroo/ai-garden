@@ -1,7 +1,7 @@
 {
   "processedAudioDurationSec": 7200,
-  "elapsedSec": 266,
-  "speedup": "27.1",
+  "elapsedSec": 264,
+  "speedup": "27.3",
   "tasks": [
     {
       "config": {
@@ -10,15 +10,15 @@
         "args": [
           "-n",
           "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/cache/quixote.wav",
-          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-25T21-54-21Z/quixote.wav"
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-26T00-37-10Z/quixote.wav"
         ],
-        "stdoutLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-25T21-54-21Z/quixote-to-wav.stdout.log",
-        "stderrLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-25T21-54-21Z/quixote-to-wav.stderr.log",
+        "stdoutLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-26T00-37-10Z/quixote-to-wav.stdout.log",
+        "stderrLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-26T00-37-10Z/quixote-to-wav.stderr.log",
         "monitor": {}
       },
       "result": {
         "code": 0,
-        "elapsedMs": 2096
+        "elapsedMs": 1488
       }
     },
     {
@@ -27,26 +27,26 @@
         "command": "whisper-cli",
         "args": [
           "--file",
-          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-25T21-54-21Z/quixote.wav",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-26T00-37-10Z/quixote.wav",
           "--model",
           "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/models/ggml-small.en.bin",
           "--duration",
           "7200000",
           "--output-file",
-          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-25T21-54-21Z/quixote",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-26T00-37-10Z/quixote",
           "--output-json",
           "--output-vtt",
           "--print-progress",
           "--threads",
           "6"
         ],
-        "stdoutLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-25T21-54-21Z/quixote.stdout.log",
-        "stderrLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-25T21-54-21Z/quixote.stderr.log",
+        "stdoutLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-26T00-37-10Z/quixote.stdout.log",
+        "stderrLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/quixote.bench-small.en-2026-01-26T00-37-10Z/quixote.stderr.log",
         "monitor": {}
       },
       "result": {
         "code": 0,
-        "elapsedMs": 263683
+        "elapsedMs": 261993
       }
     }
   ],
@@ -65,7 +65,7 @@
     "duration": 7200,
     "wordTimestamps": false
   },
-  "timestamp": "2026-01-25T21:58:47.070Z",
+  "timestamp": "2026-01-26T00:41:34.230Z",
   "hostname": "galois.imetrical.com",
   "arch": "arm64"
 }
