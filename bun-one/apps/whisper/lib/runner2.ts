@@ -174,11 +174,34 @@ async function runWhisperPipeline(
     return ["--duration", String(localDurationSec * 1000)];
   }
 
+  // Filter transcribe tasks using the presence of flags.
+  // Assumptions:
+  // - WAV tasks are never filtered (per spec).
+  // - `offsetTArgsForSegment(i)` contains "--offset-t" for at most one segment.
+  //   If `startSec > 0`, it will contain it exactly once (and may be `--offset-t 0`).
+  // - `durationArgsForSegment(i)` contains "--duration" for at most one segment.
+  //   If `durationSec > 0` and end < EOF, it will contain it exactly once.
+  // Therefore, we can determine the transcribe segment range by scanning for the
+  // segment index containing each flag.
+  const segmentIndices = Array.from({ length: segmentCount }, (_, i) => i);
+
+  const offsetTSegmentIndex = segmentIndices.findIndex((i) =>
+    offsetTArgsForSegment(i).includes("--offset-t"),
+  );
+  const firstTranscribeSegIndex =
+    offsetTSegmentIndex >= 0 ? offsetTSegmentIndex : 0;
+
+  const durationSegmentIndex = segmentIndices.findIndex((i) =>
+    durationArgsForSegment(i).includes("--duration"),
+  );
+  const lastTranscribeSegIndex =
+    durationSegmentIndex >= 0 ? durationSegmentIndex : segmentCount - 1;
+
   // Build transcribe tasks (currently placeholder args/logs).
   // Labels keep absolute segment numbering.
-  const transcribeTasks: TaskConfig[] = Array.from(
-    { length: segmentCount },
-    (_, i) => {
+  const transcribeTasks: TaskConfig[] = segmentIndices
+    .filter((i) => i >= firstTranscribeSegIndex && i <= lastTranscribeSegIndex)
+    .map((i) => {
       const segNum = i + 1;
       return {
         label: `transcribe[seg:${segNum} of ${segmentCount}]`,
@@ -189,8 +212,7 @@ async function runWhisperPipeline(
         stderrLogPath: "junk",
         monitor: createWhisperCppMonitor(reporter),
       };
-    },
-  );
+    });
 
   const tasks: TaskConfig[] = [...wavTasks, ...transcribeTasks];
 

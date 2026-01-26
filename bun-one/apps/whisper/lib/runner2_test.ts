@@ -74,16 +74,14 @@ test("runWhisper adds --offset-t only on the containing segment", async () => {
 
   const result = await runWhisper(config, { getAudioDuration });
 
-  expect(result.tasks).toHaveLength(6);
+  expect(result.tasks).toHaveLength(5);
   expect(result.tasks[0]?.label).toBe("to-wav[seg:1 of 3]");
   expect(result.tasks[1]?.label).toBe("to-wav[seg:2 of 3]");
   expect(result.tasks[2]?.label).toBe("to-wav[seg:3 of 3]");
-  expect(result.tasks[3]?.label).toBe("transcribe[seg:1 of 3]");
-  expect(result.tasks[3]?.args).toEqual([]);
-  expect(result.tasks[4]?.label).toBe("transcribe[seg:2 of 3]");
-  expect(result.tasks[4]?.args).toEqual(["--offset-t", "10000"]);
-  expect(result.tasks[5]?.label).toBe("transcribe[seg:3 of 3]");
-  expect(result.tasks[5]?.args).toEqual([]);
+  expect(result.tasks[3]?.label).toBe("transcribe[seg:2 of 3]");
+  expect(result.tasks[3]?.args).toEqual(["--offset-t", "10000"]);
+  expect(result.tasks[4]?.label).toBe("transcribe[seg:3 of 3]");
+  expect(result.tasks[4]?.args).toEqual([]);
 });
 
 test("runWhisper emits --offset-t 0 when start is on a segment boundary", async () => {
@@ -92,13 +90,11 @@ test("runWhisper emits --offset-t 0 when start is on a segment boundary", async 
 
   const result = await runWhisper(config, { getAudioDuration });
 
-  expect(result.tasks).toHaveLength(6);
-  expect(result.tasks[3]?.label).toBe("transcribe[seg:1 of 3]");
-  expect(result.tasks[3]?.args).toEqual([]);
-  expect(result.tasks[4]?.label).toBe("transcribe[seg:2 of 3]");
-  expect(result.tasks[4]?.args).toEqual(["--offset-t", "0"]);
-  expect(result.tasks[5]?.label).toBe("transcribe[seg:3 of 3]");
-  expect(result.tasks[5]?.args).toEqual([]);
+  expect(result.tasks).toHaveLength(5);
+  expect(result.tasks[3]?.label).toBe("transcribe[seg:2 of 3]");
+  expect(result.tasks[3]?.args).toEqual(["--offset-t", "0"]);
+  expect(result.tasks[4]?.label).toBe("transcribe[seg:3 of 3]");
+  expect(result.tasks[4]?.args).toEqual([]);
 });
 
 test("runWhisper adds --duration in single-segment mode", async () => {
@@ -123,7 +119,7 @@ test("runWhisper adds --duration only on the end segment", async () => {
 
   const result = await runWhisper(config, { getAudioDuration });
 
-  expect(result.tasks).toHaveLength(6);
+  expect(result.tasks).toHaveLength(5);
   expect(result.tasks[0]?.label).toBe("to-wav[seg:1 of 3]");
   expect(result.tasks[1]?.label).toBe("to-wav[seg:2 of 3]");
   expect(result.tasks[2]?.label).toBe("to-wav[seg:3 of 3]");
@@ -131,8 +127,6 @@ test("runWhisper adds --duration only on the end segment", async () => {
   expect(result.tasks[3]?.args).toEqual([]);
   expect(result.tasks[4]?.label).toBe("transcribe[seg:2 of 3]");
   expect(result.tasks[4]?.args).toEqual(["--duration", "10000"]);
-  expect(result.tasks[5]?.label).toBe("transcribe[seg:3 of 3]");
-  expect(result.tasks[5]?.args).toEqual([]);
 });
 
 test("runWhisper emits full-segment --duration when end is on a segment boundary", async () => {
@@ -146,13 +140,11 @@ test("runWhisper emits full-segment --duration when end is on a segment boundary
 
   const result = await runWhisper(config, { getAudioDuration });
 
-  expect(result.tasks).toHaveLength(6);
+  expect(result.tasks).toHaveLength(5);
   expect(result.tasks[3]?.label).toBe("transcribe[seg:1 of 3]");
   expect(result.tasks[3]?.args).toEqual([]);
   expect(result.tasks[4]?.label).toBe("transcribe[seg:2 of 3]");
   expect(result.tasks[4]?.args).toEqual(["--duration", "40000"]);
-  expect(result.tasks[5]?.label).toBe("transcribe[seg:3 of 3]");
-  expect(result.tasks[5]?.args).toEqual([]);
 });
 
 test("runWhisper adds both --offset-t and --duration when window ends in same segment", async () => {
@@ -166,7 +158,7 @@ test("runWhisper adds both --offset-t and --duration when window ends in same se
 
   const result = await runWhisper(config, { getAudioDuration });
 
-  expect(result.tasks).toHaveLength(6);
+  expect(result.tasks).toHaveLength(4);
   expect(result.tasks[0]?.label).toBe("to-wav[seg:1 of 3]");
   expect(result.tasks[1]?.label).toBe("to-wav[seg:2 of 3]");
   expect(result.tasks[2]?.label).toBe("to-wav[seg:3 of 3]");
@@ -177,16 +169,12 @@ test("runWhisper adds both --offset-t and --duration when window ends in same se
     "--duration",
     "20000",
   ]);
-  expect(result.tasks[4]?.label).toBe("transcribe[seg:2 of 3]");
-  expect(result.tasks[4]?.args).toEqual([]);
-  expect(result.tasks[5]?.label).toBe("transcribe[seg:3 of 3]");
-  expect(result.tasks[5]?.args).toEqual([]);
 });
 
-test("runWhisper does not filter transcribe tasks (documents current limitation)", async () => {
+test("runWhisper filters transcribe tasks by start/duration (documents behavior)", async () => {
   // With segmentSec=40, start=50, duration=20, the requested window is [50,70)
-  // which is entirely within segment 2. We still schedule transcribe tasks for
-  // segments 1 and 3; they just get empty args.
+  // which is entirely within segment 2.
+  // We still run all WAV tasks (3), but we only run 1 transcribe task.
   const config = {
     ...mockConfig,
     segmentSec: 40,
@@ -197,16 +185,16 @@ test("runWhisper does not filter transcribe tasks (documents current limitation)
 
   const result = await runWhisper(config, { getAudioDuration });
 
-  expect(result.tasks).toHaveLength(6);
-  expect(result.tasks[3]?.label).toBe("transcribe[seg:1 of 3]");
-  expect(result.tasks[3]?.args).toEqual([]);
-  expect(result.tasks[4]?.label).toBe("transcribe[seg:2 of 3]");
-  expect(result.tasks[4]?.args).toEqual([
+  expect(result.tasks).toHaveLength(4);
+  expect(result.tasks[0]?.label).toBe("to-wav[seg:1 of 3]");
+  expect(result.tasks[1]?.label).toBe("to-wav[seg:2 of 3]");
+  expect(result.tasks[2]?.label).toBe("to-wav[seg:3 of 3]");
+
+  expect(result.tasks[3]?.label).toBe("transcribe[seg:2 of 3]");
+  expect(result.tasks[3]?.args).toEqual([
     "--offset-t",
     "10000",
     "--duration",
     "20000",
   ]);
-  expect(result.tasks[5]?.label).toBe("transcribe[seg:3 of 3]");
-  expect(result.tasks[5]?.args).toEqual([]);
 });
