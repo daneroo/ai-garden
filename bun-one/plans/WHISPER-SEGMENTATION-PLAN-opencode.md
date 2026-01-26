@@ -202,17 +202,17 @@ Definitions for boundary between segment i-1 (A) and i (B):
 
 Algorithm:
 
-1) Try anchor match in W
+1. Try anchor match in W
 
 - normalize cue text (trim, collapse whitespace)
 - if an A cue and B cue match on normalized text (timestamps may differ; allow EPS), select earliest stable match and set `tCut` at that boundary (initially: `tCut = min(startA, startB)` or `tCut = startB`; refine via tests)
 
-2) Else find earliest no-overlap cut in W
+2. Else find earliest no-overlap cut in W
 
 - iterate B cues by increasing `start` within W
 - pick first `b.start` where last A cue end `<= b.start`
 
-3) Fallback
+3. Fallback
 
 - `tCut = tBoundary`
 

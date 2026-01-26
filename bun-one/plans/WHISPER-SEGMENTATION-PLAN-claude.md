@@ -83,16 +83,19 @@ VTT timestamp rewrite: shift all cues by `i * S` (the segment start).
 **File:** `lib/vtt-stitch.ts` (new)
 
 VTT utilities:
+
 - `secondsToVttTime(sec)` → "HH:MM:SS.mmm"
 - `shiftVttCues(cues, offsetSec)` → shifted cues
 - `writeVtt(path, cues)`
 
 Concat stitcher (overlap == 0):
+
 - Read each segment VTT
 - Shift cues by `i * S`
 - Concatenate in order, write final VTT
 
 Smart stitcher (overlap > 0) - deferred:
+
 - Overlap window: `[(i+1)*S, (i+1)*S + O]`
 - Find matching anchor cues via text, or earliest non-overlap cut
 - Fallback to boundary

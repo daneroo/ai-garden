@@ -16,7 +16,7 @@ Task derived from `CONSOLIDATING-whisper-v2.md`:
 
 ### Possible Speedup
 
-Although the primary consideration is the limitation below (*37h max), because
+Although the primary consideration is the limitation below (\*37h max), because
 of the way whisper-cpp currently loads all audio into memory, there may be a
 substantial speedup to be had by segmenting the audio and processing each
 segment individually.
