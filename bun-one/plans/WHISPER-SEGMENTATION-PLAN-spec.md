@@ -52,7 +52,16 @@ Did not yield any real speedup, nor any real slowdown:
 
 Phase 1:
 
-- [ ] Add --segment duration/overlap e.g. --switch 1h/1m
+- [ ] Add --segment <duration> and --overlap <duration>
+  - both flags, if present MUST have a value
+  - --segement <duration> maps to config.segmentSecs and must be <=37hours
+  - if audio duration is > 37 hours, then segmentation is implied, or --segment
+    37hour and / or segmentSecs=37hours will be derived
+    - Scenario : Result
+    - file <= 37h, no --segment : no segmentation
+    - file <= 37h, --segment 1h : segment at 1h
+    - file > 37h, no --segment : auto segment at 37h
+    - file > 37h, --segment 1h : segment at 1h
   - let's use go duration syntax for values, and file name parts e.g. `1h`,
     `1m`, `30s`; parseDuration(), formatDuration()
 - [ ] implement actual segmentation using ffmpeg including overlap as tasks
