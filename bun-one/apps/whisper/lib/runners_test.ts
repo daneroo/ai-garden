@@ -1,11 +1,10 @@
 import { describe, expect, test } from "bun:test";
 import {
-  calculateSegments,
   getProcessedAudioDuration,
   getSegmentSuffix,
-  runWhisper,
   type RunConfig,
   type RunDeps,
+  runWhisper,
 } from "./runners.ts";
 
 const mockConfig: RunConfig = {
@@ -70,61 +69,6 @@ test("getProcessedAudioDuration - edge cases", async () => {
   // Explicit duration 0 is treated as until end of file
   const configZeroDur = { ...mockConfig, durationSec: 0 };
   expect(await getProcessedAudioDuration(configZeroDur, getDuration)).toBe(60);
-});
-
-describe("calculateSegments", () => {
-  test("single segment when duration <= segmentSec", () => {
-    const segments = calculateSegments(100, 200, 0);
-    expect(segments).toHaveLength(1);
-    expect(segments[0]).toEqual({ index: 0, startSec: 0, durationSec: 100 });
-  });
-
-  test("multiple segments without overlap", () => {
-    const segments = calculateSegments(100, 30, 0);
-    expect(segments).toHaveLength(4);
-    expect(segments[0]).toEqual({ index: 0, startSec: 0, durationSec: 30 });
-    expect(segments[1]).toEqual({ index: 1, startSec: 30, durationSec: 30 });
-    expect(segments[2]).toEqual({ index: 2, startSec: 60, durationSec: 30 });
-    expect(segments[3]).toEqual({ index: 3, startSec: 90, durationSec: 10 }); // last segment shorter
-  });
-
-  test("multiple segments with overlap", () => {
-    const segments = calculateSegments(100, 30, 5);
-    expect(segments).toHaveLength(4);
-    // Non-last segments have overlap added
-    expect(segments[0]).toEqual({ index: 0, startSec: 0, durationSec: 35 });
-    expect(segments[1]).toEqual({ index: 1, startSec: 30, durationSec: 35 });
-    expect(segments[2]).toEqual({ index: 2, startSec: 60, durationSec: 35 });
-    // Last segment has no overlap
-    expect(segments[3]).toEqual({ index: 3, startSec: 90, durationSec: 10 });
-  });
-
-  test("overlap is capped by remaining audio", () => {
-    const segments = calculateSegments(35, 30, 10);
-    expect(segments).toHaveLength(2);
-    // First segment: 30 + 10 = 40, but only 35 total, so 35
-    expect(segments[0]).toEqual({ index: 0, startSec: 0, durationSec: 35 });
-    // Second segment: starts at 30, only 5 remaining
-    expect(segments[1]).toEqual({ index: 1, startSec: 30, durationSec: 5 });
-  });
-
-  test("throws on invalid input", () => {
-    expect(() => calculateSegments(100, 0, 0)).toThrow(
-      "segmentSec must be positive",
-    );
-    expect(() => calculateSegments(100, -1, 0)).toThrow(
-      "segmentSec must be positive",
-    );
-    expect(() => calculateSegments(100, 30, -1)).toThrow(
-      "overlapSec must be >= 0",
-    );
-    expect(() => calculateSegments(100, 30, 30)).toThrow(
-      "overlapSec must be >= 0 and < segmentSec",
-    );
-    expect(() => calculateSegments(100, 30, 31)).toThrow(
-      "overlapSec must be >= 0 and < segmentSec",
-    );
-  });
 });
 
 describe("getSegmentSuffix", () => {
@@ -290,5 +234,418 @@ describe("runWhisper task generation", () => {
     );
     expect(vttTask?.config.label).toBe("transcribe[seg:1 of 1][cached]");
     expect(vttTask?.config.command).toBe("cp");
+  });
+});
+
+describe("runWhisper segment boundaries", () => {
+  function getArgValue(args: string[], flag: string): string | undefined {
+    const index = args.indexOf(flag);
+    return index >= 0 ? args[index + 1] : undefined;
+  }
+
+  function describeWavTasks(
+    tasks: Array<{ config: { label: string; args: string[] } }>,
+  ): Array<{ label: string; ss?: number; t?: number }> {
+    return tasks.map((task) => {
+      const { args, label } = task.config;
+      const ss = getArgValue(args, "-ss");
+      const t = getArgValue(args, "-t");
+      return Object.fromEntries([
+        ["label", label],
+        ...(ss !== undefined ? [["ss", Number(ss)]] : []),
+        ...(t !== undefined ? [["t", Number(t)]] : []),
+      ]) as { label: string; ss?: number; t?: number };
+    });
+  }
+
+  function describeTranscribeTasks(
+    tasks: Array<{ config: { label: string; args: string[] } }>,
+  ): Array<{ label: string; offsetMs?: number; durationMs?: number }> {
+    return tasks.map((task) => {
+      const { args, label } = task.config;
+      const offsetMs = getArgValue(args, "--offset-t");
+      const durationMs = getArgValue(args, "--duration");
+      return Object.fromEntries([
+        ["label", label],
+        ...(offsetMs !== undefined ? [["offsetMs", Number(offsetMs)]] : []),
+        ...(durationMs !== undefined
+          ? [["durationMs", Number(durationMs)]]
+          : []),
+      ]) as { label: string; offsetMs?: number; durationMs?: number };
+    });
+  }
+
+  async function getSegmentBoundaries({
+    segmentSec,
+    overlapSec,
+    audioDuration,
+    startSec = 0,
+    durationSec = 0,
+  }: {
+    segmentSec: number;
+    overlapSec: number;
+    audioDuration: number;
+    startSec?: number;
+    durationSec?: number;
+  }): Promise<{
+    wav: Array<{ label: string; ss?: number; t?: number }>;
+    transcribe: Array<{
+      label: string;
+      offsetMs?: number;
+      durationMs?: number;
+    }>;
+  }> {
+    const config = {
+      ...mockConfig,
+      segmentSec,
+      overlapSec,
+      startSec,
+      durationSec,
+    };
+    const deps: RunDeps = {
+      getAudioDuration: () => Promise.resolve(audioDuration),
+      checkCache: () => false,
+    };
+
+    const result = await runWhisper(config, deps);
+    const wavTasks = result.tasks.filter((t) =>
+      t.config.label.startsWith("to-wav["),
+    );
+    const transcribeTasks = result.tasks.filter((t) =>
+      t.config.label.startsWith("transcribe["),
+    );
+
+    return {
+      wav: describeWavTasks(wavTasks),
+      transcribe: describeTranscribeTasks(transcribeTasks),
+    };
+  }
+
+  describe("wav boundaries", () => {
+    test("single segment has proper boundaries", async () => {
+      const boundaries = await getSegmentBoundaries({
+        segmentSec: 0,
+        overlapSec: 0,
+        audioDuration: 100,
+      });
+
+      expect(boundaries).toEqual({
+        wav: [{ label: "to-wav[seg:1 of 1]", ss: 0, t: 100 }],
+        transcribe: [
+          {
+            label: "transcribe[seg:1 of 1]",
+          },
+        ],
+      });
+    });
+
+    test("single segment when duration <= segmentSec", async () => {
+      const boundaries = await getSegmentBoundaries({
+        segmentSec: 200,
+        overlapSec: 0,
+        audioDuration: 100,
+      });
+
+      expect(boundaries).toEqual({
+        wav: [{ label: "to-wav[seg:1 of 1]", ss: 0, t: 100 }],
+        transcribe: [
+          {
+            label: "transcribe[seg:1 of 1]",
+          },
+        ],
+      });
+    });
+
+    test("multiple segments without overlap", async () => {
+      const boundaries = await getSegmentBoundaries({
+        segmentSec: 30,
+        overlapSec: 0,
+        audioDuration: 100,
+      });
+
+      expect(boundaries).toEqual({
+        wav: [
+          { label: "to-wav[seg:1 of 4]", ss: 0, t: 30 },
+          { label: "to-wav[seg:2 of 4]", ss: 30, t: 30 },
+          { label: "to-wav[seg:3 of 4]", ss: 60, t: 30 },
+          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
+        ],
+        transcribe: [
+          {
+            label: "transcribe[seg:1 of 4]",
+          },
+          {
+            label: "transcribe[seg:2 of 4]",
+          },
+          {
+            label: "transcribe[seg:3 of 4]",
+          },
+          {
+            label: "transcribe[seg:4 of 4]",
+          },
+        ],
+      });
+    });
+
+    test("multiple segments with overlap", async () => {
+      const boundaries = await getSegmentBoundaries({
+        segmentSec: 30,
+        overlapSec: 5,
+        audioDuration: 100,
+      });
+
+      expect(boundaries).toEqual({
+        wav: [
+          { label: "to-wav[seg:1 of 4]", ss: 0, t: 35 },
+          { label: "to-wav[seg:2 of 4]", ss: 30, t: 35 },
+          { label: "to-wav[seg:3 of 4]", ss: 60, t: 35 },
+          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
+        ],
+        transcribe: [
+          {
+            label: "transcribe[seg:1 of 4]",
+          },
+          {
+            label: "transcribe[seg:2 of 4]",
+          },
+          {
+            label: "transcribe[seg:3 of 4]",
+          },
+          {
+            label: "transcribe[seg:4 of 4]",
+          },
+        ],
+      });
+    });
+
+    test("overlap is capped by remaining audio", async () => {
+      const boundaries = await getSegmentBoundaries({
+        segmentSec: 30,
+        overlapSec: 10,
+        audioDuration: 35,
+      });
+
+      expect(boundaries).toEqual({
+        wav: [
+          { label: "to-wav[seg:1 of 2]", ss: 0, t: 35 },
+          { label: "to-wav[seg:2 of 2]", ss: 30, t: 5 },
+        ],
+        transcribe: [
+          {
+            label: "transcribe[seg:1 of 2]",
+          },
+          {
+            label: "transcribe[seg:2 of 2]",
+          },
+        ],
+      });
+    });
+  });
+
+  describe("without overlap", () => {
+    test("transcribe tasks include all segments by default", async () => {
+      const boundaries = await getSegmentBoundaries({
+        segmentSec: 30,
+        overlapSec: 0,
+        audioDuration: 100,
+      });
+
+      expect(boundaries).toEqual({
+        wav: [
+          { label: "to-wav[seg:1 of 4]", ss: 0, t: 30 },
+          { label: "to-wav[seg:2 of 4]", ss: 30, t: 30 },
+          { label: "to-wav[seg:3 of 4]", ss: 60, t: 30 },
+          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
+        ],
+        transcribe: [
+          {
+            label: "transcribe[seg:1 of 4]",
+          },
+          {
+            label: "transcribe[seg:2 of 4]",
+          },
+          {
+            label: "transcribe[seg:3 of 4]",
+          },
+          {
+            label: "transcribe[seg:4 of 4]",
+          },
+        ],
+      });
+    });
+
+    test("start only filters to start segment", async () => {
+      const boundaries = await getSegmentBoundaries({
+        segmentSec: 30,
+        overlapSec: 0,
+        audioDuration: 100,
+        startSec: 50,
+      });
+
+      expect(boundaries).toEqual({
+        wav: [
+          { label: "to-wav[seg:1 of 4]", ss: 0, t: 30 },
+          { label: "to-wav[seg:2 of 4]", ss: 30, t: 30 },
+          { label: "to-wav[seg:3 of 4]", ss: 60, t: 30 },
+          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
+        ],
+        transcribe: [
+          {
+            label: "transcribe[seg:2 of 4]",
+            offsetMs: 20000,
+          },
+          {
+            label: "transcribe[seg:3 of 4]",
+          },
+          {
+            label: "transcribe[seg:4 of 4]",
+          },
+        ],
+      });
+    });
+
+    test("duration only filters to end segment", async () => {
+      const boundaries = await getSegmentBoundaries({
+        segmentSec: 30,
+        overlapSec: 0,
+        audioDuration: 100,
+        durationSec: 50,
+      });
+
+      expect(boundaries).toEqual({
+        wav: [
+          { label: "to-wav[seg:1 of 4]", ss: 0, t: 30 },
+          { label: "to-wav[seg:2 of 4]", ss: 30, t: 30 },
+          { label: "to-wav[seg:3 of 4]", ss: 60, t: 30 },
+          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
+        ],
+        transcribe: [
+          {
+            label: "transcribe[seg:1 of 4]",
+          },
+          {
+            label: "transcribe[seg:2 of 4]",
+            durationMs: 20000,
+          },
+        ],
+      });
+    });
+
+    test("start and duration together span middle segments", async () => {
+      const boundaries = await getSegmentBoundaries({
+        segmentSec: 30,
+        overlapSec: 0,
+        audioDuration: 100,
+        startSec: 40,
+        durationSec: 40,
+      });
+
+      expect(boundaries).toEqual({
+        wav: [
+          { label: "to-wav[seg:1 of 4]", ss: 0, t: 30 },
+          { label: "to-wav[seg:2 of 4]", ss: 30, t: 30 },
+          { label: "to-wav[seg:3 of 4]", ss: 60, t: 30 },
+          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
+        ],
+        transcribe: [
+          {
+            label: "transcribe[seg:2 of 4]",
+            offsetMs: 10000,
+          },
+          {
+            label: "transcribe[seg:3 of 4]",
+            durationMs: 20000,
+          },
+        ],
+      });
+    });
+  });
+
+  describe("with overlap", () => {
+    test("start only filters to start segment", async () => {
+      const boundaries = await getSegmentBoundaries({
+        segmentSec: 30,
+        overlapSec: 5,
+        audioDuration: 100,
+        startSec: 50,
+      });
+
+      expect(boundaries).toEqual({
+        wav: [
+          { label: "to-wav[seg:1 of 4]", ss: 0, t: 35 },
+          { label: "to-wav[seg:2 of 4]", ss: 30, t: 35 },
+          { label: "to-wav[seg:3 of 4]", ss: 60, t: 35 },
+          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
+        ],
+        transcribe: [
+          {
+            label: "transcribe[seg:2 of 4]",
+            offsetMs: 20000,
+          },
+          {
+            label: "transcribe[seg:3 of 4]",
+          },
+          {
+            label: "transcribe[seg:4 of 4]",
+          },
+        ],
+      });
+    });
+
+    test("duration only filters to end segment", async () => {
+      const boundaries = await getSegmentBoundaries({
+        segmentSec: 30,
+        overlapSec: 5,
+        audioDuration: 100,
+        durationSec: 50,
+      });
+
+      expect(boundaries).toEqual({
+        wav: [
+          { label: "to-wav[seg:1 of 4]", ss: 0, t: 35 },
+          { label: "to-wav[seg:2 of 4]", ss: 30, t: 35 },
+          { label: "to-wav[seg:3 of 4]", ss: 60, t: 35 },
+          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
+        ],
+        transcribe: [
+          {
+            label: "transcribe[seg:1 of 4]",
+          },
+          {
+            label: "transcribe[seg:2 of 4]",
+            durationMs: 20000,
+          },
+        ],
+      });
+    });
+
+    test("start and duration together span middle segments", async () => {
+      const boundaries = await getSegmentBoundaries({
+        segmentSec: 30,
+        overlapSec: 5,
+        audioDuration: 100,
+        startSec: 40,
+        durationSec: 40,
+      });
+
+      expect(boundaries).toEqual({
+        wav: [
+          { label: "to-wav[seg:1 of 4]", ss: 0, t: 35 },
+          { label: "to-wav[seg:2 of 4]", ss: 30, t: 35 },
+          { label: "to-wav[seg:3 of 4]", ss: 60, t: 35 },
+          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
+        ],
+        transcribe: [
+          {
+            label: "transcribe[seg:2 of 4]",
+            offsetMs: 10000,
+          },
+          {
+            label: "transcribe[seg:3 of 4]",
+            durationMs: 20000,
+          },
+        ],
+      });
+    });
   });
 });

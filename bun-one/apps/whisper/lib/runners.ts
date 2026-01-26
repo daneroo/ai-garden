@@ -30,15 +30,6 @@ const WHISPER_CPP_EXEC = "whisper-cli";
 // Maximum WAV duration due to RIFF 32-bit size limit (~37h for 16kHz mono 16-bit)
 const MAX_WAV_DURATION_SEC = 37 * 3600;
 
-/**
- * Represents a segment of audio to be transcribed.
- */
-export interface Segment {
-  index: number;
-  startSec: number;
-  durationSec: number; // Actual duration (may include overlap, may be shorter for last segment)
-}
-
 export type ModelShortName = "tiny.en" | "base.en" | "small.en";
 
 /**
@@ -251,8 +242,11 @@ function computeTranscribeRange(
   const { startSec, durationSec } = config;
 
   // First segment to transcribe: contains startSec
-  const firstTranscribeIdx =
-    startSec > 0 && segmentSec > 0 ? Math.floor(startSec / segmentSec) : 0;
+  const firstTranscribeIdx = getStartSegmentIndex(
+    startSec,
+    segmentSec,
+    segmentCount,
+  );
 
   // Last segment to transcribe: contains endSec (or last segment if no duration)
   if (durationSec <= 0) {
@@ -264,8 +258,13 @@ function computeTranscribeRange(
     return { firstTranscribeIdx, lastTranscribeIdx: segmentCount - 1 };
   }
 
-  const lastTranscribeIdx =
-    segmentSec > 0 ? Math.ceil(endSec / segmentSec) - 1 : 0;
+  const lastTranscribeIdx = getEndSegmentIndex(
+    endSec,
+    audioDuration,
+    segmentSec,
+    config.overlapSec,
+    segmentCount,
+  );
 
   return { firstTranscribeIdx, lastTranscribeIdx };
 }
@@ -280,11 +279,11 @@ function getOffsetMsForSegment(
   const { startSec } = config;
   if (startSec <= 0) return 0;
 
-  if (segmentCount === 1) {
-    return segIndex === 0 ? startSec * 1000 : 0;
-  }
-
-  const startSegIndex = Math.floor(startSec / segmentSec);
+  const startSegIndex = getStartSegmentIndex(
+    startSec,
+    segmentSec,
+    segmentCount,
+  );
   if (segIndex !== startSegIndex) return 0;
 
   const offsetInSegSec = startSec - startSegIndex * segmentSec;
@@ -302,17 +301,23 @@ function getDurationMsForSegment(
   const { startSec, durationSec } = config;
   if (durationSec <= 0) return 0;
 
-  if (segmentCount === 1) {
-    return segIndex === 0 ? durationSec * 1000 : 0;
-  }
-
   const endSec = Math.min(audioDuration, startSec + durationSec);
   if (endSec >= audioDuration) return 0;
 
-  const endSegIndex = Math.ceil(endSec / segmentSec) - 1;
+  const endSegIndex = getEndSegmentIndex(
+    endSec,
+    audioDuration,
+    segmentSec,
+    config.overlapSec,
+    segmentCount,
+  );
   if (segIndex !== endSegIndex) return 0;
 
-  const startSegIndex = Math.floor(startSec / segmentSec);
+  const startSegIndex = getStartSegmentIndex(
+    startSec,
+    segmentSec,
+    segmentCount,
+  );
   if (endSegIndex === startSegIndex) {
     return durationSec * 1000;
   }
@@ -342,6 +347,52 @@ function resolveSegmentSec(
   return audioDurationSec > MAX_WAV_DURATION_SEC
     ? MAX_WAV_DURATION_SEC
     : audioDurationSec;
+}
+
+function getStartSegmentIndex(
+  startSec: number,
+  segmentSec: number,
+  segmentCount: number,
+): number {
+  if (startSec <= 0 || segmentSec <= 0 || segmentCount <= 1) return 0;
+  return Math.min(segmentCount - 1, Math.floor(startSec / segmentSec));
+}
+
+function getSegmentEndSec(
+  segIndex: number,
+  audioDuration: number,
+  segmentSec: number,
+  overlapSec: number,
+  segmentCount: number,
+): number {
+  if (segmentCount <= 1 || segmentSec <= 0) return audioDuration;
+  if (segIndex >= segmentCount - 1) return audioDuration;
+  return Math.min((segIndex + 1) * segmentSec + overlapSec, audioDuration);
+}
+
+function getEndSegmentIndex(
+  endSec: number,
+  audioDuration: number,
+  segmentSec: number,
+  overlapSec: number,
+  segmentCount: number,
+): number {
+  if (segmentCount <= 1 || segmentSec <= 0) return 0;
+  if (endSec <= 0) return 0;
+  if (endSec >= audioDuration) return segmentCount - 1;
+
+  for (let i = 0; i < segmentCount; i++) {
+    const segEnd = getSegmentEndSec(
+      i,
+      audioDuration,
+      segmentSec,
+      overlapSec,
+      segmentCount,
+    );
+    if (endSec <= segEnd) return i;
+  }
+
+  return segmentCount - 1;
 }
 
 function getFinalPaths(config: RunConfig): {
@@ -599,43 +650,6 @@ export async function getProcessedAudioDuration(
  */
 function getUTCTimestampForFilePath(): string {
   return new Date().toISOString().replace(/:/g, "-").slice(0, 19) + "Z";
-}
-
-/**
- * Calculate segments for audio file using suffix-overlap model.
- *
- * Suffix-overlap: Each segment (except the last) is extended by overlapSec at the end.
- * - Segment i starts at: i * segmentSec
- * - Segment i duration: min(segmentSec + overlap, remaining audio)
- * - Last segment has no overlap extension
- *
- * @param totalDurationSec - Total audio duration in seconds
- * @param segmentSec - Segment duration in seconds
- * @param overlapSec - Overlap between segments in seconds
- * @returns Array of segments
- */
-export function calculateSegments(
-  totalDurationSec: number,
-  segmentSec: number,
-  overlapSec: number,
-): Segment[] {
-  if (segmentSec <= 0) throw new Error("segmentSec must be positive");
-  if (overlapSec < 0 || overlapSec >= segmentSec)
-    throw new Error("overlapSec must be >= 0 and < segmentSec");
-
-  const n = Math.ceil(totalDurationSec / segmentSec);
-  return Array.from({ length: n }, (_, i) => {
-    const startSec = i * segmentSec;
-    const remaining = totalDurationSec - startSec;
-    const isLast = i === n - 1;
-    return {
-      index: i,
-      startSec,
-      durationSec: isLast
-        ? remaining
-        : Math.min(segmentSec + overlapSec, remaining),
-    };
-  });
 }
 
 /**
