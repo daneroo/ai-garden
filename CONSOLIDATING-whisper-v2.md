@@ -44,6 +44,7 @@ The core transcription pipeline now runs under Bun with all tests passing.
   - VTT stitching: After segmented transcription, multiple VTT files must be
     combined with offset adjustment. Neither implementation has this; it was
     identified as a critical gap.
+  - Initial Spec: `bun-one/plans/WHISPER-SEGMENTATION-PLAN-spec.md`
 - Validate --word-timestamps option
   - compare: models, durations, word-level-timestamps,
   - sources: whisper-sh/bench.sh, whisper-bench/bench.sh,

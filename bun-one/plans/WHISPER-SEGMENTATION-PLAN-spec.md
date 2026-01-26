@@ -35,8 +35,48 @@ For the format that whisper-cpp needs, (16 kHz, mono, 16-bit PCM)
 
 So the ~37 hour ceiling comes directly from ~4 GiB ÷ 32 kB/s.
 
-## POC for speedup
+## POC (speedup test)
 
 ```text
-[input .m4b] → [Segment audio] → [transcibe segments] → [stitch VTTs] → [valiadate output VTT]
+[input .m4b] → [Segment audio] → [transcibe segments] (→ [stitch VTTs] → [valiadate output VTT])
 ```
+
+see [segment_poc.sh](../apps/whisper/segment_poc.sh)
+
+Did not yield any real speedup, nor any real slowdown:
+
+- no segmentation: hobbit.m4b - tiny.en - full - 407s - 92.0x
+- segmentation: hobbit.m4b - tiny.en - full - 425s - 88.2x
+
+## Implementation Plan
+
+Phase 1:
+
+- [ ] Add --segment duration/overlap e.g. --switch 1h/1m
+  - let's use go duration syntax for values, and file name parts e.g. `1h`,
+    `1m`, `30s`; durationToSecs(), secsToDuration()
+- [ ] implement actual segmentation using ffmpeg including overlap as tasks
+  - cache segmented `.wav` segments in our cache directory -
+    `data/cache/{input}-seg{num}-d{duration}-ov{overlap}.wav` might not be a
+    special case.
+  - this naming should be unique and behave as our normal caching of `.wav`
+    files
+  - likely refactoring runner.ts:runWhisperTasks()
+    - split task constructors for audio conversion and whisper tasks to support
+      segmentation
+    - needs refined login around getDuration, getProcessedAudioDuration?
+  - first phase, could simple transcribe with no transcription.
+
+Phase 2:
+
+- Implement actual transcription of segments, output is in work directory
+  - `{workDir}/{input}-seg{num}-d{duration}-ov{overlap}.vtt`
+  - Could also cache the segment vtt's in the cache directory, much as we do for
+    the .wav files.
+    `data/cache/vtt/{input}-seg{num}-d{duration}-ov{overlap}.vtt` _In fact this
+    could be a general behavior for caching, cache invalidation might be more
+    involved, if it is to be safe._
+  - if we introduce `data/cache/vtt`, we shoudl move `.wav` cache to
+    `data/cache/wav`
+- Stitcher: `{input}-seg{??}-d{duration}-ov{overlap}.vtt` -> `{input}.vtt`
+  - if overlap==0, use concat stitcher, else use smart stitcher
