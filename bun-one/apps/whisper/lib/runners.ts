@@ -30,6 +30,9 @@ const WHISPER_CPP_EXEC = "whisper-cli";
 // Maximum WAV duration due to RIFF 32-bit size limit (~37h for 16kHz mono 16-bit)
 const MAX_WAV_DURATION_SEC = 37 * 3600;
 
+// Ignore remainders under 2s to avoid micro-segments from duration rounding.
+const MIN_SEGMENT_REMAINDER_SEC = 2;
+
 export type ModelShortName = "tiny.en" | "base.en" | "small.en";
 
 /**
@@ -150,8 +153,7 @@ async function runWhisperPipeline(
 
   const audioDuration = await getAudioDuration(config.input);
   const segmentSec = resolveSegmentSec(audioDuration, config.segmentSec);
-  const segmentCount =
-    segmentSec > 0 ? Math.ceil(audioDuration / segmentSec) : 1;
+  const segmentCount = computeSegmentCount(audioDuration, segmentSec);
 
   const { inputName, finalVtt } = getFinalPaths(config);
   if (!config.dryRun) {
@@ -347,6 +349,21 @@ function resolveSegmentSec(
   return audioDurationSec > MAX_WAV_DURATION_SEC
     ? MAX_WAV_DURATION_SEC
     : audioDurationSec;
+}
+
+function computeSegmentCount(
+  audioDuration: number,
+  segmentSec: number,
+): number {
+  if (segmentSec <= 0) return 1;
+  if (audioDuration <= 0) return 0;
+  const fullSegments = Math.floor(audioDuration / segmentSec);
+  const remainder = audioDuration - fullSegments * segmentSec;
+  // Drop tiny tail segments below MIN_SEGMENT_REMAINDER_SEC.
+  if (remainder > 0 && remainder < MIN_SEGMENT_REMAINDER_SEC) {
+    return Math.max(fullSegments, 1);
+  }
+  return Math.ceil(audioDuration / segmentSec);
 }
 
 function getStartSegmentIndex(
