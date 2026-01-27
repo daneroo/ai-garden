@@ -34,17 +34,12 @@ The core transcription pipeline now runs under Bun with all tests passing.
       verified with integration test
 - [x] Benchmarking: Implement runner based on plan.
   - Plan 3: `bun-one/plans/WHISPER-BENCHMARK-PLAN-claude.md` (adopted)
+- [x] Segmentation Handle large files by segmenting (with overlap) - and
+  - [x] Initial Spec: `bun-one/plans/WHISPER-SEGMENTATION-PLAN-*.md`
 
 ## Remaining Work
 
-- [ ] Segmentation pipeline: Handle files over 37 hours by splitting into
-      segments, transcribe each, then stitch VTTs with offset adjustment
-  - we may look to `whisper-sh/whisper.mjs` for ideas, but this will be a new
-    implementation (with overlap of segments)
-  - VTT stitching: After segmented transcription, multiple VTT files must be
-    combined with offset adjustment. Neither implementation has this; it was
-    identified as a critical gap.
-  - Initial Spec: `bun-one/plans/WHISPER-SEGMENTATION-PLAN-spec.md`
+- VTT stitching: show alignments - tune algorithm - word-level-timestamps
 - Validate --word-timestamps option
   - compare: models, durations, word-level-timestamps,
   - sources: whisper-sh/bench.sh, whisper-bench/bench.sh,

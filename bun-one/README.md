@@ -28,6 +28,15 @@ bun test             # Run tests (recursive)
 bun run apps/cli/cli.ts time 3661.5
 bun run apps/cli/cli.ts --help
 
+# Whisper Transcription (cwd = apps/whisper)
+cd apps/whisper
+bun run whisper.ts -i data/samples/hobbit-30m.m4b
+bun run whisper.ts -i data/samples/hobbit-30m.m4b --segment 10m --overlap 30s -m tiny.en
+
+# Whisper Benchmarks (cwd = apps/whisper)
+bun run scripts/benchmarks/run-bench.ts
+# Output: scripts/benchmarks/summary.md, execution-time.png, speedup.png
+
 # Vite Web App
 (cd apps/vite-one && bun run dev)
 
