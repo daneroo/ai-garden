@@ -1,5 +1,7 @@
 # Clawdbot
 
+Note:**Renamed Moltbot** Should I re-install?
+
 - Main site: <https://clawd.bot/>
 - Docs: https://docs.clawd.bot/start/getting-started
 - Skills: <https://clawdhub.com/>

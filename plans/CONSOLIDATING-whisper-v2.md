@@ -39,14 +39,18 @@ The core transcription pipeline now runs under Bun with all tests passing.
 
 ## Remaining Work
 
+- Visual Word Scrubber (not whisper exactly!)
+- Have we done enough to remove the old: `whisper-sh/` and `whisper-bench/`?
+  - Project documentation: Write `README.md`, `docs/`, `thoughts/` mostly to
+  - Cleanup: Remove /external-repos/whisper.cpp after capturing model download
+    script (which should live with models?) capture content of originals
+    - sources: whisper-sh/README.md, whisper-bench/README.md,
+
 - VTT stitching: show alignments - tune algorithm - word-level-timestamps
 - Validate --word-timestamps option
   - compare: models, durations, word-level-timestamps,
   - sources: whisper-sh/bench.sh, whisper-bench/bench.sh,
     whisper-sh/whisperBench.mjs, WHISPER-MIGRATION.md, CONSOLIDATING-whisper.md
-- Project documentation: Write `README.md`, `docs/`, `thoughts/` mostly to
-  capture content of originals
-  - sources: whisper-sh/README.md, whisper-bench/README.md,
 - Monotonicity analysis: This informed the decision to drop whisperkit but the
   documentation itself was not migrated. should also be included in vtt output
   validation?
@@ -60,6 +64,4 @@ The core transcription pipeline now runs under Bun with all tests passing.
 - VTT comparison tooling: Decide where 34KB vtt-compare code should live and
   whether to maintain it
   - sources: whisper-bench/lib/vtt-compare.ts, VTT-COMPARE-PLAN.md
-- Cleanup: Remove /external-repos/whisper.cpp after capturing model download
-  script (which should live with models?)
 - Cleanup: Remove `whisper-bench` and `whisper-sh` directories
