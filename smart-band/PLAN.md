@@ -33,26 +33,26 @@ Definition of done
 
 ## Execution checklist
 
-1. Offline escape hatch (iPad + web)
+Offline escape hatch (iPad + web)
 
 - [ ] iPad Health app: Export All Health Data; confirm you can access the ZIP.
 - [ ] Huawei ID Privacy Centre: Request Your Data; confirm you can download and store the ZIP.
 - [ ] Record where you stored the ZIP(s) (folder/drive/path).
 
-2. Decide legacy history import (optional)
+Decide legacy history import (optional)
 
 - [ ] Decide whether you want legacy Huawei history inside Health Connect.
 - [ ] If yes: install Huawei Health on Pixel 9; sign in; confirm history appears.
 - [ ] If yes: install Health Sync; confirm Huawei Health is available as a source.
 - [ ] If yes: note whether Health Sync historical sync requires a one-time unlock.
 
-3. Band 10 onboarding (Pixel 9)
+Band 10 onboarding (Pixel 9)
 
 - [ ] Pair Band 10 with Mi Fitness.
 - [ ] Grant Mi Fitness write permissions in Health Connect.
 - [ ] After 24-48h: confirm metrics land in Health Connect (steps/sleep/HR/workouts).
 
-4. De-dup (Pixel 9)
+De-dup (Pixel 9)
 
 - [ ] For each metric type, confirm exactly one writer into Health Connect.
 - [ ] Configure Google Fit to read from Health Connect (viewer/sink), not as a parallel writer.

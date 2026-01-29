@@ -69,33 +69,59 @@ also update `smart-band/PLAN.md` (keep the plan readable).
 
 ## System overview
 
+### Unified graph (data + decisions)
+
+If your viewer supports Mermaid, use the graph below. If not, the ASCII graph
+under it is the fallback.
+
+```mermaid
+flowchart TD
+  %% Devices
+  HB6[Honor Band 6] -->|BT| HH_IPAD[iPad: Huawei Health]
+  SB10[Xiaomi Smart Band 10] -->|BT| MF[Pixel 9: Mi Fitness]
+
+  %% Offline archives
+  HH_IPAD -->|writes continuously| AH[iPad: Apple Health]
+  AH -->|Apple Health export ZIP|ARCHIVE_APPLE[Offline archive]
+  HH_IPAD -->|Huawei privacy export ZIP|ARCHIVE_HUAWEI[Offline archive]
+
+  %% Canonical hub
+  MF -->|writes| HC[Health Connect\ncanonical]
+
+  %% Fit as sink/viewer
+  HC -->|share read| FIT[Google Fit\nviewer sink]
+  FIT -->|Google Takeout optional|ARCHIVE_FIT[Offline archive]
+
+  %% Legacy import decision
+  HH_IPAD --> D{Import legacy history into Health Connect}
+  D -->|No| HC
+  D -->|Yes| HH_PIXEL[Pixel 9: Huawei Health\nsigned in]
+  HH_PIXEL --> HS[Pixel 9: Health Sync]
+  HS -->|sync may require one-time unlock|HC
+
+  %% Guardrail note
+  NOTE[Rule: one writer per metric type into Health Connect] -.-> HC
+```
+
 ### Combined dataflow graph (legacy + migration + future)
 
-```text
-LEGACY (Honor Band 6, currently via iPad)
+```mermaid
+flowchart LR
+  %% LEGACY
+  HB6[Honor Band 6] -->|BT| HH_IPAD[iPad Huawei Health]
+  HH_IPAD -->|writes continuously| AH[iPad Apple Health]
+  AH -->|Export All Health Data ZIP| ARCHIVE_APPLE[Offline archive]
+  HH_IPAD --> PRIVACY[Huawei ID Privacy Centre]
+  PRIVACY -->|Request Your Data ZIP| ARCHIVE_HUAWEI[Offline archive]
 
-  Honor Band 6
-      | (BT)
-      v
-  iPad: Huawei Health  -----------------------------------------------+
-      |                                                               |
-      | (writes continuously)                                         |
-      +-------------> iPad: Apple Health ---> Export All Health Data   |
-      |                                         (offline ZIP)         |
-      |                                                               |
-      +-------------> Huawei ID Privacy Centre ---> Request Your Data  |
-                              (offline ZIP archive)                   |
+  %% MIGRATION BRIDGE (optional)
+  HH_PIXEL[Pixel Huawei Health signed in] --> HS[Pixel Health Sync]
+  HS --> HC[Health Connect]
+  HC --> FIT[Google Fit app]
 
-MIGRATION BRIDGE (optional)
-
-  Huawei Health (Pixel, signed in) ---> Pixel: Health Sync ---> Health Connect ---> Google Fit app
-
-FUTURE (Xiaomi Smart Band 10)
-
-  Xiaomi Smart Band 10
-      | (BT)
-      v
-  Pixel: Mi Fitness ---> Health Connect ---> Google Fit app
+  %% FUTURE
+  SB10[Xiaomi Smart Band 10] -->|BT| MF[Pixel Mi Fitness]
+  MF --> HC
 ```
 
 Notes
