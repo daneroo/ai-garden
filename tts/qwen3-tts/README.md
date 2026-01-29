@@ -1,48 +1,40 @@
-# Qwen3 TTS Example
+# Qwen3-TTS
 
-**!IMPORTANT!**
+Always use `uv` with `--prerelease=allow` (mlx-audio is pre-release).
 
-Always use `uv` and the `--prerelease=allow` flag.
+## Scripts
 
-This is strictly required because the `mlx-audio` library and its dependencies
-are currently in pre-release status. Running without this flag will result in
-dependency resolution errors or missing packages.
+### `basic.py` — Predefined voices + instruct
+
+Uses the 1.7B CustomVoice model. Supports named voices, optional style/emotion
+instruct, text from file, and `--voice all` / `--instruct all` to loop.
 
 ```bash
-uv run --prerelease=allow script.py ...
+uv run --prerelease=allow basic.py --help
 ```
 
-## TODO (remove when all is done)
+### `clone.py` — Voice cloning
 
-- [ ] QA: the scripts mostly ignored the excelent usage documentation at
-      <https://github.com/Blaizzy/mlx-audio/blob/main/mlx_audio/tts/models/qwen3_tts/README.md>
-  - simple.py mostly works, does not follow the documentation
-  - we should copy simple.py to basic.py (keep original as simple.py)
-  - in basic.py Follow the actual DOCS
+Uses the Base model to clone a voice from a reference audio sample.
+Preset voices: `serkis`, `kenny`.
 
-```python
-from mlx_audio.tts.utils import load_model
+```bash
+uv run --prerelease=allow clone.py --help
 
-# Base model with predefined voices
-model = load_model("mlx-community/Qwen3-TTS-12Hz-0.6B-Base-bf16")
-results = list(model.generate(
-    text="Hello, welcome to MLX-Audio!",
-    voice="Aiden",
-    language="English",
-))
+# Setup (run once — extracts reference clips from audiobooks)
+./prepare-reference-voices.sh
 
-# Access generated audio
-audio = results[0].audio  # mx.array
+# Clone
+uv run --prerelease=allow clone.py --voice serkis --play
+uv run --prerelease=allow clone.py --voice kenny --play
 ```
 
-- Tune voice prompt (e.g. "motivated, classical academic").
-- Cache generated voice model (generation is time consuming).
-- [x] Add `ffplay` integration or instructions for immediate playback.
-- Create an integrated script for all examples.
+Reference audio is **not checked into git** (`data/` is gitignored).
 
-A first example of using Qwen3 TTS to generate audio from text. This model is
-quite powerful, featuring capabilities for **Voice Cloning** and **Voice
-Design** (prompted voice styles).
+## TODO
+
+- `basic.py`: loops sometimes hang
+- Test clone.py with 1.7B Base model (currently uses 0.6B per docs)
 
 ## References
 
@@ -50,82 +42,3 @@ Design** (prompted voice styles).
 - [Qwen3-TTS Documentation](https://github.com/Blaizzy/mlx-audio/blob/main/mlx_audio/tts/models/qwen3_tts/README.md)
 - [Simon Willison's Qwen3 TTS Example](https://github.com/simonw/tools/blob/main/python/q3_tts.py)
 - [Simon Willison's Blog Post](https://simonwillison.net/2026/Jan/22/qwen3-tts/)
-
-## Usage
-
-We provide two scripts: `simple.py` for predefined voices and `speak.py` for
-prompted Voice Design.
-
-### Predefined Voices (`simple.py`)
-
-Uses the `CustomVoice` model (0.6B) to generate speech with one of the built-in
-voices.
-
-```bash
-# List available voices
-uv run --prerelease=allow simple.py --help
-
-# Generate audio (Default: "Aiden", speaks Thesis Title)
-# Output: data/outputs/output_simple.wav
-# Use --play to automatically play the result with ffplay
-uv run --prerelease=allow simple.py --play
-
-# Custom usage with optional seed for reproducibility
-uv run --prerelease=allow simple.py --text "Hello world" --voice "Vivian" --seed 42 --output data/outputs/hello.wav
-```
-
-**Available Voices:**
-
-- **English:** Ryan, Aiden
-- **Chinese:** Vivian, Serena, Uncle_Fu, Dylan, Eric
-
-### Voice Design (`speak.py`)
-
-Uses the `VoiceDesign` model (1.7B) to generate a voice based on a text prompt.
-
-```bash
-# Generate audio with default prompt ("motivated, classical academic")
-# Output: data/outputs/output_speak.wav
-uv run --prerelease=allow speak.py --play
-
-# Custom prompt
-uv run --prerelease=allow speak.py --prompt "A cheerful, energetic young narrator"
-```
-
-**Note:** The `--prerelease=allow` flag is currently required because
-`mlx-audio` depends on a pre-release version of `transformers`.
-
-### Voice Cloning (`clone.py`)
-
-Uses the `Base` model to clone a voice from a reference audio file (`.wav`).
-
-1. **Extract Reference:** You need a short audio clip (single speaker).
-2. **Transcribe:** You need the exact text spoken in the clip.
-
-```bash
-# Auto-setup (using default sample at data/reference/reference_voice.wav)
-uv run --prerelease=allow clone.py --ref-text "In a hole in the ground there lived a hobbit." --play
-```
-
-**Note:** For best results, ensuring the `ref-text` matches the audio exactly is
-crucial. **Note:** All scripts support the `--play` flag to immediately play the
-generated audio using `ffplay`.
-
-## Listening to the Output
-
-We recommend using `ffplay` (part of `ffmpeg`) for a quiet playback experience:
-
-```bash
-ffplay -autoexit -nodisp -hide_banner -loglevel error data/outputs/output_simple.wav
-```
-
-## Model Caching
-
-Models are automatically downloaded and cached by Hugging Face libraries.
-Location: `~/.cache/huggingface/hub/models--Qwen--Qwen3-TTS...`
-
-These models can be large (approx. 4.3 GB). You can inspect the cache size with:
-
-```bash
-du -hd1 ~/.cache/huggingface/hub/
-```
