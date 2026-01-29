@@ -1,12 +1,11 @@
 # AI Garden Plans
 
-## Inbox
+## TODO Inbox
 
 These are _TODOs_ that need to be added in the right place. The document below
 should give guidance
 
-- [x] Add qwen3-tts example, perhaps move `eleven-audio` into a new top level
-      `tts/` directory, and place the qwen3-tts example there as well?
+- [ ] Could we use `tts/qwen3-tts` for long-form narration (epub)?
 
 ## Roadmap
 
