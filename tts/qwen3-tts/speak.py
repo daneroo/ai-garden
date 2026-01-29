@@ -26,12 +26,12 @@ DEFAULT_TEXT_FILE = "these-laurence-edited.txt"
 DEFAULT_PROMPT = "motivated, classical academic"
 
 def main():
-    parser = argparse.ArgumentParser(description="Qwen3-TTS Voice Design Generator")
+    parser = argparse.ArgumentParser(description="Qwen3-TTS Voice Design Generator", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--text-file", type=str, default=DEFAULT_TEXT_FILE, help="Path to text file")
     parser.add_argument("--prompt", type=str, default=DEFAULT_PROMPT, help="Voice description prompt")
     parser.add_argument("--output", type=str, default="data/outputs/output_speak.wav", help="Output WAV file")
     parser.add_argument("--play", action="store_true", help="Play audio after generation")
-    
+
     args = parser.parse_args()
 
     # Read text
@@ -46,6 +46,7 @@ def main():
         sys.exit(1)
 
     print(f"Loading VoiceDesign model (Qwen3-TTS)...")
+    print("Warning: Expect warning about tokenizer (possibly because of pre-release)\n")
     # Voice Design model (1.7B)
     model = load_model("mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-bf16")
 
@@ -73,6 +74,7 @@ def main():
     import soundfile as sf
     import numpy as np
     
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     sf.write(args.output, np.array(audio_array), 24000)
     
     print(f"Output: {args.output}")

@@ -2,6 +2,27 @@
 
 ## TODO (remove when all is done)
 
+- [ ] QA: the scripts mostly ignored the excelent usage documentation at
+      <https://github.com/Blaizzy/mlx-audio/blob/main/mlx_audio/tts/models/qwen3_tts/README.md>
+  - simple.py mostly works, does not follow the documentation
+  - we should copy simple.py to basic.py (keep original as simple.py)
+  - in basic.py Follow the actual DOCS
+
+```python
+from mlx_audio.tts.utils import load_model
+
+# Base model with predefined voices
+model = load_model("mlx-community/Qwen3-TTS-12Hz-0.6B-Base-bf16")
+results = list(model.generate(
+    text="Hello, welcome to MLX-Audio!",
+    voice="Aiden",
+    language="English",
+))
+
+# Access generated audio
+audio = results[0].audio  # mx.array
+```
+
 - Tune voice prompt (e.g. "motivated, classical academic").
 - Cache generated voice model (generation is time consuming).
 - [x] Add `ffplay` integration or instructions for immediate playback.
@@ -25,19 +46,20 @@ prompted Voice Design.
 
 ### Predefined Voices (`simple.py`)
 
-Uses the `Base` model to generate speech with one of the built-in voices.
+Uses the `CustomVoice` model (0.6B) to generate speech with one of the built-in
+voices.
 
 ```bash
 # List available voices
-uv run --prerelease=allow simple.py --list-voices
+uv run --prerelease=allow simple.py --help
 
 # Generate audio (Default: "Aiden", speaks Thesis Title)
 # Output: data/outputs/output_simple.wav
 # Use --play to automatically play the result with ffplay
 uv run --prerelease=allow simple.py --play
 
-# Custom usage
-uv run --prerelease=allow simple.py --text "Hello world" --voice "Vivian" --output data/outputs/hello.wav
+# Custom usage with optional seed for reproducibility
+uv run --prerelease=allow simple.py --text "Hello world" --voice "Vivian" --seed 42 --output data/outputs/hello.wav
 ```
 
 **Available Voices:**

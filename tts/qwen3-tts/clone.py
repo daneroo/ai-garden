@@ -28,7 +28,7 @@ DEFAULT_REF_AUDIO = "data/reference/reference_voice.wav"
 DEFAULT_REF_TEXT = "In a hole in the ground there lived a hobbit."
 
 def main():
-    parser = argparse.ArgumentParser(description="Qwen3-TTS Voice Cloning Generator")
+    parser = argparse.ArgumentParser(description="Qwen3-TTS Voice Cloning Generator", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--text-file", type=str, default=DEFAULT_TEXT_FILE, help="Path to target text file")
     parser.add_argument("--ref-audio", type=str, default=DEFAULT_REF_AUDIO, help="Path to reference audio file")
     parser.add_argument("--ref-text", type=str, default=DEFAULT_REF_TEXT, help="Transcript of recurrence audio")
@@ -55,6 +55,7 @@ def main():
         sys.exit(1)
 
     print(f"Loading Base model (Qwen3-TTS) for Cloning...")
+    print("Warning: Expect warning about tokenizer (possibly because of pre-release)\n")
     # Voice Cloning uses the Base model
     model = load_model("mlx-community/Qwen3-TTS-12Hz-0.6B-Base-bf16")
     
@@ -92,6 +93,7 @@ def main():
     import soundfile as sf
     import numpy as np
     
+    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     sf.write(args.output, np.array(audio_array), 24000)
     
     print(f"Output: {args.output}")
