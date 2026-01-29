@@ -5,6 +5,7 @@
 - Current device: **Honor Band 6** (vendor app: **Huawei Health**).
 - You also have an **iPad**; your Honor Band 6 has been syncing to **Huawei
   Health via the iPad**, continuously building your history there.
+- On iPad, Huawei Health is syncing to **Apple Health** continuously.
 - Target device: **Xiaomi Smart Band 10**.
 - Phone: **Pixel 9**.
 - Non-negotiables:
@@ -19,6 +20,8 @@
 ## Plan of record (execution)
 
 Follow this section first. Use the rest of this document as reference.
+
+If this feels like too much, start with `smart-band/SMART-BAND-MIGRATION-VALIDATION.md`.
 
 ### Definition of done
 
@@ -39,8 +42,9 @@ Follow this section first. Use the rest of this document as reference.
 
 2. Take offline backups (recommended regardless of legacy import choice)
 
-   - [ ] iPad: (optional) enable Huawei Health -> Apple Health write; then run
-         Apple Health "Export All Health Data" (offline ZIP).
+   - [ ] iPad: confirm Huawei Health -> Apple Health sync is enabled (it is
+         already continuous in your setup); then run Apple Health "Export All
+         Health Data" (offline ZIP).
    - [ ] Web: Huawei ID -> Privacy Centre -> "Request Your Data"; download/store
          the ZIP.
    - [ ] Optional: Google Takeout for Google Fit (archive whatever lands there).
@@ -93,6 +97,12 @@ Follow this section first. Use the rest of this document as reference.
 - It is the source for legacy migration (via Health Sync) and for offline
   exports (Huawei Privacy Centre export and/or Apple Health export).
 
+### Apple Health (iPad)
+
+- In your setup, Huawei Health is **already syncing to Apple Health
+  continuously**.
+- Apple Health’s built-in export is a practical offline archive route.
+
 ### Google Fit
 
 - A Google _health data store / app ecosystem_.
@@ -142,7 +152,7 @@ LEGACY (Honor Band 6, currently via iPad)
       ▼
   iPad: Huawei Health  ───────────────────────────────────────────────┐
       │                                                              │
-      │ (optional: write)                                            │
+      │ (writes continuously)                                        │
       ├──────────────► iPad: Apple Health ──► Export All Health Data │
       │                                         (offline ZIP)       │
       │                                                              │
@@ -217,8 +227,9 @@ a supported cloud login). Since your Huawei Health history currently lives on
 4. **Apple Health as an intermediate (because your source device is already the
    iPad)**
 
-- Ensure Huawei Health is writing to **Apple Health** on the iPad.
-- Then use Apple Health’s built-in **Export All Health Data** (XML ZIP) for an
+- In your setup, Huawei Health is already writing to **Apple Health** on the
+  iPad.
+- Use Apple Health’s built-in **Export All Health Data** (XML ZIP) for an
   offline archive.
 
 ### Decision point
@@ -300,7 +311,8 @@ This section is the longer checklist grouped by topic.
 
   - [ ] Huawei route: Huawei ID → Privacy Centre → Request Your Data → download
         ZIP.
-  - [ ] Apple route: iPad Health app → Export All Health Data → store ZIP.
+  - [ ] Apple route: iPad Health app → Export All Health Data → store ZIP (Huawei
+        Health -> Apple Health is already continuous).
 - [ ] Optional: Google Fit sink archive via Google Takeout.
 
 ### B) Xiaomi Smart Band 10 onboarding
