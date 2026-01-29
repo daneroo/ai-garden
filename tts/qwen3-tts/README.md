@@ -1,5 +1,17 @@
 # Qwen3 TTS Example
 
+**!IMPORTANT!**
+
+Always use `uv` and the `--prerelease=allow` flag.
+
+This is strictly required because the `mlx-audio` library and its dependencies
+are currently in pre-release status. Running without this flag will result in
+dependency resolution errors or missing packages.
+
+```bash
+uv run --prerelease=allow script.py ...
+```
+
 ## TODO (remove when all is done)
 
 - [ ] QA: the scripts mostly ignored the excelent usage documentation at
