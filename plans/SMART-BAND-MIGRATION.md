@@ -16,6 +16,73 @@
   - Home Assistant integration is optional; prefer solutions that don’t lock you
     into a cloud.
 
+## Plan of record (execution)
+
+Follow this section first. Use the rest of this document as reference.
+
+### Definition of done
+
+- [ ] You have an offline archive you own (Apple Health export ZIP and/or Huawei
+      Privacy Centre ZIP).
+- [ ] Ongoing flow is stable: Band 10 -> Mi Fitness -> Health Connect (canonical).
+- [ ] Google Fit is a viewer/sink only (ideally reading from Health Connect, not
+      a parallel write target).
+- [ ] No obvious duplication (steps, sleep, workouts, HR) after 1-2 days of
+      syncing.
+
+### Steps (do these in order)
+
+1. Preflight (iPad)
+
+   - [ ] Do a final sync: open Huawei Health and confirm the latest data is
+         present.
+
+2. Take offline backups (recommended regardless of legacy import choice)
+
+   - [ ] iPad: (optional) enable Huawei Health -> Apple Health write; then run
+         Apple Health "Export All Health Data" (offline ZIP).
+   - [ ] Web: Huawei ID -> Privacy Centre -> "Request Your Data"; download/store
+         the ZIP.
+   - [ ] Optional: Google Takeout for Google Fit (archive whatever lands there).
+
+3. Set the Pixel hub (Pixel 9)
+
+   - [ ] Health Connect is the canonical store (enable it, confirm it is working).
+   - [ ] Configure Google Fit to read from Health Connect (treat Fit as a
+         sink/viewer).
+
+4. Decision gate: do you want legacy Honor history inside Health Connect?
+
+   - If no: keep Huawei/Apple exports as your archive and skip to step 5.
+   - If yes:
+
+     - [ ] Pixel 9: install Huawei Health, sign into the same Huawei ID, and
+           confirm history downloads locally.
+     - [ ] Pixel 9: install Health Sync and configure Huawei Health -> Health
+           Connect.
+     - [ ] Run historical sync (may require a one-time unlock).
+     - [ ] Verify history in Health Connect, then stop/limit extra paths to
+           avoid duplicates.
+
+5. Onboard Band 10 (Pixel 9)
+
+   - [ ] Pair Band 10 with Mi Fitness.
+   - [ ] Grant Mi Fitness write permissions in Health Connect.
+   - [ ] Wait 24-48h, then verify sleep + HR + workouts are actually writing.
+
+6. De-dup + stabilize (Pixel 9)
+
+   - [ ] Prefer one canonical write path per metric into Health Connect.
+   - [ ] If Google Fit is reading from Health Connect, avoid also writing the
+         same data directly into Fit from apps (common duplicate source).
+   - [ ] Spot-check steps/sleep/workouts/HR for duplication after each
+         integration change.
+
+7. Optional experiments (later)
+
+   - [ ] Gadgetbridge evaluation (pairing + data types + firmware constraints).
+   - [ ] Home Assistant integration (decide sensors vs summaries).
+
 ## Glossary (keep this straight)
 
 ### Huawei Health
@@ -204,7 +271,10 @@ Before choosing Gadgetbridge as your daily driver for Band 10:
 - If your primary hub is **Health Connect**, you can treat your **phone** as the
   bridge and selectively surface metrics into Home Assistant.
 
-## Tasks backlog (we’ll update this periodically)
+## Expanded checklist (by area)
+
+If you are executing the migration, use "Plan of record (execution)" first.
+This section is the longer checklist grouped by topic.
 
 ### Guardrails (avoid data loops / double counting)
 
