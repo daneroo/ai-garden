@@ -6,7 +6,7 @@ These are _TODOs_ that need to be added in the right place. The document below
 should give guidance
 
 - [ ] Smart Band Transition: Honor
-      [Band 6 -> Xiaomi Mi Band 10](../smart-band/SMART-BAND-MIGRATION.md)
+      [Band 6 -> Xiaomi Mi Band 10](../smart-band/README.md)
 - [ ] Restate the problem of alignment of the reference audio to the text
 - [ ] Could we use `tts/qwen3-tts` for long-form narration (epub)?
 
