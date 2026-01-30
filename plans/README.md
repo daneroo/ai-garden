@@ -20,7 +20,7 @@ should give guidance
 
 The goal here is agentic harnesses, tools, and workflows
 
-- `clawdbot/`
+- `openclaw/`
 - `opencode/`
 - `claude/`
 

@@ -24,14 +24,13 @@ curl -fsSL https://openclaw.ai/install.sh | bash
 
 ## Uninstall (tested)
 
-- Uninstall which components?
-  - Gateway service (launchd / systemd / schtasks)
-  - State + config (~/.clawdbot)
-  - Workspace (agent files)
-  - macOS app
-
 ```bash
 openclaw uninstall --dry-run
 
 openclaw uninstall
+
+Uninstall which components?
+Removed ~/.openclaw
+Removed ~/.openclaw/workspace
+Removed /Applications/OpenClaw.app
 ```
