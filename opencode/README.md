@@ -13,18 +13,25 @@ OpenAI OAuth.
 ## Current State
 
 As of 2026-01-14, I removed [oh-my-opencode](./oh-my-opencode/README.md) in
-favor of [agentic-cli](./agentic-cli/README.md)
+favor of [agentic-cli](./agentic-cli/README.md) - bun global install
 
 ## MCP Servers
 
 ### [Context7](https://context7.com/)
 
-For Up-to-date docs Content7 is really good so we have added it to the global `~/.opencode/opencode.jsonc` config. (And also to our current VSCode clone Antigravity.) While you can use it without an API KEY, it is recommended to use one for better performance. But there is a question of where to put the secret. I have decided that my user-global `~/.opencode/opencode.jsonc` is secure enough for this low value key, which I can rotate any time.
-IT is also possible to store the key in an environment variable e.g. `CONTEXT7_API_KEY` but there is no convenient way to set those on invocation.
+For Up-to-date docs Content7 is really good so we have added it to the global
+`~/.opencode/opencode.jsonc` config. (And also to our current VSCode clone
+Antigravity.) While you can use it without an API KEY, it is recommended to use
+one for better performance. But there is a question of where to put the secret.
+I have decided that my user-global `~/.opencode/opencode.jsonc` is secure enough
+for this low value key, which I can rotate any time. IT is also possible to
+store the key in an environment variable e.g. `CONTEXT7_API_KEY` but there is no
+convenient way to set those on invocation.
 
 ### [Tidewave](https://tidewave.ai/)
 
-Seems like this is only meant to be used by the Tidewave IDE/App, and not in OpenCode or Antigravity.
+Seems like this is only meant to be used by the Tidewave IDE/App, and not in
+OpenCode or Antigravity.
 
 ## Antigravity OAuth
 

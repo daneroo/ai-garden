@@ -5,12 +5,12 @@
 These are _TODOs_ that need to be added in the right place. The document below
 should give guidance
 
+- [x] Agent workspaces and loops - [agents/README.md](../agents/README.md)
+- [ ] tanstack in astro
+- [ ] opentui (bun) - tui-pubsub/directory-digester
 - [ ] Smart Band Transition: Honor
       [Band 6 -> Xiaomi Mi Band 10](../smart-band/README.md)
-- [ ] Agent workspaces and loops
-  - <https://www.aihero.dev/tips-for-ai-coding-with-ralph-wiggum>
-  - <https://docs.docker.com/ai/sandboxes/>
-  - <https://github.com/maruel/md>
+- [ ] dotfiles: mise, yadm/bare-repo,stow,chezmois,zsh
 - [ ] Restate the problem of alignment of the reference audio to the text
 - [ ] Could we use `tts/qwen3-tts` for long-form narration (epub)?
 
