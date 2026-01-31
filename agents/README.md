@@ -23,11 +23,7 @@ Specific info for each agent
 
 ## TODO
 
-- [ ] Consolidate `../opencode`, and create `./claude/`
-  - `opencode/` contains :
-    - `oh-my-opencode/`
-    - `agentic-cli/` and it's associated
-      - `experiments/` (`2026-01-14-bookfinder/`, `elixir_one/`)
+- [ ] create `claude/` and `codex/`
 
 ## References
 
