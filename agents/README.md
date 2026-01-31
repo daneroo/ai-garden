@@ -16,13 +16,14 @@ use:
 Specific info for each agent
 
 - [Kilo](./kilo/README.md)
-- [ ] [OpenCode](./opencode/README.md)
+- [OpenClaw](./openclaw/README.md)
+- [OpenCode](./opencode/README.md)
 - [ ] [Claude](./claude/README.md)
 - [ ] [Codex](./codex/README.md)
 
 ## TODO
 
-- [ ] Consolidate `../openclaw`, `../opencode`, and create `./claude/`
+- [ ] Consolidate `../opencode`, and create `./claude/`
   - `opencode/` contains :
     - `oh-my-opencode/`
     - `agentic-cli/` and it's associated
