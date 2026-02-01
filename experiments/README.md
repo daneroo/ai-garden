@@ -23,6 +23,7 @@ Each experiment is a subdirectory:
 - `<YYYY-MM-DD>-<slug>/` (recommended naming; not enforced)
   - `README.md`: required
   - Harness artifact:`AGENTS.md`,`CLAUDE.md`, `thoughts/`,.. unproscribed (yet)
+- `seeds/<slug>.md`: reusable idea specs (1 seed → many experiments)
 
 ### README Recommendations
 
