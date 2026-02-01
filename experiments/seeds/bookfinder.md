@@ -8,9 +8,10 @@ extracts metadata using ffprobe.
 ### Workflow / CI
 
 - Each experiment created from this seed should include a local `AGENTS.md`.
-- Each experiment should include a `PLAN.md` with milestones and a Session Audit Trail.
-- That `AGENTS.md` should instruct the agent to run `bun run ci` after completing
-  a meaningful task/phase, and to fix failures before proceeding.
+- Each experiment should include a `PLAN.md` with milestones and a Session Audit
+  Trail.
+- That `AGENTS.md` should instruct the agent to run `bun run ci` after
+  completing a meaningful task/phase, and to fix failures before proceeding.
 - Dependencies must be added with `bun add` / `bun add -d` (never by editing
   `package.json` directly).
 
@@ -22,14 +23,15 @@ extracts metadata using ffprobe.
 
 - Use **Commander** (NOT Yargs) for argument parsing
 - Flags:
-  - `--rootpath <path>` - Root directory to scan (required)
+  - `-r, --rootpath <path>` - Root directory to scan (required)
   - `-c, --concurrency <n>` - Max parallel ffprobe processes (default: 8)
   - `--json` - Output JSON instead of human-readable table
 
 ### File Scanning
 
 - Recursively scan for extensions: `.m4b`, `.mp3`
-- Parallel metadata extraction with a concurrency limit (default **8**, configurable via `--concurrency/-c`)
+- Parallel metadata extraction with a concurrency limit (default **8**,
+  configurable via `--concurrency/-c`)
 - Skip hidden files and directories
 - Sort output by relative path ascending before printing
 
