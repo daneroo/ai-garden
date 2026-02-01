@@ -7,9 +7,10 @@ experiments and projects into coherent workspaces.
 
 ## TODO
 
-_Keep λ < μ or unbounded growth._
+_Warning:_ Keep λ < μ or unbounded growth.
 
 - [TODO Inbox](./plans/README.md)
+- [Legacy](./README-legacy.md)
 
 ## Structure
 
