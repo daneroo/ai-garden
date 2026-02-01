@@ -50,6 +50,7 @@ extracts metadata using ffprobe.
 
 - After probing, show an interactive, scrollable results table.
 - Sorting: left/right arrows cycle columns, `r` reverses order.
+- Indicate sort order with arrows (↑/↓) next to column headers.
 - Scrolling: arrows/j/k, page up/down, `g/G` top/bottom.
 - `q` or `esc` exits the TUI.
 
@@ -60,8 +61,8 @@ Use `ffprobe` to extract:
 - **Duration** (seconds, formatted as HH:MM:SS in table output)
 - **Bitrate** (kbps)
 - **Codec** (audio codec name)
-- **Title** tag (if present)
-- **Artist** tag (if present)
+- **Title** tag (if present) — maps to book title
+- **Artist** tag (if present) — maps to author
 - File path (relative to rootpath)
 - File size
 
@@ -70,7 +71,7 @@ Use `ffprobe` to extract:
 **TUI (default):**
 
 - After probing, show a scrollable results table in the TUI.
-- Columns: File, Duration, Bitrate, Codec, Title
+- Columns: Author, Title, Duration, Bitrate, Codec, File
 - Sorting and scrolling per the TUI/UX section.
 
 **JSON (`--json` flag):**
@@ -113,3 +114,7 @@ Use `ffprobe` to extract:
 - Use a concurrency-limited worker pool for parallel ffprobe calls
 - Parse ffprobe JSON output (`-print_format json`)
 - Handle ffprobe timeout (30s per file)
+- The results table must keep headers visible at all times — compute visible
+  row count as `terminalHeight - chromeLines` (header, separator, status bar)
+  and cap data columns (Author, Title, File) with max widths and ellipsis
+  truncation. Test with 100+ files early to catch overflow.
