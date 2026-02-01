@@ -16,18 +16,13 @@ and actively curated:
 Everything else at the repo root is considered "legacy" for now: not necessarily
 dead, just not yet placed into the consolidated homes above.
 
-We also want to run many small experiments:
-
-- Some experiments are about a code/product idea.
-- Many experiments are also (or primarily) about evaluating an agent and its
-  harness (process / "gen process evaluation") against that kind of work.
-
 The core requirement is a place to put experiments that is:
 
 - Not tool-shaped (not specific to an agent like OpenCode vs Codex vs Claude,
   etc.)
 - Separate from consolidated codebases (`bun-one/`, `deno-one/`)
 - Separate from the legacy root
+- Life-cycle: experiments are not permanent; for feature or process evaluation
 
 This document proposes an organization that keeps experiments agent-agnostic
 while still allowing any agent/harness to drop its own preferred artifacts into
@@ -117,8 +112,8 @@ Recommended README sections:
   tooling.
   - Agent docs can recommend how to create an experiment, but they should point
     to `experiments/` as the workspace location.
-- `bun-one/` and `deno-one/` contain consolidated codebases.
-  - Experiments should not "half-live" there; once promoted, they belong there.
+- `bun-one/` and `deno-one/` are distinct top-level sub-monorepos/workspaces
+  containing consolidated codebases (separate from the legacy root pile).
 
 ## Migration Plan of Existing OpenCode Experiment / Docs
 
@@ -137,20 +132,29 @@ this document; this is the checklist for later work.
     (Context, Terms, and the minimal structure expectations).
 - Move existing experiment directories from `agents/opencode/experiments/` to
   `experiments/` (no refactors yet; preserve each experiment as-is).
+- Review the final README.md for comleteness and simplicity - Requires Approval
+- This review is a gate for proceeding to Phase 2.
 
 ### Phase 2 - Consolidate Experiment Docs (Optional / Likely)
 
 - Evaluate whether any of the following should move into `experiments/` as
   shared guidance (and be consolidated/renamed), or remain under
   `agents/opencode/` as OpenCode-specific docs:
-  - `agents/opencode/AGENTS.md` — **Split**: generic bits (isolation, markdown
-    lint) → `experiments/README.md`; OpenCode-specific bits stay
+  - `agents/opencode/AGENTS.md` — **Examine placement and impact**: The behavior
+    and placement of `AGENTS.md` within the new structure is currently
+    undefined. Evaluate whether it stays agent-specific, moves to `experiments/`
+    as shared guidance, or becomes a per-experiment artifact. Consider impact on
+    existing experiments and agent/harness conventions.
   - `agents/opencode/ELIXIR.md` — **Park**: language/stack profile, no clear
-    home yet (not experiment, not agent)
+    home yet (not experiment, not agent). Preserve for now.
   - `agents/opencode/EXPERIMENTS.md` — **Move**: experiment idea menu (PRD-like
     fodder), agent-agnostic → `experiments/IDEAS.md`
   - `agents/opencode/META-PLAN.MD` — **Merge**: generic workflow →
     `experiments/README.md`; agentic-cli specifics stay in `agents/opencode/`
+- Address `thoughts/` directories: These are artifacts of the agentic-cli
+  process and appear both at `agents/opencode/thoughts/` and within specific
+  experiments. Preserve them but determine whether they should stay
+  agent-specific or become part of the shared experiment structure.
 
 ### Phase 3 - Refactor / Simplify
 
