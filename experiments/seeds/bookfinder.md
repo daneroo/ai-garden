@@ -8,8 +8,11 @@ extracts metadata using ffprobe.
 ### Workflow / CI
 
 - Each experiment created from this seed should include a local `AGENTS.md`.
+- Each experiment should include a `PLAN.md` with milestones and a Session Audit Trail.
 - That `AGENTS.md` should instruct the agent to run `bun run ci` after completing
   a meaningful task/phase, and to fix failures before proceeding.
+- Dependencies must be added with `bun add` / `bun add -d` (never by editing
+  `package.json` directly).
 
 ### Tech Stack / Runtime
 
@@ -30,18 +33,23 @@ extracts metadata using ffprobe.
 - Skip hidden files and directories
 - Sort output by relative path ascending before printing
 
-### Progress Reporting
+### TUI / UX
 
-- Print a single-line progress indicator to **stderr** during scanning/probing.
-- It should overwrite the same line (terminal control; do not spam newlines).
-- Include total files, processed count, and current running concurrency.
-- Include simple timing: elapsed and remaining (based on average seconds/file so far).
+- Use OpenTUI for the interactive experience.
+- The TUI owns stdout for interactive runs.
+- `--json` bypasses the TUI and prints a JSON array to stdout.
 
-Example:
+**Progress View**
 
-```text
-Probing... files: 882 | processed: 99/882 | running: 2/2 | elapsed: 4s remaining: 33s
-```
+- Show scan/probe progress with total files, processed, running, and timing.
+- Include a list of in-flight files (up to the current concurrency).
+
+**Results View**
+
+- After probing, show an interactive, scrollable results table.
+- Sorting: left/right arrows cycle columns, `r` reverses order.
+- Scrolling: arrows/j/k, page up/down, `g/G` top/bottom.
+- `q` or `esc` exits the TUI.
 
 ### Metadata Extraction
 
@@ -57,21 +65,23 @@ Use `ffprobe` to extract:
 
 ### Output Formats
 
-**Table (default):**
+**TUI (default):**
 
+- After probing, show a scrollable results table in the TUI.
 - Columns: File, Duration, Bitrate, Codec, Title
-- Truncate long paths, align columns
-- Show summary: total files, total duration
+- Sorting and scrolling per the TUI/UX section.
 
 **JSON (`--json` flag):**
 
 - Array of objects with all metadata fields
 - Pretty-printed with 2-space indentation
 - `--json` prints a single JSON array to stdout (not NDJSON)
+- `--json` bypasses the TUI and prints directly to stdout
 
 ### Error Handling
 
-- Skip files where ffprobe fails, log warning to stderr
+- Skip files where ffprobe fails; surface warnings in the TUI and log to stderr
+  for `--json` runs
 - Continue processing remaining files
 - Exit code 0 on success, 1 on fatal error
 
@@ -92,11 +102,12 @@ Use `ffprobe` to extract:
 
 ### Dependencies
 
+- `@opentui/core`, `@opentui/react`, `react` - TUI runtime
 - `commander` - CLI argument parsing
 - `ffprobe` (system dependency) - must be installed and in PATH
 
 ### Implementation Notes
 
-- Use `Promise.all` with concurrency limiting for parallel ffprobe calls
+- Use a concurrency-limited worker pool for parallel ffprobe calls
 - Parse ffprobe JSON output (`-print_format json`)
 - Handle ffprobe timeout (30s per file)

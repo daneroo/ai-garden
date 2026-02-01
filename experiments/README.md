@@ -25,6 +25,12 @@ Each experiment is a subdirectory:
   - Harness artifact:`AGENTS.md`,`CLAUDE.md`, `thoughts/`,.. unproscribed (yet)
 - `seeds/<slug>.md`: reusable idea specs (1 seed → many experiments)
 
+### Recommended Artifacts
+
+- `AGENTS.md`: Per-experiment workflow and tooling rules (might depend on harness).
+- `PLAN.md`: A living plan doc with these sections: harness, goal, milestones
+  (checkbox list), decisions/notes, and Session Audit Trail.
+
 ### README Recommendations
 
 - Name and date: Title matches directory name.
