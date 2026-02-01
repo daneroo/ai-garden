@@ -20,10 +20,10 @@ Build a production-ready audiobook scanner CLI that discovers audio files, extra
 
 ### Phase 2: Core Scanning
 
-- [ ] Implement recursive directory scanner
-- [ ] Filter for supported audio formats (.m4b, .mp3)
-- [ ] Add progress indication during scan
-- [ ] Handle file system errors gracefully
+- [x] Implement recursive directory scanner
+- [x] Filter for supported audio formats (.m4b, .mp3)
+- [x] Add progress indication during scan
+- [x] Handle file system errors gracefully
 
 ### Phase 3: Metadata Extraction
 
@@ -64,3 +64,5 @@ Build a production-ready audiobook scanner CLI that discovers audio files, extra
 ### Session 1 — 2026-02-01 (claude/opus-4.5)
 
 **Phase 1 complete.** Initialized Bun project, configured TypeScript strict mode, installed all dependencies (commander, @opentui/core, @opentui/react, react, vitest, eslint, prettier, typescript-eslint), created CLI entry point with Commander skeleton, set up eslint/prettier configs. `bun run ci` passes all checks (fmt, lint, typecheck, test).
+
+**Phase 2 complete.** Implemented recursive directory scanner (`src/scanner.ts`) with hidden file/dir skipping, .m4b/.mp3 filtering, sorted output by relative path. Wired into CLI with rootpath validation and progress output to stderr. 9 scanner tests + 1 placeholder = 10 tests passing. `bun run ci` green.
