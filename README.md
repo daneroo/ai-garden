@@ -7,7 +7,7 @@ experiments and projects into coherent workspaces.
 
 ## TODO
 
-> [!TIP] Keep (Inbox arrival rate) **λ << μ** (execution rate)
+_Keep λ < μ or unbounded growth._
 
 - [TODO Inbox](./plans/README.md)
 
