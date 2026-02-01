@@ -4,7 +4,8 @@ import { resolve } from "node:path";
 import { stat } from "node:fs/promises";
 import { Command } from "commander";
 import { scanDirectory } from "./scanner.ts";
-import { probeFiles, formatDuration } from "./probe.ts";
+import { probeFiles } from "./probe.ts";
+import { renderTui } from "./tui/render.tsx";
 
 const program = new Command();
 
@@ -12,10 +13,15 @@ program
   .name("booktui")
   .description("Audiobook scanner CLI - discover and analyze audiobook files")
   .version("0.1.0")
-  .requiredOption("-r, --rootpath <path>", "Root directory to scan")
+  .option("-r, --rootpath <path>", "Root directory to scan", process.env.BOOKTUI_ROOTPATH)
   .option("-c, --concurrency <n>", "Max parallel ffprobe processes", "8")
   .option("--json", "Output JSON instead of interactive TUI")
-  .action(async (options: { rootpath: string; concurrency: string; json?: boolean }) => {
+  .action(async (options: { rootpath?: string; concurrency: string; json?: boolean }) => {
+    if (!options.rootpath) {
+      console.error("Error: --rootpath is required (or set BOOKTUI_ROOTPATH in .env)");
+      process.exit(1);
+    }
+
     const concurrency = parseInt(options.concurrency, 10);
     if (isNaN(concurrency) || concurrency < 1) {
       console.error("Error: concurrency must be a positive integer");
@@ -35,38 +41,30 @@ program
       process.exit(1);
     }
 
-    // Scan for audio files
-    console.error(`Scanning ${rootPath} for audiobooks...`);
-    const files = await scanDirectory(rootPath);
-    console.error(`Found ${files.length} audio file${files.length === 1 ? "" : "s"}`);
-
-    if (files.length === 0) {
-      if (options.json) {
-        console.log("[]");
-      }
-      return;
-    }
-
-    // Probe metadata
-    console.error(`Probing metadata (concurrency: ${concurrency})...`);
-    const { results, errors } = await probeFiles(files, concurrency, (done, total, inFlight) => {
-      console.error(`  [${done}/${total}] ${inFlight.length > 0 ? inFlight[0] : ""}`);
-    });
-
-    for (const err of errors) {
-      console.error(`Warning: failed to probe ${err}`);
-    }
-
     if (options.json) {
+      // JSON mode: bypass TUI, output to stdout, warnings to stderr
+      console.error(`Scanning ${rootPath} for audiobooks...`);
+      const files = await scanDirectory(rootPath);
+      console.error(`Found ${files.length} audio file${files.length === 1 ? "" : "s"}`);
+
+      if (files.length === 0) {
+        console.log("[]");
+        return;
+      }
+
+      console.error(`Probing metadata (concurrency: ${concurrency})...`);
+      const { results, errors } = await probeFiles(files, concurrency, (done, total) => {
+        console.error(`  [${done}/${total}]`);
+      });
+
+      for (const err of errors) {
+        console.error(`Warning: failed to probe ${err}`);
+      }
+
       console.log(JSON.stringify(results, null, 2));
     } else {
-      // TUI will be added in Phase 4; for now print a simple table
-      for (const r of results) {
-        const duration = formatDuration(r.duration);
-        const title = r.title ?? "-";
-        console.log(`${r.relativePath}  ${duration}  ${r.bitrate}kbps  ${r.codec}  ${title}`);
-      }
-      console.error(`\n${results.length} files, ${errors.length} errors`);
+      // Interactive TUI mode
+      await renderTui(rootPath, concurrency);
     }
   });
 
