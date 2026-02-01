@@ -4,6 +4,7 @@ import { resolve } from "node:path";
 import { stat } from "node:fs/promises";
 import { Command } from "commander";
 import { scanDirectory } from "./scanner.ts";
+import { probeFiles, formatDuration } from "./probe.ts";
 
 const program = new Command();
 
@@ -11,7 +12,7 @@ program
   .name("booktui")
   .description("Audiobook scanner CLI - discover and analyze audiobook files")
   .version("0.1.0")
-  .requiredOption("--rootpath <path>", "Root directory to scan")
+  .requiredOption("-r, --rootpath <path>", "Root directory to scan")
   .option("-c, --concurrency <n>", "Max parallel ffprobe processes", "8")
   .option("--json", "Output JSON instead of interactive TUI")
   .action(async (options: { rootpath: string; concurrency: string; json?: boolean }) => {
@@ -34,25 +35,39 @@ program
       process.exit(1);
     }
 
+    // Scan for audio files
     console.error(`Scanning ${rootPath} for audiobooks...`);
     const files = await scanDirectory(rootPath);
     console.error(`Found ${files.length} audio file${files.length === 1 ? "" : "s"}`);
 
+    if (files.length === 0) {
+      if (options.json) {
+        console.log("[]");
+      }
+      return;
+    }
+
+    // Probe metadata
+    console.error(`Probing metadata (concurrency: ${concurrency})...`);
+    const { results, errors } = await probeFiles(files, concurrency, (done, total, inFlight) => {
+      console.error(`  [${done}/${total}] ${inFlight.length > 0 ? inFlight[0] : ""}`);
+    });
+
+    for (const err of errors) {
+      console.error(`Warning: failed to probe ${err}`);
+    }
+
     if (options.json) {
-      console.log(JSON.stringify(files, null, 2));
+      console.log(JSON.stringify(results, null, 2));
     } else {
       // TUI will be added in Phase 4; for now print a simple table
-      for (const f of files) {
-        console.log(`${f.relativePath}  (${formatSize(f.size)})`);
+      for (const r of results) {
+        const duration = formatDuration(r.duration);
+        const title = r.title ?? "-";
+        console.log(`${r.relativePath}  ${duration}  ${r.bitrate}kbps  ${r.codec}  ${title}`);
       }
+      console.error(`\n${results.length} files, ${errors.length} errors`);
     }
   });
-
-function formatSize(bytes: number): string {
-  if (bytes < 1024) return `${bytes} B`;
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-  if (bytes < 1024 * 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-  return `${(bytes / (1024 * 1024 * 1024)).toFixed(1)} GB`;
-}
 
 program.parse();
