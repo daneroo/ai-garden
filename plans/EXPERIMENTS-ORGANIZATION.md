@@ -61,7 +61,8 @@ Rationale:
 - The primary organizing axis should be the experiment (the problem/project),
   not the agent (the tool).
 - The same experiment can be attempted with multiple agents/harnesses over time
-  without moving it.
+  without moving it. (How to structure multi-agent attempts within a single
+  experiment is TBD—practice will inform conventions.)
 - `agents/` stays dedicated to agent setup and harness/workflow docs, not
   project workspaces.
 
@@ -83,11 +84,11 @@ ai-garden/
 
 Each experiment is a subdirectory:
 
-- `experiments/<YYYY-MM-DD>-<slug>/`
+- `experiments/<YYYY-MM-DD>-<slug>/` (recommended naming; not enforced)
 
 The only repository-level invariant is:
 
-- `experiments/<YYYY-MM-DD>-<slug>/README.md` (required)
+- `experiments/.../README.md` (required)
 
 Everything else inside an experiment directory is optional and may vary by
 agent/harness.
@@ -142,10 +143,14 @@ this document; this is the checklist for later work.
 - Evaluate whether any of the following should move into `experiments/` as
   shared guidance (and be consolidated/renamed), or remain under
   `agents/opencode/` as OpenCode-specific docs:
-  - `agents/opencode/AGENTS.md`
-  - `agents/opencode/ELIXIR.md`
-  - `agents/opencode/EXPERIMENTS.md`
-  - `agents/opencode/META-PLAN.MD`
+  - `agents/opencode/AGENTS.md` — **Split**: generic bits (isolation, markdown
+    lint) → `experiments/README.md`; OpenCode-specific bits stay
+  - `agents/opencode/ELIXIR.md` — **Park**: language/stack profile, no clear
+    home yet (not experiment, not agent)
+  - `agents/opencode/EXPERIMENTS.md` — **Move**: experiment idea menu (PRD-like
+    fodder), agent-agnostic → `experiments/IDEAS.md`
+  - `agents/opencode/META-PLAN.MD` — **Merge**: generic workflow →
+    `experiments/README.md`; agentic-cli specifics stay in `agents/opencode/`
 
 ### Phase 3 - Refactor / Simplify
 
