@@ -1,0 +1,31 @@
+{
+  "name": "2026-02-01-bookfinder",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "check": "tsc --noEmit",
+    "test": "vitest run",
+    "fmt": "prettier --write .",
+    "fmt:check": "prettier --check .",
+    "ci": "bun run fmt:check && bun run lint && bun run check && bun run test",
+    "outdated": "bun outdated"
+  },
+  "dependencies": {
+    "@opentui/core": "0.1.75",
+    "@opentui/react": "0.1.75",
+    "commander": "^14.0.0",
+    "react": "19.2.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@types/bun": "latest",
+    "@types/node": "^22.13.0",
+    "@types/react": "^19.2.10",
+    "eslint": "^9.19.0",
+    "prettier": "^3.5.0",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.22.0",
+    "vitest": "^2.1.9"
+  }
+}
