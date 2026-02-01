@@ -21,6 +21,7 @@ extracts metadata using ffprobe.
 - Recursively scan for extensions: `.m4b`, `.mp3`
 - Parallel processing with concurrency limit of **8**
 - Skip hidden files and directories
+- Sort output by relative path ascending before printing
 
 ### Metadata Extraction
 
@@ -46,6 +47,7 @@ Use `ffprobe` to extract:
 
 - Array of objects with all metadata fields
 - Pretty-printed with 2-space indentation
+- `--json` prints a single JSON array to stdout (not NDJSON)
 
 ### Error Handling
 
