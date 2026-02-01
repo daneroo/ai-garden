@@ -5,6 +5,12 @@ extracts metadata using ffprobe.
 
 ## Requirements
 
+### Workflow / CI
+
+- Each experiment created from this seed should include a local `AGENTS.md`.
+- That `AGENTS.md` should instruct the agent to run `bun run ci` after completing
+  a meaningful task/phase, and to fix failures before proceeding.
+
 ### Tech Stack / Runtime
 
 - **Bun** must be used as the runtime (not Node.js)
@@ -14,14 +20,28 @@ extracts metadata using ffprobe.
 - Use **Commander** (NOT Yargs) for argument parsing
 - Flags:
   - `--rootpath <path>` - Root directory to scan (required)
+  - `-c, --concurrency <n>` - Max parallel ffprobe processes (default: 8)
   - `--json` - Output JSON instead of human-readable table
 
 ### File Scanning
 
 - Recursively scan for extensions: `.m4b`, `.mp3`
-- Parallel processing with concurrency limit of **8**
+- Parallel metadata extraction with a concurrency limit (default **8**, configurable via `--concurrency/-c`)
 - Skip hidden files and directories
 - Sort output by relative path ascending before printing
+
+### Progress Reporting
+
+- Print a single-line progress indicator to **stderr** during scanning/probing.
+- It should overwrite the same line (terminal control; do not spam newlines).
+- Include total files, processed count, and current running concurrency.
+- Include simple timing: elapsed and remaining (based on average seconds/file so far).
+
+Example:
+
+```text
+Probing... files: 882 | processed: 99/882 | running: 2/2 | elapsed: 4s remaining: 33s
+```
 
 ### Metadata Extraction
 
@@ -64,7 +84,8 @@ Use `ffprobe` to extract:
     "check": "tsc --noEmit",
     "test": "vitest run",
     "fmt": "prettier --write .",
-    "fmt:check": "prettier --check ."
+    "fmt:check": "prettier --check .",
+    "ci": "bun run fmt:check && bun run lint && bun run check && bun run test"
   }
 }
 ```
