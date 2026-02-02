@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useKeyboard, useAppContext } from "@opentui/react";
+import { useKeyboard } from "@opentui/react";
 import { scanDirectory } from "../scanner.js";
 import { probeFile } from "../prober.js";
 import { runWorkerPool } from "../worker-pool.js";
@@ -9,13 +9,13 @@ import { ProgressView } from "./ProgressView.js";
 
 interface AppProps {
   options: ScanOptions;
+  onExit: () => void;
 }
 
 type SortField = "artist" | "title" | "duration" | "bitrate" | "codec" | "path";
 type SortOrder = "asc" | "desc";
 
-export function App({ options }: AppProps) {
-  const { renderer } = useAppContext();
+export function App({ options, onExit }: AppProps) {
   const [status, setStatus] = useState<"scanning" | "probing" | "done">(
     "scanning",
   );
@@ -32,8 +32,7 @@ export function App({ options }: AppProps) {
 
   useKeyboard((key) => {
     if (key.name === "q" || key.name === "escape") {
-      renderer?.stop();
-      process.exit(0);
+      onExit();
     }
   });
 
