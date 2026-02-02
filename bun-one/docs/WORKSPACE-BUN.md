@@ -1,5 +1,9 @@
 # Bun Workspaces Monorepo Guide
 
+> [!NOTE]
+> See [**Retrospective 2026-02-02**](./RETROSPECTIVE-2026-02-02.md) for a
+> summary of the accomplishments and app lineage analysis.
+
 A reference guide for setting up Bun workspaces with shared libraries, shared UI
 components, CLI tools, and web applications.
 

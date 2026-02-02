@@ -9,7 +9,8 @@ A Bun workspace with shared packages and multiple apps.
 
 ## Directory Structure
 
-See `docs/WORKSPACE-BUN.md` for a detailed directory structure.
+See [`docs/WORKSPACE-BUN.md`](./docs/WORKSPACE-BUN.md) for a detailed directory
+structure.
 
 - `packages`: libraries like `vtt`
 - `components`: UI components like `timer`
