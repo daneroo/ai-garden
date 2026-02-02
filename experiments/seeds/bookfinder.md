@@ -21,7 +21,8 @@ extracts metadata using ffprobe.
 
 - Use **Commander** (NOT Yargs) for argument parsing
 - Flags:
-  - `-r, --rootpath <path>` - Root directory to scan (required)
+  - `-r, --rootpath <path>` - Root directory to scan (required, override with
+    `ROOTPATH` in `.env`/`.env.local`)
   - `-c, --concurrency <n>` - Max parallel ffprobe processes (default: 8)
   - `--json` - Output JSON instead of human-readable table
 
@@ -40,6 +41,10 @@ extracts metadata using ffprobe.
 - Use OpenTUI for the interactive experience.
 - The TUI owns stdout for interactive runs.
 - `--json` bypasses the TUI and prints a JSON array to stdout.
+- **Dynamic Sizing**: Column widths must scale with terminal width (avoid fixed
+  character counts).
+- **Clean Exit**: Restore terminal state on exit (e.g. `useAlternateScreen`,
+  `renderer.destroy()`).
 
 ### Progress View
 
@@ -115,9 +120,12 @@ Use `ffprobe` to extract:
 ## Implementation Notes
 
 - Use a concurrency-limited worker pool for parallel ffprobe calls
-  - Prefer an atomic-index worker pool (`nextIndex++`)
-  - Avoid `Promise.race` + shared in-flight Maps/Sets and avoid multi-worker
-    `queue.shift()` patterns (easy to leak/lose accounting)
+  - **Concurrency**: Use an atomic-index worker pool (`nextIndex++`). Explicitly
+    avoid `Promise.race` + `queue.shift()` (causes memory leaks).
+- **TUI Layout**: `<box>` defaults to column layout. For tables, either use
+  `flexDirection="row"` containers.
+- **TypeScript**: Use `"jsxImportSource": "@opentui/react"` in `tsconfig.json`
+  for proper intrinsic element types (`<box>`, `<text>`).
 - Parse ffprobe JSON output (`-print_format json`)
 - Handle ffprobe timeout (30s per file)
 - The results table must keep headers visible at all times — compute visible row
