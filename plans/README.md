@@ -5,9 +5,9 @@
 These are _TODOs_ that need to be added in the right place. The document below
 should give guidance
 
-- [x] Agent workspaces and loops - [agents/README.md](../agents/README.md)
+- [ ] Agent workspaces and loops - [agents/README.md](../agents/README.md)
+  - [ ] Started making docs subdirs - experiments move to `/experimets`
 - [ ] tanstack in astro
-- [ ] opentui (bun) - tui-pubsub/directory-digester
 - [ ] Smart Band Transition: Honor
       [Band 6 -> Xiaomi Mi Band 10](../smart-band/README.md)
 - [ ] dotfiles: mise, yadm/bare-repo,stow,chezmois,zsh
