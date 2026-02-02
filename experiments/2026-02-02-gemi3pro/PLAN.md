@@ -20,6 +20,16 @@ metadata.
 - [x] **Refine**: Sort results, handle errors, optimize concurrency.
 - [x] **Verify**: CI passes (lint, check, test).
 
+## Cleanup / Polish
+
+- [ ] **Dynamic Columns**: Scale column widths based on terminal width (replace
+      fixed widths).
+- [ ] **Smart Truncation**: Truncate _start_ of filenames (preserve
+      extension/name), truncate _end_ of other fields.
+- [ ] **Robust Timeout**: Implement `AbortSignal` or timeout process killing for
+      `ffprobe`.
+- [ ] **Error Visibility**: Highlight failed rows in the TUI results.
+
 ## Session Audit Trail
 
 - **2026-02-02**: Initialized experiment. Implemented core scanner, CLI, and
