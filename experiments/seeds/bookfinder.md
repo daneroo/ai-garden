@@ -43,7 +43,8 @@ extracts metadata using ffprobe.
 
 **Progress View**
 
-- Show scan/probe progress with total files, processed, running, and timing.
+- Show scan/probe progress with total files, processed, running, and elapsed,
+  remaining (estimated).
 - Include a list of in-flight files (up to the current concurrency).
 
 **Results View**
@@ -71,8 +72,10 @@ Use `ffprobe` to extract:
 **TUI (default):**
 
 - After probing, show a scrollable results table in the TUI.
-- Columns: Author, Title, Duration, Bitrate, Codec, File
+- Columns (in order): Author, Title, Duration, Bitrate, Codec, File
 - Sorting and scrolling per the TUI/UX section.
+- Some fields are very long you need a strategy for truncating/ellipsis
+  - Show beginning of value, except filename, where the end is more important
 
 **JSON (`--json` flag):**
 
@@ -114,7 +117,7 @@ Use `ffprobe` to extract:
 - Use a concurrency-limited worker pool for parallel ffprobe calls
 - Parse ffprobe JSON output (`-print_format json`)
 - Handle ffprobe timeout (30s per file)
-- The results table must keep headers visible at all times — compute visible
-  row count as `terminalHeight - chromeLines` (header, separator, status bar)
-  and cap data columns (Author, Title, File) with max widths and ellipsis
+- The results table must keep headers visible at all times — compute visible row
+  count as `terminalHeight - chromeLines` (header, separator, status bar) and
+  cap data columns (Author, Title, File) with max widths and ellipsis
   truncation. Test with 100+ files early to catch overflow.
