@@ -22,8 +22,9 @@ extracts metadata using ffprobe.
 - Use **Commander** (NOT Yargs) for argument parsing
 - Flags:
   - `-r, --rootpath <path>` - Root directory to scan (required, override with
-    `ROOTPATH` in `.env`/`.env.example` (
-    VALUE=`/Volumes/Space/Reading/audiobooks` )
+  - `ROOTPATH` in `.env`/`.env.example` (
+    VALUE=`/Volumes/Space/Reading/audiobooks` ) **Implementation**: CLI must
+    check for `.env` file presence or valid `ROOTPATH` env var.
   - `-c, --concurrency <n>` - Max parallel ffprobe processes (default: 8)
   - `--json` - Output JSON instead of human-readable table
 
@@ -82,6 +83,7 @@ Use `ffprobe` to extract:
 - Sorting and scrolling per the TUI/UX section.
 - Some fields are very long you need a strategy for truncating/ellipsis
   - Show beginning of value, except filename, where the end is more important
+    (e.g., `.../author/book.m4b`).
 
 ### JSON (`--json` flag)
 
@@ -128,7 +130,8 @@ Use `ffprobe` to extract:
 - **TypeScript**: Use `"jsxImportSource": "@opentui/react"` in `tsconfig.json`
   for proper intrinsic element types (`<box>`, `<text>`).
 - Parse ffprobe JSON output (`-print_format json`)
-- Handle ffprobe timeout (30s per file)
+- Handle ffprobe timeout (30s per file). **Crucial**: Use
+  `AbortSignal.timeout(30000)` with `Bun.spawn` (or `subprocess.kill()`).
 - The results table must keep headers visible at all times — compute visible row
   count as `terminalHeight - chromeLines` (header, separator, status bar) and
   avoid ambiguous extra chrome (padding/gap/blank spacer lines). OpenTUI clips
