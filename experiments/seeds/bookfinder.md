@@ -22,7 +22,8 @@ extracts metadata using ffprobe.
 - Use **Commander** (NOT Yargs) for argument parsing
 - Flags:
   - `-r, --rootpath <path>` - Root directory to scan (required, override with
-    `ROOTPATH` in `.env`/`.env.local`)
+    `ROOTPATH` in `.env`/`.env.example` (
+    VALUE=`/Volumes/Space/Reading/audiobooks` )
   - `-c, --concurrency <n>` - Max parallel ffprobe processes (default: 8)
   - `--json` - Output JSON instead of human-readable table
 
