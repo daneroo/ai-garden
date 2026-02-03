@@ -4,6 +4,10 @@ A Bun workspace with shared packages and multiple apps.
 
 ## TODO
 
+- [ ] Move `data/` directory to top of repo
+- [ ] VTT headers - Original Move and stitch/concat
+- [ ] try an experiment/seed for whisper and/or bun-one
+- [ ] openai-whisper - try it out
 - [ ] Refine per-app type checking (Vite version conflicts - see
       docs/WORKSPACE-BUN.md)
 
