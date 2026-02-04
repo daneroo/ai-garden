@@ -57,7 +57,7 @@ interface VttHeaderProvenance {
 interface VttSegmentProvenance {
   segment: number; // 0-based
   startSec: number;
-  input?: string; // segment wav basename
+  input: string; // segment wav basename
 }
 
 type VttProvenance = VttHeaderProvenance | VttSegmentProvenance;
@@ -138,11 +138,20 @@ First cue...
 
 ## Deferred Follow-ups
 
-- Optional `digest` field (sha256 of source input)
-- Reorganize DIRECTORY configuration: output, work, cache (input base: perhaps
-  for search later)
-- Refactor Tasks/TaskConfig - to allow for non shell based tasks - more refined
+- Optional `digest` field (sha256 of source input) for stronger provenance
+  identity and future cache-key validation.
+- Optional `processingTimeSec` / `elapsedMs` in segment provenance to preserve
+  performance metrics across cache hits and improve benchmark interpretation.
+- Reorganize artifact directory configuration (`output`, `work`, `cache`) with
+  a clear per-input namespace strategy to support discovery and cleanup.
+- Define explicit cache consistency policy by caller/use-case (especially
+  benchmarks):
+  - benchmark mode may disable cache reads entirely (`checkCache: () => false`)
+  - or benchmark mode may allow cache but report cache-hit ratio separately
+- Refactor `Task` / `TaskConfig` to support non-shell task implementations and
+  stronger typed task results.
 - Provenance-aware cache validation (deferred until segment-level VTT
   transcription tasks emit provenance before `cache-vtt`; current v1 only adds
   provenance at final stitching)
-- Preservation/merge rules for non-provenance NOTE blocks
+- Preservation/merge rules for non-provenance `NOTE` blocks during stitch
+  (e.g., preserve first occurrence, merge, or drop with warning).

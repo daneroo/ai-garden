@@ -1,5 +1,9 @@
 import { describe, expect, test } from "bun:test";
+import { mkdtemp, mkdir, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import {
+  createRunWorkDir,
   getProcessedAudioDuration,
   getSegmentSuffix,
   type RunConfig,
@@ -71,6 +75,18 @@ test("getProcessedAudioDuration - edge cases", async () => {
   expect(await getProcessedAudioDuration(configZeroDur, getDuration)).toBe(60);
 });
 
+test("createRunWorkDir - includes second precision timestamp", () => {
+  const runWorkDir = createRunWorkDir({
+    workDirRoot: "data/work",
+    inputPath: "/tmp/hobbit-30m.m4b",
+    tag: "bench",
+  });
+
+  expect(runWorkDir).toMatch(
+    /^data\/work\/hobbit-30m\.bench-\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}Z$/,
+  );
+});
+
 describe("getSegmentSuffix", () => {
   test("formats correctly", () => {
     expect(getSegmentSuffix(0, 3600, 0)).toBe("-seg00-d1h-ov0s");
@@ -86,6 +102,32 @@ describe("getSegmentSuffix", () => {
 });
 
 describe("runWhisper task generation", () => {
+  test("fails when runWorkDir already exists", async () => {
+    const tempRoot = await mkdtemp(join(tmpdir(), "whisper-runner-test-"));
+    const runWorkDir = join(tempRoot, "existing-run");
+
+    try {
+      await mkdir(runWorkDir);
+      const config = { ...mockConfig, dryRun: false, runWorkDir };
+      await expect(runWhisper(config, mockDeps)).rejects.toThrow(
+        "workdirAlready exists (too soon?)",
+      );
+    } finally {
+      await rm(tempRoot, { recursive: true, force: true });
+    }
+  });
+
+  test("reports processedAudioDurationSec for requested window", async () => {
+    const config = { ...mockConfig, startSec: 10, durationSec: 20 };
+    const deps: RunDeps = {
+      getAudioDuration: () => Promise.resolve(100),
+      checkCache: () => false,
+    };
+
+    const result = await runWhisper(config, deps);
+    expect(result.processedAudioDurationSec).toBe(20);
+  });
+
   test("single segment produces correct tasks", async () => {
     const deps: RunDeps = {
       getAudioDuration: () => Promise.resolve(100),

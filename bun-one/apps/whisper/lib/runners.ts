@@ -1,5 +1,5 @@
 import { mkdir, writeFile } from "node:fs/promises";
-import { basename, extname, join } from "node:path";
+import { basename, dirname, extname, join } from "node:path";
 import { existsSync } from "node:fs";
 import { getVttCachePath, getWavCachePath } from "./cache.ts";
 import { getAudioFileDuration } from "./audio.ts";
@@ -115,7 +115,7 @@ export async function runWhisper(
   }
 
   if (!config.dryRun) {
-    await mkdir(config.runWorkDir, { recursive: true });
+    await createUniqueRunWorkDir(config.runWorkDir);
     await writeFile(
       `${config.runWorkDir}/runconfig.json`,
       JSON.stringify(config, null, 2),
@@ -146,6 +146,23 @@ export async function runWhisper(
   return result;
 }
 
+async function createUniqueRunWorkDir(runWorkDir: string): Promise<void> {
+  await mkdir(dirname(runWorkDir), { recursive: true });
+  try {
+    await mkdir(runWorkDir);
+  } catch (error) {
+    if (
+      typeof error === "object" &&
+      error !== null &&
+      "code" in error &&
+      error.code === "EEXIST"
+    ) {
+      throw new Error(`workdirAlready exists (too soon?): ${runWorkDir}`);
+    }
+    throw error;
+  }
+}
+
 /**
  * Get the executable names required for transcription.
  * Note: ffmpeg is currently used for audio format conversion (m4b → wav).
@@ -164,6 +181,10 @@ async function runWhisperPipeline(
   const checkCache = deps?.checkCache ?? existsSync;
 
   const audioDuration = await getAudioDuration(config.input);
+  const processedAudioDurationSec = await getProcessedAudioDuration(
+    config,
+    async () => audioDuration,
+  );
   const segmentSec = resolveSegmentSec(audioDuration, config.segmentSec);
   const segmentCount = computeSegmentCount(audioDuration, segmentSec);
   const segmentDurationLabel = getSegmentDurationLabel({
@@ -221,7 +242,7 @@ async function runWhisperPipeline(
 
   const tasks = [...wavTasks, ...transcribeTasks];
   const result: RunResult = {
-    processedAudioDurationSec: audioDuration,
+    processedAudioDurationSec,
     elapsedSec: 0,
     speedup: "0",
     tasks: tasks.map((t) => ({ config: t })),
