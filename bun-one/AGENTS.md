@@ -23,8 +23,8 @@ Bun workspaces monorepo.
 Every time you perform an edit, should should run the following commands to
 ensure code quality:
 
-- `deno fmt` : format all code (and .md files)
-- `deno task ci` : run all checks (lint, fmt, check, test)
+- `bun run fmt` : format all code (and .md files)
+- `bun run ci` : run all checks (lint, fmt, check, test)
 
 ## Code Structure
 
