@@ -1,0 +1,88 @@
+{
+  "processedAudioDurationSec": 10800,
+  "elapsedSec": 135,
+  "speedup": "79.9",
+  "tasks": [
+    {
+      "config": {
+        "label": "to-wav[seg:1 of 1][cached]",
+        "command": "cp",
+        "args": [
+          "-n",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/cache/wav/hobbit-seg00-dfull-ov0s.wav",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-02-04T06-31-36-092Z/hobbit-seg00-dfull-ov0s.wav"
+        ],
+        "stdoutLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-02-04T06-31-36-092Z/hobbit-seg00-dfull-ov0s-wav-cache.stdout.log",
+        "stderrLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-02-04T06-31-36-092Z/hobbit-seg00-dfull-ov0s-wav-cache.stderr.log",
+        "monitor": {}
+      },
+      "result": {
+        "code": 0,
+        "elapsedMs": 303
+      }
+    },
+    {
+      "config": {
+        "label": "transcribe[seg:1 of 1]",
+        "command": "whisper-cli",
+        "args": [
+          "--file",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-02-04T06-31-36-092Z/hobbit-seg00-dfull-ov0s.wav",
+          "--model",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/models/ggml-tiny.en.bin",
+          "--output-file",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-02-04T06-31-36-092Z/hobbit-seg00-dfull-ov0s",
+          "--output-vtt",
+          "--print-progress",
+          "--threads",
+          "6",
+          "--duration",
+          "10800000"
+        ],
+        "stdoutLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-02-04T06-31-36-092Z/hobbit-seg00-dfull-ov0s.stdout.log",
+        "stderrLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-02-04T06-31-36-092Z/hobbit-seg00-dfull-ov0s.stderr.log",
+        "monitor": {}
+      },
+      "result": {
+        "code": 0,
+        "elapsedMs": 134822
+      }
+    },
+    {
+      "config": {
+        "label": "cache-vtt[seg:1 of 1]",
+        "command": "cp",
+        "args": [
+          "-n",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-02-04T06-31-36-092Z/hobbit-seg00-dfull-ov0s.vtt",
+          "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/cache/vtt/hobbit-seg00-dfull-ov0s-mtiny-en-wt0-dur10800000.vtt"
+        ],
+        "stdoutLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-02-04T06-31-36-092Z/hobbit-seg00-dfull-ov0s-cache-vtt.stdout.log",
+        "stderrLogPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/work/hobbit.bench-tiny.en-2026-02-04T06-31-36-092Z/hobbit-seg00-dfull-ov0s-cache-vtt.stderr.log",
+        "monitor": {}
+      },
+      "result": {
+        "code": 0,
+        "elapsedMs": 4
+      }
+    }
+  ],
+  "outputPath": "/Users/daniel/Code/iMetrical/ai-garden/bun-one/apps/whisper/data/output/benchmarks/hobbit.bench-tiny.en.vtt",
+  "vttSummary": {
+    "cueCount": 1670,
+    "firstCueStart": "00:00:00.000",
+    "lastCueEnd": "03:00:00.560",
+    "durationSec": 10800.56,
+    "monotonicityViolations": 0,
+    "monotonicityViolationMaxOverlap": 0
+  },
+  "benchmarkKey": {
+    "input": "hobbit.m4b",
+    "model": "tiny.en",
+    "duration": 10800,
+    "wordTimestamps": false
+  },
+  "timestamp": "2026-02-04T06:33:51.318Z",
+  "hostname": "galois.imetrical.com",
+  "arch": "arm64"
+}
