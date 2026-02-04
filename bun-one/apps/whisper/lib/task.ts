@@ -152,12 +152,22 @@ export function runTask(config: TaskConfig): Promise<TaskResult> {
       const elapsedMs = Date.now() - start;
       const result: TaskResult = { code: code ?? 0, elapsedMs };
       monitor.onEvent({ type: "done", result });
+      const closeError =
+        code === 0 || code === null
+          ? undefined
+          : new Error(
+              `Task "${config.label}" failed with exit code ${code}: ${config.command} ${config.args.join(" ")}`,
+            );
 
       // Wait for write streams to finish
       let pending = 2;
       const finish = () => {
         pending--;
         if (pending === 0) {
+          if (closeError) {
+            reject(closeError);
+            return;
+          }
           resolve(result);
         }
       };

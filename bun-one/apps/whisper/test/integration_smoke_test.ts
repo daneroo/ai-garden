@@ -7,6 +7,8 @@
 
 import { afterAll, beforeAll, describe, expect, test } from "bun:test";
 import { existsSync } from "node:fs";
+
+import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import {
   createRunWorkDir,
@@ -71,6 +73,36 @@ describe("smoke: whisper pipeline", () => {
     expect(existsSync(result.outputPath)).toBe(false);
   });
 
+  test("overlap fails fast with clear message", async () => {
+    const runWorkDir = createRunWorkDir({
+      workDirRoot: TEST_WORK_DIR_ROOT,
+      inputPath: FIXTURE_JFK,
+      tag: "smoke-overlap-fail",
+    });
+    workDirCleanup.track(runWorkDir);
+
+    const config: RunConfig = {
+      input: FIXTURE_JFK,
+      modelShortName: "tiny.en",
+      threads: 4,
+      startSec: 0,
+      durationSec: 0,
+      outputDir: TEST_OUTPUT_DIR,
+      runWorkDir,
+      tag: "smoke-overlap-fail",
+      verbosity: 0,
+      dryRun: false,
+      wordTimestamps: false,
+      quiet: true,
+      segmentSec: 10,
+      overlapSec: 5,
+    };
+
+    await expect(runWhisper(config)).rejects.toThrow(
+      "overlapping stitching : not yet implemented!",
+    );
+  });
+
   test("full: M4B transcription produces VTT and WAV", async () => {
     const runWorkDir = createRunWorkDir({
       workDirRoot: TEST_WORK_DIR_ROOT,
@@ -100,6 +132,9 @@ describe("smoke: whisper pipeline", () => {
 
     // VTT file produced
     expect(existsSync(result.outputPath)).toBe(true);
+    const vttText = await readFile(result.outputPath, "utf-8");
+    expect(vttText).toContain("NOTE Provenance");
+    expect(vttText).toContain('"model":"tiny.en"');
 
     // WAV task executed (M4B conversion) - now uses segment naming
     const wavTask = result.tasks.find((t) =>

@@ -3,7 +3,13 @@
  */
 
 import { writeFile } from "node:fs/promises";
-import { type VttCue, vttTimeToSeconds } from "./vtt.ts";
+import {
+  isVttSegmentProvenance,
+  type VttCue,
+  type VttProvenance,
+  type VttSegmentProvenance,
+  vttTimeToSeconds,
+} from "./vtt.ts";
 
 /**
  * Convert seconds to VTT timestamp format (HH:MM:SS.mmm)
@@ -46,14 +52,102 @@ export function shiftVttCues(cues: VttCue[], offsetSec: number): VttCue[] {
   }));
 }
 
+export interface SegmentCueBoundary {
+  segment: number;
+  cueIndex: number;
+}
+
+export interface VttWriteOptions {
+  provenance?: VttProvenance[];
+  segmentBoundaries?: SegmentCueBoundary[];
+}
+
 /**
  * Format VTT cues as a VTT file string.
  *
  * @param cues - Array of VTT cues
+ * @param options - Optional provenance and segment boundary metadata
  * @returns VTT file content as string
  */
-export function formatVtt(cues: VttCue[]): string {
+export function formatVtt(
+  cues: VttCue[],
+  options: VttWriteOptions = {},
+): string {
   const lines = ["WEBVTT", ""];
+  const provenance = options.provenance ?? [];
+  const { headerProvenance, segmentProvenance } = splitProvenance(provenance);
+
+  for (const entry of headerProvenance) {
+    addProvenanceNote(lines, entry);
+  }
+
+  const segmentBoundaries = options.segmentBoundaries ?? [];
+  const hasBoundaryData =
+    segmentBoundaries.length > 0 && segmentProvenance.length > 0;
+
+  if (hasBoundaryData) {
+    const segmentProvenanceBySegment = new Map<
+      number,
+      VttSegmentProvenance[]
+    >();
+    for (const entry of segmentProvenance) {
+      const existing = segmentProvenanceBySegment.get(entry.segment) ?? [];
+      existing.push(entry);
+      segmentProvenanceBySegment.set(entry.segment, existing);
+    }
+
+    const orderedBoundaries = [...segmentBoundaries].sort((a, b) => {
+      if (a.cueIndex !== b.cueIndex) {
+        return a.cueIndex - b.cueIndex;
+      }
+      return a.segment - b.segment;
+    });
+
+    let boundaryIndex = 0;
+    const emitBoundaryNotes = (cueIndex: number) => {
+      while (
+        boundaryIndex < orderedBoundaries.length &&
+        (orderedBoundaries[boundaryIndex]?.cueIndex ??
+          Number.POSITIVE_INFINITY) <= cueIndex
+      ) {
+        const boundary = orderedBoundaries[boundaryIndex];
+        boundaryIndex++;
+        if (!boundary) {
+          continue;
+        }
+        const entries = segmentProvenanceBySegment.get(boundary.segment);
+        const nextEntry = entries?.shift();
+        if (nextEntry) {
+          addProvenanceNote(lines, nextEntry);
+        }
+      }
+    };
+
+    for (let i = 0; i < cues.length; i++) {
+      emitBoundaryNotes(i);
+      const cue = cues[i];
+      if (!cue) {
+        continue;
+      }
+      lines.push(`${cue.startTime} --> ${cue.endTime}`);
+      lines.push(cue.text);
+      lines.push("");
+    }
+
+    emitBoundaryNotes(cues.length);
+
+    for (const entries of segmentProvenanceBySegment.values()) {
+      for (const entry of entries) {
+        addProvenanceNote(lines, entry);
+      }
+    }
+
+    return lines.join("\n");
+  }
+
+  for (const entry of segmentProvenance) {
+    addProvenanceNote(lines, entry);
+  }
 
   for (const cue of cues) {
     lines.push(`${cue.startTime} --> ${cue.endTime}`);
@@ -64,14 +158,43 @@ export function formatVtt(cues: VttCue[]): string {
   return lines.join("\n");
 }
 
+function splitProvenance(provenance: VttProvenance[]): {
+  headerProvenance: VttProvenance[];
+  segmentProvenance: VttSegmentProvenance[];
+} {
+  const headerProvenance: VttProvenance[] = [];
+  const segmentProvenance: VttSegmentProvenance[] = [];
+
+  for (const entry of provenance) {
+    if (isVttSegmentProvenance(entry)) {
+      segmentProvenance.push(entry);
+      continue;
+    }
+    headerProvenance.push(entry);
+  }
+
+  return { headerProvenance, segmentProvenance };
+}
+
+function addProvenanceNote(lines: string[], provenance: VttProvenance): void {
+  lines.push("NOTE Provenance");
+  lines.push(JSON.stringify(provenance));
+  lines.push("");
+}
+
 /**
  * Write VTT cues to a file.
  *
  * @param path - Output file path
  * @param cues - Array of VTT cues
+ * @param options - Optional provenance and segment boundary metadata
  */
-export async function writeVtt(path: string, cues: VttCue[]): Promise<void> {
-  await writeFile(path, formatVtt(cues), "utf-8");
+export async function writeVtt(
+  path: string,
+  cues: VttCue[],
+  options: VttWriteOptions = {},
+): Promise<void> {
+  await writeFile(path, formatVtt(cues, options), "utf-8");
 }
 
 /**

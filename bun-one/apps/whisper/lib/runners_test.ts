@@ -77,6 +77,12 @@ describe("getSegmentSuffix", () => {
     expect(getSegmentSuffix(5, 3600, 60)).toBe("-seg05-d1h-ov1m");
     expect(getSegmentSuffix(12, 7200, 300)).toBe("-seg12-d2h-ov5m");
   });
+
+  test("supports explicit duration label override", () => {
+    expect(getSegmentSuffix(0, 1800.019, 0, { durationLabel: "full" })).toBe(
+      "-seg00-dfull-ov0s",
+    );
+  });
 });
 
 describe("runWhisper task generation", () => {
@@ -646,6 +652,34 @@ describe("runWhisper segment boundaries", () => {
           },
         ],
       });
+    });
+  });
+
+  describe("overlap stitching guard (until smart stitching is implemented)", () => {
+    test("overlap fails fast until smart stitching is implemented", async () => {
+      const config = {
+        ...mockConfig,
+        dryRun: false,
+        segmentSec: 30,
+        overlapSec: 5,
+      };
+      await expect(runWhisper(config, mockDeps)).rejects.toThrow(
+        "overlapping stitching : not yet implemented!",
+      );
+    });
+
+    test("start and duration with overlap fail fast", async () => {
+      const config = {
+        ...mockConfig,
+        dryRun: false,
+        segmentSec: 30,
+        overlapSec: 5,
+        startSec: 40,
+        durationSec: 40,
+      };
+      await expect(runWhisper(config, mockDeps)).rejects.toThrow(
+        "overlapping stitching : not yet implemented!",
+      );
     });
   });
 });

@@ -9,57 +9,140 @@ export interface VttCue {
   text: string;
 }
 
+export type VttHeaderProvenance = {
+  input: string;
+  model: string;
+  generated: string;
+  segments?: number;
+  startSec?: number;
+  durationSec?: number;
+  digest?: string;
+} & Record<string, unknown>;
+
+export type VttSegmentProvenance = {
+  segment: number;
+  startSec: number;
+  input: string;
+} & Record<string, unknown>;
+
+export type VttProvenance = VttHeaderProvenance | VttSegmentProvenance;
+
+export interface VttFile {
+  cues: VttCue[];
+  provenance: VttProvenance[];
+}
+
+export function isVttSegmentProvenance(
+  value: VttProvenance,
+): value is VttSegmentProvenance {
+  return "segment" in value;
+}
+
+/**
+ * Parse VTT file content into cues and provenance metadata.
+ * NOTE blocks are consumed as full blocks; malformed NOTE Provenance JSON is ignored.
+ */
+export function parseVttFile(vtt: string): VttFile {
+  const lines = vtt.split(/\r?\n/);
+  const cues: VttCue[] = [];
+  const provenance: VttProvenance[] = [];
+  let currentCue: VttCue | undefined;
+
+  function pushCurrentCue(): void {
+    if (!currentCue) {
+      return;
+    }
+    const text = currentCue.text.trim();
+    if (text.length > 0) {
+      cues.push({
+        startTime: currentCue.startTime,
+        endTime: currentCue.endTime,
+        text,
+      });
+    }
+    currentCue = undefined;
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i] ?? "";
+    const trimmed = line.trim();
+
+    if (trimmed.length === 0) {
+      pushCurrentCue();
+      continue;
+    }
+
+    if (trimmed.startsWith("WEBVTT")) {
+      continue;
+    }
+
+    if (trimmed.startsWith("NOTE")) {
+      const noteHeader = trimmed;
+      const noteLines: string[] = [];
+
+      while (i + 1 < lines.length) {
+        const nextLine = lines[i + 1] ?? "";
+        if (nextLine.trim().length === 0) {
+          break;
+        }
+        noteLines.push(nextLine);
+        i++;
+      }
+
+      if (noteHeader === "NOTE Provenance") {
+        const parsed = parseProvenancePayload(noteLines.join("\n").trim());
+        if (parsed) {
+          provenance.push(parsed);
+        }
+      }
+      continue;
+    }
+
+    if (line.includes("-->")) {
+      pushCurrentCue();
+
+      const [startPart = "", endPart = ""] = line.split("-->");
+      const startTime = startPart.trim().split(/\s+/)[0] ?? "";
+      const endTime = endPart.trim().split(/\s+/)[0] ?? "";
+      currentCue = {
+        startTime,
+        endTime,
+        text: "",
+      };
+      continue;
+    }
+
+    const nextLine = lines[i + 1] ?? "";
+    if (!currentCue && nextLine.includes("-->")) {
+      // Cue identifier line.
+      continue;
+    }
+
+    if (currentCue) {
+      const textLine = trimmed;
+      currentCue.text = currentCue.text
+        ? `${currentCue.text}\n${textLine}`
+        : textLine;
+    }
+  }
+
+  pushCurrentCue();
+
+  return { cues, provenance };
+}
+
 /**
  * Parse VTT file content into an array of cues
  * @param vtt - The VTT file content as a string
  * @returns Array of cues
  */
 export function parseVtt(vtt: string): VttCue[] {
-  const lines = vtt.split("\n");
-  const cues: VttCue[] = [];
-  let currentCue: VttCue = {
-    startTime: "",
-    endTime: "",
-    text: "",
-  };
+  return parseVttFile(vtt).cues;
+}
 
-  lines.forEach((line) => {
-    if (line.startsWith("WEBVTT") || line.startsWith("NOTE")) {
-      // Skip the header and notes
-      return;
-    }
-    if (line.includes("-->")) {
-      if (currentCue.text) {
-        // Push the previous cue and reset
-        cues.push(currentCue);
-        currentCue = { startTime: "", endTime: "", text: "" };
-      }
-      const times = line.split("-->");
-      const [start = "", end = ""] = times;
-      currentCue.startTime = start.trim();
-      currentCue.endTime = end.trim();
-    } else if (line.trim() === "") {
-      if (currentCue.text) {
-        // Push the current cue if it has text and reset
-        cues.push(currentCue);
-        currentCue = { startTime: "", endTime: "", text: "" };
-      }
-    } else {
-      currentCue.text += line.trim() + "\n"; // Append trimmed line and newline to text
-    }
-  });
-
-  // Push the last cue if it has content
-  if (currentCue.text.trim()) {
-    cues.push(currentCue);
-  }
-
-  // Trim the resulting cue text
-  return cues.map((cue) => ({
-    startTime: cue.startTime,
-    endTime: cue.endTime,
-    text: cue.text.trim(),
-  }));
+export async function readVttFile(path: string): Promise<VttFile> {
+  const content = await readFile(path, "utf-8");
+  return parseVttFile(content);
 }
 
 /**
@@ -68,8 +151,115 @@ export function parseVtt(vtt: string): VttCue[] {
  * @returns Array of cues
  */
 export async function readVtt(path: string): Promise<VttCue[]> {
-  const content = await readFile(path, "utf-8");
-  return parseVtt(content);
+  const file = await readVttFile(path);
+  return file.cues;
+}
+
+function parseProvenancePayload(payload: string): VttProvenance | undefined {
+  const parsedObject = parseJsonRecord(payload);
+  if (!parsedObject) {
+    return undefined;
+  }
+  return (
+    parseSegmentProvenance(parsedObject) ?? parseHeaderProvenance(parsedObject)
+  );
+}
+
+function parseJsonRecord(payload: string): Record<string, unknown> | undefined {
+  if (payload.length === 0) {
+    return undefined;
+  }
+
+  try {
+    const parsed = JSON.parse(payload);
+    return isRecord(parsed) ? parsed : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function parseSegmentProvenance(
+  parsed: Record<string, unknown>,
+): VttSegmentProvenance | undefined {
+  const segment = asFiniteNumber(parsed.segment);
+  const startSec = asFiniteNumber(parsed.startSec);
+  const input = asString(parsed.input);
+
+  if (segment === undefined || startSec === undefined || input === undefined) {
+    return undefined;
+  }
+
+  return {
+    ...parsed,
+    input,
+    segment,
+    startSec,
+  };
+}
+
+function parseHeaderProvenance(
+  parsed: Record<string, unknown>,
+): VttHeaderProvenance | undefined {
+  const input = asString(parsed.input);
+  const model = asString(parsed.model);
+  const generated = asString(parsed.generated);
+  const digest = asOptionalString(parsed.digest);
+  const segments = asOptionalFiniteNumber(parsed.segments);
+  const startSec = asOptionalFiniteNumber(parsed.startSec);
+  const durationSec = asOptionalFiniteNumber(parsed.durationSec);
+
+  if (
+    input === undefined ||
+    model === undefined ||
+    generated === undefined ||
+    segments === null ||
+    startSec === null ||
+    durationSec === null ||
+    digest === null
+  ) {
+    return undefined;
+  }
+
+  return {
+    ...parsed,
+    input,
+    model,
+    generated,
+    ...(segments !== undefined ? { segments } : {}),
+    ...(startSec !== undefined ? { startSec } : {}),
+    ...(durationSec !== undefined ? { durationSec } : {}),
+    ...(digest !== undefined ? { digest } : {}),
+  };
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function asString(value: unknown): string | undefined {
+  return typeof value === "string" ? value : undefined;
+}
+
+function isFiniteNumber(value: unknown): value is number {
+  return typeof value === "number" && Number.isFinite(value);
+}
+
+function asFiniteNumber(value: unknown): number | undefined {
+  return isFiniteNumber(value) ? value : undefined;
+}
+
+function asOptionalFiniteNumber(value: unknown): number | undefined | null {
+  if (value === undefined) {
+    return undefined;
+  }
+  return isFiniteNumber(value) ? value : null;
+}
+
+function asOptionalString(value: unknown): string | undefined | null {
+  if (value === undefined) {
+    return undefined;
+  }
+  return typeof value === "string" ? value : null;
 }
 
 /**

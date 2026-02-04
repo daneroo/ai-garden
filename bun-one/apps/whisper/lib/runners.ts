@@ -8,7 +8,15 @@ import {
   createProgressReporter,
   type ProgressReporter,
 } from "./progress.ts";
-import { readVtt, summarizeVtt, type VttCue, type VttSummary } from "./vtt.ts";
+import {
+  readVtt,
+  readVttFile,
+  summarizeVtt,
+  type VttCue,
+  type VttHeaderProvenance,
+  type VttProvenance,
+  type VttSummary,
+} from "./vtt.ts";
 import { stitchVttConcat, writeVtt } from "./vtt-stitch.ts";
 import {
   createAudioConversionMonitor,
@@ -102,6 +110,10 @@ export async function runWhisper(
   config: RunConfig,
   deps?: RunDeps,
 ): Promise<RunResult> {
+  if (!config.dryRun && config.overlapSec > 0) {
+    throw new Error("overlapping stitching : not yet implemented!");
+  }
+
   if (!config.dryRun) {
     await mkdir(config.runWorkDir, { recursive: true });
     await writeFile(
@@ -154,6 +166,11 @@ async function runWhisperPipeline(
   const audioDuration = await getAudioDuration(config.input);
   const segmentSec = resolveSegmentSec(audioDuration, config.segmentSec);
   const segmentCount = computeSegmentCount(audioDuration, segmentSec);
+  const segmentDurationLabel = getSegmentDurationLabel({
+    requestedSegmentSec: config.segmentSec,
+    resolvedSegmentSec: segmentSec,
+    segmentCount,
+  });
 
   const { inputName, finalVtt } = getFinalPaths(config);
   if (!config.dryRun) {
@@ -178,6 +195,7 @@ async function runWhisperPipeline(
       reporter,
       inputName,
       segmentSec,
+      segmentDurationLabel,
       segIndex: i,
       segmentCount,
       audioDuration,
@@ -193,6 +211,7 @@ async function runWhisperPipeline(
         reporter,
         inputName,
         segmentSec,
+        segmentDurationLabel,
         segIndex: i,
         segmentCount,
         audioDuration,
@@ -216,21 +235,26 @@ async function runWhisperPipeline(
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i]!;
     result.tasks[i] = { config: task, result: await runTask(task) };
+    assertTaskArtifacts(task);
   }
 
   // Stitch VTTs from transcribed segments
   const segmentVtts = segmentIndices
     .filter((i) => i >= firstTranscribeIdx && i <= lastTranscribeIdx)
     .map((i) => {
-      const segSuffix = getSegmentSuffix(i, segmentSec, config.overlapSec);
+      const segSuffix = getSegmentSuffix(i, segmentSec, config.overlapSec, {
+        durationLabel: segmentDurationLabel,
+      });
       const segName = `${inputName}${segSuffix}`;
       return {
+        segment: i,
         path: `${config.runWorkDir}/${segName}.vtt`,
         startSec: i * segmentSec,
+        input: `${segName}.wav`,
       };
     });
 
-  await stitchSegments(segmentVtts, result.outputPath);
+  await stitchSegments(segmentVtts, result.outputPath, config);
   return result;
 }
 
@@ -351,6 +375,25 @@ function resolveSegmentSec(
     : audioDurationSec;
 }
 
+function getSegmentDurationLabel({
+  requestedSegmentSec,
+  resolvedSegmentSec,
+  segmentCount,
+}: {
+  requestedSegmentSec: number;
+  resolvedSegmentSec: number;
+  segmentCount: number;
+}): string {
+  if (
+    requestedSegmentSec <= 0 &&
+    segmentCount === 1 &&
+    !Number.isInteger(resolvedSegmentSec)
+  ) {
+    return "full";
+  }
+  return formatDuration(resolvedSegmentSec);
+}
+
 function computeSegmentCount(
   audioDuration: number,
   segmentSec: number,
@@ -426,6 +469,7 @@ interface SegmentContext {
   reporter: ProgressReporter;
   inputName: string;
   segmentSec: number;
+  segmentDurationLabel: string;
   segIndex: number;
   segmentCount: number;
   audioDuration: number;
@@ -442,12 +486,15 @@ function buildWavTasks(ctx: SegmentContext): TaskConfig[] {
     reporter,
     inputName,
     segmentSec,
+    segmentDurationLabel,
     segIndex,
     segmentCount,
     audioDuration,
     checkCache,
   } = ctx;
-  const segSuffix = getSegmentSuffix(segIndex, segmentSec, config.overlapSec);
+  const segSuffix = getSegmentSuffix(segIndex, segmentSec, config.overlapSec, {
+    durationLabel: segmentDurationLabel,
+  });
   const segName = `${inputName}${segSuffix}`;
   const segOutPrefix = `${config.runWorkDir}/${segName}`;
   const segWavPath = `${segOutPrefix}.wav`;
@@ -515,12 +562,15 @@ function buildTranscribeTasks(ctx: SegmentContext): TaskConfig[] {
     reporter,
     inputName,
     segmentSec,
+    segmentDurationLabel,
     segIndex,
     segmentCount,
     audioDuration,
     checkCache,
   } = ctx;
-  const segSuffix = getSegmentSuffix(segIndex, segmentSec, config.overlapSec);
+  const segSuffix = getSegmentSuffix(segIndex, segmentSec, config.overlapSec, {
+    durationLabel: segmentDurationLabel,
+  });
   const segName = `${inputName}${segSuffix}`;
   const segOutPrefix = `${config.runWorkDir}/${segName}`;
   const segWavPath = `${segOutPrefix}.wav`;
@@ -623,19 +673,104 @@ function copyTask({
 }
 
 async function stitchSegments(
-  segmentVtts: Array<{ path: string; startSec: number }>,
+  segmentVtts: Array<{
+    segment: number;
+    path: string;
+    startSec: number;
+    input: string;
+  }>,
   finalVttPath: string,
+  config: RunConfig,
 ): Promise<void> {
-  const infos: Array<{ cues: VttCue[]; startSec: number }> = [];
+  const infos: Array<{
+    segment: number;
+    cues: VttCue[];
+    startSec: number;
+    input: string;
+  }> = [];
   for (const seg of segmentVtts) {
     if (existsSync(seg.path)) {
-      infos.push({ cues: await readVtt(seg.path), startSec: seg.startSec });
+      const parsed = await readVttFile(seg.path);
+      infos.push({
+        segment: seg.segment,
+        cues: parsed.cues,
+        startSec: seg.startSec,
+        input: seg.input,
+      });
     }
   }
   if (infos.length === 0) {
     return;
   }
-  await writeVtt(finalVttPath, stitchVttConcat(infos));
+
+  const stitchedCues = stitchVttConcat(
+    infos.map((info) => ({
+      cues: info.cues,
+      startSec: info.startSec,
+    })),
+  );
+
+  const segmentBoundaries: Array<{ segment: number; cueIndex: number }> = [];
+  const segmentProvenance: VttProvenance[] = [];
+  let cueIndex = 0;
+  for (const info of infos) {
+    segmentBoundaries.push({ segment: info.segment, cueIndex });
+    cueIndex += info.cues.length;
+    segmentProvenance.push({
+      input: info.input,
+      segment: info.segment,
+      startSec: info.startSec,
+    });
+  }
+
+  const headerProvenance: VttHeaderProvenance = {
+    input: basename(config.input),
+    model: config.modelShortName,
+    generated: new Date().toISOString(),
+    ...(infos.length > 1 ? { segments: infos.length } : {}),
+    ...(config.startSec > 0 ? { startSec: config.startSec } : {}),
+    ...(config.durationSec > 0 ? { durationSec: config.durationSec } : {}),
+  };
+
+  await writeVtt(finalVttPath, stitchedCues, {
+    provenance: [headerProvenance, ...segmentProvenance],
+    segmentBoundaries,
+  });
+}
+
+function assertTaskArtifacts(task: TaskConfig): void {
+  if (task.command === "ffmpeg" && task.label.startsWith("to-wav[")) {
+    const wavPath = task.args.at(-1);
+    if (!wavPath || !existsSync(wavPath)) {
+      throw new Error(
+        `Expected WAV output missing after ${task.label}: ${wavPath ?? "<unknown>"}`,
+      );
+    }
+  }
+
+  if (
+    task.command === WHISPER_CPP_EXEC &&
+    task.label.startsWith("transcribe[")
+  ) {
+    const outputPrefix = getFlagValue(task.args, "--output-file");
+    if (!outputPrefix) {
+      throw new Error(
+        `Whisper task ${task.label} is missing required --output-file argument`,
+      );
+    }
+    const vttPath = `${outputPrefix}.vtt`;
+    if (!existsSync(vttPath)) {
+      throw new Error(
+        `Expected segment VTT missing after ${task.label}: ${vttPath}`,
+      );
+    }
+  }
+}
+
+function getFlagValue(args: string[], flag: string): string | undefined {
+  const idx = args.indexOf(flag);
+  if (idx < 0) return undefined;
+  return args[idx + 1];
 }
 
 /**
@@ -677,9 +812,10 @@ export function getSegmentSuffix(
   index: number,
   segmentSec: number,
   overlapSec: number,
+  opts?: { durationLabel?: string },
 ): string {
   const segNum = String(index).padStart(2, "0");
-  const durStr = formatDuration(segmentSec);
+  const durStr = opts?.durationLabel ?? formatDuration(segmentSec);
   const ovStr = formatDuration(overlapSec);
   return `-seg${segNum}-d${durStr}-ov${ovStr}`;
 }

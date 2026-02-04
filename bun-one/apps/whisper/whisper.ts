@@ -22,7 +22,16 @@ const DEFAULT_DURATION_SECS = 0; // 0 = entire file
 const DEFAULT_ITERATIONS = 1;
 
 if (import.meta.main) {
-  await main();
+  try {
+    await main();
+  } catch (error) {
+    const message =
+      error instanceof Error
+        ? error.message
+        : `Unknown error: ${String(error)}`;
+    console.error(`Error: ${message}`);
+    process.exit(1);
+  }
 }
 
 async function main(): Promise<void> {

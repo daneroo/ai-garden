@@ -35,7 +35,12 @@ bun run apps/cli/cli.ts --help
 
 # Whisper Transcription (cwd = apps/whisper)
 cd apps/whisper
+# Demo script (full + segmented + expected overlap failure)
+./scripts/demo/demo.sh
+## OR manually
 bun run whisper.ts -i data/samples/hobbit-30m.m4b
+bun run whisper.ts -i data/samples/hobbit-30m.m4b --segment 10m -m tiny.en
+# overlap is intentionally blocked until smart stitching exists
 bun run whisper.ts -i data/samples/hobbit-30m.m4b --segment 10m --overlap 30s -m tiny.en
 
 # Whisper Benchmarks (cwd = apps/whisper)

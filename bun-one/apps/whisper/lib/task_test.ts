@@ -79,6 +79,33 @@ test("runTask - M4B to WAV conversion emits events", async () => {
   expect(lineEvents[0]!.stream).toBe("stderr");
 });
 
+test("runTask - non-zero exit fails fast", async () => {
+  const events: TaskEvent[] = [];
+  const monitor = {
+    onEvent(event: TaskEvent) {
+      events.push({ ...event });
+    },
+  };
+
+  const stdoutLogPath = join(WORK_DIR, "fail.stdout.log");
+  const stderrLogPath = join(WORK_DIR, "fail.stderr.log");
+
+  const config: TaskConfig = {
+    label: "intentional-fail",
+    command: "bun",
+    args: ["-e", "process.exit(7)"],
+    stdoutLogPath,
+    stderrLogPath,
+    monitor,
+  };
+
+  await expect(runTask(config)).rejects.toThrow("exit code 7");
+
+  const doneEvents = events.filter((e) => e.type === "done");
+  expect(doneEvents.length).toBe(1);
+  expect(doneEvents[0]!.result?.code).toBe(7);
+});
+
 // Cleanup artifacts
 afterAll(() => {
   if (existsSync(WORK_DIR)) {
