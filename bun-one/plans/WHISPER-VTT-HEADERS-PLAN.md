@@ -138,12 +138,13 @@ First cue...
 
 ## Deferred Follow-ups
 
+- Make the next plan - smaller - or have committable phases
 - Optional `digest` field (sha256 of source input) for stronger provenance
   identity and future cache-key validation.
 - Optional `processingTimeSec` / `elapsedMs` in segment provenance to preserve
   performance metrics across cache hits and improve benchmark interpretation.
-- Reorganize artifact directory configuration (`output`, `work`, `cache`) with
-  a clear per-input namespace strategy to support discovery and cleanup.
+- Reorganize artifact directory configuration (`output`, `work`, `cache`) with a
+  clear per-input namespace strategy to support discovery and cleanup.
 - Define explicit cache consistency policy by caller/use-case (especially
   benchmarks):
   - benchmark mode may disable cache reads entirely (`checkCache: () => false`)
@@ -153,5 +154,5 @@ First cue...
 - Provenance-aware cache validation (deferred until segment-level VTT
   transcription tasks emit provenance before `cache-vtt`; current v1 only adds
   provenance at final stitching)
-- Preservation/merge rules for non-provenance `NOTE` blocks during stitch
-  (e.g., preserve first occurrence, merge, or drop with warning).
+- Preservation/merge rules for non-provenance `NOTE` blocks during stitch (e.g.,
+  preserve first occurrence, merge, or drop with warning).
