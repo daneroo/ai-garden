@@ -13,6 +13,56 @@ import { formatDuration } from "./duration.ts";
 // instead of exactly 1800s), so we absorb tiny tails into the final segment.
 export const MIN_SEGMENT_REMAINDER_SEC = 2;
 
+/** A segment of audio defined by start/end boundaries */
+export interface Segment {
+  startSec: number;
+  endSec: number;
+}
+
+/**
+ * Compute segment boundaries for an audio file.
+ * Pure geometry: given duration and slicing parameters, returns [start, end] pairs.
+ */
+export function computeSegments(
+  audioDuration: number,
+  segmentSec: number,
+  overlapSec: number,
+  maxSegmentSec: number,
+): Segment[] {
+  const effectiveSegmentSec = resolveSegmentSec(
+    audioDuration,
+    segmentSec,
+    maxSegmentSec,
+  );
+  const count = computeSegmentCount(audioDuration, effectiveSegmentSec);
+
+  if (count === 0) return [];
+
+  const segments: Segment[] = [];
+  for (let i = 0; i < count; i++) {
+    const startSec = i * effectiveSegmentSec;
+    const endSec = getSegmentEndSec(
+      i,
+      audioDuration,
+      effectiveSegmentSec,
+      overlapSec,
+      count,
+    );
+    segments.push({ startSec, endSec });
+  }
+
+  return segments;
+}
+
+/** Does segment overlap with the [startSec, endSec) window? */
+export function segmentOverlapsRange(
+  seg: Segment,
+  startSec: number,
+  endSec: number,
+): boolean {
+  return seg.startSec < endSec && seg.endSec > startSec;
+}
+
 export function computeSegmentCount(
   audioDuration: number,
   segmentSec: number,
