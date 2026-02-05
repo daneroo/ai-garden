@@ -228,8 +228,7 @@ export interface TranscribeTaskOptions {
   model: string; // Model short name (e.g., "tiny.en")
   modelPath: string; // Full path to model file
   threads: number;
-  offsetMs: number; // Whisper --offset-t
-  durationMs: number; // Whisper --duration
+  durationMs: number; // Whisper --duration (0 = full)
   wordTimestamps: boolean;
   cachePath: string; // Where to cache the VTT
   monitor: TaskMonitor;
@@ -257,8 +256,6 @@ export function createTranscribeTask(opts: TranscribeTaskOptions): Task {
       }
 
       // Cache miss - run whisper-cli
-      const offsetArgs =
-        opts.offsetMs > 0 ? ["--offset-t", String(opts.offsetMs)] : [];
       const durationArgs =
         opts.durationMs > 0 ? ["--duration", String(opts.durationMs)] : [];
       const wordTimestampArgs = opts.wordTimestamps
@@ -279,7 +276,6 @@ export function createTranscribeTask(opts: TranscribeTaskOptions): Task {
           "--print-progress",
           "--threads",
           String(opts.threads),
-          ...offsetArgs,
           ...durationArgs,
           ...wordTimestampArgs,
         ],

@@ -50,7 +50,6 @@ describe("smoke: whisper pipeline", () => {
       input: FIXTURE_JFK,
       modelShortName: "tiny.en",
       threads: 4,
-      startSec: 0,
       durationSec: 0,
       outputDir: TEST_OUTPUT_DIR,
       runWorkDir,
@@ -60,7 +59,6 @@ describe("smoke: whisper pipeline", () => {
       wordTimestamps: false,
       quiet: true,
       segmentSec: 0,
-      overlapSec: 0,
     };
 
     const result = await runWhisper(config);
@@ -71,36 +69,6 @@ describe("smoke: whisper pipeline", () => {
 
     // No output files
     expect(existsSync(result.outputPath)).toBe(false);
-  });
-
-  test("overlap fails fast with clear message", async () => {
-    const runWorkDir = createRunWorkDir({
-      workDirRoot: TEST_WORK_DIR_ROOT,
-      inputPath: FIXTURE_JFK,
-      tag: "smoke-overlap-fail",
-    });
-    workDirCleanup.track(runWorkDir);
-
-    const config: RunConfig = {
-      input: FIXTURE_JFK,
-      modelShortName: "tiny.en",
-      threads: 4,
-      startSec: 0,
-      durationSec: 0,
-      outputDir: TEST_OUTPUT_DIR,
-      runWorkDir,
-      tag: "smoke-overlap-fail",
-      verbosity: 0,
-      dryRun: false,
-      wordTimestamps: false,
-      quiet: true,
-      segmentSec: 10,
-      overlapSec: 5,
-    };
-
-    await expect(runWhisper(config)).rejects.toThrow(
-      "overlapping stitching : not yet implemented!",
-    );
   });
 
   test("full: M4B transcription produces VTT and WAV", async () => {
@@ -115,7 +83,6 @@ describe("smoke: whisper pipeline", () => {
       input: FIXTURE_JFK,
       modelShortName: "tiny.en",
       threads: 4,
-      startSec: 0,
       durationSec: 0,
       outputDir: TEST_OUTPUT_DIR,
       runWorkDir,
@@ -125,7 +92,6 @@ describe("smoke: whisper pipeline", () => {
       wordTimestamps: false,
       quiet: true,
       segmentSec: 0,
-      overlapSec: 0,
     };
 
     const result = await runWhisper(config);
@@ -162,7 +128,6 @@ describe("smoke: whisper pipeline", () => {
       input: FIXTURE_JFK,
       modelShortName: "tiny.en",
       threads: 4,
-      startSec: 0,
       durationSec: 0, // Same as full test to hit cache
       outputDir: TEST_OUTPUT_DIR,
       runWorkDir,
@@ -172,7 +137,6 @@ describe("smoke: whisper pipeline", () => {
       wordTimestamps: false,
       quiet: true,
       segmentSec: 0,
-      overlapSec: 0,
     };
 
     const result = await runWhisper(config);

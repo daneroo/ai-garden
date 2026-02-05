@@ -28,12 +28,9 @@ import {
 } from "./task.ts";
 import {
   computeSegments,
-  getDurationMsForSegment,
-  getOffsetMsForSegment,
   getSegmentDurationLabel,
   getSegmentSuffix,
   resolveSegmentSec,
-  segmentOverlapsRange,
 } from "./segmentation.ts";
 
 // Model directory for whisper-cpp (absolute path)
@@ -55,7 +52,6 @@ export interface RunConfig {
   input: string; // Path to the audio file to transcribe
   modelShortName: ModelShortName;
   threads: number;
-  startSec: number; // Starting offset in seconds
   durationSec: number; // Duration in seconds (0 = entire file)
   outputDir: string; // Final output dir for .vtt
   runWorkDir: string; // Per-run work dir for logs, json, srt, vtt
@@ -64,8 +60,7 @@ export interface RunConfig {
   dryRun: boolean;
   wordTimestamps: boolean;
   quiet?: boolean; // Suppress progress output to stderr
-  segmentSec: number; // Segment duration in seconds (0 = no segmentation)
-  overlapSec: number; // Overlap between segments in seconds (0 = no overlap)
+  segmentSec: number; // Segment duration in seconds (0 = auto 37h)
 }
 
 /**
@@ -114,10 +109,6 @@ export async function runWhisper(
   config: RunConfig,
   deps?: RunDeps,
 ): Promise<RunResult> {
-  if (!config.dryRun && config.overlapSec > 0) {
-    throw new Error("overlapping stitching : not yet implemented!");
-  }
-
   if (!config.dryRun) {
     await createUniqueRunWorkDir(config.runWorkDir);
     await writeFile(
@@ -169,8 +160,6 @@ async function createUniqueRunWorkDir(runWorkDir: string): Promise<void> {
 
 /**
  * Get the executable names required for transcription.
- * Note: ffmpeg is currently used for audio format conversion (m4b → wav).
- * It will also be needed for segmentation/stitching in future phases.
  */
 export function getRequiredCommands(): string[] {
   return ["ffmpeg", WHISPER_CPP_EXEC];
@@ -182,22 +171,16 @@ async function runWhisperPipeline(
   deps?: RunDeps,
 ): Promise<RunResult> {
   const getAudioDuration = deps?.getAudioDuration ?? getAudioFileDuration;
-
   const audioDuration = await getAudioDuration(config.input);
-  const processedAudioDurationSec = await getProcessedAudioDuration(
-    config,
-    async () => audioDuration,
-  );
 
   // Compute segment geometry
   const segments = computeSegments(
     audioDuration,
     config.segmentSec,
-    config.overlapSec,
     MAX_WAV_DURATION_SEC,
   );
 
-  // Naming helpers (still need resolved segmentSec for suffix format)
+  // Naming helpers
   const segmentSec = resolveSegmentSec(
     audioDuration,
     config.segmentSec,
@@ -209,7 +192,7 @@ async function runWhisperPipeline(
     segmentCount: segments.length,
   });
   const nameForSeg = (i: number) => {
-    const suffix = getSegmentSuffix(i, segmentSec, config.overlapSec, {
+    const suffix = getSegmentSuffix(i, segmentSec, {
       durationLabel: segmentDurationLabel,
     });
     return `${inputName}${suffix}`;
@@ -221,6 +204,9 @@ async function runWhisperPipeline(
     await mkdir(config.outputDir, { recursive: true });
     await mkdir(config.runWorkDir, { recursive: true });
   }
+
+  // Duration passthrough: convert to ms for whisper-cli
+  const durationMs = config.durationSec > 0 ? config.durationSec * 1000 : 0;
 
   // Build wav tasks from segment geometry
   const wavTasks = segments.map((seg, i) => {
@@ -238,35 +224,10 @@ async function runWhisperPipeline(
     });
   });
 
-  // Filter segments for transcription using --start/--duration window
-  const transcribeEndSec =
-    config.durationSec > 0
-      ? Math.min(audioDuration, config.startSec + config.durationSec)
-      : audioDuration;
-  const transcribeSegs = segments
-    .map((seg, i) => ({ seg, i }))
-    .filter(({ seg }) =>
-      segmentOverlapsRange(seg, config.startSec, transcribeEndSec),
-    );
-
-  const transcribeTasks = transcribeSegs.map(({ i }) => {
+  // Build transcribe tasks -- all segments, no filtering
+  const transcribeTasks = segments.map((_, i) => {
     const name = nameForSeg(i);
     const outPrefix = `${config.runWorkDir}/${name}`;
-    const offsetMs = getOffsetMsForSegment(
-      i,
-      config.startSec,
-      segmentSec,
-      segments.length,
-    );
-    const durationMs = getDurationMsForSegment(
-      i,
-      config.startSec,
-      config.durationSec,
-      audioDuration,
-      segmentSec,
-      config.overlapSec,
-      segments.length,
-    );
     return createTranscribeTask({
       label: `transcribe[${labelForSeg(i)}]`,
       wavPath: `${outPrefix}.wav`,
@@ -275,14 +236,12 @@ async function runWhisperPipeline(
       model: config.modelShortName,
       modelPath: `${WHISPER_CPP_MODELS}/ggml-${config.modelShortName}.bin`,
       threads: config.threads,
-      offsetMs,
       durationMs,
       wordTimestamps: config.wordTimestamps,
       cachePath: getVttCachePath(
         name,
         config.modelShortName,
         config.wordTimestamps,
-        offsetMs,
         durationMs,
       ),
       monitor: createWhisperCppMonitor(reporter),
@@ -291,7 +250,7 @@ async function runWhisperPipeline(
 
   const tasks = [...wavTasks, ...transcribeTasks];
   const result: RunResult = {
-    processedAudioDurationSec,
+    processedAudioDurationSec: audioDuration,
     elapsedSec: 0,
     speedup: "0",
     tasks: tasks.map((t) => ({ task: t })),
@@ -310,8 +269,8 @@ async function runWhisperPipeline(
     }
   }
 
-  // Stitch VTTs from transcribed segments
-  const segmentVtts = transcribeSegs.map(({ seg, i }) => ({
+  // Stitch VTTs from all segments
+  const segmentVtts = segments.map((seg, i) => ({
     segment: i,
     path: `${config.runWorkDir}/${nameForSeg(i)}.vtt`,
     startSec: seg.startSec,
@@ -397,7 +356,6 @@ async function stitchSegments(
     model: config.modelShortName,
     generated: new Date().toISOString(),
     ...(infos.length > 1 ? { segments: infos.length } : {}),
-    ...(config.startSec > 0 ? { startSec: config.startSec } : {}),
     ...(config.durationSec > 0 ? { durationSec: config.durationSec } : {}),
   };
 
@@ -405,30 +363,6 @@ async function stitchSegments(
     provenance: [headerProvenance, ...segmentProvenance],
     segmentBoundaries,
   });
-}
-
-/**
- * Get the precise duration of audio to be processed.
- *
- * The duration is determined by:
- * 1. config.durationSec: If > 0, use this explicit limit (capped by file end).
- * 2. (File Duration - config.startSec): If duration is 0 (rest of file),
- *    calculate remaining audio from start offset.
- */
-export async function getProcessedAudioDuration(
-  config: RunConfig,
-  getDuration: (path: string) => Promise<number> = getAudioFileDuration,
-): Promise<number> {
-  const fullDuration = await getDuration(config.input);
-  const available = Math.max(0, fullDuration - config.startSec);
-
-  // If duration is 0, transcribe until the end of the file
-  if (config.durationSec === 0) {
-    return available;
-  }
-
-  // Otherwise, use the specified duration, but don't go beyond file end
-  return Math.min(config.durationSec, available);
 }
 
 /**

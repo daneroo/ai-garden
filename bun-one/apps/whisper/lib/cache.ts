@@ -10,7 +10,7 @@ function ensureDir(dir: string): void {
 }
 
 /**
- * Get WAV cache path. Caller provides full base name (e.g., "hobbit" or "hobbit-seg00-d10m-ov0s").
+ * Get WAV cache path. Caller provides full base name (e.g., "hobbit" or "hobbit-seg00-d10m").
  */
 export function getWavCachePath(baseName: string): string {
   const dir = join(CACHE_ROOT, "wav");
@@ -20,20 +20,18 @@ export function getWavCachePath(baseName: string): string {
 
 /**
  * Get VTT cache path. Caller provides full base name.
- * offsetMs/durationMs are the --offset-t and --duration values passed to whisper-cli.
+ * durationMs is the --duration value passed to whisper-cli (0 = full).
  */
 export function getVttCachePath(
   baseName: string,
   model: string,
   wordTimestamps: boolean,
-  offsetMs: number = 0,
   durationMs: number = 0,
 ): string {
   const dir = join(CACHE_ROOT, "vtt");
   ensureDir(dir);
   const m = model.replace(/\./g, "-");
   const wt = wordTimestamps ? "wt1" : "wt0";
-  const off = offsetMs > 0 ? `-off${offsetMs}` : "";
   const dur = durationMs > 0 ? `-dur${durationMs}` : "";
-  return join(dir, `${baseName}-m${m}-${wt}${off}${dur}.vtt`);
+  return join(dir, `${baseName}-m${m}-${wt}${dur}.vtt`);
 }

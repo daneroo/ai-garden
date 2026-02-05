@@ -8,8 +8,8 @@ describe("getWavCachePath", () => {
   });
 
   test("handles segment names", () => {
-    const path = getWavCachePath("audio-seg00-d10m-ov0s");
-    expect(path).toContain("audio-seg00-d10m-ov0s.wav");
+    const path = getWavCachePath("audio-seg00-d10m");
+    expect(path).toContain("audio-seg00-d10m.wav");
   });
 });
 
@@ -30,29 +30,15 @@ describe("getVttCachePath", () => {
     expect(p1).not.toBe(p2);
   });
 
-  test("includes offsetMs in cache key when non-zero", () => {
-    const p1 = getVttCachePath("audio", "tiny.en", false, 0, 0);
-    const p2 = getVttCachePath("audio", "tiny.en", false, 10000, 0);
-    expect(p1).not.toBe(p2);
-    expect(p2).toContain("-off10000");
-  });
-
   test("includes durationMs in cache key when non-zero", () => {
-    const p1 = getVttCachePath("audio", "tiny.en", false, 0, 0);
-    const p2 = getVttCachePath("audio", "tiny.en", false, 0, 5000);
+    const p1 = getVttCachePath("audio", "tiny.en", false, 0);
+    const p2 = getVttCachePath("audio", "tiny.en", false, 5000);
     expect(p1).not.toBe(p2);
     expect(p2).toContain("-dur5000");
   });
 
-  test("includes both offsetMs and durationMs when both non-zero", () => {
-    const path = getVttCachePath("audio", "tiny.en", false, 10000, 20000);
-    expect(path).toContain("-off10000");
-    expect(path).toContain("-dur20000");
-  });
-
-  test("omits offset/duration from key when zero", () => {
-    const path = getVttCachePath("audio", "tiny.en", false, 0, 0);
-    expect(path).not.toContain("-off");
+  test("omits duration from key when zero", () => {
+    const path = getVttCachePath("audio", "tiny.en", false, 0);
     expect(path).not.toContain("-dur");
   });
 });

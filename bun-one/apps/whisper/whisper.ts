@@ -17,7 +17,6 @@ const DEFAULT_MODEL = "tiny.en";
 const DEFAULT_OUTPUT_DIR = "data/output";
 const DEFAULT_WORKDIR_ROOT = "data/work";
 const DEFAULT_THREADS = 6;
-const DEFAULT_START_SECS = 0; // Starting offset in seconds
 const DEFAULT_DURATION_SECS = 0; // 0 = entire file
 const DEFAULT_ITERATIONS = 1;
 
@@ -58,12 +57,6 @@ async function main(): Promise<void> {
       type: "number",
       default: DEFAULT_THREADS,
       describe: "Number of threads for whisper-cpp",
-    })
-    .option("start", {
-      alias: "s",
-      type: "number",
-      default: DEFAULT_START_SECS,
-      describe: "Starting offset in seconds",
     })
     .option("duration", {
       alias: "d",
@@ -113,11 +106,6 @@ async function main(): Promise<void> {
         return secs;
       },
     })
-    .option("overlap", {
-      type: "string",
-      describe: "Overlap between segments (e.g., 1m, 30s). Default: 0",
-      coerce: (val: string) => parseDuration(val),
-    })
     .count("verbose")
     .alias("v", "verbose")
     .help()
@@ -129,12 +117,10 @@ async function main(): Promise<void> {
     model,
     iterations,
     threads,
-    start,
     duration,
     output,
     tag,
     segment,
-    overlap,
     "dry-run": dryRun,
     json,
     "word-timestamps": wordTimestamps,
@@ -153,7 +139,6 @@ async function main(): Promise<void> {
     input,
     modelShortName: model as ModelShortName,
     threads,
-    startSec: start,
     durationSec: duration,
     outputDir: output,
     runWorkDir,
@@ -162,7 +147,6 @@ async function main(): Promise<void> {
     dryRun,
     wordTimestamps,
     segmentSec: segment ?? 0,
-    overlapSec: overlap ?? 0,
   };
 
   // Preflight check

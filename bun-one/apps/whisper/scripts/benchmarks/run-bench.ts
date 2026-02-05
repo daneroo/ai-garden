@@ -315,7 +315,6 @@ async function executeBenchmarks(
       input: fullInputPath,
       modelShortName: key.model,
       threads: 6,
-      startSec: 0,
       durationSec: key.duration,
       outputDir: OUTPUT_DIR,
       runWorkDir,
@@ -325,7 +324,6 @@ async function executeBenchmarks(
       wordTimestamps: key.wordTimestamps,
       quiet: false, // Show progress
       segmentSec: 0,
-      overlapSec: 0,
     };
 
     await mkdir(OUTPUT_DIR, { recursive: true });
