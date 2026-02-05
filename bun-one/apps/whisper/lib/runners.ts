@@ -27,14 +27,13 @@ import {
   type TaskResult,
 } from "./task.ts";
 import {
-  computeSegmentCount,
+  computeSegments,
   getDurationMsForSegment,
-  getEndSegmentIndex,
   getOffsetMsForSegment,
   getSegmentDurationLabel,
   getSegmentSuffix,
-  getStartSegmentIndex,
   resolveSegmentSec,
+  segmentOverlapsRange,
 } from "./segmentation.ts";
 
 // Model directory for whisper-cpp (absolute path)
@@ -189,17 +188,33 @@ async function runWhisperPipeline(
     config,
     async () => audioDuration,
   );
+
+  // Compute segment geometry
+  const segments = computeSegments(
+    audioDuration,
+    config.segmentSec,
+    config.overlapSec,
+    MAX_WAV_DURATION_SEC,
+  );
+
+  // Naming helpers (still need resolved segmentSec for suffix format)
   const segmentSec = resolveSegmentSec(
     audioDuration,
     config.segmentSec,
     MAX_WAV_DURATION_SEC,
   );
-  const segmentCount = computeSegmentCount(audioDuration, segmentSec);
   const segmentDurationLabel = getSegmentDurationLabel({
     requestedSegmentSec: config.segmentSec,
     resolvedSegmentSec: segmentSec,
-    segmentCount,
+    segmentCount: segments.length,
   });
+  const nameForSeg = (i: number) => {
+    const suffix = getSegmentSuffix(i, segmentSec, config.overlapSec, {
+      durationLabel: segmentDurationLabel,
+    });
+    return `${inputName}${suffix}`;
+  };
+  const labelForSeg = (i: number) => `seg:${i + 1} of ${segments.length}`;
 
   const { inputName, finalVtt } = getFinalPaths(config);
   if (!config.dryRun) {
@@ -207,44 +222,72 @@ async function runWhisperPipeline(
     await mkdir(config.runWorkDir, { recursive: true });
   }
 
-  // Compute which segments need transcription based on --start/--duration
-  const { firstTranscribeIdx, lastTranscribeIdx } = computeTranscribeRange(
-    config,
-    audioDuration,
-    segmentSec,
-    segmentCount,
-  );
+  // Build wav tasks from segment geometry
+  const wavTasks = segments.map((seg, i) => {
+    const name = nameForSeg(i);
+    const outPrefix = `${config.runWorkDir}/${name}`;
+    return createToWavTask({
+      label: `to-wav[${labelForSeg(i)}]`,
+      inputPath: config.input,
+      outputPath: `${outPrefix}.wav`,
+      startSec: seg.startSec,
+      durationSec: seg.endSec - seg.startSec,
+      cachePath: getWavCachePath(name),
+      logPrefix: `${outPrefix}-ffmpeg`,
+      monitor: createAudioConversionMonitor(reporter),
+    });
+  });
 
-  // Build tasks using functional approach
-  const segmentIndices = Array.from({ length: segmentCount }, (_, i) => i);
-
-  const wavTasks = segmentIndices.flatMap((i) =>
-    buildWavTasks({
-      config,
-      reporter,
-      inputName,
-      segmentSec,
-      segmentDurationLabel,
-      segIndex: i,
-      segmentCount,
-      audioDuration,
-    }),
-  );
-
-  const transcribeTasks = segmentIndices
-    .filter((i) => i >= firstTranscribeIdx && i <= lastTranscribeIdx)
-    .flatMap((i) =>
-      buildTranscribeTasks({
-        config,
-        reporter,
-        inputName,
-        segmentSec,
-        segmentDurationLabel,
-        segIndex: i,
-        segmentCount,
-        audioDuration,
-      }),
+  // Filter segments for transcription using --start/--duration window
+  const transcribeEndSec =
+    config.durationSec > 0
+      ? Math.min(audioDuration, config.startSec + config.durationSec)
+      : audioDuration;
+  const transcribeSegs = segments
+    .map((seg, i) => ({ seg, i }))
+    .filter(({ seg }) =>
+      segmentOverlapsRange(seg, config.startSec, transcribeEndSec),
     );
+
+  const transcribeTasks = transcribeSegs.map(({ i }) => {
+    const name = nameForSeg(i);
+    const outPrefix = `${config.runWorkDir}/${name}`;
+    const offsetMs = getOffsetMsForSegment(
+      i,
+      config.startSec,
+      segmentSec,
+      segments.length,
+    );
+    const durationMs = getDurationMsForSegment(
+      i,
+      config.startSec,
+      config.durationSec,
+      audioDuration,
+      segmentSec,
+      config.overlapSec,
+      segments.length,
+    );
+    return createTranscribeTask({
+      label: `transcribe[${labelForSeg(i)}]`,
+      wavPath: `${outPrefix}.wav`,
+      outputPrefix: outPrefix,
+      vttPath: `${outPrefix}.vtt`,
+      model: config.modelShortName,
+      modelPath: `${WHISPER_CPP_MODELS}/ggml-${config.modelShortName}.bin`,
+      threads: config.threads,
+      offsetMs,
+      durationMs,
+      wordTimestamps: config.wordTimestamps,
+      cachePath: getVttCachePath(
+        name,
+        config.modelShortName,
+        config.wordTimestamps,
+        offsetMs,
+        durationMs,
+      ),
+      monitor: createWhisperCppMonitor(reporter),
+    });
+  });
 
   const tasks = [...wavTasks, ...transcribeTasks];
   const result: RunResult = {
@@ -268,60 +311,15 @@ async function runWhisperPipeline(
   }
 
   // Stitch VTTs from transcribed segments
-  const segmentVtts = segmentIndices
-    .filter((i) => i >= firstTranscribeIdx && i <= lastTranscribeIdx)
-    .map((i) => {
-      const segSuffix = getSegmentSuffix(i, segmentSec, config.overlapSec, {
-        durationLabel: segmentDurationLabel,
-      });
-      const segName = `${inputName}${segSuffix}`;
-      return {
-        segment: i,
-        path: `${config.runWorkDir}/${segName}.vtt`,
-        startSec: i * segmentSec,
-        input: `${segName}.wav`,
-      };
-    });
+  const segmentVtts = transcribeSegs.map(({ seg, i }) => ({
+    segment: i,
+    path: `${config.runWorkDir}/${nameForSeg(i)}.vtt`,
+    startSec: seg.startSec,
+    input: `${nameForSeg(i)}.wav`,
+  }));
 
   await stitchSegments(segmentVtts, result.outputPath, config);
   return result;
-}
-
-/** Compute which segments need transcription based on --start/--duration */
-function computeTranscribeRange(
-  config: RunConfig,
-  audioDuration: number,
-  segmentSec: number,
-  segmentCount: number,
-): { firstTranscribeIdx: number; lastTranscribeIdx: number } {
-  const { startSec, durationSec } = config;
-
-  // First segment to transcribe: contains startSec
-  const firstTranscribeIdx = getStartSegmentIndex(
-    startSec,
-    segmentSec,
-    segmentCount,
-  );
-
-  // Last segment to transcribe: contains endSec (or last segment if no duration)
-  if (durationSec <= 0) {
-    return { firstTranscribeIdx, lastTranscribeIdx: segmentCount - 1 };
-  }
-
-  const endSec = Math.min(audioDuration, startSec + durationSec);
-  if (endSec >= audioDuration) {
-    return { firstTranscribeIdx, lastTranscribeIdx: segmentCount - 1 };
-  }
-
-  const lastTranscribeIdx = getEndSegmentIndex(
-    endSec,
-    audioDuration,
-    segmentSec,
-    config.overlapSec,
-    segmentCount,
-  );
-
-  return { firstTranscribeIdx, lastTranscribeIdx };
 }
 
 function createReporter(config: RunConfig): ProgressReporter {
@@ -341,129 +339,6 @@ function getFinalPaths(config: RunConfig): {
   const inputName = basename(config.input, extname(config.input));
   const finalName = config.tag ? `${inputName}.${config.tag}` : inputName;
   return { inputName, finalVtt: `${config.outputDir}/${finalName}.vtt` };
-}
-
-interface SegmentContext {
-  config: RunConfig;
-  reporter: ProgressReporter;
-  inputName: string;
-  segmentSec: number;
-  segmentDurationLabel: string;
-  segIndex: number;
-  segmentCount: number;
-  audioDuration: number;
-}
-
-function segLabel(segIndex: number, segmentCount: number): string {
-  return `seg:${segIndex + 1} of ${segmentCount}`;
-}
-
-function buildWavTasks(ctx: SegmentContext): Task[] {
-  const {
-    config,
-    reporter,
-    inputName,
-    segmentSec,
-    segmentDurationLabel,
-    segIndex,
-    segmentCount,
-    audioDuration,
-  } = ctx;
-  const segSuffix = getSegmentSuffix(segIndex, segmentSec, config.overlapSec, {
-    durationLabel: segmentDurationLabel,
-  });
-  const segName = `${inputName}${segSuffix}`;
-  const segOutPrefix = `${config.runWorkDir}/${segName}`;
-  const segWavPath = `${segOutPrefix}.wav`;
-  const wavCachePath = getWavCachePath(segName);
-  const label = `to-wav[${segLabel(segIndex, segmentCount)}]`;
-
-  // Calculate segment duration (with overlap for non-last segments)
-  const startSec = segIndex * segmentSec;
-  const remaining = audioDuration - startSec;
-  const isLast = segIndex === segmentCount - 1;
-  const durationSec = isLast
-    ? remaining
-    : Math.min(segmentSec + config.overlapSec, remaining);
-
-  // Cache logic is now inside execute()
-  return [
-    createToWavTask({
-      label,
-      inputPath: config.input,
-      outputPath: segWavPath,
-      startSec,
-      durationSec,
-      cachePath: wavCachePath,
-      logPrefix: `${segOutPrefix}-ffmpeg`,
-      monitor: createAudioConversionMonitor(reporter),
-    }),
-  ];
-}
-
-function buildTranscribeTasks(ctx: SegmentContext): Task[] {
-  const {
-    config,
-    reporter,
-    inputName,
-    segmentSec,
-    segmentDurationLabel,
-    segIndex,
-    segmentCount,
-    audioDuration,
-  } = ctx;
-  const segSuffix = getSegmentSuffix(segIndex, segmentSec, config.overlapSec, {
-    durationLabel: segmentDurationLabel,
-  });
-  const segName = `${inputName}${segSuffix}`;
-  const segOutPrefix = `${config.runWorkDir}/${segName}`;
-  const segWavPath = `${segOutPrefix}.wav`;
-  const segVttPath = `${segOutPrefix}.vtt`;
-  const label = `transcribe[${segLabel(segIndex, segmentCount)}]`;
-
-  // Compute whisper --offset-t and --duration values (in ms)
-  const offsetMs = getOffsetMsForSegment(
-    segIndex,
-    config.startSec,
-    segmentSec,
-    segmentCount,
-  );
-  const durationMs = getDurationMsForSegment(
-    segIndex,
-    config.startSec,
-    config.durationSec,
-    audioDuration,
-    segmentSec,
-    config.overlapSec,
-    segmentCount,
-  );
-
-  // Cache key includes offset/duration since they affect output
-  const vttCachePath = getVttCachePath(
-    segName,
-    config.modelShortName,
-    config.wordTimestamps,
-    offsetMs,
-    durationMs,
-  );
-
-  // Cache logic is now inside execute()
-  return [
-    createTranscribeTask({
-      label,
-      wavPath: segWavPath,
-      outputPrefix: segOutPrefix,
-      vttPath: segVttPath,
-      model: config.modelShortName,
-      modelPath: `${WHISPER_CPP_MODELS}/ggml-${config.modelShortName}.bin`,
-      threads: config.threads,
-      offsetMs,
-      durationMs,
-      wordTimestamps: config.wordTimestamps,
-      cachePath: vttCachePath,
-      monitor: createWhisperCppMonitor(reporter),
-    }),
-  ];
 }
 
 async function stitchSegments(

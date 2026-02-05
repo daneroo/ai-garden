@@ -8,16 +8,16 @@ Follows [WHISPER-TASK-REFACTOR-v2-PLAN.md](./WHISPER-TASK-REFACTOR-v2-PLAN.md)
 ## Goal
 
 Replace the scattered per-segment index functions with a single upfront
-`computeSegments()` that returns a flat array of `Segment` objects. The
-pipeline becomes: compute segments, build tasks from segments, execute, stitch.
+`computeSegments()` that returns a flat array of `Segment` objects. The pipeline
+becomes: compute segments, build tasks from segments, execute, stitch.
 
 ## Problem
 
-`segmentation.ts` currently has 10 exported functions that are called
-piecemeal from different places in `runners.ts`. The pipeline recomputes
-segment indices, suffixes, offsets, and durations separately in
-`runWhisperPipeline`, `buildWavTasks`, `buildTranscribeTasks`, and the
-stitch block. This makes the flow hard to follow.
+`segmentation.ts` currently has 10 exported functions that are called piecemeal
+from different places in `runners.ts`. The pipeline recomputes segment indices,
+suffixes, offsets, and durations separately in `runWhisperPipeline`,
+`buildWavTasks`, `buildTranscribeTasks`, and the stitch block. This makes the
+flow hard to follow.
 
 Current flow in `runWhisperPipeline`:
 
@@ -117,7 +117,8 @@ Add the new function alongside existing ones. No changes to runners.ts.
 ### In `lib/segmentation.ts`
 
 - [x] Add `Segment` type (`{ startSec, endSec }`)
-- [x] Implement `computeSegments(audioDuration, segmentSec, overlapSec, maxSegmentSec): Segment[]`
+- [x] Implement
+      `computeSegments(audioDuration, segmentSec, overlapSec, maxSegmentSec): Segment[]`
   - Internally uses existing functions (computeSegmentCount, etc.)
   - Each segment gets correct start/end (with overlap for non-last)
 - [x] Add `segmentOverlapsRange(seg, startSec, endSec): boolean` helper
@@ -141,42 +142,35 @@ Add the new function alongside existing ones. No changes to runners.ts.
 
 ## Phase 2: Migrate runners.ts to use `computeSegments`
 
-Replace scattered segment computation with `computeSegments()` call.
-Naming, whisper args, and filtering move to runner-local helpers.
+Replace scattered segment computation with `computeSegments()` call. Naming,
+whisper args, and filtering move to runner-local helpers.
 
 ### In `lib/runners.ts`
 
-- [ ] Replace the segment computation block in `runWhisperPipeline` with:
-  ```ts
-  const segments = computeSegments(
-    audioDuration,
-    segmentSec,
-    config.overlapSec,
-    MAX_WAV_DURATION_SEC,
-  );
-  ```
-- [ ] Build wav tasks by iterating `segments` directly
-- [ ] Filter segments for transcription using `segmentOverlapsRange` with
-      the `--start`/`--duration` window
-- [ ] Compute whisper `--offset-t`/`--duration` in the runner (boundary
-      math on filtered segments)
-- [ ] Compute naming (suffix, labels) in the runner from segment index and
+- [x] Replace the segment computation block in `runWhisperPipeline` with
+      `computeSegments()`
+- [x] Build wav tasks by iterating `segments` directly
+- [x] Filter segments for transcription using `segmentOverlapsRange` with the
+      `--start`/`--duration` window
+- [x] Compute whisper `--offset-t`/`--duration` in the runner (boundary math on
+      filtered segments)
+- [x] Compute naming (suffix, labels) in the runner from segment index and
       config
-- [ ] Rewrite stitch block to use same `segments` array
-- [ ] Remove `SegmentContext`, `computeTranscribeRange`,
-      `buildWavTasks`, `buildTranscribeTasks`
+- [x] Rewrite stitch block to use same `segments` array
+- [x] Remove `SegmentContext`, `computeTranscribeRange`, `buildWavTasks`,
+      `buildTranscribeTasks`
 
 ### In `lib/runners_test.ts`
 
-- [ ] Update tests that verify task labels -- same assertions, different
-      setup path
+- [x] No test changes needed -- all existing assertions pass as-is
 
 ### Phase 2 checkpoint
 
-- [ ] `bun run ci` passes
-- [ ] `./scripts/demo/demo.sh` passes
-- [ ] Test count preserved
-- [ ] Commit: `refactor(whisper): use computeSegments in runners`
+- [x] `bun run ci` passes (113 pass, 260 expect)
+- [x] `./scripts/demo/demo.sh` passes (full 66.8x, segmented 64.4x, overlap guard)
+- [x] Test count preserved (113 pass, 260 expect)
+- [x] runners.ts: 564 -> 439 lines
+- [x] Commit: `refactor(whisper): use computeSegments in runners`
 
 ---
 
@@ -195,8 +189,8 @@ Functions now only used internally by `computeSegments` can be unexported.
   - `resolveSegmentSec`
   - `getSegmentDurationLabel`
   - `getSegmentSuffix`
-- [ ] Keep exporting: `computeSegments`, `Segment`,
-      `segmentOverlapsRange`, `MIN_SEGMENT_REMAINDER_SEC`
+- [ ] Keep exporting: `computeSegments`, `Segment`, `segmentOverlapsRange`,
+      `MIN_SEGMENT_REMAINDER_SEC`
 
 ### In `lib/segmentation_test.ts`
 
@@ -233,3 +227,34 @@ The pipeline reads as: compute segments, build tasks, execute, stitch.
 - Extract `runTask`/monitors to `lib/spawn.ts` (further separation)
 - Artifact directory reorganization
 - Overlap stitching implementation
+
+## Radical Simplification - New Realization - after all this work
+
+I think it was a fools errand to try to accomodate all this parameter space. I
+was overconfident that it could be generalized easiliy!
+
+The problem is too unconstrained, I really should focus on the two known use
+cases!
+
+- whole books: <37 or >37h - segemts of 37 ( no book of mine has >(2*37) - so
+  max 2 segments
+  - overlap stitching seem irrelevant (although interesting) for a single cut
+    point
+
+- second use case is very short word/phrase transcription - optimized separately
+
+- Conclusion:
+  - Radical simplification
+    - I can keep -S/--segment: for testing stitching
+    - Remove --overlap altogether
+    - keep --duration if complexity is contained (perhaps limit <37h)
+    - not sure about --start : opens up question of destination vtt's cue
+      offset, and likely not necessay
+  - Second use case: short word/phrase transcription
+    - separate lib/function/entrypoint/cli command ?
+    - return text instad of cues?
+    - used for boundary search - like chapter marks?
+    - Could keep --start,--duration
+      - or --start --duration
+      - or --short 00h00m00s+25s : actual interval?
+      - --duration<37h, single to-wav -> transcribe - no caching
