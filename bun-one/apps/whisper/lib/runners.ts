@@ -205,10 +205,31 @@ async function runWhisperPipeline(
     await mkdir(config.runWorkDir, { recursive: true });
   }
 
-  // Duration passthrough: convert to ms for whisper-cli
-  const durationMs = config.durationSec > 0 ? config.durationSec * 1000 : 0;
+  // Compute per-segment duration for transcription
+  // durationSec > 0 means: only transcribe up to that point in the audio
+  let endSegIndex = segments.length - 1; // Default: all segments
+  if (config.durationSec > 0) {
+    const idx = segments.findIndex(
+      (seg) =>
+        seg.startSec < config.durationSec && config.durationSec <= seg.endSec,
+    );
+    if (idx !== -1) {
+      endSegIndex = idx;
+    }
+  }
 
-  // Build wav tasks from segment geometry
+  // Helper: compute durationMs for a given segment
+  const getDurationMsForSegment = (segIndex: number): number => {
+    if (config.durationSec <= 0) return 0; // 0 = full WAV
+    if (segIndex < endSegIndex) return 0; // Before end segment: transcribe full
+    if (segIndex > endSegIndex) return -1; // After end segment: skip
+    // End segment: partial duration
+    const seg = segments[segIndex]!;
+    const localDurationSec = config.durationSec - seg.startSec;
+    return localDurationSec * 1000;
+  };
+
+  // Build wav tasks from segment geometry (always create all WAVs)
   const wavTasks = segments.map((seg, i) => {
     const name = nameForSeg(i);
     const outPrefix = `${config.runWorkDir}/${name}`;
@@ -224,29 +245,34 @@ async function runWhisperPipeline(
     });
   });
 
-  // Build transcribe tasks -- all segments, no filtering
-  const transcribeTasks = segments.map((_, i) => {
-    const name = nameForSeg(i);
-    const outPrefix = `${config.runWorkDir}/${name}`;
-    return createTranscribeTask({
-      label: `transcribe[${labelForSeg(i)}]`,
-      wavPath: `${outPrefix}.wav`,
-      outputPrefix: outPrefix,
-      vttPath: `${outPrefix}.vtt`,
-      model: config.modelShortName,
-      modelPath: `${WHISPER_CPP_MODELS}/ggml-${config.modelShortName}.bin`,
-      threads: config.threads,
-      durationMs,
-      wordTimestamps: config.wordTimestamps,
-      cachePath: getVttCachePath(
-        name,
-        config.modelShortName,
-        config.wordTimestamps,
+  // Build transcribe tasks (skip segments beyond durationSec)
+  const transcribeTasks = segments
+    .map((_, i) => {
+      const durationMs = getDurationMsForSegment(i);
+      if (durationMs === -1) return null; // Skip this segment
+
+      const name = nameForSeg(i);
+      const outPrefix = `${config.runWorkDir}/${name}`;
+      return createTranscribeTask({
+        label: `transcribe[${labelForSeg(i)}]`,
+        wavPath: `${outPrefix}.wav`,
+        outputPrefix: outPrefix,
+        vttPath: `${outPrefix}.vtt`,
+        model: config.modelShortName,
+        modelPath: `${WHISPER_CPP_MODELS}/ggml-${config.modelShortName}.bin`,
+        threads: config.threads,
         durationMs,
-      ),
-      monitor: createWhisperCppMonitor(reporter),
-    });
-  });
+        wordTimestamps: config.wordTimestamps,
+        cachePath: getVttCachePath(
+          name,
+          config.modelShortName,
+          config.wordTimestamps,
+          durationMs,
+        ),
+        monitor: createWhisperCppMonitor(reporter),
+      });
+    })
+    .filter((t): t is NonNullable<typeof t> => t !== null);
 
   const tasks = [...wavTasks, ...transcribeTasks];
   const result: RunResult = {

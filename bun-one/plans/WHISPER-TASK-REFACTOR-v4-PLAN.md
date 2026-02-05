@@ -109,46 +109,51 @@ complexity.
 
 - [x] `bun run ci` passes (70 tests, 181 expect)
 - [x] `./scripts/demo/demo.sh` passes
-- [ ] Commit
+- [x] Commit: 799b174
 
 ### Phase 1 actual line counts
 
-| File | Before (v3) | After | Plan est |
+| File                 | Before (v3) | After | Plan est |
 | -------------------- | ----------- | ----- | -------- |
-| segmentation.ts | 229 | 107 | ~50 |
-| runners.ts | 439 | 373 | ~300 |
-| task.ts | 525 | 521 | ~510 |
-| cache.ts | 39 | 37 | ~30 |
-| whisper.ts | 212 | 196 | ~180 |
-| runners_test.ts | 360 | 85 | ~120 |
-| segmentation_test.ts | 162 | 64 | ~40 |
+| segmentation.ts      | 229         | 107   | ~50      |
+| runners.ts           | 439         | 373   | ~300     |
+| task.ts              | 525         | 521   | ~510     |
+| cache.ts             | 39          | 37    | ~30      |
+| whisper.ts           | 212         | 196   | ~180     |
+| runners_test.ts      | 360         | 85    | ~120     |
+| segmentation_test.ts | 162         | 64    | ~40      |
 
 Also deleted: `integration_offsets_test.ts` (184 lines), removed overlap guard from `demo.sh`, updated `cache_test.ts`, `integration_smoke_test.ts`, `run-bench.ts`.
 
 ---
 
-## Phase 2: Simplify --duration and collapse
+## Phase 2: Fix --duration for multi-segment runs
 
-`--duration` becomes a simple whisper-cli passthrough. Collapse
-segmentation into runners or keep as tiny module.
+`--duration` currently passes same value to ALL segments, which is wrong.
+With segments, we need per-segment duration calculation:
+
+- Segments before duration window: transcribe full WAV
+- Last segment containing duration end: transcribe partial WAV
+- Segments after duration window: skip transcribe task entirely
 
 ### Changes
 
-- `RunConfig`: keep `durationSec` but only used as whisper-cli
-  `--duration` arg (in ms)
-- `task.ts`: add back a simple `durationMs` to TranscribeTaskOptions
-  (just the raw whisper arg, no per-segment math)
-- `runners.ts`: pass `config.durationSec * 1000` as durationMs to
-  first transcribe task only (or all, whisper ignores it past EOF)
-- `cache.ts`: include durationMs in VTT cache key (affects output)
-- Evaluate: inline segmentation.ts into runners.ts? Or keep as ~50
-  line module?
-- Clean up dead code, unused imports
+- `runners.ts`: compute per-segment `durationMs` based on
+  `config.durationSec` and segment boundaries
+  - If `durationSec <= 0`: all segments get `durationMs = 0` (full)
+  - If `durationSec > 0`:
+    - Find which segment contains `durationSec` (the "end segment")
+    - Segments before end: `durationMs = 0` (transcribe full WAV)
+    - End segment: `durationMs = (durationSec - seg.startSec) * 1000`
+    - Segments after end: skip (don't create transcribe task)
+- Update `cache.ts`: per-segment cache keys already include durationMs
+- Keep segmentation.ts as-is (pure geometry, no duration logic)
+- Update tests for duration + segmentation interaction
 
 ### Phase 2 checkpoint
 
-- [ ] `bun run ci` passes
-- [ ] `./scripts/demo/demo.sh` passes
+- [x] `bun run ci` passes (72 tests, 188 expect)
+- [x] `./scripts/demo/demo.sh` passes
 - [ ] Commit
 
 ---
