@@ -7,7 +7,12 @@
  * Run: deno run -A lib/vtt-compare.ts
  */
 
-import { readVtt, summarizeVtt, type VttCue, vttTimeToSeconds } from "./vtt.ts";
+import {
+  readVtt,
+  summarizeVtt,
+  type VttCue,
+  vttTimeToSeconds,
+} from "../../lib/vtt.ts";
 
 // Global verbose flag for diagnostics
 const verbose = true;

@@ -20,7 +20,7 @@
  */
 
 import { readdir } from "node:fs/promises";
-import { readVtt, type VttCue, vttTimeToSeconds } from "./vtt.ts";
+import { readVtt, type VttCue, vttTimeToSeconds } from "../../lib/vtt.ts";
 
 /**
  * Yield consecutive pairs from an array: [arr[0], arr[1]], [arr[1], arr[2]], ...

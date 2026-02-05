@@ -167,7 +167,8 @@ pipeline code.
 
 - Redesign segmentation as a plan: single `computeSegmentPlan()` returning
   `{startSec, endSec}[]` instead of many per-segment index functions
-- `createStitchTask` factory (add when stitch becomes a Task)
+- Make stitch a proper Task: add `"stitch"` back to `TaskKind`, create
+  `createStitchTask` factory, move `stitchSegments` logic into `execute()`
 - Extract `runTask`/monitors to `lib/spawn.ts` (further separation)
 - Artifact directory reorganization
 - Overlap stitching implementation
