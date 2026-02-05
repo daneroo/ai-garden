@@ -1,13 +1,9 @@
 import { describe, expect, test } from "bun:test";
 import {
-  computeSegmentCount,
   computeSegments,
   getDurationMsForSegment,
-  getEndSegmentIndex,
   getOffsetMsForSegment,
   getSegmentSuffix,
-  getStartSegmentIndex,
-  MIN_SEGMENT_REMAINDER_SEC,
   segmentOverlapsRange,
 } from "./segmentation.ts";
 
@@ -22,80 +18,6 @@ describe("getSegmentSuffix", () => {
     expect(getSegmentSuffix(0, 1800.019, 0, { durationLabel: "full" })).toBe(
       "-seg00-dfull-ov0s",
     );
-  });
-});
-
-describe("computeSegmentCount", () => {
-  test("single segment when segmentSec is 0 or >= audioDuration", () => {
-    expect(computeSegmentCount(100, 0)).toBe(1);
-    expect(computeSegmentCount(100, 100)).toBe(1);
-    expect(computeSegmentCount(100, 200)).toBe(1);
-  });
-
-  test("multiple segments with exact division", () => {
-    expect(computeSegmentCount(120, 30)).toBe(4);
-    expect(computeSegmentCount(60, 30)).toBe(2);
-  });
-
-  test("multiple segments with remainder", () => {
-    expect(computeSegmentCount(100, 30)).toBe(4); // 30+30+30+10
-  });
-
-  test(`drops tiny tail segments below MIN_SEGMENT_REMAINDER_SEC (${MIN_SEGMENT_REMAINDER_SEC}s)`, () => {
-    const threshold = MIN_SEGMENT_REMAINDER_SEC;
-    // 90 + (threshold - 1) = remainder just below threshold -> absorbed
-    expect(computeSegmentCount(90 + threshold - 1, 30)).toBe(3);
-
-    // 90 + threshold = remainder at threshold -> becomes segment
-    expect(computeSegmentCount(90 + threshold, 30)).toBe(4);
-
-    // Edge: tiny file should still get 1 segment even if below threshold
-    expect(computeSegmentCount(1, 30)).toBe(1);
-  });
-
-  test("edge case: zero duration", () => {
-    expect(computeSegmentCount(0, 30)).toBe(0);
-  });
-});
-
-describe("getStartSegmentIndex", () => {
-  test("returns 0 for start <= 0", () => {
-    expect(getStartSegmentIndex(0, 30, 4)).toBe(0);
-    expect(getStartSegmentIndex(-10, 30, 4)).toBe(0);
-  });
-
-  test("returns 0 for single segment", () => {
-    expect(getStartSegmentIndex(50, 30, 1)).toBe(0);
-  });
-
-  test("returns correct segment for multi-segment", () => {
-    // Segments: [0-30), [30-60), [60-90), [90-100)
-    expect(getStartSegmentIndex(10, 30, 4)).toBe(0); // within seg 0
-    expect(getStartSegmentIndex(40, 30, 4)).toBe(1); // within seg 1
-    expect(getStartSegmentIndex(65, 30, 4)).toBe(2); // within seg 2
-    expect(getStartSegmentIndex(95, 30, 4)).toBe(3); // within seg 3
-  });
-
-  test("clamps to last segment", () => {
-    expect(getStartSegmentIndex(200, 30, 4)).toBe(3);
-  });
-});
-
-describe("getEndSegmentIndex", () => {
-  test("returns 0 for single segment", () => {
-    expect(getEndSegmentIndex(50, 100, 30, 0, 1)).toBe(0);
-  });
-
-  test("returns last segment for end >= audioDuration", () => {
-    expect(getEndSegmentIndex(100, 100, 30, 0, 4)).toBe(3);
-    expect(getEndSegmentIndex(150, 100, 30, 0, 4)).toBe(3);
-  });
-
-  test("returns correct segment for multi-segment", () => {
-    // Segments (no overlap): [0-30), [30-60), [60-90), [90-100)
-    expect(getEndSegmentIndex(25, 100, 30, 0, 4)).toBe(0);
-    expect(getEndSegmentIndex(50, 100, 30, 0, 4)).toBe(1);
-    expect(getEndSegmentIndex(80, 100, 30, 0, 4)).toBe(2);
   });
 });
 

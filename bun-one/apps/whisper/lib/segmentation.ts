@@ -63,7 +63,7 @@ export function segmentOverlapsRange(
   return seg.startSec < endSec && seg.endSec > startSec;
 }
 
-export function computeSegmentCount(
+function computeSegmentCount(
   audioDuration: number,
   segmentSec: number,
 ): number {
@@ -78,7 +78,7 @@ export function computeSegmentCount(
   return Math.ceil(audioDuration / segmentSec);
 }
 
-export function getStartSegmentIndex(
+function getStartSegmentIndex(
   startSec: number,
   segmentSec: number,
   segmentCount: number,
@@ -99,7 +99,7 @@ function getSegmentEndSec(
   return Math.min((segIndex + 1) * segmentSec + overlapSec, audioDuration);
 }
 
-export function getEndSegmentIndex(
+function getEndSegmentIndex(
   endSec: number,
   audioDuration: number,
   segmentSec: number,

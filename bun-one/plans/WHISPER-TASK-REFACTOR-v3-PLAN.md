@@ -180,41 +180,42 @@ Functions now only used internally by `computeSegments` can be unexported.
 
 ### In `lib/segmentation.ts`
 
-- [ ] Unexport functions that are only used by `computeSegments`:
+- [x] Unexport functions now internal:
   - `computeSegmentCount`
   - `getStartSegmentIndex`
   - `getEndSegmentIndex`
-  - `getOffsetMsForSegment`
-  - `getDurationMsForSegment`
-  - `resolveSegmentSec`
-  - `getSegmentDurationLabel`
-  - `getSegmentSuffix`
-- [ ] Keep exporting: `computeSegments`, `Segment`, `segmentOverlapsRange`,
+- Still exported (used by runners.ts): `getOffsetMsForSegment`,
+  `getDurationMsForSegment`, `resolveSegmentSec`, `getSegmentDurationLabel`,
+  `getSegmentSuffix`
+- [x] Keep exporting: `computeSegments`, `Segment`, `segmentOverlapsRange`,
       `MIN_SEGMENT_REMAINDER_SEC`
 
 ### In `lib/segmentation_test.ts`
 
-- [ ] Remove or convert old per-function tests (they tested internal
-      implementation details). The `computeSegments` tests cover the same
-      behavior end-to-end.
-- [ ] Keep `MIN_SEGMENT_REMAINDER_SEC` test if present
+- [x] Remove tests for unexported internals (`computeSegmentCount`,
+      `getStartSegmentIndex`, `getEndSegmentIndex`) -- covered by
+      `computeSegments` tests
+- [x] Keep tests for still-exported functions
 
 ### Phase 3 checkpoint
 
-- [ ] `bun run ci` passes
-- [ ] `./scripts/demo/demo.sh` passes
-- [ ] Commit: `refactor(whisper): unexport segmentation internals`
+- [x] `bun run ci` passes (101 pass, 236 expect)
+- [x] `./scripts/demo/demo.sh` passes (verified in Phase 2)
+- [x] Commit: `refactor(whisper): unexport segmentation internals`
 
 ---
 
 ## Expected result
 
-| Metric                    | Before                | After                             |
-| ------------------------- | --------------------- | --------------------------------- |
-| segmentation.ts exports   | 10 functions          | 2 functions + 1 type + 1 constant |
-| runners.ts SegmentContext | 9-field interface     | removed                           |
-| runners.ts pipeline       | scattered computation | `computeSegments` + iterate       |
-| Stitch block              | recomputes suffixes   | reads from segments array         |
+| Metric                    | Before                | After                                   |
+| ------------------------- | --------------------- | --------------------------------------- |
+| segmentation.ts exports   | 10 functions          | 7 functions + 1 type + 1 constant       |
+| segmentation.ts internals | 0 private             | 3 private (count, startIdx, endIdx)     |
+| runners.ts SegmentContext | 9-field interface     | removed                                 |
+| runners.ts lines          | 564                   | 439                                     |
+| runners.ts pipeline       | scattered computation | `computeSegments` + iterate             |
+| Stitch block              | recomputes suffixes   | reads from segments array               |
+| Tests                     | 113 pass, 260 expect  | 101 pass, 236 expect (internals folded) |
 
 The pipeline reads as: compute segments, build tasks, execute, stitch.
 
@@ -236,7 +237,7 @@ was overconfident that it could be generalized easiliy!
 The problem is too unconstrained, I really should focus on the two known use
 cases!
 
-- whole books: <37 or >37h - segemts of 37 ( no book of mine has >(2*37) - so
+- whole books: <37 or >37h - segemts of 37 ( no book of mine has >(2\*37) - so
   max 2 segments
   - overlap stitching seem irrelevant (although interesting) for a single cut
     point
