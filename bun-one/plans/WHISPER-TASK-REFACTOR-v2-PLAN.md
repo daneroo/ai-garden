@@ -29,8 +29,8 @@ preserved or improved at every checkpoint.
 
 ## Phase 0: Create feature branch
 
-- [ ] `git checkout -b refactor/whisper-simplify`
-- [ ] Starting point: clean main, CI green
+- [x] `git checkout -b refactor/whisper-simplify`
+- [x] Starting point: clean main, CI green
 
 ---
 
@@ -44,41 +44,41 @@ no I/O).
 
 Move these functions from `runners.ts`:
 
-- [ ] `MIN_SEGMENT_REMAINDER_SEC` constant
-- [ ] `computeSegmentCount(audioDuration, segmentSec)`
-- [ ] `getStartSegmentIndex(startSec, segmentSec, segmentCount)`
-- [ ] `getSegmentEndSec(...)` (currently private -- export it)
-- [ ] `getEndSegmentIndex(endSec, audioDuration, segmentSec, overlapSec, segmentCount)`
-- [ ] `resolveSegmentSec(audioDurationSec, requestedSegmentSec)`
-- [ ] `getSegmentDurationLabel({...})`
-- [ ] `getSegmentSuffix(index, segmentSec, overlapSec, opts?)`
+- [x] `MIN_SEGMENT_REMAINDER_SEC` constant
+- [x] `computeSegmentCount(audioDuration, segmentSec)`
+- [x] `getStartSegmentIndex(startSec, segmentSec, segmentCount)`
+- [x] `getSegmentEndSec(...)` (currently private -- export it)
+- [x] `getEndSegmentIndex(endSec, audioDuration, segmentSec, overlapSec, segmentCount)`
+- [x] `resolveSegmentSec(audioDurationSec, requestedSegmentSec)`
+- [x] `getSegmentDurationLabel({...})`
+- [x] `getSegmentSuffix(index, segmentSec, overlapSec, opts?)`
 
 Refactor these to take primitives instead of `RunConfig` (avoids circular
 dependency, improves testability):
 
-- [ ] `getOffsetMsForSegment(segIndex, startSec, segmentSec, segmentCount)`
+- [x] `getOffsetMsForSegment(segIndex, startSec, segmentSec, segmentCount)`
   - was: `(segIndex, config: RunConfig, segmentSec, segmentCount)`
-- [ ] `getDurationMsForSegment(segIndex, startSec, durationSec, audioDuration, segmentSec, overlapSec, segmentCount)`
+- [x] `getDurationMsForSegment(segIndex, startSec, durationSec, audioDuration, segmentSec, overlapSec, segmentCount)`
   - was: `(segIndex, config: RunConfig, audioDuration, segmentSec, segmentCount)`
 
 ### Create `lib/segmentation_test.ts`
 
 Move corresponding tests from `runners_test.ts`:
 
-- [ ] `getSegmentSuffix` tests
-- [ ] `computeSegmentCount` tests
-- [ ] `getStartSegmentIndex` tests
-- [ ] `getEndSegmentIndex` tests
-- [ ] `getOffsetMsForSegment` tests (update to pass primitives instead of
+- [x] `getSegmentSuffix` tests
+- [x] `computeSegmentCount` tests
+- [x] `getStartSegmentIndex` tests
+- [x] `getEndSegmentIndex` tests
+- [x] `getOffsetMsForSegment` tests (update to pass primitives instead of
       mockConfig)
-- [ ] `getDurationMsForSegment` tests (update to pass primitives instead of
+- [x] `getDurationMsForSegment` tests (update to pass primitives instead of
       mockConfig)
 
 ### Update `lib/runners.ts`
 
-- [ ] Remove moved functions
-- [ ] Add imports from `./segmentation.ts`
-- [ ] Update call sites in `buildWavTasks`, `buildTranscribeTasks`,
+- [x] Remove moved functions
+- [x] Add imports from `./segmentation.ts`
+- [x] Update call sites in `buildWavTasks`, `buildTranscribeTasks`,
       `computeTranscribeRange`, `runWhisperPipeline` to pass primitives where
       signatures changed
 
@@ -87,10 +87,10 @@ Move corresponding tests from `runners_test.ts`:
 
 ### Phase 1 checkpoint
 
-- [ ] `bun run ci` passes
-- [ ] `./scripts/demo/demo.sh` passes
-- [ ] Test count unchanged
-- [ ] Commit: `refactor(whisper): extract segmentation module`
+- [x] `bun run ci` passes
+- [x] `./scripts/demo/demo.sh` passes
+- [x] Test count unchanged
+- [x] Commit: `refactor(whisper): extract segmentation module`
 
 Expected result: `runners.ts` drops from ~726 to ~500 lines.
 
@@ -102,24 +102,24 @@ Remove dead weight from the Task interface.
 
 ### Remove `TaskContext`
 
-- [ ] Remove `TaskContext` interface (unused by all factory implementations)
-- [ ] Change `Task.execute(ctx: TaskContext)` to `Task.execute()`
-- [ ] Remove `_ctx` params and eslint-disable comments from both factory
+- [x] Remove `TaskContext` interface (unused by all factory implementations)
+- [x] Change `Task.execute(ctx: TaskContext)` to `Task.execute()`
+- [x] Remove `_ctx` params and eslint-disable comments from both factory
       functions
-- [ ] Remove ctx construction in `runners.ts` execution loop
-- [ ] `task.execute()` instead of `task.execute(ctx)`
+- [x] Remove ctx construction in `runners.ts` execution loop
+- [x] `task.execute()` instead of `task.execute(ctx)`
 
 ### Remove premature `"stitch"` from `TaskKind`
 
-- [ ] Change `TaskKind = "to-wav" | "transcribe" | "stitch"` to
+- [x] Change `TaskKind = "to-wav" | "transcribe" | "stitch"` to
       `TaskKind = "to-wav" | "transcribe"`
-- [ ] No factory exists for stitch; add it back when implemented
+- [x] No factory exists for stitch; add it back when implemented
 
 ### Phase 2 checkpoint
 
-- [ ] `bun run ci` passes
-- [ ] `./scripts/demo/demo.sh` passes
-- [ ] Commit: `refactor(whisper): remove unused TaskContext and stitch kind`
+- [x] `bun run ci` passes
+- [x] `./scripts/demo/demo.sh` passes
+- [x] Commit: `refactor(whisper): remove unused TaskContext and stitch kind`
 
 ---
 
@@ -127,34 +127,34 @@ Remove dead weight from the Task interface.
 
 ### Move standalone tools out of `lib/`
 
-- [ ] `lib/vtt-compare.ts` (998 lines) -> `scripts/tools/vtt-compare.ts`
-- [ ] `lib/vtt-monotonicity.ts` (192 lines) -> `scripts/tools/vtt-monotonicity.ts`
-- [ ] Update their import paths (`./vtt.ts` -> `../../lib/vtt.ts` etc.)
+- [x] `lib/vtt-compare.ts` (998 lines) -> `scripts/tools/vtt-compare.ts`
+- [x] `lib/vtt-monotonicity.ts` (192 lines) -> `scripts/tools/vtt-monotonicity.ts`
+- [x] Update their import paths (`./vtt.ts` -> `../../lib/vtt.ts` etc.)
 
 These are standalone CLI tools with `import.meta.main` entry points, not
 pipeline code.
 
 ### Remove legacy script
 
-- [ ] Delete `segment_poc.sh` (145 lines, superseded by TypeScript
+- [x] Delete `segment_poc.sh` (145 lines, superseded by TypeScript
       segmentation)
 
 ### Phase 3 checkpoint
 
-- [ ] `bun run ci` passes
-- [ ] `./scripts/demo/demo.sh` passes
-- [ ] Commit: `refactor(whisper): relocate experimental tools to scripts/`
+- [x] `bun run ci` passes
+- [x] `./scripts/demo/demo.sh` passes
+- [x] Commit: `refactor(whisper): relocate experimental tools to scripts/`
 
 ---
 
 ## Expected final state
 
-| File              | Before | After (approx) |
-| ----------------- | ------ | -------------- |
-| `runners.ts`      | 726    | ~500           |
-| `task.ts`         | 540    | ~500           |
-| `segmentation.ts` | (new)  | ~200           |
-| `lib/` total      | ~4248  | ~2800          |
+| File              | Before | After |
+| ----------------- | ------ | ----- |
+| `runners.ts`      | 726    | 564   |
+| `task.ts`         | 540    | 525   |
+| `segmentation.ts` | (new)  | 179   |
+| `lib/` total      | ~4248  | 2825  |
 
 - `runners.ts` reads as a pipeline: build tasks, execute, stitch
 - `segmentation.ts` is pure math, tested in isolation
