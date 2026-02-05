@@ -201,18 +201,11 @@ async function main(): Promise<void> {
 
       // Detailed task breakdown
       console.log("  Tasks:");
-      for (const task of result.tasks) {
-        const timePart = task.result
-          ? ` (${Math.round(task.result.elapsedMs / 1000)}s)`
+      for (const { task, result: taskResult } of result.tasks) {
+        const timePart = taskResult
+          ? ` (${Math.round(taskResult.elapsedMs / 1000)}s)`
           : " (dry-run)";
-        console.log(
-          `    - ${task.config.label}: ${task.config.command}${timePart}`,
-        );
-        if (task.result && iterations === 1) {
-          console.log(
-            `      Logs: ${task.config.stdoutLogPath} / ${task.config.stderrLogPath}`,
-          );
-        }
+        console.log(`    - ${task.label}: ${task.describe()}${timePart}`);
       }
     }
   }

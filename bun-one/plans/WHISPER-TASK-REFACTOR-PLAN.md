@@ -337,12 +337,12 @@ Acceptance:
 
 Checking off a box means: CI passes (`bun run ci`) and reviewed by user.
 
-- [ ] Phase 1: Define Task interface and types
-- [ ] Phase 2: Create factory functions
-- [ ] Phase 3: Migrate buildWavTasks / buildTranscribeTasks
-- [ ] Phase 4: Move dryRun to execute-time
-- [ ] Phase 5: Cleanup and remove old types
-- [ ] Final: `./scripts/demo/demo.sh` passes
+- [x] Phase 1: Define Task interface and types
+- [x] Phase 2: Create factory functions
+- [x] Phase 3: Migrate buildWavTasks / buildTranscribeTasks
+- [x] Phase 4: Move dryRun to execute-time
+- [x] Phase 5: Cleanup and remove old types
+- [x] Final: `./scripts/demo/demo.sh` passes
 
 ---
 
@@ -358,3 +358,17 @@ Not addressed in this refactor:
 - Cache consistency policy for benchmarks
 - Provenance-aware cache validation
 - NOTE block preservation during stitch
+- Post-execute artifact validation (previously `assertTaskArtifacts`, now
+  removed
+  - consider adding validation inside `execute()` or as a post-execution hook)
+- Extract segmentation logic to own module (`lib/segmentation.ts`)
+  - Combine `getOffsetMsForSegment`, `getDurationMsForSegment`,
+    `getEndSegmentIndex`, `getStartSegmentIndex`, `computeSegmentCount` into a
+    cohesive API
+  - Accept `MIN_SEGMENT_REMAINDER_SEC` as a parameter for testability
+  - Simplify tests by testing segment boundary computation in isolation
+- Review `runTask` and type architecture
+  - `runTask` feels legacy - consider simplifying or replacing
+  - `RunTaskResult` naming is awkward (has `code` for process exit)
+  - `TaskContext` is unused by current implementations (kept for extensibility)
+  - Consider renaming `RunTaskResult` → `ProcessResult`

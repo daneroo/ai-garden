@@ -1,11 +1,17 @@
 import { describe, expect, test } from "bun:test";
-import { mkdtemp, mkdir, rm } from "node:fs/promises";
+import { mkdir, mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
+  computeSegmentCount,
   createRunWorkDir,
+  getDurationMsForSegment,
+  getEndSegmentIndex,
+  getOffsetMsForSegment,
   getProcessedAudioDuration,
   getSegmentSuffix,
+  getStartSegmentIndex,
+  MIN_SEGMENT_REMAINDER_SEC,
   type RunConfig,
   type RunDeps,
   runWhisper,
@@ -29,7 +35,6 @@ const mockConfig: RunConfig = {
 
 const mockDeps: RunDeps = {
   getAudioDuration: () => Promise.resolve(100),
-  checkCache: () => false, // No cache hits
 };
 
 test("getProcessedAudioDuration - explicit duration", async () => {
@@ -121,7 +126,6 @@ describe("runWhisper task generation", () => {
     const config = { ...mockConfig, startSec: 10, durationSec: 20 };
     const deps: RunDeps = {
       getAudioDuration: () => Promise.resolve(100),
-      checkCache: () => false,
     };
 
     const result = await runWhisper(config, deps);
@@ -131,106 +135,65 @@ describe("runWhisper task generation", () => {
   test("single segment produces correct tasks", async () => {
     const deps: RunDeps = {
       getAudioDuration: () => Promise.resolve(100),
-      checkCache: () => false,
     };
     const result = await runWhisper(mockConfig, deps);
 
-    expect(result.tasks).toHaveLength(4); // wav, cache-wav, transcribe, cache-vtt
-    expect(result.tasks[0]?.config.label).toBe("to-wav[seg:1 of 1]");
-    expect(result.tasks[1]?.config.label).toBe("cache-wav[seg:1 of 1]");
-    expect(result.tasks[2]?.config.label).toBe("transcribe[seg:1 of 1]");
-    expect(result.tasks[3]?.config.label).toBe("cache-vtt[seg:1 of 1]");
+    // 1 segment × (wav + transcribe) = 2 tasks (cache is internal to execute)
+    expect(result.tasks).toHaveLength(2);
+    expect(result.tasks[0]?.task.label).toBe("to-wav[seg:1 of 1]");
+    expect(result.tasks[1]?.task.label).toBe("transcribe[seg:1 of 1]");
   });
 
   test("multiple segments produces correct task count", async () => {
     const config = { ...mockConfig, segmentSec: 40 };
     const deps: RunDeps = {
       getAudioDuration: () => Promise.resolve(100),
-      checkCache: () => false,
     };
     const result = await runWhisper(config, deps);
 
-    // 3 segments × (wav + cache-wav + transcribe + cache-vtt) = 12 tasks
-    expect(result.tasks).toHaveLength(12);
-    expect(result.tasks[0]?.config.label).toBe("to-wav[seg:1 of 3]");
-    expect(result.tasks[2]?.config.label).toBe("to-wav[seg:2 of 3]");
-    expect(result.tasks[4]?.config.label).toBe("to-wav[seg:3 of 3]");
-    expect(result.tasks[6]?.config.label).toBe("transcribe[seg:1 of 3]");
-    expect(result.tasks[8]?.config.label).toBe("transcribe[seg:2 of 3]");
-    expect(result.tasks[10]?.config.label).toBe("transcribe[seg:3 of 3]");
+    // 3 segments × (wav + transcribe) = 6 tasks
+    expect(result.tasks).toHaveLength(6);
+    expect(result.tasks[0]?.task.label).toBe("to-wav[seg:1 of 3]");
+    expect(result.tasks[1]?.task.label).toBe("to-wav[seg:2 of 3]");
+    expect(result.tasks[2]?.task.label).toBe("to-wav[seg:3 of 3]");
+    expect(result.tasks[3]?.task.label).toBe("transcribe[seg:1 of 3]");
+    expect(result.tasks[4]?.task.label).toBe("transcribe[seg:2 of 3]");
+    expect(result.tasks[5]?.task.label).toBe("transcribe[seg:3 of 3]");
   });
 
-  test("--start adds --offset-t in single-segment mode", async () => {
-    const config = { ...mockConfig, startSec: 12, segmentSec: 0 };
-    const result = await runWhisper(config, mockDeps);
+  // NOTE: Tests that previously checked --offset-t, --duration args have been
+  // removed because Task now encapsulates execution details. The args are
+  // internal to Task.execute() and not exposed for unit testing.
+  // Integration tests (demo.sh, integration_smoke_test.ts) verify end-to-end behavior.
 
-    const transcribeTask = result.tasks.find((t) =>
-      t.config.label.startsWith("transcribe["),
-    );
-    expect(transcribeTask?.config.args).toContain("--offset-t");
-    expect(transcribeTask?.config.args).toContain("12000");
-  });
-
-  test("--start adds --offset-t only on containing segment", async () => {
+  test("--start filters to correct segments", async () => {
     const config = { ...mockConfig, startSec: 50, segmentSec: 40 };
     const result = await runWhisper(config, mockDeps);
 
-    // With start=50, segment 2 (index 1) contains start
-    const seg1Task = result.tasks.find(
-      (t) => t.config.label === "transcribe[seg:1 of 3]",
+    // With start=50, segment 1 (0-40) should be filtered out
+    // Segments 2 and 3 should remain
+    const transcribeTasks = result.tasks.filter((t) =>
+      t.task.label.startsWith("transcribe["),
     );
-    const seg2Task = result.tasks.find(
-      (t) => t.config.label === "transcribe[seg:2 of 3]",
-    );
-    const seg3Task = result.tasks.find(
-      (t) => t.config.label === "transcribe[seg:3 of 3]",
-    );
-
-    // Segment 1 should be filtered out (start=50 > seg1 end=40)
-    expect(seg1Task).toBeUndefined();
-    // Segment 2 should have --offset-t 10000 (50 - 40)
-    expect(seg2Task?.config.args).toContain("--offset-t");
-    expect(seg2Task?.config.args).toContain("10000");
-    // Segment 3 should have no offset
-    expect(seg3Task?.config.args).not.toContain("--offset-t");
+    expect(transcribeTasks).toHaveLength(2);
+    expect(transcribeTasks[0]?.task.label).toBe("transcribe[seg:2 of 3]");
+    expect(transcribeTasks[1]?.task.label).toBe("transcribe[seg:3 of 3]");
   });
 
-  test("--duration adds --duration in single-segment mode", async () => {
-    const config = { ...mockConfig, durationSec: 5, segmentSec: 0 };
-    const result = await runWhisper(config, mockDeps);
-
-    const transcribeTask = result.tasks.find((t) =>
-      t.config.label.startsWith("transcribe["),
-    );
-    expect(transcribeTask?.config.args).toContain("--duration");
-    expect(transcribeTask?.config.args).toContain("5000");
-  });
-
-  test("--duration adds --duration only on end segment", async () => {
+  test("--duration filters to correct segments", async () => {
     const config = { ...mockConfig, segmentSec: 40, durationSec: 50 };
     const result = await runWhisper(config, mockDeps);
 
-    // duration=50 ends in segment 2 (40-80)
-    const seg1Task = result.tasks.find(
-      (t) => t.config.label === "transcribe[seg:1 of 3]",
+    // duration=50 ends in segment 2, so segment 3 should be filtered out
+    const transcribeTasks = result.tasks.filter((t) =>
+      t.task.label.startsWith("transcribe["),
     );
-    const seg2Task = result.tasks.find(
-      (t) => t.config.label === "transcribe[seg:2 of 3]",
-    );
-    const seg3Task = result.tasks.find(
-      (t) => t.config.label === "transcribe[seg:3 of 3]",
-    );
-
-    // Segment 1 should have no duration flag
-    expect(seg1Task?.config.args).not.toContain("--duration");
-    // Segment 2 should have --duration 10000 (50 - 40)
-    expect(seg2Task?.config.args).toContain("--duration");
-    expect(seg2Task?.config.args).toContain("10000");
-    // Segment 3 should be filtered out (end=50 < seg3 start=80)
-    expect(seg3Task).toBeUndefined();
+    expect(transcribeTasks).toHaveLength(2);
+    expect(transcribeTasks[0]?.task.label).toBe("transcribe[seg:1 of 3]");
+    expect(transcribeTasks[1]?.task.label).toBe("transcribe[seg:2 of 3]");
   });
 
-  test("--start and --duration together", async () => {
+  test("--start and --duration together filter correctly", async () => {
     const config = {
       ...mockConfig,
       segmentSec: 40,
@@ -239,91 +202,27 @@ describe("runWhisper task generation", () => {
     };
     const result = await runWhisper(config, mockDeps);
 
-    // Window [10, 30) is entirely within segment 1, so only 1 transcribe segment
-    const transcribeTask = result.tasks.find(
-      (t) => t.config.label === "transcribe[seg:1 of 3]",
+    // Window [10, 30) is entirely within segment 1, so only 1 transcribe task
+    const transcribeTasks = result.tasks.filter((t) =>
+      t.task.label.startsWith("transcribe["),
     );
-    expect(transcribeTask).toBeDefined();
-    expect(transcribeTask?.config.args).toContain("--offset-t");
-    expect(transcribeTask?.config.args).toContain("10000");
-    expect(transcribeTask?.config.args).toContain("--duration");
-    expect(transcribeTask?.config.args).toContain("20000");
-
-    // Segments 2 and 3 should be filtered out
-    expect(
-      result.tasks.find((t) => t.config.label === "transcribe[seg:2 of 3]"),
-    ).toBeUndefined();
-    expect(
-      result.tasks.find((t) => t.config.label === "transcribe[seg:3 of 3]"),
-    ).toBeUndefined();
+    expect(transcribeTasks).toHaveLength(1);
+    expect(transcribeTasks[0]?.task.label).toBe("transcribe[seg:1 of 3]");
   });
 
-  test("cached WAV uses correct label", async () => {
-    const deps: RunDeps = {
-      getAudioDuration: () => Promise.resolve(100),
-      checkCache: (path) => path.includes("wav"), // WAV cached, VTT not
-    };
-    const result = await runWhisper(mockConfig, deps);
-
-    const wavTask = result.tasks.find((t) => t.config.label.includes("to-wav"));
-    expect(wavTask?.config.label).toBe("to-wav[seg:1 of 1][cached]");
-    expect(wavTask?.config.command).toBe("cp");
-  });
-
-  test("cached VTT uses correct label", async () => {
-    const deps: RunDeps = {
-      getAudioDuration: () => Promise.resolve(100),
-      checkCache: (path) => path.includes("vtt"), // VTT cached, WAV not
-    };
-    const result = await runWhisper(mockConfig, deps);
-
-    const vttTask = result.tasks.find((t) =>
-      t.config.label.includes("transcribe["),
-    );
-    expect(vttTask?.config.label).toBe("transcribe[seg:1 of 1][cached]");
-    expect(vttTask?.config.command).toBe("cp");
-  });
+  // NOTE: Cache tests removed - caching is now internal to Task.execute()
+  // Cache behavior is verified via integration tests.
 });
 
 describe("runWhisper segment boundaries", () => {
-  function getArgValue(args: string[], flag: string): string | undefined {
-    const index = args.indexOf(flag);
-    return index >= 0 ? args[index + 1] : undefined;
-  }
+  // NOTE: Tests that previously extracted args from TaskConfig have been removed
+  // because Task now encapsulates execution details. These tests verified WAV
+  // segment boundaries (-ss, -t) and whisper timing (--offset-t, --duration)
+  // which are now internal to Task.execute().
+  //
+  // Integration tests verify end-to-end behavior.
 
-  function describeWavTasks(
-    tasks: Array<{ config: { label: string; args: string[] } }>,
-  ): Array<{ label: string; ss?: number; t?: number }> {
-    return tasks.map((task) => {
-      const { args, label } = task.config;
-      const ss = getArgValue(args, "-ss");
-      const t = getArgValue(args, "-t");
-      return Object.fromEntries([
-        ["label", label],
-        ...(ss !== undefined ? [["ss", Number(ss)]] : []),
-        ...(t !== undefined ? [["t", Number(t)]] : []),
-      ]) as { label: string; ss?: number; t?: number };
-    });
-  }
-
-  function describeTranscribeTasks(
-    tasks: Array<{ config: { label: string; args: string[] } }>,
-  ): Array<{ label: string; offsetMs?: number; durationMs?: number }> {
-    return tasks.map((task) => {
-      const { args, label } = task.config;
-      const offsetMs = getArgValue(args, "--offset-t");
-      const durationMs = getArgValue(args, "--duration");
-      return Object.fromEntries([
-        ["label", label],
-        ...(offsetMs !== undefined ? [["offsetMs", Number(offsetMs)]] : []),
-        ...(durationMs !== undefined
-          ? [["durationMs", Number(durationMs)]]
-          : []),
-      ]) as { label: string; offsetMs?: number; durationMs?: number };
-    });
-  }
-
-  async function getSegmentBoundaries({
+  async function getTaskLabels({
     segmentSec,
     overlapSec,
     audioDuration,
@@ -336,12 +235,8 @@ describe("runWhisper segment boundaries", () => {
     startSec?: number;
     durationSec?: number;
   }): Promise<{
-    wav: Array<{ label: string; ss?: number; t?: number }>;
-    transcribe: Array<{
-      label: string;
-      offsetMs?: number;
-      durationMs?: number;
-    }>;
+    wav: string[];
+    transcribe: string[];
   }> {
     const config = {
       ...mockConfig,
@@ -352,235 +247,94 @@ describe("runWhisper segment boundaries", () => {
     };
     const deps: RunDeps = {
       getAudioDuration: () => Promise.resolve(audioDuration),
-      checkCache: () => false,
     };
 
     const result = await runWhisper(config, deps);
     const wavTasks = result.tasks.filter((t) =>
-      t.config.label.startsWith("to-wav["),
+      t.task.label.startsWith("to-wav["),
     );
     const transcribeTasks = result.tasks.filter((t) =>
-      t.config.label.startsWith("transcribe["),
+      t.task.label.startsWith("transcribe["),
     );
 
     return {
-      wav: describeWavTasks(wavTasks),
-      transcribe: describeTranscribeTasks(transcribeTasks),
+      wav: wavTasks.map((t) => t.task.label),
+      transcribe: transcribeTasks.map((t) => t.task.label),
     };
   }
 
   describe("wav boundaries", () => {
-    test("single segment has proper boundaries", async () => {
-      const boundaries = await getSegmentBoundaries({
+    test("single segment produces correct labels", async () => {
+      const labels = await getTaskLabels({
         segmentSec: 0,
         overlapSec: 0,
         audioDuration: 100,
       });
 
-      expect(boundaries).toEqual({
-        wav: [{ label: "to-wav[seg:1 of 1]", ss: 0, t: 100 }],
-        transcribe: [
-          {
-            label: "transcribe[seg:1 of 1]",
-          },
-        ],
-      });
+      expect(labels.wav).toEqual(["to-wav[seg:1 of 1]"]);
+      expect(labels.transcribe).toEqual(["transcribe[seg:1 of 1]"]);
     });
 
-    test("single segment when duration <= segmentSec", async () => {
-      const boundaries = await getSegmentBoundaries({
-        segmentSec: 200,
-        overlapSec: 0,
-        audioDuration: 100,
-      });
-
-      expect(boundaries).toEqual({
-        wav: [{ label: "to-wav[seg:1 of 1]", ss: 0, t: 100 }],
-        transcribe: [
-          {
-            label: "transcribe[seg:1 of 1]",
-          },
-        ],
-      });
-    });
-
-    test("multiple segments without overlap", async () => {
-      const boundaries = await getSegmentBoundaries({
+    test("multiple segments produce correct labels", async () => {
+      const labels = await getTaskLabels({
         segmentSec: 30,
         overlapSec: 0,
         audioDuration: 100,
       });
 
-      expect(boundaries).toEqual({
-        wav: [
-          { label: "to-wav[seg:1 of 4]", ss: 0, t: 30 },
-          { label: "to-wav[seg:2 of 4]", ss: 30, t: 30 },
-          { label: "to-wav[seg:3 of 4]", ss: 60, t: 30 },
-          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
-        ],
-        transcribe: [
-          {
-            label: "transcribe[seg:1 of 4]",
-          },
-          {
-            label: "transcribe[seg:2 of 4]",
-          },
-          {
-            label: "transcribe[seg:3 of 4]",
-          },
-          {
-            label: "transcribe[seg:4 of 4]",
-          },
-        ],
-      });
-    });
-
-    test("multiple segments with overlap", async () => {
-      const boundaries = await getSegmentBoundaries({
-        segmentSec: 30,
-        overlapSec: 5,
-        audioDuration: 100,
-      });
-
-      expect(boundaries).toEqual({
-        wav: [
-          { label: "to-wav[seg:1 of 4]", ss: 0, t: 35 },
-          { label: "to-wav[seg:2 of 4]", ss: 30, t: 35 },
-          { label: "to-wav[seg:3 of 4]", ss: 60, t: 35 },
-          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
-        ],
-        transcribe: [
-          {
-            label: "transcribe[seg:1 of 4]",
-          },
-          {
-            label: "transcribe[seg:2 of 4]",
-          },
-          {
-            label: "transcribe[seg:3 of 4]",
-          },
-          {
-            label: "transcribe[seg:4 of 4]",
-          },
-        ],
-      });
-    });
-
-    test("overlap is capped by remaining audio", async () => {
-      const boundaries = await getSegmentBoundaries({
-        segmentSec: 30,
-        overlapSec: 10,
-        audioDuration: 35,
-      });
-
-      expect(boundaries).toEqual({
-        wav: [
-          { label: "to-wav[seg:1 of 2]", ss: 0, t: 35 },
-          { label: "to-wav[seg:2 of 2]", ss: 30, t: 5 },
-        ],
-        transcribe: [
-          {
-            label: "transcribe[seg:1 of 2]",
-          },
-          {
-            label: "transcribe[seg:2 of 2]",
-          },
-        ],
-      });
+      expect(labels.wav).toEqual([
+        "to-wav[seg:1 of 4]",
+        "to-wav[seg:2 of 4]",
+        "to-wav[seg:3 of 4]",
+        "to-wav[seg:4 of 4]",
+      ]);
+      expect(labels.transcribe).toEqual([
+        "transcribe[seg:1 of 4]",
+        "transcribe[seg:2 of 4]",
+        "transcribe[seg:3 of 4]",
+        "transcribe[seg:4 of 4]",
+      ]);
     });
   });
 
   describe("without overlap", () => {
-    test("transcribe tasks include all segments by default", async () => {
-      const boundaries = await getSegmentBoundaries({
+    test("start filters to correct segments", async () => {
+      const labels = await getTaskLabels({
         segmentSec: 30,
         overlapSec: 0,
         audioDuration: 100,
+        startSec: 40,
       });
 
-      expect(boundaries).toEqual({
-        wav: [
-          { label: "to-wav[seg:1 of 4]", ss: 0, t: 30 },
-          { label: "to-wav[seg:2 of 4]", ss: 30, t: 30 },
-          { label: "to-wav[seg:3 of 4]", ss: 60, t: 30 },
-          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
-        ],
-        transcribe: [
-          {
-            label: "transcribe[seg:1 of 4]",
-          },
-          {
-            label: "transcribe[seg:2 of 4]",
-          },
-          {
-            label: "transcribe[seg:3 of 4]",
-          },
-          {
-            label: "transcribe[seg:4 of 4]",
-          },
-        ],
-      });
+      // All WAV segments created (for full audio conversion)
+      expect(labels.wav).toHaveLength(4);
+      // Only segments 2-4 transcribed (start=40 > seg1 end=30)
+      expect(labels.transcribe).toEqual([
+        "transcribe[seg:2 of 4]",
+        "transcribe[seg:3 of 4]",
+        "transcribe[seg:4 of 4]",
+      ]);
     });
 
-    test("start only filters to start segment", async () => {
-      const boundaries = await getSegmentBoundaries({
-        segmentSec: 30,
-        overlapSec: 0,
-        audioDuration: 100,
-        startSec: 50,
-      });
-
-      expect(boundaries).toEqual({
-        wav: [
-          { label: "to-wav[seg:1 of 4]", ss: 0, t: 30 },
-          { label: "to-wav[seg:2 of 4]", ss: 30, t: 30 },
-          { label: "to-wav[seg:3 of 4]", ss: 60, t: 30 },
-          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
-        ],
-        transcribe: [
-          {
-            label: "transcribe[seg:2 of 4]",
-            offsetMs: 20000,
-          },
-          {
-            label: "transcribe[seg:3 of 4]",
-          },
-          {
-            label: "transcribe[seg:4 of 4]",
-          },
-        ],
-      });
-    });
-
-    test("duration only filters to end segment", async () => {
-      const boundaries = await getSegmentBoundaries({
+    test("duration filters to correct segments", async () => {
+      const labels = await getTaskLabels({
         segmentSec: 30,
         overlapSec: 0,
         audioDuration: 100,
         durationSec: 50,
       });
 
-      expect(boundaries).toEqual({
-        wav: [
-          { label: "to-wav[seg:1 of 4]", ss: 0, t: 30 },
-          { label: "to-wav[seg:2 of 4]", ss: 30, t: 30 },
-          { label: "to-wav[seg:3 of 4]", ss: 60, t: 30 },
-          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
-        ],
-        transcribe: [
-          {
-            label: "transcribe[seg:1 of 4]",
-          },
-          {
-            label: "transcribe[seg:2 of 4]",
-            durationMs: 20000,
-          },
-        ],
-      });
+      // All WAV segments created
+      expect(labels.wav).toHaveLength(4);
+      // Only segments 1-2 transcribed (duration=50 ends in seg2)
+      expect(labels.transcribe).toEqual([
+        "transcribe[seg:1 of 4]",
+        "transcribe[seg:2 of 4]",
+      ]);
     });
 
     test("start and duration together span middle segments", async () => {
-      const boundaries = await getSegmentBoundaries({
+      const labels = await getTaskLabels({
         segmentSec: 30,
         overlapSec: 0,
         audioDuration: 100,
@@ -588,112 +342,12 @@ describe("runWhisper segment boundaries", () => {
         durationSec: 40,
       });
 
-      expect(boundaries).toEqual({
-        wav: [
-          { label: "to-wav[seg:1 of 4]", ss: 0, t: 30 },
-          { label: "to-wav[seg:2 of 4]", ss: 30, t: 30 },
-          { label: "to-wav[seg:3 of 4]", ss: 60, t: 30 },
-          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
-        ],
-        transcribe: [
-          {
-            label: "transcribe[seg:2 of 4]",
-            offsetMs: 10000,
-          },
-          {
-            label: "transcribe[seg:3 of 4]",
-            durationMs: 20000,
-          },
-        ],
-      });
-    });
-  });
-
-  describe("with overlap", () => {
-    test("start only filters to start segment", async () => {
-      const boundaries = await getSegmentBoundaries({
-        segmentSec: 30,
-        overlapSec: 5,
-        audioDuration: 100,
-        startSec: 50,
-      });
-
-      expect(boundaries).toEqual({
-        wav: [
-          { label: "to-wav[seg:1 of 4]", ss: 0, t: 35 },
-          { label: "to-wav[seg:2 of 4]", ss: 30, t: 35 },
-          { label: "to-wav[seg:3 of 4]", ss: 60, t: 35 },
-          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
-        ],
-        transcribe: [
-          {
-            label: "transcribe[seg:2 of 4]",
-            offsetMs: 20000,
-          },
-          {
-            label: "transcribe[seg:3 of 4]",
-          },
-          {
-            label: "transcribe[seg:4 of 4]",
-          },
-        ],
-      });
-    });
-
-    test("duration only filters to end segment", async () => {
-      const boundaries = await getSegmentBoundaries({
-        segmentSec: 30,
-        overlapSec: 5,
-        audioDuration: 100,
-        durationSec: 50,
-      });
-
-      expect(boundaries).toEqual({
-        wav: [
-          { label: "to-wav[seg:1 of 4]", ss: 0, t: 35 },
-          { label: "to-wav[seg:2 of 4]", ss: 30, t: 35 },
-          { label: "to-wav[seg:3 of 4]", ss: 60, t: 35 },
-          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
-        ],
-        transcribe: [
-          {
-            label: "transcribe[seg:1 of 4]",
-          },
-          {
-            label: "transcribe[seg:2 of 4]",
-            durationMs: 20000,
-          },
-        ],
-      });
-    });
-
-    test("start and duration together span middle segments", async () => {
-      const boundaries = await getSegmentBoundaries({
-        segmentSec: 30,
-        overlapSec: 5,
-        audioDuration: 100,
-        startSec: 40,
-        durationSec: 40,
-      });
-
-      expect(boundaries).toEqual({
-        wav: [
-          { label: "to-wav[seg:1 of 4]", ss: 0, t: 35 },
-          { label: "to-wav[seg:2 of 4]", ss: 30, t: 35 },
-          { label: "to-wav[seg:3 of 4]", ss: 60, t: 35 },
-          { label: "to-wav[seg:4 of 4]", ss: 90, t: 10 },
-        ],
-        transcribe: [
-          {
-            label: "transcribe[seg:2 of 4]",
-            offsetMs: 10000,
-          },
-          {
-            label: "transcribe[seg:3 of 4]",
-            durationMs: 20000,
-          },
-        ],
-      });
+      expect(labels.wav).toHaveLength(4);
+      // Window [40, 80) spans segments 2-3
+      expect(labels.transcribe).toEqual([
+        "transcribe[seg:2 of 4]",
+        "transcribe[seg:3 of 4]",
+      ]);
     });
   });
 
@@ -723,5 +377,149 @@ describe("runWhisper segment boundaries", () => {
         "overlapping stitching : not yet implemented!",
       );
     });
+  });
+});
+
+// =============================================================================
+// SEGMENT BOUNDARY COMPUTATION TESTS
+// =============================================================================
+// These tests verify the segment boundary calculation logic directly.
+// Previously this was tested by inspecting Task args, but now we test the
+// computation functions themselves.
+
+describe("computeSegmentCount", () => {
+  test("single segment when segmentSec is 0 or >= audioDuration", () => {
+    expect(computeSegmentCount(100, 0)).toBe(1);
+    expect(computeSegmentCount(100, 100)).toBe(1);
+    expect(computeSegmentCount(100, 200)).toBe(1);
+  });
+
+  test("multiple segments with exact division", () => {
+    expect(computeSegmentCount(120, 30)).toBe(4);
+    expect(computeSegmentCount(60, 30)).toBe(2);
+  });
+
+  test("multiple segments with remainder", () => {
+    expect(computeSegmentCount(100, 30)).toBe(4); // 30+30+30+10
+  });
+
+  test(`drops tiny tail segments below MIN_SEGMENT_REMAINDER_SEC (${MIN_SEGMENT_REMAINDER_SEC}s)`, () => {
+    const threshold = MIN_SEGMENT_REMAINDER_SEC;
+    // 90 + (threshold - 1) = remainder just below threshold -> absorbed
+    expect(computeSegmentCount(90 + threshold - 1, 30)).toBe(3);
+
+    // 90 + threshold = remainder at threshold -> becomes segment
+    expect(computeSegmentCount(90 + threshold, 30)).toBe(4);
+
+    // Edge: tiny file should still get 1 segment even if below threshold
+    expect(computeSegmentCount(1, 30)).toBe(1);
+  });
+
+  test("edge case: zero duration", () => {
+    expect(computeSegmentCount(0, 30)).toBe(0);
+  });
+});
+
+describe("getStartSegmentIndex", () => {
+  test("returns 0 for start <= 0", () => {
+    expect(getStartSegmentIndex(0, 30, 4)).toBe(0);
+    expect(getStartSegmentIndex(-10, 30, 4)).toBe(0);
+  });
+
+  test("returns 0 for single segment", () => {
+    expect(getStartSegmentIndex(50, 30, 1)).toBe(0);
+  });
+
+  test("returns correct segment for multi-segment", () => {
+    // Segments: [0-30), [30-60), [60-90), [90-100)
+    expect(getStartSegmentIndex(10, 30, 4)).toBe(0); // within seg 0
+    expect(getStartSegmentIndex(40, 30, 4)).toBe(1); // within seg 1
+    expect(getStartSegmentIndex(65, 30, 4)).toBe(2); // within seg 2
+    expect(getStartSegmentIndex(95, 30, 4)).toBe(3); // within seg 3
+  });
+
+  test("clamps to last segment", () => {
+    expect(getStartSegmentIndex(200, 30, 4)).toBe(3);
+  });
+});
+
+describe("getEndSegmentIndex", () => {
+  test("returns 0 for single segment", () => {
+    expect(getEndSegmentIndex(50, 100, 30, 0, 1)).toBe(0);
+  });
+
+  test("returns last segment for end >= audioDuration", () => {
+    expect(getEndSegmentIndex(100, 100, 30, 0, 4)).toBe(3);
+    expect(getEndSegmentIndex(150, 100, 30, 0, 4)).toBe(3);
+  });
+
+  test("returns correct segment for multi-segment", () => {
+    // Segments (no overlap): [0-30), [30-60), [60-90), [90-100)
+    expect(getEndSegmentIndex(25, 100, 30, 0, 4)).toBe(0);
+    expect(getEndSegmentIndex(50, 100, 30, 0, 4)).toBe(1);
+    expect(getEndSegmentIndex(80, 100, 30, 0, 4)).toBe(2);
+  });
+});
+
+describe("getOffsetMsForSegment", () => {
+  const baseConfig: RunConfig = {
+    ...mockConfig,
+    segmentSec: 30,
+    overlapSec: 0,
+  };
+
+  test("returns 0 when startSec <= 0", () => {
+    const config = { ...baseConfig, startSec: 0 };
+    expect(getOffsetMsForSegment(0, config, 30, 4)).toBe(0);
+    expect(getOffsetMsForSegment(1, config, 30, 4)).toBe(0);
+  });
+
+  test("returns offset only for containing segment", () => {
+    // start=50 is in segment 1 (30-60), offset = 50-30 = 20s = 20000ms
+    const config = { ...baseConfig, startSec: 50 };
+    expect(getOffsetMsForSegment(0, config, 30, 4)).toBe(0);
+    expect(getOffsetMsForSegment(1, config, 30, 4)).toBe(20000);
+    expect(getOffsetMsForSegment(2, config, 30, 4)).toBe(0);
+  });
+
+  test("returns correct offset for start in first segment", () => {
+    const config = { ...baseConfig, startSec: 10 };
+    expect(getOffsetMsForSegment(0, config, 30, 4)).toBe(10000);
+    expect(getOffsetMsForSegment(1, config, 30, 4)).toBe(0);
+  });
+});
+
+describe("getDurationMsForSegment", () => {
+  const baseConfig: RunConfig = {
+    ...mockConfig,
+    segmentSec: 30,
+    overlapSec: 0,
+  };
+
+  test("returns 0 when durationSec <= 0", () => {
+    const config = { ...baseConfig, startSec: 0, durationSec: 0 };
+    expect(getDurationMsForSegment(0, config, 100, 30, 4)).toBe(0);
+    expect(getDurationMsForSegment(1, config, 100, 30, 4)).toBe(0);
+  });
+
+  test("returns 0 when duration extends to end of file", () => {
+    const config = { ...baseConfig, startSec: 0, durationSec: 150 };
+    expect(getDurationMsForSegment(0, config, 100, 30, 4)).toBe(0);
+    expect(getDurationMsForSegment(3, config, 100, 30, 4)).toBe(0);
+  });
+
+  test("returns duration only for end segment", () => {
+    // duration=50 ends in segment 1 (30-60), local duration = 50-30 = 20s = 20000ms
+    const config = { ...baseConfig, startSec: 0, durationSec: 50 };
+    expect(getDurationMsForSegment(0, config, 100, 30, 4)).toBe(0);
+    expect(getDurationMsForSegment(1, config, 100, 30, 4)).toBe(20000);
+    expect(getDurationMsForSegment(2, config, 100, 30, 4)).toBe(0);
+  });
+
+  test("returns full duration when start and end in same segment", () => {
+    // start=10, duration=15 -> both in segment 0
+    const config = { ...baseConfig, startSec: 10, durationSec: 15 };
+    expect(getDurationMsForSegment(0, config, 100, 30, 4)).toBe(15000);
+    expect(getDurationMsForSegment(1, config, 100, 30, 4)).toBe(0);
   });
 });

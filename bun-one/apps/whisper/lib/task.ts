@@ -10,7 +10,7 @@
  * runTask(config, monitor)
  *   - Spawns process, streams stdout/stderr to log files
  *   - Emits events to monitor for matching lines
- *   - Returns TaskResult with exit code and elapsed time
+ *   - Returns RunTaskResult with exit code and elapsed time
  *
  * TaskMonitor
  *   - Receives events from multiple tasks (one lifecycle at a time)
@@ -57,7 +57,7 @@ export interface TaskConfig {
 /**
  * Result of task execution.
  */
-export interface TaskResult {
+export interface RunTaskResult {
   code: number;
   elapsedMs: number;
 }
@@ -75,7 +75,7 @@ export interface TaskEvent {
   /** Present on "line" event - the raw matching line */
   line?: string;
   /** Present on "done" event - the task result */
-  result?: TaskResult;
+  result?: RunTaskResult;
   /** Present on "error" event */
   error?: Error;
 }
@@ -93,6 +93,230 @@ export interface TaskMonitor {
 }
 
 // ============================================================================
+// New Task Interface (Refactored)
+// ============================================================================
+
+/**
+ * Known task kinds - only "real work" tasks.
+ * Copy operations are internal to caching wrapper, not separate tasks.
+ */
+export type TaskKind = "to-wav" | "transcribe" | "stitch";
+
+/**
+ * Generic result - returned on SUCCESS only.
+ * Failure = throw (non-zero exit throws with message).
+ *
+ * Note: on cache hit, elapsedMs could be populated from cached artifact's
+ * provenance metadata (e.g., original processing time stored in VTT header).
+ */
+export interface TaskResult {
+  elapsedMs: number;
+}
+
+/**
+ * Context passed to execute() - provides shared services.
+ *
+ * NOTE: Current factory implementations (createToWavTask, createTranscribeTask)
+ * capture all configuration at creation time via opts, so they don't use ctx.
+ * The ctx parameter is kept for future extensibility (e.g., shared progress
+ * reporting, dynamic workDir, cancellation tokens).
+ */
+export interface TaskContext {
+  reporter: ProgressReporter;
+  workDir: string; // For log files, temp files
+}
+
+/**
+ * The minimal contract for any task.
+ *
+ * Naming convention:
+ * - build* (high-level): orchestration - loops, branches, returns Task[]
+ * - create* (low-level): pure factory - creates one Task from options
+ */
+export interface Task {
+  kind: TaskKind; // Discriminator for filtering/narrowing
+  label: string;
+
+  /**
+   * Pure: may be called many times (dry-run, logging, inspection).
+   * Describes what this task will do.
+   */
+  describe(): string;
+
+  /**
+   * Side-effecting: called exactly once during execution.
+   * Returns TaskResult on success, throws on failure.
+   */
+  execute(ctx: TaskContext): Promise<TaskResult>;
+}
+
+// ============================================================================
+// Task Factory Functions
+// ============================================================================
+
+/**
+ * Options for creating a WAV conversion task.
+ */
+export interface ToWavTaskOptions {
+  label: string;
+  inputPath: string;
+  outputPath: string;
+  startSec: number;
+  durationSec: number;
+  cachePath: string; // Where to cache the output
+  logPrefix: string; // For stdout/stderr log files
+  monitor: TaskMonitor;
+}
+
+/**
+ * Create a to-wav task (ffmpeg audio conversion).
+ * The task wraps ffmpeg execution inside execute().
+ * Cache logic: check cache -> if hit, copy; if miss, run ffmpeg then cache.
+ */
+export function createToWavTask(opts: ToWavTaskOptions): Task {
+  return {
+    kind: "to-wav",
+    label: opts.label,
+    describe: () => `ffmpeg: ${opts.inputPath} → ${opts.outputPath}`,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    execute: async (_ctx) => {
+      const start = Date.now();
+
+      // Check cache first
+      const cacheFile = Bun.file(opts.cachePath);
+      if (await cacheFile.exists()) {
+        // Cache hit - copy from cache
+        await Bun.write(opts.outputPath, cacheFile);
+        return { elapsedMs: Date.now() - start };
+      }
+
+      // Cache miss - run ffmpeg
+      const config: TaskConfig = {
+        label: opts.label,
+        command: "ffmpeg",
+        args: [
+          "-y",
+          "-hide_banner",
+          "-loglevel",
+          "info",
+          "-i",
+          opts.inputPath,
+          "-ss",
+          String(opts.startSec),
+          "-t",
+          String(opts.durationSec),
+          "-acodec",
+          "pcm_s16le",
+          "-ar",
+          "16000",
+          "-ac",
+          "1",
+          opts.outputPath,
+        ],
+        stdoutLogPath: `${opts.logPrefix}.stdout.log`,
+        stderrLogPath: `${opts.logPrefix}.stderr.log`,
+        monitor: opts.monitor,
+      };
+
+      const result = await runTask(config);
+      if (result.code !== 0) {
+        throw new Error(`ffmpeg failed with exit code ${result.code}`);
+      }
+
+      // Cache the result
+      await Bun.write(opts.cachePath, Bun.file(opts.outputPath));
+
+      return { elapsedMs: Date.now() - start };
+    },
+  };
+}
+
+/**
+ * Options for creating a transcription task.
+ */
+export interface TranscribeTaskOptions {
+  label: string;
+  wavPath: string;
+  outputPrefix: string; // whisper outputs to ${outputPrefix}.vtt
+  vttPath: string; // The expected VTT output path
+  model: string; // Model short name (e.g., "tiny.en")
+  modelPath: string; // Full path to model file
+  threads: number;
+  offsetMs: number; // Whisper --offset-t
+  durationMs: number; // Whisper --duration
+  wordTimestamps: boolean;
+  cachePath: string; // Where to cache the VTT
+  monitor: TaskMonitor;
+}
+
+/**
+ * Create a transcribe task (whisper-cli transcription).
+ * The task wraps whisper-cli execution inside execute().
+ * Cache logic: check cache -> if hit, copy; if miss, run whisper then cache.
+ */
+export function createTranscribeTask(opts: TranscribeTaskOptions): Task {
+  return {
+    kind: "transcribe",
+    label: opts.label,
+    describe: () => `whisper: ${opts.wavPath} (model=${opts.model})`,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    execute: async (_ctx) => {
+      const start = Date.now();
+
+      // Check cache first
+      const cacheFile = Bun.file(opts.cachePath);
+      if (await cacheFile.exists()) {
+        // Cache hit - copy from cache
+        await Bun.write(opts.vttPath, cacheFile);
+        return { elapsedMs: Date.now() - start };
+      }
+
+      // Cache miss - run whisper-cli
+      const offsetArgs =
+        opts.offsetMs > 0 ? ["--offset-t", String(opts.offsetMs)] : [];
+      const durationArgs =
+        opts.durationMs > 0 ? ["--duration", String(opts.durationMs)] : [];
+      const wordTimestampArgs = opts.wordTimestamps
+        ? ["--max-len", "1", "--split-on-word"]
+        : [];
+
+      const config: TaskConfig = {
+        label: opts.label,
+        command: "whisper-cli",
+        args: [
+          "--file",
+          opts.wavPath,
+          "--model",
+          opts.modelPath,
+          "--output-file",
+          opts.outputPrefix,
+          "--output-vtt",
+          "--print-progress",
+          "--threads",
+          String(opts.threads),
+          ...offsetArgs,
+          ...durationArgs,
+          ...wordTimestampArgs,
+        ],
+        stdoutLogPath: `${opts.outputPrefix}.stdout.log`,
+        stderrLogPath: `${opts.outputPrefix}.stderr.log`,
+        monitor: opts.monitor,
+      };
+
+      const result = await runTask(config);
+      if (result.code !== 0) {
+        throw new Error(`whisper-cli failed with exit code ${result.code}`);
+      }
+
+      // Cache the result
+      await Bun.write(opts.cachePath, Bun.file(opts.vttPath));
+
+      return { elapsedMs: Date.now() - start };
+    },
+  };
+}
+
+// ============================================================================
 // Core Functions
 // ============================================================================
 
@@ -102,7 +326,7 @@ export interface TaskMonitor {
  * All lines from both stdout and stderr are emitted as "line" events.
  * The monitor decides which lines to act on based on event.stream and its own regex.
  */
-export function runTask(config: TaskConfig): Promise<TaskResult> {
+export function runTask(config: TaskConfig): Promise<RunTaskResult> {
   const start = Date.now();
   const monitor = config.monitor;
 
@@ -150,13 +374,15 @@ export function runTask(config: TaskConfig): Promise<TaskResult> {
 
     proc.on("close", (code: number | null) => {
       const elapsedMs = Date.now() - start;
-      const result: TaskResult = { code: code ?? 0, elapsedMs };
+      const result: RunTaskResult = { code: code ?? 0, elapsedMs };
       monitor.onEvent({ type: "done", result });
       const closeError =
         code === 0 || code === null
           ? undefined
           : new Error(
-              `Task "${config.label}" failed with exit code ${code}: ${config.command} ${config.args.join(" ")}`,
+              `Task "${config.label}" failed with exit code ${code}: ${config.command} ${config.args.join(
+                " ",
+              )}`,
             );
 
       // Wait for write streams to finish
