@@ -154,7 +154,7 @@ With segments, we need per-segment duration calculation:
 
 - [x] `bun run ci` passes (72 tests, 188 expect)
 - [x] `./scripts/demo/demo.sh` passes
-- [ ] Commit
+- [x] Commit: cfad9bb
 
 ---
 
