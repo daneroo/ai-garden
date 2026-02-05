@@ -100,7 +100,7 @@ export interface TaskMonitor {
  * Known task kinds - only "real work" tasks.
  * Copy operations are internal to caching wrapper, not separate tasks.
  */
-export type TaskKind = "to-wav" | "transcribe" | "stitch";
+export type TaskKind = "to-wav" | "transcribe";
 
 /**
  * Generic result - returned on SUCCESS only.
@@ -111,19 +111,6 @@ export type TaskKind = "to-wav" | "transcribe" | "stitch";
  */
 export interface TaskResult {
   elapsedMs: number;
-}
-
-/**
- * Context passed to execute() - provides shared services.
- *
- * NOTE: Current factory implementations (createToWavTask, createTranscribeTask)
- * capture all configuration at creation time via opts, so they don't use ctx.
- * The ctx parameter is kept for future extensibility (e.g., shared progress
- * reporting, dynamic workDir, cancellation tokens).
- */
-export interface TaskContext {
-  reporter: ProgressReporter;
-  workDir: string; // For log files, temp files
 }
 
 /**
@@ -147,7 +134,7 @@ export interface Task {
    * Side-effecting: called exactly once during execution.
    * Returns TaskResult on success, throws on failure.
    */
-  execute(ctx: TaskContext): Promise<TaskResult>;
+  execute(): Promise<TaskResult>;
 }
 
 // ============================================================================
@@ -178,8 +165,7 @@ export function createToWavTask(opts: ToWavTaskOptions): Task {
     kind: "to-wav",
     label: opts.label,
     describe: () => `ffmpeg: ${opts.inputPath} → ${opts.outputPath}`,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    execute: async (_ctx) => {
+    execute: async () => {
       const start = Date.now();
 
       // Check cache first
@@ -259,8 +245,7 @@ export function createTranscribeTask(opts: TranscribeTaskOptions): Task {
     kind: "transcribe",
     label: opts.label,
     describe: () => `whisper: ${opts.wavPath} (model=${opts.model})`,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    execute: async (_ctx) => {
+    execute: async () => {
       const start = Date.now();
 
       // Check cache first

@@ -255,17 +255,11 @@ async function runWhisperPipeline(
     outputPath: finalVtt,
   };
 
-  // Build TaskContext for execution
-  const ctx = {
-    reporter,
-    workDir: config.runWorkDir,
-  };
-
   // Execute tasks (skip in dry-run mode)
   if (!config.dryRun) {
     for (let i = 0; i < tasks.length; i++) {
       const task = tasks[i]!;
-      const taskResult = await task.execute(ctx);
+      const taskResult = await task.execute();
       result.tasks[i] = {
         task,
         result: { elapsedMs: taskResult.elapsedMs },
