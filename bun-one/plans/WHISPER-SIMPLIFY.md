@@ -13,6 +13,8 @@ KISS: no rewrites, just incremental work
 
 ## Implementation Plan
 
+Before checking any box: `bun run ci` must pass.
+
 ### Phase 1 - restore clean state of `<repo>/bun-one/apps/whisper`
 
 - [x] remove all of whispernu.ts libnu, and testnu
