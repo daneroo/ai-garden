@@ -110,11 +110,13 @@ hobbit-seg00-d10m-mtiny-en-wt0.vtt
 ### Naming Convention: buildXX vs createYY
 
 From `task.ts` comments:
+
 - `build*` (high-level): orchestration - loops, branches, returns Task[]
 - `create*` (low-level): pure factory - creates one Task from options
 
-Current code only uses `createToWavTask` and `createTranscribeTask` - the `build`
-pattern exists as documentation but has no actual `build*` functions yet.
+Current code only uses `createToWavTask` and `createTranscribeTask` - the
+`build` pattern exists as documentation but has no actual `build*` functions
+yet.
 
 ### describe() Usage
 
@@ -124,7 +126,7 @@ pattern exists as documentation but has no actual `build*` functions yet.
 // In RunResult, stored for each task
 result.tasks = tasks.map((t) => ({
   task: { label: t.label, describe: t.describe() },
-  result: { elapsedMs: taskResult.elapsedMs }
+  result: { elapsedMs: taskResult.elapsedMs },
 }));
 ```
 
@@ -144,7 +146,8 @@ Current implementation in `runners.ts` (lines 208-230):
 let endSegIndex = segments.length - 1;
 if (config.durationSec > 0) {
   const idx = segments.findIndex(
-    (seg) => seg.startSec < config.durationSec && config.durationSec <= seg.endSec,
+    (seg) =>
+      seg.startSec < config.durationSec && config.durationSec <= seg.endSec,
   );
   if (idx !== -1) {
     endSegIndex = idx;
@@ -152,9 +155,9 @@ if (config.durationSec > 0) {
 }
 
 const getDurationMsForSegment = (segIndex: number): number => {
-  if (config.durationSec <= 0) return 0;      // 0 = full WAV
-  if (segIndex < endSegIndex) return 0;       // Before end segment: full
-  if (segIndex > endSegIndex) return -1;      // After end segment: SKIP (sentinel!)
+  if (config.durationSec <= 0) return 0; // 0 = full WAV
+  if (segIndex < endSegIndex) return 0; // Before end segment: full
+  if (segIndex > endSegIndex) return -1; // After end segment: SKIP (sentinel!)
   // End segment: partial duration
   const seg = segments[segIndex]!;
   const localDurationSec = config.durationSec - seg.startSec;
@@ -165,13 +168,14 @@ const getDurationMsForSegment = (segIndex: number): number => {
 const transcribeTasks = segments
   .map((_, i) => {
     const durationMs = getDurationMsForSegment(i);
-    if (durationMs === -1) return null;       // Skip this segment
+    if (durationMs === -1) return null; // Skip this segment
     // ... create task
   })
   .filter((t): t is NonNullable<typeof t> => t !== null);
 ```
 
 Problems:
+
 - `-1` sentinel value for "skip" is unclear
 - Closure over `endSegIndex` and `config` adds indirection
 - Two-phase process (map then filter) instead of upfront filtering
@@ -187,13 +191,13 @@ inline.
 
 Current exported interfaces/types by file:
 
-**runners.ts (4):** `RunConfig`, `RunDeps`, `RunResult`, `Segment`
-**task.ts (9):** `Task`, `TaskKind`, `TaskConfig`, `TaskEvent`, `TaskMonitor`,
+**runners.ts (4):** `RunConfig`, `RunDeps`, `RunResult`, `Segment` **task.ts
+(9):** `Task`, `TaskKind`, `TaskConfig`, `TaskEvent`, `TaskMonitor`,
 `TaskResult`, `RunTaskResult`, `ToWavTaskOptions`, `TranscribeTaskOptions`
-**progress.ts (2):** `ProgressReporter`, `ProgressConfig` - **KEEP**
-**vtt.ts (6):** `VttCue`, `VttFile`, `VttSummary`, `VttHeaderProvenance`,
-`VttSegmentProvenance`, `VttProvenance`
-**vtt-stitch.ts (2):** `SegmentCueBoundary`, `SegmentVttInfo`
+**progress.ts (2):** `ProgressReporter`, `ProgressConfig` - **KEEP** **vtt.ts
+(6):** `VttCue`, `VttFile`, `VttSummary`, `VttHeaderProvenance`,
+`VttSegmentProvenance`, `VttProvenance` **vtt-stitch.ts (2):**
+`SegmentCueBoundary`, `SegmentVttInfo`
 
 Total: 23 interfaces/types across 5 files.
 
@@ -223,6 +227,7 @@ complexity for sequential work.
 Two options for `Segment` interface:
 
 **Option A - Geometry Only (Minimal):**
+
 ```ts
 interface Segment {
   startSec: number;
@@ -232,12 +237,13 @@ interface Segment {
 ```
 
 **Option B - Enriched (Convenient):**
+
 ```ts
 interface Segment {
   index: number;
   startSec: number;
   endSec: number;
-  basename: string;        // e.g., "hobbit-seg00-d10m"
+  basename: string; // e.g., "hobbit-seg00-d10m"
   // Optionally pre-computed paths:
   // wavPath: string;
   // vttPath: string;
@@ -245,6 +251,7 @@ interface Segment {
 ```
 
 **Implementation:**
+
 ```ts
 // Inline in runners.ts - ~25 lines
 function computeSegments(
@@ -253,24 +260,31 @@ function computeSegments(
   maxSegmentSec: number,
   inputName: string,
 ): Segment[] {
-  const effectiveSegSec = segmentSec > 0
-    ? segmentSec
-    : (audioDuration > maxSegmentSec ? maxSegmentSec : audioDuration);
+  const effectiveSegSec =
+    segmentSec > 0
+      ? segmentSec
+      : audioDuration > maxSegmentSec
+        ? maxSegmentSec
+        : audioDuration;
 
   const count = Math.max(1, Math.ceil(audioDuration / effectiveSegSec));
 
   return Array.from({ length: count }, (_, i) => {
     const startSec = i * effectiveSegSec;
-    const endSec = i === count - 1
-      ? audioDuration
-      : Math.min((i + 1) * effectiveSegSec, audioDuration);
-    const suffix = `-seg${String(i).padStart(2, "0")}-d${formatDuration(effectiveSegSec)}`;
+    const endSec =
+      i === count - 1
+        ? audioDuration
+        : Math.min((i + 1) * effectiveSegSec, audioDuration);
+    const suffix = `-seg${String(i).padStart(2, "0")}-d${formatDuration(
+      effectiveSegSec,
+    )}`;
     return { index: i, startSec, endSec, basename: `${inputName}${suffix}` };
   });
 }
 ```
 
 **Changes:**
+
 - Move `computeSegments()` to `runners.ts`
 - Inline `resolveSegmentSec()` logic
 - Inline `getSegmentSuffix()` and `getSegmentDurationLabel()` logic
@@ -280,6 +294,7 @@ function computeSegments(
 - Reduce `Segment` interface to essential fields only
 
 **Checkpoint:**
+
 - `bun run ci` passes
 - `./scripts/demo/demo.sh` passes
 - Commit
@@ -299,7 +314,7 @@ export interface ConvertResult {
   outputPath: string;
   elapsedMs: number;
   fromCache: boolean;
-  description: string;  // For RunResult.tasks[i].task.describe
+  description: string; // For RunResult.tasks[i].task.describe
 }
 
 export async function convertToWav(
@@ -307,7 +322,7 @@ export async function convertToWav(
   segment: Segment,
   outputPath: string,
   reporter: ProgressReporter,
-): Promise<ConvertResult>
+): Promise<ConvertResult>;
 
 export async function transcribeSegment(
   wavPath: string,
@@ -315,10 +330,11 @@ export async function transcribeSegment(
   config: TranscribeConfig,
   outputPath: string,
   reporter: ProgressReporter,
-): Promise<ConvertResult>
+): Promise<ConvertResult>;
 ```
 
 Each function:
+
 1. Computes description string
 2. Checks cache
 3. If hit: copies to outputPath
@@ -327,6 +343,7 @@ Each function:
 6. Returns result with description
 
 **Changes to `task.ts`:**
+
 - Remove `Task` interface (replaced by direct functions)
 - Remove `TaskKind` type
 - Remove `TaskConfig` interface (inline into runTask)
@@ -338,12 +355,14 @@ Each function:
 - Replace `createTranscribeTask()` with `transcribeSegment()`
 
 **Changes to `runners.ts`:**
+
 - Build segments array
 - For dry-run: print what would happen
 - For execute: await each conversion/transcription directly
 - Build `RunResult.tasks` array from function results
 
 Before:
+
 ```ts
 const wavTasks = segments.map(seg => createToWavTask({...}));
 const transcribeTasks = segments.map(seg => createTranscribeTask({...}));
@@ -358,31 +377,49 @@ for (const task of tasks) {
 ```
 
 After:
+
 ```ts
 // Dry-run: just print
 for (const seg of segments) {
-  console.log(`Would convert: ${config.input} [${seg.startSec}-${seg.endSec}] → ${seg.basename}.wav`);
+  console.log(
+    `Would convert: ${config.input} [${seg.startSec}-${seg.endSec}] → ${seg.basename}.wav`,
+  );
   console.log(`Would transcribe: ${seg.basename}.wav → ${seg.basename}.vtt`);
 }
 
 // Execute: direct calls
 const resultTasks = [];
 for (const seg of segments) {
-  const wavResult = await convertToWav(config.input, seg, wavOutputPath, reporter);
+  const wavResult = await convertToWav(
+    config.input,
+    seg,
+    wavOutputPath,
+    reporter,
+  );
   resultTasks.push({
     task: { label: `to-wav[${seg.index}]`, describe: wavResult.description },
-    result: { elapsedMs: wavResult.elapsedMs }
+    result: { elapsedMs: wavResult.elapsedMs },
   });
 
-  const vttResult = await transcribeSegment(wavResult.outputPath, seg, transConfig, vttOutputPath, reporter);
+  const vttResult = await transcribeSegment(
+    wavResult.outputPath,
+    seg,
+    transConfig,
+    vttOutputPath,
+    reporter,
+  );
   resultTasks.push({
-    task: { label: `transcribe[${seg.index}]`, describe: vttResult.description },
-    result: { elapsedMs: vttResult.elapsedMs }
+    task: {
+      label: `transcribe[${seg.index}]`,
+      describe: vttResult.description,
+    },
+    result: { elapsedMs: vttResult.elapsedMs },
   });
 }
 ```
 
 **Checkpoint:**
+
 - `bun run ci` passes
 - `./scripts/demo/demo.sh` passes
 - Commit
@@ -403,15 +440,18 @@ const segments = computeSegments(
 );
 
 // Apply --duration limit: only process segments within duration window
-const activeSegments = config.durationSec > 0
-  ? segments.filter((s) => s.startSec < config.durationSec)
-  : segments;
+const activeSegments =
+  config.durationSec > 0
+    ? segments.filter((s) => s.startSec < config.durationSec)
+    : segments;
 
 // Each segment knows its own transcribe duration
 for (const seg of activeSegments) {
-  const transcribeDurationMs = config.durationSec > 0
-    ? Math.max(0, Math.min(seg.endSec, config.durationSec) - seg.startSec) * 1000
-    : 0; // 0 = full segment
+  const transcribeDurationMs =
+    config.durationSec > 0
+      ? Math.max(0, Math.min(seg.endSec, config.durationSec) - seg.startSec) *
+        1000
+      : 0; // 0 = full segment
 
   await transcribeSegment(
     wavPath,
@@ -424,12 +464,14 @@ for (const seg of activeSegments) {
 ```
 
 **Changes:**
+
 - Remove `getDurationMsForSegment()` closure with sentinel
 - Filter `activeSegments` array upfront
 - Calculate `durationMs` inline when calling transcribe
 - No more -1 sentinel, no more two-phase map+filter
 
 **Checkpoint:**
+
 - `bun run ci` passes
 - `./scripts/demo/demo.sh` passes
 - Commit
@@ -467,11 +509,13 @@ export async function convertToWav(...) {
 ```
 
 **Changes:**
+
 - Add `withCache()` utility to `cache.ts`
 - Use in both `convertToWav()` and `transcribeSegment()`
 - Remove duplicate cache logic from task functions
 
 **Checkpoint:**
+
 - `bun run ci` passes
 - `./scripts/demo/demo.sh` passes
 - Commit
@@ -498,6 +542,7 @@ type Provenance = {
 Or keep as-is if type safety is valuable for external consumers.
 
 **Checkpoint:**
+
 - `bun run ci` passes
 - `./scripts/demo/demo.sh` passes
 - Commit
@@ -506,24 +551,24 @@ Or keep as-is if type safety is valuable for external consumers.
 
 ### Interface Reduction
 
-| File | Before (v4) | After (v5) |
-|------|-------------|------------|
-| segmentation.ts | 3 interfaces | **deleted** |
-| task.ts | 9 interfaces/types | 3-4 types |
-| runners.ts | 4 interfaces | 2-3 interfaces |
-| vtt.ts | 6 interfaces/types | 1-6 (optional) |
-| **Total** | **~22** | **~10** |
+| File            | Before (v4)        | After (v5)     |
+| --------------- | ------------------ | -------------- |
+| segmentation.ts | 3 interfaces       | **deleted**    |
+| task.ts         | 9 interfaces/types | 3-4 types      |
+| runners.ts      | 4 interfaces       | 2-3 interfaces |
+| vtt.ts          | 6 interfaces/types | 1-6 (optional) |
+| **Total**       | **~22**            | **~10**        |
 
 ### Simplified Signatures
 
-| Component | Before (v4) | After (v5) |
-|-----------|-------------|------------|
-| Segment creation | `computeSegments()` + helpers | Single inline function |
-| Segment type | `{startSec, endSec}` + helpers | Rich `Segment` with basename |
-| Conversion | `createToWavTask(opts).execute()` | `convertToWav(input, seg, out, reporter)` |
-| Transcription | `createTranscribeTask(opts).execute()` | `transcribeSegment(wav, seg, cfg, out, reporter)` |
-| Duration handling | Closure with -1 sentinel | Filter + inline calculation |
-| Cache logic | Duplicated in 2 places | Shared `withCache()` wrapper |
+| Component         | Before (v4)                            | After (v5)                                        |
+| ----------------- | -------------------------------------- | ------------------------------------------------- |
+| Segment creation  | `computeSegments()` + helpers          | Single inline function                            |
+| Segment type      | `{startSec, endSec}` + helpers         | Rich `Segment` with basename                      |
+| Conversion        | `createToWavTask(opts).execute()`      | `convertToWav(input, seg, out, reporter)`         |
+| Transcription     | `createTranscribeTask(opts).execute()` | `transcribeSegment(wav, seg, cfg, out, reporter)` |
+| Duration handling | Closure with -1 sentinel               | Filter + inline calculation                       |
+| Cache logic       | Duplicated in 2 places                 | Shared `withCache()` wrapper                      |
 
 ### Data Flow Clarity
 
@@ -564,12 +609,13 @@ runWhisper(config)
          └──► if multi-segment: stitch()
 ```
 
-**Note:** v4 builds a Task[] data structure (linear DAG) then executes it.
-v5 removes the intermediate Task construction and executes directly.
+**Note:** v4 builds a Task[] data structure (linear DAG) then executes it. v5
+removes the intermediate Task construction and executes directly.
 
 ## Invariant (every phase)
 
 After each phase, before moving on:
+
 - `bun run ci` passes (lint, fmt, check, test)
 - `bun run fmt` if needed
 - Clean cache/work test passes:
@@ -581,7 +627,7 @@ After each phase, before moving on:
 ## Deferred (not in this plan)
 
 - Consider re-adding `--start` (doubtful)
-- Make stitch a proper Task (uniform task list: N*(wav+transcribe)+stitch)
+- Make stitch a proper Task (uniform task list: N\*(wav+transcribe)+stitch)
 - Extract `runTask`/monitors to `lib/spawn.ts`
 - Artifact directory reorganization
 - Second use case: short word/phrase transcription (separate entrypoint)
