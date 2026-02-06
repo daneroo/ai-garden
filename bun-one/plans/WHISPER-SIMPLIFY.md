@@ -15,7 +15,7 @@ KISS: no rewrites, just incremental work
 
 ### Phase 1 - restore clean state of `<repo>/bun-one/apps/whisper`
 
-- [ ] remove all of whispernu.ts libnu, and testnu
+- [x] remove all of whispernu.ts libnu, and testnu
 
 ### Phase 2 - Augment testing
 
@@ -34,3 +34,4 @@ These turn into subsequent phases, insode this very document
 - Artifact directory reorganization WORK,CACHE,OUTPUT,SAMPLES
 - Second use case: short word/phrase transcription (separate entrypoint)
 - Metadata flow improvement (segments write own provenance)
+- Integrate markdownlint into ci - `bunx markdownlint-cli --version`
