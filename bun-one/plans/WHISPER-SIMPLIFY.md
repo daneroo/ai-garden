@@ -22,7 +22,7 @@ Before checking any box: `bun run ci` must pass.
 ### Phase 2 - Augment testing
 
 - [x] Add e2e tests gated by RUN_E2E_TESTS env var (skipIf pattern)
-- [ ] Review all of our tests
+- [x] Review and reorganize tests (*.test.ts convention, unit tests in lib/)
 
 ## Unplanned Work
 
