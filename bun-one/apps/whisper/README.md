@@ -11,9 +11,13 @@ cd bun-one/apps/whisper
 
 ## Run from workspaces root (../.. == bun-one/)
 # CI (format + lint + check + test)
-bun run ci
+(cd ../.. && bun run ci)
 # to fix any formatting errors
-bun run fmt
+(cd ../.. && bun run fmt)
+# Run long e2e tests (skipped by default)
+(cd ../.. && bun run test:e2e)
+# or e2e specific to this app
+RUN_E2E_TESTS=1 bun test
 
 # Help and options
 bun run whisper.ts -h

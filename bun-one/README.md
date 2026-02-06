@@ -28,6 +28,7 @@ bun run ci           # Format + lint + check + test
 bun run fmt          # Format code
 bun run check        # Type check (recursive)
 bun test             # Run tests (recursive)
+bun run test:e2e     # Run long e2e tests (skipped by default)
 
 # CLI Example
 bun run apps/cli/cli.ts time 3661.5

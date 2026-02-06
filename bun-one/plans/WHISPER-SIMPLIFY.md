@@ -21,8 +21,8 @@ Before checking any box: `bun run ci` must pass.
 
 ### Phase 2 - Augment testing
 
+- [x] Add e2e tests gated by RUN_E2E_TESTS env var (skipIf pattern)
 - [ ] Review all of our tests
-- [ ] What to do with e2e testing without making ci excessively long!
 
 ## Unplanned Work
 
