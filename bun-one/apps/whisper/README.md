@@ -268,9 +268,8 @@ This prototype shows a simplified approach to segmentation:
 
 ```typescript
 export function segment(audioDurationSec: number, segmentSec: number) {
-  const segmentCount = segmentSec > 0
-    ? Math.ceil(audioDurationSec / segmentSec)
-    : 1;
+  const segmentCount =
+    segmentSec > 0 ? Math.ceil(audioDurationSec / segmentSec) : 1;
 
   const sequence: { i: number; start: number; end: number }[] = Array.from(
     { length: segmentCount },

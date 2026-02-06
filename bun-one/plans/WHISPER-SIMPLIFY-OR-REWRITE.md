@@ -34,7 +34,7 @@ the use of agentic work clothes as we are doing now.
 
 ## Goal
 
-Our goal is to transform this subproject (`bon-one/apps/whisper/` )
+Our goal is to transform this sub-project (`bon-one/apps/whisper/`)
 
 To that end we should restate and document clearly it
 Objectives/Architecture/Usage
@@ -61,58 +61,80 @@ incremental so we can continue until we meet success!
 
 ## The Process: Iterative Documentation → Analysis → Transformation
 
-This master plan coordinates all whisper simplification work. Individual phases may have their own detailed sub-plans in this directory.
+This master plan coordinates all whisper simplification work. Individual phases
+may have their own detailed sub-plans in this directory.
 
 ### Phase 0: Document Current State (COMPLETE when README exists)
 
-- Extract architecture gems from V5 plan (Core Flow diagram, cache formats, etc.)
+- Extract architecture gems from V5 plan (Core Flow diagram, cache formats,
+  etc.)
 - Document current capabilities and constraints
 - Create comprehensive README.md with analysis sections
 - User annotates: what's working well vs pain points
 - Checkpoint: README reviewed and approved
 
-### Phase 1: Analyze and Decide Strategy (COMPLETE when strategy chosen)
+### Phase 1: Analyze and Decide Strategy (COMPLETE)
 
-Based on user feedback in README:
+Top 3 pain points identified:
 
-- Identify top 3 pain points
-- Evaluate: incremental refactor vs partial rewrite vs clean rewrite
-- Assess risk: what could we lose? What tests protect us?
-- Define success criteria: how do we know we're improving?
-- Choose strategy and create Phase 2 sub-plan
-- Checkpoint: Strategy documented and approved
+- Sanity: Process complexity (though now documented)
+- Code complexity: Works but too complex
+- Over-architecture: Too involved for such a simple problem
 
-### Phase 2+: Execute Transformation (Strategy-dependent)
+Evaluation: Ship of Theseus approach
 
-Possible strategies:
+- Incremental rewrite AND refactor simultaneously
+- Reimplement app in place, side-by-side with existing code
+- New implementation: `whispernu.ts` + `libnu/*.ts`
+- Old code stays in place (safety net)
 
-**Strategy A: Prototype-First (Recommended for Radical Change)**
+Risk assessment:
 
-- Build simplified version alongside existing code (e.g., simpler.ts)
-- Prove new approach works with subset of features
-- Gradually migrate tests and features to new implementation
-- Switch over when parity reached
-- Benefits: Low risk, can compare directly, easy to abandon
-- Sub-plan: `WHISPER-PROTOTYPE-PLAN.md`
+- Minimal: Current working code exists, is tested, cannot lose it
+- Main risk: Getting lost in new process and having to abandon
+- Mitigation: Keep old code runnable throughout
 
-**Strategy B: Incremental Simplification (Safer but Slower)**
+Success criteria (subjective evaluation):
 
-- Pick one module to simplify (e.g., segmentation.ts → inline)
-- Refactor, ensure tests pass
-- Repeat with next module
-- Benefits: Always working, gradual improvement
-- Risks: May not achieve radical simplification goal
-- Sub-plan: `WHISPER-INCREMENTAL-PLAN.md`
+- Successful iteration of process
+- Simplicity preserved, augmented, or achieved in each step
+- Fewer interface types (target: reduce from 22)
+- Simpler design and architecture
 
-**Strategy C: Clean Rewrite (Highest Risk)**
+Strategy chosen: **Theseus** (progressive replacement in-situ)
 
-- Design new architecture from scratch
-- Implement alongside old code (new directory?)
-- Port tests incrementally
-- Switch over when feature-complete
-- Benefits: Clean slate, optimal design
-- Risks: Feature loss, bugs, time investment
-- Sub-plan: `WHISPER-REWRITE-PLAN.md`
+Checkpoint: Phase 1 documented → See `WHISPER-SIMPLIFY-OR-REWRITE-v1.md`
+
+### Phase 2+: Execute Transformation - Theseus Strategy
+
+**Theseus: Progressive Replacement In-Situ**
+
+Implementation approach:
+
+- Create `whispernu.ts` (new main entry point)
+- Create `libnu/*.ts` (new implementation modules)
+- Keep existing `whisper.ts` and `lib/*.ts` untouched
+- Both versions coexist during transition
+- Incrementally prove new approach, migrate features
+- Replace old with new piece by piece
+- Remove old code only when new code achieves parity
+
+Benefits:
+
+- Low risk: can compare directly, old code always runnable
+- Easy to abandon: just delete `nu` files
+- Progressive: can ship improvements incrementally
+- Testable: both implementations can run same tests
+
+Iteration process:
+
+- Define next feature/module to port
+- Implement in `libnu/`
+- Write/adapt tests
+- Run CI, demo script
+- Commit checkpoint
+- Document iteration in sub-plan if complex (e.g., `v1.1`, `v1.2`)
+- Repeat
 
 ### Invariants (Every Phase, Every Checkpoint)
 
@@ -136,20 +158,13 @@ If any phase fails or gets stuck:
 
 ### Sub-Plan Naming Convention
 
-All sub-plans live in `bun-one/plans/` beside this master plan:
+Linear versioning: `WHISPER-SIMPLIFY-OR-REWRITE-v{major}.{minor}.md`
 
-Strategy-specific plans:
-- `bun-one/plans/WHISPER-PROTOTYPE-PLAN.md`
-- `bun-one/plans/WHISPER-INCREMENTAL-PLAN.md`
-- `bun-one/plans/WHISPER-REWRITE-PLAN.md`
+Examples:
 
-Feature implementation details:
-- `bun-one/plans/WHISPER-CACHE-IMPL.md`
-- `bun-one/plans/WHISPER-STITCH-IMPL.md`
-
-Versioned iterations:
-- `bun-one/plans/WHISPER-SIMPLIFY-OR-REWRITE-v1.0.md`
-- `bun-one/plans/WHISPER-SIMPLIFY-OR-REWRITE-v2.0.md`
+- `WHISPER-SIMPLIFY-OR-REWRITE-v1.md` (Phase 1 checkpoint)
+- `WHISPER-SIMPLIFY-OR-REWRITE-v1.1.md` (iteration details, if needed)
+- `WHISPER-SIMPLIFY-OR-REWRITE-v2.md` (Phase 2 checkpoint)
 
 All sub-plans must link back to this master plan
 
