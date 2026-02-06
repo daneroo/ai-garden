@@ -144,7 +144,7 @@ Implemented: `whispernu.ts` (194 lines)
 
 Line count comparison:
 
-- Old: whisper.ts (196) + lib/*.ts (2325) = ~2521 lines total
+- Old: whisper.ts (196) + lib/\*.ts (2325) = ~2521 lines total
 - New: whispernu.ts (194 lines) = **~12x reduction**
 
 Features working:

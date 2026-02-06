@@ -1,36 +1,25 @@
-/**
- * whispernu - Simplified whisper transcription (single segment only)
- *
- * Usage:
- *   bun run whispernu.ts --input audio.mp3 --model tiny.en
- */
-
-import { existsSync } from "node:fs";
-import { mkdir, writeFile } from "node:fs/promises";
-import { basename, extname, join } from "node:path";
-import process from "node:process";
 import yargs from "yargs";
+import process from "node:process";
+import {
+  createRunWorkDir,
+  getRequiredCommands,
+  type ModelShortName,
+  type RunConfig,
+  type RunResult,
+  runWhisper,
+} from "./libnu/runner.ts";
+import { preflightCheck } from "./libnu/preflight.ts";
+import { parseDuration } from "./libnu/duration.ts";
 
-// Simple types
-interface TranscribeParams {
-  inputPath: string;
-  model: string;
-  threads: number;
-}
-
-interface CachePaths {
-  wav: string;
-  vtt: string;
-}
-
-// Configuration
-const MODELS_DIR = join(import.meta.dir, "data", "models");
-const CACHE_DIR = join(import.meta.dir, "data", "cache");
-const OUTPUT_DIR = join(import.meta.dir, "data", "output");
-const WHISPER_EXEC = "whisper-cli";
+// Configuration defaults
+const DEFAULT_INPUT = "data/samples/hobbit-30m.mp3";
+const DEFAULT_MODEL = "tiny.en";
+const DEFAULT_OUTPUT_DIR = "data/output";
+const DEFAULT_WORKDIR_ROOT = "data/work";
 const DEFAULT_THREADS = 6;
+const DEFAULT_DURATION_SECS = 0; // 0 = entire file
+const DEFAULT_ITERATIONS = 1;
 
-// Entry point
 if (import.meta.main) {
   try {
     await main();
@@ -49,151 +38,159 @@ async function main(): Promise<void> {
     .option("input", {
       alias: "i",
       type: "string",
-      demandOption: true,
-      describe: "Path to audio file",
+      default: DEFAULT_INPUT,
+      describe: "Path to the audio file to transcribe",
     })
     .option("model", {
       alias: "m",
       type: "string",
-      default: "tiny.en",
-      describe: "Model name",
+      default: DEFAULT_MODEL,
+      describe: "Model shortname (tiny.en, base.en, small.en)",
       choices: ["tiny.en", "base.en", "small.en"],
+    })
+    .option("iterations", {
+      type: "number",
+      default: DEFAULT_ITERATIONS,
+      describe: "Number of iterations for each test",
     })
     .option("threads", {
       type: "number",
       default: DEFAULT_THREADS,
-      describe: "Number of threads",
+      describe: "Number of threads for whisper-cpp",
     })
+    .option("duration", {
+      alias: "d",
+      type: "number",
+      default: DEFAULT_DURATION_SECS,
+      describe: "Duration in seconds (0 = entire file)",
+    })
+    .option("output", {
+      alias: "o",
+      type: "string",
+      default: DEFAULT_OUTPUT_DIR,
+      describe: "Output directory for results",
+    })
+    .option("dry-run", {
+      alias: "n",
+      type: "boolean",
+      default: false,
+      describe: "Show commands without executing",
+    })
+    .option("json", {
+      type: "boolean",
+      default: false,
+      describe: "Output result as JSON instead of pretty summary",
+    })
+    .option("word-timestamps", {
+      type: "boolean",
+      default: false,
+      describe: "Enable word-level timestamps",
+    })
+    .option("tag", {
+      alias: "t",
+      type: "string",
+      describe:
+        "Tag appended to output filename (e.g., 'kit-tiny' → input.kit-tiny.vtt)",
+    })
+    .option("segment", {
+      alias: "S",
+      type: "string",
+      describe:
+        "Segment duration for long files (e.g., 1h, 30m). Must be <= 37h.",
+      coerce: (val: string) => {
+        const secs = parseDuration(val);
+        const maxSecs = 37 * 3600;
+        if (secs > maxSecs) {
+          throw new Error(`Segment duration must be <= 37h, got ${val}`);
+        }
+        return secs;
+      },
+    })
+    .count("verbose")
+    .alias("v", "verbose")
     .help()
     .alias("h", "help")
     .parseAsync();
 
-  const { input, model, threads } = argv;
+  const {
+    input,
+    model,
+    iterations,
+    threads,
+    duration,
+    output,
+    tag,
+    segment,
+    "dry-run": dryRun,
+    json,
+    "word-timestamps": wordTimestamps,
+    verbose: verbosity,
+  } = argv;
 
-  // Check input exists
-  if (!existsSync(input)) {
-    throw new Error(`Input file not found: ${input}`);
-  }
+  // Create per-run work directory (depends on: input, tag)
+  const runWorkDir = createRunWorkDir({
+    workDirRoot: DEFAULT_WORKDIR_ROOT,
+    inputPath: input,
+    tag,
+  });
 
-  // Compute cache paths
-  const inputName = basename(input, extname(input));
-  const cachePaths = getCachePaths(inputName, model);
-
-  // Check VTT cache (cache hit? done)
-  if (existsSync(cachePaths.vtt)) {
-    console.log(`VTT cache hit: ${cachePaths.vtt}`);
-    console.log(`Output: ${cachePaths.vtt}`);
-    return;
-  }
-
-  // Convert to WAV (check WAV cache first)
-  const wavPath = await ensureWavExists(input, cachePaths.wav);
-  console.log(`WAV: ${wavPath}`);
-
-  // Transcribe
-  console.log(`Transcribing with ${model}...`);
-  const vttContent = await transcribe({ inputPath: wavPath, model, threads });
-
-  // Write VTT to cache and output
-  await mkdir(join(CACHE_DIR, "vtt", model), { recursive: true });
-  await mkdir(OUTPUT_DIR, { recursive: true });
-  await writeFile(cachePaths.vtt, vttContent);
-
-  const outputPath = join(OUTPUT_DIR, `${inputName}.vtt`);
-  await writeFile(outputPath, vttContent);
-
-  console.log(`Output: ${outputPath}`);
-}
-
-function getCachePaths(inputName: string, model: string): CachePaths {
-  const wavCacheDir = join(CACHE_DIR, "wav");
-  const vttCacheDir = join(CACHE_DIR, "vtt", model);
-
-  return {
-    wav: join(wavCacheDir, `${inputName}.wav`),
-    vtt: join(vttCacheDir, `${inputName}.vtt`),
+  // Configuration for runner (iterations handled in main)
+  const config: RunConfig = {
+    input,
+    modelShortName: model as ModelShortName,
+    threads,
+    durationSec: duration,
+    outputDir: output,
+    runWorkDir,
+    tag,
+    verbosity,
+    dryRun,
+    wordTimestamps,
+    segmentSec: segment ?? 0,
   };
-}
 
-async function ensureWavExists(
-  inputPath: string,
-  wavCachePath: string,
-): Promise<string> {
-  // Check cache
-  if (existsSync(wavCachePath)) {
-    console.log(`WAV cache hit: ${wavCachePath}`);
-    return wavCachePath;
+  // Preflight check
+  const requiredCommands = getRequiredCommands();
+
+  const { missing } = preflightCheck(requiredCommands);
+
+  if (missing.length > 0) {
+    console.error(`Error: Required commands not found: ${missing.join(", ")}`);
+    process.exit(1);
   }
 
-  // Convert to WAV
-  console.log(`Converting to WAV...`);
-  await mkdir(join(CACHE_DIR, "wav"), { recursive: true });
+  // Iteration loop
+  const results: RunResult[] = [];
+  for (let i = 1; i <= iterations; i++) {
+    const result = await runWhisper(config);
+    results.push(result);
 
-  const proc = Bun.spawn([
-    "ffmpeg",
-    "-i",
-    inputPath,
-    "-ar",
-    "16000",
-    "-ac",
-    "1",
-    "-c:a",
-    "pcm_s16le",
-    "-y",
-    wavCachePath,
-  ]);
+    // Output to STDOUT
+    if (json) {
+      // JSON output for bench.sh (result already includes elapsedSec/speedup)
+      console.log(JSON.stringify(result));
+    } else {
+      // Pretty summary for human readability
+      const label =
+        iterations > 1 ? `Iteration ${i}/${iterations}:` : "Result:";
+      const vttDur = result.vttSummary
+        ? `${result.vttSummary.durationSec}s`
+        : "none";
+      console.log(`\n${label}`);
+      console.log(`  Processed: ${result.processedAudioDurationSec}s audio`);
+      console.log(`  Elapsed:   ${result.elapsedSec}s (wall-clock)`);
+      console.log(`  Speedup:   ${result.speedup}x`);
+      console.log(`  Output:    ${result.outputPath}`);
+      console.log(`  VTT Dur:   ${vttDur}`);
 
-  const exitCode = await proc.exited;
-  if (exitCode !== 0) {
-    throw new Error(`ffmpeg failed with exit code ${exitCode}`);
+      // Detailed task breakdown
+      console.log("  Tasks:");
+      for (const { task, result: taskResult } of result.tasks) {
+        const timePart = taskResult
+          ? ` (${Math.round(taskResult.elapsedMs / 1000)}s)`
+          : " (dry-run)";
+        console.log(`    - ${task.label}: ${task.describe()}${timePart}`);
+      }
+    }
   }
-
-  return wavCachePath;
-}
-
-async function transcribe(params: TranscribeParams): Promise<string> {
-  const { inputPath, model, threads } = params;
-  const modelPath = join(MODELS_DIR, `ggml-${model}.bin`);
-
-  if (!existsSync(modelPath)) {
-    throw new Error(`Model not found: ${modelPath}`);
-  }
-
-  // whisper-cli writes to file, so use temp file
-  const tmpDir = join(import.meta.dir, "data", "tmp");
-  await mkdir(tmpDir, { recursive: true });
-  const tmpBasename = `tmp-${Date.now()}`;
-  const tmpVtt = join(tmpDir, `${tmpBasename}.vtt`);
-
-  const proc = Bun.spawn(
-    [
-      WHISPER_EXEC,
-      "-m",
-      modelPath,
-      "-f",
-      inputPath,
-      "-t",
-      threads.toString(),
-      "-ovtt",
-      "-of",
-      tmpBasename,
-    ],
-    {
-      cwd: tmpDir,
-    },
-  );
-
-  const exitCode = await proc.exited;
-
-  if (exitCode !== 0) {
-    throw new Error(`whisper-cli failed with exit code ${exitCode}`);
-  }
-
-  // Read the generated VTT file
-  const output = await Bun.file(tmpVtt).text();
-
-  // Clean up temp file
-  await Bun.$`rm -f ${tmpVtt}`.quiet();
-
-  return output;
 }
