@@ -28,7 +28,7 @@ import {
 
 const TEST_OUTPUT_DIR = join(PACKAGE_ROOT, "data/output/e2e-basic-test");
 const FIXTURE_HOBBIT = join(PACKAGE_ROOT, "data/samples/hobbit-30m.m4b");
-const E2E_TIMEOUT_PER_TEST__MS = 2 * 60 * 1000;
+const E2E_TIMEOUT_PER_TEST_MS = 2 * 60 * 1000;
 
 const workDirCleanup = createWorkDirCleanup();
 
@@ -88,7 +88,7 @@ describe.skipIf(!process.env.RUN_E2E_TESTS)("e2e: demo scenarios", () => {
       expect(result.vttSummary!.cueCount).toBeGreaterThan(0);
       expect(result.vttSummary!.durationSec).toBeGreaterThan(60); // At least 1 minute
     },
-    E2E_TIMEOUT_PER_TEST__MS,
+    E2E_TIMEOUT_PER_TEST_MS,
   );
 
   test(
@@ -142,6 +142,6 @@ describe.skipIf(!process.env.RUN_E2E_TESTS)("e2e: demo scenarios", () => {
       expect(result.vttSummary!.cueCount).toBeGreaterThan(0);
       expect(result.vttSummary!.durationSec).toBeGreaterThan(60); // At least 1 minute
     },
-    E2E_TIMEOUT_PER_TEST__MS,
+    E2E_TIMEOUT_PER_TEST_MS,
   );
 });
