@@ -110,20 +110,3 @@ Step 4: Phase 5 follow-ups
 - [x] Clarify dry-run estimate semantics for CLI output (currently sums cached
       transcribe elapsedMs only). Decide whether to label it as transcribe-only
       or to include WAV timing, then update CLI wording or timing sources
-
-## Unplanned Work
-
-These turn into subsequent phases, inside this very document
-
-- Make stitch a proper Task (uniform task list: N\*(wav+transcribe)+stitch)
-- Extract `runTask`/monitors to new `lib/exec.ts`
-- Artifact directory reorganization WORK,CACHE,OUTPUT,SAMPLES
-- Second use case: short word/phrase transcription (separate entrypoint)
-- Integrate markdownlint into ci - `bunx markdownlint-cli --version`
-- Clean up stale/legacy `startSec` references (on VttHeaderProvenance, etc.)
-  - Segment provenance always has `startSec: 0` for single-segment runs, which
-    is noise. Investigate whether startSec belongs in segment provenance at all,
-    or only when segments > 1.
-- Decide if normal run with cache hit should display real-time (0s) or cached
-  provenance time (original execution time). Currently shows 0s which is
-  accurate but leads to silly speedup values (62069.6x).
