@@ -192,11 +192,12 @@ async function main(): Promise<void> {
 
       // Detailed task breakdown
       console.log("  Tasks:");
-      for (const { task, result: taskResult } of result.tasks) {
-        const timePart = taskResult
-          ? ` (${Math.round(taskResult.elapsedMs / 1000)}s)`
-          : " (dry-run)";
-        console.log(`    - ${task.label}: ${task.describe()}${timePart}`);
+      for (const task of result.tasks) {
+        const timePart =
+          task.elapsedMs != null
+            ? ` (${Math.round(task.elapsedMs / 1000)}s)`
+            : " (dry-run)";
+        console.log(`    - ${task.label}: ${task.description}${timePart}`);
       }
     }
   }

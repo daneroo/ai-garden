@@ -66,7 +66,7 @@ describe("smoke: whisper pipeline", () => {
 
     // Dry-run should populate tasks but not execute
     expect(result.tasks.length).toBeGreaterThan(0);
-    expect(result.tasks.every((t) => t.result === undefined)).toBe(true);
+    expect(result.tasks.every((t) => t.elapsedMs === undefined)).toBe(true);
 
     // No output files
     expect(existsSync(result.outputPath)).toBe(false);
@@ -105,11 +105,9 @@ describe("smoke: whisper pipeline", () => {
     expect(vttText).toContain('"model":"tiny.en"');
 
     // WAV task executed (M4B conversion) - now uses segment naming
-    const wavTask = result.tasks.find((t) =>
-      t.task.label.startsWith("to-wav[seg"),
-    );
+    const wavTask = result.tasks.find((t) => t.label.startsWith("to-wav[seg"));
     expect(wavTask).toBeDefined();
-    expect(wavTask!.result).toBeDefined();
+    expect(wavTask!.elapsedMs).toBeDefined();
 
     // VTT has content
     expect(result.vttSummary).toBeDefined();
@@ -144,11 +142,11 @@ describe("smoke: whisper pipeline", () => {
 
     const result = await runWhisper(config);
 
-    // Cache is now internal to Task.execute(), so we verify the task ran successfully
-    // instead of checking for "[cached]" in the label
-    const wavTask = result.tasks.find((t) => t.task.label.includes("to-wav"));
+    // Cache is internal to executeTask(), so we verify the task completed
+    // rather than checking for "[cached]" in the label
+    const wavTask = result.tasks.find((t) => t.label.includes("to-wav"));
     expect(wavTask).toBeDefined();
-    expect(wavTask!.result).toBeDefined();
+    expect(wavTask!.elapsedMs).toBeDefined();
 
     // VTT still produced correctly
     expect(existsSync(result.outputPath)).toBe(true);

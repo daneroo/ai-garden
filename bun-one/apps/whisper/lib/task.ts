@@ -3,14 +3,13 @@
  *
  * ARCHITECTURE:
  *
- * Runners (lib/runners.ts) build a task array, then decide:
- *   - Dry-run: report commands only, no monitor needed
- *   - Execute: create monitor, run tasks sequentially
+ * Task is pure data (discriminated union on `kind`).
+ * executeTask(task, reporter) pattern-matches on kind, runs the work,
+ * returns a NEW task with elapsedMs filled (immutable).
  *
- * runTask(config, monitor)
- *   - Spawns process, streams stdout/stderr to log files
- *   - Emits events to monitor for matching lines
- *   - Returns RunTaskResult with exit code and elapsed time
+ * Process layer (internal):
+ *   runTask(config) spawns a child process, streams stdout/stderr to logs,
+ *   emits events to a TaskMonitor, returns RunTaskResult.
  *
  * TaskMonitor
  *   - Receives events from multiple tasks (one lifecycle at a time)
@@ -27,9 +26,8 @@
  *   [done]
  *
  * Pre-configured monitors:
- *   - ffmpegMonitor: audio conversion progress (stderr)
- *   - whisperCppMonitor: transcription progress (stderr)
- *   - whisperkitMonitor: transcription progress (stdout)
+ *   - createAudioConversionMonitor: ffmpeg progress (stderr)
+ *   - createWhisperCppMonitor: transcription progress (stderr)
  */
 
 import { type ChildProcess, spawn } from "node:child_process";
@@ -38,7 +36,7 @@ import { Buffer } from "node:buffer";
 import { type ProgressReporter } from "./progress.ts";
 
 // ============================================================================
-// Types
+// Process Layer (internal)
 // ============================================================================
 
 /**
@@ -55,7 +53,7 @@ export interface TaskConfig {
 }
 
 /**
- * Result of task execution.
+ * Result of task execution (process-level).
  */
 export interface RunTaskResult {
   code: number;
@@ -72,9 +70,9 @@ export interface TaskEvent {
   label?: string;
   /** Present on "line" event - which stream the line came from */
   stream?: "stdout" | "stderr";
-  /** Present on "line" event - the raw matching line */
+  /** Present on "line" event - the raw line text */
   line?: string;
-  /** Present on "done" event - the task result */
+  /** Present on "done" event - the process-level result */
   result?: RunTaskResult;
   /** Present on "error" event */
   error?: Error;
@@ -93,222 +91,184 @@ export interface TaskMonitor {
 }
 
 // ============================================================================
-// New Task Interface (Refactored)
+// Task (pure data, discriminated union)
 // ============================================================================
 
-/**
- * Known task kinds - only "real work" tasks.
- * Copy operations are internal to caching wrapper, not separate tasks.
- */
 export type TaskKind = "to-wav" | "transcribe";
 
-/**
- * Generic result - returned on SUCCESS only.
- * Failure = throw (non-zero exit throws with message).
- *
- * Note: on cache hit, elapsedMs could be populated from cached artifact's
- * provenance metadata (e.g., original processing time stored in VTT header).
- */
-export interface TaskResult {
-  elapsedMs: number;
+interface TaskBase {
+  kind: TaskKind;
+  label: string;
+  description: string;
+  /** Absent before execution; present on the new task returned by executeTask() */
+  elapsedMs?: number;
 }
 
-/**
- * The minimal contract for any task.
- *
- * Naming convention:
- * - build* (high-level): orchestration - loops, branches, returns Task[]
- * - create* (low-level): pure factory - creates one Task from options
- */
-export interface Task {
-  kind: TaskKind; // Discriminator for filtering/narrowing
-  label: string;
-
-  /**
-   * Pure: may be called many times (dry-run, logging, inspection).
-   * Describes what this task will do.
-   */
-  describe(): string;
-
-  /**
-   * Side-effecting: called exactly once during execution.
-   * Returns TaskResult on success, throws on failure.
-   */
-  execute(): Promise<TaskResult>;
-}
-
-// ============================================================================
-// Task Factory Functions
-// ============================================================================
-
-/**
- * Options for creating a WAV conversion task.
- */
-export interface ToWavTaskOptions {
-  label: string;
+export interface ToWavTask extends TaskBase {
+  kind: "to-wav";
   inputPath: string;
   outputPath: string;
   startSec: number;
   durationSec: number;
-  cachePath: string; // Where to cache the output
-  cache: boolean; // Enable caching
-  logPrefix: string; // For stdout/stderr log files
-  monitor: TaskMonitor;
+  cachePath: string;
+  cache: boolean;
+  logPrefix: string;
 }
 
-/**
- * Create a to-wav task (ffmpeg audio conversion).
- * The task wraps ffmpeg execution inside execute().
- * Cache logic: check cache -> if hit, copy; if miss, run ffmpeg then cache.
- */
-export function createToWavTask(opts: ToWavTaskOptions): Task {
-  return {
-    kind: "to-wav",
-    label: opts.label,
-    describe: () => `ffmpeg: ${opts.inputPath} → ${opts.outputPath}`,
-    execute: async () => {
-      const start = Date.now();
-
-      // Check cache first (if enabled)
-      if (opts.cache) {
-        const cacheFile = Bun.file(opts.cachePath);
-        if (await cacheFile.exists()) {
-          // Cache hit - copy from cache
-          await Bun.write(opts.outputPath, cacheFile);
-          return { elapsedMs: Date.now() - start };
-        }
-      }
-
-      // Cache miss (or caching disabled) - run ffmpeg
-      const config: TaskConfig = {
-        label: opts.label,
-        command: "ffmpeg",
-        args: [
-          "-y",
-          "-hide_banner",
-          "-loglevel",
-          "info",
-          "-i",
-          opts.inputPath,
-          "-ss",
-          String(opts.startSec),
-          "-t",
-          String(opts.durationSec),
-          "-acodec",
-          "pcm_s16le",
-          "-ar",
-          "16000",
-          "-ac",
-          "1",
-          opts.outputPath,
-        ],
-        stdoutLogPath: `${opts.logPrefix}.stdout.log`,
-        stderrLogPath: `${opts.logPrefix}.stderr.log`,
-        monitor: opts.monitor,
-      };
-
-      const result = await runTask(config);
-      if (result.code !== 0) {
-        throw new Error(`ffmpeg failed with exit code ${result.code}`);
-      }
-
-      // Cache the result (if enabled)
-      if (opts.cache) {
-        await Bun.write(opts.cachePath, Bun.file(opts.outputPath));
-      }
-
-      return { elapsedMs: Date.now() - start };
-    },
-  };
-}
-
-/**
- * Options for creating a transcription task.
- */
-export interface TranscribeTaskOptions {
-  label: string;
+export interface TranscribeTask extends TaskBase {
+  kind: "transcribe";
   wavPath: string;
   outputPrefix: string; // whisper outputs to ${outputPrefix}.vtt
-  vttPath: string; // The expected VTT output path
-  model: string; // Model short name (e.g., "tiny.en")
+  vttPath: string;
+  model: string; // Short name (e.g., "tiny.en")
   modelPath: string; // Full path to model file
   threads: number;
   durationMs: number; // Whisper --duration (0 = full)
   wordTimestamps: boolean;
-  cachePath: string; // Where to cache the VTT
-  cache: boolean; // Enable caching
-  monitor: TaskMonitor;
+  cachePath: string;
+  cache: boolean;
 }
 
+export type Task = ToWavTask | TranscribeTask;
+
+// ============================================================================
+// executeTask: pattern match on kind, return new Task with elapsedMs
+// ============================================================================
+
 /**
- * Create a transcribe task (whisper-cli transcription).
- * The task wraps whisper-cli execution inside execute().
- * Cache logic: check cache -> if hit, copy; if miss, run whisper then cache.
+ * Execute a task. Returns a new Task with elapsedMs set.
+ * The input task is never modified.
+ * Throws on failure (non-zero exit code).
  */
-export function createTranscribeTask(opts: TranscribeTaskOptions): Task {
-  return {
-    kind: "transcribe",
-    label: opts.label,
-    describe: () => `whisper: ${opts.wavPath} (model=${opts.model})`,
-    execute: async () => {
-      const start = Date.now();
+export async function executeTask(
+  task: Task,
+  reporter: ProgressReporter,
+): Promise<Task> {
+  switch (task.kind) {
+    case "to-wav":
+      return executeToWav(task, reporter);
+    case "transcribe":
+      return executeTranscribe(task, reporter);
+  }
+}
 
-      // Check cache first (if enabled)
-      if (opts.cache) {
-        const cacheFile = Bun.file(opts.cachePath);
-        if (await cacheFile.exists()) {
-          // Cache hit - copy from cache
-          await Bun.write(opts.vttPath, cacheFile);
-          return { elapsedMs: Date.now() - start };
-        }
-      }
+async function executeToWav(
+  task: ToWavTask,
+  reporter: ProgressReporter,
+): Promise<ToWavTask> {
+  const start = Date.now();
 
-      // Cache miss (or caching disabled) - run whisper-cli
-      const durationArgs =
-        opts.durationMs > 0 ? ["--duration", String(opts.durationMs)] : [];
-      const wordTimestampArgs = opts.wordTimestamps
-        ? ["--max-len", "1", "--split-on-word"]
-        : [];
+  // Check cache first (if enabled)
+  if (task.cache) {
+    const cacheFile = Bun.file(task.cachePath);
+    if (await cacheFile.exists()) {
+      await Bun.write(task.outputPath, cacheFile);
+      return { ...task, elapsedMs: Date.now() - start };
+    }
+  }
 
-      const config: TaskConfig = {
-        label: opts.label,
-        command: "whisper-cli",
-        args: [
-          "--file",
-          opts.wavPath,
-          "--model",
-          opts.modelPath,
-          "--output-file",
-          opts.outputPrefix,
-          "--output-vtt",
-          "--print-progress",
-          "--threads",
-          String(opts.threads),
-          ...durationArgs,
-          ...wordTimestampArgs,
-        ],
-        stdoutLogPath: `${opts.outputPrefix}.stdout.log`,
-        stderrLogPath: `${opts.outputPrefix}.stderr.log`,
-        monitor: opts.monitor,
-      };
-
-      const result = await runTask(config);
-      if (result.code !== 0) {
-        throw new Error(`whisper-cli failed with exit code ${result.code}`);
-      }
-
-      // Cache the result (if enabled)
-      if (opts.cache) {
-        await Bun.write(opts.cachePath, Bun.file(opts.vttPath));
-      }
-
-      return { elapsedMs: Date.now() - start };
-    },
+  // Cache miss (or caching disabled) - run ffmpeg
+  const monitor = createAudioConversionMonitor(reporter);
+  const config: TaskConfig = {
+    label: task.label,
+    command: "ffmpeg",
+    args: [
+      "-y",
+      "-hide_banner",
+      "-loglevel",
+      "info",
+      "-i",
+      task.inputPath,
+      "-ss",
+      String(task.startSec),
+      "-t",
+      String(task.durationSec),
+      "-acodec",
+      "pcm_s16le",
+      "-ar",
+      "16000",
+      "-ac",
+      "1",
+      task.outputPath,
+    ],
+    stdoutLogPath: `${task.logPrefix}.stdout.log`,
+    stderrLogPath: `${task.logPrefix}.stderr.log`,
+    monitor,
   };
+
+  const result = await runTask(config);
+  if (result.code !== 0) {
+    throw new Error(`ffmpeg failed with exit code ${result.code}`);
+  }
+
+  // Cache the result (if enabled)
+  if (task.cache) {
+    await Bun.write(task.cachePath, Bun.file(task.outputPath));
+  }
+
+  return { ...task, elapsedMs: Date.now() - start };
+}
+
+async function executeTranscribe(
+  task: TranscribeTask,
+  reporter: ProgressReporter,
+): Promise<TranscribeTask> {
+  const start = Date.now();
+
+  // Check cache first (if enabled)
+  if (task.cache) {
+    const cacheFile = Bun.file(task.cachePath);
+    if (await cacheFile.exists()) {
+      await Bun.write(task.vttPath, cacheFile);
+      return { ...task, elapsedMs: Date.now() - start };
+    }
+  }
+
+  // Cache miss (or caching disabled) - run whisper-cli
+  const durationArgs =
+    task.durationMs > 0 ? ["--duration", String(task.durationMs)] : [];
+  const wordTimestampArgs = task.wordTimestamps
+    ? ["--max-len", "1", "--split-on-word"]
+    : [];
+
+  const monitor = createWhisperCppMonitor(reporter);
+  const config: TaskConfig = {
+    label: task.label,
+    command: "whisper-cli",
+    args: [
+      "--file",
+      task.wavPath,
+      "--model",
+      task.modelPath,
+      "--output-file",
+      task.outputPrefix,
+      "--output-vtt",
+      "--print-progress",
+      "--threads",
+      String(task.threads),
+      ...durationArgs,
+      ...wordTimestampArgs,
+    ],
+    stdoutLogPath: `${task.outputPrefix}.stdout.log`,
+    stderrLogPath: `${task.outputPrefix}.stderr.log`,
+    monitor,
+  };
+
+  const result = await runTask(config);
+  if (result.code !== 0) {
+    throw new Error(`whisper-cli failed with exit code ${result.code}`);
+  }
+
+  // Cache the result (if enabled)
+  if (task.cache) {
+    await Bun.write(task.cachePath, Bun.file(task.vttPath));
+  }
+
+  return { ...task, elapsedMs: Date.now() - start };
 }
 
 // ============================================================================
-// Core Functions
+// Core Process Runner
 // ============================================================================
 
 /**
@@ -416,14 +376,13 @@ export function createConsoleMonitor(reporter: ProgressReporter): TaskMonitor {
 
 /**
  * Quiet monitor - only shows start/done, ignores line output.
- * Use for simple commands like cp that don't have progress output.
  */
 export function createQuietMonitor(reporter: ProgressReporter): TaskMonitor {
   let currentTaskLabel = "";
 
   return {
     onEvent(event: TaskEvent): void {
-      if (event.type === "line") return; // Ignore all lines
+      if (event.type === "line") return;
       renderConsoleEvent(reporter, event, () => {
         if (event.type === "start") currentTaskLabel = event.label ?? "";
         return currentTaskLabel;
@@ -432,9 +391,6 @@ export function createQuietMonitor(reporter: ProgressReporter): TaskMonitor {
   };
 }
 
-/**
- * Internal helper for consistent console rendering using ProgressReporter.
- */
 function renderConsoleEvent(
   reporter: ProgressReporter,
   event: TaskEvent,
@@ -462,19 +418,15 @@ function renderConsoleEvent(
 /**
  * Monitor for FFmpeg audio format conversion.
  * Observes stderr only (FFmpeg writes progress to stderr).
- * Note: Monitors can observe either stream or both by checking event.stream.
  */
 export function createAudioConversionMonitor(
   reporter: ProgressReporter,
 ): TaskMonitor {
   let currentTaskLabel = "";
-  // Example: size=  26154KiB time=00:13:58.33 bitrate= 255.8kbits/s speed=1.31e+03x
-  // Captures: "26154KiB time=00:13:58.33" for display
   const regex = /size=\s*(\d+.*time=[\d:.]+)/;
 
   return {
     onEvent(event: TaskEvent): void {
-      // Handle lifecycle events (start, done, error)
       if (event.type !== "line") {
         renderConsoleEvent(reporter, event, () => {
           if (event.type === "start") currentTaskLabel = event.label ?? "";
@@ -483,14 +435,12 @@ export function createAudioConversionMonitor(
         return;
       }
 
-      // Only display stderr lines matching progress regex
       if (event.stream === "stderr" && event.line) {
         const m = event.line.match(regex);
         if (m) {
           reporter.update(currentTaskLabel, m[1]!);
         }
       }
-      // Non-matching lines are silently ignored
     },
   };
 }
@@ -498,18 +448,15 @@ export function createAudioConversionMonitor(
 /**
  * Monitor for whisper-cpp.
  * Observes stderr only (whisper-cpp writes progress to stderr).
- * Note: Monitors can observe either stream or both by checking event.stream.
  */
 export function createWhisperCppMonitor(
   reporter: ProgressReporter,
 ): TaskMonitor {
   let currentTaskLabel = "";
-  // Captures: "50%" for display
   const regex = /progress\s*=\s*(\d+%)/;
 
   return {
     onEvent(event: TaskEvent): void {
-      // Handle lifecycle events (start, done, error)
       if (event.type !== "line") {
         renderConsoleEvent(reporter, event, () => {
           if (event.type === "start") currentTaskLabel = event.label ?? "";
@@ -518,14 +465,12 @@ export function createWhisperCppMonitor(
         return;
       }
 
-      // Only display stderr lines matching progress regex
       if (event.stream === "stderr" && event.line) {
         const m = event.line.match(regex);
         if (m) {
           reporter.update(currentTaskLabel, m[1]!);
         }
       }
-      // Non-matching lines are silently ignored
     },
   };
 }

@@ -29,8 +29,6 @@ bun run whisper.ts -h
 bun run whisper.ts -i data/samples/hobbit-30m.m4b -m tiny.en --tag demo-basic
 bun run whisper.ts -i data/samples/hobbit-30m.m4b --segment 10m -m tiny.en --tag demo-seg-10m
 
-# Clean cache test
-rm -rf data/work/ data/cache/
 ./scripts/demo/demo.sh
 
 # Benchmarks

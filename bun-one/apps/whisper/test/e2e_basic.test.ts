@@ -74,11 +74,9 @@ describe.skipIf(!process.env.RUN_E2E_TESTS)("e2e: demo scenarios", () => {
     expect(vttText).toContain('"model":"tiny.en"');
 
     // WAV task executed
-    const wavTask = result.tasks.find((t) =>
-      t.task.label.startsWith("to-wav[seg"),
-    );
+    const wavTask = result.tasks.find((t) => t.label.startsWith("to-wav[seg"));
     expect(wavTask).toBeDefined();
-    expect(wavTask!.result).toBeDefined();
+    expect(wavTask!.elapsedMs).toBeDefined();
 
     // VTT has content
     expect(result.vttSummary).toBeDefined();
@@ -120,13 +118,13 @@ describe.skipIf(!process.env.RUN_E2E_TESTS)("e2e: demo scenarios", () => {
 
     // Multiple WAV tasks executed (30m audio / 10m segments = 3 segments)
     const wavTasks = result.tasks.filter((t) =>
-      t.task.label.startsWith("to-wav[seg"),
+      t.label.startsWith("to-wav[seg"),
     );
     expect(wavTasks.length).toBeGreaterThanOrEqual(3);
 
     // Multiple transcribe tasks
     const transcribeTasks = result.tasks.filter((t) =>
-      t.task.label.startsWith("transcribe[seg"),
+      t.label.startsWith("transcribe[seg"),
     );
     expect(transcribeTasks.length).toBeGreaterThanOrEqual(3);
 

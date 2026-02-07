@@ -66,8 +66,8 @@ describe("runWhisper task generation", () => {
 
     // 1 segment × (wav + transcribe) = 2 tasks
     expect(result.tasks).toHaveLength(2);
-    expect(result.tasks[0]?.task.label).toBe("to-wav[seg:1 of 1]");
-    expect(result.tasks[1]?.task.label).toBe("transcribe[seg:1 of 1]");
+    expect(result.tasks[0]?.label).toBe("to-wav[seg:1 of 1]");
+    expect(result.tasks[1]?.label).toBe("transcribe[seg:1 of 1]");
   });
 
   test("multiple segments produces correct task count", async () => {
@@ -76,12 +76,12 @@ describe("runWhisper task generation", () => {
 
     // 3 segments × (wav + transcribe) = 6 tasks
     expect(result.tasks).toHaveLength(6);
-    expect(result.tasks[0]?.task.label).toBe("to-wav[seg:1 of 3]");
-    expect(result.tasks[1]?.task.label).toBe("to-wav[seg:2 of 3]");
-    expect(result.tasks[2]?.task.label).toBe("to-wav[seg:3 of 3]");
-    expect(result.tasks[3]?.task.label).toBe("transcribe[seg:1 of 3]");
-    expect(result.tasks[4]?.task.label).toBe("transcribe[seg:2 of 3]");
-    expect(result.tasks[5]?.task.label).toBe("transcribe[seg:3 of 3]");
+    expect(result.tasks[0]?.label).toBe("to-wav[seg:1 of 3]");
+    expect(result.tasks[1]?.label).toBe("to-wav[seg:2 of 3]");
+    expect(result.tasks[2]?.label).toBe("to-wav[seg:3 of 3]");
+    expect(result.tasks[3]?.label).toBe("transcribe[seg:1 of 3]");
+    expect(result.tasks[4]?.label).toBe("transcribe[seg:2 of 3]");
+    expect(result.tasks[5]?.label).toBe("transcribe[seg:3 of 3]");
   });
 
   test("duration filters transcribe tasks to correct segments", async () => {
@@ -91,18 +91,16 @@ describe("runWhisper task generation", () => {
     const result = await runWhisper(config, mockDeps);
 
     // All 3 WAV tasks created
-    const wavTasks = result.tasks.filter((t) =>
-      t.task.label.startsWith("to-wav"),
-    );
+    const wavTasks = result.tasks.filter((t) => t.label.startsWith("to-wav"));
     expect(wavTasks).toHaveLength(3);
 
     // Only 2 transcribe tasks (segments 1-2, segment 3 skipped)
     const transcribeTasks = result.tasks.filter((t) =>
-      t.task.label.startsWith("transcribe"),
+      t.label.startsWith("transcribe"),
     );
     expect(transcribeTasks).toHaveLength(2);
-    expect(transcribeTasks[0]?.task.label).toBe("transcribe[seg:1 of 3]");
-    expect(transcribeTasks[1]?.task.label).toBe("transcribe[seg:2 of 3]");
+    expect(transcribeTasks[0]?.label).toBe("transcribe[seg:1 of 3]");
+    expect(transcribeTasks[1]?.label).toBe("transcribe[seg:2 of 3]");
   });
 
   test("duration in first segment produces single transcribe task", async () => {
@@ -111,16 +109,14 @@ describe("runWhisper task generation", () => {
     const result = await runWhisper(config, mockDeps);
 
     // All 3 WAV tasks
-    const wavTasks = result.tasks.filter((t) =>
-      t.task.label.startsWith("to-wav"),
-    );
+    const wavTasks = result.tasks.filter((t) => t.label.startsWith("to-wav"));
     expect(wavTasks).toHaveLength(3);
 
     // Only 1 transcribe task (segment 1 only)
     const transcribeTasks = result.tasks.filter((t) =>
-      t.task.label.startsWith("transcribe"),
+      t.label.startsWith("transcribe"),
     );
     expect(transcribeTasks).toHaveLength(1);
-    expect(transcribeTasks[0]?.task.label).toBe("transcribe[seg:1 of 3]");
+    expect(transcribeTasks[0]?.label).toBe("transcribe[seg:1 of 3]");
   });
 });

@@ -19,12 +19,10 @@ import {
 } from "./vtt.ts";
 import { stitchVttConcat, writeVtt } from "./vtt-stitch.ts";
 import {
-  createAudioConversionMonitor,
-  createToWavTask,
-  createTranscribeTask,
-  createWhisperCppMonitor,
+  executeTask,
   type Task,
-  type TaskResult,
+  type ToWavTask,
+  type TranscribeTask,
 } from "./task.ts";
 import {
   computeSegments,
@@ -36,9 +34,6 @@ import {
 // Model directory for whisper-cpp (absolute path)
 // TODO:this will probably need to evolve with an ENV based configuration
 const WHISPER_CPP_MODELS = join(import.meta.dir, "..", "data", "models");
-
-// Private executable constant
-const WHISPER_CPP_EXEC = "whisper-cli";
 
 // Maximum WAV duration due to RIFF 32-bit size limit (~37h for 16kHz mono 16-bit)
 const MAX_WAV_DURATION_SEC = 37 * 3600;
@@ -90,10 +85,7 @@ export interface RunResult {
   processedAudioDurationSec: number;
   elapsedSec: number; // Wall-clock time from runWhisper
   speedup: string; // Formatted as "72.6" for clean JSON output
-  tasks: Array<{
-    task: Task;
-    result?: TaskResult;
-  }>;
+  tasks: Task[];
   outputPath: string;
   vttSummary?: VttSummary;
 }
@@ -129,7 +121,7 @@ export async function runWhisper(
     (elapsedMs / 1000)
   ).toFixed(1);
 
-  const hasExecuted = result.tasks.some((t) => t.result);
+  const hasExecuted = result.tasks.some((t) => t.elapsedMs != null);
   if (hasExecuted && existsSync(result.outputPath)) {
     result.vttSummary = summarizeVtt(await readVtt(result.outputPath));
     reporter.finish(
@@ -163,7 +155,7 @@ async function createUniqueRunWorkDir(runWorkDir: string): Promise<void> {
  * Get the executable names required for transcription.
  */
 export function getRequiredCommands(): string[] {
-  return ["ffmpeg", WHISPER_CPP_EXEC];
+  return ["ffmpeg", "whisper-cli"];
 }
 
 async function runWhisperPipeline(
@@ -230,12 +222,14 @@ async function runWhisperPipeline(
     return localDurationSec * 1000;
   };
 
-  // Build wav tasks from segment geometry (always create all WAVs)
-  const wavTasks = segments.map((seg, i) => {
+  // Build wav tasks as plain data
+  const wavTasks: ToWavTask[] = segments.map((seg, i) => {
     const name = nameForSeg(i);
     const outPrefix = `${config.runWorkDir}/${name}`;
-    return createToWavTask({
+    return {
+      kind: "to-wav" as const,
       label: `to-wav[${labelForSeg(i)}]`,
+      description: `ffmpeg: ${config.input} → ${outPrefix}.wav`,
       inputPath: config.input,
       outputPath: `${outPrefix}.wav`,
       startSec: seg.startSec,
@@ -243,20 +237,21 @@ async function runWhisperPipeline(
       cachePath: getWavCachePath(name),
       cache: config.cache,
       logPrefix: `${outPrefix}-ffmpeg`,
-      monitor: createAudioConversionMonitor(reporter),
-    });
+    };
   });
 
-  // Build transcribe tasks (skip segments beyond durationSec)
-  const transcribeTasks = segments
+  // Build transcribe tasks as plain data (skip segments beyond durationSec)
+  const transcribeTasks: TranscribeTask[] = segments
     .map((_, i) => {
       const durationMs = getDurationMsForSegment(i);
       if (durationMs === -1) return null; // Skip this segment
 
       const name = nameForSeg(i);
       const outPrefix = `${config.runWorkDir}/${name}`;
-      return createTranscribeTask({
+      return {
+        kind: "transcribe" as const,
         label: `transcribe[${labelForSeg(i)}]`,
+        description: `whisper: ${outPrefix}.wav (model=${config.modelShortName})`,
         wavPath: `${outPrefix}.wav`,
         outputPrefix: outPrefix,
         vttPath: `${outPrefix}.vtt`,
@@ -272,29 +267,23 @@ async function runWhisperPipeline(
           durationMs,
         ),
         cache: config.cache,
-        monitor: createWhisperCppMonitor(reporter),
-      });
+      } satisfies TranscribeTask;
     })
     .filter((t): t is NonNullable<typeof t> => t !== null);
 
-  const tasks = [...wavTasks, ...transcribeTasks];
+  const tasks: Task[] = [...wavTasks, ...transcribeTasks];
   const result: RunResult = {
     processedAudioDurationSec: audioDuration,
     elapsedSec: 0,
     speedup: "0",
-    tasks: tasks.map((t) => ({ task: t })),
+    tasks,
     outputPath: finalVtt,
   };
 
-  // Execute tasks (skip in dry-run mode)
+  // Execute tasks sequentially (skip in dry-run mode)
   if (!config.dryRun) {
-    for (let i = 0; i < tasks.length; i++) {
-      const task = tasks[i]!;
-      const taskResult = await task.execute();
-      result.tasks[i] = {
-        task,
-        result: { elapsedMs: taskResult.elapsedMs },
-      };
+    for (let i = 0; i < result.tasks.length; i++) {
+      result.tasks[i] = await executeTask(result.tasks[i]!, reporter);
     }
   }
 
