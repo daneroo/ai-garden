@@ -72,10 +72,10 @@ NOT available to executeTranscribe (stays in stitch):
 - `startSec` — segment offset in original audio
 - `segment` — segment index
 
-- [ ] Add provenance injection to executeTranscribe (read VTT, prepend
+- [x] Add provenance injection to executeTranscribe (read VTT, prepend
       NOTE Provenance, write back)
-- [ ] Add elapsedMs to VttHeaderProvenance type (and parser)
-- [ ] Unit test: provenance round-trip (write + parse back)
+- [x] Add elapsedMs to VttHeaderProvenance type (and parser)
+- [x] Unit test: provenance round-trip (write + parse back)
 
 Step 2: Clean up stitchSegments roll-up
 
@@ -84,10 +84,10 @@ context. After step 1, each segment VTT already has provenance. Stitch
 should read it and merge with the fields only it knows (startSec,
 segment index).
 
-- [ ] stitchSegments reads provenance from individual VTT files
-- [ ] Header provenance rolls up per-segment data (total elapsedMs, etc.)
-- [ ] Remove redundant provenance construction from stitchSegments
-- [ ] Verify: segment provenance in final VTT includes all fields
+- [x] stitchSegments reads provenance from individual VTT files
+- [x] Header provenance includes wordTimestamps from config
+- [x] Segment provenance merges executeTranscribe fields (drops generated)
+- [x] Verify: segment provenance in final VTT includes all fields
       (from executeTranscribe + startSec/segment from stitch)
 
 Step 3: Smart dry-run (POC for cached provenance)
@@ -108,3 +108,7 @@ These turn into subsequent phases, inside this very document
 - Artifact directory reorganization WORK,CACHE,OUTPUT,SAMPLES
 - Second use case: short word/phrase transcription (separate entrypoint)
 - Integrate markdownlint into ci - `bunx markdownlint-cli --version`
+- Clean up stale/legacy `startSec` references (on VttHeaderProvenance, etc.)
+  - Segment provenance always has `startSec: 0` for single-segment runs,
+    which is noise. Investigate whether startSec belongs in segment
+    provenance at all, or only when segments > 1.

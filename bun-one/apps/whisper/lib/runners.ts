@@ -9,6 +9,7 @@ import {
   type ProgressReporter,
 } from "./progress.ts";
 import {
+  isVttSegmentProvenance,
   readVtt,
   readVttFile,
   summarizeVtt,
@@ -333,15 +334,22 @@ async function stitchSegments(
     cues: VttCue[];
     startSec: number;
     input: string;
+    /** Header provenance injected by executeTranscribe (if present) */
+    segmentProvenance?: VttHeaderProvenance;
   }> = [];
   for (const seg of segmentVtts) {
     if (existsSync(seg.path)) {
       const parsed = await readVttFile(seg.path);
+      // Extract per-segment header provenance written by executeTranscribe
+      const segProv = parsed.provenance.find(
+        (p) => !isVttSegmentProvenance(p),
+      ) as VttHeaderProvenance | undefined;
       infos.push({
         segment: seg.segment,
         cues: parsed.cues,
         startSec: seg.startSec,
         input: seg.input,
+        segmentProvenance: segProv,
       });
     }
   }
@@ -356,13 +364,22 @@ async function stitchSegments(
     })),
   );
 
+  // Build segment provenance by merging executeTranscribe's provenance
+  // with stitch-level fields (segment index, startSec)
   const segmentBoundaries: Array<{ segment: number; cueIndex: number }> = [];
   const segmentProvenance: VttProvenance[] = [];
   let cueIndex = 0;
   for (const info of infos) {
     segmentBoundaries.push({ segment: info.segment, cueIndex });
     cueIndex += info.cues.length;
+    // Merge executeTranscribe's provenance, dropping generated (header has its own)
+    const fromTranscribe = Object.fromEntries(
+      Object.entries(info.segmentProvenance ?? {}).filter(
+        ([k]) => k !== "generated",
+      ),
+    );
     segmentProvenance.push({
+      ...fromTranscribe,
       input: info.input,
       segment: info.segment,
       startSec: info.startSec,
@@ -372,6 +389,7 @@ async function stitchSegments(
   const headerProvenance: VttHeaderProvenance = {
     input: basename(config.input),
     model: config.modelShortName,
+    wordTimestamps: config.wordTimestamps,
     generated: new Date().toISOString(),
     ...(infos.length > 1 ? { segments: infos.length } : {}),
     ...(config.durationSec > 0 ? { durationSec: config.durationSec } : {}),

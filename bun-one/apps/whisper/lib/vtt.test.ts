@@ -109,6 +109,73 @@ Alpha
     expect(parsed.provenance[1]).toMatchObject({ segment: 0, startSec: 0 });
     expect(parsed.provenance[2]).toMatchObject({ segment: 1, startSec: 30 });
   });
+
+  test("roundtrip preserves elapsedMs and wordTimestamps in header provenance", async () => {
+    if (!tempDir) {
+      tempDir = await mkdtemp(join(tmpdir(), "whisper-vtt-test-"));
+    }
+
+    const path = join(tempDir, "roundtrip-extended.vtt");
+    const provenance: VttProvenance[] = [
+      {
+        input: "seg00.wav",
+        model: "tiny.en",
+        wordTimestamps: false,
+        elapsedMs: 1234,
+        generated: "2026-02-03T00:00:00.000Z",
+      },
+    ];
+
+    await writeVtt(
+      path,
+      [{ startTime: "00:00:00.000", endTime: "00:00:01.000", text: "Hello" }],
+      { provenance },
+    );
+
+    const parsed = await readVttFile(path);
+    expect(parsed.provenance).toHaveLength(1);
+    expect(parsed.provenance[0]).toMatchObject({
+      input: "seg00.wav",
+      model: "tiny.en",
+      wordTimestamps: false,
+      elapsedMs: 1234,
+      generated: "2026-02-03T00:00:00.000Z",
+    });
+  });
+
+  test("roundtrip preserves durationMs when present", async () => {
+    if (!tempDir) {
+      tempDir = await mkdtemp(join(tmpdir(), "whisper-vtt-test-"));
+    }
+
+    const path = join(tempDir, "roundtrip-duration.vtt");
+    const provenance: VttProvenance[] = [
+      {
+        input: "seg02.wav",
+        model: "base.en",
+        wordTimestamps: true,
+        durationMs: 30000,
+        elapsedMs: 5678,
+        generated: "2026-02-03T12:00:00.000Z",
+      },
+    ];
+
+    await writeVtt(
+      path,
+      [{ startTime: "00:00:00.000", endTime: "00:00:02.000", text: "World" }],
+      { provenance },
+    );
+
+    const parsed = await readVttFile(path);
+    expect(parsed.provenance).toHaveLength(1);
+    expect(parsed.provenance[0]).toMatchObject({
+      input: "seg02.wav",
+      model: "base.en",
+      wordTimestamps: true,
+      durationMs: 30000,
+      elapsedMs: 5678,
+    });
+  });
 });
 
 afterAll(async () => {

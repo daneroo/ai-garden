@@ -16,6 +16,9 @@ export type VttHeaderProvenance = {
   segments?: number;
   startSec?: number;
   durationSec?: number;
+  durationMs?: number;
+  elapsedMs?: number;
+  wordTimestamps?: boolean;
   digest?: string;
 } & Record<string, unknown>;
 
@@ -207,6 +210,9 @@ function parseHeaderProvenance(
   const segments = asOptionalFiniteNumber(parsed.segments);
   const startSec = asOptionalFiniteNumber(parsed.startSec);
   const durationSec = asOptionalFiniteNumber(parsed.durationSec);
+  const durationMs = asOptionalFiniteNumber(parsed.durationMs);
+  const elapsedMs = asOptionalFiniteNumber(parsed.elapsedMs);
+  const wordTimestamps = asOptionalBoolean(parsed.wordTimestamps);
 
   if (
     input === undefined ||
@@ -215,6 +221,9 @@ function parseHeaderProvenance(
     segments === null ||
     startSec === null ||
     durationSec === null ||
+    durationMs === null ||
+    elapsedMs === null ||
+    wordTimestamps === null ||
     digest === null
   ) {
     return undefined;
@@ -228,6 +237,9 @@ function parseHeaderProvenance(
     ...(segments !== undefined ? { segments } : {}),
     ...(startSec !== undefined ? { startSec } : {}),
     ...(durationSec !== undefined ? { durationSec } : {}),
+    ...(durationMs !== undefined ? { durationMs } : {}),
+    ...(elapsedMs !== undefined ? { elapsedMs } : {}),
+    ...(wordTimestamps !== undefined ? { wordTimestamps } : {}),
     ...(digest !== undefined ? { digest } : {}),
   };
 }
@@ -253,6 +265,13 @@ function asOptionalFiniteNumber(value: unknown): number | undefined | null {
     return undefined;
   }
   return isFiniteNumber(value) ? value : null;
+}
+
+function asOptionalBoolean(value: unknown): boolean | undefined | null {
+  if (value === undefined) {
+    return undefined;
+  }
+  return typeof value === "boolean" ? value : null;
 }
 
 function asOptionalString(value: unknown): string | undefined | null {

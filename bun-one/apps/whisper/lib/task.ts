@@ -32,8 +32,11 @@
 
 import { type ChildProcess, spawn } from "node:child_process";
 import { createWriteStream } from "node:fs";
+import { basename } from "node:path";
 import { Buffer } from "node:buffer";
 import { type ProgressReporter } from "./progress.ts";
+import { readVttFile, type VttHeaderProvenance } from "./vtt.ts";
+import { writeVtt } from "./vtt-stitch.ts";
 
 // ============================================================================
 // Process Layer (internal)
@@ -259,12 +262,29 @@ async function executeTranscribe(
     throw new Error(`whisper-cli failed with exit code ${result.code}`);
   }
 
-  // Cache the result (if enabled)
+  // Inject per-segment provenance into the VTT before caching
+  const elapsedMs = Date.now() - start;
+  const parsed = await readVttFile(task.vttPath);
+  const provenance: VttHeaderProvenance = {
+    input: basename(task.wavPath),
+    model: task.model,
+    wordTimestamps: task.wordTimestamps,
+    ...(task.durationMs > 0 ? { durationMs: task.durationMs } : {}),
+    elapsedMs,
+    generated: new Date().toISOString(),
+  };
+  // Rewrite with cues + new provenance, excluding any existing header entries
+  const segmentOnly = parsed.provenance.filter((p) => "segment" in p);
+  await writeVtt(task.vttPath, parsed.cues, {
+    provenance: [provenance, ...segmentOnly],
+  });
+
+  // Cache the result (if enabled) — provenance is now baked in
   if (task.cache) {
     await Bun.write(task.cachePath, Bun.file(task.vttPath));
   }
 
-  return { ...task, elapsedMs: Date.now() - start };
+  return { ...task, elapsedMs };
 }
 
 // ============================================================================

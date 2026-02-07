@@ -15,6 +15,7 @@ import {
   type RunConfig,
   runWhisper,
 } from "../lib/runners.ts";
+import { parseVttFile, isVttSegmentProvenance } from "../lib/vtt.ts";
 import {
   cleanupOutputDir,
   createWorkDirCleanup,
@@ -98,11 +99,28 @@ describe("smoke: whisper pipeline", () => {
 
     const result = await runWhisper(config);
 
-    // VTT file produced
+    // VTT file produced with provenance
     expect(existsSync(result.outputPath)).toBe(true);
     const vttText = await readFile(result.outputPath, "utf-8");
-    expect(vttText).toContain("NOTE Provenance");
-    expect(vttText).toContain('"model":"tiny.en"');
+    const parsed = parseVttFile(vttText);
+
+    // Header provenance includes model and wordTimestamps
+    const headerProv = parsed.provenance.find(
+      (p) => !isVttSegmentProvenance(p),
+    );
+    expect(headerProv).toBeDefined();
+    expect(headerProv).toMatchObject({
+      model: "tiny.en",
+      wordTimestamps: false,
+    });
+
+    // Segment provenance includes per-segment execution metadata
+    const segProv = parsed.provenance.find((p) => isVttSegmentProvenance(p));
+    expect(segProv).toBeDefined();
+    expect(segProv).toHaveProperty("elapsedMs");
+    expect(typeof (segProv as Record<string, unknown>).elapsedMs).toBe(
+      "number",
+    );
 
     // WAV task executed (M4B conversion) - now uses segment naming
     const wavTask = result.tasks.find((t) => t.label.startsWith("to-wav[seg"));
