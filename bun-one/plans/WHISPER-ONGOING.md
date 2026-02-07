@@ -17,17 +17,17 @@ Track ongoing work for this sub-project (`bon-one/apps/whisper/`)
 
 - Goal: fix incorrect elapsed/speedup reporting in benchmark runs, especially
   with cached segments
-- [ ] Reproduce with empty cache and 3600s runs (hobbit/quixote)
+- [x] Reproduce with empty cache and 3600s runs (hobbit/quixote)
   - Defensive preparation and reproduction
     - `rm ../../reports/benchmarks/2026*Z-*-tiny.en-3600s.json` # remove two
       grid entries for run-bench
     - `rm -rf data/cache data/output/ data/work/` # empty the cache
     - `bun run scripts/benchmarks/run-bench.ts` # run missing grid entries
   - note that even just these two entries, will take about five minutes to run
-- [ ] Trace elapsed/speedup sources in benchmark output
-- [ ] Decide expected behavior when cache hits are involved
-- [ ] Implement corrections in benchmark reporting
-- [ ] Update summary plots/data if needed
+- [x] Trace elapsed/speedup sources in benchmark output
+- [x] Decide expected behavior when cache hits are involved
+- [x] Implement corrections in benchmark reporting
+- [x] Update summary plots/data if needed
 
 ## Backlog
 
