@@ -86,6 +86,11 @@ async function main(): Promise<void> {
       default: false,
       describe: "Enable word-level timestamps",
     })
+    .option("cache", {
+      type: "boolean",
+      default: true,
+      describe: "Enable WAV and VTT caching (use --no-cache to disable)",
+    })
     .option("tag", {
       alias: "t",
       type: "string",
@@ -124,6 +129,7 @@ async function main(): Promise<void> {
     "dry-run": dryRun,
     json,
     "word-timestamps": wordTimestamps,
+    cache,
     verbose: verbosity,
   } = argv;
 
@@ -146,6 +152,7 @@ async function main(): Promise<void> {
     verbosity,
     dryRun,
     wordTimestamps,
+    cache,
     segmentSec: segment ?? 0,
   };
 

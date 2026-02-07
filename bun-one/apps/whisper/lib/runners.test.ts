@@ -19,6 +19,7 @@ const mockConfig: RunConfig = {
   verbosity: 1,
   dryRun: true, // Always dry-run for unit tests
   wordTimestamps: false,
+  cache: true,
   segmentSec: 0,
   quiet: true,
 };

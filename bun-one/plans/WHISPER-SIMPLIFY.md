@@ -14,6 +14,7 @@ KISS: no rewrites, just incremental work
 ## Implementation Plan
 
 Before checking any box: `bun run ci` must pass.
+Before committing a phase: User reviews changes.
 
 ### Phase 1 - restore clean state of `<repo>/bun-one/apps/whisper`
 
@@ -22,15 +23,15 @@ Before checking any box: `bun run ci` must pass.
 ### Phase 2 - Augment testing
 
 - [x] Add e2e tests gated by RUN_E2E_TESTS env var (skipIf pattern)
-- [x] Review and reorganize tests (*.test.ts convention, unit tests in lib/)
+- [x] Review and reorganize tests (\*.test.ts convention, unit tests in lib/)
 
 ### Phase 3 - Add --no-cache flag
 
-- [ ] Add --cache boolean flag to CLI (default: true, yargs gives --no-cache free)
-- [ ] Add cache: boolean to RunConfig interface
-- [ ] Pass config.cache to task factories
-- [ ] Update task factories to skip cache when cache=false
-- [ ] Add integration test verifying --no-cache bypasses WAV and VTT cache
+- [x] Add --cache boolean flag to CLI (default: true, yargs gives --no-cache free)
+- [x] Add cache: boolean to RunConfig interface
+- [x] Pass config.cache to task factories
+- [x] Update task factories to skip cache when cache=false
+- [x] Add integration test verifying --no-cache bypasses WAV and VTT cache
 
 ### Phase 4 - Clean up task result types
 

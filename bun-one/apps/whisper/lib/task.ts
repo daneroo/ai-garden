@@ -151,6 +151,7 @@ export interface ToWavTaskOptions {
   startSec: number;
   durationSec: number;
   cachePath: string; // Where to cache the output
+  cache: boolean; // Enable caching
   logPrefix: string; // For stdout/stderr log files
   monitor: TaskMonitor;
 }
@@ -168,15 +169,17 @@ export function createToWavTask(opts: ToWavTaskOptions): Task {
     execute: async () => {
       const start = Date.now();
 
-      // Check cache first
-      const cacheFile = Bun.file(opts.cachePath);
-      if (await cacheFile.exists()) {
-        // Cache hit - copy from cache
-        await Bun.write(opts.outputPath, cacheFile);
-        return { elapsedMs: Date.now() - start };
+      // Check cache first (if enabled)
+      if (opts.cache) {
+        const cacheFile = Bun.file(opts.cachePath);
+        if (await cacheFile.exists()) {
+          // Cache hit - copy from cache
+          await Bun.write(opts.outputPath, cacheFile);
+          return { elapsedMs: Date.now() - start };
+        }
       }
 
-      // Cache miss - run ffmpeg
+      // Cache miss (or caching disabled) - run ffmpeg
       const config: TaskConfig = {
         label: opts.label,
         command: "ffmpeg",
@@ -209,8 +212,10 @@ export function createToWavTask(opts: ToWavTaskOptions): Task {
         throw new Error(`ffmpeg failed with exit code ${result.code}`);
       }
 
-      // Cache the result
-      await Bun.write(opts.cachePath, Bun.file(opts.outputPath));
+      // Cache the result (if enabled)
+      if (opts.cache) {
+        await Bun.write(opts.cachePath, Bun.file(opts.outputPath));
+      }
 
       return { elapsedMs: Date.now() - start };
     },
@@ -231,6 +236,7 @@ export interface TranscribeTaskOptions {
   durationMs: number; // Whisper --duration (0 = full)
   wordTimestamps: boolean;
   cachePath: string; // Where to cache the VTT
+  cache: boolean; // Enable caching
   monitor: TaskMonitor;
 }
 
@@ -247,15 +253,17 @@ export function createTranscribeTask(opts: TranscribeTaskOptions): Task {
     execute: async () => {
       const start = Date.now();
 
-      // Check cache first
-      const cacheFile = Bun.file(opts.cachePath);
-      if (await cacheFile.exists()) {
-        // Cache hit - copy from cache
-        await Bun.write(opts.vttPath, cacheFile);
-        return { elapsedMs: Date.now() - start };
+      // Check cache first (if enabled)
+      if (opts.cache) {
+        const cacheFile = Bun.file(opts.cachePath);
+        if (await cacheFile.exists()) {
+          // Cache hit - copy from cache
+          await Bun.write(opts.vttPath, cacheFile);
+          return { elapsedMs: Date.now() - start };
+        }
       }
 
-      // Cache miss - run whisper-cli
+      // Cache miss (or caching disabled) - run whisper-cli
       const durationArgs =
         opts.durationMs > 0 ? ["--duration", String(opts.durationMs)] : [];
       const wordTimestampArgs = opts.wordTimestamps
@@ -289,8 +297,10 @@ export function createTranscribeTask(opts: TranscribeTaskOptions): Task {
         throw new Error(`whisper-cli failed with exit code ${result.code}`);
       }
 
-      // Cache the result
-      await Bun.write(opts.cachePath, Bun.file(opts.vttPath));
+      // Cache the result (if enabled)
+      if (opts.cache) {
+        await Bun.write(opts.cachePath, Bun.file(opts.vttPath));
+      }
 
       return { elapsedMs: Date.now() - start };
     },

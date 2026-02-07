@@ -57,6 +57,7 @@ describe("smoke: whisper pipeline", () => {
       verbosity: 0,
       dryRun: true,
       wordTimestamps: false,
+      cache: false, // Integration test - test real behavior, not cache
       quiet: true,
       segmentSec: 0,
     };
@@ -90,6 +91,7 @@ describe("smoke: whisper pipeline", () => {
       verbosity: 0,
       dryRun: false,
       wordTimestamps: false,
+      cache: false, // Integration test - test real behavior, not cache
       quiet: true,
       segmentSec: 0,
     };
@@ -135,6 +137,7 @@ describe("smoke: whisper pipeline", () => {
       verbosity: 0,
       dryRun: false,
       wordTimestamps: false,
+      cache: true, // This test explicitly verifies cache behavior
       quiet: true,
       segmentSec: 0,
     };

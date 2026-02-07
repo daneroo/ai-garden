@@ -60,6 +60,7 @@ describe.skipIf(!process.env.RUN_E2E_TESTS)("e2e: demo scenarios", () => {
       verbosity: 0,
       dryRun: false,
       wordTimestamps: false,
+      cache: true,
       quiet: true,
       segmentSec: 0, // No segmentation
     };
@@ -104,6 +105,7 @@ describe.skipIf(!process.env.RUN_E2E_TESTS)("e2e: demo scenarios", () => {
       verbosity: 0,
       dryRun: false,
       wordTimestamps: false,
+      cache: true,
       quiet: true,
       segmentSec: 600, // 10 minutes (10m)
     };

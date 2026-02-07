@@ -59,6 +59,7 @@ export interface RunConfig {
   verbosity: number;
   dryRun: boolean;
   wordTimestamps: boolean;
+  cache: boolean; // Enable WAV and VTT caching
   quiet?: boolean; // Suppress progress output to stderr
   segmentSec: number; // Segment duration in seconds (0 = auto 37h)
 }
@@ -240,6 +241,7 @@ async function runWhisperPipeline(
       startSec: seg.startSec,
       durationSec: seg.endSec - seg.startSec,
       cachePath: getWavCachePath(name),
+      cache: config.cache,
       logPrefix: `${outPrefix}-ffmpeg`,
       monitor: createAudioConversionMonitor(reporter),
     });
@@ -269,6 +271,7 @@ async function runWhisperPipeline(
           config.wordTimestamps,
           durationMs,
         ),
+        cache: config.cache,
         monitor: createWhisperCppMonitor(reporter),
       });
     })

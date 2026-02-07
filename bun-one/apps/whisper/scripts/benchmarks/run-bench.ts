@@ -322,6 +322,7 @@ async function executeBenchmarks(
       verbosity: 0,
       dryRun: false,
       wordTimestamps: key.wordTimestamps,
+      cache: true,
       quiet: false, // Show progress
       segmentSec: 0,
     };
