@@ -13,8 +13,8 @@ KISS: no rewrites, just incremental work
 
 ## Implementation Plan
 
-Before checking any box: `bun run ci` must pass. Before committing a phase: User
-reviews changes.
+- Before checking any box: `bun run ci` must pass.
+- Before committing a phase: User reviews changes.
 
 ### Phase 1 - restore clean state of `<repo>/bun-one/apps/whisper`
 
@@ -40,13 +40,19 @@ Move from OOP (objects with methods) to functional (data + pure functions).
 
 Goal: Task is just data. Functions transform tasks. Task in → Task out.
 
-- [ ] Flatten Task to pure data (remove describe/execute methods)
-- [ ] Add elapsedMs?: number field to Task interface
-- [ ] Create executeTask(task, dryRun, cache): Promise<Task> - pattern match on kind
-- [ ] Return NEW task with elapsedMs filled (IMMUTABLE - don't modify in place)
+Core refactor (done together as one cohesive change):
+
+- [ ] Flatten Task interface to pure data (remove describe/execute, add elapsedMs)
+- [ ] Create executeTask(task, config): Promise<Task> - pattern match, immutable
+- [ ] Simplify RunResult.tasks from Array<{task, result?}> to Task[]
+- [ ] Update runners.ts: build tasks, execute, store results
+- [ ] Update whisper.ts: read task.elapsedMs directly (no .result wrapper)
+- [ ] Update all tests to work with new structure
+
+Refinements:
+
 - [ ] Smart dry-run: read cached VTT provenance for timing estimates
-- [ ] Simplify RunResult.tasks to just Task[] (no wrapper, no optional result)
-- [ ] Update all call sites to use functional approach
+- [ ] Cleanup: remove unused types, simplify interfaces
 
 ## Unplanned Work
 
