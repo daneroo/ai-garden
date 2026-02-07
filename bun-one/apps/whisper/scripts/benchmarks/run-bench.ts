@@ -234,13 +234,15 @@ async function loadExistingData(): Promise<LoadedRecord[]> {
 
 function normalizeRecord(record: BenchmarkRecord): BenchmarkRecord {
   const benchmarkKey = normalizeBenchmarkKey(record.benchmarkKey);
-  const processedAudioDurationSec = resolveProcessedDuration(record) ??
+  const processedAudioDurationSec =
+    resolveProcessedDuration(record) ??
     asNumber(record.processedAudioDurationSec) ??
     0;
   const elapsedSec = asNumber(record.elapsedSec) ?? 0;
-  const speedupValue = elapsedSec > 0 && processedAudioDurationSec > 0
-    ? processedAudioDurationSec / elapsedSec
-    : asNumber(record.speedup);
+  const speedupValue =
+    elapsedSec > 0 && processedAudioDurationSec > 0
+      ? processedAudioDurationSec / elapsedSec
+      : asNumber(record.speedup);
   const speedup = speedupValue ? speedupValue.toFixed(1) : "0";
 
   return {
@@ -449,9 +451,10 @@ async function writeResult(record: BenchmarkRecord): Promise<void> {
   const ts = record.timestamp.replace(/:/g, "-");
   const model = record.benchmarkKey.model;
   const input = record.benchmarkKey.input.replace(/\.[^.]+$/, ""); // Remove extension
-  const dur = record.benchmarkKey.duration === 0
-    ? "full"
-    : `${record.benchmarkKey.duration}s`;
+  const dur =
+    record.benchmarkKey.duration === 0
+      ? "full"
+      : `${record.benchmarkKey.duration}s`;
 
   const filename = `${ts}-${input}-${model}-${dur}.json`;
   const path = join(REPORTS_DIR, filename);

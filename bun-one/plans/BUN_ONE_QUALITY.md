@@ -29,13 +29,12 @@ Pain points:
 ## Goals
 
 - Single reusable package `@bun-one/quality` that contains:
-
   - All configuration (prefer JSONC with schemas where possible)
   - A CLI entry point (`bun-one-quality`) that runs the toolchain
   - Minimal and stable root `package.json` scripts
+
 - Fix Markdown table formatting by using dprint for Markdown (`.md`/`.mdx`).
 - Preserve existing semantics:
-
   - `test:e2e` remains `RUN_E2E_TESTS=1 bun test`.
   - `ci` remains local and deterministic.
 
@@ -51,21 +50,20 @@ Pain points:
 - `bun run quality` and `bun run quality:check` exist at repo root and do not
   require any other repo-level dotfiles.
 - `bun run quality` fixes:
-
   - code formatting (Prettier)
   - Markdown tables (dprint)
   - lint autofix where applicable (ESLint `--fix`)
+
 - `bun run quality:check` checks the same without modifying files.
 - `bun run ci` runs (local only):
-
   - `quality:check`
   - `typecheck`
   - `test`
   - optionally `test:e2e` via explicit separate command
+
 - Running from monorepo root formats/lints across nested workspaces without
   per-package scripts.
 - Moving `packages/quality` to another repo requires only:
-
   - adding it as a workspace package
   - adding 3–6 root scripts that call `bunx bun-one-quality ...`
 
@@ -78,18 +76,15 @@ Before checking any box: `bun run ci` must pass.
 - Goal: add the package skeleton and CLI wiring.
 
 - [ ] Create `packages/quality/` with:
-
   - `package.json` (`name=@bun-one/quality`, `type=module`, `bin` entry)
   - `bin/quality.mjs`
   - `config/` directory
 
 - [ ] Add root `devDependencies` (tool versions pinned here):
-
   - `prettier`, `eslint`, `typescript`, `dprint`, (optional) `markdownlint-cli2`
   - `@bun-one/quality: workspace:*`
 
 - [ ] Add root scripts (minimal):
-
   - `quality`: `bunx bun-one-quality fix`
   - `quality:check`: `bunx bun-one-quality check`
   - `ci`: `bunx bun-one-quality ci`
@@ -101,15 +96,12 @@ Before checking any box: `bun run ci` must pass.
 - [ ] Add `config/dprint.jsonc` with `$schema` and markdown plugin.
 
 - [ ] Implement `bun-one-quality fix` to run:
-
   - `bunx dprint fmt "**/*.{md,mdx}" -c <pkg>/config/dprint.jsonc`
 
 - [ ] Implement `bun-one-quality check` to run:
-
   - `bunx dprint check "**/*.{md,mdx}" -c <pkg>/config/dprint.jsonc`
 
 - [ ] Add a regression test markdown file under `packages/quality/fixtures/`:
-
   - include at least one “ugly table” that should be stabilized by dprint
 
 ### Issue: Preserve existing repo semantics
@@ -117,7 +109,6 @@ Before checking any box: `bun run ci` must pass.
 - Goal: match today’s behavior.
 
 - [ ] Implement CLI subcommands:
-
   - `typecheck` => `bunx tsc --noEmit`
   - `test` => `bun test`
   - `test:e2e` => `RUN_E2E_TESTS=1 bun test`
@@ -132,7 +123,6 @@ Before checking any box: `bun run ci` must pass.
 - [ ] Add `config/eslint.config.mjs` (flat config, minimal ignores).
 
 - [ ] Update CLI:
-
   - `fix` runs `prettier --write . --config <pkg>/config/prettier.jsonc`
   - `check` runs `prettier --check . --config <pkg>/config/prettier.jsonc`
   - `fix` runs `eslint . --config <pkg>/config/eslint.config.mjs --fix`
@@ -145,11 +135,9 @@ Before checking any box: `bun run ci` must pass.
 - [ ] Add `config/markdownlint.jsonc` with schema.
 
 - [ ] Decide if markdownlint runs by default:
-
   - default ON, but trivially disabled via optional override mechanism
 
 - [ ] Implement:
-
   - `bunx markdownlint-cli2 "**/*.{md,mdx}" --config <pkg>/config/markdownlint.jsonc`
 
 - [ ] Ensure rules do not conflict with dprint’s formatting decisions.
@@ -159,11 +147,9 @@ Before checking any box: `bun run ci` must pass.
 - Goal: allow per-repo overrides without config sprawl.
 
 - [ ] Add support for optional root override file:
-
   - `quality.config.jsonc` (single file, optional)
 
 - [ ] Supported overrides (minimal):
-
   - `paths.mdGlob`, `paths.codeRoot` (default `.`)
   - `tools.markdownlint` boolean
   - `prettier.printWidth` and `dprint.lineWidth`
@@ -188,10 +174,10 @@ Before checking any box: `bun run ci` must pass.
 ### Fixture tests
 
 - [ ] Add `fixtures/markdown-tables.md` containing:
-
   - thin-column tables
   - long text cells
   - alignment markers
+
 - [ ] Document expected stabilization (no churn on repeated runs).
 
 ## Backlog
