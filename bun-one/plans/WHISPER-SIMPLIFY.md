@@ -49,20 +49,62 @@ Core refactor (done together as one cohesive change):
 - [x] Update whisper.ts: read task.elapsedMs directly (no .result wrapper)
 - [x] Update all tests to work with new structure
 
-Refinements:
+### Phase 5 - Per-segment VTT provenance
 
-- [ ] Smart dry-run: read cached VTT provenance for timing estimates
-- [ ] Cleanup: remove unused types, simplify interfaces
+Currently provenance is only written at stitch time (runners.ts). This
+phase moves per-segment provenance into executeTranscribe, where we have
+the actual execution context, then cleans up stitch to use it.
+
+Step 1: executeTranscribe writes provenance into each segment VTT
+
+After whisper-cli writes the VTT, executeTranscribe re-opens it and
+injects a NOTE Provenance block with fields available on TranscribeTask:
+
+- `input`: basename(task.wavPath) — always
+- `model`: task.model (short name, e.g., "tiny.en") — always
+- `wordTimestamps`: task.wordTimestamps (boolean) — always
+- `durationMs`: task.durationMs — only when > 0 (partial segment)
+- `elapsedMs`: measured execution time — always
+- `generated`: ISO timestamp — always
+
+NOT available to executeTranscribe (stays in stitch):
+
+- `startSec` — segment offset in original audio
+- `segment` — segment index
+
+- [ ] Add provenance injection to executeTranscribe (read VTT, prepend
+      NOTE Provenance, write back)
+- [ ] Add elapsedMs to VttHeaderProvenance type (and parser)
+- [ ] Unit test: provenance round-trip (write + parse back)
+
+Step 2: Clean up stitchSegments roll-up
+
+Stitch currently constructs segment provenance from scratch using runner
+context. After step 1, each segment VTT already has provenance. Stitch
+should read it and merge with the fields only it knows (startSec,
+segment index).
+
+- [ ] stitchSegments reads provenance from individual VTT files
+- [ ] Header provenance rolls up per-segment data (total elapsedMs, etc.)
+- [ ] Remove redundant provenance construction from stitchSegments
+- [ ] Verify: segment provenance in final VTT includes all fields
+      (from executeTranscribe + startSec/segment from stitch)
+
+Step 3: Smart dry-run (POC for cached provenance)
+
+When dry-run + cache enabled, read cached VTT provenance to populate
+elapsedMs on the task — showing estimated timings without executing.
+
+- [ ] In task building: if cache enabled and cached VTT exists, read
+      provenance elapsedMs into the task
+- [ ] dry-run output shows cached timing estimates
 
 ## Unplanned Work
 
-These turn into subsequent phases, insode this very document
+These turn into subsequent phases, inside this very document
 
-- Write `.vtt` Provenance metadata as part of transcribe task -> including
-  segments
 - Make stitch a proper Task (uniform task list: N\*(wav+transcribe)+stitch)
-- Extract `runTask`/monitors to new`lib/exec.ts`
+- Extract `runTask`/monitors to new `lib/exec.ts`
 - Artifact directory reorganization WORK,CACHE,OUTPUT,SAMPLES
 - Second use case: short word/phrase transcription (separate entrypoint)
-- Metadata flow improvement (segments write own provenance)
 - Integrate markdownlint into ci - `bunx markdownlint-cli --version`
