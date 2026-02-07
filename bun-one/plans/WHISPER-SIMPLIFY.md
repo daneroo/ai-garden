@@ -42,12 +42,12 @@ Goal: Task is just data. Functions transform tasks. Task in → Task out.
 
 Core refactor (done together as one cohesive change):
 
-- [ ] Flatten Task interface to pure data (remove describe/execute, add elapsedMs)
-- [ ] Create executeTask(task, config): Promise<Task> - pattern match, immutable
-- [ ] Simplify RunResult.tasks from Array<{task, result?}> to Task[]
-- [ ] Update runners.ts: build tasks, execute, store results
-- [ ] Update whisper.ts: read task.elapsedMs directly (no .result wrapper)
-- [ ] Update all tests to work with new structure
+- [x] Flatten Task interface to pure data (remove describe/execute, add elapsedMs)
+- [x] Create executeTask(task, reporter): Promise<Task> - pattern match, immutable
+- [x] Simplify RunResult.tasks from Array<{task, result?}> to Task[]
+- [x] Update runners.ts: build tasks, execute, store results
+- [x] Update whisper.ts: read task.elapsedMs directly (no .result wrapper)
+- [x] Update all tests to work with new structure
 
 Refinements:
 
