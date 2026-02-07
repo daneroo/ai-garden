@@ -113,6 +113,10 @@ describe("smoke: whisper pipeline", () => {
       model: "tiny.en",
       wordTimestamps: false,
     });
+    expect(headerProv).toHaveProperty("elapsedMs");
+    expect(typeof (headerProv as Record<string, unknown>).elapsedMs).toBe(
+      "number",
+    );
 
     // Segment provenance includes per-segment execution metadata
     const segProv = parsed.provenance.find((p) => isVttSegmentProvenance(p));
@@ -120,6 +124,13 @@ describe("smoke: whisper pipeline", () => {
     expect(segProv).toHaveProperty("elapsedMs");
     expect(typeof (segProv as Record<string, unknown>).elapsedMs).toBe(
       "number",
+    );
+    expect(segProv).toHaveProperty("generated");
+    expect(typeof (segProv as Record<string, unknown>).generated).toBe(
+      "string",
+    );
+    expect((headerProv as Record<string, unknown>).elapsedMs).toBe(
+      (segProv as Record<string, unknown>).elapsedMs,
     );
 
     // WAV task executed (M4B conversion) - now uses segment naming

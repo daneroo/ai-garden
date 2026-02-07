@@ -391,12 +391,8 @@ async function stitchSegments(
   for (const info of infos) {
     segmentBoundaries.push({ segment: info.segment, cueIndex });
     cueIndex += info.cues.length;
-    // Merge executeTranscribe's provenance, dropping generated (header has its own)
-    const fromTranscribe = Object.fromEntries(
-      Object.entries(info.segmentProvenance ?? {}).filter(
-        ([k]) => k !== "generated",
-      ),
-    );
+    // Merge executeTranscribe's provenance with stitch-level fields
+    const fromTranscribe = info.segmentProvenance ?? {};
     segmentProvenance.push({
       ...fromTranscribe,
       input: info.input,
@@ -405,6 +401,17 @@ async function stitchSegments(
     });
   }
 
+  const elapsedMsValues = infos
+    .map((info) => info.segmentProvenance?.elapsedMs)
+    .filter(
+      (value): value is number =>
+        typeof value === "number" && Number.isFinite(value),
+    );
+  const totalElapsedMs =
+    elapsedMsValues.length === infos.length
+      ? elapsedMsValues.reduce((sum, value) => sum + value, 0)
+      : undefined;
+
   const headerProvenance: VttHeaderProvenance = {
     input: basename(config.input),
     model: config.modelShortName,
@@ -412,6 +419,7 @@ async function stitchSegments(
     generated: new Date().toISOString(),
     ...(infos.length > 1 ? { segments: infos.length } : {}),
     ...(config.durationSec > 0 ? { durationSec: config.durationSec } : {}),
+    ...(totalElapsedMs !== undefined ? { elapsedMs: totalElapsedMs } : {}),
   };
 
   await writeVtt(finalVttPath, stitchedCues, {

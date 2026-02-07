@@ -87,7 +87,7 @@ read it and merge with the fields only it knows (startSec, segment index).
 
 - [x] stitchSegments reads provenance from individual VTT files
 - [x] Header provenance includes wordTimestamps from config
-- [x] Segment provenance merges executeTranscribe fields (drops generated)
+- [x] Segment provenance merges executeTranscribe fields (preserves generated)
 - [x] Verify: segment provenance in final VTT includes all fields (from
       executeTranscribe + startSec/segment from stitch)
 
@@ -104,9 +104,9 @@ on the task — showing estimated timings without executing.
 Step 4: Phase 5 follow-ups
 
 - [x] Decision: roll up total elapsedMs in header provenance (Yes)
-- [ ] Implement header elapsedMs aggregation in stitchSegments and add tests
+- [x] Implement header elapsedMs aggregation in stitchSegments and add tests
 - [x] Decision: preserve per-segment generated timestamps when merging (Yes)
-- [ ] Update merge logic to keep generated in segment provenance and add tests
+- [x] Update merge logic to keep generated in segment provenance and add tests
 - [x] Clarify dry-run estimate semantics for CLI output (currently sums cached
       transcribe elapsedMs only). Decide whether to label it as transcribe-only
       or to include WAV timing, then update CLI wording or timing sources
