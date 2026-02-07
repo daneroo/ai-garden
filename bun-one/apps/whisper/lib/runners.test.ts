@@ -1,8 +1,10 @@
 import { describe, expect, test } from "bun:test";
+import { existsSync } from "node:fs";
 import { mkdir, mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
+  createUniqueRunWorkDir,
   createRunWorkDir,
   type RunConfig,
   type RunDeps,
@@ -41,16 +43,20 @@ test("createRunWorkDir - includes second precision timestamp", () => {
 });
 
 describe("runWhisper task generation", () => {
-  test("fails when runWorkDir already exists", async () => {
+  test("retries when runWorkDir already exists", async () => {
     const tempRoot = await mkdtemp(join(tmpdir(), "whisper-runner-test-"));
-    const runWorkDir = join(tempRoot, "existing-run");
 
     try {
+      const runWorkDir = createRunWorkDir({
+        workDirRoot: tempRoot,
+        inputPath: "/tmp/hobbit-30m.m4b",
+        tag: "bench",
+      });
       await mkdir(runWorkDir);
-      const config = { ...mockConfig, dryRun: false, runWorkDir };
-      await expect(runWhisper(config, mockDeps)).rejects.toThrow(
-        "workdirAlready exists (too soon?)",
-      );
+
+      const retryRunWorkDir = await createUniqueRunWorkDir(runWorkDir);
+      expect(retryRunWorkDir).not.toBe(runWorkDir);
+      expect(existsSync(retryRunWorkDir)).toBe(true);
     } finally {
       await rm(tempRoot, { recursive: true, force: true });
     }
@@ -59,6 +65,12 @@ describe("runWhisper task generation", () => {
   test("reports processedAudioDurationSec as full audio duration", async () => {
     const result = await runWhisper(mockConfig, mockDeps);
     expect(result.processedAudioDurationSec).toBe(100);
+  });
+
+  test("reports processedAudioDurationSec for partial duration", async () => {
+    const config = { ...mockConfig, durationSec: 50 };
+    const result = await runWhisper(config, mockDeps);
+    expect(result.processedAudioDurationSec).toBe(50);
   });
 
   test("single segment produces correct tasks", async () => {

@@ -103,17 +103,21 @@ export async function runWhisper(
   config: RunConfig,
   deps?: RunDeps,
 ): Promise<RunResult> {
+  let runConfig = config;
   if (!config.dryRun) {
-    await createUniqueRunWorkDir(config.runWorkDir);
+    const runWorkDir = await createUniqueRunWorkDir(config.runWorkDir);
+    if (runWorkDir !== config.runWorkDir) {
+      runConfig = { ...config, runWorkDir };
+    }
     await writeFile(
-      `${config.runWorkDir}/runconfig.json`,
-      JSON.stringify(config, null, 2),
+      `${runConfig.runWorkDir}/runconfig.json`,
+      JSON.stringify(runConfig, null, 2),
     );
   }
 
-  const reporter = createReporter(config);
+  const reporter = createReporter(runConfig);
   const startMs = Date.now();
-  const result = await runWhisperPipeline(config, reporter, deps);
+  const result = await runWhisperPipeline(runConfig, reporter, deps);
 
   const elapsedMs = Date.now() - startMs;
   result.elapsedSec = Math.round(elapsedMs / 1000);
@@ -135,10 +139,15 @@ export async function runWhisper(
   return result;
 }
 
-async function createUniqueRunWorkDir(runWorkDir: string): Promise<void> {
+const RUN_WORKDIR_TIMESTAMP_REGEX = /\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}Z/;
+
+export async function createUniqueRunWorkDir(
+  runWorkDir: string,
+): Promise<string> {
   await mkdir(dirname(runWorkDir), { recursive: true });
   try {
     await mkdir(runWorkDir);
+    return runWorkDir;
   } catch (error) {
     if (
       typeof error === "object" &&
@@ -146,7 +155,13 @@ async function createUniqueRunWorkDir(runWorkDir: string): Promise<void> {
       "code" in error &&
       error.code === "EEXIST"
     ) {
-      throw new Error(`workdirAlready exists (too soon?): ${runWorkDir}`);
+      await delay(1000);
+      const retryRunWorkDir = refreshRunWorkDirTimestamp(runWorkDir);
+      if (!retryRunWorkDir || retryRunWorkDir === runWorkDir) {
+        throw new Error(`workdirAlready exists (too soon?): ${runWorkDir}`);
+      }
+      await mkdir(retryRunWorkDir);
+      return retryRunWorkDir;
     }
     throw error;
   }
@@ -166,6 +181,10 @@ async function runWhisperPipeline(
 ): Promise<RunResult> {
   const getAudioDuration = deps?.getAudioDuration ?? getAudioFileDuration;
   const audioDuration = await getAudioDuration(config.input);
+  const processedAudioDurationSec =
+    config.durationSec > 0
+      ? Math.min(config.durationSec, audioDuration)
+      : audioDuration;
 
   // Compute segment geometry
   const segments = computeSegments(
@@ -293,7 +312,7 @@ async function runWhisperPipeline(
   }
 
   const result: RunResult = {
-    processedAudioDurationSec: audioDuration,
+    processedAudioDurationSec,
     elapsedSec: 0,
     speedup: "0",
     tasks,
@@ -433,4 +452,16 @@ async function stitchSegments(
  */
 function getUTCTimestampForFilePath(): string {
   return new Date().toISOString().replace(/:/g, "-").slice(0, 19) + "Z";
+}
+
+function refreshRunWorkDirTimestamp(runWorkDir: string): string | null {
+  if (!RUN_WORKDIR_TIMESTAMP_REGEX.test(runWorkDir)) return null;
+  return runWorkDir.replace(
+    RUN_WORKDIR_TIMESTAMP_REGEX,
+    getUTCTimestampForFilePath(),
+  );
+}
+
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

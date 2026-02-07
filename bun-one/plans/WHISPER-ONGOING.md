@@ -38,6 +38,7 @@ These turn into issues above, inside this very document
 - Artifact directory reorganization WORK,CACHE,OUTPUT,SAMPLES
 - Second use case: short word/phrase transcription (separate entrypoint)
 - Integrate markdownlint into ci - `bunx markdownlint-cli --version`
+- Consider schema-first or shared schema for benchmark JSON (export schema from runners, derive types from schema)
 - Clean up stale/legacy `startSec` references (on VttHeaderProvenance, etc.)
   - Segment provenance always has `startSec: 0` for single-segment runs, which
     is noise. Investigate whether startSec belongs in segment provenance at all,

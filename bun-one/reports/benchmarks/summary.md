@@ -1,27 +1,27 @@
 # Whisper Benchmark Results
 
-Generated: 2026-02-04T09:10:52.508Z
+Generated: 2026-02-07T11:15:05.767Z
 
 ## Results
 
 | Input       | Model    | Duration | Elapsed | Speedup | Timestamp                |
 | ----------- | -------- | -------- | ------- | ------- | ------------------------ |
-| hobbit.m4b  | small.en | full     | 1068s   | 35.1x   | 2026-02-04T07:09:46.926Z |
-| hobbit.m4b  | small.en | 3600s    | 119s    | 30.2x   | 2026-02-04T06:42:49.503Z |
-| hobbit.m4b  | small.en | 7200s    | 226s    | 31.9x   | 2026-02-04T06:46:35.515Z |
-| hobbit.m4b  | small.en | 10800s   | 324s    | 33.4x   | 2026-02-04T06:51:59.255Z |
-| hobbit.m4b  | tiny.en  | full     | 419s    | 89.4x   | 2026-02-04T06:40:50.413Z |
-| hobbit.m4b  | tiny.en  | 3600s    | 53s     | 68.3x   | 2026-02-04T06:30:03.550Z |
-| hobbit.m4b  | tiny.en  | 7200s    | 93s     | 77.8x   | 2026-02-04T06:31:36.092Z |
-| hobbit.m4b  | tiny.en  | 10800s   | 135s    | 79.9x   | 2026-02-04T06:33:51.318Z |
-| quixote.m4b | small.en | full     | 4140s   | 31.4x   | 2026-02-04T09:10:52.495Z |
-| quixote.m4b | small.en | 3600s    | 156s    | 23.1x   | 2026-02-04T07:51:14.864Z |
-| quixote.m4b | small.en | 7200s    | 263s    | 27.4x   | 2026-02-04T07:55:37.952Z |
-| quixote.m4b | small.en | 10800s   | 375s    | 28.8x   | 2026-02-04T08:01:52.659Z |
-| quixote.m4b | tiny.en  | full     | 1722s   | 75.5x   | 2026-02-04T07:48:39.095Z |
-| quixote.m4b | tiny.en  | 3600s    | 174s    | 20.7x   | 2026-02-04T07:14:28.943Z |
-| quixote.m4b | tiny.en  | 7200s    | 139s    | 51.6x   | 2026-02-04T07:16:48.401Z |
-| quixote.m4b | tiny.en  | 10800s   | 189s    | 57.2x   | 2026-02-04T07:19:57.062Z |
+| hobbit.m4b  | small.en | full     | 1048s   | 35.8x   | 2026-02-07T09:16:50.808Z |
+| hobbit.m4b  | small.en | 3600s    | 116s    | 31.0x   | 2026-02-07T08:50:34.471Z |
+| hobbit.m4b  | small.en | 7200s    | 212s    | 34.0x   | 2026-02-07T08:54:06.555Z |
+| hobbit.m4b  | small.en | 10800s   | 317s    | 34.1x   | 2026-02-07T08:59:23.175Z |
+| hobbit.m4b  | tiny.en  | full     | 402s    | 93.2x   | 2026-02-07T08:48:38.638Z |
+| hobbit.m4b  | tiny.en  | 3600s    | 82s     | 43.9x   | 2026-02-07T08:38:12.129Z |
+| hobbit.m4b  | tiny.en  | 7200s    | 92s     | 78.3x   | 2026-02-07T08:39:44.037Z |
+| hobbit.m4b  | tiny.en  | 10800s   | 132s    | 81.8x   | 2026-02-07T08:41:56.218Z |
+| quixote.m4b | small.en | full     | 4141s   | 31.4x   | 2026-02-07T11:15:05.740Z |
+| quixote.m4b | small.en | 3600s    | 157s    | 22.9x   | 2026-02-07T09:55:28.590Z |
+| quixote.m4b | small.en | 7200s    | 261s    | 27.6x   | 2026-02-07T09:59:49.402Z |
+| quixote.m4b | small.en | 10800s   | 375s    | 28.8x   | 2026-02-07T10:06:04.648Z |
+| quixote.m4b | tiny.en  | full     | 1692s   | 76.8x   | 2026-02-07T09:52:51.716Z |
+| quixote.m4b | tiny.en  | 3600s    | 169s    | 21.3x   | 2026-02-07T09:19:39.791Z |
+| quixote.m4b | tiny.en  | 7200s    | 128s    | 56.3x   | 2026-02-07T09:21:47.690Z |
+| quixote.m4b | tiny.en  | 10800s   | 172s    | 62.8x   | 2026-02-07T09:24:39.310Z |
 
 ## Plots (side-by-side)
 

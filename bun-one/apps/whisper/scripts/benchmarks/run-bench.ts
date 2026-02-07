@@ -17,6 +17,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { basename, join } from "node:path";
 import { arch, hostname } from "node:os";
+import { z } from "zod";
 import {
   createRunWorkDir,
   type ModelShortName,
@@ -72,6 +73,44 @@ interface LoadedRecord {
   record: BenchmarkRecord;
   sourceFile: string;
 }
+
+const NumericSchema = z.union([z.number(), z.string()]);
+
+const BenchmarkKeySchema = z.object({
+  input: z.string(),
+  model: z.string(),
+  duration: NumericSchema,
+  wordTimestamps: z.boolean(),
+});
+
+const VttSummarySchema = z
+  .object({
+    cueCount: NumericSchema,
+    firstCueStart: z.string(),
+    lastCueEnd: z.string(),
+    durationSec: NumericSchema,
+    monotonicityViolations: NumericSchema,
+    monotonicityViolationMaxOverlap: NumericSchema,
+  })
+  .partial();
+
+const RunResultSchema = z
+  .object({
+    processedAudioDurationSec: NumericSchema.optional(),
+    elapsedSec: NumericSchema.optional(),
+    speedup: NumericSchema.optional(),
+    tasks: z.array(z.unknown()).optional(),
+    outputPath: z.string().optional(),
+    vttSummary: VttSummarySchema.optional(),
+  })
+  .passthrough();
+
+const BenchmarkRecordSchema = RunResultSchema.extend({
+  benchmarkKey: BenchmarkKeySchema,
+  timestamp: z.string().optional(),
+  hostname: z.string().optional(),
+  arch: z.string().optional(),
+}).passthrough();
 
 // ============================================================================
 // Main
@@ -174,7 +213,16 @@ async function loadExistingData(): Promise<LoadedRecord[]> {
     const path = join(REPORTS_DIR, file);
     try {
       const content = await readFile(path, "utf-8");
-      const record = JSON.parse(content) as BenchmarkRecord;
+      const parsed = BenchmarkRecordSchema.safeParse(
+        JSON.parse(content) as BenchmarkRecord,
+      );
+      if (!parsed.success) {
+        console.error(
+          `Warning: Invalid benchmark record schema in ${file}: ${parsed.error.message}`,
+        );
+        continue;
+      }
+      const record = normalizeRecord(parsed.data as BenchmarkRecord);
       records.push({ record, sourceFile: file });
     } catch (e) {
       console.error(`Warning: Failed to parse ${file}: ${e}`);
@@ -182,6 +230,49 @@ async function loadExistingData(): Promise<LoadedRecord[]> {
   }
 
   return records;
+}
+
+function normalizeRecord(record: BenchmarkRecord): BenchmarkRecord {
+  const benchmarkKey = normalizeBenchmarkKey(record.benchmarkKey);
+  const processedAudioDurationSec = resolveProcessedDuration(record) ??
+    asNumber(record.processedAudioDurationSec) ??
+    0;
+  const elapsedSec = asNumber(record.elapsedSec) ?? 0;
+  const speedupValue = elapsedSec > 0 && processedAudioDurationSec > 0
+    ? processedAudioDurationSec / elapsedSec
+    : asNumber(record.speedup);
+  const speedup = speedupValue ? speedupValue.toFixed(1) : "0";
+
+  return {
+    ...record,
+    benchmarkKey,
+    processedAudioDurationSec,
+    elapsedSec,
+    speedup,
+    timestamp: record.timestamp ?? "unknown",
+    hostname: record.hostname ?? "unknown",
+    arch: record.arch ?? "unknown",
+  };
+}
+
+function normalizeBenchmarkKey(key: BenchmarkKey): BenchmarkKey {
+  return {
+    ...key,
+    duration: asNumber(key.duration) ?? 0,
+  };
+}
+
+function resolveProcessedDuration(record: BenchmarkRecord): number | undefined {
+  const benchmarkDuration = asNumber(record.benchmarkKey?.duration);
+  if (benchmarkDuration && benchmarkDuration > 0) return benchmarkDuration;
+
+  const vttDuration = asNumber(record.vttSummary?.durationSec);
+  if (vttDuration && vttDuration > 0) return vttDuration;
+
+  const processedDuration = asNumber(record.processedAudioDurationSec);
+  if (processedDuration && processedDuration > 0) return processedDuration;
+
+  return undefined;
 }
 
 // ============================================================================
@@ -358,10 +449,9 @@ async function writeResult(record: BenchmarkRecord): Promise<void> {
   const ts = record.timestamp.replace(/:/g, "-");
   const model = record.benchmarkKey.model;
   const input = record.benchmarkKey.input.replace(/\.[^.]+$/, ""); // Remove extension
-  const dur =
-    record.benchmarkKey.duration === 0
-      ? "full"
-      : `${record.benchmarkKey.duration}s`;
+  const dur = record.benchmarkKey.duration === 0
+    ? "full"
+    : `${record.benchmarkKey.duration}s`;
 
   const filename = `${ts}-${input}-${model}-${dur}.json`;
   const path = join(REPORTS_DIR, filename);
@@ -542,6 +632,15 @@ async function formatOutputs(): Promise<void> {
 // ============================================================================
 // Helpers
 // ============================================================================
+
+function asNumber(value: unknown): number | undefined {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string") {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : undefined;
+  }
+  return undefined;
+}
 
 function printDataTable(records: LoadedRecord[]): void {
   console.log("| Input | Model | Duration | Elapsed | Speedup | Timestamp |");
