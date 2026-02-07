@@ -13,8 +13,8 @@ KISS: no rewrites, just incremental work
 
 ## Implementation Plan
 
-Before checking any box: `bun run ci` must pass.
-Before committing a phase: User reviews changes.
+Before checking any box: `bun run ci` must pass. Before committing a phase: User
+reviews changes.
 
 ### Phase 1 - restore clean state of `<repo>/bun-one/apps/whisper`
 
@@ -27,23 +27,26 @@ Before committing a phase: User reviews changes.
 
 ### Phase 3 - Add --no-cache flag
 
-- [x] Add --cache boolean flag to CLI (default: true, yargs gives --no-cache free)
+- [x] Add --cache boolean flag to CLI (default: true, yargs gives --no-cache
+      free)
 - [x] Add cache: boolean to RunConfig interface
 - [x] Pass config.cache to task factories
 - [x] Update task factories to skip cache when cache=false
 - [x] Add integration test verifying --no-cache bypasses WAV and VTT cache
 
-### Phase 4 - Clean up task result types
+### Phase 4 - Clean up task result types (functional refactor)
 
-Separate build and run phases of task cleaner - where do we actually use
---dry-run?
+Move from OOP (objects with methods) to functional (data + pure functions).
 
-Also the definition of `export interface RunResult {..}` is a bit of a hint as
-to the mess!
+Goal: Task is just data. Functions transform tasks. Task in → Task out.
 
-- [ ] Review RunResult interface and task result flow
-- [ ] Simplify task result types (keeping dry-run support)
-- [ ] Details TBD before execution
+- [ ] Flatten Task to pure data (remove describe/execute methods)
+- [ ] Add elapsedMs?: number field to Task interface
+- [ ] Create executeTask(task, dryRun, cache): Promise<Task> - pattern match on kind
+- [ ] Return NEW task with elapsedMs filled (IMMUTABLE - don't modify in place)
+- [ ] Smart dry-run: read cached VTT provenance for timing estimates
+- [ ] Simplify RunResult.tasks to just Task[] (no wrapper, no optional result)
+- [ ] Update all call sites to use functional approach
 
 ## Unplanned Work
 
