@@ -5,6 +5,7 @@
 These are _TODOs_ that need to be added in the right place. The document below
 should give guidance
 
+- [`bun-one`](../bun-one/plans/) has it's own plans
 - [ ] Agent workspaces and loops - [agents/README.md](../agents/README.md)
   - [ ] Started making docs subdirs - experiments move to `/experimets`
 - [ ] tanstack in astro
@@ -13,6 +14,7 @@ should give guidance
 - [ ] dotfiles: mise, yadm/bare-repo,stow,chezmois,zsh
 - [ ] Restate the problem of alignment of the reference audio to the text
 - [ ] Could we use `tts/qwen3-tts` for long-form narration (epub)?
+  - [ ] make a case for dizzy, skel, kenny, and dan
 
 ## Organization
 
