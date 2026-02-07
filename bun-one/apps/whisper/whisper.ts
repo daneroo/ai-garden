@@ -115,6 +115,7 @@ async function main(): Promise<void> {
     .alias("v", "verbose")
     .help()
     .alias("h", "help")
+    .strict()
     .parseAsync();
 
   const {
@@ -185,18 +186,35 @@ async function main(): Promise<void> {
         : "none";
       console.log(`\n${label}`);
       console.log(`  Processed: ${result.processedAudioDurationSec}s audio`);
-      console.log(`  Elapsed:   ${result.elapsedSec}s (wall-clock)`);
-      console.log(`  Speedup:   ${result.speedup}x`);
+      if (dryRun) {
+        // Sum cached elapsedMs for an estimated total
+        const estimatedMs = result.tasks.reduce(
+          (sum, t) => sum + (t.elapsedMs ?? 0),
+          0,
+        );
+        if (estimatedMs > 0) {
+          const estSec = Math.round(estimatedMs / 1000);
+          console.log(`  Estimated: ~${estSec}s (from cached provenance)`);
+        } else {
+          console.log("  Estimated: unknown (no cached provenance)");
+        }
+      } else {
+        console.log(`  Elapsed:   ${result.elapsedSec}s (wall-clock)`);
+        console.log(`  Speedup:   ${result.speedup}x`);
+      }
       console.log(`  Output:    ${result.outputPath}`);
       console.log(`  VTT Dur:   ${vttDur}`);
 
       // Detailed task breakdown
       console.log("  Tasks:");
       for (const task of result.tasks) {
-        const timePart =
-          task.elapsedMs != null
-            ? ` (${Math.round(task.elapsedMs / 1000)}s)`
-            : " (dry-run)";
+        let timePart: string;
+        if (task.elapsedMs != null) {
+          const secs = Math.round(task.elapsedMs / 1000);
+          timePart = dryRun ? ` (~${secs}s cached)` : ` (${secs}s)`;
+        } else {
+          timePart = " (dry-run)";
+        }
         console.log(`    - ${task.label}: ${task.description}${timePart}`);
       }
     }

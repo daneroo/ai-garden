@@ -95,9 +95,10 @@ Step 3: Smart dry-run (POC for cached provenance)
 When dry-run + cache enabled, read cached VTT provenance to populate
 elapsedMs on the task — showing estimated timings without executing.
 
-- [ ] In task building: if cache enabled and cached VTT exists, read
+- [x] In task building: if cache enabled and cached VTT exists, read
       provenance elapsedMs into the task
-- [ ] dry-run output shows cached timing estimates
+- [x] dry-run output shows cached timing estimates (~Xs cached)
+- [x] dry-run summary shows estimated total instead of wall-clock/speedup
 
 ## Unplanned Work
 
@@ -112,3 +113,6 @@ These turn into subsequent phases, inside this very document
   - Segment provenance always has `startSec: 0` for single-segment runs,
     which is noise. Investigate whether startSec belongs in segment
     provenance at all, or only when segments > 1.
+- Decide if normal run with cache hit should display real-time (0s) or
+  cached provenance time (original execution time). Currently shows 0s which
+  is accurate but leads to silly speedup values (62069.6x).

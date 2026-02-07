@@ -273,6 +273,25 @@ async function runWhisperPipeline(
     .filter((t): t is NonNullable<typeof t> => t !== null);
 
   const tasks: Task[] = [...wavTasks, ...transcribeTasks];
+
+  // Smart dry-run: read cached provenance to populate estimated elapsedMs
+  if (config.dryRun && config.cache) {
+    for (let i = 0; i < tasks.length; i++) {
+      const task = tasks[i]!;
+      if (task.kind !== "transcribe") continue;
+      const cached = Bun.file(task.cachePath);
+      if (await cached.exists()) {
+        const parsed = await readVttFile(task.cachePath);
+        const headerProv = parsed.provenance.find(
+          (p) => !isVttSegmentProvenance(p),
+        ) as VttHeaderProvenance | undefined;
+        if (headerProv?.elapsedMs != null) {
+          tasks[i] = { ...task, elapsedMs: headerProv.elapsedMs };
+        }
+      }
+    }
+  }
+
   const result: RunResult = {
     processedAudioDurationSec: audioDuration,
     elapsedSec: 0,
