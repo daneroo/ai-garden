@@ -13,21 +13,16 @@ Track ongoing work for this sub-project (`bon-one/apps/whisper/`)
 - Before checking any box: `bun run ci` must pass.
 - Before committing an issue: User reviews changes.
 
-### Issue: elapsed and speedup in benchmark
+### Issue undoing "smart dry-run with cached provenance"
 
-- Goal: fix incorrect elapsed/speedup reporting in benchmark runs, especially
-  with cached segments
-- [x] Reproduce with empty cache and 3600s runs (hobbit/quixote)
-  - Defensive preparation and reproduction
-    - `rm ../../reports/benchmarks/2026*Z-*-tiny.en-3600s.json` # remove two
-      grid entries for run-bench
-    - `rm -rf data/cache data/output/ data/work/` # empty the cache
-    - `bun run scripts/benchmarks/run-bench.ts` # run missing grid entries
-  - note that even just these two entries, will take about five minutes to run
-- [x] Trace elapsed/speedup sources in benchmark output
-- [x] Decide expected behavior when cache hits are involved
-- [x] Implement corrections in benchmark reporting
-- [x] Update summary plots/data if needed
+This is related to the way processing time is reported.
+
+This behavior was introduced in commit `b6e49b6612c348150cff4df81ebd2ad36a74886c`.
+
+- [ ] Analyze the current behavior of the processing time calculation
+- [ ] Possibly revert the smart dry-run calculation or replace it
+- [ ] Analyze dependencies involved in adding processing time to segment VTTs
+- [ ] Decide the proper way to calculate and present this information
 
 ## Backlog
 
@@ -38,7 +33,8 @@ These turn into issues above, inside this very document
 - Artifact directory reorganization WORK,CACHE,OUTPUT,SAMPLES
 - Second use case: short word/phrase transcription (separate entrypoint)
 - Integrate markdownlint into ci - `bunx markdownlint-cli --version`
-- Consider schema-first or shared schema for benchmark JSON (export schema from runners, derive types from schema)
+- Consider schema-first or shared schema for benchmark JSON (export schema from
+  runners, derive types from schema)
 - Clean up stale/legacy `startSec` references (on VttHeaderProvenance, etc.)
   - Segment provenance always has `startSec: 0` for single-segment runs, which
     is noise. Investigate whether startSec belongs in segment provenance at all,
