@@ -42,8 +42,10 @@ Goal: Task is just data. Functions transform tasks. Task in → Task out.
 
 Core refactor (done together as one cohesive change):
 
-- [x] Flatten Task interface to pure data (remove describe/execute, add elapsedMs)
-- [x] Create executeTask(task, reporter): Promise<Task> - pattern match, immutable
+- [x] Flatten Task interface to pure data (remove describe/execute, add
+      elapsedMs)
+- [x] Create executeTask(task, reporter): Promise<Task> - pattern match,
+      immutable
 - [x] Simplify RunResult.tasks from Array<{task, result?}> to Task[]
 - [x] Update runners.ts: build tasks, execute, store results
 - [x] Update whisper.ts: read task.elapsedMs directly (no .result wrapper)
@@ -51,14 +53,14 @@ Core refactor (done together as one cohesive change):
 
 ### Phase 5 - Per-segment VTT provenance
 
-Currently provenance is only written at stitch time (runners.ts). This
-phase moves per-segment provenance into executeTranscribe, where we have
-the actual execution context, then cleans up stitch to use it.
+Currently provenance is only written at stitch time (runners.ts). This phase
+moves per-segment provenance into executeTranscribe, where we have the actual
+execution context, then cleans up stitch to use it.
 
 Step 1: executeTranscribe writes provenance into each segment VTT
 
-After whisper-cli writes the VTT, executeTranscribe re-opens it and
-injects a NOTE Provenance block with fields available on TranscribeTask:
+After whisper-cli writes the VTT, executeTranscribe re-opens it and injects a
+NOTE Provenance block with fields available on TranscribeTask:
 
 - `input`: basename(task.wavPath) — always
 - `model`: task.model (short name, e.g., "tiny.en") — always
@@ -72,55 +74,42 @@ NOT available to executeTranscribe (stays in stitch):
 - `startSec` — segment offset in original audio
 - `segment` — segment index
 
-- [x] Add provenance injection to executeTranscribe (read VTT, prepend
-      NOTE Provenance, write back)
+- [x] Add provenance injection to executeTranscribe (read VTT, prepend NOTE
+      Provenance, write back)
 - [x] Add elapsedMs to VttHeaderProvenance type (and parser)
 - [x] Unit test: provenance round-trip (write + parse back)
 
 Step 2: Clean up stitchSegments roll-up
 
 Stitch currently constructs segment provenance from scratch using runner
-context. After step 1, each segment VTT already has provenance. Stitch
-should read it and merge with the fields only it knows (startSec,
-segment index).
+context. After step 1, each segment VTT already has provenance. Stitch should
+read it and merge with the fields only it knows (startSec, segment index).
 
 - [x] stitchSegments reads provenance from individual VTT files
 - [x] Header provenance includes wordTimestamps from config
 - [x] Segment provenance merges executeTranscribe fields (drops generated)
-- [x] Verify: segment provenance in final VTT includes all fields
-      (from executeTranscribe + startSec/segment from stitch)
+- [x] Verify: segment provenance in final VTT includes all fields (from
+      executeTranscribe + startSec/segment from stitch)
 
 Step 3: Smart dry-run (POC for cached provenance)
 
-When dry-run + cache enabled, read cached VTT provenance to populate
-elapsedMs on the task — showing estimated timings without executing.
+When dry-run + cache enabled, read cached VTT provenance to populate elapsedMs
+on the task — showing estimated timings without executing.
 
-- [x] In task building: if cache enabled and cached VTT exists, read
-      provenance elapsedMs into the task
+- [x] In task building: if cache enabled and cached VTT exists, read provenance
+      elapsedMs into the task
 - [x] dry-run output shows cached timing estimates (~Xs cached)
 - [x] dry-run summary shows estimated total instead of wall-clock/speedup
 
-Step 4: Phase 5 review notes
+Step 4: Phase 5 follow-ups
 
-What looks solid
-
-- Provenance injection happens in executeTranscribe before caching, and task
-  elapsedMs matches provenance elapsedMs
-- VttHeaderProvenance parsing/types are expanded, with round-trip coverage
-- stitchSegments reads per-segment provenance, merges stitch fields, and header
-  provenance includes wordTimestamps
-- Smart dry-run reads cached provenance to estimate timings; CLI output reflects
-  cached estimates and total
-- Integration coverage includes provenance checks
-
-Notable deviations or follow-ups
-
-- Header provenance does not roll up total elapsedMs (only wordTimestamps was
-  added); consider if a header-level aggregate is needed
-- Segment provenance drops generated when merging, so per-segment generated
-  timestamps are not retained
-- Dry-run totals only include transcribe tasks (no WAV timing), which may read
-  as a full pipeline estimate
+- [x] Decision: roll up total elapsedMs in header provenance (Yes)
+- [ ] Implement header elapsedMs aggregation in stitchSegments and add tests
+- [x] Decision: preserve per-segment generated timestamps when merging (Yes)
+- [ ] Update merge logic to keep generated in segment provenance and add tests
+- [x] Clarify dry-run estimate semantics for CLI output (currently sums cached
+      transcribe elapsedMs only). Decide whether to label it as transcribe-only
+      or to include WAV timing, then update CLI wording or timing sources
 
 ## Unplanned Work
 
@@ -132,9 +121,9 @@ These turn into subsequent phases, inside this very document
 - Second use case: short word/phrase transcription (separate entrypoint)
 - Integrate markdownlint into ci - `bunx markdownlint-cli --version`
 - Clean up stale/legacy `startSec` references (on VttHeaderProvenance, etc.)
-  - Segment provenance always has `startSec: 0` for single-segment runs,
-    which is noise. Investigate whether startSec belongs in segment
-    provenance at all, or only when segments > 1.
-- Decide if normal run with cache hit should display real-time (0s) or
-  cached provenance time (original execution time). Currently shows 0s which
-  is accurate but leads to silly speedup values (62069.6x).
+  - Segment provenance always has `startSec: 0` for single-segment runs, which
+    is noise. Investigate whether startSec belongs in segment provenance at all,
+    or only when segments > 1.
+- Decide if normal run with cache hit should display real-time (0s) or cached
+  provenance time (original execution time). Currently shows 0s which is
+  accurate but leads to silly speedup values (62069.6x).

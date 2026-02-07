@@ -194,9 +194,9 @@ async function main(): Promise<void> {
         );
         if (estimatedMs > 0) {
           const estSec = Math.round(estimatedMs / 1000);
-          console.log(`  Estimated: ~${estSec}s (from cached provenance)`);
+          console.log(`  Estimated: ~${estSec}s (from cached transcriptions)`);
         } else {
-          console.log("  Estimated: unknown (no cached provenance)");
+          console.log("  Estimated: unknown (no cached transcriptions)");
         }
       } else {
         console.log(`  Elapsed:   ${result.elapsedSec}s (wall-clock)`);
