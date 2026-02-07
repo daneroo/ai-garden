@@ -100,6 +100,28 @@ elapsedMs on the task — showing estimated timings without executing.
 - [x] dry-run output shows cached timing estimates (~Xs cached)
 - [x] dry-run summary shows estimated total instead of wall-clock/speedup
 
+Step 4: Phase 5 review notes
+
+What looks solid
+
+- Provenance injection happens in executeTranscribe before caching, and task
+  elapsedMs matches provenance elapsedMs
+- VttHeaderProvenance parsing/types are expanded, with round-trip coverage
+- stitchSegments reads per-segment provenance, merges stitch fields, and header
+  provenance includes wordTimestamps
+- Smart dry-run reads cached provenance to estimate timings; CLI output reflects
+  cached estimates and total
+- Integration coverage includes provenance checks
+
+Notable deviations or follow-ups
+
+- Header provenance does not roll up total elapsedMs (only wordTimestamps was
+  added); consider if a header-level aggregate is needed
+- Segment provenance drops generated when merging, so per-segment generated
+  timestamps are not retained
+- Dry-run totals only include transcribe tasks (no WAV timing), which may read
+  as a full pipeline estimate
+
 ## Unplanned Work
 
 These turn into subsequent phases, inside this very document
