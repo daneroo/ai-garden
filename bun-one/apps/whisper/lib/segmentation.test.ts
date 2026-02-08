@@ -1,64 +1,139 @@
 import { describe, expect, test } from "bun:test";
-import { computeSegments, getSegmentSuffix } from "./segmentation.ts";
+import {
+  buildWavSequence,
+  buildTranscribeSequence,
+  buildSequences,
+  type WavSegment,
+  type TranscribeSegment,
+} from "./segmentation.ts";
 
-describe("getSegmentSuffix", () => {
-  test("formats correctly", () => {
-    expect(getSegmentSuffix(0, 3600)).toBe("-seg00-d1h");
-    expect(getSegmentSuffix(5, 3600)).toBe("-seg05-d1h");
-    expect(getSegmentSuffix(12, 7200)).toBe("-seg12-d2h");
-  });
+type WavCase = [string, number, number, WavSegment[]];
 
-  test("supports explicit duration label override", () => {
-    expect(getSegmentSuffix(0, 1800.019, { durationLabel: "full" })).toBe(
-      "-seg00-dfull",
-    );
-  });
+describe("buildWavSequence", () => {
+  // prettier-ignore
+  const cases: WavCase[] = [
+    // [name, audioDuration, segDurationSec, expected]
+    ["single segment", 100, 100, [
+      { startSec: 0, durationSec: 0 },
+    ]],
+    ["exact division", 120, 40, [
+      { startSec: 0, durationSec: 40 },
+      { startSec: 40, durationSec: 40 },
+      { startSec: 80, durationSec: 0 },
+    ]],
+    ["with remainder", 100, 40, [
+      { startSec: 0, durationSec: 40 },
+      { startSec: 40, durationSec: 40 },
+      { startSec: 80, durationSec: 0 },
+    ]],
+    ["tiny tail absorbed (remainder < 2s)", 1800.5, 900, [
+      { startSec: 0, durationSec: 900 },
+      { startSec: 900, durationSec: 0 },
+    ]],
+    ["segDurationSec larger than audio", 50, 200, [
+      { startSec: 0, durationSec: 0 },
+    ]],
+  ];
+
+  for (const [name, audioDur, segDur, expected] of cases) {
+    test(name, () => {
+      expect(buildWavSequence(audioDur, segDur)).toEqual(expected);
+    });
+  }
 });
 
-const MAX_SEG = 37 * 3600; // large enough to never trigger auto-segmentation
+type TranscribeCase = [string, number, number, number, TranscribeSegment[]];
 
-describe("computeSegments", () => {
-  test("single segment when segmentSec is 0", () => {
-    const segs = computeSegments(100, 0, MAX_SEG);
-    expect(segs).toEqual([{ startSec: 0, endSec: 100 }]);
+describe("buildTranscribeSequence", () => {
+  // prettier-ignore
+  const cases: TranscribeCase[] = [
+    // [name, audioDurationSec, segDurationSec, configDurationSec, expected]
+    ["no duration limit (all full)", 100, 40, 0, [
+      { durationSec: 0 },
+      { durationSec: 0 },
+      { durationSec: 0 },
+    ]],
+    ["within first segment", 100, 40, 20, [
+      { durationSec: 20 },
+    ]],
+    ["spanning segments", 100, 40, 50, [
+      { durationSec: 0 },
+      { durationSec: 10 },
+    ]],
+    ["at exact boundary", 100, 40, 40, [
+      { durationSec: 0 },
+    ]],
+    ["single segment with duration", 100, 200, 30, [
+      { durationSec: 30 },
+    ]],
+    ["duration beyond audio clamps to full run", 120, 40, 150, [
+      { durationSec: 0 },
+      { durationSec: 0 },
+      { durationSec: 0 },
+    ]],
+    ["exact boundary after multiple segments", 120, 40, 80, [
+      { durationSec: 0 },
+      { durationSec: 0 },
+    ]],
+  ];
+
+  for (const [name, audioDur, segDur, configDur, expected] of cases) {
+    test(name, () => {
+      expect(buildTranscribeSequence(audioDur, segDur, configDur)).toEqual(
+        expected,
+      );
+    });
+  }
+});
+
+describe("buildSequences", () => {
+  test("spanning segments with cutoff", () => {
+    const { wav, trns } = buildSequences(120, 40, 50);
+    // prettier-ignore
+    expect(wav).toEqual([
+      { startSec: 0,  durationSec: 40 },
+      { startSec: 40, durationSec: 40 },
+    ]);
+    expect(trns).toEqual([{ durationSec: 0 }, { durationSec: 10 }]);
   });
 
-  test("multiple segments with exact division", () => {
-    const segs = computeSegments(120, 30, MAX_SEG);
-    expect(segs).toEqual([
-      { startSec: 0, endSec: 30 },
-      { startSec: 30, endSec: 60 },
-      { startSec: 60, endSec: 90 },
-      { startSec: 90, endSec: 120 },
+  test("no cutoff (full audio)", () => {
+    const { wav, trns } = buildSequences(120, 40, 0);
+    // prettier-ignore
+    expect(wav).toEqual([
+      { startSec: 0,  durationSec: 40 },
+      { startSec: 40, durationSec: 40 },
+      { startSec: 80, durationSec: 0 },
+    ]);
+    expect(trns).toEqual([
+      { durationSec: 0 },
+      { durationSec: 0 },
+      { durationSec: 0 },
     ]);
   });
 
-  test("multiple segments with remainder", () => {
-    const segs = computeSegments(100, 30, MAX_SEG);
-    expect(segs).toEqual([
-      { startSec: 0, endSec: 30 },
-      { startSec: 30, endSec: 60 },
-      { startSec: 60, endSec: 90 },
-      { startSec: 90, endSec: 100 },
+  test("duration beyond audio is treated as full run", () => {
+    const { wav, trns } = buildSequences(120, 40, 150);
+    // prettier-ignore
+    expect(wav).toEqual([
+      { startSec: 0,  durationSec: 40 },
+      { startSec: 40, durationSec: 40 },
+      { startSec: 80, durationSec: 0 },
+    ]);
+    expect(trns).toEqual([
+      { durationSec: 0 },
+      { durationSec: 0 },
+      { durationSec: 0 },
     ]);
   });
 
-  test("tiny tail absorbed into last segment", () => {
-    // 91s / 30s = 3 full + 1s remainder (below MIN_SEGMENT_REMAINDER_SEC)
-    const segs = computeSegments(91, 30, MAX_SEG);
-    expect(segs).toHaveLength(3);
-    expect(segs[2]).toEqual({ startSec: 60, endSec: 91 });
-  });
-
-  test("auto-segments when duration exceeds maxSegmentSec", () => {
-    // segmentSec=0 but audioDuration > maxSegmentSec triggers auto
-    const segs = computeSegments(100, 0, 40);
-    expect(segs).toHaveLength(3); // 40+40+20
-    expect(segs[0]).toEqual({ startSec: 0, endSec: 40 });
-    expect(segs[2]).toEqual({ startSec: 80, endSec: 100 });
-  });
-
-  test("empty for zero duration", () => {
-    expect(computeSegments(0, 30, MAX_SEG)).toEqual([]);
+  test("exact boundary keeps full sentinel on last transcribe segment", () => {
+    const { wav, trns } = buildSequences(120, 40, 80);
+    // prettier-ignore
+    expect(wav).toEqual([
+      { startSec: 0,  durationSec: 40 },
+      { startSec: 40, durationSec: 40 },
+    ]);
+    expect(trns).toEqual([{ durationSec: 0 }, { durationSec: 0 }]);
   });
 });

@@ -25,8 +25,8 @@ phases/tasks. Now here the rules for segmentation.
   - all segments should all have the same durationSec
     - except possibly the last one which may be 0 == full == to the end of the
       original .m4b file
-  - no segment shall be shorter than MIN*SEGMENT_REMAINDER_SEC (2 seconds) in
-    which case we extend the \_previous* segment to the end of the file:
+  - no segment shall be shorter than `MIN_SEGMENT_REMAINDER_SEC` (2 seconds) in
+    which case we extend the previous segment to the end of the file:
     durationSec=0
 - TranscribeTask(durationMs): .wav -> .vtt
   - coordinates relative to the .wav file
@@ -42,9 +42,10 @@ phases/tasks. Now here the rules for segmentation.
 - [x] Rewrite `simpler.test.ts` with comprehensive tests for both sequences
 - [x] Simplify `runners.ts` to use `simpler.ts` instead of `segmentation.ts`
 - [x] Fix `task.ts` `executeToWav` to omit `-t` when `durationSec=0`
+- [x] Delete `segmentation.ts` + `segmentation.test.ts` (after verification)
+  - [x] rename simpler.ts to segmentation.ts
 - [ ] Review still pending on simpler.ts:
-      buildTranscribeSequence/buildWavSequence - or - buildSequences
-- [ ] Delete `segmentation.ts` + `segmentation.test.ts` (after verification)
+      buildTranscribeSequence/buildWavSequence / buildSequences
 
 ## Issue 101 - undoing "smart dry-run with cached provenance"
 

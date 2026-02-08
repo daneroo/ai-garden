@@ -25,7 +25,7 @@ import {
   type ToWavTask,
   type TranscribeTask,
 } from "./task.ts";
-import { buildSequences } from "./simpler.ts";
+import { buildSequences } from "./segmentation.ts";
 import { formatDuration } from "./duration.ts";
 
 // Model directory for whisper-cpp (absolute path)
