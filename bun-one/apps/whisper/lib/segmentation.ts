@@ -72,6 +72,16 @@ export function computeSegmentationPlan(
   segDurationSec: number,
   configDurationSec: number,
 ): SegmentationPlan {
+  if (
+    !Number.isFinite(audioDurationSec) ||
+    !Number.isFinite(segDurationSec) ||
+    !Number.isFinite(configDurationSec)
+  ) {
+    throw new Error(
+      `build sequence requires finite inputs, got audioDurationSec=${audioDurationSec} segDurationSec=${segDurationSec} configDurationSec=${configDurationSec}`,
+    );
+  }
+
   if (audioDurationSec <= 0 || segDurationSec <= 0) {
     throw new Error(
       `build sequence requires positive inputs, got audioDurationSec=${audioDurationSec} segDurationSec=${segDurationSec}`,
@@ -85,8 +95,14 @@ export function computeSegmentationPlan(
 
   const transcribesEntireAudio = transcribeDurationSec === audioDurationSec;
   if (!transcribesEntireAudio) {
+    const count = Math.ceil(transcribeDurationSec / segDurationSec);
+    if (count < 1) {
+      throw new Error(
+        `build sequence produced invalid count=${count} for transcribeDurationSec=${transcribeDurationSec} segDurationSec=${segDurationSec}`,
+      );
+    }
     return {
-      count: Math.ceil(transcribeDurationSec / segDurationSec),
+      count,
       transcribeDurationSec,
       transcribesEntireAudio,
     };
@@ -94,15 +110,19 @@ export function computeSegmentationPlan(
 
   const fullSegments = Math.floor(audioDurationSec / segDurationSec);
   const remainderSec = audioDurationSec % segDurationSec;
-  if (remainderSec > 0 && remainderSec < MIN_SEGMENT_REMAINDER_SEC) {
-    return {
-      count: Math.max(fullSegments, 1),
-      transcribeDurationSec,
-      transcribesEntireAudio,
-    };
+  const count =
+    remainderSec > 0 && remainderSec < MIN_SEGMENT_REMAINDER_SEC
+      ? Math.max(fullSegments, 1)
+      : Math.ceil(audioDurationSec / segDurationSec);
+
+  if (count < 1) {
+    throw new Error(
+      `build sequence produced invalid count=${count} for audioDurationSec=${audioDurationSec} segDurationSec=${segDurationSec}`,
+    );
   }
+
   return {
-    count: Math.ceil(audioDurationSec / segDurationSec),
+    count,
     transcribeDurationSec,
     transcribesEntireAudio,
   };
@@ -158,7 +178,7 @@ function buildTranscribeSequence(
 
   // Partial run: last transcribed segment gets the remainder.
   // Exact boundary gives 0, which correctly means "full wav".
-  if (!plan.transcribesEntireAudio && transcribe.length > 0) {
+  if (!plan.transcribesEntireAudio) {
     transcribe[transcribe.length - 1]!.durationSec =
       plan.transcribeDurationSec % segDurationSec;
   }

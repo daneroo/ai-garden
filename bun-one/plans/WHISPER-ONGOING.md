@@ -44,15 +44,20 @@ phases/tasks. Now here the rules for segmentation.
 - [x] Fix `task.ts` `executeToWav` to omit `-t` when `durationSec=0`
 - [x] Delete `segmentation.ts` + `segmentation.test.ts` (after verification)
   - [x] rename simpler.ts to segmentation.ts
-- [ ] Review still pending on simpler.ts:
+- [x] Review still pending on simpler.ts:
       buildTranscribeSequence/buildWavSequence / buildSequences
 
-## Issue 101 - undoing "smart dry-run with cached provenance"
+## Issue 101 Rationalize RunResult interface
 
-This is related to the way processing time is reported.
-
-This behavior was introduced in commit
-`b6e49b6612c348150cff4df81ebd2ad36a74886c`.
+- processedAudioDurationSec duplication in runners.ts — Lines 184-187 compute
+  config.durationSec > 0 ? Math.min(config.durationSec, audioDuration) :
+  audioDuration — identical to plan.transcribeDurationSec. Could use
+  computeSegmentationPlan and read plan.transcribeDurationSec directly,
+  eliminating the duplication. But this is a runners.ts concern, not a
+  segmentation.ts bug.
+- undoing "smart dry-run with cached provenance"
+  - This behavior was introduced in commit
+    `b6e49b6612c348150cff4df81ebd2ad36a74886c`.
 
 ### Implementation Plan - 101
 
@@ -66,8 +71,10 @@ This behavior was introduced in commit
 These turn into issues above, inside this very document
 
 - Make stitch a proper Task (uniform task list: N\*(wav+transcribe)+stitch)
+  - VTT stitching clip for monotonicity guarantees - where?
 - Extract `runTask`/monitors to new `lib/exec.ts`
 - Artifact directory reorganization WORK,CACHE,OUTPUT,SAMPLES
+  - script to repopulate samples/models
 - Second use case: short word/phrase transcription (separate entrypoint)
 - Integrate markdownlint into ci - `bunx markdownlint-cli --version`
 - Consider schema-first or shared schema for benchmark JSON (export schema from

@@ -133,6 +133,18 @@ describe("computeSegmentationPlan", () => {
   test("throws on invalid segment duration", () => {
     expect(() => computeSegmentationPlan(120, 0, 0)).toThrow(/positive inputs/);
   });
+
+  test("throws on non-finite inputs", () => {
+    expect(() => computeSegmentationPlan(Number.NaN, 40, 0)).toThrow(
+      /finite inputs/,
+    );
+    expect(() =>
+      computeSegmentationPlan(120, Number.POSITIVE_INFINITY, 0),
+    ).toThrow(/finite inputs/);
+    expect(() => computeSegmentationPlan(120, 40, Number.NaN)).toThrow(
+      /finite inputs/,
+    );
+  });
 });
 
 describe("buildSequences", () => {
