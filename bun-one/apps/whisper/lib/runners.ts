@@ -190,7 +190,7 @@ async function runWhisperPipeline(
   const segDurationSec =
     config.segmentSec > 0 ? config.segmentSec : MAX_WAV_DURATION_SEC;
 
-  const { wav: wavSegs, trns: transcribeSegs } = buildSequences(
+  const { wav: wavSegs, transcribe: transcribeSegs } = buildSequences(
     audioDuration,
     segDurationSec,
     config.durationSec,

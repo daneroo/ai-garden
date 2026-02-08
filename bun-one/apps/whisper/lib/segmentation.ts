@@ -30,21 +30,21 @@ export interface SegmentationPlan {
 /**
  * Build both WAV and transcribe sequences from audio and config parameters.
  *
- * Composition only: wav.length === trns.length by construction.
+ * Composition only: wav.length === transcribe.length by construction.
  */
 export function buildSequences(
   audioDurationSec: number,
   segDurationSec: number,
   configDurationSec: number,
-): { wav: WavSegment[]; trns: TranscribeSegment[] } {
+): { wav: WavSegment[]; transcribe: TranscribeSegment[] } {
   const plan = computeSegmentationPlan(
     audioDurationSec,
     segDurationSec,
     configDurationSec,
   );
   const wav = buildWavSequence(segDurationSec, plan);
-  const trns = buildTranscribeSequence(segDurationSec, plan);
-  return { wav, trns };
+  const transcribe = buildTranscribeSequence(segDurationSec, plan);
+  return { wav, transcribe };
 }
 
 /**
@@ -147,18 +147,21 @@ function buildTranscribeSequence(
   segDurationSec: number,
   plan: SegmentationPlan,
 ): TranscribeSegment[] {
-  // sentinel: trns durationSec=0 means "transcribe entire wav"
+  // sentinel: durationSec=0 means "transcribe entire wav"
   const full = 0;
-  const trns: TranscribeSegment[] = Array.from({ length: plan.count }, () => ({
-    durationSec: full,
-  }));
+  const transcribe: TranscribeSegment[] = Array.from(
+    { length: plan.count },
+    () => ({
+      durationSec: full,
+    }),
+  );
 
   // Partial run: last transcribed segment gets the remainder.
   // Exact boundary gives 0, which correctly means "full wav".
-  if (!plan.transcribesEntireAudio && trns.length > 0) {
-    trns[trns.length - 1]!.durationSec =
+  if (!plan.transcribesEntireAudio && transcribe.length > 0) {
+    transcribe[transcribe.length - 1]!.durationSec =
       plan.transcribeDurationSec % segDurationSec;
   }
 
-  return trns;
+  return transcribe;
 }

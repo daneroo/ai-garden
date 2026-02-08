@@ -79,7 +79,7 @@ describe("buildSequences transcribe", () => {
 
   for (const [name, audioDur, segDur, configDur, expected] of cases) {
     test(name, () => {
-      expect(buildSequences(audioDur, segDur, configDur).trns).toEqual(
+      expect(buildSequences(audioDur, segDur, configDur).transcribe).toEqual(
         expected,
       );
     });
@@ -137,24 +137,24 @@ describe("computeSegmentationPlan", () => {
 
 describe("buildSequences", () => {
   test("spanning segments with cutoff", () => {
-    const { wav, trns } = buildSequences(120, 40, 50);
+    const { wav, transcribe } = buildSequences(120, 40, 50);
     // prettier-ignore
     expect(wav).toEqual([
       { startSec: 0,  durationSec: 40 },
       { startSec: 40, durationSec: 40 },
     ]);
-    expect(trns).toEqual([{ durationSec: 0 }, { durationSec: 10 }]);
+    expect(transcribe).toEqual([{ durationSec: 0 }, { durationSec: 10 }]);
   });
 
   test("no cutoff (full audio)", () => {
-    const { wav, trns } = buildSequences(120, 40, 0);
+    const { wav, transcribe } = buildSequences(120, 40, 0);
     // prettier-ignore
     expect(wav).toEqual([
       { startSec: 0,  durationSec: 40 },
       { startSec: 40, durationSec: 40 },
       { startSec: 80, durationSec: 0 },
     ]);
-    expect(trns).toEqual([
+    expect(transcribe).toEqual([
       { durationSec: 0 },
       { durationSec: 0 },
       { durationSec: 0 },
@@ -162,14 +162,14 @@ describe("buildSequences", () => {
   });
 
   test("duration beyond audio is treated as full run", () => {
-    const { wav, trns } = buildSequences(120, 40, 150);
+    const { wav, transcribe } = buildSequences(120, 40, 150);
     // prettier-ignore
     expect(wav).toEqual([
       { startSec: 0,  durationSec: 40 },
       { startSec: 40, durationSec: 40 },
       { startSec: 80, durationSec: 0 },
     ]);
-    expect(trns).toEqual([
+    expect(transcribe).toEqual([
       { durationSec: 0 },
       { durationSec: 0 },
       { durationSec: 0 },
@@ -177,12 +177,12 @@ describe("buildSequences", () => {
   });
 
   test("exact boundary keeps full sentinel on last transcribe segment", () => {
-    const { wav, trns } = buildSequences(120, 40, 80);
+    const { wav, transcribe } = buildSequences(120, 40, 80);
     // prettier-ignore
     expect(wav).toEqual([
       { startSec: 0,  durationSec: 40 },
       { startSec: 40, durationSec: 40 },
     ]);
-    expect(trns).toEqual([{ durationSec: 0 }, { durationSec: 0 }]);
+    expect(transcribe).toEqual([{ durationSec: 0 }, { durationSec: 0 }]);
   });
 });
