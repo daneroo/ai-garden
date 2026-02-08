@@ -21,37 +21,38 @@ export interface TranscribeSegment {
   durationSec: number;
 }
 
+export interface SegmentationPlan {
+  count: number;
+  transcribeDurationSec: number;
+  transcribesEntireAudio: boolean;
+}
+
 /**
  * Build WAV segments from audio/config parameters.
  *
- * Compute transcribe count first, then derive constant-size WAV segments.
+ * Build constant-size WAV segments from a precomputed segmentation plan.
  * - transcribeDurationSec: how much audio to transcribe (clamped to audioDurationSec)
- * - isFullAudioRun: transcribing the entire file (uses tiny-tail absorption)
+ * - transcribesEntireAudio: transcribing the entire file (uses tiny-tail absorption)
  * - partial run: transcribing a prefix (ceil division, no tiny-tail concerns)
  *
  * Example: audioDurationSec=120, segDurationSec=40, configDurationSec=50
- *   transcribeDurationSec=50, isFullAudioRun=false, count=ceil(50/40)=2
+ *   transcribeDurationSec=50, transcribesEntireAudio=false, count=ceil(50/40)=2
  *   wav: [{startSec:0, durationSec:40}, {startSec:40, durationSec:40}]
  */
-export function buildWavSequence(
-  audioDurationSec: number,
+function buildWavSequence(
   segDurationSec: number,
-  configDurationSec = 0,
+  plan: SegmentationPlan,
 ): WavSegment[] {
-  const { count, transcribeDurationSec } = computeSegmentCount(
-    audioDurationSec,
-    segDurationSec,
-    configDurationSec,
-  );
-  const isFullAudioRun = transcribeDurationSec === audioDurationSec;
-
   // sentinel: wav durationSec=0 means "convert to end of file"
   const full = 0;
 
-  return Array.from({ length: count }, (_, i) => ({
+  return Array.from({ length: plan.count }, (_, i) => ({
     startSec: i * segDurationSec,
     // Last segment in a full run: convert to end of file (durationSec=0)
-    durationSec: isFullAudioRun && i === count - 1 ? full : segDurationSec,
+    durationSec:
+      plan.transcribesEntireAudio && i === plan.count - 1
+        ? full
+        : segDurationSec,
   }));
 }
 
@@ -61,28 +62,21 @@ export function buildWavSequence(
  * All transcribe segments are full (durationSec=0) except the last one for
  * partial runs.
  */
-export function buildTranscribeSequence(
-  audioDurationSec: number,
+function buildTranscribeSequence(
   segDurationSec: number,
-  configDurationSec: number,
+  plan: SegmentationPlan,
 ): TranscribeSegment[] {
-  const { count, transcribeDurationSec } = computeSegmentCount(
-    audioDurationSec,
-    segDurationSec,
-    configDurationSec,
-  );
-  const isFullAudioRun = transcribeDurationSec === audioDurationSec;
-
   // sentinel: trns durationSec=0 means "transcribe entire wav"
   const full = 0;
-  const trns: TranscribeSegment[] = Array.from({ length: count }, () => ({
+  const trns: TranscribeSegment[] = Array.from({ length: plan.count }, () => ({
     durationSec: full,
   }));
 
   // Partial run: last transcribed segment gets the remainder.
   // Exact boundary gives 0, which correctly means "full wav".
-  if (!isFullAudioRun && trns.length > 0) {
-    trns[trns.length - 1]!.durationSec = transcribeDurationSec % segDurationSec;
+  if (!plan.transcribesEntireAudio && trns.length > 0) {
+    trns[trns.length - 1]!.durationSec =
+      plan.transcribeDurationSec % segDurationSec;
   }
 
   return trns;
@@ -98,29 +92,27 @@ export function buildSequences(
   segDurationSec: number,
   configDurationSec: number,
 ): { wav: WavSegment[]; trns: TranscribeSegment[] } {
-  const wav = buildWavSequence(
+  const plan = computeSegmentationPlan(
     audioDurationSec,
     segDurationSec,
     configDurationSec,
   );
-  const trns = buildTranscribeSequence(
-    audioDurationSec,
-    segDurationSec,
-    configDurationSec,
-  );
+  const wav = buildWavSequence(segDurationSec, plan);
+  const trns = buildTranscribeSequence(segDurationSec, plan);
   return { wav, trns };
 }
 
 // --- internal ---
 
 /**
- * Compute planned segment count for this run.
+ * Compute the segmentation plan for this run.
  *
  * This function is the segmentation policy in one place.
  *
- * It returns two values:
+ * It returns three values:
  * - transcribeDurationSec: effective duration we intend to transcribe
  * - count: how many segments must exist for that transcription plan
+ * - transcribesEntireAudio: whether transcription covers the entire source audio
  *
  * Step 1: resolve transcribeDurationSec
  * - configDurationSec <= 0 means "no limit", so transcribe full audio
@@ -132,11 +124,11 @@ export function buildSequences(
  * - full run (effective duration == audio duration): use tiny-tail absorption
  *   so sub-2s remainders do not create micro-segments
  */
-function computeSegmentCount(
+export function computeSegmentationPlan(
   audioDurationSec: number,
   segDurationSec: number,
   configDurationSec: number,
-): { count: number; transcribeDurationSec: number } {
+): SegmentationPlan {
   if (audioDurationSec <= 0 || segDurationSec <= 0) {
     throw new Error(
       `build sequence requires positive inputs, got audioDurationSec=${audioDurationSec} segDurationSec=${segDurationSec}`,
@@ -148,11 +140,12 @@ function computeSegmentCount(
     transcribeDurationSec = Math.min(configDurationSec, audioDurationSec);
   }
 
-  const isFullAudioRun = transcribeDurationSec === audioDurationSec;
-  if (!isFullAudioRun) {
+  const transcribesEntireAudio = transcribeDurationSec === audioDurationSec;
+  if (!transcribesEntireAudio) {
     return {
       count: Math.ceil(transcribeDurationSec / segDurationSec),
       transcribeDurationSec,
+      transcribesEntireAudio,
     };
   }
 
@@ -162,10 +155,12 @@ function computeSegmentCount(
     return {
       count: Math.max(fullSegments, 1),
       transcribeDurationSec,
+      transcribesEntireAudio,
     };
   }
   return {
     count: Math.ceil(audioDurationSec / segDurationSec),
     transcribeDurationSec,
+    transcribesEntireAudio,
   };
 }

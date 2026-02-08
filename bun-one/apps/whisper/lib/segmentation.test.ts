@@ -1,15 +1,15 @@
 import { describe, expect, test } from "bun:test";
 import {
-  buildWavSequence,
-  buildTranscribeSequence,
   buildSequences,
+  computeSegmentationPlan,
+  type SegmentationPlan,
   type WavSegment,
   type TranscribeSegment,
 } from "./segmentation.ts";
 
 type WavCase = [string, number, number, WavSegment[]];
 
-describe("buildWavSequence", () => {
+describe("buildSequences wav", () => {
   // prettier-ignore
   const cases: WavCase[] = [
     // [name, audioDuration, segDurationSec, expected]
@@ -37,14 +37,14 @@ describe("buildWavSequence", () => {
 
   for (const [name, audioDur, segDur, expected] of cases) {
     test(name, () => {
-      expect(buildWavSequence(audioDur, segDur)).toEqual(expected);
+      expect(buildSequences(audioDur, segDur, 0).wav).toEqual(expected);
     });
   }
 });
 
 type TranscribeCase = [string, number, number, number, TranscribeSegment[]];
 
-describe("buildTranscribeSequence", () => {
+describe("buildSequences transcribe", () => {
   // prettier-ignore
   const cases: TranscribeCase[] = [
     // [name, audioDurationSec, segDurationSec, configDurationSec, expected]
@@ -79,11 +79,60 @@ describe("buildTranscribeSequence", () => {
 
   for (const [name, audioDur, segDur, configDur, expected] of cases) {
     test(name, () => {
-      expect(buildTranscribeSequence(audioDur, segDur, configDur)).toEqual(
+      expect(buildSequences(audioDur, segDur, configDur).trns).toEqual(
         expected,
       );
     });
   }
+});
+
+type PlanCase = [string, number, number, number, SegmentationPlan];
+
+describe("computeSegmentationPlan", () => {
+  // prettier-ignore
+  const cases: PlanCase[] = [
+    ["full run with no duration limit", 120, 40, 0, {
+      count: 3,
+      transcribeDurationSec: 120,
+      transcribesEntireAudio: true,
+    }],
+    ["partial run inside audio", 120, 40, 50, {
+      count: 2,
+      transcribeDurationSec: 50,
+      transcribesEntireAudio: false,
+    }],
+    ["exact boundary still partial when under full audio", 120, 40, 80, {
+      count: 2,
+      transcribeDurationSec: 80,
+      transcribesEntireAudio: false,
+    }],
+    ["duration beyond audio clamps to full", 120, 40, 150, {
+      count: 3,
+      transcribeDurationSec: 120,
+      transcribesEntireAudio: true,
+    }],
+    ["tiny-tail absorbed on full run", 1800.5, 900, 0, {
+      count: 2,
+      transcribeDurationSec: 1800.5,
+      transcribesEntireAudio: true,
+    }],
+  ];
+
+  for (const [name, audioDur, segDur, configDur, expected] of cases) {
+    test(name, () => {
+      expect(computeSegmentationPlan(audioDur, segDur, configDur)).toEqual(
+        expected,
+      );
+    });
+  }
+
+  test("throws on invalid audio duration", () => {
+    expect(() => computeSegmentationPlan(0, 40, 0)).toThrow(/positive inputs/);
+  });
+
+  test("throws on invalid segment duration", () => {
+    expect(() => computeSegmentationPlan(120, 0, 0)).toThrow(/positive inputs/);
+  });
 });
 
 describe("buildSequences", () => {
