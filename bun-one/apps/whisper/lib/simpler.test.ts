@@ -42,42 +42,46 @@ describe("buildWavSequence", () => {
   }
 });
 
-// threeSegs = buildWavSequence(100, 40)
-const threeSegs: WavSegment[] = [
-  { startSec: 0, durationSec: 40 },
-  { startSec: 40, durationSec: 40 },
-  { startSec: 80, durationSec: 0 },
-];
-
-type TranscribeCase = [string, WavSegment[], number, TranscribeSegment[]];
+type TranscribeCase = [string, number, number, number, TranscribeSegment[]];
 
 describe("buildTranscribeSequence", () => {
   // prettier-ignore
   const cases: TranscribeCase[] = [
-    // [name, wavSegs, configDurationSec, expected]
-    ["no duration limit (all full)", threeSegs, 0, [
+    // [name, audioDurationSec, segDurationSec, configDurationSec, expected]
+    ["no duration limit (all full)", 100, 40, 0, [
       { durationSec: 0 },
       { durationSec: 0 },
       { durationSec: 0 },
     ]],
-    ["within first segment", threeSegs, 20, [
+    ["within first segment", 100, 40, 20, [
       { durationSec: 20 },
     ]],
-    ["spanning segments", threeSegs, 50, [
+    ["spanning segments", 100, 40, 50, [
       { durationSec: 0 },
       { durationSec: 10 },
     ]],
-    ["at exact boundary", threeSegs, 40, [
-      { durationSec: 40 },
+    ["at exact boundary", 100, 40, 40, [
+      { durationSec: 0 },
     ]],
-    ["single segment with duration", [{ startSec: 0, durationSec: 0 }], 30, [
+    ["single segment with duration", 100, 200, 30, [
       { durationSec: 30 },
+    ]],
+    ["duration beyond audio clamps to full run", 120, 40, 150, [
+      { durationSec: 0 },
+      { durationSec: 0 },
+      { durationSec: 0 },
+    ]],
+    ["exact boundary after multiple segments", 120, 40, 80, [
+      { durationSec: 0 },
+      { durationSec: 0 },
     ]],
   ];
 
-  for (const [name, wavSegs, configDur, expected] of cases) {
+  for (const [name, audioDur, segDur, configDur, expected] of cases) {
     test(name, () => {
-      expect(buildTranscribeSequence(wavSegs, configDur)).toEqual(expected);
+      expect(buildTranscribeSequence(audioDur, segDur, configDur)).toEqual(
+        expected,
+      );
     });
   }
 });
@@ -106,5 +110,30 @@ describe("buildSequences", () => {
       { durationSec: 0 },
       { durationSec: 0 },
     ]);
+  });
+
+  test("duration beyond audio is treated as full run", () => {
+    const { wav, trns } = buildSequences(120, 40, 150);
+    // prettier-ignore
+    expect(wav).toEqual([
+      { startSec: 0,  durationSec: 40 },
+      { startSec: 40, durationSec: 40 },
+      { startSec: 80, durationSec: 0 },
+    ]);
+    expect(trns).toEqual([
+      { durationSec: 0 },
+      { durationSec: 0 },
+      { durationSec: 0 },
+    ]);
+  });
+
+  test("exact boundary keeps full sentinel on last transcribe segment", () => {
+    const { wav, trns } = buildSequences(120, 40, 80);
+    // prettier-ignore
+    expect(wav).toEqual([
+      { startSec: 0,  durationSec: 40 },
+      { startSec: 40, durationSec: 40 },
+    ]);
+    expect(trns).toEqual([{ durationSec: 0 }, { durationSec: 0 }]);
   });
 });

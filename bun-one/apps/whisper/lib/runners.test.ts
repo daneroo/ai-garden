@@ -96,39 +96,53 @@ describe("runWhisper task generation", () => {
     expect(result.tasks[5]?.label).toBe("transcribe[seg:3 of 3]");
   });
 
-  test("duration filters transcribe tasks to correct segments", async () => {
-    // Audio: 100s, segments: 40s each -> 3 segments [0-40, 40-80, 80-100]
-    // Duration: 50s -> end in segment 2 (40-80)
+  test("duration filters to correct segment count", async () => {
+    // Audio: 100s, segments: 40s each, duration: 50s -> ceil(50/40) = 2 segments
     const config = { ...mockConfig, segmentSec: 40, durationSec: 50 };
     const result = await runWhisper(config, mockDeps);
 
-    // All 3 WAV tasks created
+    // 2 wav + 2 transcribe = 4 tasks (only segments needed for transcription)
     const wavTasks = result.tasks.filter((t) => t.label.startsWith("to-wav"));
-    expect(wavTasks).toHaveLength(3);
+    expect(wavTasks).toHaveLength(2);
 
-    // Only 2 transcribe tasks (segments 1-2, segment 3 skipped)
     const transcribeTasks = result.tasks.filter((t) =>
       t.label.startsWith("transcribe"),
     );
     expect(transcribeTasks).toHaveLength(2);
-    expect(transcribeTasks[0]?.label).toBe("transcribe[seg:1 of 3]");
-    expect(transcribeTasks[1]?.label).toBe("transcribe[seg:2 of 3]");
+    expect(transcribeTasks[0]?.label).toBe("transcribe[seg:1 of 2]");
+    expect(transcribeTasks[1]?.label).toBe("transcribe[seg:2 of 2]");
   });
 
-  test("duration in first segment produces single transcribe task", async () => {
-    // Audio: 100s, segments: 40s each, duration: 20s (within segment 1)
+  test("duration in first segment produces single segment", async () => {
+    // Audio: 100s, segments: 40s each, duration: 20s -> ceil(20/40) = 1 segment
     const config = { ...mockConfig, segmentSec: 40, durationSec: 20 };
     const result = await runWhisper(config, mockDeps);
 
-    // All 3 WAV tasks
+    // 1 wav + 1 transcribe = 2 tasks
     const wavTasks = result.tasks.filter((t) => t.label.startsWith("to-wav"));
-    expect(wavTasks).toHaveLength(3);
+    expect(wavTasks).toHaveLength(1);
 
-    // Only 1 transcribe task (segment 1 only)
     const transcribeTasks = result.tasks.filter((t) =>
       t.label.startsWith("transcribe"),
     );
     expect(transcribeTasks).toHaveLength(1);
+    expect(transcribeTasks[0]?.label).toBe("transcribe[seg:1 of 1]");
+  });
+
+  test("duration beyond audio keeps full-run segmentation", async () => {
+    const config = { ...mockConfig, segmentSec: 40, durationSec: 150 };
+    const result = await runWhisper(config, mockDeps);
+
+    expect(result.processedAudioDurationSec).toBe(100);
+
+    const wavTasks = result.tasks.filter((t) => t.label.startsWith("to-wav"));
+    expect(wavTasks).toHaveLength(3);
+
+    const transcribeTasks = result.tasks.filter((t) =>
+      t.label.startsWith("transcribe"),
+    );
+    expect(transcribeTasks).toHaveLength(3);
     expect(transcribeTasks[0]?.label).toBe("transcribe[seg:1 of 3]");
+    expect(transcribeTasks[2]?.label).toBe("transcribe[seg:3 of 3]");
   });
 });

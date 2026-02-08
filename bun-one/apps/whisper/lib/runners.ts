@@ -25,7 +25,7 @@ import {
   type ToWavTask,
   type TranscribeTask,
 } from "./task.ts";
-import { buildWavSequence, buildTranscribeSequence } from "./simpler.ts";
+import { buildSequences } from "./simpler.ts";
 import { formatDuration } from "./duration.ts";
 
 // Model directory for whisper-cpp (absolute path)
@@ -190,8 +190,11 @@ async function runWhisperPipeline(
   const segDurationSec =
     config.segmentSec > 0 ? config.segmentSec : MAX_WAV_DURATION_SEC;
 
-  const wavSegs = buildWavSequence(audioDuration, segDurationSec);
-  const transcribeSegs = buildTranscribeSequence(wavSegs, config.durationSec);
+  const { wav: wavSegs, trns: transcribeSegs } = buildSequences(
+    audioDuration,
+    segDurationSec,
+    config.durationSec,
+  );
 
   const { inputName, finalVtt } = getFinalPaths(config);
   if (!config.dryRun) {
