@@ -17,9 +17,8 @@ export interface WavSegment {
 }
 
 export interface TranscribeSegment {
-  segIndex: number;
-  /** Duration in milliseconds for whisper --duration. 0 means "full WAV". */
-  durationMs: number;
+  /** Duration in seconds to transcribe. 0 means "full WAV". */
+  durationSec: number;
 }
 
 /**
@@ -45,36 +44,73 @@ export function buildWavSequence(
 }
 
 /**
- * Filter WAV segments into a transcription sequence.
- *
- * Only segments whose startSec < configDurationSec are included.
- * The last included segment gets a partial durationMs; all others get 0.
- * When configDurationSec <= 0 (transcribe everything), all segments are included
- * with durationMs=0.
+ * Which segments need transcribing, and for how long?
+ * Include every segment that starts before the cutoff (or all if no cutoff).
+ * All get durationSec=0 (full), except the last — partial up to the cutoff.
  */
 export function buildTranscribeSequence(
   wavSegs: WavSegment[],
   configDurationSec: number,
 ): TranscribeSegment[] {
-  if (configDurationSec <= 0) {
-    return wavSegs.map((_, i) => ({ segIndex: i, durationMs: 0 }));
+  // How far into the audio to transcribe (seconds). Infinity = no limit.
+  const cutoffSec = configDurationSec > 0 ? configDurationSec : Infinity;
+  const included = wavSegs.filter((seg) => seg.startSec < cutoffSec);
+
+  return included.map((seg, i) => ({
+    durationSec:
+      cutoffSec < Infinity && i === included.length - 1
+        ? cutoffSec - seg.startSec
+        : 0,
+  }));
+}
+
+/**
+ * Build both sequences in a single pass.
+ * Loop breaks at cutoff — wav and trns always have the same count.
+ * durationSec=0 only for the true last segment of the audio (convert to EOF).
+ */
+export function buildSequences(
+  audioDurationSec: number,
+  segDurationSec: number,
+  configDurationSec: number,
+): { wav: WavSegment[]; trns: TranscribeSegment[] } {
+  if (audioDurationSec <= 0 || segDurationSec <= 0) {
+    throw new Error(
+      `buildSequences requires positive inputs, got audioDurationSec=${audioDurationSec} segDurationSec=${segDurationSec}`,
+    );
+  }
+  const count = computeCount(audioDurationSec, segDurationSec);
+  // How far into the audio to transcribe (seconds). Infinity = no limit.
+  const cutoffSec = configDurationSec > 0 ? configDurationSec : Infinity;
+  const wav: WavSegment[] = [];
+  const trns: TranscribeSegment[] = [];
+
+  // sentinel meaning: wav: convert to end of file, whisper: transcribe entire file
+  const full = 0;
+
+  // Example: audio=120s, seg=40s, configDurationSec=50s
+  //   i=0: wav {startSec:0,  durationSec:40}, trns {durationSec:0}
+  //   i=1: wav {startSec:40, durationSec:40}, trns {durationSec:10} ← last, 50%40=10s
+  //   i=2: startSec=80 >= configDurationSec=50 — no more items needed, break
+  for (let i = 0; i < count; i++) {
+    const startSec = i * segDurationSec;
+    if (startSec >= cutoffSec) break;
+
+    wav.push({
+      startSec,
+      durationSec: i === count - 1 ? full : segDurationSec,
+    });
+
+    trns.push({ durationSec: full });
   }
 
-  const included: TranscribeSegment[] = [];
-  for (let i = 0; i < wavSegs.length; i++) {
-    const seg = wavSegs[i]!;
-    if (seg.startSec >= configDurationSec) break;
-
-    const isLast =
-      i === wavSegs.length - 1 || wavSegs[i + 1]!.startSec >= configDurationSec;
-    if (isLast) {
-      const localSec = configDurationSec - seg.startSec;
-      included.push({ segIndex: i, durationMs: localSec * 1000 });
-    } else {
-      included.push({ segIndex: i, durationMs: 0 });
-    }
+  // Last transcribed segment: partial durationSec if cutoff falls mid-segment
+  // (cutoffSec % segDurationSec = 0 at exact boundaries, which means "full" — correct)
+  if (configDurationSec > 0) {
+    trns[trns.length - 1]!.durationSec = cutoffSec % segDurationSec;
   }
-  return included;
+
+  return { wav, trns };
 }
 
 // --- internal ---

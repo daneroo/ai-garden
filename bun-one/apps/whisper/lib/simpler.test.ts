@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 import {
   buildWavSequence,
   buildTranscribeSequence,
+  buildSequences,
   type WavSegment,
   type TranscribeSegment,
 } from "./simpler.ts";
@@ -41,7 +42,7 @@ describe("buildWavSequence", () => {
   }
 });
 
-// Shared 3-segment layout for transcribe tests
+// threeSegs = buildWavSequence(100, 40)
 const threeSegs: WavSegment[] = [
   { startSec: 0, durationSec: 40 },
   { startSec: 40, durationSec: 40 },
@@ -55,22 +56,22 @@ describe("buildTranscribeSequence", () => {
   const cases: TranscribeCase[] = [
     // [name, wavSegs, configDurationSec, expected]
     ["no duration limit (all full)", threeSegs, 0, [
-      { segIndex: 0, durationMs: 0 },
-      { segIndex: 1, durationMs: 0 },
-      { segIndex: 2, durationMs: 0 },
+      { durationSec: 0 },
+      { durationSec: 0 },
+      { durationSec: 0 },
     ]],
     ["within first segment", threeSegs, 20, [
-      { segIndex: 0, durationMs: 20000 },
+      { durationSec: 20 },
     ]],
     ["spanning segments", threeSegs, 50, [
-      { segIndex: 0, durationMs: 0 },
-      { segIndex: 1, durationMs: 10000 },
+      { durationSec: 0 },
+      { durationSec: 10 },
     ]],
     ["at exact boundary", threeSegs, 40, [
-      { segIndex: 0, durationMs: 40000 },
+      { durationSec: 40 },
     ]],
     ["single segment with duration", [{ startSec: 0, durationSec: 0 }], 30, [
-      { segIndex: 0, durationMs: 30000 },
+      { durationSec: 30 },
     ]],
   ];
 
@@ -79,4 +80,31 @@ describe("buildTranscribeSequence", () => {
       expect(buildTranscribeSequence(wavSegs, configDur)).toEqual(expected);
     });
   }
+});
+
+describe("buildSequences", () => {
+  test("spanning segments with cutoff", () => {
+    const { wav, trns } = buildSequences(120, 40, 50);
+    // prettier-ignore
+    expect(wav).toEqual([
+      { startSec: 0,  durationSec: 40 },
+      { startSec: 40, durationSec: 40 },
+    ]);
+    expect(trns).toEqual([{ durationSec: 0 }, { durationSec: 10 }]);
+  });
+
+  test("no cutoff (full audio)", () => {
+    const { wav, trns } = buildSequences(120, 40, 0);
+    // prettier-ignore
+    expect(wav).toEqual([
+      { startSec: 0,  durationSec: 40 },
+      { startSec: 40, durationSec: 40 },
+      { startSec: 80, durationSec: 0 },
+    ]);
+    expect(trns).toEqual([
+      { durationSec: 0 },
+      { durationSec: 0 },
+      { durationSec: 0 },
+    ]);
+  });
 });

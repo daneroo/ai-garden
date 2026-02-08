@@ -42,7 +42,8 @@ phases/tasks. Now here the rules for segmentation.
 - [x] Rewrite `simpler.test.ts` with comprehensive tests for both sequences
 - [x] Simplify `runners.ts` to use `simpler.ts` instead of `segmentation.ts`
 - [x] Fix `task.ts` `executeToWav` to omit `-t` when `durationSec=0`
-- [ ] Review still pending on simpler.ts:buildTranscribeSequence
+- [ ] Review still pending on simpler.ts:
+      buildTranscribeSequence/buildWavSequence - or - buildSequences
 - [ ] Delete `segmentation.ts` + `segmentation.test.ts` (after verification)
 
 ## Issue 101 - undoing "smart dry-run with cached provenance"
