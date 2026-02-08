@@ -179,8 +179,12 @@ async function runWhisperPipeline(
   reporter: ProgressReporter,
   deps?: RunDeps,
 ): Promise<RunResult> {
+  // injected audio duration getter for mocking : else real audio file duration
   const getAudioDuration = deps?.getAudioDuration ?? getAudioFileDuration;
+  // audio duration of the input
   const audioDuration = await getAudioDuration(config.input);
+  // the length of audio we wish to transcribe
+  // i.e. if durationSec is specified use that, but cannot be longer than the audio file itself!
   const processedAudioDurationSec =
     config.durationSec > 0
       ? Math.min(config.durationSec, audioDuration)

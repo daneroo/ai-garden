@@ -8,16 +8,49 @@ I want to keep steady improvements for this cli
 
 Track ongoing work for this sub-project (`bon-one/apps/whisper/`)
 
-## Implementation Plan
-
+- Implementation plans have `[ ]` for not started, `[x]` for done
 - Before checking any box: `bun run ci` must pass.
 - Before committing an issue: User reviews changes.
+- We should always identify the issue we are working on
 
-### Issue undoing "smart dry-run with cached provenance"
+## Issue 100 - refactor segmentation
+
+The goal is to simplify the segmentation logic and use. Segmentation is defined
+as the way we determine how and if the audio file should be split for the two
+phases/tasks. Now here the rules for segmentation.
+
+- ToWavTask(startSec,durationSec): .m4b -> .wav
+  - coordinates relative to original .m4b file
+  - corresponding respectively to -ss, -t parameter to ffmpeg conversion command
+  - all segments should all have the same durationSec
+    - except possibly the last one which may be 0 == full == to the end of the
+      original .m4b file
+  - no segment shall be shorter than MIN*SEGMENT_REMAINDER_SEC (2 seconds) in
+    which case we extend the \_previous* segment to the end of the file:
+    durationSec=0
+- TranscribeTask(durationMs): .wav -> .vtt
+  - coordinates relative to the .wav file
+  - corresponds to --duration _miliseconds_ parameter to whisper-cli command
+  - only the last segment should have a non-zero durationMs
+    - all segments other that the last should have durationMs=0 ==full ==
+      complete .wav file
+
+### Implementation Plan - Issue 100
+
+- [ ] Replace `runner.ts` line 192-246 with something much simpler
+  - [ ] Replace the use of all functions in `segmentation.ts` with much simpler
+        implementation, in the style of the unused `simpler.ts`
+  - [ ] We can have two modules until we have replaced the unit tests
+  - Use those results to generate the ToWavTask[] and TranscribeTask[]
+
+## Issue 101 - undoing "smart dry-run with cached provenance"
 
 This is related to the way processing time is reported.
 
-This behavior was introduced in commit `b6e49b6612c348150cff4df81ebd2ad36a74886c`.
+This behavior was introduced in commit
+`b6e49b6612c348150cff4df81ebd2ad36a74886c`.
+
+### Implementation Plan - 101
 
 - [ ] Analyze the current behavior of the processing time calculation
 - [ ] Possibly revert the smart dry-run calculation or replace it
