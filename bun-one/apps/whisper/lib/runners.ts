@@ -25,12 +25,8 @@ import {
   type ToWavTask,
   type TranscribeTask,
 } from "./task.ts";
-import {
-  computeSegments,
-  getSegmentDurationLabel,
-  getSegmentSuffix,
-  resolveSegmentSec,
-} from "./segmentation.ts";
+import { buildWavSequence, buildTranscribeSequence } from "./simpler.ts";
+import { formatDuration } from "./duration.ts";
 
 // Model directory for whisper-cpp (absolute path)
 // TODO:this will probably need to evolve with an ENV based configuration
@@ -190,31 +186,12 @@ async function runWhisperPipeline(
       ? Math.min(config.durationSec, audioDuration)
       : audioDuration;
 
-  // Compute segment geometry
-  const segments = computeSegments(
-    audioDuration,
-    config.segmentSec,
-    MAX_WAV_DURATION_SEC,
-  );
+  // Resolved segment duration: explicit > WAV max (133h chunks)
+  const segDurationSec =
+    config.segmentSec > 0 ? config.segmentSec : MAX_WAV_DURATION_SEC;
 
-  // Naming helpers
-  const segmentSec = resolveSegmentSec(
-    audioDuration,
-    config.segmentSec,
-    MAX_WAV_DURATION_SEC,
-  );
-  const segmentDurationLabel = getSegmentDurationLabel({
-    requestedSegmentSec: config.segmentSec,
-    resolvedSegmentSec: segmentSec,
-    segmentCount: segments.length,
-  });
-  const nameForSeg = (i: number) => {
-    const suffix = getSegmentSuffix(i, segmentSec, {
-      durationLabel: segmentDurationLabel,
-    });
-    return `${inputName}${suffix}`;
-  };
-  const labelForSeg = (i: number) => `seg:${i + 1} of ${segments.length}`;
+  const wavSegs = buildWavSequence(audioDuration, segDurationSec);
+  const transcribeSegs = buildTranscribeSequence(wavSegs, config.durationSec);
 
   const { inputName, finalVtt } = getFinalPaths(config);
   if (!config.dryRun) {
@@ -222,32 +199,17 @@ async function runWhisperPipeline(
     await mkdir(config.runWorkDir, { recursive: true });
   }
 
-  // Compute per-segment duration for transcription
-  // durationSec > 0 means: only transcribe up to that point in the audio
-  let endSegIndex = segments.length - 1; // Default: all segments
-  if (config.durationSec > 0) {
-    const idx = segments.findIndex(
-      (seg) =>
-        seg.startSec < config.durationSec && config.durationSec <= seg.endSec,
-    );
-    if (idx !== -1) {
-      endSegIndex = idx;
-    }
-  }
-
-  // Helper: compute durationMs for a given segment
-  const getDurationMsForSegment = (segIndex: number): number => {
-    if (config.durationSec <= 0) return 0; // 0 = full WAV
-    if (segIndex < endSegIndex) return 0; // Before end segment: transcribe full
-    if (segIndex > endSegIndex) return -1; // After end segment: skip
-    // End segment: partial duration
-    const seg = segments[segIndex]!;
-    const localDurationSec = config.durationSec - seg.startSec;
-    return localDurationSec * 1000;
-  };
+  // Naming helpers: "full" when no segmentation was requested or needed
+  const durLabel =
+    config.segmentSec === 0 && wavSegs.length === 1
+      ? "full"
+      : formatDuration(segDurationSec);
+  const nameForSeg = (i: number) =>
+    `${inputName}-seg${String(i).padStart(2, "0")}-d${durLabel}`;
+  const labelForSeg = (i: number) => `seg:${i + 1} of ${wavSegs.length}`;
 
   // Build wav tasks as plain data
-  const wavTasks: ToWavTask[] = segments.map((seg, i) => {
+  const wavTasks: ToWavTask[] = wavSegs.map((seg, i) => {
     const name = nameForSeg(i);
     const outPrefix = `${config.runWorkDir}/${name}`;
     return {
@@ -257,43 +219,38 @@ async function runWhisperPipeline(
       inputPath: config.input,
       outputPath: `${outPrefix}.wav`,
       startSec: seg.startSec,
-      durationSec: seg.endSec - seg.startSec,
+      durationSec: seg.durationSec,
       cachePath: getWavCachePath(name),
       cache: config.cache,
       logPrefix: `${outPrefix}-ffmpeg`,
     };
   });
 
-  // Build transcribe tasks as plain data (skip segments beyond durationSec)
-  const transcribeTasks: TranscribeTask[] = segments
-    .map((_, i) => {
-      const durationMs = getDurationMsForSegment(i);
-      if (durationMs === -1) return null; // Skip this segment
-
-      const name = nameForSeg(i);
-      const outPrefix = `${config.runWorkDir}/${name}`;
-      return {
-        kind: "transcribe" as const,
-        label: `transcribe[${labelForSeg(i)}]`,
-        description: `whisper: ${outPrefix}.wav (model=${config.modelShortName})`,
-        wavPath: `${outPrefix}.wav`,
-        outputPrefix: outPrefix,
-        vttPath: `${outPrefix}.vtt`,
-        model: config.modelShortName,
-        modelPath: `${WHISPER_CPP_MODELS}/ggml-${config.modelShortName}.bin`,
-        threads: config.threads,
-        durationMs,
-        wordTimestamps: config.wordTimestamps,
-        cachePath: getVttCachePath(
-          name,
-          config.modelShortName,
-          config.wordTimestamps,
-          durationMs,
-        ),
-        cache: config.cache,
-      } satisfies TranscribeTask;
-    })
-    .filter((t): t is NonNullable<typeof t> => t !== null);
+  // Build transcribe tasks as plain data
+  const transcribeTasks: TranscribeTask[] = transcribeSegs.map((ts) => {
+    const name = nameForSeg(ts.segIndex);
+    const outPrefix = `${config.runWorkDir}/${name}`;
+    return {
+      kind: "transcribe" as const,
+      label: `transcribe[${labelForSeg(ts.segIndex)}]`,
+      description: `whisper: ${outPrefix}.wav (model=${config.modelShortName})`,
+      wavPath: `${outPrefix}.wav`,
+      outputPrefix: outPrefix,
+      vttPath: `${outPrefix}.vtt`,
+      model: config.modelShortName,
+      modelPath: `${WHISPER_CPP_MODELS}/ggml-${config.modelShortName}.bin`,
+      threads: config.threads,
+      durationMs: ts.durationMs,
+      wordTimestamps: config.wordTimestamps,
+      cachePath: getVttCachePath(
+        name,
+        config.modelShortName,
+        config.wordTimestamps,
+        ts.durationMs,
+      ),
+      cache: config.cache,
+    } satisfies TranscribeTask;
+  });
 
   const tasks: Task[] = [...wavTasks, ...transcribeTasks];
 
@@ -331,7 +288,7 @@ async function runWhisperPipeline(
   }
 
   // Stitch VTTs from all segments
-  const segmentVtts = segments.map((seg, i) => ({
+  const segmentVtts = wavSegs.map((seg, i) => ({
     segment: i,
     path: `${config.runWorkDir}/${nameForSeg(i)}.vtt`,
     startSec: seg.startSec,

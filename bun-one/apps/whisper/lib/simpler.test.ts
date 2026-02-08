@@ -1,34 +1,82 @@
 import { describe, expect, test } from "bun:test";
-import { segment } from "./simpler.ts";
+import {
+  buildWavSequence,
+  buildTranscribeSequence,
+  type WavSegment,
+  type TranscribeSegment,
+} from "./simpler.ts";
 
-type TestCase = [string, number, number, ReturnType<typeof segment>];
+type WavCase = [string, number, number, WavSegment[]];
 
-describe("segment", () => {
+describe("buildWavSequence", () => {
   // prettier-ignore
-  const cases: TestCase[] = [
-    // case name                           dur  seg
-    ["generates correct segment metadata", 250, 100, [
-      { i: 0, start: 0, end: 100 },
-      { i: 1, start: 100, end: 200 },
-      { i: 2, start: 200, end: 300 },
+  const cases: WavCase[] = [
+    // [name, audioDuration, segDurationSec, expected]
+    ["single segment", 100, 100, [
+      { startSec: 0, durationSec: 0 },
     ]],
-    ["handles single segment case (segmentSec=0)", 100, 0, [
-      { i: 0, start: 0, end: 0 },
+    ["exact division", 120, 40, [
+      { startSec: 0, durationSec: 40 },
+      { startSec: 40, durationSec: 40 },
+      { startSec: 80, durationSec: 0 },
     ]],
-    ["handles single segment case (segmentSec > audioDuration)", 100, 200, [
-      { i: 0, start: 0, end: 200 },
+    ["with remainder", 100, 40, [
+      { startSec: 0, durationSec: 40 },
+      { startSec: 40, durationSec: 40 },
+      { startSec: 80, durationSec: 0 },
     ]],
-    ["calculates segment count correctly (rounding up)", 25, 10, [
-      { i: 0, start: 0, end: 10 },
-      { i: 1, start: 10, end: 20 },
-      { i: 2, start: 20, end: 30 },
+    ["tiny tail absorbed (remainder < 2s)", 1800.5, 900, [
+      { startSec: 0, durationSec: 900 },
+      { startSec: 900, durationSec: 0 },
+    ]],
+    ["segDurationSec larger than audio", 50, 200, [
+      { startSec: 0, durationSec: 0 },
     ]],
   ];
 
-  for (const [name, duration, segSec, expected] of cases) {
+  for (const [name, audioDur, segDur, expected] of cases) {
     test(name, () => {
-      const s = segment(duration, segSec);
-      expect(s).toEqual(expected);
+      expect(buildWavSequence(audioDur, segDur)).toEqual(expected);
+    });
+  }
+});
+
+// Shared 3-segment layout for transcribe tests
+const threeSegs: WavSegment[] = [
+  { startSec: 0, durationSec: 40 },
+  { startSec: 40, durationSec: 40 },
+  { startSec: 80, durationSec: 0 },
+];
+
+type TranscribeCase = [string, WavSegment[], number, TranscribeSegment[]];
+
+describe("buildTranscribeSequence", () => {
+  // prettier-ignore
+  const cases: TranscribeCase[] = [
+    // [name, wavSegs, configDurationSec, expected]
+    ["no duration limit (all full)", threeSegs, 0, [
+      { segIndex: 0, durationMs: 0 },
+      { segIndex: 1, durationMs: 0 },
+      { segIndex: 2, durationMs: 0 },
+    ]],
+    ["within first segment", threeSegs, 20, [
+      { segIndex: 0, durationMs: 20000 },
+    ]],
+    ["spanning segments", threeSegs, 50, [
+      { segIndex: 0, durationMs: 0 },
+      { segIndex: 1, durationMs: 10000 },
+    ]],
+    ["at exact boundary", threeSegs, 40, [
+      { segIndex: 0, durationMs: 40000 },
+    ]],
+    ["single segment with duration", [{ startSec: 0, durationSec: 0 }], 30, [
+      { segIndex: 0, durationMs: 30000 },
+    ]],
+  ];
+
+  for (const [name, wavSegs, configDur, expected] of cases) {
+    test(name, () => {
+      expect(buildTranscribeSequence(wavSegs, configDur)).toEqual(expected);
     });
   }
 });

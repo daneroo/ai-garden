@@ -37,11 +37,13 @@ phases/tasks. Now here the rules for segmentation.
 
 ### Implementation Plan - Issue 100
 
-- [ ] Replace `runner.ts` line 192-246 with something much simpler
-  - [ ] Replace the use of all functions in `segmentation.ts` with much simpler
-        implementation, in the style of the unused `simpler.ts`
-  - [ ] We can have two modules until we have replaced the unit tests
-  - Use those results to generate the ToWavTask[] and TranscribeTask[]
+- [x] Rewrite `simpler.ts` with `buildWavSequence`, `buildTranscribeSequence`,
+      `segmentNameSuffix`
+- [x] Rewrite `simpler.test.ts` with comprehensive tests for both sequences
+- [x] Simplify `runners.ts` to use `simpler.ts` instead of `segmentation.ts`
+- [x] Fix `task.ts` `executeToWav` to omit `-t` when `durationSec=0`
+- [ ] Review still pending on simpler.ts:buildTranscribeSequence
+- [ ] Delete `segmentation.ts` + `segmentation.test.ts` (after verification)
 
 ## Issue 101 - undoing "smart dry-run with cached provenance"
 
