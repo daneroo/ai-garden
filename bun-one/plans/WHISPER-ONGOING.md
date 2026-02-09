@@ -13,58 +13,20 @@ Track ongoing work for this sub-project (`bon-one/apps/whisper/`)
 - Before committing an issue: User reviews changes.
 - We should always identify the issue we are working on
 
-## Issue 101 Rationalize RunResult interface
+## Current Task
 
-- Thin out RunResult — remove derived/redundant fields:
-  - `processedAudioDurationSec`: derivable from tasks or vttSummary
-  - `elapsedSec`: derivable from tasks, or measurable from outside runWhisper
-  - `speedup`: derivable (and was incorrectly calculated based on wall-clock)
-  - Keep: `tasks`, `outputPath`, `vttSummary`
-- processedAudioDurationSec duplication in runners.ts — Lines 184-187 compute
-  config.durationSec > 0 ? Math.min(config.durationSec, audioDuration) :
-  audioDuration — identical to plan.transcribeDurationSec. Could use
-  computeSegmentationPlan and read plan.transcribeDurationSec directly,
-  eliminating the duplication. But this is a runners.ts concern, not a
-  segmentation.ts bug.
-- undoing "smart dry-run with cached provenance"
-  - This behavior was introduced in commit
-    `b6e49b6612c348150cff4df81ebd2ad36a74886c`.
+Next Task not chosen yet
 
-### Implementation Plan - 101
+### Implementation Plan
 
-Ordered for incremental, type-safe execution:
-
-- [x] **Step 1: Enhance VttSummary** (Pure addition, no breaking changes)
-  - Add segments: count or array with full metadata
-  - Include `provenance: VttProvenance[]` (VttHeaderProvenance |
-    VttSegmentProvenance)
-  - Type definition should match actual .vtt file content
-  - Consider Zod schema (could replace run-bench.ts schema)
-- [x] **Step 2: Refactor RunResult** (Now VttSummary has the data we need)
-  - Remove derived fields: `processedAudioDurationSec`, `elapsedSec`, `speedup`
-  - Keep: `tasks`, `outputPath`, `vttSummary`
-  - Update `runWhisper` to populate enriched VttSummary
-- [x] **Step 3: Update CLI output** (Use new data source)
-  - Update `whisper.ts` to derive timing/speedup from VttSummary and tasks
-  - Remove manual calculation of `transcriptionSec`
-- [x] **Step 4: Remove smart dry-run hack** (No longer needed)
-  - VttSummary now provides timing from provenance naturally
-  - Remove lines 262-277 in `runWhisperPipeline`
-- [x] **Step 5: Simplify run-bench.ts** (Optional cleanup)
-  - Could rely on .vtt file directly, or re-serialize VttSummary
-  - Instead of depending on runWhisper's JSON output
-- [x] **Step 6: Distinguish Task/TaskConfig** (Optional structural cleanup)
-  - Is serialized as part of the process --json output
-  - Task (discriminated union on `kind`): label, description, elapsedMs (always
-    present for display)
-  - TaskConfig: what runTask(node:child_process:spawn) needs
-  - Not all Tasks are spawn-based (e.g., stitch)
+- [ ] **Step 1: xx
+  - sub step
 
 ## Backlog
 
 These turn into issues above, inside this very document
 
-- [ ] Double Provenance Headers not needed in a single segment run
+- Double Provenance Headers not needed in a single segment run
 - Make stitch a proper Task (uniform task list: N\*(wav+transcribe)+stitch)
   - VTT stitching clip for monotonicity guarantees - where?
   - if Stitching is a task, it could also cache!
