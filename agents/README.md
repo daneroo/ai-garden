@@ -15,7 +15,9 @@ use:
 
 Specific info for each agent
 
-- [Ralph Wiggum Loop](https://github.com/Th0rgal/open-ralph-wiggum)
+- [ ] [Pi Monorepo](https://github.com/badlogic/pi-mono) - [Pi](https://pi.dev/)
+- [ ] [Open Agent/Sandboxed](https://sandboxed.sh/) - Sam author as v
+  - [ ] [Ralph Wiggum Loop](https://github.com/Th0rgal/open-ralph-wiggum)
 - [x] [Kilo](./kilo/README.md): Not so much - deleted
 - [ ] Amp - installed and delete from Antigravity - Later
 - [OpenClaw](./openclaw/README.md)
