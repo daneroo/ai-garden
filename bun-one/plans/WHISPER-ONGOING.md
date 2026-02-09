@@ -13,42 +13,13 @@ Track ongoing work for this sub-project (`bon-one/apps/whisper/`)
 - Before committing an issue: User reviews changes.
 - We should always identify the issue we are working on
 
-## Issue 100 - refactor segmentation
-
-The goal is to simplify the segmentation logic and use. Segmentation is defined
-as the way we determine how and if the audio file should be split for the two
-phases/tasks. Now here the rules for segmentation.
-
-- ToWavTask(startSec,durationSec): .m4b -> .wav
-  - coordinates relative to original .m4b file
-  - corresponding respectively to -ss, -t parameter to ffmpeg conversion command
-  - all segments should all have the same durationSec
-    - except possibly the last one which may be 0 == full == to the end of the
-      original .m4b file
-  - no segment shall be shorter than `MIN_SEGMENT_REMAINDER_SEC` (2 seconds) in
-    which case we extend the previous segment to the end of the file:
-    durationSec=0
-- TranscribeTask(durationMs): .wav -> .vtt
-  - coordinates relative to the .wav file
-  - corresponds to --duration _miliseconds_ parameter to whisper-cli command
-  - only the last segment should have a non-zero durationMs
-    - all segments other that the last should have durationMs=0 ==full ==
-      complete .wav file
-
-### Implementation Plan - Issue 100
-
-- [x] Rewrite `simpler.ts` with `buildWavSequence`, `buildTranscribeSequence`,
-      `segmentNameSuffix`
-- [x] Rewrite `simpler.test.ts` with comprehensive tests for both sequences
-- [x] Simplify `runners.ts` to use `simpler.ts` instead of `segmentation.ts`
-- [x] Fix `task.ts` `executeToWav` to omit `-t` when `durationSec=0`
-- [x] Delete `segmentation.ts` + `segmentation.test.ts` (after verification)
-  - [x] rename simpler.ts to segmentation.ts
-- [x] Review still pending on simpler.ts:
-      buildTranscribeSequence/buildWavSequence / buildSequences
-
 ## Issue 101 Rationalize RunResult interface
 
+- Thin out RunResult — remove derived/redundant fields:
+  - `processedAudioDurationSec`: derivable from tasks or vttSummary
+  - `elapsedSec`: derivable from tasks, or measurable from outside runWhisper
+  - `speedup`: derivable (and was incorrectly calculated based on wall-clock)
+  - Keep: `tasks`, `outputPath`, `vttSummary`
 - processedAudioDurationSec duplication in runners.ts — Lines 184-187 compute
   config.durationSec > 0 ? Math.min(config.durationSec, audioDuration) :
   audioDuration — identical to plan.transcribeDurationSec. Could use
@@ -61,17 +32,34 @@ phases/tasks. Now here the rules for segmentation.
 
 ### Implementation Plan - 101
 
-- [ ] Analyze the current behavior of the processing time calculation
+- [ ] Refactor RunResult type (remove derived fields, keep
+      tasks/outputPath/vttSummary)
 - [ ] Possibly revert the smart dry-run calculation or replace it
-- [ ] Analyze dependencies involved in adding processing time to segment VTTs
-- [ ] Decide the proper way to calculate and present this information
+- [ ] Optionally distinguish Task, TaskConfig, spawn'able
+  - Is serialized as part of the process --json output
+  - Task (discriminated union on `kind`): label, description, elapsedMs (always
+    present for display)
+  - TaskConfig: what runTask(node:child_process:spawn) needs
+  - Not all Tasks are spawn-based (e.g., stitch)
+- [ ] Enhance VttSummary to include provenance metadata
+  - Add segments: count or array with full metadata
+  - Include `provenance: VttProvenance[]` (VttHeaderProvenance |
+    VttSegmentProvenance)
+  - Type definition should match actual .vtt file content
+  - Consider Zod schema (could replace run-bench.ts schema)
+- [ ] Simplify run-bench.ts JSON output
+  - Could rely on .vtt file directly, or re-serialize VttSummary
+  - Instead of depending on runWhisper's JSON output
+- [ ] Decide the proper way to calculate and present timing information
 
 ## Backlog
 
 These turn into issues above, inside this very document
 
+- Investigate `simpler-recursive.ts` as a replacement for segmentation
 - Make stitch a proper Task (uniform task list: N\*(wav+transcribe)+stitch)
   - VTT stitching clip for monotonicity guarantees - where?
+  - if Stitching is a task, it could also cache!
 - Extract `runTask`/monitors to new `lib/exec.ts`
 - Artifact directory reorganization WORK,CACHE,OUTPUT,SAMPLES
   - script to repopulate samples/models

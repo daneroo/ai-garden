@@ -15,7 +15,9 @@ use:
 
 Specific info for each agent
 
-- [Kilo](./kilo/README.md)
+- [Ralph Wiggum Loop](https://github.com/Th0rgal/open-ralph-wiggum)
+- [x] [Kilo](./kilo/README.md): Not so much - deleted
+- [ ] Amp - installed and delete from Antigravity - Later
 - [OpenClaw](./openclaw/README.md)
 - [OpenCode](./opencode/README.md)
 - [ ] [Claude](./claude/README.md)

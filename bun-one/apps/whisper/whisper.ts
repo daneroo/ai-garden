@@ -185,7 +185,15 @@ async function main(): Promise<void> {
         ? `${result.vttSummary.durationSec}s`
         : "none";
       console.log(`\n${label}`);
-      console.log(`  Processed: ${result.processedAudioDurationSec}s audio`);
+      //  just sum the exec time of the kind=transcibe) tasks
+      const transcriptionSec = result.tasks
+        .filter((t) => t.kind === "transcribe")
+        .reduce((sum, t) => sum + (t.elapsedMs ?? 0) / 1000, 0);
+      console.log(
+        `  Transcribed: ${result.processedAudioDurationSec.toFixed(
+          2,
+        )}s audio in ${transcriptionSec.toFixed(2)}s`,
+      );
       if (dryRun) {
         // Sum cached elapsedMs for an estimated total
         const estimatedMs = result.tasks.reduce(
