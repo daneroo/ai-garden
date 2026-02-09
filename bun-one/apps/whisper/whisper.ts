@@ -10,6 +10,7 @@ import {
 } from "./lib/runners.ts";
 import { preflightCheck } from "./lib/preflight.ts";
 import { parseDuration } from "./lib/duration.ts";
+import { getHeaderProvenance } from "./lib/vtt.ts";
 
 // Configuration defaults
 const DEFAULT_INPUT = "data/samples/hobbit-30m.mp3";
@@ -175,43 +176,39 @@ async function main(): Promise<void> {
 
     // Output to STDOUT
     if (json) {
-      // JSON output for bench.sh (result already includes elapsedSec/speedup)
       console.log(JSON.stringify(result));
     } else {
-      // Pretty summary for human readability
       const label =
         iterations > 1 ? `Iteration ${i}/${iterations}:` : "Result:";
-      const vttDur = result.vttSummary
-        ? `${result.vttSummary.durationSec}s`
-        : "none";
       console.log(`\n${label}`);
-      //  just sum the exec time of the kind=transcibe) tasks
-      const transcriptionSec = result.tasks
-        .filter((t) => t.kind === "transcribe")
-        .reduce((sum, t) => sum + (t.elapsedMs ?? 0) / 1000, 0);
+
+      // Derive timing from VTT provenance (reflects original transcription time)
+      const audioDur = result.vttSummary?.durationSec ?? 0;
+      const headerProv = result.vttSummary
+        ? getHeaderProvenance(result.vttSummary.provenance)
+        : undefined;
+      const elapsedMs = headerProv?.elapsedMs ?? 0;
+
       console.log(
-        `  Transcribed: ${result.processedAudioDurationSec.toFixed(
-          2,
-        )}s audio in ${transcriptionSec.toFixed(2)}s`,
+        `  Transcribed: ${audioDur.toFixed(2)}s audio in ${(elapsedMs / 1000).toFixed(2)}s`,
       );
       if (dryRun) {
-        // Sum cached elapsedMs for an estimated total
-        const estimatedMs = result.tasks.reduce(
-          (sum, t) => sum + (t.elapsedMs ?? 0),
-          0,
-        );
-        if (estimatedMs > 0) {
-          const estSec = Math.round(estimatedMs / 1000);
-          console.log(`  Estimated: ~${estSec}s (from cached transcriptions)`);
+        if (elapsedMs > 0) {
+          console.log(
+            `  Estimated: ~${Math.round(elapsedMs / 1000)}s (from cached transcriptions)`,
+          );
         } else {
           console.log("  Estimated: unknown (no cached transcriptions)");
         }
       } else {
-        console.log(`  Elapsed:   ${result.elapsedSec}s (wall-clock)`);
-        console.log(`  Speedup:   ${result.speedup}x`);
+        const elapsedSec = Math.round(elapsedMs / 1000);
+        const speedup =
+          elapsedMs > 0 ? (audioDur / (elapsedMs / 1000)).toFixed(1) : "0";
+        console.log(`  Elapsed:   ${elapsedSec}s`);
+        console.log(`  Speedup:   ${speedup}x`);
       }
       console.log(`  Output:    ${result.outputPath}`);
-      console.log(`  VTT Dur:   ${vttDur}`);
+      console.log(`  VTT Dur:   ${audioDur > 0 ? `${audioDur}s` : "none"}`);
 
       // Detailed task breakdown
       console.log("  Tasks:");

@@ -62,17 +62,6 @@ describe("runWhisper task generation", () => {
     }
   });
 
-  test("reports processedAudioDurationSec as full audio duration", async () => {
-    const result = await runWhisper(mockConfig, mockDeps);
-    expect(result.processedAudioDurationSec).toBe(100);
-  });
-
-  test("reports processedAudioDurationSec for partial duration", async () => {
-    const config = { ...mockConfig, durationSec: 50 };
-    const result = await runWhisper(config, mockDeps);
-    expect(result.processedAudioDurationSec).toBe(50);
-  });
-
   test("single segment produces correct tasks", async () => {
     const result = await runWhisper(mockConfig, mockDeps);
 
@@ -132,8 +121,6 @@ describe("runWhisper task generation", () => {
   test("duration beyond audio keeps full-run segmentation", async () => {
     const config = { ...mockConfig, segmentSec: 40, durationSec: 150 };
     const result = await runWhisper(config, mockDeps);
-
-    expect(result.processedAudioDurationSec).toBe(100);
 
     const wavTasks = result.tasks.filter((t) => t.label.startsWith("to-wav"));
     expect(wavTasks).toHaveLength(3);

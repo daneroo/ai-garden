@@ -9,6 +9,7 @@ import {
   type ProgressReporter,
 } from "./progress.ts";
 import {
+  getHeaderProvenance,
   isVttSegmentProvenance,
   readVttFile,
   summarizeVttFile,
@@ -78,9 +79,6 @@ export function createRunWorkDir({
  * Result of a single transcription run
  */
 export interface RunResult {
-  processedAudioDurationSec: number;
-  elapsedSec: number; // Wall-clock time from runWhisper
-  speedup: string; // Formatted as "72.6" for clean JSON output
   tasks: Task[];
   outputPath: string;
   vttSummary?: VttSummary;
@@ -111,24 +109,17 @@ export async function runWhisper(
   }
 
   const reporter = createReporter(runConfig);
-  const startMs = Date.now();
   const result = await runWhisperPipeline(runConfig, reporter, deps);
 
-  const elapsedMs = Date.now() - startMs;
-  result.elapsedSec = Math.round(elapsedMs / 1000);
-  result.speedup = (
-    result.processedAudioDurationSec /
-    (elapsedMs / 1000)
-  ).toFixed(1);
-
-  const hasExecuted = result.tasks.some((t) => t.elapsedMs != null);
-  if (hasExecuted && existsSync(result.outputPath)) {
+  if (existsSync(result.outputPath)) {
     result.vttSummary = summarizeVttFile(await readVttFile(result.outputPath));
-    reporter.finish(
-      result.elapsedSec,
-      result.speedup,
-      result.vttSummary ? `${result.vttSummary.durationSec}s` : undefined,
-    );
+    const headerProv = getHeaderProvenance(result.vttSummary.provenance);
+    const elapsedMs = headerProv?.elapsedMs ?? 0;
+    const elapsedSec = Math.round(elapsedMs / 1000);
+    const audioDur = result.vttSummary.durationSec;
+    const speedup =
+      elapsedMs > 0 ? (audioDur / (elapsedMs / 1000)).toFixed(1) : "0";
+    reporter.finish(elapsedSec, speedup, `${audioDur}s`);
   }
 
   return result;
@@ -178,13 +169,6 @@ async function runWhisperPipeline(
   const getAudioDuration = deps?.getAudioDuration ?? getAudioFileDuration;
   // audio duration of the input
   const audioDuration = await getAudioDuration(config.input);
-  // the length of audio we wish to transcribe
-  // i.e. if durationSec is specified use that, but cannot be longer than the audio file itself!
-  const processedAudioDurationSec =
-    config.durationSec > 0
-      ? Math.min(config.durationSec, audioDuration)
-      : audioDuration;
-
   // Resolved segment duration: explicit > WAV max (133h chunks)
   const segDurationSec =
     config.segmentSec > 0 ? config.segmentSec : MAX_WAV_DURATION_SEC;
@@ -276,9 +260,6 @@ async function runWhisperPipeline(
   }
 
   const result: RunResult = {
-    processedAudioDurationSec,
-    elapsedSec: 0,
-    speedup: "0",
     tasks,
     outputPath: finalVtt,
   };

@@ -61,11 +61,14 @@ interface BenchmarkKey {
 
 /** Stored benchmark result (RunResult + key fields for identification) */
 interface BenchmarkRecord extends RunResult {
-  // Added by benchmark runner for identification
   benchmarkKey: BenchmarkKey;
   timestamp: string;
   hostname: string;
   arch: string;
+  // Derived display fields (computed by normalizeRecord from tasks/vttSummary/provenance)
+  processedAudioDurationSec: number;
+  elapsedSec: number;
+  speedup: string;
 }
 
 /** Record with source file tracking (for duplicate detection) */
@@ -235,11 +238,8 @@ async function loadExistingData(): Promise<LoadedRecord[]> {
 
 function normalizeRecord(record: BenchmarkRecord): BenchmarkRecord {
   const benchmarkKey = normalizeBenchmarkKey(record.benchmarkKey);
-  const processedAudioDurationSec =
-    resolveProcessedDuration(record) ??
-    asNumber(record.processedAudioDurationSec) ??
-    0;
-  const elapsedSec = asNumber(record.elapsedSec) ?? 0;
+  const processedAudioDurationSec = resolveProcessedDuration(record) ?? 0;
+  const elapsedSec = resolveElapsedSec(record);
   const speedupValue =
     elapsedSec > 0 && processedAudioDurationSec > 0
       ? processedAudioDurationSec / elapsedSec
@@ -272,10 +272,26 @@ function resolveProcessedDuration(record: BenchmarkRecord): number | undefined {
   const vttDuration = asNumber(record.vttSummary?.durationSec);
   if (vttDuration && vttDuration > 0) return vttDuration;
 
-  const processedDuration = asNumber(record.processedAudioDurationSec);
-  if (processedDuration && processedDuration > 0) return processedDuration;
-
   return undefined;
+}
+
+/** Derive elapsed seconds from tasks (sum of elapsedMs) or legacy field */
+function resolveElapsedSec(record: BenchmarkRecord): number {
+  // Prefer task-level timing
+  const tasks = record.tasks;
+  if (Array.isArray(tasks) && tasks.length > 0) {
+    const totalMs = tasks.reduce(
+      (sum: number, t: unknown) =>
+        sum +
+        (typeof t === "object" && t !== null && "elapsedMs" in t
+          ? (asNumber((t as Record<string, unknown>).elapsedMs) ?? 0)
+          : 0),
+      0,
+    );
+    if (totalMs > 0) return Math.round(totalMs / 1000);
+  }
+  // Fall back to legacy elapsedSec from old JSON records
+  return asNumber(record.elapsedSec) ?? 0;
 }
 
 // ============================================================================
@@ -425,20 +441,20 @@ async function executeBenchmarks(
 
     const result = await runWhisper(config);
 
-    const record: BenchmarkRecord = {
+    const record = normalizeRecord({
       ...result,
       benchmarkKey: key,
       timestamp: new Date().toISOString(),
       hostname: hostname(),
       arch: arch(),
-    };
+    } as BenchmarkRecord);
 
     // Write result immediately (don't lose data if later benchmarks fail)
     await writeResult(record);
 
     results.push(record);
     console.log(
-      `  ✓ ${result.elapsedSec}s elapsed, ${result.speedup}x speedup`,
+      `  ✓ ${record.elapsedSec}s elapsed, ${record.speedup}x speedup`,
     );
   }
 

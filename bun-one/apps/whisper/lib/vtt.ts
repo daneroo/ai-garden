@@ -364,6 +364,15 @@ export function summarizeVttFile(file: VttFile): VttSummary {
   return { ...summarizeVtt(file.cues), provenance: file.provenance };
 }
 
+/** Extract header provenance from a provenance array (the non-segment entry) */
+export function getHeaderProvenance(
+  provenance: VttProvenance[],
+): VttHeaderProvenance | undefined {
+  return provenance.find((p) => !isVttSegmentProvenance(p)) as
+    | VttHeaderProvenance
+    | undefined;
+}
+
 /**
  * Check for monotonicity violations in cues
  * (where a cue starts before the previous one ends)

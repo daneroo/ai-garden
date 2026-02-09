@@ -40,11 +40,11 @@ Ordered for incremental, type-safe execution:
     VttSegmentProvenance)
   - Type definition should match actual .vtt file content
   - Consider Zod schema (could replace run-bench.ts schema)
-- [ ] **Step 2: Refactor RunResult** (Now VttSummary has the data we need)
+- [x] **Step 2: Refactor RunResult** (Now VttSummary has the data we need)
   - Remove derived fields: `processedAudioDurationSec`, `elapsedSec`, `speedup`
   - Keep: `tasks`, `outputPath`, `vttSummary`
   - Update `runWhisper` to populate enriched VttSummary
-- [ ] **Step 3: Update CLI output** (Use new data source)
+- [x] **Step 3: Update CLI output** (Use new data source)
   - Update `whisper.ts` to derive timing/speedup from VttSummary and tasks
   - Remove manual calculation of `transcriptionSec`
 - [ ] **Step 4: Remove smart dry-run hack** (No longer needed)
