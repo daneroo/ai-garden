@@ -53,7 +53,7 @@ Ordered for incremental, type-safe execution:
 - [x] **Step 5: Simplify run-bench.ts** (Optional cleanup)
   - Could rely on .vtt file directly, or re-serialize VttSummary
   - Instead of depending on runWhisper's JSON output
-- [ ] **Step 6: Distinguish Task/TaskConfig** (Optional structural cleanup)
+- [x] **Step 6: Distinguish Task/TaskConfig** (Optional structural cleanup)
   - Is serialized as part of the process --json output
   - Task (discriminated union on `kind`): label, description, elapsedMs (always
     present for display)
@@ -64,10 +64,11 @@ Ordered for incremental, type-safe execution:
 
 These turn into issues above, inside this very document
 
-- Investigate `simpler-recursive.ts` as a replacement for segmentation
+- [ ] Double Provenance Headers not needed in a single segment run
 - Make stitch a proper Task (uniform task list: N\*(wav+transcribe)+stitch)
   - VTT stitching clip for monotonicity guarantees - where?
   - if Stitching is a task, it could also cache!
+- Investigate `simpler-recursive.ts` as a replacement for segmentation
 - Extract `runTask`/monitors to new `lib/exec.ts`
 - Artifact directory reorganization WORK,CACHE,OUTPUT,SAMPLES
   - script to repopulate samples/models
