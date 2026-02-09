@@ -47,7 +47,7 @@ Ordered for incremental, type-safe execution:
 - [x] **Step 3: Update CLI output** (Use new data source)
   - Update `whisper.ts` to derive timing/speedup from VttSummary and tasks
   - Remove manual calculation of `transcriptionSec`
-- [ ] **Step 4: Remove smart dry-run hack** (No longer needed)
+- [x] **Step 4: Remove smart dry-run hack** (No longer needed)
   - VttSummary now provides timing from provenance naturally
   - Remove lines 262-277 in `runWhisperPipeline`
 - [ ] **Step 5: Simplify run-bench.ts** (Optional cleanup)

@@ -181,49 +181,4 @@ describe("smoke: whisper pipeline", () => {
     expect(existsSync(result.outputPath)).toBe(true);
     expect(result.vttSummary).toBeDefined();
   });
-
-  test("smart dry-run: shows cached elapsedMs estimates", async () => {
-    // Previous tests populated VTT cache with provenance
-    const runWorkDir = createRunWorkDir({
-      workDirRoot: TEST_WORK_DIR_ROOT,
-      inputPath: FIXTURE_JFK,
-      tag: "smoke-smart-dry",
-    });
-    workDirCleanup.track(runWorkDir);
-
-    const config: RunConfig = {
-      input: FIXTURE_JFK,
-      modelShortName: "tiny.en",
-      threads: 4,
-      durationSec: 0,
-      outputDir: TEST_OUTPUT_DIR,
-      runWorkDir,
-      tag: "smoke-smart-dry",
-      verbosity: 0,
-      dryRun: true,
-      wordTimestamps: false,
-      cache: true, // Smart dry-run reads cached provenance
-      quiet: true,
-      segmentSec: 0,
-    };
-
-    const result = await runWhisper(config);
-
-    // Tasks should be populated but not executed
-    expect(result.tasks.length).toBeGreaterThan(0);
-
-    // Transcribe task should have cached elapsedMs estimate
-    const transcribeTask = result.tasks.find((t) => t.kind === "transcribe");
-    expect(transcribeTask).toBeDefined();
-    expect(transcribeTask!.elapsedMs).toBeDefined();
-    expect(transcribeTask!.elapsedMs).toBeGreaterThan(0);
-
-    // WAV task has no cached timing (we don't cache WAV provenance)
-    const wavTask = result.tasks.find((t) => t.kind === "to-wav");
-    expect(wavTask).toBeDefined();
-    expect(wavTask!.elapsedMs).toBeUndefined();
-
-    // No output file produced (dry-run)
-    expect(existsSync(result.outputPath)).toBe(false);
-  });
 });
