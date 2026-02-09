@@ -91,6 +91,7 @@ const VttSummarySchema = z
     durationSec: NumericSchema,
     monotonicityViolations: NumericSchema,
     monotonicityViolationMaxOverlap: NumericSchema,
+    provenance: z.array(z.unknown()),
   })
   .partial();
 

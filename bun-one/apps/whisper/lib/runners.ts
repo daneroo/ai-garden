@@ -10,9 +10,8 @@ import {
 } from "./progress.ts";
 import {
   isVttSegmentProvenance,
-  readVtt,
   readVttFile,
-  summarizeVtt,
+  summarizeVttFile,
   type VttCue,
   type VttHeaderProvenance,
   type VttProvenance,
@@ -124,7 +123,7 @@ export async function runWhisper(
 
   const hasExecuted = result.tasks.some((t) => t.elapsedMs != null);
   if (hasExecuted && existsSync(result.outputPath)) {
-    result.vttSummary = summarizeVtt(await readVtt(result.outputPath));
+    result.vttSummary = summarizeVttFile(await readVttFile(result.outputPath));
     reporter.finish(
       result.elapsedSec,
       result.speedup,

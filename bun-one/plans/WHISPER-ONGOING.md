@@ -32,25 +32,33 @@ Track ongoing work for this sub-project (`bon-one/apps/whisper/`)
 
 ### Implementation Plan - 101
 
-- [ ] Refactor RunResult type (remove derived fields, keep
-      tasks/outputPath/vttSummary)
-- [ ] Possibly revert the smart dry-run calculation or replace it
-- [ ] Optionally distinguish Task, TaskConfig, spawn'able
-  - Is serialized as part of the process --json output
-  - Task (discriminated union on `kind`): label, description, elapsedMs (always
-    present for display)
-  - TaskConfig: what runTask(node:child_process:spawn) needs
-  - Not all Tasks are spawn-based (e.g., stitch)
-- [ ] Enhance VttSummary to include provenance metadata
+Ordered for incremental, type-safe execution:
+
+- [x] **Step 1: Enhance VttSummary** (Pure addition, no breaking changes)
   - Add segments: count or array with full metadata
   - Include `provenance: VttProvenance[]` (VttHeaderProvenance |
     VttSegmentProvenance)
   - Type definition should match actual .vtt file content
   - Consider Zod schema (could replace run-bench.ts schema)
-- [ ] Simplify run-bench.ts JSON output
+- [ ] **Step 2: Refactor RunResult** (Now VttSummary has the data we need)
+  - Remove derived fields: `processedAudioDurationSec`, `elapsedSec`, `speedup`
+  - Keep: `tasks`, `outputPath`, `vttSummary`
+  - Update `runWhisper` to populate enriched VttSummary
+- [ ] **Step 3: Update CLI output** (Use new data source)
+  - Update `whisper.ts` to derive timing/speedup from VttSummary and tasks
+  - Remove manual calculation of `transcriptionSec`
+- [ ] **Step 4: Remove smart dry-run hack** (No longer needed)
+  - VttSummary now provides timing from provenance naturally
+  - Remove lines 262-277 in `runWhisperPipeline`
+- [ ] **Step 5: Simplify run-bench.ts** (Optional cleanup)
   - Could rely on .vtt file directly, or re-serialize VttSummary
   - Instead of depending on runWhisper's JSON output
-- [ ] Decide the proper way to calculate and present timing information
+- [ ] **Step 6: Distinguish Task/TaskConfig** (Optional structural cleanup)
+  - Is serialized as part of the process --json output
+  - Task (discriminated union on `kind`): label, description, elapsedMs (always
+    present for display)
+  - TaskConfig: what runTask(node:child_process:spawn) needs
+  - Not all Tasks are spawn-based (e.g., stitch)
 
 ## Backlog
 

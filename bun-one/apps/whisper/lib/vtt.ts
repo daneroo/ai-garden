@@ -310,6 +310,8 @@ export interface VttSummary {
   monotonicityViolations: number;
   /** Maximum time (in seconds) that a cue overlaps with the previous one */
   monotonicityViolationMaxOverlap: number;
+  /** Header + segment provenance parsed from NOTE Provenance blocks */
+  provenance: VttProvenance[];
 }
 
 export function summarizeVtt(cues: VttCue[]): VttSummary {
@@ -321,6 +323,7 @@ export function summarizeVtt(cues: VttCue[]): VttSummary {
       durationSec: 0,
       monotonicityViolations: 0,
       monotonicityViolationMaxOverlap: 0,
+      provenance: [],
     };
   }
 
@@ -334,6 +337,7 @@ export function summarizeVtt(cues: VttCue[]): VttSummary {
       durationSec: 0,
       monotonicityViolations: 0,
       monotonicityViolationMaxOverlap: 0,
+      provenance: [],
     };
   }
 
@@ -351,7 +355,13 @@ export function summarizeVtt(cues: VttCue[]): VttSummary {
     durationSec,
     monotonicityViolations: violations,
     monotonicityViolationMaxOverlap: maxOverlap,
+    provenance: [],
   };
+}
+
+/** Summarize a parsed VTT file, carrying through its provenance metadata */
+export function summarizeVttFile(file: VttFile): VttSummary {
+  return { ...summarizeVtt(file.cues), provenance: file.provenance };
 }
 
 /**
