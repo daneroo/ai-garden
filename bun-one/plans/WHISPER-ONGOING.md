@@ -50,7 +50,7 @@ Ordered for incremental, type-safe execution:
 - [x] **Step 4: Remove smart dry-run hack** (No longer needed)
   - VttSummary now provides timing from provenance naturally
   - Remove lines 262-277 in `runWhisperPipeline`
-- [ ] **Step 5: Simplify run-bench.ts** (Optional cleanup)
+- [x] **Step 5: Simplify run-bench.ts** (Optional cleanup)
   - Could rely on .vtt file directly, or re-serialize VttSummary
   - Instead of depending on runWhisper's JSON output
 - [ ] **Step 6: Distinguish Task/TaskConfig** (Optional structural cleanup)

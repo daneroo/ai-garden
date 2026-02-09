@@ -275,20 +275,22 @@ function resolveProcessedDuration(record: BenchmarkRecord): number | undefined {
   return undefined;
 }
 
-/** Derive elapsed seconds from tasks (sum of elapsedMs) or legacy field */
+/** Derive elapsed seconds from VTT provenance (original transcription time) or legacy field */
 function resolveElapsedSec(record: BenchmarkRecord): number {
-  // Prefer task-level timing
-  const tasks = record.tasks;
-  if (Array.isArray(tasks) && tasks.length > 0) {
-    const totalMs = tasks.reduce(
-      (sum: number, t: unknown) =>
-        sum +
-        (typeof t === "object" && t !== null && "elapsedMs" in t
-          ? (asNumber((t as Record<string, unknown>).elapsedMs) ?? 0)
-          : 0),
-      0,
-    );
-    if (totalMs > 0) return Math.round(totalMs / 1000);
+  // Prefer VTT header provenance elapsedMs (reflects actual transcription time)
+  const provenance = record.vttSummary?.provenance;
+  if (Array.isArray(provenance)) {
+    for (const p of provenance) {
+      if (
+        typeof p === "object" &&
+        p !== null &&
+        !("segment" in p) &&
+        "elapsedMs" in p
+      ) {
+        const ms = asNumber((p as Record<string, unknown>).elapsedMs);
+        if (ms && ms > 0) return Math.round(ms / 1000);
+      }
+    }
   }
   // Fall back to legacy elapsedSec from old JSON records
   return asNumber(record.elapsedSec) ?? 0;
