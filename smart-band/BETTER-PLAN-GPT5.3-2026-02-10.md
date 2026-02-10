@@ -1,5 +1,17 @@
 # Better Plan (GPT-5.3, 2026-02-10)
 
+## Decision Rule
+
+- Prioritize continuity first (`new data flowing now`), then completeness (`historical backfill`).
+
+## 48h Validation Checklist
+
+- [ ] Band 10 data present in Mi Fitness.
+- [ ] Chosen canonical route configured (A or B).
+- [ ] No duplicate writers for `steps`, `sleep`, `HR`, `workouts`.
+- [ ] Daily totals look sane across app views.
+- [ ] Huawei export package downloaded or status checked.
+
 ## Context
 
 - Objective: move from `Honor Band 6` to `Xiaomi Smart Band 10` without losing data.
@@ -24,20 +36,17 @@
 
 ## Legacy Backfill Strategy (Phase 2)
 
-1. Wait for Huawei export package, then inspect structure and coverage.
+1. Wait for Huawei export package, then inspect structure and coverage (`validated`).
 2. Choose backfill method:
-   - No-code bridge: Huawei app + Health Sync migration path
-   - Code path: parse Huawei export and import into Health Connect via Android app
-3. Backfill only after live Mi Fitness pipeline is stable.
+   - No-code bridge: Huawei app + Health Sync migration path (`real workflow`, metric coverage must be tested)
+   - Code path: parse Huawei export and import into Health Connect via Android app (`validated API path`)
+3. Backfill only after live Mi Fitness pipeline is stable (`engineering recommendation`).
 
-## Decision Rule
+## Phase 2 Confidence (Validated vs Inferred)
 
-- Prioritize continuity first (`new data flowing now`), then completeness (`historical backfill`).
-
-## 48h Validation Checklist
-
-- [ ] Band 10 data present in Mi Fitness.
-- [ ] Chosen canonical route configured (A or B).
-- [ ] No duplicate writers for `steps`, `sleep`, `HR`, `workouts`.
-- [ ] Daily totals look sane across app views.
-- [ ] Huawei export package downloaded or status checked.
+- `Validated`: Huawei provides account data-copy export flow and downloadable package via Privacy Centre.
+- `Validated`: Health Connect supports app writes/import, including setting source metadata.
+- `Validated`: Smart Band 10 pairs with Mi Fitness, and Mi Fitness exposes third-party sync flow.
+- `Inferred`: A no-code bridge can backfill all needed Huawei metrics with acceptable fidelity on your exact setup.
+- `Inferred`: Metric parity for `sleep`, `HR`, and `workouts` will be complete without gaps or transformations.
+- `Recommendation`: stabilize live Mi Fitness flow first, then run historical backfill as a separate operation.
