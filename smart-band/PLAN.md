@@ -243,3 +243,32 @@ is stable:
   without gaps or transformations on your exact setup.
 - `Recommendation`: stabilize live Mi Fitness flow first, then run historical
   backfill as a separate operation.
+
+## Appendix: Sleep Data Coverage
+
+Known sleep data sources as of 2026-02-10, from Google Takeout and Huawei Health
+inspection:
+
+| Source               | Coverage            | Notes                                        |
+| -------------------- | ------------------- | -------------------------------------------- |
+| Huawei Health (iPad) | May 2020 → present  | Complete, unbroken, both Honor bands         |
+| Google Takeout / Fit | 33 scattered nights | 3 clusters: Nov 2020, May/Jun 2022, Oct 2023 |
+| Health Connect       | Not yet             | Waiting for first Mi Fitness sleep           |
+
+Takeout sleep clusters (from `Fit/All Sessions/*_SLEEP.json`):
+
+- **Nov 2020** (Honor Band 5, Pixel 3): 10 nights + 1 in Dec.
+- **May/Jun 2022** (Honor Band 6, Pixel 6): 9 consecutive nights with detailed
+  sleep stages (30–50 segments each). Source: `nl.appyhapps.healthsync`.
+- **Oct 2023** (Honor Band 6, Pixel 6): 12 sessions including naps. Source:
+  `nl.appyhapps.healthsync`.
+
+The Takeout data confirms the Health Sync → Fit → cloud → Takeout pipeline works
+for sleep, including detailed sleep stage segments. Phase 2 backfill should
+replicate this for the full Huawei Health dataset (~6 years).
+
+Future possibilities:
+
+- Custom Android app (vibe-coded) to read Health Connect data locally.
+- Home Assistant integration for health dashboards.
+- Health Connect ZIP export → Synology for local archival and analysis.
