@@ -272,3 +272,19 @@ Future possibilities:
 - Custom Android app (vibe-coded) to read Health Connect data locally.
 - Home Assistant integration for health dashboards.
 - Health Connect ZIP export → Synology for local archival and analysis.
+
+## Appendix: Device History
+
+| Date       | Device                        | Type   | Price (CA$) | Notes               |
+| ---------- | ----------------------------- | ------ | ----------- | ------------------- |
+| ~Sep 2008  | iPhone 3G                     | phone  | TBD         | Register 2008-09-09 |
+| ~2010      | Nexus One                     | phone  | TBD         | Release 2010-03     |
+| ~Dec 2012  | Nexus 7                       | tablet | used        | Register 2012-12-26 |
+| 2014-03-05 | Nexus 5 (32GB, Black)         | phone  | $399        | Google Play order   |
+| 2016-05-21 | Nexus 5X (32GB, Carbon)       | phone  | $499        | Google Store order  |
+| 2019-08-29 | Pixel 3 (64GB, Just Black)    | phone  | $999        |                     |
+| 2020-04-25 | Honor Band 5                  | band   | $55         | Amazon, KelinkaUS   |
+| 2021-03-14 | Honor Band 6                  | band   | $93         | Amazon, DirectA     |
+| 2021-10-24 | Pixel 6 (128GB, Stormy Black) | phone  | $799        |                     |
+| 2025-09-13 | Pixel 9 Pro                   | phone  | $870        | Used, Marketplace   |
+| 2026-01-26 | Xiaomi Smart Band 10          | band   | $99         | Paired 2026-02-10   |
