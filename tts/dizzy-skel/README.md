@@ -14,6 +14,13 @@ mlx-audio.
 - [ ] Generate cloned audio per line
 - [ ] Stitch parts into one audio file
 
+## Notes
+
+```bash
+alias dizzy='uv run --prerelease=allow main.py'
+dizzy epub --chapter "One">data/use-of-weapons-chapter-one.txt
+```
+
 ## Pipeline
 
 - Write a screenplay with speaker labels and lines
@@ -39,8 +46,8 @@ Each speaker needs:
 - Search the VTT around that time offset for the expected text
 - Validate the VTT text matches the epub text
 
-Example: Chapter "One" starts at m4b marker 00:26:28, VTT has
-"She made her way through the turbine hall" at 00:26:32 — within a few seconds.
+Example: Chapter "One" starts at m4b marker 00:26:28, VTT has "She made her way
+through the turbine hall" at 00:26:32 — within a few seconds.
 
 ### VTT transcription
 
