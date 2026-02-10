@@ -43,17 +43,23 @@
 
 ### Validate (48 Hours)
 
+- [ ] Open Mi Fitness at least twice daily (background sync may not trigger
+      automatically on all devices).
 - [ ] Run for 48 hours and verify no doubled `steps` and no duplicate `sleep`
       sessions.
 - [ ] Verify HR and SpO2 entries come from Mi Fitness only (check individual
       data points).
+- [ ] If gaps appear, open Mi Fitness and check whether data backfills.
 
 ## Quick Name Map
 
 - `Huawei Health`: legacy vendor app holding Honor Band history.
-- `Health Sync`: bridge app used to migrate/sync between ecosystems.
+- `Health Sync`: Android bridge app by appyhapps. Free 7-day trial; one-time
+  purchase for permanent license. Historical backfill requires paid license.
+  Available on Google Play Store.
 - `Health Connect`: Android on-device health data hub on Pixel.
-- `Google Fit`: optional viewer/sink layer.
+- `Google Fit`: optional viewer/sink layer (API shut down June 2025; app still
+  works as standalone tracker but is being phased out).
 
 ## Context
 
@@ -75,15 +81,23 @@
 
 ## Fallback (Only If Mi Fitness -> Health Connect Fails)
 
-- Use `Mi Fitness -> Google Fit` only if one of these failures happens:
-  - Mi Fitness cannot connect/write to Health Connect.
-  - One or more priority metrics (`steps`, `sleep`, `HR`, `SpO2`) are missing in
-    Health Connect after 48h.
-  - Mi Fitness -> Health Connect is unstable after re-auth/reinstall and
-    permission reset.
-- If you switch:
-  - Let Google Fit be the only writer for those metrics.
-  - Disable other writers for those metrics to avoid duplicates.
+Trigger conditions (any of these):
+
+- Mi Fitness cannot connect/write to Health Connect.
+- One or more priority metrics (`steps`, `sleep`, `HR`, `SpO2`) are missing in
+  Health Connect after 48h.
+- Mi Fitness -> Health Connect is unstable after re-auth/reinstall and
+  permission reset.
+
+Fallback steps (in order):
+
+1. Reinstall Mi Fitness, re-grant Health Connect permissions, retry.
+2. Clear Health Connect cache, reset app priority, retry.
+3. If still failing: use `Health Sync` as bridge from Mi Fitness to Health
+   Connect (same bridge app used for backfill).
+4. Last resort: use Google Fit as viewer only (note: Google Fit API was shut
+   down June 2025; Fit app still works but is being deprecated in favor of
+   Fitbit. Do not rely on Fit as a long-term writer).
 
 ## One Writer Per Metric (What This Means)
 
@@ -120,21 +134,60 @@
 
 ## Legacy Backfill Strategy (Phase 2)
 
+### About Health Sync
+
+- Android app by **appyhapps**
+  ([Play Store](https://play.google.com/store/apps/details?id=nl.appyhapps.healthsync),
+  [healthsync.app](https://healthsync.app)).
+- Acts as a bridge between health platforms (reads from one, writes to another).
+- **Free trial**: 7 days (live sync only, no historical backfill).
+- **Paid license**: one-time purchase for permanent license (historical backfill
+  requires paid license).
+- Supports Huawei Health as source and Health Connect as direct destination (no
+  Google Fit intermediary needed).
+- Confirmed metrics from Huawei Health: `steps`, `sleep` (light/deep/REM), `HR`
+  (continuous + resting), `SpO2`.
+- Historical backfill syncs backward in time, 1+ days per batch every 15
+  minutes.
+
+### Backfill Approach: Temporary Huawei Install on Pixel 9
+
+- Health Sync requires the Huawei Health app installed locally (no cloud-only or
+  credential-based access).
+- Huawei Health APK can be sideloaded from APKMirror (no AppGallery needed), but
+  HMS Core is also required for it to function.
+- Strategy: install temporarily, run backfill, verify, then uninstall Huawei
+  Health + HMS Core and clear app data.
+
+### Prerequisites
+
+- Huawei Health data synced to Huawei's cloud (verify via iPad Huawei Health app
+  before installing on Pixel 9).
+- Paid Health Sync license (one-time purchase, required for historical
+  backfill).
+
+### Backfill Steps
+
 1. Wait for Huawei export package, then inspect structure and coverage
    (`validated`).
-2. Default backfill method: no-code bridge with `Health Sync` (`real workflow`,
-   metric coverage must be tested).
-3. No-code bridge flow:
-   - Install/sign in Huawei Health where needed for source visibility.
-   - Configure `Health Sync` source `Huawei Health` and destination
-     `Health Connect`.
-   - Run historical sync and validate `steps`, `sleep`, `HR`, `SpO2`.
-4. Fallback method if no-code coverage is incomplete:
-   - Code option: parse Huawei export and import into Health Connect via Android
-     app (`validated API method`).
-5. Backfill only after Mi Fitness sync is stable (`engineering recommendation`).
-6. Test Health Sync with 1-day historical window to verify Huawei→Health Connect
-   supports `steps`, `sleep`, `HR`, `SpO2` before full backfill.
+2. Backfill only after Mi Fitness sync is stable (`engineering recommendation`).
+3. **Temporary install on Pixel 9**:
+   - Sideload Huawei Health APK + HMS Core from APKMirror.
+   - Sign in with Huawei ID; confirm historical data is visible.
+   - Install Health Sync from Play Store; purchase license.
+   - Configure Health Sync source: `Huawei Health`, destination:
+     `Health Connect` (direct, no Google Fit needed).
+   - Test with 1-day historical window to verify `steps`, `sleep`, `HR`, `SpO2`
+     appear in Health Connect.
+   - Run full historical sync.
+4. **Verify backfill** in Health Connect before cleanup.
+5. **Cleanup**: uninstall Huawei Health + HMS Core, clear residual app data.
+6. Fallback if sideloading Huawei Health on Pixel 9 fails:
+   - Use Pixel 6 as staging device instead (install Huawei stack there, backfill
+     to Health Connect on Pixel 6, then transfer via Health Connect
+     backup/restore ZIP export/import).
+   - Code fallback: parse Huawei Privacy Centre export ZIP and write directly to
+     Health Connect via Android API (`validated API method`).
 
 ### Phase 2 Stability Criteria
 
@@ -153,12 +206,22 @@ is stable:
 - `Validated`: Health Connect supports app writes/import, including setting
   source metadata.
 - `Validated`: Smart Band 10 pairs with Mi Fitness, and Mi Fitness exposes
-  third-party sync flow.
-- `Validated`: `Health Sync` is an established generic bridge app used for
-  Huawei-to-Health-Connect migration workflows.
-- `Inferred`: A no-code bridge can backfill all needed Huawei metrics with
-  acceptable fidelity on your exact setup.
+  Health Connect sync (steps, HR, sleep, SpO2 confirmed).
+- `Validated`: `Health Sync` supports Huawei Health as source and Health Connect
+  as direct destination. Supports `steps`, `sleep`, `HR`, `SpO2`.
+- `Validated`: Health Sync supports historical backfill (paid license required).
+- `Validated`: Health Connect backup and restore (added late 2024) supports
+  cross-device transfer via ZIP export/import (Pixel 6 fallback path).
+- `Constraint`: Health Sync requires Huawei Health app installed locally; Huawei
+  Health APK can be sideloaded from APKMirror without AppGallery, but HMS Core
+  is also required. Temporary install on Pixel 9, uninstall after backfill.
+- `Caveat`: Mi Fitness background sync may require app to be actively opened on
+  some devices (user reports from Oct 2025).
+- `Caveat`: Huawei Health data must be synced to Huawei cloud for Health Sync to
+  access it.
+- `Inferred`: Health Connect ZIP export preserves full metric fidelity across
+  devices (not yet tested on this exact setup; Pixel 6 fallback only).
 - `Inferred`: Metric parity for `sleep`, `HR`, and `SpO2` will be complete
-  without gaps or transformations.
+  without gaps or transformations on your exact setup.
 - `Recommendation`: stabilize live Mi Fitness flow first, then run historical
   backfill as a separate operation.
