@@ -21,27 +21,28 @@
 - [x] In Health Connect → App permissions, screenshot current writers for
       `steps`, `sleep`, `HR`, `SpO2`. (Only Google Fit writing; 1 of 4 apps has
       access.)
-- [ ] Verify Mi Fitness app shows Health Connect in permissions list (install
-      app, don't pair yet).
-- [ ] In Google Fit → Profile → Settings (gear icon) → Track your activities,
-      **disable phone activity tracking**.
-- [ ] In Health Connect, audit current data sources and disable any unwanted
-      writers before pairing.
+- [x] Verify Mi Fitness app shows Health Connect in permissions list (install
+      app, don't pair yet). (Confirmed: "Health Connect" tag on Play Store
+      listing.)
+- [x] In Google Fit → Profile → Settings (gear icon) → Track your activities,
+      **disable phone activity tracking**. (Also disabled "Use your location".)
+- [x] In Health Connect, audit current data sources and disable any unwanted
+      writers before pairing. (Disabled all Fit write permissions; Fit is
+      read-only now.)
 
 ### Pair and Configure
 
-- [ ] Pair Band 10 to `Mi Fitness` on Pixel 9.
-- [ ] In Mi Fitness, enable write access to Health Connect.
-- [ ] Confirm new `steps`, `sleep`, `HR`, and `SpO2` records appear in Health
-      Connect.
-- [ ] In Health Connect → Data sources and priority → Steps, set Mi Fitness as
-      **priority 1**.
-- [ ] In Health Connect → Data sources and priority → Sleep, set Mi Fitness as
-      **priority 1**.
-- [ ] In Health Connect → Data sources and priority → Heart rate, set Mi Fitness
-      as **priority 1**.
-- [ ] In Health Connect → Data sources and priority → Oxygen saturation, set Mi
-      Fitness as **priority 1**.
+- [x] Pair Band 10 to `Mi Fitness` on Pixel 9. (Paired; Xiaomi account created;
+      notifications allowed; battery set to Unrestricted; firmware updated to
+      3.2.7.)
+- [x] In Mi Fitness, enable write access to Health Connect. (Allow All granted
+      via Health Connect → App permissions → Mi Fitness.)
+- [x] Confirm new `steps`, `sleep`, `HR`, and `SpO2` records appear in Health
+      Connect. (First sync at 15:47; Activity + Vitals writing confirmed. Fix:
+      Mi Fitness app's "Fitness and Wellness" permission was off by default —
+      Settings → Apps → Mi Fitness → Permissions → Allow All.)
+- [x] In Health Connect → Data sources and priority, set device priority: Mi
+      Fitness, Pixel 9, Fit.
 
 ### Validate (48 Hours)
 
