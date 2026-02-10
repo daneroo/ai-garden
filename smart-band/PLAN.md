@@ -68,10 +68,25 @@
 
 - Objective: move from `Honor Band 6` to `Xiaomi Smart Band 10` without losing
   data.
+- Device timeline:
+  - `Pixel 3`: ordered 2019-08-29, CA$999.
+  - `Honor Band 5`: ordered 2020-04-25, CA$55.
+  - `Honor Band 6`: ordered 2021-03-14, CA$93.
+  - `Pixel 6`: ordered 2021-10-24, CA$799.
+  - `Pixel 9 Pro`: purchased 2025-09-13 (used, Marketplace), CA$870.
+  - `Xiaomi Smart Band 10`: ordered 2026-01-26, paired 2026-02-10, CA$99.
+  - `Health Sync`: Google account access granted 2022-12-18 (free trial; license
+    not purchased — will need to buy for Phase 2 backfill).
 - Current state:
   - Huawei data export request submitted (`2026-02-10 14:29:54`).
   - Google Takeout export requested for `Fit` + `Timeline`
     (`2026-02-10 1:41 AM`).
+- Takeout findings:
+  - 33 sleep sessions in Fit archive, spanning 2020-11 to 2023-10.
+  - Source includes `nl.appyhapps.heal` (Health Sync) — confirms prior use of
+    Health Sync to push Honor Band sleep data into Fit.
+  - This data reached Fit's cloud and appears in Takeout, confirming Health
+    Connect/Fit cloud-sync path for backfilled data.
 - Constraint: avoid lock-in and avoid duplicate metrics across apps.
 
 ## Metric Priority
