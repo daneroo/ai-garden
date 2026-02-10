@@ -30,7 +30,8 @@
 - [x] Wait for completion email.
 - [x] Download archive before link expires.
 - [x] Unzip and verify expected folders/files.
-- [ ] Archive to local + backup storage.
+- [x] Archive to local + backup storage (Synology + 2 computers + Backblaze = 5
+      copies).
 
 **Working directory**: `/Users/daniel/Code/iMetrical/ai-garden/smart-band/data/`
 

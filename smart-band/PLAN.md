@@ -15,10 +15,12 @@
 
 ### Pre-flight (Before Pairing)
 
-- [ ] Confirm Google Takeout export is downloaded and archived.
+- [x] Confirm Google Takeout export is downloaded and archived.
 - [ ] Check Huawei export status; download and archive package if ready.
-- [ ] In Health Connect → App permissions, screenshot current writers for
-      `steps`, `sleep`, `HR`, `SpO2`.
+      (Checked 2026-02-10: request confirmed, still in flight.)
+- [x] In Health Connect → App permissions, screenshot current writers for
+      `steps`, `sleep`, `HR`, `SpO2`. (Only Google Fit writing; 1 of 4 apps has
+      access.)
 - [ ] Verify Mi Fitness app shows Health Connect in permissions list (install
       app, don't pair yet).
 - [ ] In Google Fit → Profile → Settings (gear icon) → Track your activities,
