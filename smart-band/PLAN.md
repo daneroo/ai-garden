@@ -180,10 +180,18 @@ Fallback steps (in order):
 ### Prepare Source Data (Pixel 9)
 
 - [ ] Tools: Huawei Health (App) + HMS Core (App) + Health Sync (App).
-- [ ] Download APKs: Since Huawei apps are not in Play Store, download recent
-      versions from a trusted source (e.g., APKMirror): - Huawei Health (base
-      app) - Huawei Mobile Services (HMS Core - required for login)
-- [ ] Install & Login: Install both. Open Huawei Health, sign in with Huawei ID.
+- [ ] Download APKs from APKMirror (see justification in Phase 2 Confidence):
+  - HMS Core (Huawei Mobile Services) — install first.
+    https://www.apkmirror.com/apk/huawei-internet-services/huawei-mobile-services/
+  - Huawei Health — install second.
+    https://www.apkmirror.com/apk/huawei-software-technologies-co-ltd/health/
+  - Pick the latest release matching your device architecture (arm64-v8a for
+    Pixel 9). Huawei Health requires Android 8.0+; Pixel 9 is compatible.
+- [ ] Install & Login: Install HMS Core first, then Huawei Health. Open Huawei
+      Health, sign in with Huawei ID, wait for cloud sync to complete.
+- [ ] **Deny Huawei Health all Health Connect write permissions.** Only Health
+      Sync should write backfill data to Health Connect. Check: Health Connect →
+      App permissions → Huawei Health → deny all, or don't grant when prompted.
 - [ ] Verify Source: Confirm your history (Steps, Sleep, etc.) is visible inside
       the Huawei Health app on Pixel 9.
 
@@ -209,9 +217,12 @@ Fallback steps (in order):
 - [ ] Run Full History: Select all available years (2020–2025). This may take
       hours as it processes in batches.
 - [ ] Final Audit: Spot check random dates in 2021, 2023, 2024.
-- [ ] Cleanup: Once confirmed safe in Health Connect: - Uninstall Huawei Health.
-      - Uninstall HMS Core. - Keep Health Sync installed (passive, or uninstall
-      if one-off).
+- [ ] Cleanup (once confirmed safe in Health Connect):
+  - Revoke Health Sync's Health Connect write access (or uninstall if done).
+  - Uninstall Huawei Health.
+  - Uninstall HMS Core.
+  - Check Settings → Accounts for lingering Huawei account; remove if present.
+  - Check Settings → Apps for any leftover Huawei services; remove if found.
 
 ### Phase 2 Confidence (Validated vs Inferred)
 
@@ -226,9 +237,20 @@ Fallback steps (in order):
 - `Validated`: Health Sync supports historical backfill (paid license required).
 - `Validated`: Health Connect backup and restore (added late 2024) supports
   cross-device transfer via ZIP export/import (Pixel 6 fallback path).
+- `Validated`: APKMirror is a safe source for sideloading Huawei APKs. Every APK
+  is cryptographically signature-verified against the original developer and
+  manually reviewed before publishing. APKMirror is operated by the Android
+  Police / APKMirror team (est. 2014) and does not host modified APKs. Preferred
+  over Huawei AppGallery because it avoids installing yet another store app.
+  Refs: [APKMirror FAQ](https://www.apkmirror.com/faq/),
+  [XDA Forums discussion](https://xdaforums.com/t/sideloading-are-apkmirror-apkpure-and-f-droid-safe-to-use.4549165/).
 - `Constraint`: Health Sync requires Huawei Health app installed locally; Huawei
   Health APK can be sideloaded from APKMirror without AppGallery, but HMS Core
   is also required. Temporary install on Pixel 9, uninstall after backfill.
+- `Risk-low`: Temporary Huawei app install. HMS Core registers background
+  services and notification channels but has no system-partition access on stock
+  Pixel. Cleanup: uninstall both apps, remove Huawei account from Settings →
+  Accounts, verify no leftover services in Settings → Apps.
 - `Caveat`: Mi Fitness background sync may require app to be actively opened on
   some devices (user reports from Oct 2025).
 - `Caveat`: Huawei Health data must be synced to Huawei cloud for Health Sync to
