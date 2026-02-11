@@ -179,50 +179,60 @@ Fallback steps (in order):
 
 ### Prepare Source Data (Pixel 9)
 
-- [ ] Tools: Huawei Health (App) + HMS Core (App) + Health Sync (App).
-- [ ] Download APKs from APKMirror (see justification in Phase 2 Confidence):
-  - HMS Core (Huawei Mobile Services) — install first.
-    https://www.apkmirror.com/apk/huawei-internet-services/huawei-mobile-services/
-  - Huawei Health — install second.
-    https://www.apkmirror.com/apk/huawei-software-technologies-co-ltd/health/
-  - Pick the latest release matching your device architecture (arm64-v8a for
-    Pixel 9). Huawei Health requires Android 8.0+; Pixel 9 is compatible.
-- [ ] Install & Login: Install HMS Core first, then Huawei Health. Open Huawei
-      Health, sign in with Huawei ID, wait for cloud sync to complete.
-- [ ] **Deny Huawei Health all Health Connect write permissions.** Only Health
-      Sync should write backfill data to Health Connect. Check: Health Connect →
-      App permissions → Huawei Health → deny all, or don't grant when prompted.
-- [ ] Verify Source: Confirm your history (Steps, Sleep, etc.) is visible inside
-      the Huawei Health app on Pixel 9.
+- [x] Tools: Huawei Health (App) + HMS Core (App) + Health Sync (App).
+- [x] Download APKs from APKMirror (see justification in Phase 2 Confidence):
+  - HMS Core 6.15.4.342 (arm64-v8a + arm-v7a, Android 5.0+).
+  - Huawei Health 16.1.1.310 (arm64-v8a, Android 8.0+).
+  - Enabled "Install unknown apps" for Files by Google to sideload.
+- [x] Install & Login: Installed HMS Core first, then Huawei Health. Signed in
+      with Huawei ID. Cloud sync completed — full history visible (steps and
+      sleep back to May 2020; 2,654,007 steps in 2020).
+- [x] **Huawei Health has no Health Connect access.** Never appeared in Health
+      Connect → App permissions. No action needed.
+- [x] Verify Source: History confirmed in Huawei Health on Pixel 9.
 
 ### Configure Bridge (Health Sync)
 
-- [ ] Install: Download Health Sync (by appyhapps) from Play Store.
-- [ ] License: Purchase lifetime license (~CA$10) after trial start.
-- [ ] Sync Config: - First Source: Select Huawei Health. - Destination: Select
-      Health Connect (directly). - Metrics: Select Steps, Sleep, Heart Rate,
-      Oxygen Saturation. - Granularity: Enable high precision if offered.
+- [x] Install: Health Sync (by appyhapps) from Play Store.
+- [x] License: Purchased lifetime license (CA$4.93).
+- [x] Sync Config: Source: Huawei Health Kit. Destination: Health Connect.
+      Metrics: Steps, Activities, Sleep, Heart rate, Weight, Blood pressure,
+      Blood sugar, Oxygen saturation. Health Connect write permissions granted
+      (Allow All).
 
 ### Test Backfill (Small Batch)
 
-- [ ] Select Window: In Health Sync, choose "Historical Data" and select a
-      recent 1-week period (e.g., last week of Jan 2026).
-- [ ] Run Sync: Allow it to complete.
-- [ ] Verify: Open Health Connect (or Fit) and check that week. - Are steps
-      doubled? (Should not be if priorities are right). - Is sleep detailed?
-      (REM/Light/Deep).
+- [x] Daily sync ran automatically on first connect; "Period already synced"
+      showed Jan 1, 1970 – Feb 10, 2026 (epoch = "from the beginning").
+- [x] Historical sync test: Sleep, HR, SpO2 for Feb 7–9, 2026.
+      Sleep confirmed in Fit back to Feb 2 (timezone boundary). HR and SpO2 not
+      visible in Fit (Fit display limitation — likely in Health Connect).
+- [x] Observation: Health Sync has daily resync rate limits. Historical sync
+      processes in batches over hours/days, not instantly.
 
-### Full Backfill & Cleanup
+### Full Backfill (In Progress)
 
-- [ ] Run Full History: Select all available years (2020–2025). This may take
-      hours as it processes in batches.
+- [x] Historical sync configured: Sleep, HR, SpO2 from Jan 1, 2020 → Feb 9,
+      2026. "Don't sync daily data, only historical data" enabled.
+- [ ] Monitor: Check Fit periodically for sleep data appearing further back.
+      Target: sleep records back to May 2020.
+- [ ] Steps & Activities: Run separately after sleep/HR/SpO2 completes (steps
+      may conflict with Pixel 9 phone-counted steps; needs separate evaluation).
 - [ ] Final Audit: Spot check random dates in 2021, 2023, 2024.
-- [ ] Cleanup (once confirmed safe in Health Connect):
-  - Revoke Health Sync's Health Connect write access (or uninstall if done).
-  - Uninstall Huawei Health.
-  - Uninstall HMS Core.
-  - Check Settings → Accounts for lingering Huawei account; remove if present.
-  - Check Settings → Apps for any leftover Huawei services; remove if found.
+
+### Pending Undo Actions (Do Not Forget)
+
+These were introduced during Phase 2 and must be reversed after backfill:
+
+- [ ] Revoke Health Sync's Health Connect write access (Allow All → deny).
+- [ ] Uninstall Huawei Health.
+- [ ] Uninstall HMS Core.
+- [ ] Remove Huawei account: Settings → Accounts → Huawei → Remove.
+- [ ] Check Settings → Apps for leftover Huawei services.
+- [ ] Re-disable "Install unknown apps" for Files by Google: Settings → Apps →
+      Files by Google → Install unknown apps → off.
+- [ ] Evaluate: keep Health Sync installed (for Drive Sync / future use) or
+      uninstall.
 
 ### Phase 2 Confidence (Validated vs Inferred)
 
