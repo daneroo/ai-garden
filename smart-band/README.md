@@ -1,6 +1,6 @@
 # Smart Band (Honor Band 6 → Xiaomi Smart Band 10)
 
-Next step, answer unresolved questions in [PLAN.md](PLAN.md)
+We are currently exuting the `Plan.md` - Progress is noted in tasks ([ ] [x]).
 
 - [PLAN.md](PLAN.md) - **Current plan of record** (Mi Fitness first, backfill
   second)
