@@ -163,12 +163,23 @@ Fallback steps (in order):
 
 ### Prerequisites
 
-- [ ] Huawei Health Data: Synced to cloud (verified on iPad).
-- [ ] Huawei Export: Request confirmed (keep as backup/archive).
-- [ ] Tools: Huawei Health (App) + HMS Core (App) + Health Sync (App).
+- [x] Mi Band 10 Data start:`2026-02-10T14:00:00-05:00`
+  - `Mi Band -> Pixel 9 -> Health Connect`
+- [x] Honor Band 6 was powered off:`2026-02-11T15:00:00-05:00`.
+- [x] Huawei Health Data: Synced to cloud (verified on iPad).
+  - [x] Manual sync on iPad Huawei Health (after Honor power off) at
+        `2026-02-11T15:20:00-05:00`.
+- [x] Confirmed overlap: about 25h of steps and one overnight sleep record
+      (already observed during validation).
+- [x] Selective backfill cutoff defined: backfill Huawei data only for
+      timestamps `<= 2026-02-10T13:59:59-05:00` to avoid overlap with Mi Band
+      era.
+- [ ] Huawei Export: Request confirmed (keep as backup/archive) - Still
+      pending - but we are proceeding anyways
 
 ### Prepare Source Data (Pixel 9)
 
+- [ ] Tools: Huawei Health (App) + HMS Core (App) + Health Sync (App).
 - [ ] Download APKs: Since Huawei apps are not in Play Store, download recent
       versions from a trusted source (e.g., APKMirror): - Huawei Health (base
       app) - Huawei Mobile Services (HMS Core - required for login)
