@@ -204,9 +204,9 @@ Fallback steps (in order):
 
 - [x] Daily sync ran automatically on first connect; "Period already synced"
       showed Jan 1, 1970 – Feb 10, 2026 (epoch = "from the beginning").
-- [x] Historical sync test: Sleep, HR, SpO2 for Feb 7–9, 2026.
-      Sleep confirmed in Fit back to Feb 2 (timezone boundary). HR and SpO2 not
-      visible in Fit (Fit display limitation — likely in Health Connect).
+- [x] Historical sync test: Sleep, HR, SpO2 for Feb 7–9, 2026. Sleep confirmed
+      in Fit back to Feb 2 (timezone boundary). HR and SpO2 not visible in Fit
+      (Fit display limitation — likely in Health Connect).
 - [x] Observation: Health Sync has daily resync rate limits. Historical sync
       processes in batches over hours/days, not instantly.
 
@@ -221,10 +221,15 @@ Fallback steps (in order):
 - [ ] Final Audit: Spot check random dates in 2021, 2023, 2024.
 - Note (2026-02-11 ~17:30): Backfill progress and observations.
   - Sleep/vitals working backwards, currently at 2026-01-13 → 2025-01-01.
-  - Step inflation observed: Fit 11,798 vs Mi Fitness 10,653 today (Health
-    Sync wrote Honor Band steps alongside Mi Fitness + Pixel phone steps).
+  - Step inflation observed: Fit 11,798 vs Mi Fitness 10,653 today (Health Sync
+    wrote Honor Band steps alongside Mi Fitness + Pixel phone steps).
   - Will likely skip steps backfill — Honor Band and Pixel 9 overlap for the
     entire historical period, so duplication would be systemic.
+- Note (2026-02-12 ~13:30): Backfill timing update.
+  - Currently at 2025-09-27, ~4.5 months covered in ~21h (~0.2 months/hour).
+  - Estimated ~13 days to reach May 2020 at current rate.
+  - Plan: let current batch finish to 2025-01-01, then set a single range
+    2020-01-01 → 2024-12-31 for the remainder.
 
 ### Pending Undo Actions (Do Not Forget)
 
