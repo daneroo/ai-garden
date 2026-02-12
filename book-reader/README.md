@@ -10,15 +10,18 @@ EBook reader experiment
   - Search for timecode
   - Search (fuzzy) for text
 
-We wish to stay close to the reader/player of [audiobookshelf](https://github.com/advplyr/audiobookshelf)
-which uses [epubjs v^0.3.88](https://github.com/futurepress/epub.js). Latest epubjs is currently 0.3.93
+We wish to stay close to the reader/player of
+[audiobookshelf](https://github.com/advplyr/audiobookshelf) which uses
+[epubjs v^0.3.88](https://github.com/futurepress/epub.js). Latest epubjs is
+currently 0.3.93
 
-My static html file starter was from the [spread example](https://github.com/futurepress/epub.js/blob/master/examples/spreads.html)
+My static html file starter was from the
+[spread example](https://github.com/futurepress/epub.js/blob/master/examples/spreads.html)
 
 ## Operation
 
 ```bash
-ln -s /Volumes/Reading/audiobooks html/audiobooks
+ln -s /Volumes/Space/Reading/audiobooks/ html/audiobooks
 pnpx serve html/
 open http://localhost:3000/
 open http://localhost:3000/audiobooks/
