@@ -24,6 +24,8 @@ Organizing agentic tool experimentation and planning.
   (Kilo, OpenClaw, OpenCode)
 - [`bun-one/`](../bun-one/README.md) — TypeScript & Bun (sub)-monorepo
 - [`deno-one/`](../deno-one/README.md) — Deno (sub)-monorepo
+- [`experiments/`](../experiments/README.md) - Agent-agnostic experiment
+  workspaces
 
 ```text
 ai-garden/
