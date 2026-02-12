@@ -19,7 +19,7 @@ Next Task not chosen yet
 
 ### Implementation Plan
 
-- [ ] **Step 1: xx
+- [ ] \*\*Step 1: xx
   - sub step
 
 ## Backlog
