@@ -59,13 +59,13 @@ The codebase currently has a single controller-driven home page and a router tha
 
 ## Historical Context (from thoughts/)
 
-- `experiments/2026-01-14-bookfinder/thoughts/research/2026-01-14_m4b_scanner.md` - recommends manual recursive traversal for fine-grained error handling and symlink detection, which can guide the Elixir scan approach.
-- `experiments/2026-01-14-bookfinder/thoughts/tickets/feature_m4b_scanner.md` - baseline requirements for recursive scan and metadata fields.
-- `experiments/2026-01-14-bookfinder/thoughts/plans/m4b_scanner.md` - suggests streaming results as they’re found; relevant if LiveView wants incremental updates later.
+- `experiments/bookfinder-opencode/thoughts/research/2026-01-14_m4b_scanner.md` - recommends manual recursive traversal for fine-grained error handling and symlink detection, which can guide the Elixir scan approach.
+- `experiments/bookfinder-opencode/thoughts/tickets/feature_m4b_scanner.md` - baseline requirements for recursive scan and metadata fields.
+- `experiments/bookfinder-opencode/thoughts/plans/m4b_scanner.md` - suggests streaming results as they’re found; relevant if LiveView wants incremental updates later.
 
 ## Related Research
 
-- `experiments/2026-01-14-bookfinder/thoughts/research/2026-01-14_metadata_extraction.md`
+- `experiments/bookfinder-opencode/thoughts/research/2026-01-14_metadata_extraction.md`
 
 ## Open Questions
 

@@ -1,4 +1,4 @@
-# Plan: 2026-02-01-bookfinder
+# Plan: bookfinder-opencode-gpt-5-2
 
 Harness: opencode-gpt-5.2
 
@@ -27,7 +27,7 @@ Goal: Build a Bun + TypeScript CLI that scans for `.m4b`/`.mp3` files and uses
 
 ## Command Log
 
-- 2026-02-01: `mkdir -p experiments/2026-02-01-bookfinder/{src,tests}`
+- 2026-02-01: `mkdir -p experiments/bookfinder-opencode-gpt-5-2/{src,tests}`
 - 2026-02-01: `bun install`
 - 2026-02-01: `bun run fmt`
 - 2026-02-01: `bun run lint`

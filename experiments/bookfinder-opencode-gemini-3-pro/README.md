@@ -1,4 +1,4 @@
-# gemibooks
+# bookfinder-opencode-gemini-3-pro
 
 Audiobook scanner CLI tool. Recursively scans directories for audio files and extracts metadata using ffprobe.
 

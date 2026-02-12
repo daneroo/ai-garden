@@ -1,4 +1,4 @@
-# 2026-02-01-booktui
+# bookfinder-claude-opus-4-5
 
 **Seed**: [bookfinder](../seeds/bookfinder.md)
 **Harness**: claude/opus-4.5

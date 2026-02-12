@@ -1,4 +1,4 @@
-# Agent Guidelines for gemibooks
+# Agent Guidelines for bookfinder-opencode-gemini-3-pro
 
 ## Workflow
 

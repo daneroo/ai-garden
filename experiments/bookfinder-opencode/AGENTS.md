@@ -2,7 +2,7 @@
 
 ## Context
 
-Experiment: Bookfinder Date: 2026-01-14
+Experiment: bookfinder-opencode | Agent: OpenCode | Created: 2026-01-14
 
 ## Rules
 

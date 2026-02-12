@@ -1,8 +1,8 @@
-# gemibooks Plan
+# Plan: bookfinder-opencode-gemini-3-pro
 
 ## Goal
 
-Build `gemibooks`, an audiobook scanner CLI, to evaluate OpenCode/Gemini-3-Pro
+Build `bookfinder-opencode-gemini-3-pro`, an audiobook scanner CLI, to evaluate OpenCode/Gemini-3-Pro
 harness.
 
 ## Milestones

@@ -3,8 +3,8 @@
 Agent-agnostic experiment workspaces for this monorepo.
 
 - Problem-first: Organize by experiment (problem/project), not by agent (tool).
-- Isolated from consolidated code: Experiments live here, not in `bun-one/` or
-  `deno-one/`, etc
+- Isolated from consolidated code: Experiments live here (`/experiments/`), not
+  in `bun-one/` or `deno-one/`, etc
 - Isolated from legacy root: Separate from the unorganized project pile.
 - Temporary by design: Experiments are for evaluation, not permanent homes.
 
@@ -18,21 +18,24 @@ Agent-agnostic experiment workspaces for this monorepo.
 
 ## Directory Structure
 
-Each experiment is a subdirectory:
+Each experiment is a seed and a subdirectory:
 
-- `<YYYY-MM-DD>-<slug>/` (recommended naming; not enforced)
-  - `README.md`: required
-  - Harness artifact:`AGENTS.md`,`CLAUDE.md`, `thoughts/`,.. unproscribed (yet)
 - `seeds/<slug>.md`: reusable idea specs (1 seed → many experiments)
+- `<slug>-<variant>/` (recommended naming; not enforced)
+  - variant examples: `opencode-gpt-5-2`, `claude-opus-4-5`
+  - `README.md`: required
+  - Harness artifact: `AGENTS.md`, `CLAUDE.md`, `thoughts/`, ... not proscribed
+    (yet)
 
 ### Recommended Artifacts
 
-- `AGENTS.md`: Per-experiment workflow and tooling rules (might depend on harness).
+- `AGENTS.md`: Per-experiment workflow and tooling rules (might depend on
+  harness).
 - `PLAN.md`: A living plan doc with these sections: harness, goal, milestones
   (checkbox list), decisions/notes, and Session Audit Trail.
 
 ### README Recommendations
 
-- Name and date: Title matches directory name.
+- Name: Title matches directory name.
 - Harness/workflow goal: What process is being evaluated.
 - Problem/code goal: What the experiment builds or tests.

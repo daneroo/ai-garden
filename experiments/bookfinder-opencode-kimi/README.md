@@ -1,4 +1,4 @@
-# 2026-02-01-kimibooks
+# bookfinder-opencode-kimi
 
 To install dependencies:
 

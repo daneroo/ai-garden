@@ -1,35 +1,33 @@
 {
-  "name": "booktui",
+  "name": "bookfinder-opencode-kimi",
   "version": "0.1.0",
+  "module": "src/index.tsx",
   "type": "module",
   "private": true,
-  "bin": {
-    "booktui": "./src/index.ts"
-  },
   "scripts": {
     "lint": "eslint .",
     "check": "tsc --noEmit",
     "test": "vitest run",
     "fmt": "prettier --write .",
     "fmt:check": "prettier --check .",
-    "ci": "bun run fmt:check && bun run lint && bun run check && bun run test"
+    "ci": "bun run fmt:check && bun run lint && bun run check && bun run test",
+    "start": "bun run src/index.tsx"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
     "@types/bun": "latest",
+    "@types/node": "^25.2.0",
     "@types/react": "^19.2.10",
     "eslint": "^9.39.2",
     "prettier": "^3.8.1",
+    "typescript": "^5",
     "typescript-eslint": "^8.54.0",
     "vitest": "^4.0.18"
-  },
-  "peerDependencies": {
-    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@opentui/core": "^0.1.75",
     "@opentui/react": "^0.1.75",
     "commander": "^14.0.3",
+    "dotenv": "^17.2.3",
     "react": "^19.2.4"
   }
 }

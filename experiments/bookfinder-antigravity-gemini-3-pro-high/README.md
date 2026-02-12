@@ -1,4 +1,4 @@
-# Bookfinder (Gemini 3 Pro)
+# bookfinder-antigravity-gemini-3-pro-high
 
 - **Date**: 2026-02-02
 - **Harness**: Antigravity-Gemini3ProHigh

@@ -1,4 +1,4 @@
-# 2026-02-01-bookfinder
+# bookfinder-opencode-gpt-5-2
 
 Audiobook scanner CLI tool. Recursively scans directories for audio files and
 extracts metadata using `ffprobe`.

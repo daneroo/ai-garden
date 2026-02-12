@@ -2,7 +2,7 @@
 
 ## Context
 
-Experiment: 2026-02-01-bookfinder
+Experiment: bookfinder-opencode-gpt-5-2
 
 Harness: opencode-gpt-5.2
 
@@ -10,7 +10,7 @@ Seed: experiments/seeds/bookfinder.md
 
 ## Rules
 
-- Directory Isolation: Only modify files under `experiments/2026-02-01-bookfinder/`.
+- Directory Isolation: Only modify files under `experiments/bookfinder-opencode-gpt-5-2/`.
 - Runtime: Use Bun (not Node.js).
 - CLI: Use Commander (not Yargs).
 

@@ -1,6 +1,6 @@
-# Kimibooks PLAN
+# Plan: bookfinder-opencode-kimi
 
-Experiment: 2026-02-01-kimibooks | Agent: OpenCode | Seed: bookfinder.md
+Experiment: bookfinder-opencode-kimi | Agent: OpenCode | Seed: bookfinder.md
 
 Goal: Audiobook scanner CLI with Bun + OpenTUI. Scans /Volumes/Space/Reading/audiobooks/, extracts metadata via ffprobe, interactive results table.
 

@@ -1,4 +1,4 @@
-# Bun CLI Project
+# bookfinder-opencode
 
 A production-ready CLI scaffold using Bun, TypeScript, Yargs, and Biome.
 

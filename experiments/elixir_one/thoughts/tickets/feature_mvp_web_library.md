@@ -82,7 +82,7 @@ A `/books` LiveView page lists files from the configured root directory with fil
 
 ## Related Information
 
-- Experiment reference: `experiments/2026-01-14-bookfinder`
+- Experiment reference: `experiments/bookfinder-opencode`
 
 ## Notes
 

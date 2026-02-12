@@ -5,7 +5,7 @@ Reference for agent behavior within experiment directories.
 ## Rules
 
 - Directory Isolation: All experiments must live under
-  `experiments/<YYYY-MM-DD>-<name>/`.
+  `experiments/<slug>-<variant>/`.
 - Scope Enforcement: Do NOT modify files outside the active experiment directory
   unless explicitly requested by the user.
 - Model Constraints:

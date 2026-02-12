@@ -1,10 +1,10 @@
-# AGENTS.md - Kimibooks
+# AGENTS.md - bookfinder-opencode-kimi
 
-Experiment: 2026-02-01-kimibooks | Agent: OpenCode | Created: 2026-02-01
+Experiment: bookfinder-opencode-kimi | Agent: OpenCode | Created: 2026-02-01
 
 Rules:
 
-- Work ONLY in experiments/2026-02-01-kimibooks/
+- Work ONLY in experiments/bookfinder-opencode-kimi/
 - Run bun run ci after each milestone, fix failures before proceeding
 - Add deps with bun add (runtime) or bun add -d (dev), never edit package.json directly
 - Runtime: Bun (never Node.js), Language: TypeScript
