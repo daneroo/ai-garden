@@ -31,6 +31,10 @@ bun run whisper.ts -i data/samples/hobbit-30m.m4b --segment 10m -m tiny.en --tag
 
 ./scripts/demo/demo.sh
 
+# Batch transcribe audiobooks (search, pick, skips existing .vtt)
+./scripts/many/do-series.sh -h
+./scripts/many/do-series.sh -n -s "culture banks"
+
 # Benchmarks
 bun run scripts/benchmarks/run-bench.ts
 # Output: ../../reports/benchmarks/summary.md, execution-time.png, speedup.png
