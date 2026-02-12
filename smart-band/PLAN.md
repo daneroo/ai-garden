@@ -219,6 +219,12 @@ Fallback steps (in order):
 - [ ] Steps & Activities: Run separately after sleep/HR/SpO2 completes (steps
       may conflict with Pixel 9 phone-counted steps; needs separate evaluation).
 - [ ] Final Audit: Spot check random dates in 2021, 2023, 2024.
+- Note (2026-02-11 ~17:30): Backfill progress and observations.
+  - Sleep/vitals working backwards, currently at 2026-01-13 → 2025-01-01.
+  - Step inflation observed: Fit 11,798 vs Mi Fitness 10,653 today (Health
+    Sync wrote Honor Band steps alongside Mi Fitness + Pixel phone steps).
+  - Will likely skip steps backfill — Honor Band and Pixel 9 overlap for the
+    entire historical period, so duplication would be systemic.
 
 ### Pending Undo Actions (Do Not Forget)
 
