@@ -110,8 +110,19 @@ if [[ -z "$selected" ]]; then
   exit 0
 fi
 
-# Phase 5: execute selected books
+# Phase 5: show selection and execute
 echo ""
+count=0
+while IFS= read -r name || [[ -n "$name" ]]; do
+  count=$((count + 1))
+done <<< "$selected"
+
+echo "Selected (${count}):"
+while IFS= read -r name || [[ -n "$name" ]]; do
+  echo "  ${name%.m4b}"
+done <<< "$selected"
+echo ""
+
 transcribed=0
 while IFS= read -r name || [[ -n "$name" ]]; do
   for m4b in "${todo_list[@]}"; do
@@ -120,7 +131,7 @@ while IFS= read -r name || [[ -n "$name" ]]; do
         echo "WOULD RUN: bun run whisper.ts -i \"$m4b\""
       else
         echo "PROCESSING: ${name%.m4b}"
-        (cd "$SCRIPT_DIR" && bun run whisper.ts -i "$m4b")
+        (cd "$SCRIPT_DIR" && bun run whisper.ts -i "$m4b") < /dev/null
       fi
       transcribed=$((transcribed + 1))
       break
