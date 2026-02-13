@@ -34,6 +34,16 @@ Each experiment is a seed and a subdirectory:
 - `PLAN.md`: A living plan doc with these sections: harness, goal, milestones
   (checkbox list), decisions/notes, and Session Audit Trail.
 
+## Shared Reference Docs
+
+Cross-experiment implementation notes that seeds can reuse:
+
+- `BUN_TANSTACK.md` - Bun + TanStack Start bootstrap and runtime notes
+- `ELIXIR.md` - Phoenix + Ash + LiveView + SQLite notes
+- `MARKDOWN.md` - markdown style/lint guidelines
+- `STYLING.md` - reusable theming, dark mode, and UI styling guidance
+- `WORKSPACE.md` - reusable multi-package workspace guidance
+
 ### README Recommendations
 
 - Name: Title matches directory name.

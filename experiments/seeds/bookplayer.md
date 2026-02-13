@@ -10,36 +10,82 @@ listening.
   Trail.
 - That `AGENTS.md` should instruct the agent to run `bun run ci` after
   completing a meaningful task/phase, and to fix failures before proceeding.
+- That `AGENTS.md` should explicitly require this loop after modifications:
+  - run `bun run ci`
+  - if `fmt:check` fails, run `bun run fmt`, then rerun `bun run ci`
+  - do not mark phase complete until CI is green
 - Dependencies must be added with `bun add` / `bun add -d` (never by editing
   `package.json` directly).
 - That `AGENTS.md` should explicitly instruct the implementation agent to use
   available MCP/doc tools to validate current framework details before coding.
+- During scaffold generation, copy relevant guidance from
+  `experiments/BUN_TANSTACK.md` and `experiments/STYLING.md` into the local
+  experiment `AGENTS.md`.
+- Generated `AGENTS.md` must be self-contained for ongoing implementation (agent
+  should not need to read files outside the active experiment directory).
 - Validation requirement for scaffold-sensitive details (scripts/dependencies):
   - Query latest TanStack Start docs first (prefer Context7 when available).
-  - Then verify by running scaffold commands locally and reading generated
+  - Then verify by running scaffold CLI help locally and reading generated
     `package.json`.
+  - If docs and CLI output conflict, follow current CLI output.
   - Treat scaffold output as source of truth for framework versions/scripts.
+
+### Agent Preflight (Required in generated `AGENTS.md`)
+
+- At session start, the implementation agent must explicitly state available
+  capabilities:
+  - docs tooling (Context7/WebFetch equivalents)
+  - browser automation/screenshot tooling (Playwright MCP or equivalent)
+- If browser tooling is unavailable, the agent must say so immediately and must
+  not claim visual verification.
+- If browser tooling is required but missing, the agent should request setup
+  early instead of continuing blind on UI-heavy phases.
+- For framework-specific APIs (TanStack Start routes/server behavior), the agent
+  must check docs before implementation and record what was validated.
+
+### Plan Tracking (Required in generated `PLAN.md`)
+
+- Use checkbox milestones (`- [ ]` / `- [x]`) for each phase.
+- Update checkbox status continuously during execution (not only at the end).
+
+### Reference Locality
+
+- Shared docs in `experiments/*.md` are source material for scaffolding.
+- Ongoing implementation guidance must live inside
+  `<slug>-<variant>/AGENTS.md` and `<slug>-<variant>/PLAN.md`.
 
 ## Tech Stack / Runtime
 
 - **Bun** must be used as the runtime and package manager (not Node.js).
 - Use **TanStack Start** for the web app framework and routing.
+- Use **Nitro** hosting integration per `experiments/BUN_TANSTACK.md`.
 - Use **TypeScript** for all application code.
 - The app is local-first and single-user by default (no auth required in v1).
 
 ## Project Bootstrap
 
-- Create the app from the current TanStack Start scaffolder (do not hand-roll the
-  initial framework wiring):
-  - `bun create @tanstack/start@latest <experiment-dir>`
-- Treat the scaffold-generated `package.json` scripts and framework dependencies
-  as canonical for that date/version.
+- Reuse canonical bootstrap/setup from `experiments/BUN_TANSTACK.md`.
+- Use the preferred single-line create command from that doc.
+- Apply its starter cleanup checklist before feature work.
 - Then add project-specific packages with `bun add` (for example `epubjs`).
+- Replace scaffold/demo UI in the first implementation phase with BookPlayer
+  shell:
+  - app title/header says `BookPlayer`
+  - `/` route exists and is wired to real server data flow (no fake placeholder)
+  - `/player/$pairId` route exists with placeholder layout for audio + reader
+- Create `.env` from `.env.example` during bootstrap.
+- Bootstrap must be tested immediately after scaffolding:
+  - `bun run dev` starts successfully
+  - browser check confirms `/` loads and is not the default scaffold page
+  - `bun run build` succeeds
+  - verify Nitro Bun preset wiring per `experiments/BUN_TANSTACK.md`
 
 ## Environment Configuration
 
 - Library root must be configurable via environment variable:
   - `AUDIOBOOKS_ROOT=/Volumes/Space/Reading/audiobooks/`
+- Transcript root must be configurable via environment variable:
+  - `VTT_DIR=../../bun-one/apps/whisper/data/output/`
 - Require both:
   - `.env` for local machine configuration (gitignored)
   - `.env.example` with documented required keys
@@ -47,12 +93,14 @@ listening.
 
 ```dotenv
 AUDIOBOOKS_ROOT=/Volumes/Space/Reading/audiobooks/
+VTT_DIR=../../bun-one/apps/whisper/data/output/
 ```
 
 - On startup, validate `AUDIOBOOKS_ROOT`:
   - exists
   - is a directory
   - is readable
+- Validate `VTT_DIR` with the same checks.
 - Fail fast with a clear startup error if invalid.
 
 ## App Interface
@@ -69,8 +117,11 @@ AUDIOBOOKS_ROOT=/Volumes/Space/Reading/audiobooks/
 - Supported v1 file types:
   - Ebook: `.epub`
   - Audio: `.m4b`
+- Transcript sidecar: `.vtt` from `VTT_DIR` (not necessarily colocated
+  with audiobook files).
 - Expected source shape: mostly one `.m4b` per book folder, often with matching
   `.epub` in same folder.
+- Many book folders also include `cover.jpg`; use it when available.
 - Hidden files/directories must be skipped.
 - Invalid/corrupt files should not crash app startup; they should be skipped
   with warnings.
@@ -100,6 +151,11 @@ AUDIOBOOKS_ROOT=/Volumes/Space/Reading/audiobooks/
   - Action to open player
 - Include empty state guidance when no pairs are found.
 - Include loading and error states while scanning/indexing library.
+- Include asset filters near search:
+  - `EPUB` toggle (default on)
+  - `VTT` toggle (default on)
+- Filters must compose and reset pagination to page 0 when changed.
+- Show compact asset badges in list/cards (for example `M4B`, `EPUB`, `VTT`).
 
 ## Player Page (`/player/$pairId`)
 
@@ -109,26 +165,52 @@ AUDIOBOOKS_ROOT=/Volumes/Space/Reading/audiobooks/
 - Reader and player should be visible together on desktop.
 - On mobile, reader/player can stack or use tabs, but both must remain easily
   accessible.
+- Always render a transcript strip between reader and player.
+- If no matching VTT exists for a book, show an empty/"no transcript" state in
+  that strip.
+- Recommended shell behavior:
+  - `h-screen` root with `flex` column layout
+  - fixed header and player bar (`shrink-0`)
+  - reader area consumes remaining space (`flex-1`)
+  - transcript strip has capped height with independent scroll
 
 ### Audio Player Controls
 
 - Required controls:
   - Play/pause
   - Seek scrubber
+  - Jump backward 1m
   - Jump backward 15s
   - Jump forward 15s
+  - Jump forward 1m
   - Playback speed selector (0.75x to 2.0x)
   - Volume control
+- Use explicit transport labels in UI: `-1m`, `-15s`, `+15s`, `+1m`.
 - Show current time and total duration.
 - If audio is composed of multiple files, support seamless next-track
   progression.
+- Keyboard transport:
+  - Left/right arrows seek 15s
+  - Shift+left/right seek 1m
 
 ### Ebook Reader (ePub.js)
 
 - Use ePub.js to render `.epub` content in the player page.
+- Load `epubjs` via dynamic import in client code to avoid SSR/runtime issues.
 - Support basic navigation (next/previous section or page).
+- Support chapter/TOC navigation (`book.loaded.navigation` / `toc`).
+- Track location with rendition relocation events and persist per-pair CFI.
 - Preserve reader location between sessions for each pair.
 - Handle unreadable EPUB errors with a clear fallback UI message.
+- Assume iframe-based rendering as the supported default path.
+
+### EPUB Search (Optional v1.1)
+
+- Support full-text EPUB search by iterating spine items and using
+  `Section.find(query)`.
+- Search results should navigate with `rendition.display(cfi)`.
+- Highlight selected result using `rendition.annotations.highlight(cfi, ...)`.
+- Cap result count (for example 100) to avoid UI overload on common terms.
 
 ## Sync and Progress
 
@@ -138,14 +220,33 @@ AUDIOBOOKS_ROOT=/Volumes/Space/Reading/audiobooks/
   - EPUB location/CFI
 - Persist in browser storage by default (`localStorage`), keyed by pair id.
 
+## VTT Transcript
+
+- Transcript UI/panel is required on player page.
+- When a matching VTT exists, load and show transcript cues.
+- When VTT is missing, keep panel visible with a clear no-transcript state.
+- Cue interactions:
+  - active cue highlights while audio plays
+  - clicking a cue seeks audio to cue start time
+  - transcript auto-scrolls to keep active cue visible
+- VTT matching convention:
+  - use audio basename + `.vtt` in `VTT_DIR`
+  - example: `My Book.m4b` -> `My Book.vtt`
+
 ## Server/Data Endpoints (TanStack Start)
 
 - Provide server-side endpoints/functions for:
   - Listing matched pairs
   - Fetching details for one pair by id
-  - Serving media paths required by player/reader
+  - Providing client-accessible URLs for audio, EPUB, cover, and transcript
+    assets
+- Asset-serving architecture is implementation-defined (for example static
+  mapping/mount or route handlers) as long as runtime and security requirements
+  below are met.
 - Input validation is required for route params and query params.
 - Return structured error payloads for not-found and invalid id cases.
+- Before building full media endpoints, implement one minimal proof endpoint and
+  verify it works in the installed TanStack Start version.
 
 ## Indexing and Refresh Model
 
@@ -163,10 +264,18 @@ AUDIOBOOKS_ROOT=/Volumes/Space/Reading/audiobooks/
 
 - Do not expose absolute filesystem paths to the client.
 - Use pair ids from the runtime manifest/index to resolve files server-side.
-- Serve media through app endpoints:
-  - audio stream endpoint with HTTP Range support (required for scrubbing)
-  - epub file endpoint consumable by ePub.js
+- Audio serving must return proper range semantics for seek:
+  - `206 Partial Content` for range requests
+  - `Accept-Ranges: bytes` and `Content-Range` headers
+- Rationale: native browser audio playback relies on byte-range requests for
+  efficient seek/scrub behavior.
+- Validate seek behavior in browser (timeline drag, skip buttons, cue-click seek).
+- Cover images must be served by URL endpoint/path, not embedded as base64 in
+  directory JSON payloads.
+- Keep listing responses lightweight; do not inline binary assets.
 - Keep path traversal protections strict (`..`, symlink escape, non-root files).
+- Do not copy mutable media libraries into build artifacts; resolve assets at
+  runtime from configured roots.
 
 ## Metadata Extraction
 
@@ -198,9 +307,19 @@ Extract or derive:
 - Directory page should remain responsive with large libraries (800+ books).
 - Use incremental loading, pagination, or virtualization as needed.
 - Use optimistic UI only where state consistency is safe.
+- Do not fetch heavy metadata/cover bytes for all rows in one initial payload.
 - Keyboard accessibility:
   - Space toggles play/pause when player is focused
   - Left/right arrows seek when timeline is focused
+  - Shift+left/right perform larger seek jumps
+
+## Observability
+
+- Add server-side timing logs for expensive operations:
+  - filesystem scan
+  - metadata extraction
+  - cover/media lookup
+- Log record counts and elapsed time so performance regressions are visible.
 
 ## Error Handling
 
@@ -212,8 +331,7 @@ Extract or derive:
 
 ## package.json Scripts
 
-- Do not hardcode framework scripts in the seed; use scripts generated by the
-  TanStack Start scaffold for `dev`, `build`, and `start`.
+- Follow runtime script baseline from `experiments/BUN_TANSTACK.md`.
 - Ensure the project also has:
   - `lint`: `eslint .`
   - `check`: `tsc --noEmit`
@@ -229,7 +347,7 @@ Extract or derive:
 - Required project-specific dependency:
   - `epubjs`
 - Expected categories after scaffold + additions:
-  - Runtime/framework: TanStack Start + React stack
+  - Runtime/framework: TanStack Start + React + Nitro
   - Tooling/testing: TypeScript, ESLint, Prettier, Vitest
 
 ## Implementation Notes
@@ -244,3 +362,7 @@ Extract or derive:
   - unmatched EPUB/audio files
   - basename mismatch warning (`.m4b` vs `.epub`)
 - Add basic integration test for `/` and `/player/$pairId` route rendering.
+- Add integration checks for media behavior:
+  - audio seek works (range requests honored)
+  - VTT cue click seeks audio
+  - EPUB search result navigates and highlights target CFI
