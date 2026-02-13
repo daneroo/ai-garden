@@ -8,10 +8,12 @@ Reusable runbook for Bun + TanStack Start scaffolding in this repo.
   `bun create @tanstack/start@latest ...`).
 
 ```bash
-bunx @tanstack/cli create <experiment-dir> --package-manager bun --framework React --add-ons nitro --no-git
+bunx --bun @tanstack/cli create <experiment-dir> --package-manager bun --framework React --add-ons nitro --no-git
 ```
 
 - `--no-git` confirmed: no nested `.git` directory is created.
+- Known working on 2026-02-13 with `@tanstack/cli@0.59.3` (`@latest` at the
+  time).
 
 ## Bun Docs Alignment (Nitro)
 
