@@ -13,6 +13,17 @@ use:
   - [oh-my-opencode/sysiphus](https://github.com/code-yeongyu/oh-my-opencode)
     over opencode
 
+## Global MCP Baseline
+
+Shared MCP setup for OpenCode, Codex, and Claude Code is documented in
+[`./MCP.md`](./MCP.md).
+
+Use that doc for:
+
+- listing configured MCP servers
+- adding `context7` and `playwright`
+- running smoke tests before web UI work
+
 Specific info for each agent
 
 - [ ] [Pi Monorepo](https://github.com/badlogic/pi-mono) - [Pi](https://pi.dev/)
