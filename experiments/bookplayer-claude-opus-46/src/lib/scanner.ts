@@ -8,6 +8,7 @@ export interface Book {
   audioFile: string | null
   hasCover: boolean
   textFile: string | null
+  vttFile: string | null
 }
 
 const AUDIO_EXTS = ['.m4b', '.mp3', '.m4a']
@@ -33,6 +34,7 @@ async function scanDir(dirPath: string, root: string): Promise<Book[]> {
         audioFile: audioFile ?? null,
         hasCover: !!coverFile,
         textFile: textFile ?? null,
+        vttFile: null,
       },
     ]
   }
@@ -46,6 +48,7 @@ async function scanDir(dirPath: string, root: string): Promise<Book[]> {
 
 export async function scanLibrary(
   root: string,
+  vttDir?: string,
 ): Promise<{ books: Book[]; root: string }> {
   const t0 = performance.now()
   console.log(`[scanner] scanning ${root}`)
@@ -63,6 +66,29 @@ export async function scanLibrary(
     dirs.map((d) => scanDir(join(root, d), root)),
   )
   const books = results.flat().sort((a, b) => a.title.localeCompare(b.title))
+
+  // Match VTT files from VTT_DIR by audio filename
+  if (vttDir) {
+    try {
+      const vttFiles = new Set(
+        (await readdir(vttDir)).filter((f) => f.endsWith('.vtt')),
+      )
+      for (const book of books) {
+        if (book.audioFile) {
+          const base = book.audioFile.replace(/\.[^.]+$/, '')
+          const vttName = `${base}.vtt`
+          if (vttFiles.has(vttName)) {
+            book.vttFile = vttName
+          }
+        }
+      }
+      console.log(
+        `[scanner] matched ${books.filter((b) => b.vttFile).length} VTT files from ${vttDir}`,
+      )
+    } catch {
+      console.log(`[scanner] VTT dir not accessible: ${vttDir}`)
+    }
+  }
 
   const elapsed = (performance.now() - t0).toFixed(0)
   console.log(`[scanner] found ${books.length} books in ${elapsed}ms`)

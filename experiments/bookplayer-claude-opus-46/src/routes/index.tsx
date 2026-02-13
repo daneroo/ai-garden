@@ -5,7 +5,8 @@ import { scanLibrary, type Book } from '../lib/scanner'
 
 const getLibrary = createServerFn({ method: 'GET' }).handler(async () => {
   const root = process.env.AUDIOBOOKS_ROOT ?? ''
-  return scanLibrary(root)
+  const vttDir = process.env.VTT_DIR || undefined
+  return scanLibrary(root, vttDir)
 })
 
 export const Route = createFileRoute('/')({
@@ -19,12 +20,19 @@ function HomePage() {
   const { books, root } = Route.useLoaderData()
   const [search, setSearch] = useState('')
   const [page, setPage] = useState(0)
+  const [hasEpub, setHasEpub] = useState(true)
+  const [hasVtt, setHasVtt] = useState(true)
 
   const filtered = useMemo(() => {
-    if (!search.trim()) return books
-    const q = search.toLowerCase()
-    return books.filter((b) => b.title.toLowerCase().includes(q))
-  }, [books, search])
+    let result = books
+    if (hasEpub) result = result.filter((b) => b.textFile)
+    if (hasVtt) result = result.filter((b) => b.vttFile)
+    if (search.trim()) {
+      const q = search.toLowerCase()
+      result = result.filter((b) => b.title.toLowerCase().includes(q))
+    }
+    return result
+  }, [books, search, hasEpub, hasVtt])
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE)
   const pageBooks = filtered.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE)
@@ -59,7 +67,7 @@ function HomePage() {
           </div>
         ) : (
           <>
-            <div className="mb-6">
+            <div className="mb-6 flex flex-wrap items-center gap-4">
               <input
                 type="text"
                 placeholder="Search books..."
@@ -70,6 +78,30 @@ function HomePage() {
                 }}
                 className="w-full max-w-md px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:border-slate-400"
               />
+              <label className="flex items-center gap-1.5 text-sm text-slate-300 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={hasEpub}
+                  onChange={(e) => {
+                    setHasEpub(e.target.checked)
+                    setPage(0)
+                  }}
+                  className="accent-slate-400"
+                />
+                EPUB
+              </label>
+              <label className="flex items-center gap-1.5 text-sm text-slate-300 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={hasVtt}
+                  onChange={(e) => {
+                    setHasVtt(e.target.checked)
+                    setPage(0)
+                  }}
+                  className="accent-slate-400"
+                />
+                VTT
+              </label>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
@@ -135,6 +167,7 @@ function BookCard({ book }: { book: Book }) {
           {[
             book.audioFile?.split('.').pop()?.toUpperCase(),
             book.textFile ? 'EPUB' : null,
+            book.vttFile ? 'VTT' : null,
           ]
             .filter(Boolean)
             .join(' + ')}
