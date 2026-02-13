@@ -230,6 +230,10 @@ Fallback steps (in order):
   - Estimated ~13 days to reach May 2020 at current rate.
   - Plan: let current batch finish to 2025-01-01, then set a single range
     2020-01-01 → 2024-12-31 for the remainder.
+- Note (2026-02-13 ~16:00): At 2025-01-30, nearly done with 2025.
+  - ~47h elapsed, ~12.5 months covered (~0.27 months/hour — slightly faster).
+  - Revised estimate: ~19 days remaining for 2020-01 → 2024-12.
+  - Next: set range 2020-01-01 → 2024-12-31 once 2025 batch completes.
 
 ### Pending Undo Actions (Do Not Forget)
 
