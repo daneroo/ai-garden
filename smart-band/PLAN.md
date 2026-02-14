@@ -224,6 +224,9 @@ Fallback steps (in order):
   - 2020-01-01 → 2024-12-31 launched — expect ~7-8 days at current rate.
   - Steps/Activities skipped: Honor Band + Pixel 9 overlap causes systemic
     duplication (e.g., Fit 11,798 vs Mi Fitness 10,653 on same day).
+- Note (2026-02-14 ~15:00): At 2024-07-05 (~19h into 2020-2024 batch).
+  - Rate: ~0.32 months/hour (faster than 2025 batch).
+  - ~56 months remaining, ~7 days at current rate (ETA ~Feb 21).
 
 ### Pending Undo Actions (Do Not Forget)
 
