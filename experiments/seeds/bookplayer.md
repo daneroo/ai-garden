@@ -1,7 +1,7 @@
 # bookplayer Requirements
 
-Local-first web app for browsing matched audiobook/ebook book records (with
-optional transcript sidecar) and reading while listening.
+Local-first web app for browsing audiobook directories (with optional ebook and
+transcripts) and reading while listening.
 
 ## Workflow / CI
 
@@ -118,7 +118,7 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 ## App Interface
 
 - App has two main pages:
-  - `/` landing page: directory of matched audiobook/ebook books
+  - `/` landing page: directory of canonical audiobook book records
   - `/player/$bookId` player page: audiobook player + embedded ebook reader
 - Mobile and desktop layouts must both be usable and tested.
 
@@ -126,14 +126,14 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 
 - Default model: app scans a configured local library root directory.
 - Recursively traverse all nested directories under `AUDIOBOOKS_ROOT`.
-- Supported v1 file types:
-  - Ebook: `.epub`
-  - Audio: `.m4b`
-- Transcript sidecar: `.vtt` from `VTT_DIR` (not necessarily colocated with
-  audiobook files).
-- Expected source shape: mostly one `.m4b` per book folder, often with matching
-  `.epub` in same folder.
-- Many book folders also include `cover.jpg`; use it when available.
+- Expected book-directory invariant:
+  - required: one `.m4b`
+  - required: `cover.jpg` or `cover.png`
+  - optional: `.epub`
+- Transcript files: `.vtt` from `VTT_DIR` (not colocated with audiobook files).
+- In this library, book directories are always leaf directories; scanner should
+  still recurse safely.
+- Cover selection precedence: prefer `cover.jpg`; fallback to `cover.png`.
 - Hidden files/directories must be skipped.
 - Invalid/corrupt files should not crash app startup; they should be skipped
   with warnings.
@@ -142,10 +142,12 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 
 - Primary strategy (required): folder-based grouping (ebook and audio in same
   book folder).
-- Include in app directory only strict book records that contain both:
-  - at least one `.m4b`
-  - at least one `.epub`
-- Unmatched entries (audio-only or epub-only) must not be shown in main results.
+- Canonical book record requirement:
+  - `.m4b` present
+  - `cover.jpg` or `cover.png` present
+- EPUB and VTT are capability flags on top of canonical book records (not
+  required for a book to be listed).
+- Orphan assets without `.m4b` must not appear in main results.
 - Canonical source key is always the `.m4b` basename (without extension).
 - Public URL id must be a short digest of normalized `.m4b` basename (for
   cleaner/stable URLs), for example `sha1(basename).slice(0, 12)`.
@@ -156,7 +158,8 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 
 ## Landing Page (`/`)
 
-- Show a searchable/sortable directory of matched books.
+- Show a searchable/sortable directory of canonical books.
+- Listing policy is filter-driven (not hardcoded EPUB-only inclusion).
 - Minimum displayed fields:
   - Title
   - Author (when available)
@@ -169,6 +172,11 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
   - `EPUB` toggle (default on)
   - `VTT` toggle (default on)
 - Filters must compose and reset pagination to page 0 when changed.
+- Filter behavior:
+  - both checked: show books with EPUB and VTT
+  - only `EPUB`: show books with EPUB
+  - only `VTT`: show books with VTT
+  - both unchecked: show all canonical books (`.m4b` + cover)
 - Show compact asset badges in list/cards (for example `M4B`, `EPUB`, `VTT`).
 
 ## Player Page (`/player/$bookId`)
@@ -246,6 +254,8 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 ### Ebook Reader (ePub.js)
 
 - Use ePub.js to render `.epub` content in the player page.
+- If a book has no `.epub`, keep player route usable and show explicit no-ebook
+  reader state.
 - Load `epubjs` via dynamic import in client code to avoid SSR/runtime issues.
 - Support basic navigation (next/previous section or page).
 - Support chapter/TOC navigation (`book.loaded.navigation` / `toc`).
@@ -300,7 +310,7 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 ## Server/Data Endpoints (TanStack Start)
 
 - Provide server-side endpoints/functions for:
-  - Listing matched books
+  - Listing canonical books
   - Fetching details for one book by id
   - Providing client-accessible URLs for audio, EPUB, cover, and transcript
     assets
@@ -316,7 +326,7 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 
 - Indexing is runtime behavior (not compile-time and not build-time).
 - On server start, perform a filesystem scan of `AUDIOBOOKS_ROOT` to discover
-  strict `.m4b` + `.epub` books.
+  canonical book records (`.m4b` + cover) and optional EPUB capability.
 - Keep an in-memory manifest/index for fast route responses.
 - Support explicit re-scan at runtime (manual refresh endpoint/button).
 - Persist cache to a local data file, restore on startup, then revalidate in
@@ -433,10 +443,11 @@ Extract or derive:
 - Keep EPUB load lifecycle keyed to stable book asset identity (`epubUrl`), not
   live relocation/progress updates, to prevent unintended reader resets.
 - Add fixture-based tests for grouping logic:
-  - clean one-to-one book
-  - one EPUB with multi-part audio
-  - unmatched EPUB/audio files
-  - basename mismatch warning (`.m4b` vs `.epub`)
+  - canonical book (`.m4b` + `cover.jpg`)
+  - canonical book (`.m4b` + `cover.png` fallback)
+  - book with optional `.epub` and optional `.vtt`
+  - orphan EPUB/VTT without `.m4b` excluded from results
+  - basename mismatch warning (`.m4b` vs `.epub` when EPUB is present)
 - Add basic integration test for `/` and `/player/$bookId` route rendering.
 - Add integration checks for media behavior:
   - audio seek works (range requests honored)
