@@ -1,7 +1,7 @@
 # bookplayer Requirements
 
-Local-first web app for browsing matched ebook/audiobook pairs and reading while
-listening.
+Local-first web app for browsing matched audiobook/ebook book records (with
+optional transcript sidecar) and reading while listening.
 
 ## Workflow / CI
 
@@ -14,6 +14,8 @@ listening.
   - run `bun run ci`
   - if `fmt:check` fails, run `bun run fmt`, then rerun `bun run ci`
   - do not mark phase complete until CI is green
+- For UI/layout phases, `AGENTS.md` must require Playwright-based visual
+  verification before phase completion.
 - Dependencies must be added with `bun add` / `bun add -d` (never by editing
   `package.json` directly).
 - That `AGENTS.md` should explicitly instruct the implementation agent to use
@@ -48,11 +50,21 @@ listening.
 - Use checkbox milestones (`- [ ]` / `- [x]`) for each phase.
 - Update checkbox status continuously during execution (not only at the end).
 
+### Browser Usability Verification (Required in generated `AGENTS.md`)
+
+- Do not claim UI/layout completion without Playwright checks on both routes:
+  - `/`
+  - `/player/$bookId`
+- Validate both desktop and mobile viewport behavior.
+- Validate with real configured roots (`AUDIOBOOKS_ROOT`, `VTT_DIR`), not only
+  fixture/demo data.
+- Record screenshot paths and explicit pass/fail notes in the session output.
+
 ### Reference Locality
 
 - Shared docs in `experiments/*.md` are source material for scaffolding.
-- Ongoing implementation guidance must live inside
-  `<slug>-<variant>/AGENTS.md` and `<slug>-<variant>/PLAN.md`.
+- Ongoing implementation guidance must live inside `<slug>-<variant>/AGENTS.md`
+  and `<slug>-<variant>/PLAN.md`.
 
 ## Tech Stack / Runtime
 
@@ -72,7 +84,7 @@ listening.
   shell:
   - app title/header says `BookPlayer`
   - `/` route exists and is wired to real server data flow (no fake placeholder)
-  - `/player/$pairId` route exists with placeholder layout for audio + reader
+  - `/player/$bookId` route exists with placeholder layout for audio + reader
 - Create `.env` from `.env.example` during bootstrap.
 - Bootstrap must be tested immediately after scaffolding:
   - `bun run dev` starts successfully
@@ -106,8 +118,8 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 ## App Interface
 
 - App has two main pages:
-  - `/` landing page: directory of matched ebook/audiobook pairs
-  - `/player/$pairId` player page: audiobook player + embedded ebook reader
+  - `/` landing page: directory of matched audiobook/ebook books
+  - `/player/$bookId` player page: audiobook player + embedded ebook reader
 - Mobile and desktop layouts must both be usable and tested.
 
 ## Library Source
@@ -117,8 +129,8 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 - Supported v1 file types:
   - Ebook: `.epub`
   - Audio: `.m4b`
-- Transcript sidecar: `.vtt` from `VTT_DIR` (not necessarily colocated
-  with audiobook files).
+- Transcript sidecar: `.vtt` from `VTT_DIR` (not necessarily colocated with
+  audiobook files).
 - Expected source shape: mostly one `.m4b` per book folder, often with matching
   `.epub` in same folder.
 - Many book folders also include `cover.jpg`; use it when available.
@@ -126,30 +138,32 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 - Invalid/corrupt files should not crash app startup; they should be skipped
   with warnings.
 
-## Pairing Rules
+## Asset Grouping Rules
 
-- Primary strategy (required): folder-based pairing (ebook and audio in same
+- Primary strategy (required): folder-based grouping (ebook and audio in same
   book folder).
-- Include in app directory only strict matches that contain both:
+- Include in app directory only strict book records that contain both:
   - at least one `.m4b`
   - at least one `.epub`
 - Unmatched entries (audio-only or epub-only) must not be shown in main results.
-- Pair id must be the `.m4b` basename (without extension), treated as globally
-  unique in this library.
+- Canonical source key is always the `.m4b` basename (without extension).
+- Public URL id must be a short digest of normalized `.m4b` basename (for
+  cleaner/stable URLs), for example `sha1(basename).slice(0, 12)`.
+- Keep original `.m4b` basename in metadata for diagnostics and VTT matching.
 - Basename consistency check: `.m4b` and `.epub` basenames are expected to
-  match; when they do not, still pair by folder but log a warning for upstream
+  match; when they do not, still group by folder but log a warning for upstream
   cleanup.
 
 ## Landing Page (`/`)
 
-- Show a searchable/sortable directory of matched pairs.
+- Show a searchable/sortable directory of matched books.
 - Minimum displayed fields:
   - Title
   - Author (when available)
   - Total audio duration
-  - Last progress (if available)
-  - Action to open player
-- Include empty state guidance when no pairs are found.
+  - Last progress (show `Not started` when no progress exists)
+  - Clickable title/name entry that opens `/player/$bookId`
+- Include empty state guidance when no books are found.
 - Include loading and error states while scanning/indexing library.
 - Include asset filters near search:
   - `EPUB` toggle (default on)
@@ -157,7 +171,7 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 - Filters must compose and reset pagination to page 0 when changed.
 - Show compact asset badges in list/cards (for example `M4B`, `EPUB`, `VTT`).
 
-## Player Page (`/player/$pairId`)
+## Player Page (`/player/$bookId`)
 
 - Must render both:
   - Audiobook player panel
@@ -173,6 +187,42 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
   - fixed header and player bar (`shrink-0`)
   - reader area consumes remaining space (`flex-1`)
   - transcript strip has capped height with independent scroll
+- Reader-first UX is non-negotiable: reading viewport must be visually dominant
+  over control chrome.
+- Keep header/transcript/player chrome compact; avoid high-footprint side panels
+  unless explicitly requested.
+- Remove starter/demo branding from player surfaces.
+
+### Player Layout Budget (Hard Requirement)
+
+- Reader(epub) content must be the primary visible surface on the player page.
+- Full-cover art must never become the dominant player-page surface; cover art
+  is limited to compact thumbnail use in player controls.
+- Chrome must stay compact and single-row where possible:
+  - header and player controls should not consume multi-row vertical space by
+    default
+  - transcript strip should use capped height and scrolling (not expand to push
+    reader off-screen)
+  - combined non-reader chrome should typically stay in the `25vh-35vh` range
+    across desktop/mobile
+- Keep chrome footprint roughly stable across desktop/mobile (do not let mobile
+  breakpoints inflate header/player/transcript heights by default).
+- Reader viewport targets (calibrated from validated reader-first layout):
+  - desktop target: reader around `60vh+` (hard fail below `50vh`)
+  - mobile target: reader around `45vh+` (hard fail below `38vh`)
+- Use these as usability guardrails, not pixel-perfect design locks.
+- Avoid floating utility panels over reader content unless explicitly requested.
+
+### Reader Containment (Hard Requirement)
+
+- The ePub reader wrapper must clip overflow and remain bounded within its
+  panel.
+- Reader wrapper must use explicit containment (`overflow: hidden`, bounded
+  height, and width constraints).
+- The epub.js iframe and internal containers must not bleed into
+  header/transcript/player regions.
+- No overlap between reader surface and persistent controls at any viewport
+  size.
 
 ### Audio Player Controls
 
@@ -199,26 +249,40 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 - Load `epubjs` via dynamic import in client code to avoid SSR/runtime issues.
 - Support basic navigation (next/previous section or page).
 - Support chapter/TOC navigation (`book.loaded.navigation` / `toc`).
-- Track location with rendition relocation events and persist per-pair CFI.
-- Preserve reader location between sessions for each pair.
+- Reader flow should be single-column on narrower widths and transition to
+  spread/two-page layout around desktop widths (roughly `840px+`) where
+  supported by epub.js rendition settings.
+- Prefer named Tailwind breakpoints (`sm`/`md`/`lg`) where feasible; use a
+  custom breakpoint only when needed to hit reader spread behavior.
+- Track location with rendition relocation events and persist per-book CFI.
+- Preserve reader location between sessions for each book.
 - Handle unreadable EPUB errors with a clear fallback UI message.
 - Assume iframe-based rendering as the supported default path.
 
-### EPUB Search (Optional v1.1)
+### EPUB Search (Required)
 
 - Support full-text EPUB search by iterating spine items and using
   `Section.find(query)`.
+- Treat search flow as async/promise-aware (`load/find/unload` per section) and
+  guard malformed/empty section results.
 - Search results should navigate with `rendition.display(cfi)`.
+- Normalize range CFIs to start-point CFIs before display navigation when
+  needed.
 - Highlight selected result using `rendition.annotations.highlight(cfi, ...)`.
+- Remove previous active highlight before applying a new search-result
+  highlight.
 - Cap result count (for example 100) to avoid UI overload on common terms.
+- Provide clear empty-query and no-results states.
+- Search UX must be visible/actionable (result count + selectable result list),
+  not only background state updates.
 
 ## Sync and Progress
 
 - v1 does not require sentence-level or word-level sync.
-- Persist per-pair progress locally:
+- Persist per-book progress locally:
   - Audio playback position
   - EPUB location/CFI
-- Persist in browser storage by default (`localStorage`), keyed by pair id.
+- Persist in browser storage by default (`localStorage`), keyed by `bookId`.
 
 ## VTT Transcript
 
@@ -236,8 +300,8 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 ## Server/Data Endpoints (TanStack Start)
 
 - Provide server-side endpoints/functions for:
-  - Listing matched pairs
-  - Fetching details for one pair by id
+  - Listing matched books
+  - Fetching details for one book by id
   - Providing client-accessible URLs for audio, EPUB, cover, and transcript
     assets
 - Asset-serving architecture is implementation-defined (for example static
@@ -252,24 +316,28 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 
 - Indexing is runtime behavior (not compile-time and not build-time).
 - On server start, perform a filesystem scan of `AUDIOBOOKS_ROOT` to discover
-  strict `.m4b` + `.epub` pairs.
+  strict `.m4b` + `.epub` books.
 - Keep an in-memory manifest/index for fast route responses.
 - Support explicit re-scan at runtime (manual refresh endpoint/button).
-- Optional optimization: persist cache to a local data file and restore it on
-  startup, then revalidate in background.
+- Persist cache to a local data file, restore on startup, then revalidate in
+  background.
 - Cache invalidation should use file fingerprint checks (relative path + mtime +
   size).
 
 ### Media Serving Strategy
 
 - Do not expose absolute filesystem paths to the client.
-- Use pair ids from the runtime manifest/index to resolve files server-side.
+- Use `bookId` values from the runtime manifest/index to resolve files
+  server-side.
 - Audio serving must return proper range semantics for seek:
   - `206 Partial Content` for range requests
   - `Accept-Ranges: bytes` and `Content-Range` headers
 - Rationale: native browser audio playback relies on byte-range requests for
   efficient seek/scrub behavior.
-- Validate seek behavior in browser (timeline drag, skip buttons, cue-click seek).
+- Validate seek behavior in browser (timeline drag, skip buttons, cue-click
+  seek).
+- Avoid `ERR_CONTENT_LENGTH_MISMATCH` on route-served assets; non-range EPUB
+  responses must return consistent content length and complete payload bytes.
 - Cover images must be served by URL endpoint/path, not embedded as base64 in
   directory JSON payloads.
 - Keep listing responses lightweight; do not inline binary assets.
@@ -283,11 +351,11 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
   - `metadata.json` in book directory when present and valid
   - fallback to `ffprobe` for `.m4b`
 - Metadata extraction can run sequentially by default for simplicity.
-- Optional optimization: bounded-concurrency ffprobe workers if profiling shows
-  clear startup benefit.
+- Phase 2 requirement: add bounded-concurrency ffprobe workers (documented
+  default, for example `8`) after baseline correctness is verified.
 - For large libraries, directory results should not block on full metadata
   extraction; show partial rows and update as metadata resolves.
-- Cache extracted metadata server-side (memory + optional data file) and only
+- Cache extracted metadata server-side (memory + persisted data file) and only
   recompute when file fingerprint changes.
 
 ### Required Metadata Fields
@@ -338,7 +406,9 @@ Extract or derive:
   - `test`: `vitest run`
   - `fmt`: `prettier --write .`
   - `fmt:check`: `prettier --check .`
-  - `ci`: `bun run fmt:check && bun run lint && bun run check && bun run test && bun run build`
+  - `ci`: `bun run fmt:check && bun run lint && bun run check && bun run test`
+- Keep `build` as a separate explicit verification step (not part of default
+  `ci` loop).
 
 ## Dependencies
 
@@ -352,17 +422,43 @@ Extract or derive:
 
 ## Implementation Notes
 
-- Use the `.m4b` basename as the stable pair id.
+- Generate stable `bookId` from a short digest of normalized `.m4b` basename;
+  keep basename as a separate metadata field.
 - Keep media path handling centralized to avoid traversal bugs.
 - Validate and sanitize all filesystem-derived values before exposing to routes.
+- Await async media handler responses to preserve structured error handling.
 - Keep scanner/indexer logic separate from route handlers for testability.
-- Add fixture-based tests for pairing logic:
-  - clean one-to-one pair
+- For route-served EPUB assets, support byte-fetch/`arrayBuffer` loading path
+  when direct URL loading is unreliable.
+- Keep EPUB load lifecycle keyed to stable book asset identity (`epubUrl`), not
+  live relocation/progress updates, to prevent unintended reader resets.
+- Add fixture-based tests for grouping logic:
+  - clean one-to-one book
   - one EPUB with multi-part audio
   - unmatched EPUB/audio files
   - basename mismatch warning (`.m4b` vs `.epub`)
-- Add basic integration test for `/` and `/player/$pairId` route rendering.
+- Add basic integration test for `/` and `/player/$bookId` route rendering.
 - Add integration checks for media behavior:
   - audio seek works (range requests honored)
   - VTT cue click seeks audio
   - EPUB search result navigates and highlights target CFI
+
+## Acceptance Validation
+
+- Required browser validation flow (Playwright):
+  - open `/` and `/player/$bookId` on real roots
+  - confirm reader containment (no iframe overflow/bleed)
+  - confirm compact chrome and reader-first viewport dominance
+  - capture desktop and mobile screenshots for `/player/$bookId`
+  - verify layout budgets in screenshot review (chrome heights and reader
+    minimums)
+  - verify search UI is visible/actionable (match count + result list)
+- Failure examples that must be rejected:
+  - player page leaves too little vertical room for readable EPUB content
+  - player page dominated by cover image instead of readable EPUB content
+  - large floating overlays/panels obscuring reader text
+- Canonical regression scenario for this library:
+  - Home search `Use Of Weapons` -> open book -> EPUB search `Dizzy`
+  - click a result -> verify navigation and visible highlight on matched text
+  - verify highlighted match remains within reader bounds (no spill into chrome)
+  - verify search results remain stable after navigation (no silent reset)
