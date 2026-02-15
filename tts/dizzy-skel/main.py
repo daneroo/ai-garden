@@ -4,6 +4,7 @@
 #   "soundfile>=0.12.1",
 #   "numpy",
 #   "EbookLib>=0.20",
+#   "pyyaml>=6.0",
 # ]
 # ///
 
@@ -14,10 +15,12 @@ Usage:
     uv run --prerelease=allow main.py epub --list
     uv run --prerelease=allow main.py epub --chapter "One"
     uv run --prerelease=allow main.py vtt-search --at 00:26:28 --search "turbine hall"
-    uv run --prerelease=allow main.py vtt-search --at 00:26:28 --search "turbine hall" --verify
-    uv run --prerelease=allow main.py vtt-search --at 00:26:28 --search "turbine hall" --play
+    uv run --prerelease=allow main.py vtt-search --at 00:26:28 --search "turbine hall" --verify --play
     uv run --prerelease=allow main.py play --start 00:26:32 --duration 3
-    uv run --prerelease=allow main.py prepare-voice-sample --start 00:26:49 --duration 15 --name kenny --text "Music filled..."
+    uv run --prerelease=allow main.py validate --voice kenny
+    uv run --prerelease=allow main.py validate --voice all
+    uv run --prerelease=allow main.py prepare-voice-sample --voice kenny
+    uv run --prerelease=allow main.py prepare-voice-sample --voice all
     uv run --prerelease=allow main.py speak --voice kenny --text "Hello from the Culture"
 """
 
@@ -28,9 +31,12 @@ import subprocess
 import sys
 from pathlib import Path
 
+import yaml
+
 AUDIOBOOK = "/Volumes/Space/Reading/audiobooks/Iain M. Banks - Culture Novels/Iain M. Banks - Culture 03 - Use Of Weapons/Iain M. Banks - Culture 03 - Use Of Weapons.m4b"
 EPUB = "/Volumes/Space/Reading/audiobooks/Iain M. Banks - Culture Novels/Iain M. Banks - Culture 03 - Use Of Weapons/Iain M. Banks - Culture 03 - Use Of Weapons.epub"
 VTT = "data/vtt/Iain M. Banks - Culture 03 - Use Of Weapons.vtt"
+VOICE_SAMPLES_YAML = "voice-samples.yaml"
 TMP_DIR = Path("data/tmp")
 WHISPER_MODEL = "../../bun-one/apps/whisper/data/models/ggml-tiny.en.bin"
 VOICE_SAMPLE_DIR = Path("data/voice-samples")
@@ -84,6 +90,22 @@ def strip_html(content: bytes) -> str:
     text = html.unescape(text)
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip()
+
+
+def load_voice_samples():
+    """Load voice sample definitions from YAML."""
+    with open(VOICE_SAMPLES_YAML) as f:
+        return yaml.safe_load(f)
+
+
+def resolve_voices(voice_arg, samples):
+    """Resolve --voice arg to list of (name, sample) pairs."""
+    if voice_arg.lower() == "all":
+        return list(samples.items())
+    if voice_arg not in samples:
+        print(f"Unknown voice '{voice_arg}'. Available: {', '.join(samples.keys())}", file=sys.stderr)
+        sys.exit(1)
+    return [(voice_arg, samples[voice_arg])]
 
 
 def extract_audio(start: float, duration: float, output: Path, sample_rate: int = 16000):
@@ -198,71 +220,98 @@ def cmd_play(args):
     tmp_wav.unlink(missing_ok=True)
 
 
+# --- validate ---
+
+def cmd_validate(args):
+    """Show voice sample summary, optionally play and verify with whisper."""
+    samples = load_voice_samples()
+    voices = resolve_voices(args.voice, samples)
+
+    for name, sample in voices:
+        r = sample["range"]
+        start = parse_timestamp(r["start"])
+        end = parse_timestamp(r["end"])
+        duration = end - start
+        text = sample["text"].strip()
+
+        print(f"=== {name} ===")
+        print(f"  Range: {r['start']} --> {r['end']} ({duration:.1f}s)")
+        print(f"  Text:  {text[:80]}{'...' if len(text) > 80 else ''}")
+
+        wav = VOICE_SAMPLE_DIR / f"{name}.wav"
+        if wav.exists():
+            print(f"  Sample: {wav} (exists)")
+        else:
+            print(f"  Sample: not yet prepared")
+
+        if args.play:
+            tmp_wav = TMP_DIR / f"validate_{name}.wav"
+            extract_audio(start, duration, tmp_wav)
+            print(f"  Playing...")
+            play_audio(tmp_wav)
+            tmp_wav.unlink(missing_ok=True)
+
+        if args.verify:
+            tmp_wav = TMP_DIR / f"validate_{name}.wav"
+            if not tmp_wav.exists():
+                extract_audio(start, duration, tmp_wav)
+            print(f"  Transcribing with whisper-cli...")
+            whisper_text = transcribe(tmp_wav)
+            print(f"  Whisper: {whisper_text}")
+            tmp_wav.unlink(missing_ok=True)
+
+        print()
+
+
 # --- prepare-voice-sample ---
 
 def cmd_prepare_voice_sample(args):
-    """Save a voice sample (24kHz mono WAV) with canonical text from the epub."""
-    start = parse_timestamp(args.start)
-    duration = args.duration
-    name = args.name
+    """Extract voice samples (24kHz mono WAV) with canonical text, from YAML definitions."""
+    samples = load_voice_samples()
+    voices = resolve_voices(args.voice, samples)
 
-    if not args.text and not args.text_file:
-        print("Canonical text required (use --text or --text-file)", file=sys.stderr)
-        sys.exit(1)
+    for name, sample in voices:
+        r = sample["range"]
+        start = parse_timestamp(r["start"])
+        end = parse_timestamp(r["end"])
+        duration = end - start
+        text = sample["text"].strip()
 
-    if args.text_file:
-        text = Path(args.text_file).read_text().strip()
-    else:
-        text = args.text
+        # 24kHz mono for qwen3-tts speaker encoder
+        output = VOICE_SAMPLE_DIR / f"{name}.wav"
+        print(f"Extracting {duration:.1f}s from {r['start']} -> {output}")
+        extract_audio(start, duration, output, sample_rate=24000)
 
-    # 24kHz mono for qwen3-tts speaker encoder
-    output = VOICE_SAMPLE_DIR / f"{name}.wav"
-    print(f"Extracting {duration}s from {args.start} -> {output}")
-    extract_audio(start, duration, output, sample_rate=24000)
+        txt_output = VOICE_SAMPLE_DIR / f"{name}.txt"
+        txt_output.write_text(text + "\n")
 
-    txt_output = VOICE_SAMPLE_DIR / f"{name}.txt"
-    txt_output.write_text(text.strip() + "\n")
-
-    print(f"Text: {text[:80]}{'...' if len(text) > 80 else ''}")
-    print(f"Saved: {output} + {txt_output}")
-    print(f"ffplay -autoexit -nodisp -hide_banner -loglevel error {output}")
+        print(f"  Text: {text[:80]}{'...' if len(text) > 80 else ''}")
+        print(f"  Saved: {output} + {txt_output}")
+        print()
 
 
 # --- speak ---
 
-def cmd_speak(args):
+def speak_one(name, text, model, play=False):
+    """Generate speech for one voice."""
     import numpy as np
     import soundfile as sf
     import mlx.core as mx
-    from mlx_audio.tts.utils import load_model
 
-    voice_wav = VOICE_SAMPLE_DIR / f"{args.voice}.wav"
-    voice_txt = VOICE_SAMPLE_DIR / f"{args.voice}.txt"
+    voice_wav = VOICE_SAMPLE_DIR / f"{name}.wav"
+    voice_txt = VOICE_SAMPLE_DIR / f"{name}.txt"
     if not voice_wav.exists() or not voice_txt.exists():
         print(f"Voice sample not found: {voice_wav}", file=sys.stderr)
-        print(f"Run: main.py prepare-voice-sample --name {args.voice} ... first", file=sys.stderr)
-        sys.exit(1)
+        print(f"Run: main.py prepare-voice-sample --voice {name} first", file=sys.stderr)
+        return
 
     ref_text = voice_txt.read_text().strip()
-
-    if args.text_file:
-        text = Path(args.text_file).read_text().strip()
-    else:
-        text = args.text
-
-    if not text:
-        print("No text provided (use --text or --text-file)", file=sys.stderr)
-        sys.exit(1)
-
-    print(f"Loading model: {MODEL_ID}")
-    model = load_model(MODEL_ID)
-
     ref_audio, _ = sf.read(str(voice_wav))
     if ref_audio.ndim > 1:
         ref_audio = ref_audio.mean(axis=1)
     ref_audio_mx = mx.array(ref_audio)
 
-    print(f"Voice: {args.voice}")
+    print(f"Voice: {name}")
     print(f"Text: {text[:80]}{'...' if len(text) > 80 else ''}")
     print(f"Generating...")
 
@@ -275,16 +324,37 @@ def cmd_speak(args):
 
     if not results:
         print("Error: No audio generated.", file=sys.stderr)
-        sys.exit(1)
+        return
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    output = OUTPUT_DIR / f"speak_{args.voice}.wav"
+    output = OUTPUT_DIR / f"speak_{name}.wav"
     sf.write(str(output), np.array(results[0].audio), model.sample_rate)
 
     print(f"Output: {output}")
     print(f"ffplay -autoexit -nodisp -hide_banner -loglevel error {output}")
-    if args.play:
+    if play:
         play_audio(output)
+    print()
+
+
+def cmd_speak(args):
+    from mlx_audio.tts.utils import load_model
+
+    samples = load_voice_samples()
+    voices = resolve_voices(args.voice, samples)
+
+    if args.text_file:
+        text_override = Path(args.text_file).read_text().strip()
+    else:
+        text_override = args.text
+
+    print(f"Loading model: {MODEL_ID}")
+    model = load_model(MODEL_ID)
+
+    for name, sample in voices:
+        fullname = sample.get("fullname", name)
+        text = text_override or f"I am {name}, {fullname}, and now you can hear me!"
+        speak_one(name, text, model, play=args.play)
 
 
 # --- main ---
@@ -313,20 +383,22 @@ def main():
     p_play.add_argument("--start", required=True, help="Start timecode (HH:MM:SS)")
     p_play.add_argument("--duration", type=float, default=3, help="Duration in seconds")
 
+    # validate
+    p_val = sub.add_parser("validate", help="Show voice sample summary from YAML")
+    p_val.add_argument("--voice", required=True, help="Voice name or 'all'")
+    p_val.add_argument("--play", action="store_true", help="Play the audio for each voice")
+    p_val.add_argument("--verify", action="store_true", help="Re-transcribe and compare with whisper-cli")
+
     # prepare-voice-sample
-    p_pvs = sub.add_parser("prepare-voice-sample", help="Extract voice sample (24kHz mono) with canonical text")
-    p_pvs.add_argument("--start", required=True, help="Start timecode (HH:MM:SS)")
-    p_pvs.add_argument("--duration", type=float, default=20, help="Duration in seconds")
-    p_pvs.add_argument("--name", required=True, help="Speaker name (used for output filenames)")
-    text_group_pvs = p_pvs.add_mutually_exclusive_group()
-    text_group_pvs.add_argument("--text", type=str, help="Canonical text from the book")
-    text_group_pvs.add_argument("--text-file", type=str, help="Read canonical text from file")
+    p_pvs = sub.add_parser("prepare-voice-sample", help="Extract voice sample(s) from YAML definitions")
+    p_pvs.add_argument("--voice", required=True, help="Voice name or 'all'")
 
     # speak
+    available = ", ".join(load_voice_samples().keys())
     p_speak = sub.add_parser("speak", help="Generate speech using a cloned voice")
-    p_speak.add_argument("--voice", required=True, help="Voice name (must have sample in data/voice-samples/)")
+    p_speak.add_argument("--voice", required=True, help=f"Voice name or 'all' (available: {available})")
     text_group_speak = p_speak.add_mutually_exclusive_group()
-    text_group_speak.add_argument("--text", type=str, help="Text to speak")
+    text_group_speak.add_argument("--text", type=str, help="Text to speak (default: 'I am <voice>, and now you can hear me!')")
     text_group_speak.add_argument("--text-file", type=str, help="Read text from file")
     p_speak.add_argument("--play", action="store_true", help="Play audio after generation")
 
@@ -339,6 +411,7 @@ def main():
         "epub": cmd_epub,
         "vtt-search": cmd_vtt_search,
         "play": cmd_play,
+        "validate": cmd_validate,
         "prepare-voice-sample": cmd_prepare_voice_sample,
         "speak": cmd_speak,
     }
