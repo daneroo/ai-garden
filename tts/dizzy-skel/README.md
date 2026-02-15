@@ -162,8 +162,8 @@ dizzy play --start 00:45:17 --duration 3
 
 ### 5. Prepare voice samples with canonical text
 
-Once timecodes are confirmed, extract the sample with canonical text from
-the epub (not whisper output — whisper gets names and words wrong).
+Once timecodes are confirmed, extract the sample with canonical text from the
+epub (not whisper output — whisper gets names and words wrong).
 
 Kenny (narrator):
 
@@ -197,6 +197,28 @@ dizzy speak --voice dizzy --text "Skel, turn on the espresso machine." --play
 ```
 
 ### 7. (TODO) Write screenplay, generate, stitch
+
+## Benchmark: model variants
+
+`bench-models.py` compares all Qwen3-TTS model variants (0.6B/1.7B,
+Base/CustomVoice, bf16/8bit/4bit) for generation speed with voice cloning vs
+built-in speakers.
+
+Results (Mac Mini M2 Pro, 3 iters, 5s cooldown). Speedup = audio_duration /
+gen_time (> 1.0 = faster than realtime):
+
+| Model     | Base Gen     | Base Speedup | CV Gen      | CV Speedup  |
+| --------- | ------------ | ------------ | ----------- | ----------- |
+| 0.6B bf16 | 14.11 ±1.80s | 0.42 ±0.04x  | 6.66 ±0.86s | 0.94 ±0.12x |
+| 0.6B 8bit | 5.87 ±1.26s  | 1.20 ±0.06x  | 5.69 ±0.84s | 1.25 ±0.11x |
+| 0.6B 4bit | 5.39 ±0.49s  | 1.19 ±0.12x  | 7.53 ±1.65s | 1.33 ±0.19x |
+| 1.7B bf16 | 19.72 ±3.11s | 0.29 ±0.04x  | 7.50 ±1.92s | 0.70 ±0.12x |
+| 1.7B 8bit | 6.99 ±0.61s  | 0.92 ±0.08x  | 5.10 ±0.57s | 1.16 ±0.02x |
+| 1.7B 4bit | 5.87 ±0.50s  | 1.08 ±0.06x  | 5.80 ±0.71s | 1.09 ±0.13x |
+
+Conclusion: quantized models (4bit/8bit) all run near realtime regardless of
+size. CustomVoice (built-in speakers) is NOT necessary — voice cloning with Base
+models performs equally well when quantized.
 
 ## Dependencies
 
