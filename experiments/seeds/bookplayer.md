@@ -45,6 +45,19 @@ transcripts) and reading while listening.
 - For framework-specific APIs (TanStack Start routes/server behavior), the agent
   must check docs before implementation and record what was validated.
 
+### Playwright MCP Enforcement (Hard Requirement in generated `AGENTS.md`)
+
+- If Playwright MCP is connected, browser verification MUST use MCP Playwright
+  tools.
+- Do not install project-local Playwright tooling as a substitute.
+- Forbidden unless user explicitly requests it:
+  - `bun add playwright`
+  - `bun add -d @playwright/test`
+  - `npx playwright install`
+  - adding Playwright config/scaffolding only to replace MCP screenshots
+- If Playwright MCP is unavailable, pause UI/layout completion and report a
+  blocker requesting MCP setup.
+
 ### Plan Tracking (Required in generated `PLAN.md`)
 
 - Use checkbox milestones (`- [ ]` / `- [x]`) for each phase.
@@ -59,6 +72,8 @@ transcripts) and reading while listening.
 - Validate with real configured roots (`AUDIOBOOKS_ROOT`, `VTT_DIR`), not only
   fixture/demo data.
 - Record screenshot paths and explicit pass/fail notes in the session output.
+- Include a verification note that no local Playwright dependencies were added
+  to `package.json` unless explicitly requested by the user.
 
 ### Reference Locality
 
@@ -464,6 +479,9 @@ Extract or derive:
   - verify layout budgets in screenshot review (chrome heights and reader
     minimums)
   - verify search UI is visible/actionable (match count + result list)
+- Automatic failure conditions:
+  - missing Playwright MCP evidence (screenshots + pass/fail checklist)
+  - local Playwright dependency/tooling added without explicit user request
 - Failure examples that must be rejected:
   - player page leaves too little vertical room for readable EPUB content
   - player page dominated by cover image instead of readable EPUB content
