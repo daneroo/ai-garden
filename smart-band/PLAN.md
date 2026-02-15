@@ -1,5 +1,34 @@
 # Honor Band 6 → Xiaomi Smart Band 10 (Pixel 9)
 
+**DATA INCIDENT 2026-02-14** Failure of data on feb 14
+
+Gemini suggests a new path to prevent all the permission shenanigans which was
+the unrecoverable loss of data on 2026-02-14 -
+<https://gemini.google.com/app/773acd42ece32c7c>
+
+```markdown
+# Option 1: The Middleware Fix (Live Sync & Backfill)
+
+- **Tool:** Notify for Xiaomi (Android App)
+- **Role:** Replaces the unreliable Mi Fitness sync engine with a robust
+  background service.
+- **Key Feature:** Historical Resync. Unlike Mi Fitness, this app buffers data
+  locally and allows you to manually force-push past data (yesterday, last week)
+  into Health Connect if a gap occurs.
+- **Trigger:** Install this immediately if the native sync fails again or leaves
+  another gap.
+
+# Option 2: The "Cold Storage" Fix (Archival)
+
+- **Tool:** Xiaomi Account Privacy Portal (Web)
+  - URL: account.xiaomi.com -> Privacy -> Manage your data
+- **Role:** Disaster recovery and data sovereignty.
+- **Key Feature:** CSV/JSON Export. Provides raw, downloadable access to your
+  Steps, HR, and Sleep data without the "black box" of an app database.
+- **Trigger:** Use this monthly to pull a "Cold Storage" backup for your homelab
+  or to repair massive historical gaps.
+```
+
 ## Summary
 
 - Goal: Move to Xiaomi Smart Band 10 without losing access to data
