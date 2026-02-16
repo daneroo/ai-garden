@@ -33,12 +33,12 @@ Validate env vars on startup. Support re-scan.
 Media streaming with HTTP Range support. Asset endpoints for cover, audio, epub,
 VTT.
 
-- [ ] Cover image endpoint (by bookId)
-- [ ] Audio streaming with HTTP Range / 206 Partial Content
-- [ ] EPUB file serving
-- [ ] VTT transcript serving
-- [ ] Path traversal protections
-- [ ] Input validation for route params
+- [x] Cover image endpoint (by bookId)
+- [x] Audio streaming with HTTP Range / 206 Partial Content
+- [x] EPUB file serving
+- [x] VTT transcript serving
+- [x] Path traversal protections
+- [x] Input validation for route params
 
 ## Phase 4: Landing Page
 
@@ -129,8 +129,14 @@ Playwright-based visual verification on real data.
 - `createServerFn` handlers can be synchronous — no need for `async` unless
   using `await`. The input validation method is `inputValidator`, not
   `validator`.
-- `import.meta.dirname` is always defined in Bun — no need for the
-  `?? process.cwd()` fallback.
+- TanStack Start Server Routes use `createFileRoute` with `server.handlers`
+  property — returns raw `Response` objects, supports `params` for dynamic
+  paths. Colocated with UI routes in `src/routes/`.
+- API routes under `src/routes/api/$type/$bookId.ts` are 3 directories deep —
+  imports need `../../../` not `../../`. Easy to miss.
+- `createReadStream` cast to `ReadableStream` works for Bun but needs
+  `as unknown as ReadableStream` to satisfy TS.
+- Server route handlers can be synchronous (no `async` needed).
 
 ## Session Audit Trail
 
@@ -145,4 +151,11 @@ Playwright-based visual verification on real data.
   - Created `src/server/library.ts` (fetchLibrary, fetchBook, triggerRescan)
   - Wired landing page to fetchLibrary server function with book grid UI
   - Verified: 882 books discovered in 50ms, cache persistence working
+  - CI green
+- **S3** (2026-02-16) — Phase 3: Server Endpoints & Media Serving
+  - Created `src/server/media.ts` (validation, traversal guard, Range/206)
+  - API routes: `/api/cover/$bookId`, `/api/audio/$bookId`, `/api/epub/$bookId`,
+    `/api/vtt/$bookId`
+  - Curl verified: cover 200 jpeg, audio 206 range, VTT 404 (correct), invalid
+    400
   - CI green

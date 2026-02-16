@@ -8,7 +8,7 @@ Web-based audiobook player with synchronized epub display.
 
 ## Status
 
-Phase 2: Library Scanner & Indexer (complete)
+Phase 3: Server Endpoints & Media Serving (complete)
 
 ## Development
 

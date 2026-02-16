@@ -11,6 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlayerBookIdRouteImport } from './routes/player/$bookId'
+import { Route as ApiVttBookIdRouteImport } from './routes/api/vtt/$bookId'
+import { Route as ApiEpubBookIdRouteImport } from './routes/api/epub/$bookId'
+import { Route as ApiCoverBookIdRouteImport } from './routes/api/cover/$bookId'
+import { Route as ApiAudioBookIdRouteImport } from './routes/api/audio/$bookId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +26,86 @@ const PlayerBookIdRoute = PlayerBookIdRouteImport.update({
   path: '/player/$bookId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiVttBookIdRoute = ApiVttBookIdRouteImport.update({
+  id: '/api/vtt/$bookId',
+  path: '/api/vtt/$bookId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiEpubBookIdRoute = ApiEpubBookIdRouteImport.update({
+  id: '/api/epub/$bookId',
+  path: '/api/epub/$bookId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCoverBookIdRoute = ApiCoverBookIdRouteImport.update({
+  id: '/api/cover/$bookId',
+  path: '/api/cover/$bookId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAudioBookIdRoute = ApiAudioBookIdRouteImport.update({
+  id: '/api/audio/$bookId',
+  path: '/api/audio/$bookId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/player/$bookId': typeof PlayerBookIdRoute
+  '/api/audio/$bookId': typeof ApiAudioBookIdRoute
+  '/api/cover/$bookId': typeof ApiCoverBookIdRoute
+  '/api/epub/$bookId': typeof ApiEpubBookIdRoute
+  '/api/vtt/$bookId': typeof ApiVttBookIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/player/$bookId': typeof PlayerBookIdRoute
+  '/api/audio/$bookId': typeof ApiAudioBookIdRoute
+  '/api/cover/$bookId': typeof ApiCoverBookIdRoute
+  '/api/epub/$bookId': typeof ApiEpubBookIdRoute
+  '/api/vtt/$bookId': typeof ApiVttBookIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/player/$bookId': typeof PlayerBookIdRoute
+  '/api/audio/$bookId': typeof ApiAudioBookIdRoute
+  '/api/cover/$bookId': typeof ApiCoverBookIdRoute
+  '/api/epub/$bookId': typeof ApiEpubBookIdRoute
+  '/api/vtt/$bookId': typeof ApiVttBookIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/player/$bookId'
+  fullPaths:
+    | '/'
+    | '/player/$bookId'
+    | '/api/audio/$bookId'
+    | '/api/cover/$bookId'
+    | '/api/epub/$bookId'
+    | '/api/vtt/$bookId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/player/$bookId'
-  id: '__root__' | '/' | '/player/$bookId'
+  to:
+    | '/'
+    | '/player/$bookId'
+    | '/api/audio/$bookId'
+    | '/api/cover/$bookId'
+    | '/api/epub/$bookId'
+    | '/api/vtt/$bookId'
+  id:
+    | '__root__'
+    | '/'
+    | '/player/$bookId'
+    | '/api/audio/$bookId'
+    | '/api/cover/$bookId'
+    | '/api/epub/$bookId'
+    | '/api/vtt/$bookId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PlayerBookIdRoute: typeof PlayerBookIdRoute
+  ApiAudioBookIdRoute: typeof ApiAudioBookIdRoute
+  ApiCoverBookIdRoute: typeof ApiCoverBookIdRoute
+  ApiEpubBookIdRoute: typeof ApiEpubBookIdRoute
+  ApiVttBookIdRoute: typeof ApiVttBookIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +124,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlayerBookIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/vtt/$bookId': {
+      id: '/api/vtt/$bookId'
+      path: '/api/vtt/$bookId'
+      fullPath: '/api/vtt/$bookId'
+      preLoaderRoute: typeof ApiVttBookIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/epub/$bookId': {
+      id: '/api/epub/$bookId'
+      path: '/api/epub/$bookId'
+      fullPath: '/api/epub/$bookId'
+      preLoaderRoute: typeof ApiEpubBookIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cover/$bookId': {
+      id: '/api/cover/$bookId'
+      path: '/api/cover/$bookId'
+      fullPath: '/api/cover/$bookId'
+      preLoaderRoute: typeof ApiCoverBookIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/audio/$bookId': {
+      id: '/api/audio/$bookId'
+      path: '/api/audio/$bookId'
+      fullPath: '/api/audio/$bookId'
+      preLoaderRoute: typeof ApiAudioBookIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PlayerBookIdRoute: PlayerBookIdRoute,
+  ApiAudioBookIdRoute: ApiAudioBookIdRoute,
+  ApiCoverBookIdRoute: ApiCoverBookIdRoute,
+  ApiEpubBookIdRoute: ApiEpubBookIdRoute,
+  ApiVttBookIdRoute: ApiVttBookIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
