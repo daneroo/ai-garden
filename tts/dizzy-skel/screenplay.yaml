@@ -1,0 +1,18 @@
+# Screenplay for dizzy-skel audio drama.
+#
+# Ordered list of lines. Each entry is a single-key mapping:
+#   - <voice>: <text>
+#
+# Voice keys must match entries in voice-samples.yaml.
+# Voices: kenny (narrator, Peter Kenny), skel (drone Skaffen-Amtiskaw),
+#         dizzy (Diziet Sma, Culture agent)
+
+# Dramatis Personae ->per-SOH-nye
+- kenny: "This is the Dramatis per-SOH-nye. ..."
+- kenny: "First, myself. Kenny. Peter Kenny. I am your narrator. ..."
+- skel: "I am skel. Skaffen-Amtiskaw. A Culture drone. You may call me Skel. ..."
+- dizzy: "And I am Dizzy. Diziet Sma. toots to my friends, which does not yet include you. ..."
+# phonetic for QWEN3 ()
+# Try "Kwen three" or "Chwen three" — the Q in Qwen is meant to sound like a soft "ch" (from Chinese 千问/Qianwen).
+#  For TTS, "Kwen 3" would be most natural-sounding in English.
+- kenny: "This has been produced with the help of Kwen-3 TTS by Alibaba Cloud. ..."

@@ -6,14 +6,19 @@ mlx-audio.
 
 ## Tasks
 
-- [x] Extract chapter text from the epub (get Chapter One as text)
-- [ ] Extract an audio snippet from the m4b at a given timecode (ffmpeg)
-- [ ] Re-transcribe an m4b snippet with whisper-cli (verify text matches)
-- [ ] Prepare voice samples (narrator, Dizzy, Skel) with matching transcripts
-- [ ] Speak a text using a cloned voice
-- [ ] Write a screenplay
-- [ ] Generate cloned audio per line
-- [ ] Stitch parts into one audio file
+- [x] Prepare voice samples (kenny, dizzy, skel) with matching transcripts
+- [x] Speak a text using a cloned voice
+- [x] Screenplay: generate cloned audio per line from YAML
+- [x] Interactive chat with voice cloning
+- [x] Benchmark model variants (size, quantization, base vs custom voice)
+- [ ] Support multiple source audiobooks (not just Use of Weapons)
+  - First Law, Steven Pacey - Logan Nine-Fingers
+  - Serkis, Golom - Hobbit, Lord of the Rings
+  - Name of the wind, Nick Podehl
+- [ ] Streamline adding new voice samples
+  - [x] Extract chapter text from the epub
+  - [x] Re-transcribe snippets with whisper-cli (verify text matches)
+- [ ] Stitch screenplay parts into one audio file
 
 ## Notes
 
@@ -196,7 +201,23 @@ dizzy speak --voice skel --text "I'm afraid I can't do that, Dizzy." --play
 dizzy speak --voice dizzy --text "Skel, turn on the espresso machine." --play
 ```
 
-### 7. (TODO) Write screenplay, generate, stitch
+### 7. Generate from screenplay
+
+Define lines in `screenplay.yaml` (ordered list of `- voice: "text"` entries):
+
+```bash
+dizzy screenplay                              # play each line (default: 0.6b-4bit)
+dizzy screenplay --model 1.7b-bf16 --no-play  # save WAVs for best quality
+```
+
+With `--no-play`, outputs `data/output/screenplay_000_kenny.wav`, etc.
+
+### 8. Interactive chat
+
+```bash
+dizzy chat                                    # type text, hear it back (kenny, 0.6b-4bit)
+dizzy chat --model 1.7b-8bit --voice skel     # different model/voice
+```
 
 ## Benchmark: model variants
 

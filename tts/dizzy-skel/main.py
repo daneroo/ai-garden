@@ -22,6 +22,10 @@ Usage:
     uv run --prerelease=allow main.py prepare-voice-sample --voice kenny
     uv run --prerelease=allow main.py prepare-voice-sample --voice all
     uv run --prerelease=allow main.py speak --voice kenny --text "Hello from the Culture"
+    uv run --prerelease=allow main.py screenplay
+    uv run --prerelease=allow main.py screenplay --model 1.7b-8bit --no-play
+    uv run --prerelease=allow main.py chat
+    uv run --prerelease=allow main.py chat --model 1.7b-8bit --voice skel
 """
 
 import argparse
@@ -41,7 +45,17 @@ TMP_DIR = Path("data/tmp")
 WHISPER_MODEL = "../../bun-one/apps/whisper/data/models/ggml-tiny.en.bin"
 VOICE_SAMPLE_DIR = Path("data/voice-samples")
 OUTPUT_DIR = Path("data/output")
+SCREENPLAY_YAML = "screenplay.yaml"
 MODEL_ID = "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16"
+
+BASE_MODELS = {
+    "0.6b-bf16": "mlx-community/Qwen3-TTS-12Hz-0.6B-Base-bf16",
+    "0.6b-8bit": "mlx-community/Qwen3-TTS-12Hz-0.6B-Base-8bit",
+    "0.6b-4bit": "mlx-community/Qwen3-TTS-12Hz-0.6B-Base-4bit",
+    "1.7b-bf16": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-bf16",
+    "1.7b-8bit": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-8bit",
+    "1.7b-4bit": "mlx-community/Qwen3-TTS-12Hz-1.7B-Base-4bit",
+}
 
 
 def parse_timestamp(ts: str) -> float:
@@ -120,6 +134,73 @@ def extract_audio(start: float, duration: float, output: Path, sample_rate: int 
 
 def play_audio(wav_path: Path):
     subprocess.run(["ffplay", "-autoexit", "-nodisp", "-hide_banner", "-loglevel", "error", str(wav_path)])
+
+
+def play_audio_pipe(audio_np, sample_rate):
+    """Pipe audio to ffplay via stdin — no temp file."""
+    import io
+    import os
+    import soundfile as sf
+
+    buf = io.BytesIO()
+    sf.write(buf, audio_np, sample_rate, format="WAV")
+    env = {k: v for k, v in os.environ.items() if not k.startswith("MallocStack")}
+    subprocess.run(
+        ["ffplay", "-autoexit", "-nodisp", "-hide_banner", "-loglevel", "error", "-"],
+        input=buf.getvalue(),
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        env=env,
+    )
+
+
+def suppress_tts_warnings():
+    """Suppress noisy mlx-audio/transformers warnings."""
+    import os
+    import warnings
+    warnings.filterwarnings("ignore", message=".*model of type qwen3_tts.*")
+    warnings.filterwarnings("ignore", message=".*incorrect regex pattern.*")
+    os.environ["TRANSFORMERS_VERBOSITY"] = "error"
+
+
+def load_tts_model(model_name):
+    """Validate model name and load with suppressed output."""
+    import contextlib
+    import io as _io
+    from mlx_audio.tts.utils import load_model
+
+    if model_name not in BASE_MODELS:
+        print(f"Unknown model '{model_name}'. Available: {', '.join(BASE_MODELS.keys())}", file=sys.stderr)
+        sys.exit(1)
+    model_id = BASE_MODELS[model_name]
+
+    # suppress print-based warnings during load
+    old_stdout, old_stderr = sys.stdout, sys.stderr
+    sys.stdout = _io.StringIO()
+    sys.stderr = _io.StringIO()
+    try:
+        model = load_model(model_id)
+    finally:
+        sys.stdout, sys.stderr = old_stdout, old_stderr
+
+    return model, model_id
+
+
+def load_voice_ref(name):
+    """Load voice sample WAV + text for voice cloning. Returns (mx_array, ref_text)."""
+    import mlx.core as mx
+    import soundfile as sf
+
+    wav_path = VOICE_SAMPLE_DIR / f"{name}.wav"
+    txt_path = VOICE_SAMPLE_DIR / f"{name}.txt"
+    if not wav_path.exists() or not txt_path.exists():
+        print(f"Voice sample not found: {wav_path}", file=sys.stderr)
+        print(f"Run: main.py prepare-voice-sample --voice {name}", file=sys.stderr)
+        sys.exit(1)
+    audio, _ = sf.read(str(wav_path))
+    if audio.ndim > 1:
+        audio = audio.mean(axis=1)
+    return mx.array(audio), txt_path.read_text().strip()
 
 
 def transcribe(wav_path: Path) -> str:
@@ -357,6 +438,141 @@ def cmd_speak(args):
         speak_one(name, text, model, play=args.play)
 
 
+# --- screenplay ---
+
+def load_screenplay(path=SCREENPLAY_YAML):
+    """Load screenplay YAML — list of {voice: text} mappings."""
+    with open(path) as f:
+        lines = yaml.safe_load(f)
+    result = []
+    for entry in lines:
+        if not isinstance(entry, dict) or len(entry) != 1:
+            print(f"Bad screenplay entry: {entry}", file=sys.stderr)
+            sys.exit(1)
+        voice, text = next(iter(entry.items()))
+        result.append((voice, text))
+    return result
+
+
+def cmd_screenplay(args):
+    import time
+    import numpy as np
+    import soundfile as sf
+    import mlx.core as mx
+
+    suppress_tts_warnings()
+
+    lines = load_screenplay(args.screenplay)
+    samples = load_voice_samples()
+
+    # validate all voices exist
+    voices_needed = sorted(set(v for v, _ in lines))
+    for v in voices_needed:
+        if v not in samples:
+            print(f"Unknown voice '{v}' in screenplay. Available: {', '.join(samples.keys())}", file=sys.stderr)
+            sys.exit(1)
+
+    # load model
+    print(f"Loading model: {args.model}")
+    model, model_id = load_tts_model(args.model)
+
+    # preload all voice references
+    voice_cache = {v: load_voice_ref(v) for v in voices_needed}
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    print(f"Lines: {len(lines)}, Voices: {', '.join(voices_needed)}")
+    print()
+
+    for i, (voice, text) in enumerate(lines):
+        ref_audio, ref_text = voice_cache[voice]
+
+        print(f"  [{i+1:2d}/{len(lines)}] {voice}: {text[:60]}{'...' if len(text) > 60 else ''}")
+
+        t0 = time.perf_counter()
+        results = list(model.generate(
+            text=text,
+            ref_audio=ref_audio,
+            ref_text=ref_text,
+            language="English",
+        ))
+        t_gen = time.perf_counter() - t0
+
+        if not results or not hasattr(results[0], "audio"):
+            print(f"         (no audio)")
+            continue
+
+        audio = np.array(results[0].audio)
+        # pad 0.2s silence to avoid abrupt cutoff
+        audio = np.concatenate([audio, np.zeros(int(model.sample_rate * 0.2))])
+        duration_s = len(audio) / model.sample_rate
+        speedup = duration_s / t_gen if t_gen > 0 else 0
+        print(f"         Gen: {t_gen:.2f}s  Audio: {duration_s:.2f}s  Speedup: {speedup:.2f}x")
+
+        if args.no_play:
+            out_path = OUTPUT_DIR / f"screenplay_{i:03d}_{voice}.wav"
+            sf.write(str(out_path), audio, model.sample_rate)
+        else:
+            play_audio_pipe(audio, model.sample_rate)
+
+        mx.clear_cache()
+
+    if args.no_play:
+        print(f"\nOutput: {OUTPUT_DIR}/screenplay_*.wav")
+        print(f"Play with:")
+        print(f"  for f in {OUTPUT_DIR}/screenplay_*.wav; do ffplay -autoexit -nodisp \"$f\"; done")
+
+
+# --- chat ---
+
+def cmd_chat(args):
+    import time
+    import numpy as np
+    import mlx.core as mx
+
+    suppress_tts_warnings()
+
+    print(f"Loading model: {args.model}")
+    model, model_id = load_tts_model(args.model)
+
+    ref_audio, ref_text = load_voice_ref(args.voice)
+    print(f"Voice: {args.voice}")
+    print(f"Type text and press Enter. Ctrl-C to quit.\n")
+
+    while True:
+        try:
+            user_input = input("> ").strip()
+        except (KeyboardInterrupt, EOFError):
+            print("\nBye!")
+            break
+
+        if not user_input:
+            continue
+
+        reply = f"Sure, {user_input}"
+        print(f"  [{args.voice}]: {reply}")
+
+        t0 = time.perf_counter()
+        results = list(model.generate(
+            text=reply,
+            ref_audio=ref_audio,
+            ref_text=ref_text,
+            language="English",
+        ))
+        t_gen = time.perf_counter() - t0
+
+        if results and hasattr(results[0], "audio"):
+            audio = np.array(results[0].audio)
+            audio = np.concatenate([audio, np.zeros(int(model.sample_rate * 0.2))])
+            duration_s = len(audio) / model.sample_rate
+            speedup = duration_s / t_gen if t_gen > 0 else 0
+            print(f"  Gen: {t_gen:.2f}s  Audio: {duration_s:.2f}s  Speedup: {speedup:.2f}x")
+            mx.clear_cache()
+            if not args.no_play:
+                play_audio_pipe(audio, model.sample_rate)
+        else:
+            print(f"  Gen: {t_gen:.2f}s (no audio)")
+
+
 # --- main ---
 
 def main():
@@ -402,6 +618,25 @@ def main():
     text_group_speak.add_argument("--text-file", type=str, help="Read text from file")
     p_speak.add_argument("--play", action="store_true", help="Play audio after generation")
 
+    # screenplay
+    model_names = ", ".join(BASE_MODELS.keys())
+    p_sp = sub.add_parser("screenplay", help="Generate audio drama from screenplay YAML")
+    p_sp.add_argument("--screenplay", default=SCREENPLAY_YAML,
+                       help=f"Path to screenplay YAML (default: {SCREENPLAY_YAML})")
+    p_sp.add_argument("--model", default="0.6b-4bit",
+                       help=f"Model: {model_names} (default: 0.6b-4bit)")
+    p_sp.add_argument("--no-play", action="store_true",
+                       help="Save WAVs instead of playing (data/output/screenplay_NNN_voice.wav)")
+
+    # chat
+    available = ", ".join(load_voice_samples().keys())
+    p_chat = sub.add_parser("chat", help="Interactive voice chat loop")
+    p_chat.add_argument("--model", default="0.6b-4bit",
+                         help=f"Model: {model_names} (default: 0.6b-4bit)")
+    p_chat.add_argument("--voice", default="kenny",
+                         help=f"Voice: {available} (default: kenny)")
+    p_chat.add_argument("--no-play", action="store_true", help="Skip playback")
+
     args = parser.parse_args()
     if not args.command:
         parser.print_help()
@@ -414,6 +649,8 @@ def main():
         "validate": cmd_validate,
         "prepare-voice-sample": cmd_prepare_voice_sample,
         "speak": cmd_speak,
+        "screenplay": cmd_screenplay,
+        "chat": cmd_chat,
     }
     commands[args.command](args)
 
