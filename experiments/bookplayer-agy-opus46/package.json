@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bun --bun vite dev --port 3000",
+    "dev": "bun --bun vite dev --port 3000 --host",
     "build": "bun --bun vite build",
     "preview": "bun --bun vite preview",
     "start": "bun run .output/server/index.mjs",

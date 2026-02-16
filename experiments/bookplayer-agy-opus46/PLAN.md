@@ -103,14 +103,14 @@ Persist progress. Final layout budget verification.
 
 Playwright-based visual verification on real data.
 
-- [ ] `/` loads with real library data
-- [ ] `/player/$bookId` loads with audio + EPUB + transcript
-- [ ] Reader containment check (no iframe overflow)
-- [ ] Compact chrome, reader-first viewport dominance
-- [ ] Desktop and mobile screenshots
-- [ ] Layout budget pass/fail
-- [ ] EPUB search regression test (Use Of Weapons → search Dizzy)
-- [ ] No local Playwright deps added
+- [x] `/` loads with real library data
+- [x] `/player/$bookId` loads with audio + EPUB + transcript
+- [x] Reader containment check (no iframe overflow)
+- [x] Compact chrome, reader-first viewport dominance
+- [x] Desktop and mobile screenshots
+- [x] Layout budget pass/fail
+- [x] EPUB search regression test (Use Of Weapons → search Dizzy)
+- [x] No local Playwright deps added
 
 ## Learnings
 
@@ -213,3 +213,11 @@ Playwright-based visual verification on real data.
   - `Server-Timing` headers on all media serve responses
   - Browser verified: checkboxes, ffprobe duration, audio position persistence
   - CI green
+- **S9** (2026-02-16) — Phase 9: Acceptance Validation
+  - Landing: 882 books load (39ms scan), 6-col desktop / 2-col mobile
+  - Player: audio+EPUB+VTT load, duration 13:30:02, position persisted 0:15
+  - Reader contained (no iframe overflow)
+  - EPUB search "Dizzy" → 12 results, floating overlay, no displacement
+  - Desktop + mobile screenshots captured and verified
+  - No Playwright deps — all validation via browser tool
+  - All 9 phases complete ✅
