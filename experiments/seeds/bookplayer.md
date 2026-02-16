@@ -343,9 +343,11 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 - On server start, perform a filesystem scan of `AUDIOBOOKS_ROOT` to discover
   canonical book records (`.m4b` + cover) and optional EPUB capability.
 - Keep an in-memory manifest/index for fast route responses.
+- Enforce a single active scan at a time (scan lock); overlapping refresh
+  requests should be coalesced or rejected with a clear in-progress status.
 - Support explicit re-scan at runtime (manual refresh endpoint/button).
-- Persist cache to a local data file, restore on startup, then revalidate in
-  background.
+- Persist cache to a local data file (for example `.book-cache.json`), restore
+  on startup, then revalidate in background.
 - Cache invalidation should use file fingerprint checks (relative path + mtime +
   size).
 
@@ -378,6 +380,8 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 - Metadata extraction can run sequentially by default for simplicity.
 - Phase 2 requirement: add bounded-concurrency ffprobe workers (documented
   default, for example `8`) after baseline correctness is verified.
+- Prefer a standard limiter utility (for example `p-limit`) for bounded
+  ffprobe concurrency.
 - For large libraries, directory results should not block on full metadata
   extraction; show partial rows and update as metadata resolves.
 - Cache extracted metadata server-side (memory + persisted data file) and only
