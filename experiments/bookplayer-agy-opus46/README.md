@@ -8,7 +8,7 @@ Web-based audiobook player with synchronized epub display.
 
 ## Status
 
-Phase 4: Landing Page (complete)
+Phase 5: Player Page (complete)
 
 ## Development
 

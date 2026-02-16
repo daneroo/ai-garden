@@ -56,12 +56,12 @@ Searchable/sortable directory of canonical books with filters.
 
 Player route with audio controls and reader-first layout.
 
-- [ ] Player route (`/player/$bookId`)
-- [ ] Audio player controls (play/pause, seek, skip ±15s/±1m, speed, volume)
-- [ ] Keyboard transport (arrows ±15s, shift+arrows ±1m, space play/pause)
-- [ ] Current time / duration display
-- [ ] Reader-first layout (compact chrome, reader-dominant viewport)
-- [ ] Responsive stacking for mobile
+- [x] Player route (`/player/$bookId`)
+- [x] Audio player controls (play/pause, seek, skip ±15s/±1m, speed, volume)
+- [x] Keyboard transport (arrows ±15s, shift+arrows ±1m, space play/pause)
+- [x] Current time / duration display
+- [x] Reader-first layout (compact chrome, reader-dominant viewport)
+- [x] Responsive stacking for mobile
 
 ## Phase 6: EPUB Reader
 
@@ -165,4 +165,12 @@ Playwright-based visual verification on real data.
   - Added `parseBasename()` to extract author/title from m4b naming convention
   - Browser verified: 882 books, covers load, search filters ("tolkien" → 8),
     EPUB filter (526)
+  - CI green
+- **S5** (2026-02-16) — Phase 5: Player Page
+  - Rebuilt `player/$bookId.tsx` with full audio transport controls
+  - `<audio>` with Range-backed streaming, play/pause, ±15s/±1m skip, speed
+    cycling, volume
+  - Keyboard shortcuts: Space (play/pause), ←/→ (±15s), Shift+←/→ (±1m)
+  - Cover art sidebar (desktop) / strip (mobile), seek bar, duration display
+  - Browser verified on "Use of Weapons" — audio plays, controls work
   - CI green
