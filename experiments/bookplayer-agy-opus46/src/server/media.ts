@@ -62,10 +62,12 @@ export function getMimeType(filePath: string): string {
  * Returns 200 for the full file.
  */
 export function serveFile(absolutePath: string): Response {
+  const start = performance.now()
   try {
     const stat = statSync(absolutePath)
     const mime = getMimeType(absolutePath)
     const stream = createReadStream(absolutePath)
+    const elapsed = (performance.now() - start).toFixed(1)
 
     return new Response(stream as unknown as ReadableStream, {
       status: 200,
@@ -74,6 +76,7 @@ export function serveFile(absolutePath: string): Response {
         'Content-Length': String(stat.size),
         'Cache-Control': 'public, max-age=86400',
         'Accept-Ranges': 'bytes',
+        'Server-Timing': `file;dur=${elapsed}`,
       },
     })
   } catch {
@@ -89,6 +92,7 @@ export function serveFileWithRange(
   absolutePath: string,
   request: Request,
 ): Response {
+  const timingStart = performance.now()
   let stat
   try {
     stat = statSync(absolutePath)
@@ -102,6 +106,7 @@ export function serveFileWithRange(
   if (!rangeHeader) {
     // Full response
     const stream = createReadStream(absolutePath)
+    const elapsed = (performance.now() - timingStart).toFixed(1)
     return new Response(stream as unknown as ReadableStream, {
       status: 200,
       headers: {
@@ -109,6 +114,7 @@ export function serveFileWithRange(
         'Content-Length': String(stat.size),
         'Cache-Control': 'public, max-age=86400',
         'Accept-Ranges': 'bytes',
+        'Server-Timing': `file;dur=${elapsed}`,
       },
     })
   }
@@ -134,6 +140,7 @@ export function serveFileWithRange(
 
   const contentLength = end - start + 1
   const stream = createReadStream(absolutePath, { start, end })
+  const elapsed = (performance.now() - timingStart).toFixed(1)
 
   return new Response(stream as unknown as ReadableStream, {
     status: 206,
@@ -143,6 +150,7 @@ export function serveFileWithRange(
       'Content-Length': String(contentLength),
       'Cache-Control': 'public, max-age=86400',
       'Accept-Ranges': 'bytes',
+      'Server-Timing': `file;dur=${elapsed}`,
     },
   })
 }

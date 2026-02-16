@@ -95,9 +95,9 @@ Persist progress. Final layout budget verification.
 - [x] Save/restore EPUB CFI per book
 - [x] Persist landing page filter toggles (EPUB/VTT) in localStorage
 - [x] Layout budget check (reader 60vh+ desktop, 45vh+ mobile)
-- [ ] Metadata extraction (ffprobe with bounded concurrency)
-- [ ] Error handling (graceful degradation)
-- [ ] Observability (server timing logs)
+- [x] Metadata extraction (ffprobe with bounded concurrency)
+- [x] Error handling (graceful degradation)
+- [x] Observability (server timing logs)
 
 ## Phase 9: Acceptance Validation
 
@@ -204,4 +204,12 @@ Playwright-based visual verification on real data.
   - EPUB CFI persistence already in place from Phase 6
   - Landing page filter toggles (EPUB/VTT) persisted to localStorage
   - Browser verified: filter state survives reload, audio position restores
+  - CI green
+- **S8b** (2026-02-16) — Phase 8 remaining items
+  - Filter UI: buttons → proper checkboxes with multi-select semantics
+  - `ffprobe.ts`: probe with 10s timeout, bounded concurrency helper
+  - Async metadata enrichment in `index.ts` (4 workers, background, re-persists
+    cache)
+  - `Server-Timing` headers on all media serve responses
+  - Browser verified: checkboxes, ffprobe duration, audio position persistence
   - CI green

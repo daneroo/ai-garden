@@ -9,6 +9,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
 import { getEnvConfig } from './env'
+import { probeFile, withConcurrency } from './ffprobe'
 import { scanLibrary } from './scanner'
 import type { BookCache, BookRecord, LibraryManifest } from './types'
 
@@ -64,9 +65,58 @@ function doScan(): boolean {
     const config = getEnvConfig()
     manifest = scanLibrary(config.audiobooksRoot, config.vttDir)
     persistCache(manifest)
+
+    // Background ffprobe enrichment (bounded concurrency, non-blocking)
+    const books = manifest.books
+    const root = config.audiobooksRoot
+    void enrichMetadata(books, root)
+
     return true
   } finally {
     scanning = false
+  }
+}
+
+/** Enrich book metadata with ffprobe (duration, bitrate, codec). */
+async function enrichMetadata(
+  books: Array<BookRecord>,
+  root: string,
+): Promise<void> {
+  const CONCURRENCY = 4
+  const needsProbe = books.filter((b) => b.metadata.duration === null)
+  if (needsProbe.length === 0) return
+
+  const start = performance.now()
+  console.log(
+    `[ffprobe] Probing ${needsProbe.length} books (concurrency=${CONCURRENCY})…`,
+  )
+
+  const results = await withConcurrency(needsProbe, CONCURRENCY, async (b) => {
+    const filePath = resolve(root, b.m4bPath)
+    return probeFile(filePath)
+  })
+
+  let enriched = 0
+  for (let i = 0; i < needsProbe.length; i++) {
+    const r = results[i]
+    if (r.duration !== null) {
+      needsProbe[i].metadata.duration = r.duration
+      needsProbe[i].metadata.bitrate = r.bitrate
+      needsProbe[i].metadata.codec = r.codec
+      enriched++
+    }
+  }
+
+  const elapsed = performance.now() - start
+  console.log(
+    `[ffprobe] Enriched ${enriched}/${needsProbe.length} books in ${elapsed.toFixed(
+      0,
+    )}ms`,
+  )
+
+  // Re-persist cache with enriched metadata
+  if (enriched > 0 && manifest) {
+    persistCache(manifest)
   }
 }
 

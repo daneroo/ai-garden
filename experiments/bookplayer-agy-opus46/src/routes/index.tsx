@@ -125,36 +125,44 @@ function HomePage() {
             )}
           </div>
 
-          {/* Filter toggles */}
-          <div className="flex gap-2">
-            <button
-              type="button"
-              onClick={() => {
-                setFilterEpub(!filterEpub)
-                setPage(0)
-              }}
-              className={`rounded-lg px-3 py-2 text-xs font-medium transition-colors ${
-                filterEpub
-                  ? 'bg-cyan-600 text-white'
-                  : 'border border-slate-700 bg-slate-800 text-slate-400 hover:text-white'
-              }`}
-            >
-              EPUB ({epubCount})
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setFilterVtt(!filterVtt)
-                setPage(0)
-              }}
-              className={`rounded-lg px-3 py-2 text-xs font-medium transition-colors ${
-                filterVtt
-                  ? 'bg-emerald-600 text-white'
-                  : 'border border-slate-700 bg-slate-800 text-slate-400 hover:text-white'
-              }`}
-            >
-              VTT ({vttCount})
-            </button>
+          {/* Filter checkboxes */}
+          <div className="flex items-center gap-4">
+            <label className="flex items-center gap-1.5 cursor-pointer text-xs">
+              <input
+                type="checkbox"
+                checked={filterEpub}
+                onChange={(e) => {
+                  setFilterEpub(e.target.checked)
+                  setPage(0)
+                }}
+                className="h-3.5 w-3.5 rounded border-slate-600 bg-slate-800 text-cyan-500 accent-cyan-500"
+              />
+              <span
+                className={
+                  filterEpub ? 'text-cyan-400 font-medium' : 'text-slate-400'
+                }
+              >
+                EPUB ({epubCount})
+              </span>
+            </label>
+            <label className="flex items-center gap-1.5 cursor-pointer text-xs">
+              <input
+                type="checkbox"
+                checked={filterVtt}
+                onChange={(e) => {
+                  setFilterVtt(e.target.checked)
+                  setPage(0)
+                }}
+                className="h-3.5 w-3.5 rounded border-slate-600 bg-slate-800 text-emerald-500 accent-emerald-500"
+              />
+              <span
+                className={
+                  filterVtt ? 'text-emerald-400 font-medium' : 'text-slate-400'
+                }
+              >
+                VTT ({vttCount})
+              </span>
+            </label>
           </div>
         </div>
 
