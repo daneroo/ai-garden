@@ -19,9 +19,29 @@ export const Route = createFileRoute('/player/$bookId')({
   component: PlayerPage,
 })
 
+const AUDIO_POS_KEY = 'bp-audio-pos-'
+
+function loadAudioPos(bookId: string): number {
+  try {
+    const v = localStorage.getItem(AUDIO_POS_KEY + bookId)
+    return v ? parseFloat(v) : 0
+  } catch {
+    return 0
+  }
+}
+
+function saveAudioPos(bookId: string, time: number) {
+  try {
+    localStorage.setItem(AUDIO_POS_KEY + bookId, String(time))
+  } catch {
+    /* ignore */
+  }
+}
+
 function PlayerPage() {
   const book = Route.useLoaderData()
   const audioRef = useRef<HTMLAudioElement>(null)
+  const lastSaveRef = useRef(0)
 
   const [playing, setPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
@@ -39,9 +59,24 @@ function PlayerPage() {
       return d && isFinite(d) ? d : 0
     }
 
-    const onTimeUpdate = () => setCurrentTime(audio.currentTime)
+    const onTimeUpdate = () => {
+      setCurrentTime(audio.currentTime)
+      // Debounced save — persist every 2 seconds
+      const now = Date.now()
+      if (now - lastSaveRef.current > 2000) {
+        saveAudioPos(book.id, audio.currentTime)
+        lastSaveRef.current = now
+      }
+    }
     const onDurationChange = () => setDuration(safeDuration())
-    const onLoadedMetadata = () => setDuration(safeDuration())
+    const onLoadedMetadata = () => {
+      setDuration(safeDuration())
+      // Restore saved position
+      const saved = loadAudioPos(book.id)
+      if (saved > 0 && saved < audio.duration) {
+        audio.currentTime = saved
+      }
+    }
     const onPlay = () => setPlaying(true)
     const onPause = () => setPlaying(false)
     const onEnded = () => setPlaying(false)
@@ -54,6 +89,8 @@ function PlayerPage() {
     audio.addEventListener('ended', onEnded)
 
     return () => {
+      // Save position on unmount
+      if (audio.currentTime > 0) saveAudioPos(book.id, audio.currentTime)
       audio.removeEventListener('timeupdate', onTimeUpdate)
       audio.removeEventListener('durationchange', onDurationChange)
       audio.removeEventListener('loadedmetadata', onLoadedMetadata)
@@ -61,7 +98,7 @@ function PlayerPage() {
       audio.removeEventListener('pause', onPause)
       audio.removeEventListener('ended', onEnded)
     }
-  }, [])
+  }, [book.id])
 
   const togglePlay = useCallback(() => {
     const audio = audioRef.current

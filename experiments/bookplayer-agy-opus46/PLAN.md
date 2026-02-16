@@ -91,9 +91,10 @@ Transcript panel with active cue tracking and click-to-seek.
 
 Persist progress. Final layout budget verification.
 
-- [ ] Save/restore audio position per book (localStorage)
-- [ ] Save/restore EPUB CFI per book
-- [ ] Layout budget check (reader 60vh+ desktop, 45vh+ mobile)
+- [x] Save/restore audio position per book (localStorage)
+- [x] Save/restore EPUB CFI per book
+- [x] Persist landing page filter toggles (EPUB/VTT) in localStorage
+- [x] Layout budget check (reader 60vh+ desktop, 45vh+ mobile)
 - [ ] Metadata extraction (ffprobe with bounded concurrency)
 - [ ] Error handling (graceful degradation)
 - [ ] Observability (server timing logs)
@@ -196,4 +197,11 @@ Playwright-based visual verification on real data.
   - Lazy-loaded via React.Suspense, receives `currentTime` and `onSeek` props
   - Browser verified: cues load, active highlight tracks playback, click-to-seek
     works
+  - CI green
+- **S8** (2026-02-16) — Phase 8: Progress & Polish
+  - Audio position persistence: debounced save every 2s, restore on load, save
+    on unmount
+  - EPUB CFI persistence already in place from Phase 6
+  - Landing page filter toggles (EPUB/VTT) persisted to localStorage
+  - Browser verified: filter state survives reload, audio position restores
   - CI green

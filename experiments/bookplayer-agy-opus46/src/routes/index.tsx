@@ -1,10 +1,11 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { BookOpenText, Search, X } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { fetchLibrary } from '../server/library'
 
 const BOOKS_PER_PAGE = 24
+const FILTER_KEY = 'bp-filters'
 
 export const Route = createFileRoute('/')({
   loader: () => fetchLibrary(),
@@ -22,12 +23,35 @@ interface BookSummary {
   hasVtt: boolean
 }
 
+function loadFilters(): { epub: boolean; vtt: boolean } {
+  try {
+    const v = localStorage.getItem(FILTER_KEY)
+    if (v) return JSON.parse(v)
+  } catch {
+    /* ignore */
+  }
+  return { epub: false, vtt: false }
+}
+
 function HomePage() {
   const { books, scannedAt, scanDurationMs } = Route.useLoaderData()
   const [search, setSearch] = useState('')
-  const [filterEpub, setFilterEpub] = useState(false)
-  const [filterVtt, setFilterVtt] = useState(false)
+  const savedFilters = loadFilters()
+  const [filterEpub, setFilterEpub] = useState(savedFilters.epub)
+  const [filterVtt, setFilterVtt] = useState(savedFilters.vtt)
   const [page, setPage] = useState(0)
+
+  // Persist filter changes
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        FILTER_KEY,
+        JSON.stringify({ epub: filterEpub, vtt: filterVtt }),
+      )
+    } catch {
+      /* ignore */
+    }
+  }, [filterEpub, filterVtt])
 
   // Filter + search
   const filtered = useMemo(() => {
