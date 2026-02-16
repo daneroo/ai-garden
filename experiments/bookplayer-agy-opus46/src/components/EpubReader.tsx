@@ -249,8 +249,8 @@ export default function EpubReader({ bookId, epubUrl }: EpubReaderProps) {
 
   return (
     <div className="flex h-full flex-col overflow-hidden">
-      {/* EPUB toolbar: TOC + nav + search */}
-      <div className="flex items-center gap-2 border-b border-slate-700 bg-slate-800/80 px-3 py-1.5 shrink-0">
+      {/* EPUB toolbar: TOC + nav + search (all inline) */}
+      <div className="relative flex items-center gap-2 border-b border-slate-700 bg-slate-800/80 px-3 py-1.5 shrink-0">
         {/* TOC dropdown */}
         {toc.length > 0 && (
           <select
@@ -285,33 +285,21 @@ export default function EpubReader({ bookId, epubUrl }: EpubReaderProps) {
 
         <div className="flex-1" />
 
-        {/* Search toggle */}
-        <button
-          type="button"
-          onClick={() => setSearchOpen((o) => !o)}
-          className={`p-1 transition-colors ${searchOpen ? 'text-cyan-400' : 'text-slate-400 hover:text-white'}`}
-          title="Search EPUB"
-        >
-          <Search className="h-4 w-4" />
-        </button>
-      </div>
-
-      {/* Search panel */}
-      {searchOpen && (
-        <div className="shrink-0 border-b border-slate-700 bg-slate-900/80 p-2 max-h-48 overflow-y-auto">
-          <form onSubmit={doSearch} className="flex gap-2 mb-1">
+        {/* Inline search input */}
+        {searchOpen ? (
+          <form onSubmit={doSearch} className="flex items-center gap-1">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search book text…"
-              className="flex-1 rounded bg-slate-700 px-2 py-1 text-xs text-slate-200 outline-none placeholder:text-slate-500"
+              placeholder="Search…"
+              className="w-40 rounded bg-slate-700 px-2 py-1 text-xs text-slate-200 outline-none placeholder:text-slate-500"
               autoFocus
             />
             <button
               type="submit"
               disabled={searching}
-              className="rounded bg-cyan-700 px-2 py-1 text-xs text-white hover:bg-cyan-600 disabled:opacity-50"
+              className="rounded bg-cyan-700 px-1.5 py-1 text-xs text-white hover:bg-cyan-600 disabled:opacity-50"
             >
               {searching ? '…' : 'Go'}
             </button>
@@ -327,29 +315,45 @@ export default function EpubReader({ bookId, epubUrl }: EpubReaderProps) {
               <X className="h-3 w-3" />
             </button>
           </form>
-          {searchResults.length > 0 && (
-            <div className="space-y-0.5">
-              <p className="text-[10px] text-slate-500 mb-1">
-                {searchResults.length}
-                {searchResults.length >= 100 ? '+' : ''} results
-              </p>
-              {searchResults.map((r, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => goToSearchResult(r.cfi)}
-                  className="block w-full text-left rounded px-2 py-0.5 text-xs text-slate-300 hover:bg-slate-700 truncate"
-                >
-                  {r.excerpt}
-                </button>
-              ))}
+        ) : (
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            className="text-slate-400 hover:text-white transition-colors p-1"
+            title="Search EPUB"
+          >
+            <Search className="h-4 w-4" />
+          </button>
+        )}
+
+        {/* Floating search results dropdown */}
+        {searchOpen &&
+          (searchResults.length > 0 ||
+            (!searching && searchQuery.trim().length > 0)) && (
+            <div className="absolute top-full right-0 z-50 mt-px w-80 max-h-64 overflow-y-auto rounded-b-lg border border-slate-700 bg-slate-900/95 shadow-xl backdrop-blur-sm p-2">
+              {searchResults.length > 0 ? (
+                <div className="space-y-0.5">
+                  <p className="text-[10px] text-slate-500 mb-1">
+                    {searchResults.length}
+                    {searchResults.length >= 100 ? '+' : ''} results
+                  </p>
+                  {searchResults.map((r, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => goToSearchResult(r.cfi)}
+                      className="block w-full text-left rounded px-2 py-0.5 text-xs text-slate-300 hover:bg-slate-700 truncate"
+                    >
+                      {r.excerpt}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-xs text-slate-500 px-2">No results found</p>
+              )}
             </div>
           )}
-          {!searching && searchQuery && searchResults.length === 0 && (
-            <p className="text-xs text-slate-500 px-2">No results found</p>
-          )}
-        </div>
-      )}
+      </div>
 
       {/* EPUB render container — bounded, clipped */}
       <div
