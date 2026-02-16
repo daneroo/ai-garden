@@ -133,7 +133,7 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 ## App Interface
 
 - App has two main pages:
-  - `/` landing page: directory of canonical audiobook book records
+  - `/` landing page: directory of canonical audiobook records
   - `/player/$bookId` player page: audiobook player + embedded ebook reader
 - Mobile and desktop layouts must both be usable and tested.
 
@@ -164,7 +164,7 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
   required for a book to be listed).
 - Orphan assets without `.m4b` must not appear in main results.
 - Canonical source key is always the `.m4b` basename (without extension).
-- Public URL id must be a short digest of normalized `.m4b` basename (for
+- Public `bookId` must be a short digest of normalized `.m4b` basename (for
   cleaner/stable URLs), for example `sha1(basename).slice(0, 12)`.
 - Keep original `.m4b` basename in metadata for diagnostics and VTT matching.
 - Basename consistency check: `.m4b` and `.epub` basenames are expected to
@@ -198,7 +198,7 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 
 - Must render both:
   - Audiobook player panel
-  - Embedded ebook reader panel (ePub.js)
+  - Embedded ebook reader panel (epub.js)
 - Reader and player should be visible together on desktop.
 - On mobile, reader/player can stack or use tabs, but both must remain easily
   accessible.
@@ -218,7 +218,7 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 
 ### Player Layout Budget (Hard Requirement)
 
-- Reader(epub) content must be the primary visible surface on the player page.
+- Reader (EPUB) content must be the primary visible surface on the player page.
 - Full-cover art must never become the dominant player-page surface; cover art
   is limited to compact thumbnail use in player controls.
 - Chrome must stay compact and single-row where possible:
@@ -238,7 +238,7 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 
 ### Reader Containment (Hard Requirement)
 
-- The ePub reader wrapper must clip overflow and remain bounded within its
+- The EPUB reader wrapper must clip overflow and remain bounded within its
   panel.
 - Reader wrapper must use explicit containment (`overflow: hidden`, bounded
   height, and width constraints).
@@ -266,12 +266,14 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
   - Left/right arrows seek 15s
   - Shift+left/right seek 1m
 
-### Ebook Reader (ePub.js)
+### Ebook Reader (epub.js)
 
-- Use ePub.js to render `.epub` content in the player page.
+- Use `epub.js` to render `.epub` content in the player page.
 - If a book has no `.epub`, keep player route usable and show explicit no-ebook
   reader state.
 - Load `epubjs` via dynamic import in client code to avoid SSR/runtime issues.
+- When opening route-served EPUB payloads, set `openAs: 'epub'` so epub.js URL
+  resolution remains stable.
 - Support basic navigation (next/previous section or page).
 - Support chapter/TOC navigation (`book.loaded.navigation` / `toc`).
 - Reader flow should be single-column on narrower widths and transition to
@@ -333,6 +335,10 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
   mapping/mount or route handlers) as long as runtime and security requirements
   below are met.
 - Input validation is required for route params and query params.
+- For TanStack server functions, use `createServerFn` with
+  `inputValidator` (not `validator`).
+- `createServerFn` handlers may be synchronous when no `await` work is needed;
+  use `async` only when required.
 - Return structured error payloads for not-found and invalid id cases.
 - Before building full media endpoints, implement one minimal proof endpoint and
   verify it works in the installed TanStack Start version.
@@ -368,6 +374,8 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 - Cover images must be served by URL endpoint/path, not embedded as base64 in
   directory JSON payloads.
 - Keep listing responses lightweight; do not inline binary assets.
+- Add `Server-Timing` headers for media endpoints and scan/refresh endpoints so
+  expensive operations are visible in browser/network tooling.
 - Keep path traversal protections strict (`..`, symlink escape, non-root files).
 - Do not copy mutable media libraries into build artifacts; resolve assets at
   runtime from configured roots.
@@ -377,13 +385,14 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
 - Metadata source priority:
   - `metadata.json` in book directory when present and valid
   - fallback to `ffprobe` for `.m4b`
-- Metadata extraction can run sequentially by default for simplicity.
-- Phase 2 requirement: add bounded-concurrency ffprobe workers (documented
-  default, for example `8`) after baseline correctness is verified.
+- Metadata extraction strategy must be async-first for large libraries:
+  - return canonical rows quickly from directory scan/cache
+  - enrich missing metadata in background workers
+  - persist updates as enrichment completes
+- Use bounded-concurrency ffprobe workers (documented default, for example `8`)
+  for background enrichment.
 - Prefer a standard limiter utility (for example `p-limit`) for bounded
   ffprobe concurrency.
-- For large libraries, directory results should not block on full metadata
-  extraction; show partial rows and update as metadata resolves.
 - Cache extracted metadata server-side (memory + persisted data file) and only
   recompute when file fingerprint changes.
 

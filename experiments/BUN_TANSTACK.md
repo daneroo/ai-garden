@@ -31,9 +31,12 @@ export default defineConfig({
 });
 ```
 
-## Known Scaffold Gap (Current)
+## Router Scaffold Status
 
-- Observed issue: generated app can miss `src/router.tsx`.
+- Current status: recent TanStack CLI scaffolds appear to include
+  `src/router.tsx` correctly.
+- Keep the fallback below because scaffold behavior can drift across versions.
+- Observed issue in earlier runs: generated app can miss `src/router.tsx`.
 - Symptom on `dev`/`build`:
   - `Could not resolve entry for router entry: router in <project>/src`
 - Why this breaks:
@@ -44,7 +47,7 @@ export default defineConfig({
 - Docs references:
   - `https://tanstack.com/start/latest/docs/framework/react/guide/routing`
   - `https://tanstack.com/start/latest/docs/framework/react/build-from-scratch`
-- Workaround: add `src/router.tsx` manually.
+- Fallback workaround: add `src/router.tsx` manually.
 
 ```ts
 import { createRouter } from "@tanstack/react-router";
@@ -55,6 +58,14 @@ export async function getRouter() {
   return router;
 }
 ```
+
+## Import Path Aliases (Recommended)
+
+- Configure path aliases early to avoid fragile deep relative imports,
+  especially in nested `src/routes/api/**` handlers.
+- Typical alias pattern:
+  - `@/*` -> `./src/*`
+- Ensure `tsconfig.json` and Vite/TanStack resolution agree before broad usage.
 
 ## Script Baseline
 
