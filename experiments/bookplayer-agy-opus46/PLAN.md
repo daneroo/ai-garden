@@ -19,14 +19,14 @@ scaffold UI with BookPlayer shell. Verify `bun run ci` and `bun run build`.
 Scan AUDIOBOOKS_ROOT for audiobook directories. Build in-memory manifest.
 Validate env vars on startup. Support re-scan.
 
-- [ ] Validate AUDIOBOOKS_ROOT and VTT_DIR on startup
-- [ ] Recursive directory scanner (m4b + cover detection)
-- [ ] Asset grouping: canonical book records (m4b + cover)
-- [ ] EPUB and VTT capability flags
-- [ ] Generate stable bookId (sha1 digest of m4b basename)
-- [ ] In-memory manifest with scan lock
-- [ ] Persist cache to `.book-cache.json`; restore on startup
-- [ ] Server-side timing logs
+- [x] Validate AUDIOBOOKS_ROOT and VTT_DIR on startup
+- [x] Recursive directory scanner (m4b + cover detection)
+- [x] Asset grouping: canonical book records (m4b + cover)
+- [x] EPUB and VTT capability flags
+- [x] Generate stable bookId (sha1 digest of m4b basename)
+- [x] In-memory manifest with scan lock
+- [x] Persist cache to `.book-cache.json`; restore on startup
+- [x] Server-side timing logs
 
 ## Phase 3: Server Endpoints & Media Serving
 
@@ -123,6 +123,14 @@ Playwright-based visual verification on real data.
   directly (no need for `--add-ons nitro`).
 - Scaffold includes Tailwind CSS 4, `@tailwindcss/vite`, `vite-tsconfig-paths`,
   `lucide-react`, and `jsdom`+`@testing-library` out of the box.
+- TanStack eslint config enforces `Array<T>` over `T[]`, bans unnecessary type
+  assertions, and flags async handlers without await. `eslint --fix` handles
+  most of these automatically.
+- `createServerFn` handlers can be synchronous — no need for `async` unless
+  using `await`. The input validation method is `inputValidator`, not
+  `validator`.
+- `import.meta.dirname` is always defined in Bun — no need for the
+  `?? process.cwd()` fallback.
 
 ## Session Audit Trail
 
@@ -132,3 +140,9 @@ Playwright-based visual verification on real data.
   - Aligned scripts to BUN_TANSTACK.md baseline
   - Replaced starter UI with BookPlayer shell (landing + player routes)
   - CI green, build passes
+- **S2** (2026-02-16) — Phase 2: Library Scanner & Indexer
+  - Created `src/lib/types.ts`, `env.ts`, `scanner.ts`, `index.ts`
+  - Created `src/server/library.ts` (fetchLibrary, fetchBook, triggerRescan)
+  - Wired landing page to fetchLibrary server function with book grid UI
+  - Verified: 882 books discovered in 50ms, cache persistence working
+  - CI green
