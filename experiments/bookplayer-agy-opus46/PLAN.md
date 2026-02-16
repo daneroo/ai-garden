@@ -80,12 +80,12 @@ ePub.js integration with navigation and search.
 
 Transcript panel with active cue tracking and click-to-seek.
 
-- [ ] Load VTT by matching m4b basename
-- [ ] Display cue list in transcript strip
-- [ ] Active cue highlight during playback
-- [ ] Click cue to seek audio
-- [ ] Auto-scroll to active cue
-- [ ] No-transcript fallback state
+- [x] Load VTT by matching m4b basename
+- [x] Display cue list in transcript strip
+- [x] Active cue highlight during playback
+- [x] Click cue to seek audio
+- [x] Auto-scroll to active cue
+- [x] No-transcript fallback state
 
 ## Phase 8: Progress & Polish
 
@@ -186,4 +186,14 @@ Playwright-based visual verification on real data.
   - Lazy-loaded via React.Suspense in player page
   - Fixed epubjs URL resolution with `openAs: 'epub'` option
   - Browser verified: cover renders, text pages, TOC, navigation, search panel
+  - CI green
+- **S7** (2026-02-16) — Phase 7: VTT Transcript
+  - Created `VttTranscript.tsx` with VTT parsing, cue list, binary-search active
+    cue tracking
+  - Click-to-seek: clicking any cue seeks audio to that timestamp
+  - Auto-scroll to active cue during playback
+  - Loading, error, and no-VTT fallback states
+  - Lazy-loaded via React.Suspense, receives `currentTime` and `onSeek` props
+  - Browser verified: cues load, active highlight tracks playback, click-to-seek
+    works
   - CI green

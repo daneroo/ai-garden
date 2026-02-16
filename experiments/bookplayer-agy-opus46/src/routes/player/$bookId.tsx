@@ -12,6 +12,7 @@ import { Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react'
 import { fetchBook } from '../../server/library'
 
 const EpubReader = lazy(() => import('../../components/EpubReader'))
+const VttTranscript = lazy(() => import('../../components/VttTranscript'))
 
 export const Route = createFileRoute('/player/$bookId')({
   loader: ({ params }) => fetchBook({ data: params.bookId }),
@@ -178,14 +179,30 @@ function PlayerPage() {
           </div>
         )}
 
-        {/* Transcript strip placeholder */}
-        {book.hasVtt && (
-          <div className="h-20 shrink-0 overflow-y-auto border-t border-slate-700 bg-slate-900/50 p-3">
-            <p className="text-xs text-slate-500">
-              Transcript will appear here (Phase 7)
-            </p>
-          </div>
-        )}
+        {/* Transcript strip */}
+        <div className="shrink-0 border-t border-slate-700">
+          {book.hasVtt ? (
+            <Suspense
+              fallback={
+                <div className="h-20 bg-slate-900/50 p-3 flex items-center justify-center">
+                  <p className="text-xs text-slate-500 animate-pulse">
+                    Loading transcript…
+                  </p>
+                </div>
+              }
+            >
+              <VttTranscript
+                vttUrl={`/api/vtt/${book.id}`}
+                currentTime={currentTime}
+                onSeek={seek}
+              />
+            </Suspense>
+          ) : (
+            <div className="h-16 bg-slate-900/50 p-3 flex items-center justify-center">
+              <p className="text-xs text-slate-500">No transcript available</p>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Player bar — cover + controls */}
