@@ -52,10 +52,10 @@ Build a local-first audiobook/ebook player using Bun and TanStack Start.
   - [x] Implement Transcript sync (highlight active cue, click to seek)
   - [x] **Verification**: Playwright checks for `/player/$bookId` (layout, interaction)
 
-- [ ] **Phase 6: Search & Persistence**
-  - [ ] Implement EPUB full-text search
-  - [ ] Persist progress (audio time, EPUB CFI) to `localStorage`
-  - [ ] Restore progress on book load
+- [x] **Phase 6: Search & Persistence**
+  - [x] Implement EPUB full-text search
+  - [x] Persist progress (audio time, EPUB CFI) to `localStorage`
+  - [x] Restore progress on book load
 
 - [ ] **Phase 7: Refinement & Polish**
   - [ ] styling refinement (Dark mode, responsiveness)
