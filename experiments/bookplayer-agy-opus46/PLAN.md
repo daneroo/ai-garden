@@ -67,14 +67,14 @@ Player route with audio controls and reader-first layout.
 
 ePub.js integration with navigation and search.
 
-- [ ] Dynamic import of epubjs (client only)
-- [ ] Render EPUB in bounded iframe container
-- [ ] Chapter/TOC navigation
-- [ ] Prev/next page navigation
-- [ ] Single-column → spread layout at desktop widths
-- [ ] Location tracking with CFI persistence (localStorage)
-- [ ] EPUB search (spine iteration, result list, highlight, capped results)
-- [ ] No-EPUB fallback state
+- [x] Dynamic import of epubjs (client only)
+- [x] Render EPUB in bounded iframe container
+- [x] Chapter/TOC navigation
+- [x] Prev/next page navigation
+- [x] Single-column → spread layout at desktop widths
+- [x] Location tracking with CFI persistence (localStorage)
+- [x] EPUB search (spine iteration, result list, highlight, capped results)
+- [x] No-EPUB fallback state
 
 ## Phase 7: VTT Transcript
 
@@ -173,4 +173,17 @@ Playwright-based visual verification on real data.
   - Keyboard shortcuts: Space (play/pause), ←/→ (±15s), Shift+←/→ (±1m)
   - Cover art sidebar (desktop) / strip (mobile), seek bar, duration display
   - Browser verified on "Use of Weapons" — audio plays, controls work
+  - CI green
+- **S6** (2026-02-16) — Phase 6: EPUB Reader
+  - Created `EpubReader.tsx` with epubjs dynamic import, dark theme, paginated
+    flow, responsive spread layout
+  - TOC dropdown (book.loaded.navigation), prev/next page navigation
+  - CFI persistence via localStorage for per-book reading position
+  - Full-text EPUB search: spine iteration, result list (capped at 100),
+    highlight active result, range CFI normalization
+  - Error handling and no-EPUB fallback state
+  - Reader containment: overflow hidden, CSS contain strict
+  - Lazy-loaded via React.Suspense in player page
+  - Fixed epubjs URL resolution with `openAs: 'epub'` option
+  - Browser verified: cover renders, text pages, TOC, navigation, search panel
   - CI green

@@ -7,9 +7,11 @@ import {
   RotateCcw,
   RotateCw,
 } from 'lucide-react'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react'
 
 import { fetchBook } from '../../server/library'
+
+const EpubReader = lazy(() => import('../../components/EpubReader'))
 
 export const Route = createFileRoute('/player/$bookId')({
   loader: ({ params }) => fetchBook({ data: params.bookId }),
@@ -154,17 +156,27 @@ function PlayerPage() {
 
       {/* Reader area — full width */}
       <div className="flex-1 overflow-hidden bg-slate-800 flex flex-col">
-        {/* Reader placeholder */}
-        <div className="flex-1 flex items-center justify-center p-8">
-          <div className="text-center">
-            <BookOpenText className="mx-auto h-16 w-16 text-slate-600 mb-4" />
-            <p className="text-slate-400">
-              {book.hasEpub
-                ? 'EPUB reader will load here (Phase 6)'
-                : 'No EPUB available for this title'}
-            </p>
+        {/* EPUB reader or fallback */}
+        {book.hasEpub ? (
+          <Suspense
+            fallback={
+              <div className="flex-1 flex items-center justify-center">
+                <p className="text-sm text-slate-400 animate-pulse">
+                  Loading EPUB…
+                </p>
+              </div>
+            }
+          >
+            <EpubReader bookId={book.id} epubUrl={`/api/epub/${book.id}`} />
+          </Suspense>
+        ) : (
+          <div className="flex-1 flex items-center justify-center p-8">
+            <div className="text-center">
+              <BookOpenText className="mx-auto h-16 w-16 text-slate-600 mb-4" />
+              <p className="text-slate-400">No EPUB available for this title</p>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Transcript strip placeholder */}
         {book.hasVtt && (
