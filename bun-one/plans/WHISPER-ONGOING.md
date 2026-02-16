@@ -26,10 +26,11 @@ Next Task not chosen yet
 
 These turn into issues above, inside this very document
 
-- Double Provenance Headers not needed in a single segment run
+- Caching for Stiched Segment?
 - Make stitch a proper Task (uniform task list: N\*(wav+transcribe)+stitch)
   - VTT stitching clip for monotonicity guarantees - where?
   - if Stitching is a task, it could also cache!
+- Cache (.vtt/.wav) is permanent - add cleanup/expiry criteria
 - Investigate `simpler-recursive.ts` as a replacement for segmentation
 - Extract `runTask`/monitors to new `lib/exec.ts`
 - Artifact directory reorganization WORK,CACHE,OUTPUT,SAMPLES

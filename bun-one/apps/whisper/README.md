@@ -99,19 +99,29 @@ INPUT FILE (any format: mp3, m4b, flac, etc.)
 └─────────────────────────────────────────────────────────┘
 ```
 
-### Two Cases
+### Stitching
 
-Given `segmentSec` (default = 37h = MAX_WAV_DURATION_SEC):
+`stitchSegments(...)` handles transcriptions uniformly. (single and multi
+segment transcriptions)
 
-1. **Single segment:** `audioDuration <= segmentSec`
-   - 1 to-wav task
-   - 1 transcribe task
-   - No stitching needed
+We intentionally keep the top-level stitched `NOTE Provenance` header pointing
+to the original input (`.m4b`), even when there is only one generated segment
+`.wav`.
 
-2. **Multi-segment:** `audioDuration > segmentSec`
-   - N to-wav tasks (one per segment)
-   - N transcribe tasks (filtered by --duration if specified)
-   - 1 stitch task (concatenate VTT files)
+`stitchSegments(...)` behavior:
+
+- Reads each existing segment `.vtt` file
+- Extracts per-segment header provenance
+- Calls `stitchVttConcat(...)` to shift cues by each segment `startSec` and
+  concatenate
+- Builds `segmentBoundaries` to map each source segment to its first cue index
+  in the final file
+- Merges provenance into per-segment records (`input`, `segment`, `startSec`,
+  plus transcribe metadata)
+- Computes `elapsedMs` total only when all segments provide finite `elapsedMs`
+- Writes the final `.vtt` with one stitched header provenance block plus all
+  segment provenance blocks
+- `stitchSegments(...)` is NOT currently not modeled as a `Task`
 
 ### Caching
 
@@ -184,76 +194,36 @@ apps/whisper/
 
 ### Locked Decisions (Hard Constraints)
 
-1. **37-hour segment limit**
-   - Constraint: WAV format (RIFF) has 32-bit size limit
-   - Calculation: 4GB / (16000 Hz × 2 bytes × 1 channel) ≈ 37 hours
-   - This is a hard format limit, not arbitrary
+- **37-hour segment limit**
+  - Constraint: WAV format (RIFF) has a 32-bit size limit
+  - Calculation: 4GB / (16000 Hz × 2 bytes × 1 channel) ≈ 37 hours
+  - This is a hard format limit, not arbitrary
 
-2. **Sequential execution**
-   - WAV conversion and transcription run one segment at a time
-   - Reason: Memory usage (whisper.cpp can use significant RAM)
-   - Future: Could parallelize WAV conversion while keeping transcribe
-     sequential
+- **Sequential execution**
+  - WAV conversion and transcription run one segment at a time
+  - Reason: memory usage (whisper.cpp can use significant RAM)
 
-3. **Caching strategy**
-   - WAV and VTT cached separately by different keys
-   - WAV reusable across models, VTT is model-specific
-   - Cache is permanent (never auto-expires - lifecycle should be addressed)
+- **Caching strategy**
+  - WAV and VTT caches use different keys
+  - WAV cache entries are reusable across models; VTT cache entries are
+    model-specific
+  - Cache is permanent (lifecycle should be addressed) with cleanup criteria
 
-4. **VTT output format**
-   - Always produces .vtt files (not .srt or other formats)
-   - Contains our convention os metadata in `NOTE Provenance` blocks
-   - Human-readable, standard format
+- **VTT output format**
+  - Output is always `.vtt` (not `.srt` or other subtitle formats)
+  - Metadata is recorded in `NOTE Provenance` `.vtt`blocks with embeded `.json`
+
+- **Final stitching pass**
+  - `stitchSegments(...)` is always called after transcription tasks complete
 
 ### Flexible Areas (Open to Change)
 
-1. **Task abstraction**
-   - Current: Task interface with describe() + execute()
-   - Question: Is this helping or adding indirection?
+- **Task abstraction boundaries**
+  - Current: `task.ts` mixes task models, process execution, and monitor
+    behavior
+  - Goal: separate core task data from process/monitor plumbing where possible
 
-2. **Segment representation**
-   - Current: `{startSec, endSec}` interface + helpers
-   - Question: Minimal geometry vs enriched object?
-
-3. **Duration filtering**
-   - Current: endSegIndex, -1 sentinel, map+filter
-   - Question: Is this clear enough?
-
-4. **Interface/type count**
-   - IMPORTANT! This is clearly a problem in the current implementation
-   - Current: ~22 interfaces across 5 files
-   - Question: Which types add clarity vs complexity?
-
----
-
-## Code Areas for Detailed Analysis
-
-### 1. Task Abstraction
-
-**Current (lib/task.ts - 521 lines):**
-
-- Interface: `Task {label, describe(), execute()}`
-- Factories: `createToWavTask()`, `createTranscribeTask()`
-- Two-phase: Build Task[], then execute
-- 9 interfaces/types
-
-**Alternative (from V5 plan):**
-
-- Direct functions: `convertToWav()`, `transcribeSegment()`
-- Returns: `{outputPath, elapsedMs, fromCache, description}`
-- One-phase: Call directly in loop
-- ~3-4 types
-
----
-
-### 2. Interface Count
-
-**Current:** ~22 interfaces across 5 files
-
-- runners.ts (4): `RunConfig`, `RunDeps`, `RunResult`, `Segment`
-- task.ts (9): `Task`, `TaskKind`, `TaskConfig`, `TaskEvent`, `TaskMonitor`,
-  `TaskResult`, `RunTaskResult`, `ToWavTaskOptions`, `TranscribeTaskOptions`
-- progress.ts (2): `ProgressReporter`, `ProgressConfig`
-- vtt.ts (6): `VttCue`, `VttFile`, `VttSummary`, `VttHeaderProvenance`,
-  `VttSegmentProvenance`, `VttProvenance`
-- vtt-stitch.ts (2): `SegmentCueBoundary`, `SegmentVttInfo`
+- **Interface/type surface area**
+  - Current: 24 interface/type declarations across 5 core files (23 exported)
+  - This is a code smell for potential over-abstraction
+  - Open question: which types are true boundaries vs internal complexity
