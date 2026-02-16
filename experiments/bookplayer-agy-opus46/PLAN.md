@@ -44,13 +44,13 @@ VTT.
 
 Searchable/sortable directory of canonical books with filters.
 
-- [ ] Book listing via server function
-- [ ] Search filter
-- [ ] Asset filters (EPUB / VTT toggles)
-- [ ] Pagination
-- [ ] Asset badges (M4B, EPUB, VTT)
-- [ ] Loading, error, empty states
-- [ ] Responsive desktop + mobile layout
+- [x] Book listing via server function
+- [x] Search filter
+- [x] Asset filters (EPUB / VTT toggles)
+- [x] Pagination
+- [x] Asset badges (M4B, EPUB, VTT)
+- [x] Loading, error, empty states
+- [x] Responsive desktop + mobile layout
 
 ## Phase 5: Player Page - Audio & Layout
 
@@ -158,4 +158,11 @@ Playwright-based visual verification on real data.
     `/api/vtt/$bookId`
   - Curl verified: cover 200 jpeg, audio 206 range, VTT 404 (correct), invalid
     400
+  - CI green
+- **S4** (2026-02-16) — Phase 4: Landing Page
+  - Rebuilt `index.tsx` with search, EPUB/VTT filter toggles, cover images,
+    pagination
+  - Added `parseBasename()` to extract author/title from m4b naming convention
+  - Browser verified: 882 books, covers load, search filters ("tolkien" → 8),
+    EPUB filter (526)
   - CI green

@@ -25,6 +25,22 @@ function makeBookId(m4bBasename: string): string {
   return createHash('sha1').update(normalized).digest('hex').slice(0, 12)
 }
 
+/**
+ * Parse "Author - Title" or "Author - Series NN - Title" from basename.
+ * Falls back to full basename as title if no separator found.
+ */
+function parseBasename(name: string): { author: string | null; title: string } {
+  const sepIndex = name.indexOf(' - ')
+  if (sepIndex === -1) return { author: null, title: name }
+
+  const author = name.slice(0, sepIndex).trim()
+  const rest = name.slice(sepIndex + 3).trim()
+  // Use the last segment after " - " as the title for series patterns
+  const lastSep = rest.lastIndexOf(' - ')
+  const title = lastSep !== -1 ? rest.slice(lastSep + 3).trim() : rest
+  return { author, title: title || rest || name }
+}
+
 /** Recursively find all book directories under root. */
 function scanDirectory(
   root: string,
@@ -115,9 +131,12 @@ function scanDirectory(
       fingerprint = { relativePath: relM4b, mtimeMs: 0, size: 0 }
     }
 
+    // Parse "Author - Title" from basename (common audiobook naming convention)
+    const { author, title } = parseBasename(m4bBasename)
+
     const metadata: BookMetadata = {
-      title: m4bBasename,
-      author: null,
+      title,
+      author,
       duration: null,
       bitrate: null,
       codec: null,
