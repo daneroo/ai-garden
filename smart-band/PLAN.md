@@ -1,6 +1,10 @@
 # Honor Band 6 → Xiaomi Smart Band 10 (Pixel 9)
 
-**DATA INCIDENT 2026-02-14** Failure of data on feb 14
+## Huwawei Download Failure - 2026-02-17
+
+- after seven days we got a succinct email: Try again. Ouch
+
+## DATA INCIDENT 2026-02-14** Failure of data on feb 14
 
 Gemini suggests a new path to prevent all the permission shenanigans which was
 the unrecoverable loss of data on 2026-02-14 -

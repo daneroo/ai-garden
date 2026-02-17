@@ -1,5 +1,14 @@
 # HONOR Band 6 Huawei Export
 
+## Huwawei Download Failure - 2026-02-17
+
+- After seven days we got a succinct email: Try again. Ouch
+  - Failure
+    [GMail](https://mail.google.com/mail/u/0/#inbox/FMfcgzQfBsmNQpVfkZKChJFrRnnXBFFC)
+- New request - 2026-02-17 -
+  [GMail](https://mail.google.com/mail/u/0/#inbox/FMfcgzQfBsmNQstrqwkqddkNvmnmcvjz)
+  - I used a distinct Password to encrypt the data this time (in 1Password)
+
 ## Quick Task List
 
 - [x] Requested `ALL` data from Huawei Privacy Centre after successful login

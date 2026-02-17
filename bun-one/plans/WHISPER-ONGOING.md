@@ -15,12 +15,15 @@ Track ongoing work for this sub-project (`bon-one/apps/whisper/`)
 
 ## Current Task
 
-Next Task not chosen yet
+Stiching - `stitchSegments(...)` in `runners.ts`
 
 ### Implementation Plan
 
-- [ ] \*\*Step 1: xx
-  - sub step
+- [x] Document why `segments` is optional
+- [x] examine caching behavior around stitched .vtt
+  - Current: only segment artifacts are cached (`to-wav` and `transcribe`)
+  - Current: stitched final output is always regenerated via `stitchSegments(...)`
+  - Current: no dedicated cache key/path for stitched final `.vtt`
 
 ## Backlog
 
