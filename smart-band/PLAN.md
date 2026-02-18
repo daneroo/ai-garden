@@ -4,7 +4,7 @@ Status:
 
 - Backfill on hold - Until Mi Fitness -> Health Connect ->Google Fit is Stable
 - Huawei Health "Takeout restarted" - 2026-02-17
-- Gadgetbridge fork is Live!
+- Gadgetbridge fork is Live on Pixel 6 — WIP Ongoing (see [GadgetbridgeFork.md](./GadgetbridgeFork.md))
 
 ## Huawei Download Failure - 2026-02-17
 
