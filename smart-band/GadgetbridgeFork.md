@@ -129,12 +129,11 @@ adb uninstall nodomain.freeyourgadget.gadgetbridge
         silently — wrapped body in try/catch
   - [x] Build, deploy, verify step count appears in ntfy messages
   - [x] Commit, push to GitHub
-- Phase 5 — Weather screen as server dashboard
-  - [ ] Repurpose weather widget to show server health info
-  - [ ] Push mock data (uptime, CPU, disk?) via the existing weather path
-  - [ ] Later: fetch real metrics from a server endpoint
+- Phase 5 — Liveness
+  - [ ] Discover when activity sync is triggered (trace the sync lifecycle)
+  - [ ] Trigger activity sync from heartbeat timer (ensure fresh steps even when phone stays locked)
 - Backlog
-  - Trigger activity sync from heartbeat timer (ensure fresh steps even when phone stays locked)
+  - Weather screen as server dashboard: repurpose weather widget for server health (mock first, then real)
   - Redeploy loses device connectivity in the app — "Add device" restores it without re-pairing
   - Custom build flavor with just Honor + Mi Band? (smaller APK, faster build)
   - Add staleness detection (SharedPreferences: last_sync_age > threshold)
