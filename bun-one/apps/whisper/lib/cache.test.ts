@@ -30,11 +30,11 @@ describe("getVttCachePath", () => {
     expect(p1).not.toBe(p2);
   });
 
-  test("includes durationMs in cache key when non-zero", () => {
+  test("includes durationSec in cache key when non-zero", () => {
     const p1 = getVttCachePath("audio", "tiny.en", false, 0);
-    const p2 = getVttCachePath("audio", "tiny.en", false, 5000);
+    const p2 = getVttCachePath("audio", "tiny.en", false, 5);
     expect(p1).not.toBe(p2);
-    expect(p2).toContain("-dur5000");
+    expect(p2).toContain("-dur5s");
   });
 
   test("omits duration from key when zero", () => {

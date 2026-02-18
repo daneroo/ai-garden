@@ -126,7 +126,7 @@ export interface TranscribeTask extends TaskBase {
   model: string; // Short name (e.g., "tiny.en")
   modelPath: string; // Full path to model file
   threads: number;
-  durationMs: number; // Whisper --duration (0 = full)
+  durationSec: number; // Segment transcription duration (0 = full WAV)
   wordTimestamps: boolean;
   cachePath: string;
   cache: boolean;
@@ -227,8 +227,9 @@ async function executeTranscribe(
   }
 
   // Cache miss (or caching disabled) - run whisper-cli
+  const durationMs = task.durationSec * 1000;
   const durationArgs =
-    task.durationMs > 0 ? ["--duration", String(task.durationMs)] : [];
+    task.durationSec > 0 ? ["--duration", String(durationMs)] : [];
   const wordTimestampArgs = task.wordTimestamps
     ? ["--max-len", "1", "--split-on-word"]
     : [];
@@ -268,7 +269,7 @@ async function executeTranscribe(
     input: basename(task.wavPath),
     model: task.model,
     wordTimestamps: task.wordTimestamps,
-    ...(task.durationMs > 0 ? { durationMs: task.durationMs } : {}),
+    ...(task.durationSec > 0 ? { durationMs } : {}),
     elapsedMs,
     generated: new Date().toISOString(),
   };

@@ -9,10 +9,19 @@ export interface VttCue {
   text: string;
 }
 
+/**
+ * Header provenance written in two contexts:
+ * - per-segment transcribe output (`task.ts`) where `segments` is omitted
+ * - final stitched output (`runners.ts`) where `segments` is included
+ *
+ * `segments` remains optional so one shared header shape can represent both.
+ * When present, it is expected to be a positive integer (>= 1).
+ */
 export type VttHeaderProvenance = {
   input: string;
   model: string;
   generated: string;
+  /** Total stitched segment count; present on stitched final headers. */
   segments?: number;
   startSec?: number;
   durationSec?: number;

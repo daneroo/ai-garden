@@ -216,7 +216,7 @@ async function runWhisperPipeline(
   const transcribeTasks: TranscribeTask[] = transcribeSegs.map((ts, i) => {
     const name = nameForSeg(i);
     const outPrefix = `${config.runWorkDir}/${name}`;
-    const durationMs = ts.durationSec * 1000;
+    const durationSec = ts.durationSec;
     return {
       kind: "transcribe" as const,
       label: `transcribe[${labelForSeg(i)}]`,
@@ -227,13 +227,13 @@ async function runWhisperPipeline(
       model: config.modelShortName,
       modelPath: `${WHISPER_CPP_MODELS}/ggml-${config.modelShortName}.bin`,
       threads: config.threads,
-      durationMs,
+      durationSec,
       wordTimestamps: config.wordTimestamps,
       cachePath: getVttCachePath(
         name,
         config.modelShortName,
         config.wordTimestamps,
-        durationMs,
+        durationSec,
       ),
       cache: config.cache,
     } satisfies TranscribeTask;

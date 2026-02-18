@@ -20,18 +20,18 @@ export function getWavCachePath(baseName: string): string {
 
 /**
  * Get VTT cache path. Caller provides full base name.
- * durationMs is the --duration value passed to whisper-cli (0 = full).
+ * durationSec is the segment transcription duration in seconds (0 = full).
  */
 export function getVttCachePath(
   baseName: string,
   model: string,
   wordTimestamps: boolean,
-  durationMs: number = 0,
+  durationSec: number = 0,
 ): string {
   const dir = join(CACHE_ROOT, "vtt");
   ensureDir(dir);
   const m = model.replace(/\./g, "-");
   const wt = wordTimestamps ? "wt1" : "wt0";
-  const dur = durationMs > 0 ? `-dur${durationMs}` : "";
+  const dur = durationSec > 0 ? `-dur${durationSec}s` : "";
   return join(dir, `${baseName}-m${m}-${wt}${dur}.vtt`);
 }
