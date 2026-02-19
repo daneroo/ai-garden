@@ -35,7 +35,7 @@ import { createWriteStream } from "node:fs";
 import { basename } from "node:path";
 import { Buffer } from "node:buffer";
 import { type ProgressReporter } from "./progress.ts";
-import { readVttFile, type VttHeaderProvenance } from "./vtt.ts";
+import { readVttFile, type VttRunProvenance } from "./vtt.ts";
 import { writeVtt } from "./vtt-stitch.ts";
 
 // ============================================================================
@@ -265,11 +265,11 @@ async function executeTranscribe(
   // Inject per-segment provenance into the VTT before caching
   const elapsedMs = Date.now() - start;
   const parsed = await readVttFile(task.vttPath);
-  const provenance: VttHeaderProvenance = {
+  const provenance: VttRunProvenance = {
     input: basename(task.wavPath),
     model: task.model,
     wordTimestamps: task.wordTimestamps,
-    ...(task.durationSec > 0 ? { durationMs } : {}),
+    durationSec: task.durationSec,
     elapsedMs,
     generated: new Date().toISOString(),
   };

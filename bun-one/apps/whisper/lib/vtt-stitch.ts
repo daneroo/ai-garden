@@ -5,9 +5,9 @@
 import { writeFile } from "node:fs/promises";
 import {
   isVttSegmentProvenance,
+  type VttComposedSegmentProvenance,
   type VttCue,
   type VttProvenance,
-  type VttSegmentProvenance,
   vttTimeToSeconds,
 } from "./vtt.ts";
 
@@ -88,7 +88,7 @@ export function formatVtt(
   if (hasBoundaryData) {
     const segmentProvenanceBySegment = new Map<
       number,
-      VttSegmentProvenance[]
+      VttComposedSegmentProvenance[]
     >();
     for (const entry of segmentProvenance) {
       const existing = segmentProvenanceBySegment.get(entry.segment) ?? [];
@@ -160,10 +160,10 @@ export function formatVtt(
 
 function splitProvenance(provenance: VttProvenance[]): {
   headerProvenance: VttProvenance[];
-  segmentProvenance: VttSegmentProvenance[];
+  segmentProvenance: VttComposedSegmentProvenance[];
 } {
   const headerProvenance: VttProvenance[] = [];
-  const segmentProvenance: VttSegmentProvenance[] = [];
+  const segmentProvenance: VttComposedSegmentProvenance[] = [];
 
   for (const entry of provenance) {
     if (isVttSegmentProvenance(entry)) {
@@ -177,8 +177,13 @@ function splitProvenance(provenance: VttProvenance[]): {
 }
 
 function addProvenanceNote(lines: string[], provenance: VttProvenance): void {
+  const payload: Record<string, unknown> = { ...provenance };
+  // Do not serialize sentinel full-segment duration.
+  if (payload.durationSec === 0) {
+    delete payload.durationSec;
+  }
   lines.push("NOTE Provenance");
-  lines.push(JSON.stringify(provenance));
+  lines.push(JSON.stringify(payload));
   lines.push("");
 }
 

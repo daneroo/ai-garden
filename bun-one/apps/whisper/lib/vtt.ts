@@ -9,35 +9,41 @@ export interface VttCue {
   text: string;
 }
 
-/**
- * Header provenance written in two contexts:
- * - per-segment transcribe output (`task.ts`) where `segments` is omitted
- * - final stitched output (`runners.ts`) where `segments` is included
- *
- * `segments` remains optional so one shared header shape can represent both.
- * When present, it is expected to be a positive integer (>= 1).
- */
-export type VttHeaderProvenance = {
+/** Shared fields present on all provenance variants. */
+export type VttProvenanceBase = {
   input: string;
   model: string;
+  wordTimestamps: boolean;
   generated: string;
-  /** Total stitched segment count; present on stitched final headers. */
-  segments?: number;
-  startSec?: number;
-  durationSec?: number;
-  durationMs?: number;
-  elapsedMs?: number;
-  wordTimestamps?: boolean;
-  digest?: string;
-} & Record<string, unknown>;
+  elapsedMs: number;
+  // future: digest
+};
 
-export type VttSegmentProvenance = {
+/** Provenance for a single transcribe output (segment-local VTT). */
+export type VttRunProvenance = VttProvenanceBase & {
+  /** Clipped segment duration (>0); omitted for full-segment transcription. */
+  durationSec?: number;
+};
+
+/** Header provenance for a composed (stitched) VTT output. */
+export type VttComposedHeaderProvenance = VttProvenanceBase & {
+  segments: number; // segment count
+  /** Present only when the final segment is clipped; refers to original input. */
+  durationSec?: number;
+};
+
+/** Per-segment provenance entry inside a composed (stitched) VTT output. */
+export type VttComposedSegmentProvenance = VttProvenanceBase & {
   segment: number;
   startSec: number;
-  input: string;
-} & Record<string, unknown>;
+  /** Present only on the clipped final segment (>0 remainder). */
+  durationSec?: number;
+};
 
-export type VttProvenance = VttHeaderProvenance | VttSegmentProvenance;
+export type VttProvenance =
+  | VttRunProvenance
+  | VttComposedHeaderProvenance
+  | VttComposedSegmentProvenance;
 
 export interface VttFile {
   cues: VttCue[];
@@ -46,8 +52,22 @@ export interface VttFile {
 
 export function isVttSegmentProvenance(
   value: VttProvenance,
-): value is VttSegmentProvenance {
+): value is VttComposedSegmentProvenance {
   return "segment" in value;
+}
+
+export function isVttComposedHeaderProvenance(
+  value: VttProvenance,
+): value is VttComposedHeaderProvenance {
+  return "segments" in value;
+}
+
+export function isVttRunProvenance(
+  value: VttProvenance,
+): value is VttRunProvenance {
+  return (
+    !isVttSegmentProvenance(value) && !isVttComposedHeaderProvenance(value)
+  );
 }
 
 /**
@@ -172,9 +192,16 @@ function parseProvenancePayload(payload: string): VttProvenance | undefined {
   if (!parsedObject) {
     return undefined;
   }
-  return (
-    parseSegmentProvenance(parsedObject) ?? parseHeaderProvenance(parsedObject)
-  );
+
+  if ("segment" in parsedObject) {
+    return parseComposedSegmentProvenance(parsedObject);
+  }
+
+  if ("segments" in parsedObject) {
+    return parseComposedHeaderProvenance(parsedObject);
+  }
+
+  return parseRunProvenance(parsedObject);
 }
 
 function parseJsonRecord(payload: string): Record<string, unknown> | undefined {
@@ -190,67 +217,99 @@ function parseJsonRecord(payload: string): Record<string, unknown> | undefined {
   }
 }
 
-function parseSegmentProvenance(
+function parseComposedSegmentProvenance(
   parsed: Record<string, unknown>,
-): VttSegmentProvenance | undefined {
-  const segment = asFiniteNumber(parsed.segment);
-  const startSec = asFiniteNumber(parsed.startSec);
-  const input = asString(parsed.input);
+): VttComposedSegmentProvenance | undefined {
+  const base = parseProvenanceBase(parsed);
+  const segment = asInteger(parsed.segment);
+  const startSec = asNonNegativeFiniteNumber(parsed.startSec);
+  const durationSec = resolveDurationSec(parsed);
 
-  if (segment === undefined || startSec === undefined || input === undefined) {
+  if (!base || segment === undefined || segment < 0 || startSec === undefined) {
     return undefined;
   }
 
   return {
-    ...parsed,
-    input,
+    ...base,
+    ...(durationSec !== undefined ? { durationSec } : {}),
     segment,
     startSec,
   };
 }
 
-function parseHeaderProvenance(
+function parseComposedHeaderProvenance(
   parsed: Record<string, unknown>,
-): VttHeaderProvenance | undefined {
+): VttComposedHeaderProvenance | undefined {
+  const base = parseProvenanceBase(parsed);
+  const segments = asInteger(parsed.segments);
+  const durationSec = resolveDurationSec(parsed);
+  if (!base || segments === undefined || segments < 1) {
+    return undefined;
+  }
+
+  return {
+    ...base,
+    ...(durationSec !== undefined ? { durationSec } : {}),
+    segments,
+  };
+}
+
+function parseRunProvenance(
+  parsed: Record<string, unknown>,
+): VttRunProvenance | undefined {
+  const base = parseProvenanceBase(parsed);
+  const durationSec = resolveDurationSec(parsed);
+  if (!base) {
+    return undefined;
+  }
+  return {
+    ...base,
+    ...(durationSec !== undefined ? { durationSec } : {}),
+  };
+}
+
+function parseProvenanceBase(
+  parsed: Record<string, unknown>,
+): VttProvenanceBase | undefined {
   const input = asString(parsed.input);
   const model = asString(parsed.model);
   const generated = asString(parsed.generated);
-  const digest = asOptionalString(parsed.digest);
-  const segments = asOptionalFiniteNumber(parsed.segments);
-  const startSec = asOptionalFiniteNumber(parsed.startSec);
-  const durationSec = asOptionalFiniteNumber(parsed.durationSec);
-  const durationMs = asOptionalFiniteNumber(parsed.durationMs);
-  const elapsedMs = asOptionalFiniteNumber(parsed.elapsedMs);
-  const wordTimestamps = asOptionalBoolean(parsed.wordTimestamps);
+  const wordTimestamps = asBoolean(parsed.wordTimestamps);
+  const elapsedMs = asNonNegativeFiniteNumber(parsed.elapsedMs);
 
   if (
     input === undefined ||
     model === undefined ||
     generated === undefined ||
-    segments === null ||
-    startSec === null ||
-    durationSec === null ||
-    durationMs === null ||
-    elapsedMs === null ||
-    wordTimestamps === null ||
-    digest === null
+    wordTimestamps === undefined ||
+    elapsedMs === undefined
   ) {
     return undefined;
   }
 
   return {
-    ...parsed,
     input,
     model,
+    wordTimestamps,
     generated,
-    ...(segments !== undefined ? { segments } : {}),
-    ...(startSec !== undefined ? { startSec } : {}),
-    ...(durationSec !== undefined ? { durationSec } : {}),
-    ...(durationMs !== undefined ? { durationMs } : {}),
-    ...(elapsedMs !== undefined ? { elapsedMs } : {}),
-    ...(wordTimestamps !== undefined ? { wordTimestamps } : {}),
-    ...(digest !== undefined ? { digest } : {}),
+    elapsedMs,
   };
+}
+
+function resolveDurationSec(
+  parsed: Record<string, unknown>,
+): number | undefined {
+  const durationSec = asNonNegativeFiniteNumber(parsed.durationSec);
+  if (durationSec !== undefined && durationSec > 0) {
+    return durationSec;
+  }
+
+  const durationMs = asNonNegativeFiniteNumber(parsed.durationMs);
+  if (durationMs !== undefined && durationMs > 0) {
+    return durationMs / 1000;
+  }
+
+  return undefined;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -269,25 +328,18 @@ function asFiniteNumber(value: unknown): number | undefined {
   return isFiniteNumber(value) ? value : undefined;
 }
 
-function asOptionalFiniteNumber(value: unknown): number | undefined | null {
-  if (value === undefined) {
-    return undefined;
-  }
-  return isFiniteNumber(value) ? value : null;
+function asNonNegativeFiniteNumber(value: unknown): number | undefined {
+  const n = asFiniteNumber(value);
+  return n !== undefined && n >= 0 ? n : undefined;
 }
 
-function asOptionalBoolean(value: unknown): boolean | undefined | null {
-  if (value === undefined) {
-    return undefined;
-  }
-  return typeof value === "boolean" ? value : null;
+function asBoolean(value: unknown): boolean | undefined {
+  return typeof value === "boolean" ? value : undefined;
 }
 
-function asOptionalString(value: unknown): string | undefined | null {
-  if (value === undefined) {
-    return undefined;
-  }
-  return typeof value === "string" ? value : null;
+function asInteger(value: unknown): number | undefined {
+  const n = asFiniteNumber(value);
+  return n !== undefined && Number.isInteger(n) ? n : undefined;
 }
 
 /**
@@ -376,9 +428,10 @@ export function summarizeVttFile(file: VttFile): VttSummary {
 /** Extract header provenance from a provenance array (the non-segment entry) */
 export function getHeaderProvenance(
   provenance: VttProvenance[],
-): VttHeaderProvenance | undefined {
+): VttRunProvenance | VttComposedHeaderProvenance | undefined {
   return provenance.find((p) => !isVttSegmentProvenance(p)) as
-    | VttHeaderProvenance
+    | VttRunProvenance
+    | VttComposedHeaderProvenance
     | undefined;
 }
 

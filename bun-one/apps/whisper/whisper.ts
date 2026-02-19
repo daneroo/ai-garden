@@ -18,7 +18,7 @@ const DEFAULT_MODEL = "tiny.en";
 const DEFAULT_OUTPUT_DIR = "data/output";
 const DEFAULT_WORKDIR_ROOT = "data/work";
 const DEFAULT_THREADS = 6;
-const DEFAULT_DURATION_SECS = 0; // 0 = entire file
+const DEFAULT_DURATION = "0s";
 const DEFAULT_ITERATIONS = 1;
 
 if (import.meta.main) {
@@ -61,9 +61,11 @@ async function main(): Promise<void> {
     })
     .option("duration", {
       alias: "d",
-      type: "number",
-      default: DEFAULT_DURATION_SECS,
-      describe: "Duration in seconds (0 = entire file)",
+      type: "string",
+      default: DEFAULT_DURATION,
+      describe:
+        "Duration to transcribe (e.g., 25m, 1500s; use 0s for entire file)",
+      coerce: (val: string) => parseCliDurationWithUnit(val, "duration"),
     })
     .option("output", {
       alias: "o",
@@ -104,7 +106,7 @@ async function main(): Promise<void> {
       describe:
         "Segment duration for long files (e.g., 1h, 30m). Must be <= 37h.",
       coerce: (val: string) => {
-        const secs = parseDuration(val);
+        const secs = parseCliDurationWithUnit(val, "segment");
         const maxSecs = 37 * 3600;
         if (secs > maxSecs) {
           throw new Error(`Segment duration must be <= 37h, got ${val}`);
@@ -224,4 +226,17 @@ async function main(): Promise<void> {
       }
     }
   }
+}
+
+function parseCliDurationWithUnit(
+  value: string,
+  optionName: "duration" | "segment",
+): number {
+  const trimmed = value.trim();
+  if (/^\d+$/.test(trimmed)) {
+    throw new Error(
+      `--${optionName} requires an explicit unit. Did you mean "${trimmed}s"?`,
+    );
+  }
+  return parseDuration(trimmed);
 }

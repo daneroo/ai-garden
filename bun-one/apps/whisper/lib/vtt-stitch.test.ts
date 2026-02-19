@@ -106,7 +106,10 @@ describe("formatVtt", () => {
       {
         input: "book.mp3",
         model: "tiny.en",
+        wordTimestamps: false,
         generated: "2026-02-03T00:00:00.000Z",
+        durationSec: 0,
+        elapsedMs: 246,
       },
     ];
 
@@ -129,10 +132,31 @@ describe("formatVtt", () => {
       {
         input: "book.mp3",
         model: "tiny.en",
+        wordTimestamps: false,
         generated: "2026-02-03T00:00:00.000Z",
+        durationSec: 0,
+        elapsedMs: 246,
       },
-      { segment: 0, startSec: 0, input: "book-seg00.wav" },
-      { segment: 1, startSec: 30, input: "book-seg01.wav" },
+      {
+        segment: 0,
+        startSec: 0,
+        input: "book-seg00.wav",
+        model: "tiny.en",
+        wordTimestamps: false,
+        generated: "2026-02-03T00:00:00.000Z",
+        durationSec: 0,
+        elapsedMs: 123,
+      },
+      {
+        segment: 1,
+        startSec: 30,
+        input: "book-seg01.wav",
+        model: "tiny.en",
+        wordTimestamps: false,
+        generated: "2026-02-03T00:00:30.000Z",
+        durationSec: 0,
+        elapsedMs: 123,
+      },
     ];
 
     const result = formatVtt(cues, {

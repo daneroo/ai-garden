@@ -1,5 +1,5 @@
 import { afterAll, describe, expect, test } from "bun:test";
-import { mkdtemp, rm } from "node:fs/promises";
+import { mkdtemp, readFile, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import {
@@ -20,10 +20,10 @@ NOTE NotProvenance
 hello
 
 NOTE Provenance
-{"input":"book.mp3","model":"tiny.en","generated":"2026-02-03T00:00:00.000Z"}
+{"input":"book.mp3","model":"tiny.en","wordTimestamps":false,"generated":"2026-02-03T00:00:00.000Z","durationSec":0,"elapsedMs":123}
 
 NOTE Provenance
-{"segment":0,"startSec":0,"input":"book-seg00.wav"}
+{"input":"book-seg00.wav","model":"tiny.en","wordTimestamps":false,"generated":"2026-02-03T00:00:00.000Z","durationSec":0,"elapsedMs":120,"segment":0,"startSec":0}
 
 00:00:00.000 --> 00:00:02.000
 Hello world
@@ -81,10 +81,31 @@ Alpha
       {
         input: "book.mp3",
         model: "tiny.en",
+        wordTimestamps: false,
         generated: "2026-02-03T00:00:00.000Z",
+        durationSec: 0,
+        elapsedMs: 246,
       },
-      { segment: 0, startSec: 0, input: "book-seg00.wav" },
-      { segment: 1, startSec: 30, input: "book-seg01.wav" },
+      {
+        segment: 0,
+        startSec: 0,
+        input: "book-seg00.wav",
+        model: "tiny.en",
+        wordTimestamps: false,
+        generated: "2026-02-03T00:00:00.000Z",
+        durationSec: 0,
+        elapsedMs: 123,
+      },
+      {
+        segment: 1,
+        startSec: 30,
+        input: "book-seg01.wav",
+        model: "tiny.en",
+        wordTimestamps: false,
+        generated: "2026-02-03T00:00:30.000Z",
+        durationSec: 0,
+        elapsedMs: 123,
+      },
     ];
 
     await writeVtt(
@@ -121,6 +142,7 @@ Alpha
         input: "seg00.wav",
         model: "tiny.en",
         wordTimestamps: false,
+        durationSec: 0,
         elapsedMs: 1234,
         generated: "2026-02-03T00:00:00.000Z",
       },
@@ -143,7 +165,7 @@ Alpha
     });
   });
 
-  test("roundtrip preserves durationMs when present", async () => {
+  test("roundtrip preserves durationSec when present", async () => {
     if (!tempDir) {
       tempDir = await mkdtemp(join(tmpdir(), "whisper-vtt-test-"));
     }
@@ -154,7 +176,7 @@ Alpha
         input: "seg02.wav",
         model: "base.en",
         wordTimestamps: true,
-        durationMs: 30000,
+        durationSec: 30,
         elapsedMs: 5678,
         generated: "2026-02-03T12:00:00.000Z",
       },
@@ -172,9 +194,66 @@ Alpha
       input: "seg02.wav",
       model: "base.en",
       wordTimestamps: true,
-      durationMs: 30000,
+      durationSec: 30,
       elapsedMs: 5678,
     });
+  });
+
+  test("parseVttFile converts legacy durationMs to durationSec", () => {
+    const vtt = `WEBVTT
+
+NOTE Provenance
+{"input":"legacy.wav","model":"tiny.en","wordTimestamps":false,"generated":"2026-02-03T00:00:00.000Z","durationMs":30000,"elapsedMs":99}
+
+00:00:00.000 --> 00:00:01.000
+Legacy
+`;
+
+    const result = parseVttFile(vtt);
+    expect(result.provenance).toHaveLength(1);
+    expect(result.provenance[0]).toMatchObject({
+      input: "legacy.wav",
+      durationSec: 30,
+      elapsedMs: 99,
+    });
+  });
+
+  test("writeVtt omits durationSec when value is zero", async () => {
+    if (!tempDir) {
+      tempDir = await mkdtemp(join(tmpdir(), "whisper-vtt-test-"));
+    }
+
+    const path = join(tempDir, "roundtrip-duration-zero.vtt");
+    const provenance: VttProvenance[] = [
+      {
+        input: "book.mp3",
+        model: "tiny.en",
+        wordTimestamps: false,
+        generated: "2026-02-03T00:00:00.000Z",
+        elapsedMs: 200,
+        durationSec: 0,
+        segments: 1,
+      },
+      {
+        input: "book-seg00.wav",
+        model: "tiny.en",
+        wordTimestamps: false,
+        generated: "2026-02-03T00:00:00.000Z",
+        elapsedMs: 200,
+        durationSec: 0,
+        segment: 0,
+        startSec: 0,
+      },
+    ];
+
+    await writeVtt(
+      path,
+      [{ startTime: "00:00:00.000", endTime: "00:00:01.000", text: "A" }],
+      { provenance, segmentBoundaries: [{ segment: 0, cueIndex: 0 }] },
+    );
+
+    const raw = await readFile(path, "utf-8");
+    expect(raw).not.toContain('"durationSec":0');
   });
 });
 

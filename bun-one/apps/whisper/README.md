@@ -27,7 +27,10 @@ bun run whisper.ts -h
 ## which some of these below
 # Basic transcription (uses cache)
 bun run whisper.ts -i data/samples/hobbit-30m.m4b -m tiny.en --tag demo-basic
+# segmented transcription (uses cache)
 bun run whisper.ts -i data/samples/hobbit-30m.m4b --segment 10m -m tiny.en --tag demo-seg-10m
+# segmented transcription with duration=25m
+bun run whisper.ts -i data/samples/hobbit-30m.m4b --segment 10m -m tiny.en --tag demo-seg-10m-dur-25m --duration 25m
 
 ./scripts/demo/demo.sh
 
