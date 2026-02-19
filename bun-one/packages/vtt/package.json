@@ -7,5 +7,9 @@
   "exports": {
     ".": "./vtt.ts",
     "./server": "./vtt-server.ts"
+  },
+  "dependencies": {
+    "valibot": "catalog:runtime",
+    "zod": "catalog:runtime"
   }
 }

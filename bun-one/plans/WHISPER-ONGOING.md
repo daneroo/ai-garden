@@ -19,11 +19,7 @@ Stiching - `stitchSegments(...)` in `runners.ts`
 
 ### Implementation Plan
 
-- [x] Document why `segments` is optional
-- [x] examine caching behavior around stitched .vtt
-  - Current: only segment artifacts are cached (`to-wav` and `transcribe`)
-  - Current: stitched final output is always regenerated via `stitchSegments(...)`
-  - Current: no dedicated cache key/path for stitched final `.vtt`
+- [ ] Refactor VTT in `packages/vtt` - see [VTT_PARSER PLAN](./VTT_PARSER.md)
 
 ## Backlog
 

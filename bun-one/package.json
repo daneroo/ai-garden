@@ -2,11 +2,22 @@
   "name": "bun-one",
   "private": true,
   "type": "module",
-  "workspaces": [
-    "packages/*",
-    "components/*",
-    "apps/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "components/*",
+      "apps/*"
+    ],
+    "catalogs": {
+      "runtime": {
+        "zod": "^4.3.6",
+        "valibot": "^1.2.0"
+      },
+      "testing": {
+        "@testing-library/react": "^16.3.1"
+      }
+    }
+  },
   "scripts": {
     "test": "bun test",
     "test:e2e": "RUN_E2E_TESTS=1 bun test",
