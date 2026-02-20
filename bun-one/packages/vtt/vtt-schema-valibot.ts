@@ -50,7 +50,7 @@ export const ProvenanceCompositionSchema = v.intersect([
 ]);
 
 /**
- * 3. FLAVOR SCHEMAS
+ * 3. ARTIFACT SCHEMAS
  */
 
 export const VttRawSchema = v.object({
@@ -94,6 +94,10 @@ export type ProvenanceSegment = v.InferOutput<typeof ProvenanceSegmentSchema>;
 export type ProvenanceComposition = v.InferOutput<
   typeof ProvenanceCompositionSchema
 >;
+export type Provenance =
+  | ProvenanceTranscription
+  | ProvenanceSegment
+  | ProvenanceComposition;
 
 // Root Types
 export type VttCue = v.InferOutput<typeof VttCueSchema>;

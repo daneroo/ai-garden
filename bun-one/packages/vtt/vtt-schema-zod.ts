@@ -44,7 +44,7 @@ export const ProvenanceCompositionSchema = ProvenanceBaseSchema.extend({
 });
 
 /**
- * 3. FLAVOR SCHEMAS
+ * 3. ARTIFACT SCHEMAS
  */
 
 export const VttRawSchema = z.object({
@@ -81,11 +81,16 @@ export const VttFileSchema = z.union([
  */
 
 // Provenance Types
+export type ProvenanceBase = z.infer<typeof ProvenanceBaseSchema>;
 export type ProvenanceTranscription = z.infer<
   typeof ProvenanceTranscriptionSchema
 >;
 export type ProvenanceSegment = z.infer<typeof ProvenanceSegmentSchema>;
 export type ProvenanceComposition = z.infer<typeof ProvenanceCompositionSchema>;
+export type Provenance =
+  | ProvenanceTranscription
+  | ProvenanceSegment
+  | ProvenanceComposition;
 
 // Root Types
 export type VttCue = z.infer<typeof VttCueSchema>;

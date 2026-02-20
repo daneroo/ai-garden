@@ -26,18 +26,30 @@ Standalone VTT parsing and utility package for this monorepo.
 
 ## Data Model
 
-- Provenance union has 3 extensions from `ProvenanceBase`
-- Flavor union has 4 schemas:
-  - `VttRaw`
-  - `VttTranscription`
-  - `VttSegment`
-  - `VttComposition`
-- Top-level parser return is 3 flavors:
-  - `VttRaw`
-  - `VttTranscription`
-  - `VttComposition`
+Each artifact pairs with a provenance type, discriminated by field presence:
 
-`VttSegment` remains nested inside `VttComposition`.
+| Artifact           | Provenance                | Discriminant            | Data                     | Stage                         |
+| ------------------ | ------------------------- | ----------------------- | ------------------------ | ----------------------------- |
+| `VttRaw`           | (none)                    | —                       | `cues: VttCue[]`         | Raw Whisper output            |
+| `VttTranscription` | `ProvenanceTranscription` | no `segment`/`segments` | `cues: VttCue[]`         | Single transcription run      |
+| `VttSegment`       | `ProvenanceSegment`       | `segment` + `startSec`  | `cues: VttCue[]`         | Segment within a composition  |
+| `VttComposition`   | `ProvenanceComposition`   | `segments: number`      | `segments: VttSegment[]` | Stitched multi-segment result |
+
+Top-level parser returns `VttFile = VttRaw | VttTranscription | VttComposition`.
+`VttSegment` is nested inside `VttComposition`, not a top-level return.
+
+`Provenance = ProvenanceTranscription | ProvenanceSegment | ProvenanceComposition`
+
+### `durationSec` convention
+
+Optional on all provenance types, but presence is meaningful:
+
+- `ProvenanceTranscription`: set only when transcription had an explicit duration
+  limit. In a multi-segment run, last segment only.
+- `ProvenanceSegment`: carries through from source transcription. Only the last
+  element of `VttComposition.segments` may have it.
+- `ProvenanceComposition`: present iff the last segment has `durationSec`.
+  Value equals `lastSegment.startSec + lastSegment.durationSec`.
 
 ## Strictness
 

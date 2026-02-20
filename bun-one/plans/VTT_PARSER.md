@@ -26,7 +26,7 @@ As was always the intention, the VTT parser should be a standalone library in
   - schemas
   - `vtt-parser`
 - [x] Keep discriminator-field-free unions (tagless by field presence)
-- [x] Top-level parser return flavors are:
+- [x] Top-level parser return artifacts are:
   - `VttRaw`
   - `VttTranscription`
   - `VttComposition`
@@ -58,28 +58,44 @@ As was always the intention, the VTT parser should be a standalone library in
 
 There are two unions in play.
 
-- Provenance union:
+- `Provenance` union:
   - `ProvenanceTranscription`
   - `ProvenanceSegment`
   - `ProvenanceComposition`
-- Flavor union:
+- `VttFile` artifact union:
   - `VttRaw`
   - `VttTranscription`
   - `VttSegment`
   - `VttComposition`
 
-All provenance types extend `ProvenanceBase` and are distinguished by field
-presence (`segment`, `segments`, or neither).
+Each artifact pairs with a provenance type, discriminated by field presence:
 
-| Flavor             | Key 1: provenance                            | Key 2: Data              | Workflow Stage                               |
-| ------------------ | -------------------------------------------- | ------------------------ | -------------------------------------------- |
-| `VttRaw`           | (None)                                       | `cues: VttCue[]`         | Raw output from Whisper (or similar).        |
-| `VttTranscription` | Base + `durationSec?`                        | `cues: VttCue[]`         | Enriched local run with invocation metadata. |
-| `VttSegment`       | Base + `segment`, `startSec`, `durationSec?` | `cues: VttCue[]`         | A transcription transformed for inclusion.   |
-| `VttComposition`   | Base + `segments: number`, `durationSec?`    | `segments: VttSegment[]` | Final stitched result with global metadata.  |
+| Artifact           | Provenance                | Discriminant            | Data                     | Stage                         |
+| ------------------ | ------------------------- | ----------------------- | ------------------------ | ----------------------------- |
+| `VttRaw`           | (none)                    | —                       | `cues: VttCue[]`         | Raw Whisper output            |
+| `VttTranscription` | `ProvenanceTranscription` | no `segment`/`segments` | `cues: VttCue[]`         | Single transcription run      |
+| `VttSegment`       | `ProvenanceSegment`       | `segment` + `startSec`  | `cues: VttCue[]`         | Segment within a composition  |
+| `VttComposition`   | `ProvenanceComposition`   | `segments: number`      | `segments: VttSegment[]` | Stitched multi-segment result |
 
-Top-level parser returns a union of
-`VttRaw | VttTranscription | VttComposition (which nests VttSegment[])`.
+Top-level parser returns `VttRaw | VttTranscription | VttComposition`
+(`VttSegment` is nested inside `VttComposition`, not a top-level return).
+
+### `durationSec` convention
+
+`durationSec` is optional on all provenance types but its presence follows a
+strict convention:
+
+- `ProvenanceTranscription`: present only when the transcription was run with an
+  explicit duration limit (the audio was clipped). In a multi-segment run, this
+  is the last segment only.
+- `ProvenanceSegment`: carries through from the source transcription. At most
+  one segment in a composition will have it, and it must be the last element of
+  `VttComposition.segments`.
+- `ProvenanceComposition`: present iff the last segment has `durationSec`. Value
+  equals `lastSegment.startSec + lastSegment.durationSec`.
+
+Convention rule to enforce: if any `ProvenanceSegment` in a composition has
+`durationSec`, it must be the final segment.
 
 ### How Standard Schema fits in
 
@@ -92,10 +108,18 @@ Top-level parser returns a union of
 
 - [x] Initial type flavors and provenance extensions in schemas
 - [ ] Finalize provenance subtype naming and exported type surface
+- [ ] vtt-time - validate and add tests - nothing crazy
 - [x] Initial block parser draft (`vtt-block-parser.ts`)
-- [ ] Refine block parser to line-accurate behavior without mutating cue text
-- [ ] Add fixture corpus from known-good whisper-produced files
+  - [ ] document relative to w3c, and ref implementsation - describing what we
+        ommited - and why (Also in readme)
+  - [ ] Add fixture corpus from known-good whisper-produced files
+  - [ ] require `WEBVTT` on first non-empty line
+  - [ ] BAD IDEA? Preserve cue text lines (no trim mutation)
+  - [ ] Aggregate blocks from line stream using blank-line boundaries
+  - [ ] Add line indexes/positions for diagnostics and later parser stages
+- [ ] Add integration smoke tests for block parsing happy-path fixtures
 - [ ] Reuse the same fixture corpus for both zod and valibot validation
+  - [ ] use schema-standard invocation for parity!
 - [ ] Finalize `vtt-parser.ts` call signatures
 - [ ] Implement parser strictness behavior (`strict: boolean`)
 - [ ] Enforce composed conventions (root provenance ordering, segment structure)
