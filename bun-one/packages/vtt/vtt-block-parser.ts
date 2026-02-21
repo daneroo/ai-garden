@@ -21,10 +21,10 @@ export interface VttBlock {
   lines: string[];
 }
 
-export type ConventionChecker = (blocks: VttBlock[]) => string[];
+export type BlockChecker = (blocks: VttBlock[]) => string[];
 
 /** Reject STYLE blocks — we don't use CSS-based cue styling. */
-export function checkNoStyleBlocks(blocks: VttBlock[]): string[] {
+export function checkNoStyleBlocksConvention(blocks: VttBlock[]): string[] {
   return blocks
     .map((b, i) =>
       b.type === "STYLE" ? `Block ${i}: STYLE block not allowed.` : null,
@@ -33,7 +33,7 @@ export function checkNoStyleBlocks(blocks: VttBlock[]): string[] {
 }
 
 /** Reject REGION blocks — we don't use region-based positioning. */
-export function checkNoRegionBlocks(blocks: VttBlock[]): string[] {
+export function checkNoRegionBlocksConvention(blocks: VttBlock[]): string[] {
   return blocks
     .map((b, i) =>
       b.type === "REGION" ? `Block ${i}: REGION block not allowed.` : null,
@@ -42,7 +42,9 @@ export function checkNoRegionBlocks(blocks: VttBlock[]): string[] {
 }
 
 /** Only "NOTE Provenance" notes are allowed — reject any other NOTE subtypes. */
-export function checkOnlyProvenanceNotes(blocks: VttBlock[]): string[] {
+export function checkOnlyProvenanceNotesConvention(
+  blocks: VttBlock[],
+): string[] {
   return blocks
     .map((b, i) => {
       if (b.type !== "NOTE") return null;
@@ -56,16 +58,16 @@ export function checkOnlyProvenanceNotes(blocks: VttBlock[]): string[] {
  * Runs a suite of checkers against a block array.
  * Gathers all warnings and throws if strict and issues exist.
  */
-export function validateConventions(
+export function validateBlocks(
   blocks: VttBlock[],
-  checkers: ConventionChecker[],
+  checkers: BlockChecker[],
   strict = true,
 ): string[] {
   // Execute all checkers and flatten the nested arrays of strings
   const warnings = checkers.flatMap((check) => check(blocks));
 
   if (strict && warnings.length > 0) {
-    throw new Error(`[FATAL CONVENTIONS]\n${warnings.join("\n")}`);
+    throw new Error(`[FATAL BLOCKS]\n${warnings.join("\n")}`);
   }
 
   return warnings;

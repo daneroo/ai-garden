@@ -11,19 +11,21 @@
 import type { StandardSchemaV1 } from "@standard-schema/spec";
 import {
   aggregateBlocks,
-  checkNoRegionBlocks,
-  checkNoStyleBlocks,
-  checkOnlyProvenanceNotes,
-  validateConventions,
-  type ConventionChecker,
+  checkNoRegionBlocksConvention,
+  checkNoStyleBlocksConvention,
+  checkOnlyProvenanceNotesConvention,
+  validateBlocks,
+  type BlockChecker,
   type VttBlock,
 } from "./vtt-block-parser.ts";
 import type {
   VttComposition,
+  VttCue,
   VttFile,
   VttRaw,
   VttTranscription,
 } from "./vtt-schema-zod.ts";
+import { vttTimeToSeconds } from "./vtt-time.ts";
 
 // ---------------------------------------------------------------------------
 // Public types
@@ -82,10 +84,19 @@ export function parseRaw(
 // Generic parser
 // ---------------------------------------------------------------------------
 
-const SYNTACTIC_CHECKERS: ConventionChecker[] = [
-  checkNoStyleBlocks,
-  checkNoRegionBlocks,
-  checkOnlyProvenanceNotes,
+type ArtifactChecker = (artifact: VttFile) => string[];
+
+const BLOCK_CHECKERS: BlockChecker[] = [
+  checkNoStyleBlocksConvention,
+  checkNoRegionBlocksConvention,
+  checkOnlyProvenanceNotesConvention,
+];
+
+const ARTIFACT_CHECKERS: ArtifactChecker[] = [
+  checkCueMonotonicity,
+  checkSegmentIndices,
+  checkSegmentCount,
+  checkDurationSecPlacement,
 ];
 
 export function parseVttFile(
@@ -98,11 +109,16 @@ export function parseVttFile(
   // 1. Syntactic: text → blocks
   const blocks = aggregateBlocks(input);
 
-  // 2. Convention checks (always collect, never throw here)
-  warnings.push(...validateConventions(blocks, SYNTACTIC_CHECKERS, false));
+  // 2. Block-level convention checks
+  warnings.push(...validateBlocks(blocks, BLOCK_CHECKERS, false));
 
   // 3. Determine artifact type from blocks
   const artifact = buildArtifact(blocks, warnings);
+
+  // 3b. Artifact-level semantic checks
+  for (const checker of ARTIFACT_CHECKERS) {
+    warnings.push(...checker(artifact));
+  }
 
   // 4. Schema validation (if provided)
   if (schema) {
@@ -138,7 +154,7 @@ function buildArtifact(blocks: VttBlock[], warnings: string[]): VttFile {
 
   // Composition: header provenance has "segments" field
   if ("segments" in headerProvenance) {
-    return buildComposition(blocks, headerProvenance, warnings);
+    return buildComposition(blocks, headerProvenance);
   }
 
   // Transcription: provenance without "segment" or "segments"
@@ -164,13 +180,7 @@ function buildArtifact(blocks: VttBlock[], warnings: string[]): VttFile {
 function buildComposition(
   blocks: VttBlock[],
   compositionProvenance: Record<string, unknown>,
-  warnings: string[],
 ): VttComposition {
-  const expectedSegments =
-    typeof compositionProvenance.segments === "number"
-      ? compositionProvenance.segments
-      : 0;
-
   // Walk blocks after the composition header (index 2+), grouping by
   // NOTE Provenance boundaries into segments.
   const segments: VttComposition["segments"] = [];
@@ -205,32 +215,6 @@ function buildComposition(
         currentSegmentProv as VttComposition["segments"][0]["provenance"],
       cues: currentCues,
     });
-  }
-
-  if (segments.length !== expectedSegments) {
-    warnings.push(
-      `Segment count mismatch: header declares ${expectedSegments}, found ${segments.length}.`,
-    );
-  }
-
-  // Segment indices must be contiguous [0, 1, 2, ...]
-  for (let i = 0; i < segments.length; i++) {
-    const idx = segments[i]!.provenance.segment;
-    if (idx !== i) {
-      warnings.push(`Segment ${i}: expected index ${i}, got ${idx}.`);
-    }
-  }
-
-  // durationSec convention: only the last segment may have it
-  for (let i = 0; i < segments.length - 1; i++) {
-    if (
-      "durationSec" in segments[i]!.provenance &&
-      segments[i]!.provenance.durationSec != null
-    ) {
-      warnings.push(
-        `Segment ${i}: durationSec is only allowed on the last segment.`,
-      );
-    }
   }
 
   return {
@@ -278,6 +262,70 @@ function parseCueBlock(block: VttBlock): VttRaw["cues"][0] {
     .join("\n")
     .trim();
   return { startTime, endTime, text };
+}
+
+// ---------------------------------------------------------------------------
+// Artifact checkers — semantic checks on the constructed artifact
+// ---------------------------------------------------------------------------
+
+function allCues(artifact: VttFile): VttCue[] {
+  if ("segments" in artifact) return artifact.segments.flatMap((s) => s.cues);
+  if ("cues" in artifact) return artifact.cues;
+  return [];
+}
+
+function checkCueMonotonicity(artifact: VttFile): string[] {
+  const cues = allCues(artifact);
+  let violations = 0;
+  let maxOverlap = 0;
+  for (let i = 1; i < cues.length; i++) {
+    const prevEnd = vttTimeToSeconds(cues[i - 1]!.endTime);
+    const curStart = vttTimeToSeconds(cues[i]!.startTime);
+    if (curStart < prevEnd) {
+      violations++;
+      maxOverlap = Math.max(maxOverlap, prevEnd - curStart);
+    }
+  }
+  if (violations === 0) return [];
+  return [
+    `Monotonicity: ${violations} violation(s), max overlap ${maxOverlap.toFixed(3)}s.`,
+  ];
+}
+
+function checkSegmentCount(artifact: VttFile): string[] {
+  if (!("segments" in artifact)) return [];
+  const declared = artifact.provenance.segments;
+  const actual = artifact.segments.length;
+  if (declared === actual) return [];
+  return [
+    `Segment count mismatch: header declares ${declared}, found ${actual}.`,
+  ];
+}
+
+function checkSegmentIndices(artifact: VttFile): string[] {
+  if (!("segments" in artifact)) return [];
+  const warnings: string[] = [];
+  for (let i = 0; i < artifact.segments.length; i++) {
+    const idx = artifact.segments[i]!.provenance.segment;
+    if (idx !== i) {
+      warnings.push(`Segment ${i}: expected index ${i}, got ${idx}.`);
+    }
+  }
+  return warnings;
+}
+
+function checkDurationSecPlacement(artifact: VttFile): string[] {
+  if (!("segments" in artifact)) return [];
+  const warnings: string[] = [];
+  for (let i = 0; i < artifact.segments.length - 1; i++) {
+    const prov = artifact.segments[i]!.provenance;
+    if ("durationSec" in prov && prov.durationSec != null) {
+      warnings.push(
+        `Segment ${i}: durationSec is only allowed on the last segment.`,
+      );
+    }
+  }
+  return warnings;
 }
 
 // ---------------------------------------------------------------------------

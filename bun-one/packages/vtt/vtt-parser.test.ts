@@ -105,6 +105,22 @@ for (const [name, schema] of schemas) {
         "[VTT PARSE ERRORS]",
       );
     });
+
+    test("overlapping cues produce monotonicity warning", () => {
+      const input = [
+        "WEBVTT",
+        "",
+        "00:00:00.000 --> 00:00:10.000",
+        "First cue",
+        "",
+        "00:00:09.000 --> 00:00:20.000",
+        "Overlapping cue",
+        "",
+      ].join("\n");
+      const { warnings } = parseVttFile(input, { schema });
+      expect(warnings.some((w) => w.includes("Monotonicity"))).toBe(true);
+      expect(warnings.some((w) => w.includes("1 violation(s)"))).toBe(true);
+    });
   });
 
   describe(`sugar functions [${name}]`, () => {

@@ -3,10 +3,10 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
   aggregateBlocks,
-  checkNoRegionBlocks,
-  checkNoStyleBlocks,
-  checkOnlyProvenanceNotes,
-  validateConventions,
+  checkNoRegionBlocksConvention,
+  checkNoStyleBlocksConvention,
+  checkOnlyProvenanceNotesConvention,
+  validateBlocks,
   type VttBlock,
 } from "./vtt-block-parser";
 
@@ -74,80 +74,80 @@ describe("aggregateBlocks", () => {
   });
 });
 
-describe("convention checkers", () => {
-  test("checkNoStyleBlocks — clean file", () => {
+describe("block checkers", () => {
+  test("checkNoStyleBlocksConvention — clean file", () => {
     const blocks = aggregateBlocks(
       loadFixture("roadNotTaken-transcription-seg00.vtt"),
     );
-    expect(checkNoStyleBlocks(blocks)).toEqual([]);
+    expect(checkNoStyleBlocksConvention(blocks)).toEqual([]);
   });
 
-  test("checkNoStyleBlocks — catches STYLE", () => {
+  test("checkNoStyleBlocksConvention — catches STYLE", () => {
     const blocks = aggregateBlocks(loadFixture("invalid-style-block.vtt"));
-    const warnings = checkNoStyleBlocks(blocks);
+    const warnings = checkNoStyleBlocksConvention(blocks);
     expect(warnings).toHaveLength(1);
     expect(warnings[0]).toContain("STYLE block not allowed");
   });
 
-  test("checkNoRegionBlocks — clean file", () => {
+  test("checkNoRegionBlocksConvention — clean file", () => {
     const blocks: VttBlock[] = [
       { type: "SIGNATURE", lines: ["WEBVTT"] },
       { type: "CUE", lines: ["00:00:00.000 --> 00:00:01.000", "text"] },
     ];
-    expect(checkNoRegionBlocks(blocks)).toEqual([]);
+    expect(checkNoRegionBlocksConvention(blocks)).toEqual([]);
   });
 
-  test("checkNoRegionBlocks — catches REGION", () => {
+  test("checkNoRegionBlocksConvention — catches REGION", () => {
     const blocks: VttBlock[] = [
       { type: "SIGNATURE", lines: ["WEBVTT"] },
       { type: "REGION", lines: ["REGION id=fred"] },
     ];
-    const warnings = checkNoRegionBlocks(blocks);
+    const warnings = checkNoRegionBlocksConvention(blocks);
     expect(warnings).toHaveLength(1);
     expect(warnings[0]).toContain("REGION block not allowed");
   });
 
-  test("checkOnlyProvenanceNotes — clean file", () => {
+  test("checkOnlyProvenanceNotesConvention — clean file", () => {
     const blocks = aggregateBlocks(
       loadFixture("roadNotTaken-composition-e2e.vtt"),
     );
-    expect(checkOnlyProvenanceNotes(blocks)).toEqual([]);
+    expect(checkOnlyProvenanceNotesConvention(blocks)).toEqual([]);
   });
 
-  test("checkOnlyProvenanceNotes — catches non-provenance note", () => {
+  test("checkOnlyProvenanceNotesConvention — catches non-provenance note", () => {
     const blocks = aggregateBlocks(
       loadFixture("invalid-non-provenance-note.vtt"),
     );
-    const warnings = checkOnlyProvenanceNotes(blocks);
+    const warnings = checkOnlyProvenanceNotesConvention(blocks);
     expect(warnings).toHaveLength(1);
     expect(warnings[0]).toContain('Only "NOTE Provenance" notes are allowed');
   });
 });
 
-describe("validateConventions", () => {
+describe("validateBlocks", () => {
   const allCheckers = [
-    checkNoStyleBlocks,
-    checkNoRegionBlocks,
-    checkOnlyProvenanceNotes,
+    checkNoStyleBlocksConvention,
+    checkNoRegionBlocksConvention,
+    checkOnlyProvenanceNotesConvention,
   ];
 
   test("happy path — no warnings", () => {
     const blocks = aggregateBlocks(
       loadFixture("roadNotTaken-transcription-seg00.vtt"),
     );
-    expect(validateConventions(blocks, allCheckers, false)).toEqual([]);
+    expect(validateBlocks(blocks, allCheckers, false)).toEqual([]);
   });
 
   test("strict mode throws on violations", () => {
     const blocks = aggregateBlocks(loadFixture("invalid-style-block.vtt"));
-    expect(() => validateConventions(blocks, allCheckers, true)).toThrow(
-      "[FATAL CONVENTIONS]",
+    expect(() => validateBlocks(blocks, allCheckers, true)).toThrow(
+      "[FATAL BLOCKS]",
     );
   });
 
   test("lenient mode collects without throwing", () => {
     const blocks = aggregateBlocks(loadFixture("invalid-style-block.vtt"));
-    const warnings = validateConventions(blocks, allCheckers, false);
+    const warnings = validateBlocks(blocks, allCheckers, false);
     expect(warnings.length).toBeGreaterThan(0);
   });
 });

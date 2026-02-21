@@ -21,6 +21,11 @@ export function shiftVttCues(cues: VttCue[], offsetSec: number): VttCue[] {
   }));
 }
 
+export interface StitchOptions {
+  /** When true, clamp each non-last segment's final cue endTime to its boundary */
+  clip?: boolean;
+}
+
 /**
  * Stitch multiple VttTranscription runs into a single VttComposition artifact.
  */
@@ -30,13 +35,31 @@ export function stitchVttConcat(
     ProvenanceComposition,
     "segments" | "elapsedMs" | "durationSec"
   >,
+  options: StitchOptions = {},
 ): VttComposition {
+  const { clip = false } = options;
   let currentOffset = 0;
   let totalElapsedMs = 0;
+  const isLast = (i: number) => i === transcriptions.length - 1;
 
   const segments: VttSegment[] = transcriptions.map((t, i) => {
     const startSec = currentOffset;
     totalElapsedMs += t.provenance.elapsedMs;
+
+    let cues = shiftVttCues(t.cues, startSec);
+
+    // Clip: clamp last cue's endTime to segment boundary (non-last segments only)
+    const durationSec = t.provenance.durationSec;
+    if (clip && !isLast(i) && durationSec != null && cues.length > 0) {
+      const boundary = startSec + durationSec;
+      const lastCue = cues[cues.length - 1]!;
+      if (vttTimeToSeconds(lastCue.endTime) > boundary) {
+        cues = [
+          ...cues.slice(0, -1),
+          { ...lastCue, endTime: secondsToVttTime(boundary) },
+        ];
+      }
+    }
 
     const segment: VttSegment = {
       provenance: {
@@ -44,11 +67,11 @@ export function stitchVttConcat(
         segment: i,
         startSec: startSec,
       },
-      cues: shiftVttCues(t.cues, startSec),
+      cues,
     };
 
     // Increment offset by the specific transcription's duration
-    currentOffset += t.provenance.durationSec ?? 0;
+    currentOffset += durationSec ?? 0;
 
     return segment;
   });

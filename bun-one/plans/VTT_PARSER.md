@@ -117,37 +117,27 @@ Convention rule to enforce: if any `ProvenanceSegment` in a composition has
   - [ ] BAD IDEA? Preserve cue text lines (no trim mutation)
   - [x] Aggregate blocks from line stream using blank-line boundaries
   - [ ] Add line indexes/positions for diagnostics and later parser stages
-- [x] Syntactic convention checkers (checkNoStyleBlocks, checkNoRegionBlocks, checkOnlyProvenanceNotes)
+- [x] Block checkers (checkNoStyleBlocksConvention, checkNoRegionBlocksConvention,
+      checkOnlyProvenanceNotesConvention)
 - [x] Block parser tests (`vtt-block-parser.test.ts`)
 - [x] Fixture catalog expanded (raw, multi-segment composition, invalid cases)
 - [x] Reuse the same fixture corpus for both zod and valibot validation
   - [x] use schema-standard invocation for parity!
 - [x] Finalize `vtt-parser.ts` call signatures
-  - Generic: `parseVttFile(input, { strict?, schema? })` → `{ value: VttFile, warnings: string[] }`
-  - Sugar: `parseTranscription(input, schema)` → `VttTranscription` (strict, narrowed)
+  - Generic: `parseVttFile(input, { strict?, schema? })` →
+    `{ value: VttFile, warnings: string[] }`
+  - Sugar: `parseTranscription(input, schema)` → `VttTranscription` (strict,
+    narrowed)
   - Sugar: `parseComposition(input, schema)` → `VttComposition`
   - Sugar: `parseRaw(input, schema)` → `VttRaw`
 - [x] Implement parser strictness behavior (`strict: boolean`)
 - [x] Enforce composed conventions (root provenance ordering, segment structure)
 - [x] Data-driven parser tests (`vtt-parser.test.ts`) — both zod and valibot
+- [x] Review and rework `vtt-stitch.ts`
+- [x] Cross-segment monotonicity checking (cues that overstep segment bounds)
+- [x] Decide trim vs warn strategy for boundary violations
 - [ ] Swap callers to replacement parser when stable
 - [ ] Add/finish `packages/vtt/README.md` once parser signatures settle
-
-## Stitching and Monotonicity
-
-Current `vtt-stitch.ts` is an early prototype. Known issues:
-
-- Transcriptions can overstep segment time boundaries at the end
-- No monotonicity check across segment boundaries after stitching
-- Need to decide: check during stitching (trim/warn) or after (validate)?
-- `checkMonotonicity` exists in `vtt.ts` — needs to be usable on composed cues
-
-Work items:
-
-- [ ] Review and rework `vtt-stitch.ts`
-- [ ] Cross-segment monotonicity checking (cues that overstep segment bounds)
-- [ ] Decide trim vs warn strategy for boundary violations
-- [ ] Integration: parser reads compositions, stitch produces them — align
 
 ## Backlog
 
