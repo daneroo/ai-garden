@@ -16,7 +16,7 @@ const ProvenanceBaseSchema = v.object({
   input: v.string(),
   model: v.string(),
   wordTimestamps: v.boolean(),
-  generated: v.string(), // Consider v.isoTimestamp() if applicable
+  generated: v.pipe(v.string(), v.isoTimestamp()),
   elapsedMs: v.number(),
 });
 
@@ -24,13 +24,13 @@ const ProvenanceBaseSchema = v.object({
  * 2. PROVENANCE DERIVATIVES (DRY)
  */
 
-// Transcription Provenance (The "Run")
+// Transcription Provenance
 export const ProvenanceTranscriptionSchema = v.intersect([
   ProvenanceBaseSchema,
   v.object({ durationSec: v.optional(v.number()) }),
 ]);
 
-// Segment Provenance (Inside a composition)
+// Segment Provenance
 export const ProvenanceSegmentSchema = v.intersect([
   ProvenanceBaseSchema,
   v.object({
@@ -40,7 +40,7 @@ export const ProvenanceSegmentSchema = v.intersect([
   }),
 ]);
 
-// Composition Provenance (The aggregate header)
+// Composition Provenance
 export const ProvenanceCompositionSchema = v.intersect([
   ProvenanceBaseSchema,
   v.object({
@@ -82,7 +82,7 @@ export const VttFileSchema = v.union([
 ]);
 
 /**
- * 5. DERIVED TYPES (The DRY Layer)
+ * 5. DERIVED TYPES (DRY)
  */
 
 // Provenance Types
@@ -94,6 +94,9 @@ export type ProvenanceSegment = v.InferOutput<typeof ProvenanceSegmentSchema>;
 export type ProvenanceComposition = v.InferOutput<
   typeof ProvenanceCompositionSchema
 >;
+// Type-only union — no ProvenanceSchema because the parser always knows which
+// subtype to validate from the artifact context (unlike VttFile where the
+// parser must discriminate).
 export type Provenance =
   | ProvenanceTranscription
   | ProvenanceSegment

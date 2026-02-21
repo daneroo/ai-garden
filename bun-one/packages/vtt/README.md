@@ -51,9 +51,48 @@ Optional on all provenance types, but presence is meaningful:
 - `ProvenanceComposition`: present iff the last segment has `durationSec`.
   Value equals `lastSegment.startSec + lastSegment.durationSec`.
 
+## Usage
+
+The parser has two tiers: a generic function and typed sugar functions.
+
+### Sugar functions (typical use)
+
+When you wrote the VTT files yourself and know what to expect:
+
+```ts
+import { parseTranscription, parseComposition } from "./vtt-parser";
+import { VttFileSchema } from "./vtt-schema-zod"; // or vtt-schema-valibot
+
+// Returns VttTranscription directly — throws on any warning or type mismatch
+const transcription = parseTranscription(vttText, VttFileSchema);
+console.log(transcription.provenance.model); // typed, no narrowing needed
+
+// Same for compositions
+const composition = parseComposition(vttText, VttFileSchema);
+console.log(composition.segments.length);
+```
+
+### Generic function (batch processing, lenient mode)
+
+When validating files you didn't write, or collecting warnings without throwing:
+
+```ts
+import { parseVttFile } from "./vtt-parser";
+import { VttFileSchema } from "./vtt-schema-zod";
+
+const { value, warnings } = parseVttFile(vttText, {
+  schema: VttFileSchema,
+  strict: false, // collect warnings without throwing
+});
+// value is VttFile — use type guards to narrow
+```
+
+With `strict: true`, throws after collecting all warnings. Sugar functions
+always use strict mode.
+
 ## Strictness
 
 - Schema-valid output is always required
 - `strict: boolean` controls convention behavior
-  - strict throws
-  - tolerant allows convention drift but keeps schema-valid output
+  - strict throws after collecting all warnings
+  - lenient collects warnings and returns them alongside the parsed value

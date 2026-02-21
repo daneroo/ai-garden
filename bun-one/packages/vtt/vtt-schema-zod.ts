@@ -16,13 +16,12 @@ const ProvenanceBaseSchema = z.object({
   input: z.string(),
   model: z.string(),
   wordTimestamps: z.boolean(),
-  generated: z.string(),
+  generated: z.iso.datetime(),
   elapsedMs: z.number(),
 });
 
 /**
  * 2. PROVENANCE DERIVATIVES (DRY)
- * Using .extend() to add specific fields to the base.
  */
 
 // Transcription Provenance
@@ -87,6 +86,9 @@ export type ProvenanceTranscription = z.infer<
 >;
 export type ProvenanceSegment = z.infer<typeof ProvenanceSegmentSchema>;
 export type ProvenanceComposition = z.infer<typeof ProvenanceCompositionSchema>;
+// Type-only union — no ProvenanceSchema because the parser always knows which
+// subtype to validate from the artifact context (unlike VttFile where the
+// parser must discriminate).
 export type Provenance =
   | ProvenanceTranscription
   | ProvenanceSegment

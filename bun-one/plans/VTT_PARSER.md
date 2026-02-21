@@ -107,24 +107,47 @@ Convention rule to enforce: if any `ProvenanceSegment` in a composition has
 ## Implementation Plan
 
 - [x] Initial type flavors and provenance extensions in schemas
-- [ ] Finalize provenance subtype naming and exported type surface
-- [ ] vtt-time - validate and add tests - nothing crazy
+- [x] Finalize provenance subtype naming and exported type surface
+- [x] vtt-time - validate and add tests (`vtt-time.test.ts`)
 - [x] Initial block parser draft (`vtt-block-parser.ts`)
   - [ ] document relative to w3c, and ref implementsation - describing what we
         ommited - and why (Also in readme)
-  - [ ] Add fixture corpus from known-good whisper-produced files
-  - [ ] require `WEBVTT` on first non-empty line
+  - [x] Add fixture corpus from known-good whisper-produced files
+  - [x] require `WEBVTT` on first non-empty line
   - [ ] BAD IDEA? Preserve cue text lines (no trim mutation)
-  - [ ] Aggregate blocks from line stream using blank-line boundaries
+  - [x] Aggregate blocks from line stream using blank-line boundaries
   - [ ] Add line indexes/positions for diagnostics and later parser stages
-- [ ] Add integration smoke tests for block parsing happy-path fixtures
-- [ ] Reuse the same fixture corpus for both zod and valibot validation
-  - [ ] use schema-standard invocation for parity!
-- [ ] Finalize `vtt-parser.ts` call signatures
-- [ ] Implement parser strictness behavior (`strict: boolean`)
-- [ ] Enforce composed conventions (root provenance ordering, segment structure)
+- [x] Syntactic convention checkers (checkNoStyleBlocks, checkNoRegionBlocks, checkOnlyProvenanceNotes)
+- [x] Block parser tests (`vtt-block-parser.test.ts`)
+- [x] Fixture catalog expanded (raw, multi-segment composition, invalid cases)
+- [x] Reuse the same fixture corpus for both zod and valibot validation
+  - [x] use schema-standard invocation for parity!
+- [x] Finalize `vtt-parser.ts` call signatures
+  - Generic: `parseVttFile(input, { strict?, schema? })` → `{ value: VttFile, warnings: string[] }`
+  - Sugar: `parseTranscription(input, schema)` → `VttTranscription` (strict, narrowed)
+  - Sugar: `parseComposition(input, schema)` → `VttComposition`
+  - Sugar: `parseRaw(input, schema)` → `VttRaw`
+- [x] Implement parser strictness behavior (`strict: boolean`)
+- [x] Enforce composed conventions (root provenance ordering, segment structure)
+- [x] Data-driven parser tests (`vtt-parser.test.ts`) — both zod and valibot
 - [ ] Swap callers to replacement parser when stable
 - [ ] Add/finish `packages/vtt/README.md` once parser signatures settle
+
+## Stitching and Monotonicity
+
+Current `vtt-stitch.ts` is an early prototype. Known issues:
+
+- Transcriptions can overstep segment time boundaries at the end
+- No monotonicity check across segment boundaries after stitching
+- Need to decide: check during stitching (trim/warn) or after (validate)?
+- `checkMonotonicity` exists in `vtt.ts` — needs to be usable on composed cues
+
+Work items:
+
+- [ ] Review and rework `vtt-stitch.ts`
+- [ ] Cross-segment monotonicity checking (cues that overstep segment bounds)
+- [ ] Decide trim vs warn strategy for boundary violations
+- [ ] Integration: parser reads compositions, stitch produces them — align
 
 ## Backlog
 

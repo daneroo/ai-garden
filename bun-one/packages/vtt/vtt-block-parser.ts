@@ -22,18 +22,34 @@ export interface VttBlock {
 }
 
 export type ConventionChecker = (blocks: VttBlock[]) => string[];
-/**
- * Ensures the Root Provenance is the very first data block after the signature.
- */
-export function checkRootProvenancePosition(blocks: VttBlock[]): string[] {
-  const firstDataBlock = blocks[1]; // Index 0 is SIGNATURE
-  if (
-    firstDataBlock &&
-    !firstDataBlock.lines[0]?.startsWith("NOTE Provenance")
-  ) {
-    return ["Block 1: Missing mandatory Root Provenance header."];
-  }
-  return [];
+
+/** Reject STYLE blocks — we don't use CSS-based cue styling. */
+export function checkNoStyleBlocks(blocks: VttBlock[]): string[] {
+  return blocks
+    .map((b, i) =>
+      b.type === "STYLE" ? `Block ${i}: STYLE block not allowed.` : null,
+    )
+    .filter((w): w is string => w !== null);
+}
+
+/** Reject REGION blocks — we don't use region-based positioning. */
+export function checkNoRegionBlocks(blocks: VttBlock[]): string[] {
+  return blocks
+    .map((b, i) =>
+      b.type === "REGION" ? `Block ${i}: REGION block not allowed.` : null,
+    )
+    .filter((w): w is string => w !== null);
+}
+
+/** Only "NOTE Provenance" notes are allowed — reject any other NOTE subtypes. */
+export function checkOnlyProvenanceNotes(blocks: VttBlock[]): string[] {
+  return blocks
+    .map((b, i) => {
+      if (b.type !== "NOTE") return null;
+      if (b.lines[0]?.startsWith("NOTE Provenance")) return null;
+      return `Block ${i}: Only "NOTE Provenance" notes are allowed, got "${b.lines[0]}".`;
+    })
+    .filter((w): w is string => w !== null);
 }
 
 /**
