@@ -6,12 +6,14 @@ These are _TODOs_ that need to be added in the right place. The document below
 should give guidance
 
 - [`bun-one`](../bun-one/plans/) has it's own plans
-- [ ] Smart Band Transition: Honor
+- [ ] Smart Band Transition: Honor -> Gadgetbridge
       [Band 6 -> Xiaomi Mi Band 10](../smart-band/README.md)
 - [ ] Agent workspaces and loops - [agents/README.md](../agents/README.md)
   - [ ] Started making docs subdirs - experiments move to `/experiments`
 - [ ] tanstack in astro
-- [ ] dotfiles: mise, yadm/bare-repo,stow,chezmois,zsh
+- [ ] [parakeet](https://github.com/senstella/parakeet-mlx)
+  - Not faster than tiny:547s vs parakeet-tdt-0.6b-v3:820s
+- [ ] dotfiles: mise, yadm/bare-repo,stow,chezmois,zsh,ghotty
 - [ ] Restate the problem of alignment of the reference audio to the text
 - [ ] Could we use `tts/qwen3-tts` for long-form narration (epub)?
   - [ ] make a case for dizzy, skel, kenny, and dan
