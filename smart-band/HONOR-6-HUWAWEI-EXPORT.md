@@ -1,6 +1,13 @@
 # HONOR Band 6 Huawei Export
 
-## Huwawei Download Failure - 2026-02-17
+## Huawei Download Success - 2026-02-20
+
+- [GMail](https://mail.google.com/mail/u/0/#inbox/FMfcgzQfBsqqKGplRzpnWGshTFtglsfn)
+- zip password in 1Password
+- `/Volumes/Space/archive/personal/health/Huawei/HUAWEI_HEALTH_20260221015236.zip`
+- `/Volumes/Space/archive/personal/health/Huawei/HUAWEI_HEALTH_20260221015236.decrypted.tgz`
+
+## Huawei Download Failure - 2026-02-17
 
 - After seven days we got a succinct email: Try again. Ouch
   - Failure
