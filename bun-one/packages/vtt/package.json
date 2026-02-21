@@ -5,8 +5,7 @@
   "main": "./vtt.ts",
   "types": "./vtt.ts",
   "exports": {
-    ".": "./vtt.ts",
-    "./server": "./vtt-server.ts"
+    ".": "./vtt.ts"
   },
   "dependencies": {
     "valibot": "catalog:runtime",

@@ -1,26 +1,62 @@
 import { createServerFn } from "@tanstack/react-start";
-import { readdir } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { formatTimestamp, summarizeVtt, type VttSummary } from "@bun-one/vtt";
-import { readVtt } from "@bun-one/vtt/server";
+import { parseVtt, secondsToVttTime, vttTimeToSeconds } from "@bun-one/vtt";
+import type { VttCue, VttFile } from "@bun-one/vtt";
 
-/**
- * Extended summary with filename and pre-formatted duration
- * (pre-formatted to avoid importing node:fs in client bundle)
- */
-export interface VttFileSummary extends VttSummary {
+/** Summary returned for the "/" listing */
+export interface VttFileSummary {
   filename: string;
+  artifactType: "raw" | "transcription" | "composition";
+  cueCount: number;
+  firstCueStart: string;
+  lastCueEnd: string;
   formattedDuration: string;
+  warningCount: number;
+  warnings: string[];
 }
 
-/**
- * Feature B: Server function to read VTT directory and return summaries
- */
+/** Detail returned for "/file/$name" */
+export interface VttFileDetail {
+  filename: string;
+  artifactType: "raw" | "transcription" | "composition";
+  segmentCount?: number;
+  cues: VttCue[];
+  cueCount: number;
+  firstCueStart: string;
+  lastCueEnd: string;
+  formattedDuration: string;
+  warnings: string[];
+}
+
+function allCuesFromFile(value: VttFile): VttCue[] {
+  if ("segments" in value) return value.segments.flatMap((s) => s.cues);
+  if ("cues" in value) return value.cues;
+  return [];
+}
+
+function cueSpan(cues: VttCue[]) {
+  if (cues.length === 0)
+    return {
+      firstCueStart: "",
+      lastCueEnd: "",
+      formattedDuration: "00:00:00.000",
+    };
+  const firstCueStart = cues[0]!.startTime;
+  const lastCueEnd = cues[cues.length - 1]!.endTime;
+  const durationSec =
+    vttTimeToSeconds(lastCueEnd) - vttTimeToSeconds(firstCueStart);
+  return {
+    firstCueStart,
+    lastCueEnd,
+    formattedDuration: secondsToVttTime(durationSec),
+  };
+}
+
 export const getVttSummaries = createServerFn({
   method: "GET",
 }).handler(async () => {
   const vttDir = process.env.VTT_DIR;
-
   if (!vttDir) {
     return { error: "VTT_DIR environment variable not set", summaries: [] };
   }
@@ -31,19 +67,21 @@ export const getVttSummaries = createServerFn({
 
     const summaries: VttFileSummary[] = await Promise.all(
       vttFiles.map(async (filename) => {
-        const cues = await readVtt(join(vttDir, filename));
-        const summary = summarizeVtt(cues);
+        const content = await readFile(join(vttDir, filename), "utf-8");
+        const { value: classified, warnings } = parseVtt(content);
+        const cues = allCuesFromFile(classified.value);
         return {
           filename,
-          ...summary,
-          formattedDuration: formatTimestamp(summary.durationSec),
+          artifactType: classified.type,
+          cueCount: cues.length,
+          ...cueSpan(cues),
+          warningCount: warnings.length,
+          warnings,
         };
       }),
     );
 
-    // Sort alphabetically by filename
     summaries.sort((a, b) => a.filename.localeCompare(b.filename));
-
     return { summaries, error: null, resolvedPath: vttDir };
   } catch (e) {
     return {
@@ -54,33 +92,39 @@ export const getVttSummaries = createServerFn({
   }
 });
 
-/**
- * Feature C: Server function to read a specific VTT file
- */
 export const getVttFile = createServerFn({
   method: "GET",
 })
   .inputValidator((name: string) => name)
   .handler(async ({ data: filename }) => {
     const vttDir = process.env.VTT_DIR;
-
     if (!vttDir) {
       return {
         error: "VTT_DIR environment variable not set",
-        cues: [],
-        summary: null,
+        detail: null,
       };
     }
 
     try {
-      const cues = await readVtt(join(vttDir, filename));
-      const summary = summarizeVtt(cues);
-      return { filename, cues, summary, error: null };
+      const content = await readFile(join(vttDir, filename), "utf-8");
+      const { value: classified, warnings } = parseVtt(content);
+      const cues = allCuesFromFile(classified.value);
+      const detail: VttFileDetail = {
+        filename,
+        artifactType: classified.type,
+        segmentCount:
+          classified.type === "composition"
+            ? classified.value.segments.length
+            : undefined,
+        cues,
+        cueCount: cues.length,
+        ...cueSpan(cues),
+        warnings,
+      };
+      return { detail, error: null };
     } catch (e) {
       return {
-        filename,
-        cues: [],
-        summary: null,
+        detail: null,
         error: e instanceof Error ? e.message : String(e),
       };
     }

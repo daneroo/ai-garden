@@ -136,7 +136,28 @@ Convention rule to enforce: if any `ProvenanceSegment` in a composition has
 - [x] Review and rework `vtt-stitch.ts`
 - [x] Cross-segment monotonicity checking (cues that overstep segment bounds)
 - [x] Decide trim vs warn strategy for boundary violations
-- [ ] Swap callers to replacement parser when stable
+- [x] Replace `vtt.ts` with barrel re-export of new modules
+  - `vtt.ts` becomes the public API surface (re-exports from `vtt-parser`,
+    `vtt-time`, `vtt-stitch`, schemas)
+  - `package.json` already points `"."` at `./vtt.ts` — no change needed
+  - Delete old `parseVtt`, `summarizeVtt`, `checkMonotonicity`, `formatTimestamp`
+    implementations (replaced by new modules)
+  - `secondsToVttTime` in `vtt-time.ts` replaces `formatTimestamp`
+  - Delete `vtt.test.ts` (covered by `vtt-time.test.ts`, `vtt-parser.test.ts`)
+- [x] Delete `vtt-server.ts` and `"./server"` export from `package.json`
+  - It's just `readFile` + `parseVtt` — callers can inline `readFile` themselves
+- [x] Update `apps/cli` vtt command
+  - Use `parseVttFile` instead of `parseVtt`
+  - Show artifact structure (type, cue count, segments) and warnings
+  - Use `secondsToVttTime` instead of `formatTimestamp`
+- [x] Update `apps/tan-one`
+  - Delete `@bun-one/vtt/server` import, inline `readFile`
+  - `vtt-server.ts`: use `parseVttFile`, return warnings + artifact info
+  - `"/"` route: show warning count in Status column (replaces old
+    monotonicityViolations)
+  - `"/file/$name"` route: show artifact type, segment structure, warnings
+  - `VttViewer`: keep violations checkbox, derive from cues as before
+  - Use `secondsToVttTime` instead of `formatTimestamp`
 - [ ] Add/finish `packages/vtt/README.md` once parser signatures settle
 
 ## Backlog

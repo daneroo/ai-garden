@@ -41,6 +41,13 @@ export interface ParseOptions {
   schema?: StandardSchemaV1<unknown, VttFile>;
 }
 
+export type SchemaImpl = "zod" | "valibot";
+
+export type ClassifiedVttFile =
+  | { type: "composition"; value: VttComposition }
+  | { type: "transcription"; value: VttTranscription }
+  | { type: "raw"; value: VttRaw };
+
 // ---------------------------------------------------------------------------
 // Sugar — strict, narrowed, just give me the thing or throw
 // ---------------------------------------------------------------------------
@@ -138,6 +145,57 @@ export function parseVttFile(
   }
 
   return { value: artifact, warnings };
+}
+
+// ---------------------------------------------------------------------------
+// Convenience wrapper — schema selection by name
+// ---------------------------------------------------------------------------
+
+const schemaCache = new Map<SchemaImpl, StandardSchemaV1<unknown, VttFile>>();
+
+function resolveSchema(impl: SchemaImpl): StandardSchemaV1<unknown, VttFile> {
+  const cached = schemaCache.get(impl);
+  if (cached) return cached;
+  // Both schema modules export VttFileSchema as a Standard Schema compliant object.
+  // The cast is safe because we control both implementations.
+  let schema: StandardSchemaV1<unknown, VttFile>;
+  if (impl === "valibot") {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    schema = require("./vtt-schema-valibot.ts")
+      .VttFileSchema as StandardSchemaV1<unknown, VttFile>;
+  } else {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    schema = require("./vtt-schema-zod.ts").VttFileSchema as StandardSchemaV1<
+      unknown,
+      VttFile
+    >;
+  }
+  schemaCache.set(impl, schema);
+  return schema;
+}
+
+/**
+ * Parse VTT text with schema validation and classify the result.
+ * Convenience wrapper — hides StandardSchema plumbing from consumers.
+ */
+export function parseVtt(
+  input: string,
+  options: { strict?: boolean; schema?: SchemaImpl } = {},
+): ParseResult<ClassifiedVttFile> {
+  const { strict, schema: impl = "zod" } = options;
+  const schema = resolveSchema(impl);
+  const { value, warnings } = parseVttFile(input, { strict, schema });
+  return { value: classifyVttFile(value), warnings };
+}
+
+// ---------------------------------------------------------------------------
+// Type classification — discriminated return for exhaustive switches
+// ---------------------------------------------------------------------------
+
+export function classifyVttFile(value: VttFile): ClassifiedVttFile {
+  if (isComposition(value)) return { type: "composition", value };
+  if (isTranscription(value)) return { type: "transcription", value };
+  return { type: "raw", value: value as VttRaw };
 }
 
 // ---------------------------------------------------------------------------

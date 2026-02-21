@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Timer } from "@bun-one/timer";
-import { formatTimestamp } from "@bun-one/vtt";
+import { secondsToVttTime } from "@bun-one/vtt";
 import { getVttSummaries, type VttFileSummary } from "../lib/vtt-server";
 import {
   Zap,
@@ -14,7 +14,7 @@ import {
 export const Route = createFileRoute("/")({
   loader: async () => {
     // Feature A: Server-side pure function - formatTimestamp runs on server
-    const time = formatTimestamp(3661.5);
+    const time = secondsToVttTime(3661.5);
     // Feature B: Server-side file reading - get VTT summaries
     const vttData = await getVttSummaries();
     return { time, ...vttData };
@@ -177,7 +177,7 @@ function App() {
                         {s.lastCueEnd}
                       </td>
                       <td className="px-4 py-3 text-sm text-gray-400 font-mono">
-                        {formatTimestamp(s.durationSec)}
+                        {s.formattedDuration}
                       </td>
                       <td className="px-4 py-3 text-sm text-gray-400 font-mono text-right">
                         {s.cueCount}
@@ -185,14 +185,14 @@ function App() {
                       <td className="px-4 py-3 text-center">
                         <span
                           className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-                            s.monotonicityViolations === 0
+                            s.warningCount === 0
                               ? "bg-green-900 text-green-300"
-                              : "bg-red-900 text-red-300"
+                              : "bg-yellow-900 text-yellow-300"
                           }`}
                         >
-                          {s.monotonicityViolations === 0
-                            ? "Valid"
-                            : `${s.monotonicityViolations} Violations`}
+                          {s.warningCount === 0
+                            ? "OK"
+                            : `${s.warningCount} warning(s)`}
                         </span>
                       </td>
                     </tr>
