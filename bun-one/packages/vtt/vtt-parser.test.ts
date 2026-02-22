@@ -123,7 +123,7 @@ for (const impl of schemaImpls) {
       ).toBe(true);
     });
 
-    test("non-positive cue durations produce monotonicity warning", () => {
+    test("backwards cues warn, zero-duration cues allowed", () => {
       // Test backwards cue
       const inputBackwards = [
         "WEBVTT",
@@ -137,13 +137,11 @@ for (const impl of schemaImpls) {
       });
       expect(
         warningsBackwards.some((w) =>
-          w.includes(
-            "Cue 0: end 00:00:05.000 is not strictly after start 00:00:10.000.",
-          ),
+          w.includes("Cue 0: end 00:00:05.000 is before start 00:00:10.000."),
         ),
       ).toBe(true);
 
-      // Test zero duration cue
+      // Test zero duration cue (ALLOWED by project convention despite WebVTT spec, as whisper.cpp emits them)
       const inputZero = [
         "WEBVTT",
         "",
@@ -152,13 +150,7 @@ for (const impl of schemaImpls) {
         "",
       ].join("\n");
       const { warnings: warningsZero } = parseVtt(inputZero, { schema: impl });
-      expect(
-        warningsZero.some((w) =>
-          w.includes(
-            "Cue 0: end 00:00:10.000 is not strictly after start 00:00:10.000.",
-          ),
-        ),
-      ).toBe(true);
+      expect(warningsZero).toEqual([]); // Assert absolutely NO warnings for zero-duration cues
     });
 
     test("classifyVttFile returns correct type for each artifact", () => {

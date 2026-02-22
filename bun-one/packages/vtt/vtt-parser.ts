@@ -306,10 +306,12 @@ function checkCueMonotonicity(artifact: VttFile): string[] {
     //   ` ${i} - curStart: ${cues[i]!.startTime}, currEnd: ${cues[i]!.endTime}`,
     // );
 
-    // WebVTT Specification: cue duration must be strictly positive (end time > start time)
-    if (curStart >= curEnd) {
+    // WebVTT Specification dictates strictly positive duration (end time > start time; so start < end).
+    // However, whisper.cpp frequently emits zero-duration cues (e.g. 25:21:04.220 --> 25:21:04.220)
+    // We intentionally relax the spec here to allow `start == end`, throwing warnings only if `start > end`.
+    if (curStart > curEnd) {
       violations.push(
-        `Cue ${i}: end ${cues[i]!.endTime} is not strictly after start ${
+        `Cue ${i}: end ${cues[i]!.endTime} is before start ${
           cues[i]!.startTime
         }.`,
       );
