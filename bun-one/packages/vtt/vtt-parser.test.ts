@@ -111,8 +111,54 @@ for (const impl of schemaImpls) {
         "",
       ].join("\n");
       const { warnings } = parseVtt(input, { schema: impl });
-      expect(warnings.some((w) => w.includes("Monotonicity"))).toBe(true);
-      expect(warnings.some((w) => w.includes("1 violation(s)"))).toBe(true);
+      expect(
+        warnings.some((w) =>
+          w.includes(
+            "Cue 1: start 00:00:09.000 is before previous end 00:00:10.000.",
+          ),
+        ),
+      ).toBe(true);
+      expect(
+        warnings.some((w) => w.includes("Monotonicity: max overlap 1.000s.")),
+      ).toBe(true);
+    });
+
+    test("non-positive cue durations produce monotonicity warning", () => {
+      // Test backwards cue
+      const inputBackwards = [
+        "WEBVTT",
+        "",
+        "00:00:10.000 --> 00:00:05.000",
+        "Backwards cue",
+        "",
+      ].join("\n");
+      const { warnings: warningsBackwards } = parseVtt(inputBackwards, {
+        schema: impl,
+      });
+      expect(
+        warningsBackwards.some((w) =>
+          w.includes(
+            "Cue 0: end 00:00:05.000 is not strictly after start 00:00:10.000.",
+          ),
+        ),
+      ).toBe(true);
+
+      // Test zero duration cue
+      const inputZero = [
+        "WEBVTT",
+        "",
+        "00:00:10.000 --> 00:00:10.000",
+        "Zero duration cue",
+        "",
+      ].join("\n");
+      const { warnings: warningsZero } = parseVtt(inputZero, { schema: impl });
+      expect(
+        warningsZero.some((w) =>
+          w.includes(
+            "Cue 0: end 00:00:10.000 is not strictly after start 00:00:10.000.",
+          ),
+        ),
+      ).toBe(true);
     });
 
     test("classifyVttFile returns correct type for each artifact", () => {

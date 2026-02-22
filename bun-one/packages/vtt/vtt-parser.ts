@@ -296,22 +296,40 @@ function allCues(artifact: VttFile): VttCue[] {
 
 function checkCueMonotonicity(artifact: VttFile): string[] {
   const cues = allCues(artifact);
-  let violations = 0;
+  const violations: string[] = [];
   let maxOverlap = 0;
-  for (let i = 1; i < cues.length; i++) {
-    const prevEnd = vttTimeToSeconds(cues[i - 1]!.endTime);
+  let prevEnd = 9e9;
+  for (let i = 0; i < cues.length; i++) {
     const curStart = vttTimeToSeconds(cues[i]!.startTime);
-    if (curStart < prevEnd) {
-      violations++;
+    const curEnd = vttTimeToSeconds(cues[i]!.endTime);
+    // console.error(
+    //   ` ${i} - curStart: ${cues[i]!.startTime}, currEnd: ${cues[i]!.endTime}`,
+    // );
+
+    // WebVTT Specification: cue duration must be strictly positive (end time > start time)
+    if (curStart >= curEnd) {
+      violations.push(
+        `Cue ${i}: end ${cues[i]!.endTime} is not strictly after start ${
+          cues[i]!.startTime
+        }.`,
+      );
+    }
+    // Project Convention: sequential cues should not overlap
+    if (i > 0 && curStart < prevEnd) {
+      violations.push(
+        `Cue ${i}: start ${cues[i]!.startTime} is before previous end ${
+          cues[i - 1]!.endTime
+        }.`,
+      );
       maxOverlap = Math.max(maxOverlap, prevEnd - curStart);
     }
+    prevEnd = curEnd;
   }
-  if (violations === 0) return [];
-  return [
-    `Monotonicity: ${violations} violation(s), max overlap ${maxOverlap.toFixed(
-      3,
-    )}s.`,
-  ];
+  // add a summary of overlaps
+  if (maxOverlap > 0) {
+    violations.push(`Monotonicity: max overlap ${maxOverlap.toFixed(3)}s.`);
+  }
+  return violations;
 }
 
 function checkSegmentCount(artifact: VttFile): string[] {
