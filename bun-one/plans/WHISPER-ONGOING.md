@@ -15,17 +15,21 @@ Track ongoing work for this sub-project (`bon-one/apps/whisper/`)
 
 ## Current Task
 
-Stiching - `stitchSegments(...)` in `runners.ts`
+Switch to `packages/vtt` in apps/whisper
 
 ### Implementation Plan
 
-- [ ] Refactor VTT in `packages/vtt` - see [VTT_PARSER PLAN](./VTT_PARSER.md)
+- [ ] Requires planning as a first step
+- this will require rethinking return types from runWhisper
+- potential validation when reading from cache, writing transcripts(segments),
+  or when stitching, read, revalidate after-write?
+- consider the consequences of invalidation
 
 ## Backlog
 
 These turn into issues above, inside this very document
 
-- Caching for Stiched Segment?
+- Caching for Stitched Segment?
 - Make stitch a proper Task (uniform task list: N\*(wav+transcribe)+stitch)
   - VTT stitching clip for monotonicity guarantees - where?
   - if Stitching is a task, it could also cache!
