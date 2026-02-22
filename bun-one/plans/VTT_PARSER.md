@@ -124,12 +124,13 @@ Convention rule to enforce: if any `ProvenanceSegment` in a composition has
 - [x] Reuse the same fixture corpus for both zod and valibot validation
   - [x] use schema-standard invocation for parity!
 - [x] Finalize `vtt-parser.ts` call signatures
-  - Generic: `parseVttFile(input, { strict?, schema? })` →
-    `{ value: VttFile, warnings: string[] }`
-  - Sugar: `parseTranscription(input, schema)` → `VttTranscription` (strict,
-    narrowed)
-  - Sugar: `parseComposition(input, schema)` → `VttComposition`
-  - Sugar: `parseRaw(input, schema)` → `VttRaw`
+  - Generic: `parseVtt(input, { strict?, schema? })` →
+    `{ value: ClassifiedVttFile, warnings: string[] }`
+  - Sugar: `parseTranscription(input, { schema? })` → `VttTranscription`
+    (strict, narrowed)
+  - Sugar: `parseComposition(input, { schema? })` → `VttComposition`
+  - Sugar: `parseRaw(input, { schema? })` → `VttRaw`
+  - Schema selected by name (`"zod" | "valibot"`, defaults to `"zod"`)
 - [x] Implement parser strictness behavior (`strict: boolean`)
 - [x] Enforce composed conventions (root provenance ordering, segment structure)
 - [x] Data-driven parser tests (`vtt-parser.test.ts`) — both zod and valibot
@@ -158,7 +159,7 @@ Convention rule to enforce: if any `ProvenanceSegment` in a composition has
   - `"/file/$name"` route: show artifact type, segment structure, warnings
   - `VttViewer`: keep violations checkbox, derive from cues as before
   - Use `secondsToVttTime` instead of `formatTimestamp`
-- [ ] Add/finish `packages/vtt/README.md` once parser signatures settle
+- [x] Add/finish `packages/vtt/README.md` once parser signatures settle
 
 ## Backlog
 
