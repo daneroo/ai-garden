@@ -17,5 +17,9 @@ echo "" # extra blank line to separate the output
 echo "== Whisper demo: segmented concat run (no cache) =="
 bun run whisper.ts -i "$INPUT" --segment 10m -m tiny.en --output "$OUTPUT_DIR" --tag demo-seg-10m --no-cache
 
+echo "" # extra blank line to separate the output
+echo "== Whisper demo: segmented clip run (no cache) =="
+bun run whisper.ts -i "$INPUT" --segment 10m --duration 25m -m tiny.en --output "$OUTPUT_DIR" --tag demo-seg-10m-dur25m --no-cache
+
 echo "== Demo outputs =="
 ls -ltr "$OUTPUT_DIR"
