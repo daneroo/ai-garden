@@ -211,3 +211,43 @@ deleted.
   `RunResult` shape assertions change.
 - `scripts/benchmarks/run-bench.ts` — has its own `VttSummarySchema` and
   references `vttSummary`. Deferred to a separate backlog item.
+
+## Implementation Plan
+
+- [x] Requirements approved. Build the implementation task list below. Ref:
+      `plans/VTT_MIGRATION.md` for the detailed requirements (implications 1-6).
+
+- [x] Step 1 — vtt-writer.ts (new file, Impl 2.3)
+  - Create `apps/whisper/lib/vtt-writer.ts`
+  - Expose `writeVttTranscription` and `writeVttComposition`
+  - Serialize typed `@bun-one/vtt` artifacts to canonical VTT text format
+  - Add unit tests in `lib/vtt-writer.test.ts`
+- [x] Step 2 — executeTranscribe (Impl 2)
+  - Update `lib/task.ts` to use `@bun-one/vtt` and the new writer
+  - Fresh generation: `parseRaw` then build `ProvenanceTranscription`, write via
+    `writeVttTranscription`
+  - Cache read: validate with `parseTranscription`, throw on warnings
+  - Return type unchanged
+- [x] Step 3 — stitching (Impl 3)
+  - Update `lib/runners.ts`, remove `stitchSegments` function
+  - Read each segment VTT with `parseTranscription`
+  - Build `initialProvenance`, call `stitchVttConcat` from `@bun-one/vtt`
+  - Write via `writeVttComposition`
+- [x] Step 4 — RunResult + runWhisper (Impl 1, 4a)
+  - Change `vttSummary?: VttSummary` to
+    `vttResult?: ParseResult<VttComposition>`
+  - Read back final VTT with `parseComposition`, attach to result
+  - Update reporter `finish()` to read from `result.vttResult.value.provenance`
+- [x] Step 5 — CLI consumer (Impl 4b)
+  - Update `whisper.ts` to read from `result.vttResult?.value.provenance`
+  - Remove `getHeaderProvenance` import from `vtt.ts`
+- [x] Step 6 — dead code (Impl 5, 6)
+  - Delete `lib/vtt.ts`, `lib/vtt.test.ts`
+  - Delete `lib/vtt-stitch.ts`, `lib/vtt-stitch.test.ts`
+  - Verify no remaining imports reference these files
+- [ ] Step 7 — run-benchmarks (Impl 6, deferred)
+  - Update `scripts/benchmarks/run-bench.ts` to use `vttResult`
+  - Probable direction: store only the provenance records from the VTT (not the
+    full `vttSummary` or `vttResult`) — all timing and metadata the benchmark
+    needs lives in `ProvenanceComposition`
+  - Separate pass
