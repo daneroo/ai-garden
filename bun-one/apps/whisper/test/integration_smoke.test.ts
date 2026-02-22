@@ -15,7 +15,7 @@ import {
   type RunConfig,
   runWhisper,
 } from "../lib/runners.ts";
-import { parseVttFile, isVttSegmentProvenance } from "../lib/vtt.ts";
+import { parseComposition } from "@bun-one/vtt";
 import {
   cleanupOutputDir,
   createWorkDirCleanup,
@@ -102,36 +102,20 @@ describe("smoke: whisper pipeline", () => {
     // VTT file produced with provenance
     expect(existsSync(result.outputPath)).toBe(true);
     const vttText = await readFile(result.outputPath, "utf-8");
-    const parsed = parseVttFile(vttText);
+    const { value: composition } = parseComposition(vttText);
 
-    // Header provenance includes model and wordTimestamps
-    const headerProv = parsed.provenance.find(
-      (p) => !isVttSegmentProvenance(p),
-    );
-    expect(headerProv).toBeDefined();
-    expect(headerProv).toMatchObject({
-      model: "tiny.en",
-      wordTimestamps: false,
-    });
-    expect(headerProv).toHaveProperty("elapsedMs");
-    expect(typeof (headerProv as Record<string, unknown>).elapsedMs).toBe(
-      "number",
-    );
+    // Composition provenance includes model and wordTimestamps
+    const headerProv = composition.provenance;
+    expect(headerProv.model).toBe("tiny.en");
+    expect(headerProv.wordTimestamps).toBe(false);
+    expect(typeof headerProv.elapsedMs).toBe("number");
 
     // Segment provenance includes per-segment execution metadata
-    const segProv = parsed.provenance.find((p) => isVttSegmentProvenance(p));
-    expect(segProv).toBeDefined();
-    expect(segProv).toHaveProperty("elapsedMs");
-    expect(typeof (segProv as Record<string, unknown>).elapsedMs).toBe(
-      "number",
-    );
-    expect(segProv).toHaveProperty("generated");
-    expect(typeof (segProv as Record<string, unknown>).generated).toBe(
-      "string",
-    );
-    expect((headerProv as Record<string, unknown>).elapsedMs).toBe(
-      (segProv as Record<string, unknown>).elapsedMs,
-    );
+    const segProv = composition.segments[0]!.provenance;
+    expect(typeof segProv.elapsedMs).toBe("number");
+    expect(typeof segProv.generated).toBe("string");
+    // Single segment: composition elapsedMs equals segment elapsedMs
+    expect(headerProv.elapsedMs).toBe(segProv.elapsedMs);
 
     // WAV task executed (M4B conversion) - now uses segment naming
     const wavTask = result.tasks.find((t) => t.label.startsWith("to-wav[seg"));

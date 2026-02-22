@@ -7,12 +7,7 @@
  * Run: deno run -A lib/vtt-compare.ts
  */
 
-import {
-  readVtt,
-  summarizeVtt,
-  type VttCue,
-  vttTimeToSeconds,
-} from "../../lib/vtt.ts";
+import { parseRaw, vttTimeToSeconds, type VttCue } from "@bun-one/vtt";
 
 // Global verbose flag for diagnostics
 const verbose = true;
@@ -72,41 +67,11 @@ async function main(): Promise<void> {
   console.log("# VTT-VTT Comparison\n");
 
   // Load VTT files
-  const cuesA = await readVtt(pathA);
-  const summaryA = summarizeVtt(cuesA);
-  console.log(`Loaded: ${pathA}`);
-  console.log(
-    `  ${summaryA.cueCount} cues, ${summaryA.durationSec.toFixed(
-      2,
-    )}s (${summaryA.firstCueStart} -> ${summaryA.lastCueEnd})`,
-  );
-  if (summaryA.monotonicityViolations === 0) {
-    console.log(`  ${GREEN}✔${RESET} monotonicity violations: none\n`);
-  } else {
-    console.log(
-      `  ${RED}✘${RESET} monotonicity violations: ${summaryA.monotonicityViolations} (max ${summaryA.monotonicityViolationMaxOverlap.toFixed(
-        2,
-      )}s)\n`,
-    );
-  }
+  const cuesA = await readVttCues(pathA);
+  printCueSummary(pathA, cuesA);
 
-  const cuesB = await readVtt(pathB);
-  const summaryB = summarizeVtt(cuesB);
-  console.log(`Loaded: ${pathB}`);
-  console.log(
-    `  ${summaryB.cueCount} cues, ${summaryB.durationSec.toFixed(
-      2,
-    )}s (${summaryB.firstCueStart} -> ${summaryB.lastCueEnd})`,
-  );
-  if (summaryB.monotonicityViolations === 0) {
-    console.log(`  ${GREEN}✔${RESET} monotonicity violations: none\n`);
-  } else {
-    console.log(
-      `  ${RED}✘${RESET} monotonicity violations: ${summaryB.monotonicityViolations} (max ${summaryB.monotonicityViolationMaxOverlap.toFixed(
-        2,
-      )}s)\n`,
-    );
-  }
+  const cuesB = await readVttCues(pathB);
+  printCueSummary(pathB, cuesB);
 
   // Tokenize: Convert to TimedWords
   console.log("## Tokenize\n");
@@ -929,6 +894,47 @@ function toHMS(seconds: number): string {
   return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s
     .toFixed(3)
     .padStart(6, "0")}`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// VTT FILE HELPERS
+// ═══════════════════════════════════════════════════════════════════════════
+
+async function readVttCues(path: string): Promise<VttCue[]> {
+  const content = await Bun.file(path).text();
+  return parseRaw(content).value.cues;
+}
+
+function printCueSummary(path: string, cues: VttCue[]): void {
+  const firstStart = cues[0]?.startTime ?? "N/A";
+  const lastEnd = cues[cues.length - 1]?.endTime ?? "N/A";
+  const durationSec =
+    cues.length > 0
+      ? vttTimeToSeconds(lastEnd) - vttTimeToSeconds(firstStart)
+      : 0;
+  console.log(`Loaded: ${path}`);
+  console.log(
+    `  ${cues.length} cues, ${durationSec.toFixed(2)}s (${firstStart} -> ${lastEnd})`,
+  );
+
+  // Check monotonicity
+  let violations = 0;
+  let maxOverlap = 0;
+  for (let i = 1; i < cues.length; i++) {
+    const prevEnd = vttTimeToSeconds(cues[i - 1]!.endTime);
+    const curStart = vttTimeToSeconds(cues[i]!.startTime);
+    if (curStart < prevEnd) {
+      violations++;
+      maxOverlap = Math.max(maxOverlap, prevEnd - curStart);
+    }
+  }
+  if (violations === 0) {
+    console.log(`  ${GREEN}✔${RESET} monotonicity violations: none\n`);
+  } else {
+    console.log(
+      `  ${RED}✘${RESET} monotonicity violations: ${violations} (max ${maxOverlap.toFixed(2)}s)\n`,
+    );
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

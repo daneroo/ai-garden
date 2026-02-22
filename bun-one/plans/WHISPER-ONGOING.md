@@ -47,7 +47,7 @@ Switch to `packages/vtt` in apps/whisper.
 - [x] Step 5 — CLI consumer (Impl 4b)
   - Update `whisper.ts` to read from `result.vttResult?.value.provenance`
   - Remove `getHeaderProvenance` import from `vtt.ts`
-- [ ] Step 6 — dead code (Impl 5, 6)
+- [x] Step 6 — dead code (Impl 5, 6)
   - Delete `lib/vtt.ts`, `lib/vtt.test.ts`
   - Delete `lib/vtt-stitch.ts`, `lib/vtt-stitch.test.ts`
   - Verify no remaining imports reference these files

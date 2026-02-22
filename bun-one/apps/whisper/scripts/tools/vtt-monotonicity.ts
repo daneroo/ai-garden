@@ -20,7 +20,7 @@
  */
 
 import { readdir } from "node:fs/promises";
-import { readVtt, type VttCue, vttTimeToSeconds } from "../../lib/vtt.ts";
+import { parseRaw, vttTimeToSeconds, type VttCue } from "@bun-one/vtt";
 
 /**
  * Yield consecutive pairs from an array: [arr[0], arr[1]], [arr[1], arr[2]], ...
@@ -61,7 +61,8 @@ async function getDefaultVttFiles(): Promise<string[]> {
 }
 
 async function analyzeFile(path: string): Promise<void> {
-  const cues = await readVtt(path);
+  const content = await Bun.file(path).text();
+  const cues = parseRaw(content).value.cues;
   const result = analyzeCueMonotonicity(cues);
 
   const filename = path.split("/").pop() || path;
