@@ -15,15 +15,13 @@ Track ongoing work for this sub-project (`bon-one/apps/whisper/`)
 
 ## Current Task
 
-Switch to `packages/vtt` in apps/whisper
+Switch to `packages/vtt` in apps/whisper.
 
 ### Implementation Plan
 
-- [ ] Requires planning as a first step
-- this will require rethinking return types from runWhisper
-- potential validation when reading from cache, writing transcripts(segments),
-  or when stitching, read, revalidate after-write?
-- consider the consequences of invalidation
+- [x] Detailed plan in `plans/VTT_MIGRATION.md` build the requirements.
+- [ ] when the Requirements are approved by me unambiguously. then we will start
+      to build an actual implementation plan.
 
 ## Backlog
 
