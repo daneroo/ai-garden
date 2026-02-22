@@ -22,6 +22,7 @@ Switch to `packages/vtt` in apps/whisper.
 - [x] Detailed plan in `plans/VTT_MIGRATION.md` build the requirements.
 - [ ] when the Requirements are approved by me unambiguously. then we will start
       to build an actual implementation plan.
+- [ ] fix run-benchmarks to use the new VTT architecture.
 
 ## Backlog
 
