@@ -35,8 +35,13 @@ import { createWriteStream } from "node:fs";
 import { basename } from "node:path";
 import { Buffer } from "node:buffer";
 import { type ProgressReporter } from "./progress.ts";
-import { readVttFile, type VttRunProvenance } from "./vtt.ts";
-import { writeVtt } from "./vtt-stitch.ts";
+import {
+  parseRaw,
+  parseTranscription,
+  type ProvenanceTranscription,
+  type VttTranscription,
+} from "@bun-one/vtt";
+import { writeVttTranscription } from "./vtt-writer.ts";
 
 // ============================================================================
 // Process Layer (internal)
@@ -217,11 +222,18 @@ async function executeTranscribe(
 ): Promise<TranscribeTask> {
   const start = Date.now();
 
-  // Check cache first (if enabled)
+  // Check cache first (if enabled) — validate with parseTranscription
   if (task.cache) {
     const cacheFile = Bun.file(task.cachePath);
     if (await cacheFile.exists()) {
-      await Bun.write(task.vttPath, cacheFile);
+      const content = await cacheFile.text();
+      const { warnings } = parseTranscription(content);
+      if (warnings.length > 0) {
+        throw new Error(
+          `Cached VTT is invalid: ${task.cachePath}\n${warnings.join("\n")}`,
+        );
+      }
+      await Bun.write(task.vttPath, content);
       return { ...task, elapsedMs: Date.now() - start };
     }
   }
@@ -262,22 +274,20 @@ async function executeTranscribe(
     throw new Error(`whisper-cli failed with exit code ${result.code}`);
   }
 
-  // Inject per-segment provenance into the VTT before caching
+  // Read raw whisper output and rewrite as typed VttTranscription
   const elapsedMs = Date.now() - start;
-  const parsed = await readVttFile(task.vttPath);
-  const provenance: VttRunProvenance = {
+  const rawContent = await Bun.file(task.vttPath).text();
+  const { value: raw } = parseRaw(rawContent);
+  const provenance: ProvenanceTranscription = {
     input: basename(task.wavPath),
     model: task.model,
     wordTimestamps: task.wordTimestamps,
-    durationSec: task.durationSec,
     elapsedMs,
     generated: new Date().toISOString(),
+    ...(task.durationSec > 0 ? { durationSec: task.durationSec } : {}),
   };
-  // Rewrite with cues + new provenance, excluding any existing header entries
-  const segmentOnly = parsed.provenance.filter((p) => "segment" in p);
-  await writeVtt(task.vttPath, parsed.cues, {
-    provenance: [provenance, ...segmentOnly],
-  });
+  const transcription: VttTranscription = { provenance, cues: raw.cues };
+  await writeVttTranscription(task.vttPath, transcription);
 
   // Cache the result (if enabled) — provenance is now baked in
   if (task.cache) {
