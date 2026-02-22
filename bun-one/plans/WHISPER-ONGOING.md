@@ -20,10 +20,22 @@ Fix benchmarks
 ### Implementation Plan
 
 - [ ] run-benchmarks
-  - Update `scripts/benchmarks/run-bench.ts` to use `vttResult`
-  - Probable direction: store only the provenance records from the VTT (not the
-    full `vttSummary` or `vttResult`) — all timing and metadata the benchmark
-    needs lives in `ProvenanceComposition`
+  - [ ] Update `scripts/benchmarks/run-bench.ts` to use `vttResult`
+  - [ ] Replace stored benchmark record shape to be provenance-centric (do not
+        extend full `RunResult`)
+  - [ ] Store only benchmark key + runtime metadata + composition provenance:
+    - [ ] `benchmarkKey`
+    - [ ] `timestamp`, `hostname`, `arch`
+    - [ ] `provenance` (`ProvenanceComposition`)
+  - [ ] Remove legacy `vttSummary` handling from schema/load/normalize paths
+  - [ ] Derive benchmark metrics from provenance:
+    - [ ] `processedAudioDurationSec = provenance.durationSec`
+    - [ ] `elapsedSec = round(provenance.elapsedMs / 1000)`
+    - [ ] `speedup = processedAudioDurationSec / elapsedSec`
+  - [ ] In execute path, extract from `result.vttResult.value.provenance` and
+        persist compact JSON records in `reports/benchmarks`
+  - [ ] Keep summary/plot generation sourced from `loadExistingData()` using
+        provenance-derived metrics only
 
 ## Backlog
 
