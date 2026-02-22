@@ -138,10 +138,10 @@ describe("smoke: whisper pipeline", () => {
     expect(wavTask).toBeDefined();
     expect(wavTask!.elapsedMs).toBeDefined();
 
-    // VTT has content
-    expect(result.vttSummary).toBeDefined();
-    expect(result.vttSummary!.cueCount).toBeGreaterThan(0);
-    expect(result.vttSummary!.durationSec).toBeGreaterThan(5);
+    // VTT has content (single-segment full-WAV: durationSec is 0 since not bounded)
+    expect(result.vttResult).toBeDefined();
+    expect(result.vttResult!.value.segments.length).toBeGreaterThan(0);
+    expect(result.vttResult!.value.segments[0]!.cues.length).toBeGreaterThan(0);
   });
 
   test("cached: uses cached WAV on second run", async () => {
@@ -179,6 +179,6 @@ describe("smoke: whisper pipeline", () => {
 
     // VTT still produced correctly
     expect(existsSync(result.outputPath)).toBe(true);
-    expect(result.vttSummary).toBeDefined();
+    expect(result.vttResult).toBeDefined();
   });
 });

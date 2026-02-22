@@ -65,10 +65,15 @@ interface BenchmarkRecord extends RunResult {
   timestamp: string;
   hostname: string;
   arch: string;
-  // Derived display fields (computed by normalizeRecord from tasks/vttSummary/provenance)
+  // Derived display fields (computed by normalizeRecord from tasks/vttResult/provenance)
   processedAudioDurationSec: number;
   elapsedSec: number;
   speedup: string;
+  // Legacy field from old stored JSON records (superseded by RunResult.vttResult)
+  vttSummary?: {
+    durationSec?: unknown;
+    provenance?: unknown[];
+  };
 }
 
 /** Record with source file tracking (for duplicate detection) */
@@ -105,7 +110,8 @@ const RunResultSchema = z
     speedup: NumericSchema.optional(),
     tasks: z.array(z.unknown()).optional(),
     outputPath: z.string().optional(),
-    vttSummary: VttSummarySchema.optional(),
+    vttSummary: VttSummarySchema.optional(), // Legacy stored records
+    vttResult: z.unknown().optional(), // New format (ParseResult<VttComposition>)
   })
   .passthrough();
 
@@ -269,18 +275,26 @@ function resolveProcessedDuration(record: BenchmarkRecord): number | undefined {
   const benchmarkDuration = asNumber(record.benchmarkKey?.duration);
   if (benchmarkDuration && benchmarkDuration > 0) return benchmarkDuration;
 
-  const vttDuration = asNumber(record.vttSummary?.durationSec);
-  if (vttDuration && vttDuration > 0) return vttDuration;
+  // New format: vttResult.value.provenance.durationSec
+  const newDur = asNumber(record.vttResult?.value.provenance.durationSec);
+  if (newDur && newDur > 0) return newDur;
+
+  // Legacy format: vttSummary.durationSec (old stored JSON)
+  const legacyDur = asNumber(record.vttSummary?.durationSec);
+  if (legacyDur && legacyDur > 0) return legacyDur;
 
   return undefined;
 }
 
 /** Derive elapsed seconds from VTT provenance (original transcription time) or legacy field */
 function resolveElapsedSec(record: BenchmarkRecord): number {
-  // Prefer VTT header provenance elapsedMs (reflects actual transcription time)
-  const provenance = record.vttSummary?.provenance;
-  if (Array.isArray(provenance)) {
-    for (const p of provenance) {
+  // New format: vttResult.value.provenance.elapsedMs
+  const newMs = asNumber(record.vttResult?.value.provenance.elapsedMs);
+  if (newMs && newMs > 0) return Math.round(newMs / 1000);
+
+  // Legacy format: walk vttSummary.provenance[] for header entry
+  if (Array.isArray(record.vttSummary?.provenance)) {
+    for (const p of record.vttSummary.provenance) {
       if (
         typeof p === "object" &&
         p !== null &&

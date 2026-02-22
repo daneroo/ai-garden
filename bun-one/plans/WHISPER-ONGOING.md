@@ -39,12 +39,12 @@ Switch to `packages/vtt` in apps/whisper.
   - Read each segment VTT with `parseTranscription`
   - Build `initialProvenance`, call `stitchVttConcat` from `@bun-one/vtt`
   - Write via `writeVttComposition`
-- [ ] Step 4 — RunResult + runWhisper (Impl 1, 4a)
+- [x] Step 4 — RunResult + runWhisper (Impl 1, 4a)
   - Change `vttSummary?: VttSummary` to
     `vttResult?: ParseResult<VttComposition>`
   - Read back final VTT with `parseComposition`, attach to result
   - Update reporter `finish()` to read from `result.vttResult.value.provenance`
-- [ ] Step 5 — CLI consumer (Impl 4b)
+- [x] Step 5 — CLI consumer (Impl 4b)
   - Update `whisper.ts` to read from `result.vttResult?.value.provenance`
   - Remove `getHeaderProvenance` import from `vtt.ts`
 - [ ] Step 6 — dead code (Impl 5, 6)
@@ -53,6 +53,9 @@ Switch to `packages/vtt` in apps/whisper.
   - Verify no remaining imports reference these files
 - [ ] Step 7 — run-benchmarks (Impl 6, deferred)
   - Update `scripts/benchmarks/run-bench.ts` to use `vttResult`
+  - Probable direction: store only the provenance records from the VTT
+    (not the full `vttSummary` or `vttResult`) — all timing and metadata
+    the benchmark needs lives in `ProvenanceComposition`
   - Separate pass
 
 ## Backlog

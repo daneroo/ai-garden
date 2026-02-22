@@ -84,9 +84,11 @@ describe.skipIf(!process.env.RUN_E2E_TESTS)("e2e: demo scenarios", () => {
       expect(wavTask!.elapsedMs).toBeDefined();
 
       // VTT has content
-      expect(result.vttSummary).toBeDefined();
-      expect(result.vttSummary!.cueCount).toBeGreaterThan(0);
-      expect(result.vttSummary!.durationSec).toBeGreaterThan(60); // At least 1 minute
+      expect(result.vttResult).toBeDefined();
+      expect(result.vttResult!.value.segments.length).toBeGreaterThan(0);
+      expect(result.vttResult!.value.provenance.durationSec).toBeGreaterThan(
+        60,
+      ); // At least 1 minute
     },
     E2E_TIMEOUT_PER_TEST_MS,
   );
@@ -138,9 +140,11 @@ describe.skipIf(!process.env.RUN_E2E_TESTS)("e2e: demo scenarios", () => {
       expect(transcribeTasks.length).toBeGreaterThanOrEqual(3);
 
       // VTT has content
-      expect(result.vttSummary).toBeDefined();
-      expect(result.vttSummary!.cueCount).toBeGreaterThan(0);
-      expect(result.vttSummary!.durationSec).toBeGreaterThan(60); // At least 1 minute
+      expect(result.vttResult).toBeDefined();
+      expect(result.vttResult!.value.segments.length).toBeGreaterThan(0);
+      expect(result.vttResult!.value.provenance.durationSec).toBeGreaterThan(
+        60,
+      ); // At least 1 minute
     },
     E2E_TIMEOUT_PER_TEST_MS,
   );

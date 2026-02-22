@@ -10,7 +10,6 @@ import {
 } from "./lib/runners.ts";
 import { preflightCheck } from "./lib/preflight.ts";
 import { parseDuration } from "./lib/duration.ts";
-import { getHeaderProvenance } from "./lib/vtt.ts";
 
 // Configuration defaults
 const DEFAULT_INPUT = "data/samples/hobbit-30m.mp3";
@@ -184,12 +183,10 @@ async function main(): Promise<void> {
         iterations > 1 ? `Iteration ${i}/${iterations}:` : "Result:";
       console.log(`\n${label}`);
 
-      // Derive timing from VTT provenance (reflects original transcription time)
-      const audioDur = result.vttSummary?.durationSec ?? 0;
-      const headerProv = result.vttSummary
-        ? getHeaderProvenance(result.vttSummary.provenance)
-        : undefined;
-      const elapsedMs = headerProv?.elapsedMs ?? 0;
+      // Derive timing from VTT composition provenance
+      const provenance = result.vttResult?.value.provenance;
+      const audioDur = provenance?.durationSec ?? 0;
+      const elapsedMs = provenance?.elapsedMs ?? 0;
 
       console.log(
         `  Transcribed: ${audioDur.toFixed(2)}s audio in ${(elapsedMs / 1000).toFixed(2)}s`,

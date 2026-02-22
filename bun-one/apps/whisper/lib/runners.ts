@@ -9,14 +9,11 @@ import {
   type ProgressReporter,
 } from "./progress.ts";
 import {
-  getHeaderProvenance,
-  readVttFile,
-  summarizeVttFile,
-  type VttSummary,
-} from "./vtt.ts";
-import {
+  parseComposition,
   parseTranscription,
   stitchVttConcat,
+  type ParseResult,
+  type VttComposition,
   type VttTranscription,
 } from "@bun-one/vtt";
 import { writeVttComposition } from "./vtt-writer.ts";
@@ -82,7 +79,7 @@ export function createRunWorkDir({
 export interface RunResult {
   tasks: Task[];
   outputPath: string;
-  vttSummary?: VttSummary;
+  vttResult?: ParseResult<VttComposition>;
 }
 
 /** Dependencies that can be injected for testing */
@@ -113,11 +110,12 @@ export async function runWhisper(
   const result = await runWhisperPipeline(runConfig, reporter, deps);
 
   if (existsSync(result.outputPath)) {
-    result.vttSummary = summarizeVttFile(await readVttFile(result.outputPath));
-    const headerProv = getHeaderProvenance(result.vttSummary.provenance);
-    const elapsedMs = headerProv?.elapsedMs ?? 0;
+    const content = await Bun.file(result.outputPath).text();
+    result.vttResult = parseComposition(content);
+    const provenance = result.vttResult.value.provenance;
+    const elapsedMs = provenance.elapsedMs;
     const elapsedSec = Math.round(elapsedMs / 1000);
-    const audioDur = result.vttSummary.durationSec;
+    const audioDur = provenance.durationSec ?? 0;
     const speedup =
       elapsedMs > 0 ? (audioDur / (elapsedMs / 1000)).toFixed(1) : "0";
     reporter.finish(elapsedSec, speedup, `${audioDur}s`);
