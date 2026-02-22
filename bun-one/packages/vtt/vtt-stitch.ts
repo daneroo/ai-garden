@@ -64,7 +64,7 @@ export function stitchVttConcat(
     const durationSec = t.provenance.durationSec;
     // But as it is (almost) never present, we use the default segment duration.
     const effectiveDurationSec =
-      durationSec ?? options.defaultSegmentDurationSec;
+      durationSec || options.defaultSegmentDurationSec;
     if (clip && !isLast(i) && effectiveDurationSec != null && cues.length > 0) {
       const boundary = startSec + effectiveDurationSec;
       const lastCue = cues[cues.length - 1]!;
