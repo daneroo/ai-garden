@@ -5,17 +5,17 @@
  * VttComposition) via block parsing, convention checking, provenance JSON
  * parsing, segment grouping, and schema validation.
  *
- * Schema validation uses the Standard Schema interface (~validate), so the
- * caller decides which library (zod or valibot) backs it.
+ * Schema validation uses the Standard Schema interface (~validate) internally;
+ * callers select "zod" or "valibot" by name.
  */
 import type { StandardSchemaV1 } from "@standard-schema/spec";
 import {
   aggregateBlocks,
+  type BlockChecker,
   checkNoRegionBlocksConvention,
   checkNoStyleBlocksConvention,
   checkOnlyProvenanceNotesConvention,
   validateBlocks,
-  type BlockChecker,
   type VttBlock,
 } from "./vtt-block-parser.ts";
 import type {
@@ -26,6 +26,8 @@ import type {
   VttTranscription,
 } from "./vtt-schema-zod.ts";
 import { vttTimeToSeconds } from "./vtt-time.ts";
+import { VttFileSchema as zodSchema } from "./vtt-schema-zod.ts";
+import { VttFileSchema as valibotSchema } from "./vtt-schema-valibot.ts";
 
 // ---------------------------------------------------------------------------
 // Public types
@@ -36,59 +38,13 @@ export interface ParseResult<T = VttFile> {
   warnings: string[];
 }
 
-export interface ParseOptions {
-  strict?: boolean;
-  schema?: StandardSchemaV1<unknown, VttFile>;
-}
-
-export type SchemaImpl = "zod" | "valibot";
-
 export type ClassifiedVttFile =
   | { type: "composition"; value: VttComposition }
   | { type: "transcription"; value: VttTranscription }
   | { type: "raw"; value: VttRaw };
 
 // ---------------------------------------------------------------------------
-// Sugar — strict, narrowed, just give me the thing or throw
-// ---------------------------------------------------------------------------
-
-export function parseTranscription(
-  input: string,
-  schema: StandardSchemaV1<unknown, VttFile>,
-): VttTranscription {
-  const { value } = parseVttFile(input, { strict: true, schema });
-  if (!isTranscription(value)) {
-    throw new Error(
-      "Expected VttTranscription, got a different artifact type.",
-    );
-  }
-  return value;
-}
-
-export function parseComposition(
-  input: string,
-  schema: StandardSchemaV1<unknown, VttFile>,
-): VttComposition {
-  const { value } = parseVttFile(input, { strict: true, schema });
-  if (!isComposition(value)) {
-    throw new Error("Expected VttComposition, got a different artifact type.");
-  }
-  return value;
-}
-
-export function parseRaw(
-  input: string,
-  schema: StandardSchemaV1<unknown, VttFile>,
-): VttRaw {
-  const { value } = parseVttFile(input, { strict: true, schema });
-  if (!isRaw(value)) {
-    throw new Error("Expected VttRaw, got a different artifact type.");
-  }
-  return value;
-}
-
-// ---------------------------------------------------------------------------
-// Generic parser
+// Parser internals
 // ---------------------------------------------------------------------------
 
 type ArtifactChecker = (artifact: VttFile) => string[];
@@ -106,11 +62,56 @@ const ARTIFACT_CHECKERS: ArtifactChecker[] = [
   checkDurationSecPlacement,
 ];
 
-export function parseVttFile(
+const schemas = {
+  zod: zodSchema as StandardSchemaV1<unknown, VttFile>,
+  valibot: valibotSchema as StandardSchemaV1<unknown, VttFile>,
+};
+
+// ---------------------------------------------------------------------------
+// Public API — callers precede called
+// ---------------------------------------------------------------------------
+
+/** Parse and narrow to VttTranscription. Throws if not a transcription. */
+export function parseTranscription(
   input: string,
-  options: ParseOptions = {},
-): ParseResult {
-  const { strict = false, schema } = options;
+  options: { schema?: "zod" | "valibot" } = {},
+): ParseResult<VttTranscription> {
+  const { value, warnings } = parseVtt(input, { strict: true, ...options });
+  if (value.type !== "transcription") {
+    throw new Error(`Expected transcription, got ${value.type}`);
+  }
+  return { value: value.value, warnings };
+}
+
+/** Parse and narrow to VttComposition. Throws if not a composition. */
+export function parseComposition(
+  input: string,
+  options: { schema?: "zod" | "valibot" } = {},
+): ParseResult<VttComposition> {
+  const { value, warnings } = parseVtt(input, { strict: true, ...options });
+  if (value.type !== "composition") {
+    throw new Error(`Expected composition, got ${value.type}`);
+  }
+  return { value: value.value, warnings };
+}
+
+/** Parse and narrow to VttRaw. Throws if not raw. */
+export function parseRaw(
+  input: string,
+  options: { schema?: "zod" | "valibot" } = {},
+): ParseResult<VttRaw> {
+  const { value, warnings } = parseVtt(input, { strict: true, ...options });
+  if (value.type !== "raw") throw new Error(`Expected raw, got ${value.type}`);
+  return { value: value.value, warnings };
+}
+
+/** Parse VTT text with schema validation and classify the result. */
+export function parseVtt(
+  input: string,
+  options: { strict?: boolean; schema?: "zod" | "valibot" } = {},
+): ParseResult<ClassifiedVttFile> {
+  const { strict = false, schema: impl = "zod" } = options;
+  const schema = schemas[impl];
   const warnings: string[] = [];
 
   // 1. Syntactic: text → blocks
@@ -127,16 +128,18 @@ export function parseVttFile(
     warnings.push(...checker(artifact));
   }
 
-  // 4. Schema validation (if provided)
-  if (schema) {
-    const result = schema["~standard"].validate(artifact);
-    if ("issues" in result && result.issues) {
-      const msgs = result.issues.map(
-        (issue) =>
-          `Schema: ${issue.path?.map((p) => (typeof p === "object" && "key" in p ? p.key : p)).join(".") ?? "root"}: ${issue.message}`,
-      );
-      warnings.push(...msgs);
-    }
+  // 4. Schema validation
+  const result = schema["~standard"].validate(artifact);
+  if ("issues" in result && result.issues) {
+    const msgs = result.issues.map(
+      (issue) =>
+        `Schema: ${
+          issue.path
+            ?.map((p) => (typeof p === "object" && "key" in p ? p.key : p))
+            .join(".") ?? "root"
+        }: ${issue.message}`,
+    );
+    warnings.push(...msgs);
   }
 
   // 5. Strict: throw if any warnings accumulated
@@ -144,48 +147,7 @@ export function parseVttFile(
     throw new Error(`[VTT PARSE ERRORS]\n${warnings.join("\n")}`);
   }
 
-  return { value: artifact, warnings };
-}
-
-// ---------------------------------------------------------------------------
-// Convenience wrapper — schema selection by name
-// ---------------------------------------------------------------------------
-
-const schemaCache = new Map<SchemaImpl, StandardSchemaV1<unknown, VttFile>>();
-
-function resolveSchema(impl: SchemaImpl): StandardSchemaV1<unknown, VttFile> {
-  const cached = schemaCache.get(impl);
-  if (cached) return cached;
-  // Both schema modules export VttFileSchema as a Standard Schema compliant object.
-  // The cast is safe because we control both implementations.
-  let schema: StandardSchemaV1<unknown, VttFile>;
-  if (impl === "valibot") {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    schema = require("./vtt-schema-valibot.ts")
-      .VttFileSchema as StandardSchemaV1<unknown, VttFile>;
-  } else {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    schema = require("./vtt-schema-zod.ts").VttFileSchema as StandardSchemaV1<
-      unknown,
-      VttFile
-    >;
-  }
-  schemaCache.set(impl, schema);
-  return schema;
-}
-
-/**
- * Parse VTT text with schema validation and classify the result.
- * Convenience wrapper — hides StandardSchema plumbing from consumers.
- */
-export function parseVtt(
-  input: string,
-  options: { strict?: boolean; schema?: SchemaImpl } = {},
-): ParseResult<ClassifiedVttFile> {
-  const { strict, schema: impl = "zod" } = options;
-  const schema = resolveSchema(impl);
-  const { value, warnings } = parseVttFile(input, { strict, schema });
-  return { value: classifyVttFile(value), warnings };
+  return { value: classifyVttFile(artifact), warnings };
 }
 
 // ---------------------------------------------------------------------------
@@ -346,7 +308,9 @@ function checkCueMonotonicity(artifact: VttFile): string[] {
   }
   if (violations === 0) return [];
   return [
-    `Monotonicity: ${violations} violation(s), max overlap ${maxOverlap.toFixed(3)}s.`,
+    `Monotonicity: ${violations} violation(s), max overlap ${maxOverlap.toFixed(
+      3,
+    )}s.`,
   ];
 }
 
@@ -396,8 +360,4 @@ function isComposition(value: VttFile): value is VttComposition {
 
 function isTranscription(value: VttFile): value is VttTranscription {
   return "provenance" in value && "cues" in value && !("segments" in value);
-}
-
-function isRaw(value: VttFile): value is VttRaw {
-  return !("provenance" in value) && "cues" in value;
 }

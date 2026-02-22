@@ -11,14 +11,11 @@ export { vttTimeToSeconds, secondsToVttTime } from "./vtt-time.ts";
 // Parser
 export {
   parseVtt,
-  parseVttFile,
   parseTranscription,
   parseComposition,
   parseRaw,
   classifyVttFile,
   type ParseResult,
-  type ParseOptions,
-  type SchemaImpl,
   type ClassifiedVttFile,
 } from "./vtt-parser.ts";
 

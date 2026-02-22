@@ -2,12 +2,12 @@ import { createServerFn } from "@tanstack/react-start";
 import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { parseVtt, secondsToVttTime, vttTimeToSeconds } from "@bun-one/vtt";
-import type { VttCue, VttFile } from "@bun-one/vtt";
+import type { ClassifiedVttFile, VttCue } from "@bun-one/vtt";
 
 /** Summary returned for the "/" listing */
 export interface VttFileSummary {
   filename: string;
-  artifactType: "raw" | "transcription" | "composition";
+  artifactType: ClassifiedVttFile["type"];
   cueCount: number;
   firstCueStart: string;
   lastCueEnd: string;
@@ -19,7 +19,7 @@ export interface VttFileSummary {
 /** Detail returned for "/file/$name" */
 export interface VttFileDetail {
   filename: string;
-  artifactType: "raw" | "transcription" | "composition";
+  artifactType: ClassifiedVttFile["type"];
   segmentCount?: number;
   cues: VttCue[];
   cueCount: number;
@@ -29,10 +29,14 @@ export interface VttFileDetail {
   warnings: string[];
 }
 
-function allCuesFromFile(value: VttFile): VttCue[] {
-  if ("segments" in value) return value.segments.flatMap((s) => s.cues);
-  if ("cues" in value) return value.cues;
-  return [];
+function allCues(classified: ClassifiedVttFile): VttCue[] {
+  switch (classified.type) {
+    case "composition":
+      return classified.value.segments.flatMap((s) => s.cues);
+    case "transcription":
+    case "raw":
+      return classified.value.cues;
+  }
 }
 
 function cueSpan(cues: VttCue[]) {
@@ -69,7 +73,7 @@ export const getVttSummaries = createServerFn({
       vttFiles.map(async (filename) => {
         const content = await readFile(join(vttDir, filename), "utf-8");
         const { value: classified, warnings } = parseVtt(content);
-        const cues = allCuesFromFile(classified.value);
+        const cues = allCues(classified);
         return {
           filename,
           artifactType: classified.type,
@@ -108,7 +112,7 @@ export const getVttFile = createServerFn({
     try {
       const content = await readFile(join(vttDir, filename), "utf-8");
       const { value: classified, warnings } = parseVtt(content);
-      const cues = allCuesFromFile(classified.value);
+      const cues = allCues(classified);
       const detail: VttFileDetail = {
         filename,
         artifactType: classified.type,
