@@ -10,16 +10,16 @@ import {
 } from "./progress.ts";
 import {
   getHeaderProvenance,
-  isVttRunProvenance,
   readVttFile,
   summarizeVttFile,
-  type VttComposedHeaderProvenance,
-  type VttComposedSegmentProvenance,
-  type VttCue,
-  type VttRunProvenance,
   type VttSummary,
 } from "./vtt.ts";
-import { stitchVttConcat, writeVtt } from "./vtt-stitch.ts";
+import {
+  parseTranscription,
+  stitchVttConcat,
+  type VttTranscription,
+} from "@bun-one/vtt";
+import { writeVttComposition } from "./vtt-writer.ts";
 import {
   executeTask,
   type Task,
@@ -254,15 +254,25 @@ async function runWhisperPipeline(
     }
   }
 
-  // Stitch VTTs from all segments
-  const segmentVtts = wavSegs.map((seg, i) => ({
-    segment: i,
-    path: `${config.runWorkDir}/${nameForSeg(i)}.vtt`,
-    startSec: seg.startSec,
-    input: `${nameForSeg(i)}.wav`,
-  }));
+  // Stitch VTTs: read each segment, call @bun-one/vtt stitcher, write output
+  if (!config.dryRun) {
+    const transcriptions: VttTranscription[] = [];
+    for (let i = 0; i < wavSegs.length; i++) {
+      const vttPath = `${config.runWorkDir}/${nameForSeg(i)}.vtt`;
+      const content = await Bun.file(vttPath).text();
+      const { value } = parseTranscription(content);
+      transcriptions.push(value);
+    }
 
-  await stitchSegments(segmentVtts, result.outputPath, config);
+    const composition = stitchVttConcat(transcriptions, {
+      input: basename(config.input),
+      model: config.modelShortName,
+      wordTimestamps: config.wordTimestamps,
+      generated: new Date().toISOString(),
+    });
+    await writeVttComposition(result.outputPath, composition);
+  }
+
   return result;
 }
 
@@ -283,97 +293,6 @@ function getFinalPaths(config: RunConfig): {
   const inputName = basename(config.input, extname(config.input));
   const finalName = config.tag ? `${inputName}.${config.tag}` : inputName;
   return { inputName, finalVtt: `${config.outputDir}/${finalName}.vtt` };
-}
-
-async function stitchSegments(
-  segmentVtts: Array<{
-    segment: number;
-    path: string;
-    startSec: number;
-    input: string;
-  }>,
-  finalVttPath: string,
-  config: RunConfig,
-): Promise<void> {
-  const infos: Array<{
-    segment: number;
-    path: string;
-    cues: VttCue[];
-    startSec: number;
-    input: string;
-    /** Header provenance injected by executeTranscribe (if present) */
-    segmentProvenance?: VttRunProvenance;
-  }> = [];
-  for (const seg of segmentVtts) {
-    if (existsSync(seg.path)) {
-      const parsed = await readVttFile(seg.path);
-      // Extract per-segment header provenance written by executeTranscribe
-      const segProv = parsed.provenance.find((p) => isVttRunProvenance(p));
-      infos.push({
-        segment: seg.segment,
-        path: seg.path,
-        cues: parsed.cues,
-        startSec: seg.startSec,
-        input: seg.input,
-        segmentProvenance: segProv,
-      });
-    }
-  }
-  if (infos.length === 0) {
-    return;
-  }
-
-  const stitchedCues = stitchVttConcat(
-    infos.map((info) => ({
-      cues: info.cues,
-      startSec: info.startSec,
-    })),
-  );
-
-  // Build segment provenance by merging executeTranscribe's provenance
-  // with stitch-level fields (segment index, startSec)
-  const segmentBoundaries: Array<{ segment: number; cueIndex: number }> = [];
-  const segmentProvenance: VttComposedSegmentProvenance[] = [];
-  let cueIndex = 0;
-  for (const info of infos) {
-    segmentBoundaries.push({ segment: info.segment, cueIndex });
-    cueIndex += info.cues.length;
-    if (!info.segmentProvenance) {
-      throw new Error(
-        `Missing run provenance for segment ${info.segment} at ${info.path}`,
-      );
-    }
-    segmentProvenance.push({
-      ...info.segmentProvenance,
-      input: info.input,
-      segment: info.segment,
-      startSec: info.startSec,
-    });
-  }
-
-  const totalElapsedMs = infos.reduce((sum, info) => {
-    if (!info.segmentProvenance) {
-      throw new Error(
-        `Missing run provenance for segment ${info.segment} at ${info.path}`,
-      );
-    }
-    return sum + info.segmentProvenance.elapsedMs;
-  }, 0);
-
-  const headerProvenance: VttComposedHeaderProvenance = {
-    input: basename(config.input),
-    model: config.modelShortName,
-    wordTimestamps: config.wordTimestamps,
-    generated: new Date().toISOString(),
-    durationSec: config.durationSec,
-    elapsedMs: totalElapsedMs,
-    segments: infos.length,
-  };
-
-  await writeVtt(finalVttPath, stitchedCues, {
-    provenance: [headerProvenance, ...segmentProvenance],
-    segmentBoundaries,
-  });
 }
 
 /**

@@ -23,18 +23,18 @@ Switch to `packages/vtt` in apps/whisper.
 - [x] Requirements approved. Build the implementation task list below.
       Ref: `plans/VTT_MIGRATION.md` for the detailed requirements (implications 1-6).
 
-- [ ] Step 1 — vtt-writer.ts (new file, Impl 2.3)
+- [x] Step 1 — vtt-writer.ts (new file, Impl 2.3)
   - Create `apps/whisper/lib/vtt-writer.ts`
   - Expose `writeVttTranscription` and `writeVttComposition`
   - Serialize typed `@bun-one/vtt` artifacts to canonical VTT text format
   - Add unit tests in `lib/vtt-writer.test.ts`
-- [ ] Step 2 — executeTranscribe (Impl 2)
+- [x] Step 2 — executeTranscribe (Impl 2)
   - Update `lib/task.ts` to use `@bun-one/vtt` and the new writer
   - Fresh generation: `parseRaw` then build `ProvenanceTranscription`,
     write via `writeVttTranscription`
   - Cache read: validate with `parseTranscription`, throw on warnings
   - Return type unchanged
-- [ ] Step 3 — stitching (Impl 3)
+- [x] Step 3 — stitching (Impl 3)
   - Update `lib/runners.ts`, remove `stitchSegments` function
   - Read each segment VTT with `parseTranscription`
   - Build `initialProvenance`, call `stitchVttConcat` from `@bun-one/vtt`
