@@ -24,6 +24,8 @@ export function shiftVttCues(cues: VttCue[], offsetSec: number): VttCue[] {
 export interface StitchOptions {
   /** When true, clamp each non-last segment's final cue endTime to its boundary */
   clip?: boolean;
+  /** Effective duration to use for offset if provenance lacks durationSec */
+  defaultSegmentDurationSec?: number;
 }
 
 /**
@@ -38,6 +40,16 @@ export function stitchVttConcat(
   options: StitchOptions = {},
 ): VttComposition {
   const { clip = false } = options;
+  if (
+    transcriptions.length > 1 &&
+    (!options.defaultSegmentDurationSec ||
+      options.defaultSegmentDurationSec <= 0)
+  ) {
+    throw new Error(
+      "stitchVttConcat: defaultSegmentDurationSec must be > 0 when stitching multiple segments",
+    );
+  }
+
   let currentOffset = 0;
   let totalElapsedMs = 0;
   const isLast = (i: number) => i === transcriptions.length - 1;
@@ -50,8 +62,11 @@ export function stitchVttConcat(
 
     // Clip: clamp last cue's endTime to segment boundary (non-last segments only)
     const durationSec = t.provenance.durationSec;
-    if (clip && !isLast(i) && durationSec != null && cues.length > 0) {
-      const boundary = startSec + durationSec;
+    // But as it is (almost) never present, we use the default segment duration.
+    const effectiveDurationSec =
+      durationSec ?? options.defaultSegmentDurationSec;
+    if (clip && !isLast(i) && effectiveDurationSec != null && cues.length > 0) {
+      const boundary = startSec + effectiveDurationSec;
       const lastCue = cues[cues.length - 1]!;
       if (vttTimeToSeconds(lastCue.endTime) > boundary) {
         cues = [
@@ -71,7 +86,7 @@ export function stitchVttConcat(
     };
 
     // Increment offset by the specific transcription's duration
-    currentOffset += durationSec ?? 0;
+    currentOffset += effectiveDurationSec ?? 0;
 
     return segment;
   });

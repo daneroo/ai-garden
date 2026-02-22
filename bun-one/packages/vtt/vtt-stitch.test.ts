@@ -9,41 +9,108 @@ const PROV_BASE = {
   generated: "2026-01-01T00:00:00Z",
 };
 
-// Two 5-minute segments with cues near the boundary — realistic whisper output
 function makeTranscription(
   cues: { startTime: string; endTime: string; text: string }[],
-  durationSec?: number,
 ): VttTranscription {
   return {
-    provenance: { ...PROV_BASE, elapsedMs: 100, durationSec },
+    provenance: { ...PROV_BASE, elapsedMs: 100 },
     cues,
   };
 }
 
-// Seg 0: 0:00–5:00, last cue overshoots by ~2s (ends at 05:02)
-// Seg 1: 5:00–10:00, normal cue
-const seg0Cues = [
-  { startTime: "00:04:30.000", endTime: "00:04:55.000", text: "Near the end" },
-  {
-    startTime: "00:04:55.000",
-    endTime: "00:05:02.000",
-    text: "Overshoots boundary",
-  },
-];
-const seg1Cues = [
-  {
+describe("stitchVttConcat basic stitching", () => {
+  const simpleCue0 = {
     startTime: "00:00:00.000",
-    endTime: "00:00:28.000",
-    text: "Start of next segment",
-  },
-];
+    endTime: "00:00:10.000",
+    text: "Hello",
+  };
+  const t0 = makeTranscription([simpleCue0]);
+  const simpleCue1 = {
+    startTime: "00:00:00.000",
+    endTime: "00:00:10.000",
+    text: "World",
+  };
+  const t1 = makeTranscription([simpleCue1]);
+
+  test("single segment no defaultSegmentDurationSec is valid (offset stays 0)", () => {
+    const result = stitchVttConcat([t0], PROV_BASE);
+
+    expect(result.segments).toHaveLength(1);
+    // Seg 0 not shifted
+    expect(result.segments[0]!.cues[0]!.startTime).toBe("00:00:00.000");
+    expect(result.segments[0]!.cues[0]!.endTime).toBe("00:00:10.000");
+  });
+
+  test("single segment with defaultSegmentDurationSec is valid (offset stays 0)", () => {
+    const result = stitchVttConcat([t0], PROV_BASE, {
+      defaultSegmentDurationSec: 10,
+    });
+
+    expect(result.segments).toHaveLength(1);
+    // Seg 0 not shifted
+    expect(result.segments[0]!.cues[0]!.startTime).toBe("00:00:00.000");
+    expect(result.segments[0]!.cues[0]!.endTime).toBe("00:00:10.000");
+  });
+
+  test("multiple segments defaultSegmentDurationSec>0 required (throws)", () => {
+    expect(() => {
+      stitchVttConcat([t0, t1], PROV_BASE);
+    }).toThrow(
+      "stitchVttConcat: defaultSegmentDurationSec must be > 0 when stitching multiple segments",
+    );
+
+    expect(() => {
+      stitchVttConcat([t0, t1], PROV_BASE, { defaultSegmentDurationSec: 0 });
+    }).toThrow();
+
+    expect(() => {
+      stitchVttConcat([t0, t1], PROV_BASE, { defaultSegmentDurationSec: -10 });
+    }).toThrow();
+  });
+  test("multiple segments defaultSegmentDurationSec>0 works", () => {
+    const result = stitchVttConcat([t0, t1], PROV_BASE, {
+      defaultSegmentDurationSec: 60,
+    });
+
+    expect(result.segments).toHaveLength(2);
+    // Seg 0 not shifted
+    expect(result.segments[0]!.cues[0]!.startTime).toBe("00:00:00.000");
+    expect(result.segments[0]!.cues[0]!.endTime).toBe("00:00:10.000");
+    // Seg 1 shifted properly by 60s fallback
+    expect(result.segments[1]!.cues[0]!.startTime).toBe("00:01:00.000");
+    expect(result.segments[1]!.cues[0]!.endTime).toBe("00:01:10.000");
+  });
+});
 
 describe("stitchVttConcat clip option", () => {
-  test("clip clamps last cue endTime to segment boundary", () => {
-    const t0 = makeTranscription(seg0Cues, 300);
-    const t1 = makeTranscription(seg1Cues, 300);
+  const seg0Cues = [
+    {
+      startTime: "00:04:30.000",
+      endTime: "00:04:55.000",
+      text: "Near the end",
+    },
+    {
+      startTime: "00:04:55.000",
+      endTime: "00:05:02.000",
+      text: "Overshoots boundary",
+    },
+  ];
+  const seg1Cues = [
+    {
+      startTime: "00:00:00.000",
+      endTime: "00:00:28.000",
+      text: "Start of next segment",
+    },
+  ];
 
-    const result = stitchVttConcat([t0, t1], PROV_BASE, { clip: true });
+  test("clip clamps last cue endTime to segment boundary", () => {
+    const t0 = makeTranscription(seg0Cues);
+    const t1 = makeTranscription(seg1Cues);
+
+    const result = stitchVttConcat([t0, t1], PROV_BASE, {
+      clip: true,
+      defaultSegmentDurationSec: 300,
+    });
 
     // Seg 0 last cue clamped: 05:02 → 05:00
     expect(result.segments[0]!.cues[1]!.endTime).toBe("00:05:00.000");
@@ -52,19 +119,19 @@ describe("stitchVttConcat clip option", () => {
   });
 
   test("last segment is never clipped", () => {
-    const t0 = makeTranscription(seg0Cues, 300);
-    const t1 = makeTranscription(
-      [
-        {
-          startTime: "00:00:00.000",
-          endTime: "00:05:02.000",
-          text: "Also overshoots",
-        },
-      ],
-      300,
-    );
+    const t0 = makeTranscription(seg0Cues);
+    const t1 = makeTranscription([
+      {
+        startTime: "00:00:00.000",
+        endTime: "00:05:02.000",
+        text: "Also overshoots",
+      },
+    ]);
 
-    const result = stitchVttConcat([t0, t1], PROV_BASE, { clip: true });
+    const result = stitchVttConcat([t0, t1], PROV_BASE, {
+      clip: true,
+      defaultSegmentDurationSec: 300,
+    });
 
     // Seg 0 (non-last) is clipped
     expect(result.segments[0]!.cues[1]!.endTime).toBe("00:05:00.000");
@@ -73,10 +140,12 @@ describe("stitchVttConcat clip option", () => {
   });
 
   test("no clipping when clip is false (default)", () => {
-    const t0 = makeTranscription(seg0Cues, 300);
-    const t1 = makeTranscription(seg1Cues, 300);
+    const t0 = makeTranscription(seg0Cues);
+    const t1 = makeTranscription(seg1Cues);
 
-    const result = stitchVttConcat([t0, t1], PROV_BASE);
+    const result = stitchVttConcat([t0, t1], PROV_BASE, {
+      defaultSegmentDurationSec: 300,
+    });
 
     // No clipping — overshoot preserved at 05:02
     expect(result.segments[0]!.cues[1]!.endTime).toBe("00:05:02.000");
@@ -90,10 +159,13 @@ describe("stitchVttConcat clip option", () => {
         text: "Within boundary",
       },
     ];
-    const t0 = makeTranscription(withinBoundary, 300);
-    const t1 = makeTranscription(seg1Cues, 300);
+    const t0 = makeTranscription(withinBoundary);
+    const t1 = makeTranscription(seg1Cues);
 
-    const result = stitchVttConcat([t0, t1], PROV_BASE, { clip: true });
+    const result = stitchVttConcat([t0, t1], PROV_BASE, {
+      clip: true,
+      defaultSegmentDurationSec: 300,
+    });
 
     // 04:58 < 05:00 boundary → no change
     expect(result.segments[0]!.cues[0]!.endTime).toBe("00:04:58.000");

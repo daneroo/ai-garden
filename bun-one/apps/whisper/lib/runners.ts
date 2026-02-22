@@ -10,9 +10,9 @@ import {
 } from "./progress.ts";
 import {
   parseComposition,
+  type ParseResult,
   parseTranscription,
   stitchVttConcat,
-  type ParseResult,
   type VttComposition,
   type VttTranscription,
 } from "@bun-one/vtt";
@@ -262,12 +262,22 @@ async function runWhisperPipeline(
       transcriptions.push(value);
     }
 
-    const composition = stitchVttConcat(transcriptions, {
-      input: basename(config.input),
-      model: config.modelShortName,
-      wordTimestamps: config.wordTimestamps,
-      generated: new Date().toISOString(),
-    });
+    const composition = stitchVttConcat(
+      transcriptions,
+      {
+        input: basename(config.input),
+        model: config.modelShortName,
+        wordTimestamps: config.wordTimestamps,
+        generated: new Date().toISOString(),
+      },
+      {
+        clip: true,
+        // This is required because the transcriptions
+        // do not contain the duration of each segment.
+        // i.e. durationSec=0 implies full duration of the segment.
+        defaultSegmentDurationSec: segDurationSec,
+      },
+    );
     await writeVttComposition(result.outputPath, composition);
   }
 

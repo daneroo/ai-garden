@@ -40,9 +40,8 @@ cd apps/whisper
 ./scripts/demo/demo.sh
 ## OR manually
 bun run whisper.ts -i data/samples/hobbit-30m.m4b
-bun run whisper.ts -i data/samples/hobbit-30m.m4b --segment 10m -m tiny.en
-# overlap is intentionally blocked until smart stitching exists
-bun run whisper.ts -i data/samples/hobbit-30m.m4b --segment 10m --overlap 30s -m tiny.en
+bun run whisper.ts -i data/samples/hobbit-30m.m4b --segment 10m
+bun run whisper.ts -i data/samples/hobbit-30m.m4b --segment 10m --duration 25m
 
 # Whisper Benchmarks (cwd = apps/whisper)
 bun run scripts/benchmarks/run-bench.ts
