@@ -29,6 +29,7 @@ Fix benchmarks
 
 These turn into issues above, inside this very document
 
+- JSON results include all the Cues!
 - Artifact directory reorganization WORK,CACHE,OUTPUT,SAMPLES
   - script to repopulate samples/models
 - Cache (.vtt/.wav) is permanent - add cleanup/expiry criteria
