@@ -168,6 +168,9 @@ async function runWhisperPipeline(
   const getAudioDurationSec = deps?.getAudioDurationSec ?? getAudioFileDuration;
   // audio duration of the input
   const audioDurationSec = await getAudioDurationSec(config.input);
+  // Transcription duration: explicit limit if set, else full audio.
+  const transcriptionDurationSec =
+    config.durationSec > 0 ? config.durationSec : audioDurationSec;
   // Resolved segment duration: explicit > WAV max (133h chunks)
   const segDurationSec =
     config.segmentSec > 0 ? config.segmentSec : MAX_WAV_DURATION_SEC;
@@ -272,9 +275,10 @@ async function runWhisperPipeline(
       },
       {
         clip: true,
-        audioDurationSec: audioDurationSec,
+        transcriptionDurationSec,
         // defaultSegmentDurationSec: offset step for each segment (WAV cap or explicit).
-        // audioDurationSec: real total audio duration, copied to composition provenance.
+        // transcriptionDurationSec: how much audio was actually transcribed (capped by
+        //   config.durationSec if explicit, else full audio), copied to composition provenance.
         defaultSegmentDurationSec: segDurationSec,
       },
     );

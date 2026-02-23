@@ -34,7 +34,7 @@ describe("stitchVttConcat basic stitching", () => {
 
   test("single segment offset stays 0", () => {
     const result = stitchVttConcat([t0], PROV_BASE, {
-      audioDurationSec: 10,
+      transcriptionDurationSec: 10,
       defaultSegmentDurationSec: 10,
     });
 
@@ -47,14 +47,14 @@ describe("stitchVttConcat basic stitching", () => {
   test("defaultSegmentDurationSec<=0 always throws", () => {
     expect(() => {
       stitchVttConcat([t0, t1], PROV_BASE, {
-        audioDurationSec: 120,
+        transcriptionDurationSec: 120,
         defaultSegmentDurationSec: 0,
       });
     }).toThrow("stitchVttConcat: defaultSegmentDurationSec must be > 0");
 
     expect(() => {
       stitchVttConcat([t0, t1], PROV_BASE, {
-        audioDurationSec: 120,
+        transcriptionDurationSec: 120,
         defaultSegmentDurationSec: -10,
       });
     }).toThrow();
@@ -62,7 +62,7 @@ describe("stitchVttConcat basic stitching", () => {
     // Unconditional — also enforced for single segments
     expect(() => {
       stitchVttConcat([t0], PROV_BASE, {
-        audioDurationSec: 10,
+        transcriptionDurationSec: 10,
         defaultSegmentDurationSec: 0,
       });
     }).toThrow();
@@ -70,7 +70,7 @@ describe("stitchVttConcat basic stitching", () => {
 
   test("multiple segments defaultSegmentDurationSec>0 works", () => {
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
-      audioDurationSec: 120,
+      transcriptionDurationSec: 120,
       defaultSegmentDurationSec: 60,
     });
 
@@ -85,7 +85,7 @@ describe("stitchVttConcat basic stitching", () => {
 
   test("audioDurationSec is copied directly to composition provenance durationSec", () => {
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
-      audioDurationSec: 500,
+      transcriptionDurationSec: 500,
       defaultSegmentDurationSec: 300,
     });
 
@@ -121,7 +121,7 @@ describe("stitchVttConcat clip option", () => {
 
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
       clip: true,
-      audioDurationSec: 600,
+      transcriptionDurationSec: 600,
       defaultSegmentDurationSec: 300,
     });
 
@@ -143,7 +143,7 @@ describe("stitchVttConcat clip option", () => {
 
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
       clip: true,
-      audioDurationSec: 600,
+      transcriptionDurationSec: 600,
       defaultSegmentDurationSec: 300,
     });
 
@@ -158,7 +158,7 @@ describe("stitchVttConcat clip option", () => {
     const t1 = makeTranscription(seg1Cues);
 
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
-      audioDurationSec: 600,
+      transcriptionDurationSec: 600,
       defaultSegmentDurationSec: 300,
     });
 
@@ -179,7 +179,7 @@ describe("stitchVttConcat clip option", () => {
 
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
       clip: true,
-      audioDurationSec: 600,
+      transcriptionDurationSec: 600,
       defaultSegmentDurationSec: 300,
     });
 
