@@ -43,6 +43,14 @@ bun run whisper.ts -i data/samples/hobbit-30m.m4b
 bun run whisper.ts -i data/samples/hobbit-30m.m4b --segment 10m
 bun run whisper.ts -i data/samples/hobbit-30m.m4b --segment 10m --duration 25m
 
+# Batch launch utility script - tui with filter/selection
+./scripts/many/do-series.sh -h
+./scripts/many/do-series.sh -s "culture banks"
+
+# Examine performance of "existing" transcriptions
+./scripts/many/show-performance.sh -h
+./scripts/many/show-performance.sh
+
 # Whisper Benchmarks (cwd = apps/whisper)
 bun run scripts/benchmarks/run-bench.ts
 # Output: scripts/benchmarks/summary.md, execution-time.png, speedup.png
