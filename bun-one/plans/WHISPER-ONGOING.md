@@ -41,10 +41,16 @@ Fix benchmarks
     - [x] validate that
           `defaultSegmentDurationSec: Math.min(segDurationSec, audioDuration),`
           is not needed now
-    - [ ] Rename `audioDuration` to `audioDurationSec` - variable name and
+    - [x] Rename `audioDuration` to `audioDurationSec` - variable name and
           function (getAudioDuration(Sec))
-    - [ ] Revisit the idea of duration==0? - in the conteext of currentOffest
+    - [x] Revisit the idea of duration==0? - in the conteext of currentOffest
           accumulator in stichVttConcat
+    - [x] tasks.ts:executeTranscribe will unconditionally add durationSec to the
+          ProvenanceTranscription
+    - [x] Temprarily backfill the cached vtt to have the same content (include
+          the durationSec)
+    - [ ] Cleaup temprary vtt cache backfill when the cache vtt are confirmed to
+          all have the durationSec
 - [ ] create `bun run scripts/benchmarks/performance.ts`
   - [ ] extract performance and graph from existing `.vtt` glob or directory
 

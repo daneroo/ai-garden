@@ -42,6 +42,7 @@ import {
   type VttTranscription,
 } from "@bun-one/vtt";
 import { writeVttTranscription } from "./vtt-writer.ts";
+import { getAudioFileDuration } from "./audio.ts";
 
 // ============================================================================
 // Process Layer (internal)
@@ -131,7 +132,8 @@ export interface TranscribeTask extends TaskBase {
   model: string; // Short name (e.g., "tiny.en")
   modelPath: string; // Full path to model file
   threads: number;
-  durationSec: number; // Segment transcription duration (0 = full WAV)
+  durationSec: number; // Input sentinel: 0 = transcribe full WAV (no --duration arg).
+  // Returned TranscribeTask always has the actual measured duration.
   wordTimestamps: boolean;
   cachePath: string;
   cache: boolean;
@@ -227,13 +229,25 @@ async function executeTranscribe(
     const cacheFile = Bun.file(task.cachePath);
     if (await cacheFile.exists()) {
       const content = await cacheFile.text();
-      const { warnings } = parseTranscription(content);
+      const { value: cached, warnings } = parseTranscription(content);
       if (warnings.length > 0) {
         throw new Error(
           `Cached VTT is invalid: ${task.cachePath}\n${warnings.join("\n")}`,
         );
       }
       await Bun.write(task.vttPath, content);
+      // TEMPORARY: self-heal cache entries that are missing durationSec.
+      // Remove this block once all cache files are confirmed to have durationSec.
+      if (!cached.provenance.durationSec) {
+        const durationSec = await getAudioFileDuration(task.wavPath);
+        const healed: typeof cached = {
+          ...cached,
+          provenance: { ...cached.provenance, durationSec },
+        };
+        await writeVttTranscription(task.vttPath, healed);
+        await writeVttTranscription(task.cachePath, healed);
+        return { ...task, elapsedMs: Date.now() - start, durationSec };
+      }
       return { ...task, elapsedMs: Date.now() - start };
     }
   }
@@ -278,13 +292,20 @@ async function executeTranscribe(
   const elapsedMs = Date.now() - start;
   const rawContent = await Bun.file(task.vttPath).text();
   const { value: raw } = parseRaw(rawContent);
+  // Always resolve actual duration: use explicit value or measure the WAV.
+  // Returned TranscribeTask, as well as the VTT file (and cache), will
+  // unconditionally have durationSec set going forward.
+  const durationSec =
+    task.durationSec > 0
+      ? task.durationSec
+      : await getAudioFileDuration(task.wavPath);
   const provenance: ProvenanceTranscription = {
     input: basename(task.wavPath),
     model: task.model,
     wordTimestamps: task.wordTimestamps,
     elapsedMs,
     generated: new Date().toISOString(),
-    ...(task.durationSec > 0 ? { durationSec: task.durationSec } : {}),
+    durationSec,
   };
   const transcription: VttTranscription = { provenance, cues: raw.cues };
   await writeVttTranscription(task.vttPath, transcription);
@@ -294,7 +315,9 @@ async function executeTranscribe(
     await Bun.write(task.cachePath, Bun.file(task.vttPath));
   }
 
-  return { ...task, elapsedMs };
+  // Returned TranscribeTask, as well as vtt file (and cache), will
+  // unconditionally have the durationSec field.
+  return { ...task, elapsedMs, durationSec };
 }
 
 // ============================================================================

@@ -122,7 +122,7 @@ describe("smoke: whisper pipeline", () => {
     expect(wavTask).toBeDefined();
     expect(wavTask!.elapsedMs).toBeDefined();
 
-    // VTT has content (single-segment full-WAV: durationSec is 0 since not bounded)
+    // VTT has content (single-segment full-WAV: durationSec now backfilled from WAV)
     expect(result.vttResult).toBeDefined();
     expect(result.vttResult!.value.segments.length).toBeGreaterThan(0);
     expect(result.vttResult!.value.segments[0]!.cues.length).toBeGreaterThan(0);

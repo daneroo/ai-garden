@@ -59,7 +59,6 @@ const ARTIFACT_CHECKERS: ArtifactChecker[] = [
   checkCueMonotonicity,
   checkSegmentIndices,
   checkSegmentCount,
-  checkDurationSecPlacement,
 ];
 
 const schemas = {
@@ -351,20 +350,6 @@ function checkSegmentIndices(artifact: VttFile): string[] {
     const idx = artifact.segments[i]!.provenance.segment;
     if (idx !== i) {
       warnings.push(`Segment ${i}: expected index ${i}, got ${idx}.`);
-    }
-  }
-  return warnings;
-}
-
-function checkDurationSecPlacement(artifact: VttFile): string[] {
-  if (!("segments" in artifact)) return [];
-  const warnings: string[] = [];
-  for (let i = 0; i < artifact.segments.length - 1; i++) {
-    const prov = artifact.segments[i]!.provenance;
-    if ("durationSec" in prov && prov.durationSec != null) {
-      warnings.push(
-        `Segment ${i}: durationSec is only allowed on the last segment.`,
-      );
     }
   }
   return warnings;
