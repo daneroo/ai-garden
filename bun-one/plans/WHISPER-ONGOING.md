@@ -36,12 +36,15 @@ Fix benchmarks
         persist compact JSON records in `reports/benchmarks`
   - [x] Keep summary/plot generation sourced from `loadExistingData()` using
         provenance-derived metrics only
-  - [ ] Augment `stitchVttConcat` by passing in `audioDuration` (which should be
-        renamed to `audioDurationSec`)
-    - [ ] validate that
+  - [ ] Augment `stitchVttConcat` by passing in `audioDuration`
+    - [x] Add `audioDurationSec` to `StitchOptions`
+    - [x] validate that
           `defaultSegmentDurationSec: Math.min(segDurationSec, audioDuration),`
-          is correct for now
-    - [ ] Revisit the idea of duration==0?
+          is not needed now
+    - [ ] Rename `audioDuration` to `audioDurationSec` - variable name and
+          function (getAudioDuration(Sec))
+    - [ ] Revisit the idea of duration==0? - in the conteext of currentOffest
+          accumulator in stichVttConcat
 - [ ] create `bun run scripts/benchmarks/performance.ts`
   - [ ] extract performance and graph from existing `.vtt` glob or directory
 

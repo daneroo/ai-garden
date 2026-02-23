@@ -32,17 +32,9 @@ describe("stitchVttConcat basic stitching", () => {
   };
   const t1 = makeTranscription([simpleCue1]);
 
-  test("single segment no defaultSegmentDurationSec is valid (offset stays 0)", () => {
-    const result = stitchVttConcat([t0], PROV_BASE);
-
-    expect(result.segments).toHaveLength(1);
-    // Seg 0 not shifted
-    expect(result.segments[0]!.cues[0]!.startTime).toBe("00:00:00.000");
-    expect(result.segments[0]!.cues[0]!.endTime).toBe("00:00:10.000");
-  });
-
-  test("single segment with defaultSegmentDurationSec is valid (offset stays 0)", () => {
+  test("single segment offset stays 0", () => {
     const result = stitchVttConcat([t0], PROV_BASE, {
+      audioDurationSec: 10,
       defaultSegmentDurationSec: 10,
     });
 
@@ -52,23 +44,33 @@ describe("stitchVttConcat basic stitching", () => {
     expect(result.segments[0]!.cues[0]!.endTime).toBe("00:00:10.000");
   });
 
-  test("multiple segments defaultSegmentDurationSec>0 required (throws)", () => {
+  test("defaultSegmentDurationSec<=0 always throws", () => {
     expect(() => {
-      stitchVttConcat([t0, t1], PROV_BASE);
-    }).toThrow(
-      "stitchVttConcat: defaultSegmentDurationSec must be > 0 when stitching multiple segments",
-    );
+      stitchVttConcat([t0, t1], PROV_BASE, {
+        audioDurationSec: 120,
+        defaultSegmentDurationSec: 0,
+      });
+    }).toThrow("stitchVttConcat: defaultSegmentDurationSec must be > 0");
 
     expect(() => {
-      stitchVttConcat([t0, t1], PROV_BASE, { defaultSegmentDurationSec: 0 });
+      stitchVttConcat([t0, t1], PROV_BASE, {
+        audioDurationSec: 120,
+        defaultSegmentDurationSec: -10,
+      });
     }).toThrow();
 
+    // Unconditional — also enforced for single segments
     expect(() => {
-      stitchVttConcat([t0, t1], PROV_BASE, { defaultSegmentDurationSec: -10 });
+      stitchVttConcat([t0], PROV_BASE, {
+        audioDurationSec: 10,
+        defaultSegmentDurationSec: 0,
+      });
     }).toThrow();
   });
+
   test("multiple segments defaultSegmentDurationSec>0 works", () => {
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
+      audioDurationSec: 120,
       defaultSegmentDurationSec: 60,
     });
 
@@ -76,9 +78,19 @@ describe("stitchVttConcat basic stitching", () => {
     // Seg 0 not shifted
     expect(result.segments[0]!.cues[0]!.startTime).toBe("00:00:00.000");
     expect(result.segments[0]!.cues[0]!.endTime).toBe("00:00:10.000");
-    // Seg 1 shifted properly by 60s fallback
+    // Seg 1 shifted by 60s
     expect(result.segments[1]!.cues[0]!.startTime).toBe("00:01:00.000");
     expect(result.segments[1]!.cues[0]!.endTime).toBe("00:01:10.000");
+  });
+
+  test("audioDurationSec is copied directly to composition provenance durationSec", () => {
+    const result = stitchVttConcat([t0, t1], PROV_BASE, {
+      audioDurationSec: 500,
+      defaultSegmentDurationSec: 300,
+    });
+
+    // durationSec is the real audio duration, not currentOffset (2 × 300 = 600)
+    expect(result.provenance.durationSec).toBe(500);
   });
 });
 
@@ -109,6 +121,7 @@ describe("stitchVttConcat clip option", () => {
 
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
       clip: true,
+      audioDurationSec: 600,
       defaultSegmentDurationSec: 300,
     });
 
@@ -130,6 +143,7 @@ describe("stitchVttConcat clip option", () => {
 
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
       clip: true,
+      audioDurationSec: 600,
       defaultSegmentDurationSec: 300,
     });
 
@@ -144,6 +158,7 @@ describe("stitchVttConcat clip option", () => {
     const t1 = makeTranscription(seg1Cues);
 
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
+      audioDurationSec: 600,
       defaultSegmentDurationSec: 300,
     });
 
@@ -164,6 +179,7 @@ describe("stitchVttConcat clip option", () => {
 
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
       clip: true,
+      audioDurationSec: 600,
       defaultSegmentDurationSec: 300,
     });
 

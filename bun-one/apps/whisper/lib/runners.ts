@@ -272,11 +272,10 @@ async function runWhisperPipeline(
       },
       {
         clip: true,
-        // This is required because the transcriptions
-        // do not contain the duration of each segment.
-        // i.e. durationSec=0 implies full duration of the segment.
-        // but cannot exceed the audio duration. (which implies single segment)
-        defaultSegmentDurationSec: Math.min(segDurationSec, audioDuration),
+        audioDurationSec: audioDuration,
+        // defaultSegmentDurationSec: offset step for each segment (WAV cap or explicit).
+        // audioDurationSec: real total audio duration, copied to composition provenance.
+        defaultSegmentDurationSec: segDurationSec,
       },
     );
     await writeVttComposition(result.outputPath, composition);

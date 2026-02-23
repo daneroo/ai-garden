@@ -24,8 +24,10 @@ export function shiftVttCues(cues: VttCue[], offsetSec: number): VttCue[] {
 export interface StitchOptions {
   /** When true, clamp each non-last segment's final cue endTime to its boundary */
   clip?: boolean;
+  /** Actual total audio duration — copied directly to composition provenance durationSec */
+  audioDurationSec: number;
   /** Effective duration to use for offset if provenance lacks durationSec */
-  defaultSegmentDurationSec?: number;
+  defaultSegmentDurationSec: number;
 }
 
 /**
@@ -37,17 +39,11 @@ export function stitchVttConcat(
     ProvenanceComposition,
     "segments" | "elapsedMs" | "durationSec"
   >,
-  options: StitchOptions = {},
+  options: StitchOptions,
 ): VttComposition {
   const { clip = false } = options;
-  if (
-    transcriptions.length > 1 &&
-    (!options.defaultSegmentDurationSec ||
-      options.defaultSegmentDurationSec <= 0)
-  ) {
-    throw new Error(
-      "stitchVttConcat: defaultSegmentDurationSec must be > 0 when stitching multiple segments",
-    );
+  if (options.defaultSegmentDurationSec <= 0) {
+    throw new Error("stitchVttConcat: defaultSegmentDurationSec must be > 0");
   }
 
   let currentOffset = 0;
@@ -95,7 +91,7 @@ export function stitchVttConcat(
     ...initialProvenance,
     segments: segments.length,
     elapsedMs: totalElapsedMs,
-    durationSec: currentOffset,
+    durationSec: options.audioDurationSec,
   };
 
   return {
