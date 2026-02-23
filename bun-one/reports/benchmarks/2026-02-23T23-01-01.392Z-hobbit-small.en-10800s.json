@@ -1,20 +1,20 @@
 {
   "benchmarkKey": {
     "input": "hobbit.m4b",
-    "model": "tiny.en",
-    "duration": 7200,
+    "model": "small.en",
+    "duration": 10800,
     "wordTimestamps": false
   },
-  "timestamp": "2026-02-23T07:22:14.067Z",
+  "timestamp": "2026-02-23T23:01:01.392Z",
   "hostname": "galois.imetrical.com",
   "arch": "arm64",
   "provenance": {
     "input": "hobbit.m4b",
-    "model": "tiny.en",
+    "model": "small.en",
     "wordTimestamps": false,
-    "generated": "2026-02-23T07:22:14.065Z",
+    "generated": "2026-02-23T23:01:01.389Z",
     "segments": 1,
-    "elapsedMs": 91310,
-    "durationSec": 7200
+    "elapsedMs": 316866,
+    "durationSec": 10800
   }
 }

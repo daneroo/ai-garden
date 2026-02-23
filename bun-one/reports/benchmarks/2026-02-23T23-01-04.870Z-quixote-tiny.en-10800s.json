@@ -1,20 +1,20 @@
 {
   "benchmarkKey": {
     "input": "quixote.m4b",
-    "model": "small.en",
-    "duration": 3600,
+    "model": "tiny.en",
+    "duration": 10800,
     "wordTimestamps": false
   },
-  "timestamp": "2026-02-23T08:36:31.183Z",
+  "timestamp": "2026-02-23T23:01:04.870Z",
   "hostname": "galois.imetrical.com",
   "arch": "arm64",
   "provenance": {
     "input": "quixote.m4b",
-    "model": "small.en",
+    "model": "tiny.en",
     "wordTimestamps": false,
-    "generated": "2026-02-23T08:36:31.181Z",
+    "generated": "2026-02-23T23:01:04.867Z",
     "segments": 1,
-    "elapsedMs": 154741,
-    "durationSec": 3600
+    "elapsedMs": 172316,
+    "durationSec": 10800
   }
 }
