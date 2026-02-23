@@ -49,8 +49,10 @@ Fix benchmarks
           ProvenanceTranscription
     - [x] Temprarily backfill the cached vtt to have the same content (include
           the durationSec)
-    - [ ] Cleaup temprary vtt cache backfill when the cache vtt are confirmed to
-          all have the durationSec
+    - [x] Cleanup temporary vtt cache backfill when the cache vtt are confirmed
+          to all have the durationSec
+    - [ ] stitchVttConcat does not respect the transcription length -
+          StitchOptions.audioDurationSec should actualy transcriptionDurationSec
 - [ ] create `bun run scripts/benchmarks/performance.ts`
   - [ ] extract performance and graph from existing `.vtt` glob or directory
 

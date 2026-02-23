@@ -229,25 +229,13 @@ async function executeTranscribe(
     const cacheFile = Bun.file(task.cachePath);
     if (await cacheFile.exists()) {
       const content = await cacheFile.text();
-      const { value: cached, warnings } = parseTranscription(content);
+      const { warnings } = parseTranscription(content);
       if (warnings.length > 0) {
         throw new Error(
           `Cached VTT is invalid: ${task.cachePath}\n${warnings.join("\n")}`,
         );
       }
       await Bun.write(task.vttPath, content);
-      // TEMPORARY: self-heal cache entries that are missing durationSec.
-      // Remove this block once all cache files are confirmed to have durationSec.
-      if (!cached.provenance.durationSec) {
-        const durationSec = await getAudioFileDuration(task.wavPath);
-        const healed: typeof cached = {
-          ...cached,
-          provenance: { ...cached.provenance, durationSec },
-        };
-        await writeVttTranscription(task.vttPath, healed);
-        await writeVttTranscription(task.cachePath, healed);
-        return { ...task, elapsedMs: Date.now() - start, durationSec };
-      }
       return { ...task, elapsedMs: Date.now() - start };
     }
   }
