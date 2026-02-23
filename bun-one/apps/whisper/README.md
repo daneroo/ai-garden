@@ -65,11 +65,11 @@ stitching results together.
 ```txt
 INPUT FILE (any format: mp3, m4b, flac, etc.)
     │
-    ├──► ffprobe → getAudioDuration()
+    ├──► ffprobe → getAudioDurationSec()
     │
     ▼
 ┌─────────────────────────────────────────────────────────┐
-│  SINGLE SEGMENT (audioDuration <= 37h)                  │
+│  SINGLE SEGMENT (audioDurationSec <= 37h)                  │
 │  ┌─────────────┐    ┌─────────────┐                    │
 │  │  to-wav     │───►│ transcribe  │───► OUTPUT.vtt     │
 │  │  (ffmpeg)   │    │ (whisper)   │                    │
@@ -77,7 +77,7 @@ INPUT FILE (any format: mp3, m4b, flac, etc.)
 │  └─────────────┘    └─────────────┘                    │
 └─────────────────────────────────────────────────────────┘
     │
-    ├──► audioDuration > 37h ? SPLIT INTO SEGMENTS
+    ├──► audioDurationSec > 37h ? SPLIT INTO SEGMENTS
     │
     ▼
 ┌─────────────────────────────────────────────────────────┐

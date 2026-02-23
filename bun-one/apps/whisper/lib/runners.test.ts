@@ -4,8 +4,8 @@ import { mkdir, mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
-  createUniqueRunWorkDir,
   createRunWorkDir,
+  createUniqueRunWorkDir,
   type RunConfig,
   type RunDeps,
   runWhisper,
@@ -27,7 +27,7 @@ const mockConfig: RunConfig = {
 };
 
 const mockDeps: RunDeps = {
-  getAudioDuration: () => Promise.resolve(100),
+  getAudioDurationSec: () => Promise.resolve(100),
 };
 
 test("createRunWorkDir - includes second precision timestamp", () => {

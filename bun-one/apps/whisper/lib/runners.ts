@@ -84,7 +84,7 @@ export interface RunResult {
 
 /** Dependencies that can be injected for testing */
 export interface RunDeps {
-  getAudioDuration?: (path: string) => Promise<number>;
+  getAudioDurationSec?: (path: string) => Promise<number>;
 }
 
 /**
@@ -165,15 +165,15 @@ async function runWhisperPipeline(
   deps?: RunDeps,
 ): Promise<RunResult> {
   // injected audio duration getter for mocking : else real audio file duration
-  const getAudioDuration = deps?.getAudioDuration ?? getAudioFileDuration;
+  const getAudioDurationSec = deps?.getAudioDurationSec ?? getAudioFileDuration;
   // audio duration of the input
-  const audioDuration = await getAudioDuration(config.input);
+  const audioDurationSec = await getAudioDurationSec(config.input);
   // Resolved segment duration: explicit > WAV max (133h chunks)
   const segDurationSec =
     config.segmentSec > 0 ? config.segmentSec : MAX_WAV_DURATION_SEC;
 
   const { wav: wavSegs, transcribe: transcribeSegs } = buildSequences(
-    audioDuration,
+    audioDurationSec,
     segDurationSec,
     config.durationSec,
   );
@@ -272,7 +272,7 @@ async function runWhisperPipeline(
       },
       {
         clip: true,
-        audioDurationSec: audioDuration,
+        audioDurationSec: audioDurationSec,
         // defaultSegmentDurationSec: offset step for each segment (WAV cap or explicit).
         // audioDurationSec: real total audio duration, copied to composition provenance.
         defaultSegmentDurationSec: segDurationSec,
