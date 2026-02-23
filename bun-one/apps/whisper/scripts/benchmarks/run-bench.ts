@@ -548,20 +548,20 @@ series = {}
 for d in data:
     key = f"{d['input']} {d['model']}"
     if key not in series:
-        series[key] = {'duration_h': [], 'elapsed': [], 'speedup': []}
+        series[key] = {'duration_h': [], 'elapsed_h': [], 'speedup': []}
     series[key]['duration_h'].append(d['duration'] / 3600)
-    series[key]['elapsed'].append(d['elapsed'])
+    series[key]['elapsed_h'].append(d['elapsed'] / 3600)
     series[key]['speedup'].append(d['speedup'])
 
 # Plot 1: Execution Time vs Duration
 plt.figure(figsize=(10, 6))
 for label, values in sorted(series.items()):
-    pairs = sorted(zip(values['duration_h'], values['elapsed']))
+    pairs = sorted(zip(values['duration_h'], values['elapsed_h']))
     durations, elapsed = zip(*pairs) if pairs else ([], [])
     plt.plot(durations, elapsed, 'o-', label=label, markersize=8)
 
 plt.xlabel('Audio Duration (hours)')
-plt.ylabel('Execution Time (seconds)')
+plt.ylabel('Execution Time (hours)')
 plt.ylim(bottom=0)
 plt.title('Whisper Execution Time vs Audio Duration')
 plt.legend()
