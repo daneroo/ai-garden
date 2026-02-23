@@ -19,23 +19,31 @@ Fix benchmarks
 
 ### Implementation Plan
 
-- [ ] run-benchmarks
-  - [ ] Update `scripts/benchmarks/run-bench.ts` to use `vttResult`
-  - [ ] Replace stored benchmark record shape to be provenance-centric (do not
+- [x] run-benchmarks
+  - [x] Update `scripts/benchmarks/run-bench.ts` to use `vttResult`
+  - [x] Replace stored benchmark record shape to be provenance-centric (do not
         extend full `RunResult`)
-  - [ ] Store only benchmark key + runtime metadata + composition provenance:
-    - [ ] `benchmarkKey`
-    - [ ] `timestamp`, `hostname`, `arch`
-    - [ ] `provenance` (`ProvenanceComposition`)
-  - [ ] Remove legacy `vttSummary` handling from schema/load/normalize paths
-  - [ ] Derive benchmark metrics from provenance:
-    - [ ] `processedAudioDurationSec = provenance.durationSec`
-    - [ ] `elapsedSec = round(provenance.elapsedMs / 1000)`
-    - [ ] `speedup = processedAudioDurationSec / elapsedSec`
-  - [ ] In execute path, extract from `result.vttResult.value.provenance` and
+  - [x] Store only benchmark key + runtime metadata + composition provenance:
+    - [x] `benchmarkKey`
+    - [x] `timestamp`, `hostname`, `arch`
+    - [x] `provenance` (`ProvenanceComposition`)
+  - [x] Remove legacy `vttSummary` handling from schema/load/normalize paths
+  - [x] Derive benchmark metrics from provenance:
+    - [x] `processedAudioDurationSec = provenance.durationSec`
+    - [x] `elapsedSec = round(provenance.elapsedMs / 1000)`
+    - [x] `speedup = processedAudioDurationSec / elapsedSec`
+  - [x] In execute path, extract from `result.vttResult.value.provenance` and
         persist compact JSON records in `reports/benchmarks`
-  - [ ] Keep summary/plot generation sourced from `loadExistingData()` using
+  - [x] Keep summary/plot generation sourced from `loadExistingData()` using
         provenance-derived metrics only
+  - [ ] Augment `stitchVttConcat` by passing in `audioDuration` (which should be
+        renamed to `audioDurationSec`)
+    - [ ] validate that
+          `defaultSegmentDurationSec: Math.min(segDurationSec, audioDuration),`
+          is correct for now
+    - [ ] Revisit the idea of duration==0?
+- [ ] create `bun run scripts/benchmarks/performance.ts`
+  - [ ] extract performance and graph from existing `.vtt` glob or directory
 
 ## Backlog
 

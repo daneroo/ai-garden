@@ -22,9 +22,10 @@ import {
   createRunWorkDir,
   type ModelShortName,
   type RunConfig,
-  type RunResult,
   runWhisper,
 } from "../../lib/runners.ts";
+import type { ProvenanceComposition } from "@bun-one/vtt";
+import { formatDuration } from "../../lib/duration.ts";
 
 // ============================================================================
 // Grid Configuration
@@ -59,68 +60,56 @@ interface BenchmarkKey {
   wordTimestamps: boolean;
 }
 
-/** Stored benchmark result (RunResult + key fields for identification) */
-interface BenchmarkRecord extends RunResult {
+/** Stored benchmark result (compact provenance-centric payload) */
+interface BenchmarkRecord {
   benchmarkKey: BenchmarkKey;
   timestamp: string;
   hostname: string;
   arch: string;
-  // Derived display fields (computed by normalizeRecord from tasks/vttResult/provenance)
+  provenance: ProvenanceComposition;
+}
+
+/** In-memory record with derived display fields */
+interface NormalizedBenchmarkRecord extends BenchmarkRecord {
   processedAudioDurationSec: number;
   elapsedSec: number;
   speedup: string;
-  // Legacy field from old stored JSON records (superseded by RunResult.vttResult)
-  vttSummary?: {
-    durationSec?: unknown;
-    provenance?: unknown[];
-  };
 }
 
 /** Record with source file tracking (for duplicate detection) */
 interface LoadedRecord {
-  record: BenchmarkRecord;
+  record: NormalizedBenchmarkRecord;
   sourceFile: string;
 }
 
-const NumericSchema = z.union([z.number(), z.string()]);
-
 const BenchmarkKeySchema = z.object({
   input: z.string(),
-  model: z.string(),
-  duration: NumericSchema,
+  model: z.enum(["tiny.en", "base.en", "small.en"]),
+  duration: z.number(),
   wordTimestamps: z.boolean(),
 });
 
-const VttSummarySchema = z
+const ProvenanceCompositionSchema = z
   .object({
-    cueCount: NumericSchema,
-    firstCueStart: z.string(),
-    lastCueEnd: z.string(),
-    durationSec: NumericSchema,
-    monotonicityViolations: NumericSchema,
-    monotonicityViolationMaxOverlap: NumericSchema,
-    provenance: z.array(z.unknown()),
+    input: z.string(),
+    model: z.string(),
+    wordTimestamps: z.boolean(),
+    generated: z.string(),
+    elapsedMs: z.number(),
+    segments: z.number(),
+    durationSec: z.number(),
   })
-  .partial();
+  .strict();
 
-const RunResultSchema = z
+const BenchmarkRecordSchema = z
   .object({
-    processedAudioDurationSec: NumericSchema.optional(),
-    elapsedSec: NumericSchema.optional(),
-    speedup: NumericSchema.optional(),
-    tasks: z.array(z.unknown()).optional(),
-    outputPath: z.string().optional(),
-    vttSummary: VttSummarySchema.optional(), // Legacy stored records
-    vttResult: z.unknown().optional(), // New format (ParseResult<VttComposition>)
+    benchmarkKey: BenchmarkKeySchema,
+    timestamp: z.string(),
+    hostname: z.string(),
+    arch: z.string(),
+    provenance: ProvenanceCompositionSchema,
   })
-  .passthrough();
-
-const BenchmarkRecordSchema = RunResultSchema.extend({
-  benchmarkKey: BenchmarkKeySchema,
-  timestamp: z.string().optional(),
-  hostname: z.string().optional(),
-  arch: z.string().optional(),
-}).passthrough();
+  .strict();
 
 // ============================================================================
 // Main
@@ -227,12 +216,16 @@ async function loadExistingData(): Promise<LoadedRecord[]> {
         JSON.parse(content) as BenchmarkRecord,
       );
       if (!parsed.success) {
+        const firstIssue = parsed.error.issues[0];
+        const reason = firstIssue
+          ? `${firstIssue.path.join(".") || "root"}: ${firstIssue.message}`
+          : "schema mismatch";
         console.error(
-          `Warning: Invalid benchmark record schema in ${file}: ${parsed.error.message}`,
+          `Warning: Skipping non-provenance benchmark record ${file} (${reason})`,
         );
         continue;
       }
-      const record = normalizeRecord(parsed.data as BenchmarkRecord);
+      const record = normalizeRecord(parsed.data);
       records.push({ record, sourceFile: file });
     } catch (e) {
       console.error(`Warning: Failed to parse ${file}: ${e}`);
@@ -242,72 +235,21 @@ async function loadExistingData(): Promise<LoadedRecord[]> {
   return records;
 }
 
-function normalizeRecord(record: BenchmarkRecord): BenchmarkRecord {
-  const benchmarkKey = normalizeBenchmarkKey(record.benchmarkKey);
-  const processedAudioDurationSec = resolveProcessedDuration(record) ?? 0;
-  const elapsedSec = resolveElapsedSec(record);
+function normalizeRecord(record: BenchmarkRecord): NormalizedBenchmarkRecord {
+  const processedAudioDurationSec = record.provenance.durationSec ?? 0;
+  const elapsedSec = Math.round(record.provenance.elapsedMs / 1000);
   const speedupValue =
     elapsedSec > 0 && processedAudioDurationSec > 0
       ? processedAudioDurationSec / elapsedSec
-      : asNumber(record.speedup);
-  const speedup = speedupValue ? speedupValue.toFixed(1) : "0";
+      : 0;
+  const speedup = speedupValue > 0 ? speedupValue.toFixed(1) : "0";
 
   return {
     ...record,
-    benchmarkKey,
     processedAudioDurationSec,
     elapsedSec,
     speedup,
-    timestamp: record.timestamp ?? "unknown",
-    hostname: record.hostname ?? "unknown",
-    arch: record.arch ?? "unknown",
   };
-}
-
-function normalizeBenchmarkKey(key: BenchmarkKey): BenchmarkKey {
-  return {
-    ...key,
-    duration: asNumber(key.duration) ?? 0,
-  };
-}
-
-function resolveProcessedDuration(record: BenchmarkRecord): number | undefined {
-  const benchmarkDuration = asNumber(record.benchmarkKey?.duration);
-  if (benchmarkDuration && benchmarkDuration > 0) return benchmarkDuration;
-
-  // New format: vttResult.value.provenance.durationSec
-  const newDur = asNumber(record.vttResult?.value.provenance.durationSec);
-  if (newDur && newDur > 0) return newDur;
-
-  // Legacy format: vttSummary.durationSec (old stored JSON)
-  const legacyDur = asNumber(record.vttSummary?.durationSec);
-  if (legacyDur && legacyDur > 0) return legacyDur;
-
-  return undefined;
-}
-
-/** Derive elapsed seconds from VTT provenance (original transcription time) or legacy field */
-function resolveElapsedSec(record: BenchmarkRecord): number {
-  // New format: vttResult.value.provenance.elapsedMs
-  const newMs = asNumber(record.vttResult?.value.provenance.elapsedMs);
-  if (newMs && newMs > 0) return Math.round(newMs / 1000);
-
-  // Legacy format: walk vttSummary.provenance[] for header entry
-  if (Array.isArray(record.vttSummary?.provenance)) {
-    for (const p of record.vttSummary.provenance) {
-      if (
-        typeof p === "object" &&
-        p !== null &&
-        !("segment" in p) &&
-        "elapsedMs" in p
-      ) {
-        const ms = asNumber((p as Record<string, unknown>).elapsedMs);
-        if (ms && ms > 0) return Math.round(ms / 1000);
-      }
-    }
-  }
-  // Fall back to legacy elapsedSec from old JSON records
-  return asNumber(record.elapsedSec) ?? 0;
 }
 
 // ============================================================================
@@ -413,8 +355,8 @@ function printDataWarnings(
 
 async function executeBenchmarks(
   missing: BenchmarkKey[],
-): Promise<BenchmarkRecord[]> {
-  const results: BenchmarkRecord[] = [];
+): Promise<NormalizedBenchmarkRecord[]> {
+  const results: NormalizedBenchmarkRecord[] = [];
 
   for (const key of missing) {
     console.log(`Running: ${keyToString(key)}`);
@@ -444,7 +386,9 @@ async function executeBenchmarks(
       durationSec: key.duration,
       outputDir: OUTPUT_DIR,
       runWorkDir,
-      tag: `bench-${key.model}`,
+      tag: `bench-${key.model}-d${formatDuration(key.duration)}-${
+        key.wordTimestamps ? "wt1" : "wt0" // like the cache naming convention
+      }`,
       verbosity: 0,
       dryRun: false,
       wordTimestamps: key.wordTimestamps,
@@ -456,21 +400,28 @@ async function executeBenchmarks(
     await mkdir(OUTPUT_DIR, { recursive: true });
 
     const result = await runWhisper(config);
+    if (!result.vttResult) {
+      throw new Error(
+        `runWhisper returned no vttResult for ${keyToString(key)}`,
+      );
+    }
 
-    const record = normalizeRecord({
-      ...result,
+    const record: BenchmarkRecord = {
       benchmarkKey: key,
       timestamp: new Date().toISOString(),
       hostname: hostname(),
       arch: arch(),
-    } as BenchmarkRecord);
+      provenance: result.vttResult.value.provenance,
+    };
+
+    const normalized = normalizeRecord(record);
 
     // Write result immediately (don't lose data if later benchmarks fail)
     await writeResult(record);
 
-    results.push(record);
+    results.push(normalized);
     console.log(
-      `  ✓ ${record.elapsedSec}s elapsed, ${record.speedup}x speedup`,
+      `  ✓ ${normalized.elapsedSec}s elapsed, ${normalized.speedup}x speedup`,
     );
   }
 
@@ -592,26 +543,26 @@ import matplotlib.pyplot as plt
 data = json.loads(sys.argv[1])
 output_dir = sys.argv[2]
 
-# Group by input+model
+# Group by input+model, rescaling to human units up front
 series = {}
 for d in data:
     key = f"{d['input']} {d['model']}"
     if key not in series:
-        series[key] = {'duration': [], 'elapsed': [], 'speedup': []}
-    series[key]['duration'].append(d['duration'])
+        series[key] = {'duration_h': [], 'elapsed': [], 'speedup': []}
+    series[key]['duration_h'].append(d['duration'] / 3600)
     series[key]['elapsed'].append(d['elapsed'])
     series[key]['speedup'].append(d['speedup'])
 
 # Plot 1: Execution Time vs Duration
 plt.figure(figsize=(10, 6))
 for label, values in sorted(series.items()):
-    # Sort by duration for proper line plot
-    pairs = sorted(zip(values['duration'], values['elapsed']))
+    pairs = sorted(zip(values['duration_h'], values['elapsed']))
     durations, elapsed = zip(*pairs) if pairs else ([], [])
     plt.plot(durations, elapsed, 'o-', label=label, markersize=8)
 
-plt.xlabel('Audio Duration (seconds)')
+plt.xlabel('Audio Duration (hours)')
 plt.ylabel('Execution Time (seconds)')
+plt.ylim(bottom=0)
 plt.title('Whisper Execution Time vs Audio Duration')
 plt.legend()
 plt.grid(True, alpha=0.3)
@@ -623,12 +574,13 @@ print('Generated: execution-time.png')
 # Plot 2: Speedup vs Duration
 plt.figure(figsize=(10, 6))
 for label, values in sorted(series.items()):
-    pairs = sorted(zip(values['duration'], values['speedup']))
+    pairs = sorted(zip(values['duration_h'], values['speedup']))
     durations, speedup = zip(*pairs) if pairs else ([], [])
     plt.plot(durations, speedup, 'o-', label=label, markersize=8)
 
-plt.xlabel('Audio Duration (seconds)')
+plt.xlabel('Audio Duration (hours)')
 plt.ylabel('Speedup (x realtime)')
+plt.ylim(bottom=0)
 plt.title('Whisper Speedup vs Audio Duration')
 plt.legend()
 plt.grid(True, alpha=0.3)
@@ -663,19 +615,6 @@ async function formatOutputs(): Promise<void> {
     stderr: "inherit",
   });
   await proc.exited;
-}
-
-// ============================================================================
-// Helpers
-// ============================================================================
-
-function asNumber(value: unknown): number | undefined {
-  if (typeof value === "number" && Number.isFinite(value)) return value;
-  if (typeof value === "string") {
-    const parsed = Number(value);
-    return Number.isFinite(parsed) ? parsed : undefined;
-  }
-  return undefined;
 }
 
 function printDataTable(records: LoadedRecord[]): void {
