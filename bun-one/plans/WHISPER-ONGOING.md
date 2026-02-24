@@ -55,6 +55,8 @@ Fix benchmarks
           StitchOptions.audioDurationSec should actualy transcriptionDurationSec
     - [x] Cleanup stitchVttConcat - no running total for current offest neede
           anymore?
+    - [ ] Cleanup vtt-schema types for durationSec optionality -> not optional
+          anymore
 - [ ] create `bun run scripts/benchmarks/performance.ts`
   - [ ] extract performance and graph from existing `.vtt` glob or directory
 

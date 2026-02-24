@@ -29,8 +29,8 @@ export interface StitchOptions {
   transcriptionDurationSec: number;
   /** Expected duration of each segment (the requested chunk size passed to ffmpeg).
    *  Used to calculate absolute global offsets (i * plannedSegmentDurationSec).
-   *  The actual WAV duration and transcribed duration of the segment may be slightly different
-   *  due to frame imprecision or being the final/partial segment. We make no assumptions about actual durations. */
+   *  The actual WAV duration and transcribed duration of the last segment may be different
+   *  due to final segment being potentially partial. */
   plannedSegmentDurationSec: number;
 }
 
@@ -40,14 +40,16 @@ export interface StitchOptions {
  * Offset Math:
  * We explicitly calculate offsets as the mathematical index `i * plannedSegmentDurationSec`
  * (e.g. 0s, 3600s, 7200s).
+ * Each segment is anchored perfectly to its mathematical grid boundary.
  *
- * We DO NOT accumulate `durationSec` from previously stitched segments.
- * `ffmpeg` WAV splitting is slightly imprecise (e.g., requested 3600s chunk might be 3600.015s).
- * Cumulating actual durationSec would cause these frame-boundary imprecisions
- * to drift the global timeline.
+ * We do this because the the provenance.durationSec
+ * recorded in the incoming VttTranscription[].provenance.durationSec
+ * is calculated differently from the (possibly/slightly different)
+ * duration of the converted .wav audio.
+ * This is why it is not used to calculate VttSegment.provenance.startSec.
  *
- * Instead, each segment is anchored perfectly to its mathematical grid boundary,
- * and `clip` trims any overlap exactly at that boundary before shifting timestamps.
+ * "Clip" operation is meant to ensure that successive segments do not overlap.
+ * It is therefore never applied to the last segment.
  */
 export function stitchVttConcat(
   transcriptions: VttTranscription[],
