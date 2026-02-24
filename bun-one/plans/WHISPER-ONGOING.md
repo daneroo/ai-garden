@@ -55,18 +55,17 @@ Fix benchmarks
           StitchOptions.audioDurationSec should actualy transcriptionDurationSec
     - [x] Cleanup stitchVttConcat - no running total for current offest neede
           anymore?
-    - [ ] Cleanup vtt-schema types for durationSec optionality -> not optional
-          anymore
-- [ ] create `bun run scripts/benchmarks/performance.ts`
-  - [ ] extract performance and graph from existing `.vtt` glob or directory
 
 ## Backlog
 
 These turn into issues above, inside this very document
 
 - JSON results include all the Cues!
+- `.durationSec required`: Cleanup vtt-schema types for durationSec optionality
 - Artifact directory reorganization WORK,CACHE,OUTPUT,SAMPLES
   - script to repopulate samples/models
+- Move/Merge `experiments/bookplayer-agy-opus46/`, `tan-one/` into
+  `apps/bookplayer/`
 - Cache (.vtt/.wav) is permanent - add cleanup/expiry criteria
 - Investigate `simpler-recursive.ts` as a replacement for segmentation
 - Extract `runTask`/monitors to new `lib/exec.ts`
