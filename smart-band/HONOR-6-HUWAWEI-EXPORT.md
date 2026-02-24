@@ -1,6 +1,6 @@
 # HONOR Band 6 Huawei Export
 
-## Huawei Download Success - 2026-02-20
+## DONE - Huawei Download Success - 2026-02-20
 
 - [GMail](https://mail.google.com/mail/u/0/#inbox/FMfcgzQfBsqqKGplRzpnWGshTFtglsfn)
 - zip password in 1Password
@@ -23,13 +23,12 @@
 - [x] Confirmed delivery method: data package will be sent by email.
 - [x] Received Huawei confirmation: request timestamp `2026-02-10 14:29:54`.
   - [x] [GMAIL](https://mail.google.com/mail/u/0/#inbox/FMfcgzQfBkPmLsxVpXXCKNVKSmRjSVzg)
-- [ ] Check request status at `https://privacy.consumer.huawei.com/tool` until
+- [x] Check request status at `https://privacy.consumer.huawei.com/tool` until
       ready.
-- [ ] Expect readiness notification by `2026-02-17` (Huawei said process should
+- [x] Expect readiness notification by `2026-02-17` (Huawei said process should
       take no more than `7 days`).
-- [ ] When ready, complete download within the `21-day` availability window.
-- [ ] Archive downloaded package to local path and backup copy.
-- [ ] Run iPad Apple Health export fallback and store zip.
+- [x] When ready, complete download within the `21-day` availability window.
+- [x] Archive downloaded package to local path and backup copy.
 
 ## Latest Request Confirmation
 

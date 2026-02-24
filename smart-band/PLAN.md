@@ -1,10 +1,12 @@
 # Honor Band 6 → Xiaomi Smart Band 10 (Pixel 9)
 
-Status:
+## TODO - DOING
 
-- Backfill on hold - Until Mi Fitness -> Health Connect ->Google Fit is Stable
-- Huawei Health "Takeout restarted" - 2026-02-17
-- Gadgetbridge fork is Live on Pixel 6 — WIP Ongoing (see [GadgetbridgeFork.md](./GadgetbridgeFork.md))
+- [ ] Full Backfill (In Progress - see Below)
+  - Backfill on hold - Until Mi Fitness -> Health Connect ->Google Fit is Stable
+- [ ] WIP [Gadgetbridge on Pixel 6](./GadgetbridgeFork.md)
+- [x] [Huawei Health "Takeout" - completed on 2026-02-17](./HONOR-6-HUWAWEI-EXPORT.md)
+- [ ] Aggregate and compare data from multiple sources
 
 ## Huawei Download Failure - 2026-02-17
 
@@ -189,7 +191,7 @@ Fallback steps (in order):
 - [x] Selective backfill cutoff defined: backfill Huawei data only for
       timestamps `<= 2026-02-10T13:59:59-05:00` to avoid overlap with Mi Band
       era.
-- [ ] Huawei Export: Request confirmed (keep as backup/archive) - Still
+- [x] Huawei Export: Request confirmed (keep as backup/archive) - Still
       pending - but we are proceeding anyways
 
 ### Prepare Source Data (Pixel 9)
