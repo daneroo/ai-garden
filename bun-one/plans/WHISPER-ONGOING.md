@@ -53,7 +53,7 @@ Fix benchmarks
           to all have the durationSec
     - [x] stitchVttConcat does not respect the transcription length -
           StitchOptions.audioDurationSec should actualy transcriptionDurationSec
-    - [ ] Cleanup stitchVttConcat - no running total for current offest neede
+    - [x] Cleanup stitchVttConcat - no running total for current offest neede
           anymore?
 - [ ] create `bun run scripts/benchmarks/performance.ts`
   - [ ] extract performance and graph from existing `.vtt` glob or directory

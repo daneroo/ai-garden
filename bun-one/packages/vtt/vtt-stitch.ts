@@ -27,12 +27,27 @@ export interface StitchOptions {
   /** Actual transcription duration — copied directly to composition provenance durationSec.
    *  Use config.durationSec if explicitly set, else full audio duration. */
   transcriptionDurationSec: number;
-  /** Effective duration to use for offset if provenance lacks durationSec */
-  defaultSegmentDurationSec: number;
+  /** Expected duration of each segment (the requested chunk size passed to ffmpeg).
+   *  Used to calculate absolute global offsets (i * plannedSegmentDurationSec).
+   *  The actual WAV duration and transcribed duration of the segment may be slightly different
+   *  due to frame imprecision or being the final/partial segment. We make no assumptions about actual durations. */
+  plannedSegmentDurationSec: number;
 }
 
 /**
  * Stitch multiple VttTranscription runs into a single VttComposition artifact.
+ *
+ * Offset Math:
+ * We explicitly calculate offsets as the mathematical index `i * plannedSegmentDurationSec`
+ * (e.g. 0s, 3600s, 7200s).
+ *
+ * We DO NOT accumulate `durationSec` from previously stitched segments.
+ * `ffmpeg` WAV splitting is slightly imprecise (e.g., requested 3600s chunk might be 3600.015s).
+ * Cumulating actual durationSec would cause these frame-boundary imprecisions
+ * to drift the global timeline.
+ *
+ * Instead, each segment is anchored perfectly to its mathematical grid boundary,
+ * and `clip` trims any overlap exactly at that boundary before shifting timestamps.
  */
 export function stitchVttConcat(
   transcriptions: VttTranscription[],
@@ -43,35 +58,37 @@ export function stitchVttConcat(
   options: StitchOptions,
 ): VttComposition {
   const { clip = false } = options;
-  if (options.defaultSegmentDurationSec <= 0) {
-    throw new Error("stitchVttConcat: defaultSegmentDurationSec must be > 0");
+  if (options.plannedSegmentDurationSec <= 0) {
+    throw new Error("stitchVttConcat: plannedSegmentDurationSec must be > 0");
   }
 
-  let currentOffset = 0;
   let totalElapsedMs = 0;
   const isLast = (i: number) => i === transcriptions.length - 1;
 
   const segments: VttSegment[] = transcriptions.map((t, i) => {
-    const startSec = currentOffset;
     totalElapsedMs += t.provenance.elapsedMs;
 
-    let cues = shiftVttCues(t.cues, startSec);
+    let cues = t.cues;
 
-    // Clip: clamp last cue's endTime to segment boundary (non-last segments only)
-    const durationSec = t.provenance.durationSec;
-    // But as it is (almost) never present, we use the default segment duration.
-    const effectiveDurationSec =
-      durationSec || options.defaultSegmentDurationSec;
-    if (clip && !isLast(i) && effectiveDurationSec != null && cues.length > 0) {
-      const boundary = startSec + effectiveDurationSec;
+    // Clip: clamp last cue's endTime to planned segment boundary (non-last only)
+    if (clip && !isLast(i) && cues.length > 0) {
       const lastCue = cues[cues.length - 1]!;
-      if (vttTimeToSeconds(lastCue.endTime) > boundary) {
+      const cueEndTimeSec = vttTimeToSeconds(lastCue.endTime);
+
+      if (cueEndTimeSec > options.plannedSegmentDurationSec) {
         cues = [
           ...cues.slice(0, -1),
-          { ...lastCue, endTime: secondsToVttTime(boundary) },
+          {
+            ...lastCue,
+            endTime: secondsToVttTime(options.plannedSegmentDurationSec),
+          },
         ];
       }
     }
+
+    // Shift unconditionally
+    const startSec = i * options.plannedSegmentDurationSec;
+    cues = shiftVttCues(cues, startSec);
 
     const segment: VttSegment = {
       provenance: {
@@ -81,9 +98,6 @@ export function stitchVttConcat(
       },
       cues,
     };
-
-    // Increment offset by the specific transcription's duration
-    currentOffset += effectiveDurationSec ?? 0;
 
     return segment;
   });

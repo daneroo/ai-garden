@@ -276,10 +276,10 @@ async function runWhisperPipeline(
       {
         clip: true,
         transcriptionDurationSec,
-        // defaultSegmentDurationSec: offset step for each segment (WAV cap or explicit).
+        // plannedSegmentDurationSec: offset step for each segment (WAV cap or explicit).
         // transcriptionDurationSec: how much audio was actually transcribed (capped by
         //   config.durationSec if explicit, else full audio), copied to composition provenance.
-        defaultSegmentDurationSec: segDurationSec,
+        plannedSegmentDurationSec: segDurationSec,
       },
     );
     await writeVttComposition(result.outputPath, composition);

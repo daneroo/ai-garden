@@ -35,7 +35,7 @@ describe("stitchVttConcat basic stitching", () => {
   test("single segment offset stays 0", () => {
     const result = stitchVttConcat([t0], PROV_BASE, {
       transcriptionDurationSec: 10,
-      defaultSegmentDurationSec: 10,
+      plannedSegmentDurationSec: 10,
     });
 
     expect(result.segments).toHaveLength(1);
@@ -44,18 +44,18 @@ describe("stitchVttConcat basic stitching", () => {
     expect(result.segments[0]!.cues[0]!.endTime).toBe("00:00:10.000");
   });
 
-  test("defaultSegmentDurationSec<=0 always throws", () => {
+  test("plannedSegmentDurationSec<=0 always throws", () => {
     expect(() => {
       stitchVttConcat([t0, t1], PROV_BASE, {
         transcriptionDurationSec: 120,
-        defaultSegmentDurationSec: 0,
+        plannedSegmentDurationSec: 0,
       });
-    }).toThrow("stitchVttConcat: defaultSegmentDurationSec must be > 0");
+    }).toThrow("stitchVttConcat: plannedSegmentDurationSec must be > 0");
 
     expect(() => {
       stitchVttConcat([t0, t1], PROV_BASE, {
         transcriptionDurationSec: 120,
-        defaultSegmentDurationSec: -10,
+        plannedSegmentDurationSec: -10,
       });
     }).toThrow();
 
@@ -63,15 +63,15 @@ describe("stitchVttConcat basic stitching", () => {
     expect(() => {
       stitchVttConcat([t0], PROV_BASE, {
         transcriptionDurationSec: 10,
-        defaultSegmentDurationSec: 0,
+        plannedSegmentDurationSec: 0,
       });
     }).toThrow();
   });
 
-  test("multiple segments defaultSegmentDurationSec>0 works", () => {
+  test("multiple segments plannedSegmentDurationSec>0 works", () => {
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
       transcriptionDurationSec: 120,
-      defaultSegmentDurationSec: 60,
+      plannedSegmentDurationSec: 60,
     });
 
     expect(result.segments).toHaveLength(2);
@@ -86,7 +86,7 @@ describe("stitchVttConcat basic stitching", () => {
   test("audioDurationSec is copied directly to composition provenance durationSec", () => {
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
       transcriptionDurationSec: 500,
-      defaultSegmentDurationSec: 300,
+      plannedSegmentDurationSec: 300,
     });
 
     // durationSec is the real audio duration, not currentOffset (2 × 300 = 600)
@@ -122,7 +122,7 @@ describe("stitchVttConcat clip option", () => {
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
       clip: true,
       transcriptionDurationSec: 600,
-      defaultSegmentDurationSec: 300,
+      plannedSegmentDurationSec: 300,
     });
 
     // Seg 0 last cue clamped: 05:02 → 05:00
@@ -144,7 +144,7 @@ describe("stitchVttConcat clip option", () => {
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
       clip: true,
       transcriptionDurationSec: 600,
-      defaultSegmentDurationSec: 300,
+      plannedSegmentDurationSec: 300,
     });
 
     // Seg 0 (non-last) is clipped
@@ -159,7 +159,7 @@ describe("stitchVttConcat clip option", () => {
 
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
       transcriptionDurationSec: 600,
-      defaultSegmentDurationSec: 300,
+      plannedSegmentDurationSec: 300,
     });
 
     // No clipping — overshoot preserved at 05:02
@@ -180,7 +180,7 @@ describe("stitchVttConcat clip option", () => {
     const result = stitchVttConcat([t0, t1], PROV_BASE, {
       clip: true,
       transcriptionDurationSec: 600,
-      defaultSegmentDurationSec: 300,
+      plannedSegmentDurationSec: 300,
     });
 
     // 04:58 < 05:00 boundary → no change
