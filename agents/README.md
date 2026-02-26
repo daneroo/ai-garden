@@ -26,12 +26,16 @@ Use that doc for:
 
 Specific info for each agent
 
+- [ ] [Crush](https://github.com/charmbracelet/crush)
 - [ ] [Pi Monorepo](https://github.com/badlogic/pi-mono) - [Pi](https://pi.dev/)
 - [ ] [Open Agent/Sandboxed](https://sandboxed.sh/) - Sam author as v
   - [ ] [Ralph Wiggum Loop](https://github.com/Th0rgal/open-ralph-wiggum)
 - [x] [Kilo](./kilo/README.md): Not so much - deleted
 - [ ] Amp - installed and delete from Antigravity - Later
 - [OpenClaw](./openclaw/README.md)
+  - [ ] gog auth -
+        [can have scopes ( linux - keychain?)](https://github.com/steipete/gogcli?tab=readme-ov-file#1-get-oauth2-credentials)
+
 - [OpenCode](./opencode/README.md)
 - [ ] [Claude](./claude/README.md)
 - [ ] [Codex](./codex/README.md)
