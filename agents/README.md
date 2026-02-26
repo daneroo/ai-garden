@@ -33,8 +33,8 @@ Specific info for each agent
 - [x] [Kilo](./kilo/README.md): Not so much - deleted
 - [ ] Amp - installed and delete from Antigravity - Later
 - [OpenClaw](./openclaw/README.md)
-  - [ ] gog auth -
-        [can have scopes ( linux - keychain?)](https://github.com/steipete/gogcli?tab=readme-ov-file#1-get-oauth2-credentials)
+  - [ ] gogcli
+        [auth - can have scopes](https://github.com/steipete/gogcli?tab=readme-ov-file#1-get-oauth2-credentials)
 
 - [OpenCode](./opencode/README.md)
 - [ ] [Claude](./claude/README.md)
