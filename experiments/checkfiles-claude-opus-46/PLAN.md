@@ -37,13 +37,13 @@ using Deno, OpenTUI, and React.
 
 ### Phase 3 — Validation rules + warnings/errors
 
-- [ ] Mode validation (file 0644, dir 0755)
-- [ ] xattr validation (must be empty)
-- [ ] Hidden entry violation flagging
-- [ ] Symlink violation flagging
-- [ ] Violation list per record
-- [ ] Integration tests with fixtures (non-standard perms, hidden, symlinks)
-- [ ] CI green
+- [x] Mode validation (file 0644, dir 0755)
+- [x] xattr validation (must be empty)
+- [x] Hidden entry violation flagging
+- [x] Symlink violation flagging
+- [x] validate() returns string[] — pure function over FileNode, not in FileNode
+- [x] Integration tests with fixtures (7 integration + 2 unit, 22 total)
+- [x] CI green
 
 ### Phase 4 — xattr helpers + integration tests
 
@@ -126,3 +126,7 @@ using Deno, OpenTUI, and React.
   - Refactors from review: separated TraversalEvent from node data, stripped
     FileNode to raw facts (reuse stat instead of entryType/kind/phase/status),
     all async, stat non-nullable, removed formatModePerm
+- Phase 3
+  - validate.ts: pure function validate(FileNode) -> string[]
+  - Rules: mode (644/755), xattrs, hidden, symlink
+  - validate_test.ts: 7 integration tests + 2 unit tests (22 total)
