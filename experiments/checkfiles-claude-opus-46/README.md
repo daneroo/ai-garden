@@ -2,6 +2,11 @@
 
 Filesystem validation CLI/TUI experiment using the `checkfiles` seed.
 
+## Usage
+
+- `deno task run` — run checkfiles (configure `ROOT_PATH` in `.env`)
+- `deno task ci` — lint, type-check, test, format-check
+
 ## Harness / Workflow
 
 - Agent: Claude Code (Opus 4.6)
@@ -19,5 +24,5 @@ results with sorting, filtering, and violation highlighting.
 
 - Deno runtime
 - OpenTUI + React for TUI
-- `@std/cli` for argument parsing
+- `commander` for argument parsing
 - System `xattr` command for extended attributes

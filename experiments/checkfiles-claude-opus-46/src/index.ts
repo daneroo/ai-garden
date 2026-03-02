@@ -1,9 +1,12 @@
 // checkfiles — deterministic filesystem validation CLI/TUI
 
+import { resolveConfig } from "./config.ts";
+
 if (import.meta.main) {
   main();
 }
 
 function main(): void {
-  console.log("checkfiles: not yet implemented");
+  const config = resolveConfig();
+  console.log(`checkfiles: root path = ${config.rootPath}`);
 }

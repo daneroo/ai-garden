@@ -14,12 +14,12 @@ using Deno, OpenTUI, and React.
 
 ### Phase 1 — Scaffold + Deno tasks + env/config validation
 
-- [ ] deno.json with tasks, JSX config, dependencies
-- [ ] .env.example and .gitignore
-- [ ] CLI flag parsing (`-r, --rootpath`)
-- [ ] Root path resolution (flag > env > fail fast)
-- [ ] Root path validation (exists, directory, readable)
-- [ ] CI green
+- [x] deno.json with tasks, JSX config, dependencies
+- [x] .env.example and .gitignore
+- [x] CLI flag parsing (`-r, --rootpath`)
+- [x] Root path resolution (flag > env > fail fast)
+- [x] Root path validation (exists, directory, readable)
+- [x] CI green
 
 ### Phase 2 — Deterministic traversal engine + node record lifecycle
 
@@ -94,8 +94,18 @@ using Deno, OpenTUI, and React.
 
 - Test fixtures are programmatically created in gitignored `data/` — no
   checked-in fixture assets. Each test handles its own setup/teardown.
+- Switched from `@std/cli/parse-args` to `commander` for automatic --help,
+  --version, and invalid-flag error handling.
 
 ## Session Audit Trail
 
 - Session 1: Scaffolded experiment structure (README, AGENTS, CLAUDE, PLAN,
-  deno.json, placeholder src/index.ts)
+  deno.json, placeholder src/index.ts). Added test fixtures hard requirement to
+  seed and PLAN (programmatic data/ fixtures, gitignored, no checked-in assets).
+- Session 1 (Phase 1): Added config.ts (CLI flag parsing, root path resolution
+  and validation), config_test.ts (4 integration tests). Removed placeholder
+  index_test.ts. Fixed: created .env from .env.example, changed --env-file to
+  --env in deno.json run task (also in seed), added Usage section to README.
+  Switched from @std/cli to commander for --help support (updated seed too).
+  Added index_test.ts with subprocess CLI tests (--help, unknown flag). Phase 1
+  complete.

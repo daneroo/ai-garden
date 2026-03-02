@@ -36,8 +36,9 @@ inspects files and directories, and verifies required filesystem properties
 
 ## CLI Interface
 
-- Flag parsing should use Deno-native tooling (`@std/cli/parse-args`) unless a
-  stronger reason is documented.
+- Flag parsing: use `commander` (npm) for automatic --help, --version, and
+  error handling. (Originally `@std/cli/parse-args` — switched for built-in help
+  generation.)
 - Flags:
   - `-r, --rootpath <path>`: root directory to inspect (optional override)
 - Root path resolution order:
@@ -247,7 +248,7 @@ Collect metadata for each emitted record:
 ```json
 {
   "tasks": {
-    "run": "deno run --env-file -A src/index.ts",
+    "run": "deno run --env -A src/index.ts",
     "lint": "deno lint",
     "check": "deno check src/index.ts",
     "test": "deno test -A",
@@ -261,7 +262,7 @@ Collect metadata for each emitted record:
 ## Dependencies
 
 - `npm:@opentui/core`, `npm:@opentui/react`, `npm:react`
-- `jsr:@std/cli` for argument parsing
+- `npm:commander` for argument parsing
 - `xattr` system command available in PATH
 
 ## Test Fixtures (Hard Requirement)
