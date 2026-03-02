@@ -23,15 +23,17 @@ using Deno, OpenTUI, and React.
 
 ### Phase 2 — Deterministic traversal engine + node record lifecycle
 
-- [ ] Test fixture helper: programmatic setup/teardown in gitignored `data/`
-- [ ] FileNode record type (kind, phase, status, metadata fields)
-- [ ] Two-phase directory visitation (dir-pre / dir-post)
-- [ ] Single-record-per-node data model
-- [ ] Deterministic child sorting (locale-independent comparator)
-- [ ] Hidden/symlink skip rules (no recurse, but emit violation record)
-- [ ] Integration tests for traversal order and two-phase emission (fixtures
-      cover: normal files/dirs, hidden entries, symlinks)
-- [ ] CI green
+- [x] Test fixture helper: programmatic setup/teardown in gitignored `data/`
+- [x] FileNode record type (minimal: relativePath, basename, stat, xattrs)
+- [x] TraversalEvent as callback parameter ("pre" | "post" | "leaf")
+- [x] Two-phase directory visitation (pre/post via callback events)
+- [x] Single-record-per-node data model (pre and post reference same object)
+- [x] Deterministic child sorting (readSortedChildren, locale-independent)
+- [x] Hidden/symlink skip rules (no recurse, emitted as leaf)
+- [x] All async (no Sync APIs)
+- [x] Integration tests (7 tests: pre/post, child ordering, deterministic sort,
+      leaf events, hidden dirs, symlinks, same-object identity)
+- [x] CI green
 
 ### Phase 3 — Validation rules + warnings/errors
 
@@ -96,16 +98,31 @@ using Deno, OpenTUI, and React.
   checked-in fixture assets. Each test handles its own setup/teardown.
 - Switched from `@std/cli/parse-args` to `commander` for automatic --help,
   --version, and invalid-flag error handling.
+- FileNode is minimal raw data (relativePath, basename, stat, xattrs). No
+  derived fields (kind, phase, status, isHidden, modeValid, violations) — those
+  belong to later validation/presentation layers.
+- TraversalEvent ("pre"/"post"/"leaf") is a callback parameter, not a node
+  property — separates scanning process from filesystem data.
+- stat is non-nullable: lstat failure on a readDir result is fatal.
+- Removed formatModePerm — presentation concern for Phase 6 (ls-like format).
 
-## Session Audit Trail
+## Audit Trail
 
-- Session 1: Scaffolded experiment structure (README, AGENTS, CLAUDE, PLAN,
-  deno.json, placeholder src/index.ts). Added test fixtures hard requirement to
-  seed and PLAN (programmatic data/ fixtures, gitignored, no checked-in assets).
-- Session 1 (Phase 1): Added config.ts (CLI flag parsing, root path resolution
-  and validation), config_test.ts (4 integration tests). Removed placeholder
-  index_test.ts. Fixed: created .env from .env.example, changed --env-file to
-  --env in deno.json run task (also in seed), added Usage section to README.
-  Switched from @std/cli to commander for --help support (updated seed too).
-  Added index_test.ts with subprocess CLI tests (--help, unknown flag). Phase 1
-  complete.
+- Phase 0
+  - Scaffolded experiment (README, AGENTS, CLAUDE, PLAN, deno.json,
+    src/index.ts)
+  - Added test fixtures hard requirement to seed (programmatic data/ fixtures)
+- Phase 1
+  - config.ts: CLI flag parsing, root path resolution/validation
+  - config_test.ts: 4 integration tests
+  - index_test.ts: 2 subprocess CLI tests (--help, unknown flag)
+  - Switched @std/cli to commander for --help support (seed updated)
+  - Fixed --env-file to --env, created .env, added Usage to README
+- Phase 2
+  - types.ts: FileNode (relativePath, basename, stat, xattrs), TraversalEvent,
+    TraversalCallback
+  - traverse.ts: two-phase recursive walker with readSortedChildren
+  - traverse_test.ts: 7 integration tests (13 total)
+  - Refactors from review: separated TraversalEvent from node data, stripped
+    FileNode to raw facts (reuse stat instead of entryType/kind/phase/status),
+    all async, stat non-nullable, removed formatModePerm

@@ -13,7 +13,7 @@ function teardown() {
   } catch { /* ignore */ }
 }
 
-Deno.test("config: resolves rootpath from --rootpath flag", () => {
+Deno.test("config: resolves rootpath from --rootpath flag", async () => {
   setup();
   try {
     // Temporarily override Deno.args
@@ -23,7 +23,7 @@ Deno.test("config: resolves rootpath from --rootpath flag", () => {
       configurable: true,
     });
     try {
-      const config = resolveConfig();
+      const config = await resolveConfig();
       assertEquals(config.rootPath, DATA_DIR);
     } finally {
       Object.defineProperty(Deno, "args", {
@@ -36,7 +36,7 @@ Deno.test("config: resolves rootpath from --rootpath flag", () => {
   }
 });
 
-Deno.test("config: resolves rootpath from -r alias", () => {
+Deno.test("config: resolves rootpath from -r alias", async () => {
   setup();
   try {
     const origArgs = Deno.args;
@@ -45,7 +45,7 @@ Deno.test("config: resolves rootpath from -r alias", () => {
       configurable: true,
     });
     try {
-      const config = resolveConfig();
+      const config = await resolveConfig();
       assertEquals(config.rootPath, DATA_DIR);
     } finally {
       Object.defineProperty(Deno, "args", {
@@ -58,7 +58,7 @@ Deno.test("config: resolves rootpath from -r alias", () => {
   }
 });
 
-Deno.test("config: flag takes precedence over env", () => {
+Deno.test("config: flag takes precedence over env", async () => {
   setup();
   try {
     const origArgs = Deno.args;
@@ -68,7 +68,7 @@ Deno.test("config: flag takes precedence over env", () => {
       configurable: true,
     });
     try {
-      const config = resolveConfig();
+      const config = await resolveConfig();
       assertEquals(config.rootPath, DATA_DIR);
     } finally {
       Object.defineProperty(Deno, "args", {
@@ -82,7 +82,7 @@ Deno.test("config: flag takes precedence over env", () => {
   }
 });
 
-Deno.test("config: resolves rootpath from ROOT_PATH env", () => {
+Deno.test("config: resolves rootpath from ROOT_PATH env", async () => {
   setup();
   try {
     const origArgs = Deno.args;
@@ -92,7 +92,7 @@ Deno.test("config: resolves rootpath from ROOT_PATH env", () => {
     });
     Deno.env.set("ROOT_PATH", DATA_DIR);
     try {
-      const config = resolveConfig();
+      const config = await resolveConfig();
       assertEquals(config.rootPath, DATA_DIR);
     } finally {
       Object.defineProperty(Deno, "args", {

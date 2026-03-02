@@ -7,7 +7,7 @@ export interface Config {
 }
 
 // ENTRY: called from main
-export function resolveConfig(): Config {
+export async function resolveConfig(): Promise<Config> {
   const program = new Command()
     .name("checkfiles")
     .description("Deterministic filesystem validation CLI/TUI")
@@ -17,7 +17,7 @@ export function resolveConfig(): Config {
   const opts = program.opts<{ rootpath?: string }>();
 
   const rootPath = resolveRootPath(opts.rootpath);
-  validateRootPath(rootPath);
+  await validateRootPath(rootPath);
   return { rootPath };
 }
 
@@ -32,10 +32,10 @@ function resolveRootPath(fromFlag: string | undefined): string {
   Deno.exit(1);
 }
 
-function validateRootPath(path: string): void {
+async function validateRootPath(path: string): Promise<void> {
   let stat: Deno.FileInfo;
   try {
-    stat = Deno.statSync(path);
+    stat = await Deno.stat(path);
   } catch (err) {
     if (err instanceof Deno.errors.NotFound) {
       console.error(`Fatal: root path does not exist: ${path}`);

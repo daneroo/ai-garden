@@ -3,10 +3,10 @@
 import { resolveConfig } from "./config.ts";
 
 if (import.meta.main) {
-  main();
+  await main();
 }
 
-function main(): void {
-  const config = resolveConfig();
+async function main(): Promise<void> {
+  const config = await resolveConfig();
   console.log(`checkfiles: root path = ${config.rootPath}`);
 }
