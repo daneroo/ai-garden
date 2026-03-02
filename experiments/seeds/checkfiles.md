@@ -264,6 +264,17 @@ Collect metadata for each emitted record:
 - `jsr:@std/cli` for argument parsing
 - `xattr` system command available in PATH
 
+## Test Fixtures (Hard Requirement)
+
+- Integration tests must use a local `data/` directory (gitignored, never
+  checked in).
+- Tests create their own fixture files/directories programmatically at test
+  time — no pre-built or checked-in fixture assets.
+- Fixtures should cover: normal files, directories, hidden entries, symlinks,
+  files with non-standard permissions, files/directories with xattrs.
+- Each test (or test group) is responsible for setup and teardown of its
+  fixtures to avoid cross-test contamination.
+
 ## Implementation Notes
 
 - Use Deno JSX config for OpenTUI in `deno.json`:
