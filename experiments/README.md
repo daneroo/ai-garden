@@ -22,7 +22,7 @@ Each experiment is a seed and a subdirectory:
 
 - `seeds/<slug>.md`: reusable idea specs (1 seed → many experiments)
 - `<slug>-<variant>/` (recommended naming; not enforced)
-  - variant examples: `opencode-gpt-5-2`, `claude-opus-4-5`
+  - variant examples: `opencode-gpt-53`, `claude-opus-46`
   - `README.md`: required
   - Harness artifact: `AGENTS.md`, `CLAUDE.md`, `thoughts/`, ... not proscribed
     (yet)
