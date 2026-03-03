@@ -66,14 +66,14 @@ using Bun, TypeScript, OpenTUI, and commander.
 
 ### Phase 6 - OpenTUI results table
 
-- [ ] Implement interactive table with sticky header
-- [ ] Implement columns (`mode`, `xattrs`, `path`) and default path ascending
+- [x] Implement interactive table with sticky header
+- [x] Implement columns (`mode`, `xattrs`, `path`) and default path ascending
       sort
-- [ ] Implement keybindings (scroll, reverse, quit, top/bottom fallbacks)
-- [ ] Implement colorized validation fields and control legend
-- [ ] Keep canonical path sort semantics and deterministic tie behavior
-- [ ] Add results formatting/sorting tests
-- [ ] CI green
+- [x] Implement keybindings (scroll, reverse, quit, top/bottom fallbacks)
+- [x] Implement colorized validation fields and control legend
+- [x] Keep canonical path sort semantics and deterministic tie behavior
+- [x] Add results formatting/sorting tests
+- [x] CI green
 
 ### Phase 7 - Violations-only filter
 
@@ -117,6 +117,8 @@ using Bun, TypeScript, OpenTUI, and commander.
 - Phase 5 keeps progress UI intentionally narrow: scan mutates `ScanState`, App
   polls immutable snapshots, and renderer lifecycle is explicit in
   `startTui()/destroy()`.
+- Phase 6 keeps results sorting scope narrow (path only), with keyboard reverse
+  and canonical lexical compare over full `relativePath`.
 
 ## Session Audit Trail
 
@@ -148,3 +150,8 @@ using Bun, TypeScript, OpenTUI, and commander.
   mutable scan-state bridge (`src/tui/scan-state.ts`), wired traversal events to
   progress updates in CLI (`src/index.ts`), and added progress logic tests
   (`src/tui/scan-state.test.ts`). CI green (`bun run ci`).
+- 2026-03-03 15:51 local - Phase 6 completed. Added results table view
+  (`src/tui/ResultsTable.tsx`) and formatting helpers (`src/tui/format.ts`) with
+  tests (`src/tui/format.test.ts`), wired app to switch from progress to results
+  after scan completion, and kept canonical path sort + reverse keybindings.
+  CI green (`bun run ci`).

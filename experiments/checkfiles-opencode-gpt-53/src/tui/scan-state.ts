@@ -1,10 +1,12 @@
 import type { FsNode, TraversalEvent } from "../types.ts";
+import type { InspectedNodeRecord } from "../types.ts";
 
 export interface ScanState {
   dirStack: string[];
   files: number;
   dirs: number;
   processed: number;
+  results: InspectedNodeRecord[];
   startedAt: number;
   done: boolean;
 }
@@ -18,6 +20,7 @@ export interface ScanSnapshot {
   remaining: number;
   elapsedMs: number;
   etaMs: number | null;
+  violations: number;
   done: boolean;
 }
 
@@ -27,6 +30,7 @@ export function createScanState(): ScanState {
     files: 0,
     dirs: 0,
     processed: 0,
+    results: [],
     startedAt: Date.now(),
     done: false,
   };
@@ -72,6 +76,7 @@ export function snapshot(state: ScanState, now = Date.now()): ScanSnapshot {
     remaining,
     elapsedMs,
     etaMs,
+    violations: state.results.filter((row) => row.violations.length > 0).length,
     done: state.done,
   };
 }

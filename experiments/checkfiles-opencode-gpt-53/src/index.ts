@@ -16,13 +16,13 @@ async function main(): Promise<void> {
   const tui = await startTui(scanState);
 
   try {
-    await scan(config.rootPath, {
+    const records = await scan(config.rootPath, {
       onTraverseEvent: (event, node) => {
         applyTraverseEvent(scanState, event, node);
       },
     });
+    scanState.results = records;
     scanState.done = true;
-    tui.destroy();
   } catch (err) {
     tui.destroy();
     throw err;

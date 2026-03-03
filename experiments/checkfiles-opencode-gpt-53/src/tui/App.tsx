@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useKeyboard } from "@opentui/react";
 import { ProgressView } from "./ProgressView.tsx";
+import { ResultsTable } from "./ResultsTable.tsx";
 import {
   formatElapsed,
   snapshot,
@@ -35,15 +36,26 @@ export function App({
         <b>checkfiles</b>
         {s.done ? " - scan complete" : " - scanning"}
       </text>
-      <text>
-        items: {s.total} (F:{s.files} D:{s.dirs}) | processed: {s.processed} |
-        remaining: {s.remaining} | elapsed: {formatElapsed(s.elapsedMs)} | eta:{" "}
-        {s.etaMs === null ? "--" : formatElapsed(s.etaMs)}
-      </text>
+      {s.done ? (
+        <text>
+          items: {s.total} (F:{s.files} D:{s.dirs}) | violations: {s.violations}
+          {" | "}elapsed: {formatElapsed(s.elapsedMs)}
+        </text>
+      ) : (
+        <text>
+          items: {s.total} (F:{s.files} D:{s.dirs}) | processed: {s.processed} |
+          remaining: {s.remaining} | elapsed: {formatElapsed(s.elapsedMs)} |
+          eta: {s.etaMs === null ? "--" : formatElapsed(s.etaMs)}
+        </text>
+      )}
       <text> </text>
-      <ProgressView dirStack={s.dirStack} />
+      {s.done ? (
+        <ResultsTable rows={scanState.results} onQuit={onQuit} />
+      ) : (
+        <ProgressView dirStack={s.dirStack} />
+      )}
       <text> </text>
-      <text fg="#666666">q/esc quit</text>
+      {!s.done ? <text fg="#666666">q/esc quit</text> : null}
     </box>
   );
 }
