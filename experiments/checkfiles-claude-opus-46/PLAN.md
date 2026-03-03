@@ -47,14 +47,15 @@ using Deno, OpenTUI, and React.
 
 ### Phase 4 — xattr helpers + integration tests
 
-- [ ] Research: xattr -r / xattr -rl behavior (record findings here)
-- [ ] xattr collection via Deno.Command subprocess
-- [ ] Parse stdout as newline-delimited attribute names
-- [ ] Per-attr hex value reads (xattr -px)
-- [ ] Fail fast if xattr command missing
-- [ ] Graceful per-path failure (warning + empty array)
-- [ ] Integration tests: fixtures with xattrs set/cleared via real xattr calls
-- [ ] CI green
+- [x] Research: xattr behavior (see findings below)
+- [x] xattr collection via Deno.Command subprocess
+- [x] Parse stdout as newline-delimited attribute names
+- [x] Per-attr hex value reads (xattr -px) — not needed, validation only checks
+      presence not values
+- [x] Fail fast if xattr command missing (checkXattrAvailable)
+- [x] Graceful per-path failure (warning + empty array)
+- [x] Integration tests: 5 tests with real xattr calls (27 total)
+- [x] CI green
 
 ### Phase 5 — OpenTUI progress view
 
@@ -105,6 +106,17 @@ using Deno, OpenTUI, and React.
   property — separates scanning process from filesystem data.
 - stat is non-nullable: lstat failure on a readDir result is fatal.
 - Removed formatModePerm — presentation concern for Phase 6 (ls-like format).
+- xattr research findings (Phase 4):
+  - Per-path `xattr <file>` is simplest: one attr name per line, sorted by us
+  - `xattr -r` / `xattr -rl` recurse and prefix output with path — more complex
+    to parse, but could be faster than per-file subprocess calls on large trees
+    (single process vs N processes). Consider as optimization if per-path calls
+    become a bottleneck.
+  - `xattr -px <attr> <file>` reads hex values — not needed, validation only
+    checks presence
+  - com.apple.provenance is kernel-enforced, cannot be removed (xattr -d/-c
+    silently fail), present on all files created since macOS 15+. Validation
+    must treat it as expected/ignorable, not a violation.
 
 ## Audit Trail
 
@@ -130,3 +142,11 @@ using Deno, OpenTUI, and React.
   - validate.ts: pure function validate(FileNode) -> string[]
   - Rules: mode (644/755), xattrs, hidden, symlink
   - validate_test.ts: 7 integration tests + 2 unit tests (22 total)
+- Phase 4
+  - xattr.ts: checkXattrAvailable() (fail fast), getXattrNames() (per-path,
+    sorted, graceful failure)
+  - xattr_test.ts: 5 integration tests with real xattr subprocess calls (27
+    total)
+  - Research: per-path calls chosen over -r recursive, com.apple.provenance is
+    sticky/unremovable on macOS 15+
+  - xattr -px (value reads) not needed — validation checks presence not values

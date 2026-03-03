@@ -6,6 +6,7 @@
 
 import { basename, join } from "@std/path";
 import type { FileNode, TraversalCallback } from "./types.ts";
+import { getXattrNames } from "./xattr.ts";
 
 // ENTRY: traverse root directory, calling cb for each traversal event
 export async function traverse(
@@ -28,7 +29,7 @@ async function visitDir(
     relativePath: rel,
     basename: name,
     stat,
-    xattrs: [],
+    xattrs: await getXattrNames(abs),
   };
   cb("pre", node);
 
@@ -44,7 +45,7 @@ async function visitDir(
         relativePath: child.rel,
         basename: child.name,
         stat: childStat,
-        xattrs: [],
+        xattrs: await getXattrNames(join(abs, child.name)),
       });
     }
   }
