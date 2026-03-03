@@ -2,18 +2,7 @@
 
 Deterministic filesystem validation CLI/TUI. Recursively traverses a root path,
 inspects files and directories, and verifies required filesystem properties
-(permissions and xattrs) in a reproducible order.
-
-## Major Blocking Note (Runtime/TUI Compatibility)
-
-- **Critical discovery**: OpenTUI currently requires Bun runtime support and is
-  not a safe fit for a Deno-first implementation.
-- This seed now has a hard decision gate before implementation:
-  1. Keep **Deno** runtime and rewrite TUI requirements to a Deno-compatible TUI
-     stack (for example TermUI).
-  2. Keep **OpenTUI** and abandon Deno as the runtime.
-- Do not start implementation until this decision is made and the seed is
-  updated consistently end-to-end.
+(permissions, xattrs, hidden entries, symlinks) in reproducible order.
 
 ## Project Objective (Hard Requirement)
 
@@ -30,27 +19,23 @@ inspects files and directories, and verifies required filesystem properties
 - Each experiment created from this seed should include a local `AGENTS.md`.
 - Each experiment should include a `PLAN.md` with milestones and a Session Audit
   Trail.
-- That `AGENTS.md` should require this loop after **every edit/modification**:
-  - run `deno task ci`
-  - if formatting/checks fail, run `deno fmt` (includes Markdown formatting)
-  - rerun `deno task ci`
+- `AGENTS.md` should require this loop after **every edit/modification**:
+  - run `bun run ci`
+  - if formatting/checks fail, run `bun run fmt` (includes Markdown formatting
+    when configured), then rerun `bun run ci`
   - do not mark phase/task complete until CI is green
-- Dependencies must be added with `deno add` (never by editing `deno.json`
-  import maps manually).
+- Dependencies must be added with `bun add` / `bun add -d` (never by editing
+  `package.json` directly).
 
 ## Tech Stack / Runtime
 
-- **Deno** is required runtime/tooling (`deno run`, `deno test`, `deno lint`,
-  `deno check`).
-- No Bun/Node runtime APIs in application code.
-- TUI framework is currently unresolved due to the blocking compatibility note
-  above.
+- **Bun** is required runtime and package manager (not Deno/Node runtime paths).
+- Language: TypeScript.
+- TUI stack: `@opentui/core`, `@opentui/react`, `react`.
 
 ## CLI Interface
 
-- Flag parsing: use `commander` (npm) for automatic --help, --version, and error
-  handling. (Originally `@std/cli/parse-args` — switched for built-in help
-  generation.)
+- Use `commander` for argument parsing/help/version/error handling.
 - Flags:
   - `-r, --rootpath <path>`: root directory to inspect (optional override)
 - Root path resolution order:
@@ -89,7 +74,7 @@ ROOT_PATH=/Volumes/Space/Staging
   3. Sort children deterministically
   4. Visit each child in sorted order
   5. Emit `dir-post` for `D`
-- This guarantees children appear before the parent’s final (`dir-post`) record.
+- This guarantees children appear before the parent's final (`dir-post`) state.
 - Root directory must also produce both `dir-pre` and `dir-post`.
 - Data model must be **one record per filesystem node** (not one row per event):
   - `dir-pre` creates/marks a directory record as in-progress
@@ -99,28 +84,29 @@ ROOT_PATH=/Volumes/Space/Staging
 ## Deterministic Ordering (Hard Requirement)
 
 - Child ordering must be reproducible across runs on unchanged data.
-- Sort by full relative path, ascending, using a locale-independent comparator
-  (no locale-sensitive collation).
+- Sort by full relative path ascending, using locale-independent lexical compare.
 - Document comparator choice in code comments and tests.
 
 ## Metadata Collection
 
-Collect metadata for each emitted record:
+Collect metadata for each node record:
 
 - `kind`: `dir` or `file`
 - `phase`: `dir-pre` | `dir-post` | `file` (internal event marker)
 - `status`: `in-progress` | `completed` (record lifecycle state)
 - `relativePath`
 - `basename`
+- `depth`
 - `isHidden` (basename starts with `.`)
 - `isSymlink`
 - `mtimeMs` (epoch milliseconds; null when unavailable)
 - `modePerm` (permission bits `mode & 0o777`, formatted as octal string like
   `755`)
 - `xattrs` (array of attribute names)
+- `xattrSortKey` (sorted xattr names joined with stable delimiter)
 - `modeValid` (whether mode matches required value for kind)
 - `xattrsValid` (whether xattrs array is empty)
-- `violations` (list of rule failures for that item)
+- `violations` (list of rule failures for that node)
 
 ### Hidden + Symlink Rules (Hard Requirement)
 
@@ -132,8 +118,8 @@ Collect metadata for each emitted record:
 
 ### xattrs (Hard Requirement)
 
-- xattrs must be collected using system `xattr` command (not a JS xattr library)
-- Use Deno subprocess APIs (`new Deno.Command(...)`).
+- xattrs must be collected using system `xattr` command (not a JS xattr library).
+- Use Bun subprocess APIs (`Bun.spawn` or `Bun.spawnSync`).
 - A single path can have multiple xattrs; collect **all** attribute names.
 - Parse `xattr <path>` stdout as newline-delimited attribute names.
 - For value-level diagnostics, use per-attr reads (`xattr -px <attr> <path>`)
@@ -144,7 +130,7 @@ Collect metadata for each emitted record:
 
 ## TUI / UX
 
-- Use the selected runtime-compatible TUI framework for interactive mode.
+- Use OpenTUI for interactive mode.
 - TUI renderer should be configured with:
   - `exitOnCtrlC: true`
   - `useAlternateScreen: true`
@@ -152,13 +138,13 @@ Collect metadata for each emitted record:
 
 ### TUI Architecture (Best-of Guidance)
 
-- Prefer a componentized layout:
+- Prefer componentized layout:
   - `src/tui/render.tsx` (renderer/root lifecycle)
   - `src/tui/App.tsx` (phase orchestration)
   - `src/tui/ProgressView.tsx`
   - `src/tui/ResultsTable.tsx`
-- Keep traversal logic outside UI components (UI consumes structured progress
-  and records).
+- Keep traversal/validation logic outside UI components (UI consumes structured
+  progress and records).
 
 ### Progress View
 
@@ -168,21 +154,21 @@ Collect metadata for each emitted record:
   - `level-1`
   - `level-2`
   - `leaf file/directory` (when applicable)
-- Show aggregate summary:
+- Show aggregate summary (node-based, not event-based):
   - total items
   - files:directories counts (rendered as `F:D`)
   - processed items
   - remaining items
   - elapsed time
   - estimated remaining time (rate-based estimate)
-- Directory rows that are currently in-progress may be visually dimmed/greyed.
+- Directory rows that are in-progress may be visually dimmed/greyed.
 - When a directory finishes (`dir-post`), its row returns to normal/completed
   styling.
 
 ### Results View
 
-- Interactive, scrollable table over inspected items.
-- Initial table may render a compact path label to save space:
+- Interactive, scrollable table over inspected node records.
+- Initial table may render compact path label to save space:
   - `displayPath = indent(depth) + basename`
   - where `indent(depth)` is fixed-width spacing per depth level
 - Sorting must use canonical full path (`relativePath`), not `displayPath`.
@@ -194,8 +180,8 @@ Collect metadata for each emitted record:
   - `path`
   - `xattrs`
 - `mode` should use ls-like derived display:
-  - include kind prefix (`d` for directory, `-` for file, `l` for symlink)
-  - include rwx bits derived from `mode & 0o777`
+  - kind prefix (`d` directory, `-` file, `l` symlink)
+  - rwx bits derived from `mode & 0o777`
   - append `@` when xattrs exist
   - examples: `drwxr-xr-x`, `-rw-r--r--`, `-rw-r--r--@`, `lrwxr-xr-x`
 - Required keyboard controls:
@@ -210,7 +196,7 @@ Collect metadata for each emitted record:
 - Keep table header visible while scrolling.
 - Sorted column header must display UTF-8 direction arrow (`↑` or `↓`).
 - Include legend for keyboard controls at the bottom of the screen.
-- Legend must include the violations toggle key (`v`).
+- Legend must include violations toggle key (`v`).
 - Validation-status fields (mode/xattr) should be colorized:
   - red for violation
   - pass/non-violating rows should use default terminal foreground color
@@ -221,23 +207,20 @@ Collect metadata for each emitted record:
   - sortable columns: `path` and `xattrs`
   - `path` sort uses lexical compare on full `relativePath`
   - `xattrs` sort uses lexical compare on `xattrSortKey`
-  - `xattrSortKey` is generated by sorting xattr names lexically and joining
-    with a stable delimiter
-  - tie-breaker for all sorts: `relativePath` ascending (for deterministic
-    order)
+  - tie-breaker for all sorts: `relativePath` ascending
 - Filtering:
   - support toggle for `all` vs `violations-only`
   - keyboard shortcut `v` must toggle this filter
   - in `violations-only`, show only rows where `violations.length > 0`
   - include ancestor directories for each violating row as context rows
   - context rows must be visually distinct (dim/grey), with no violation color
-  - context rows are included only to provide path hierarchy readability
+  - context rows are included only for path hierarchy readability
   - de-duplicate shared ancestor rows when multiple violations share parents
   - ordering in `violations-only` remains canonical path order
   - context rows are not collapsible in v1
   - context rows are not independently sortable/filter-matched rows
 - `xattrs` display formatting:
-  - render as concatenated sorted xattr names for readability
+  - render concatenated sorted xattr names for readability
   - truncate cell with ellipsis when width-constrained
   - sorting must still use full untruncated `xattrSortKey`
 
@@ -251,68 +234,65 @@ Collect metadata for each emitted record:
 
 - Continue on per-path inspection failures (stat/xattr errors), log warning, and
   keep traversing.
-- Fatal errors (invalid root path, missing xattr command) should exit with code
-  1.
-- Successful run (even with warnings) exits with code 0.
+- Fatal errors (invalid root path, missing xattr command) should exit code 1.
+- Successful run (even with warnings) exits code 0.
 
-## deno.json Tasks
+## package.json Scripts
 
 ```json
 {
-  "tasks": {
-    "run": "deno run --env -A src/index.ts",
-    "lint": "deno lint",
-    "check": "deno check src/index.ts",
-    "test": "deno test -A",
-    "fmt": "deno fmt",
-    "fmt:check": "deno fmt --check",
-    "ci": "deno task lint && deno task check && deno task test && deno task fmt:check"
+  "scripts": {
+    "lint": "eslint .",
+    "check": "tsc --noEmit",
+    "test": "vitest run",
+    "fmt": "prettier --write .",
+    "fmt:check": "prettier --check .",
+    "ci": "bun run fmt:check && bun run lint && bun run check && bun run test"
   }
 }
 ```
 
 ## Dependencies
 
-- `npm:@opentui/core`, `npm:@opentui/react`, `npm:react`
-- `npm:commander` for argument parsing
+- `@opentui/core`, `@opentui/react`, `react`
+- `commander`
 - `xattr` system command available in PATH
 
 ## Test Fixtures (Hard Requirement)
 
-- Integration tests must use a local `data/` directory (gitignored, never
-  checked in).
-- Tests create their own fixture files/directories programmatically at test time
-  — no pre-built or checked-in fixture assets.
-- Fixtures should cover: normal files, directories, hidden entries, symlinks,
-  files with non-standard permissions, files/directories with xattrs.
-- Each test (or test group) is responsible for setup and teardown of its
-  fixtures to avoid cross-test contamination.
+- Integration tests must use local `data/` directory (gitignored, never checked
+  in).
+- Tests create fixture files/directories programmatically at test time.
+- Fixtures should cover:
+  - normal files/directories
+  - hidden entries
+  - symlinks
+  - non-standard permissions
+  - files/directories with xattrs
+- Each test/test group must own setup and teardown to prevent contamination.
 
 ## Implementation Notes
 
-- Use Deno JSX config for OpenTUI in `deno.json`:
+- TypeScript/OpenTUI setup in `tsconfig.json` should include:
   - `"jsx": "react-jsx"`
-  - `"jsxImportSource": "npm:@opentui/react"`
-- Keep row-count math explicit: `visibleRows = terminalHeight - chromeLines`
-  (header, separator, status/help).
-- Add tests for deterministic traversal order and two-phase directory emission.
-- Add tests for mode formatting (`mode & 0o777`) and xattr parser behavior.
-- Add tests for validation rules:
-  - file mode must be `0644`
-  - directory mode must be `0755`
-  - xattrs must be empty
-- xattr helper functions should have integration tests using real `xattr`
-  subprocess calls against temp test files/directories.
-- Add tests for results behavior:
-  - compact `displayPath` rendering with indentation
-  - canonical path sorting unaffected by compact display format
-  - deterministic tie-breaker on `relativePath`
-  - `violations-only` filter includes only violating rows
+  - `"jsxImportSource": "@opentui/react"`
+  - `"types": ["bun", "node", "@opentui/react"]`
+- Keep row-count math explicit:
+  - `visibleRows = terminalHeight - chromeLines` (header, separator, status)
+- Add tests for:
+  - deterministic traversal order and two-phase directory lifecycle
+  - mode formatting (`mode & 0o777`) and xattr parser behavior
+  - validation rules (`0644` file, `0755` dir, no xattrs, hidden/symlink
+    violations)
+  - results behavior (compact display path, canonical sort, deterministic
+    tie-breaker, violations-only filtering)
+- xattr helpers should have integration tests using real `xattr` subprocess
+  calls against temp test files/directories.
 
 ## Research Items (Required)
 
-- Verify exact behavior/parseability of recursive xattr listing via `xattr -r`
-  and `xattr -rl`:
+- Verify exact behavior/parseability of recursive xattr listing via
+  `xattr -r` and `xattr -rl`:
   - does one command reliably return all path + name/value pairs?
   - is output format stable enough for machine parsing?
   - how does it behave with binary values and unusual filenames?
@@ -325,7 +305,7 @@ Collect metadata for each emitted record:
 
 - Seed must guide generated `PLAN.md` with ordered phases and priorities.
 - Recommended phase order:
-  1. scaffold + Deno tasks + env/config validation
+  1. scaffold + scripts + env/config validation
   2. deterministic traversal engine + node record lifecycle
   3. validation rules (mode/xattr/hidden/symlink) + warnings/errors
   4. xattr helpers + integration tests
@@ -336,4 +316,4 @@ Collect metadata for each emitted record:
 - Priority guidance:
   - correctness and determinism over UI polish
   - traversal and validation correctness are blocking prerequisites for TUI work
-  - CI green (`deno task ci`) is required before closing each phase
+  - CI green (`bun run ci`) is required before closing each phase
