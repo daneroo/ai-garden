@@ -8,14 +8,15 @@ Seed: `../seeds/checkfiles.md` (canonical requirements).
 
 ## CI Loop (Required after every edit)
 
-- Run `deno task ci`
-- If formatting/checks fail, run `deno fmt`
-- Rerun `deno task ci`
+- Run `bun run ci`
+- If formatting/checks fail, run `bun run fmt`
+- Rerun `bun run ci`
 - Do not mark phase/task complete until CI is green
 
 ## Dependencies
 
-- Add dependencies with `deno add` (never edit `deno.json` import maps manually)
+- Add dependencies with `bun add` / `bun add -d` (never edit package.json
+  directly)
 
 ## Code Structure
 

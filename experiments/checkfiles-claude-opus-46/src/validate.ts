@@ -14,18 +14,18 @@ export function validate(node: FileNode): string[] {
     violations.push("hidden entry");
   }
 
-  if (node.stat.isSymlink) {
+  if (node.stat.isSymbolicLink()) {
     violations.push("symlink");
   }
 
-  if (node.stat.mode !== null) {
+  if (node.stat.mode !== null && node.stat.mode !== undefined) {
     const perm = node.stat.mode & 0o777;
-    if (node.stat.isDirectory && perm !== REQUIRED_DIR_MODE) {
+    if (node.stat.isDirectory() && perm !== REQUIRED_DIR_MODE) {
       violations.push(
         `mode ${formatOctal(perm)} expected ${formatOctal(REQUIRED_DIR_MODE)}`,
       );
     }
-    if (node.stat.isFile && perm !== REQUIRED_FILE_MODE) {
+    if (node.stat.isFile() && perm !== REQUIRED_FILE_MODE) {
       violations.push(
         `mode ${formatOctal(perm)} expected ${formatOctal(REQUIRED_FILE_MODE)}`,
       );

@@ -1,10 +1,11 @@
 // traverse — deterministic two-phase filesystem traversal
 //
-// Not using @std/fs/walk: it yields a flat async stream with no pre/post
-// directory hooks. The two-phase visitation and single-record-per-node
+// Not using @std/fs/walk or node:fs walk: they yield a flat stream with no
+// pre/post directory hooks. The two-phase visitation and single-record-per-node
 // mutation are simpler with direct recursion.
 
-import { basename, join } from "@std/path";
+import { basename, join } from "node:path";
+import { lstat, readdir } from "node:fs/promises";
 import type { FileNode, TraversalCallback } from "./types.ts";
 import { getXattrNames } from "./xattr.ts";
 
@@ -22,22 +23,22 @@ async function visitDir(
   cb: TraversalCallback,
 ): Promise<void> {
   const abs = rel === "." ? root : join(root, rel);
-  const stat = await Deno.lstat(abs);
+  const st = await lstat(abs);
   const name = rel === "." ? "." : basename(rel);
 
   const node: FileNode = {
     relativePath: rel,
     basename: name,
-    stat,
+    stat: st,
     xattrs: await getXattrNames(abs),
   };
   cb("pre", node);
 
   for (const child of await readSortedChildren(abs, rel)) {
-    const childStat = await Deno.lstat(join(abs, child.name));
-    const skip = child.name.startsWith(".") || childStat.isSymlink;
+    const childStat = await lstat(join(abs, child.name));
+    const skip = child.name.startsWith(".") || childStat.isSymbolicLink();
 
-    if (childStat.isDirectory && !skip) {
+    if (childStat.isDirectory() && !skip) {
       await visitDir(root, child.rel, cb);
     } else {
       // File, symlink, or hidden/symlink dir: emit as leaf, don't recurse
@@ -60,12 +61,10 @@ async function readSortedChildren(
   absDir: string,
   parentRel: string,
 ): Promise<{ name: string; rel: string }[]> {
-  const children: { name: string; rel: string }[] = [];
-  for await (const entry of Deno.readDir(absDir)) {
-    children.push({
-      name: entry.name,
-      rel: parentRel === "." ? entry.name : `${parentRel}/${entry.name}`,
-    });
-  }
-  return children.sort((a, b) => a.rel < b.rel ? -1 : a.rel > b.rel ? 1 : 0);
+  const entries = await readdir(absDir);
+  const children = entries.map((name) => ({
+    name,
+    rel: parentRel === "." ? name : `${parentRel}/${name}`,
+  }));
+  return children.sort((a, b) => (a.rel < b.rel ? -1 : a.rel > b.rel ? 1 : 0));
 }

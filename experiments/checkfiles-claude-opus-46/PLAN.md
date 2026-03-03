@@ -65,42 +65,44 @@ type-checks pass but runtime crashes. Seed rewritten to Bun stack.
 
 Scaffold:
 
-- [ ] Remove deno.json, deno.lock
-- [ ] Create package.json (scripts: lint, check, test, fmt, fmt:check, ci)
-- [ ] Create tsconfig.json (strict, jsx: react-jsx, jsxImportSource:
+- [x] Remove deno.json, deno.lock
+- [x] Create package.json (scripts: lint, check, test, fmt, fmt:check, ci)
+- [x] Create tsconfig.json (strict, jsx: react-jsx, jsxImportSource:
       @opentui/react)
-- [ ] Add eslint + prettier configs
-- [ ] bun add commander @opentui/core @opentui/react react
-- [ ] bun add -d vitest typescript eslint prettier @types/react
-- [ ] Update .gitignore (node_modules instead of deno cache)
+- [x] Add eslint + prettier configs
+- [x] bun add commander @opentui/core @opentui/react react
+- [x] bun add -d vitest typescript eslint prettier @types/react
+- [x] Update .gitignore (node_modules instead of deno cache)
 
 Port source files (Deno API -> Node/Bun API):
 
-- [ ] types.ts: Deno.FileInfo -> Stats from node:fs
-- [ ] config.ts: Deno.args -> process.argv, Deno.env -> process.env, Deno.stat
+- [x] types.ts: Deno.FileInfo -> Stats from node:fs
+- [x] config.ts: Deno.args -> process.argv, Deno.env -> process.env, Deno.stat
       -> node:fs/promises stat, Deno.exit -> process.exit, Deno.errors ->
       ENOENT/EACCES error codes
-- [ ] traverse.ts: Deno.lstat -> lstat, Deno.readDir -> readdir, @std/path ->
+- [x] traverse.ts: Deno.lstat -> lstat, Deno.readDir -> readdir, @std/path ->
       node:path
-- [ ] xattr.ts: Deno.Command -> Bun.spawn
-- [ ] validate.ts: no changes expected (pure function)
-- [ ] index.ts: import.meta.main stays (Bun supports it)
+- [x] xattr.ts: Deno.Command -> node:child_process execFile (not Bun.spawn —
+      vitest runs in Node)
+- [x] validate.ts: isSymlink (property) -> isSymbolicLink() (method), same for
+      isDirectory/isFile
+- [x] index.ts: import.meta.main stays (Bun supports it)
 
 Port tests (Deno.test -> vitest):
 
-- [ ] config_test.ts -> config.test.ts (vitest describe/test/expect)
-- [ ] index_test.ts -> index.test.ts (Bun.spawn subprocess tests)
-- [ ] traverse_test.ts -> traverse.test.ts
-- [ ] validate_test.ts -> validate.test.ts
-- [ ] xattr_test.ts -> xattr.test.ts
+- [x] config_test.ts -> config.test.ts (vitest describe/test/expect)
+- [x] index_test.ts -> index.test.ts (execFile subprocess tests)
+- [x] traverse_test.ts -> traverse.test.ts
+- [x] validate_test.ts -> validate.test.ts
+- [x] xattr_test.ts -> xattr.test.ts
 
 Cleanup:
 
-- [ ] Remove src/tui/ scaffolding (will redo in Phase 5)
-- [ ] Update CLAUDE.md (bun run ci, bun add)
-- [ ] Update AGENTS.md (bun references)
-- [ ] bun run ci green
-- [ ] All 27 tests passing under vitest
+- [x] Remove src/tui/ scaffolding (will redo in Phase 5)
+- [x] Update CLAUDE.md (bun run ci, bun add)
+- [x] Update AGENTS.md (bun references)
+- [x] bun run ci green
+- [x] All 27 tests passing under vitest
 
 ### Phase 5 — OpenTUI progress view
 
@@ -199,3 +201,20 @@ Cleanup:
   - Research: per-path calls chosen over -r recursive, com.apple.provenance is
     sticky/unremovable on macOS 15+
   - xattr -px (value reads) not needed — validation checks presence not values
+- Phase 4.5
+  - Full Deno -> Bun migration (OpenTUI requires bun:ffi at runtime)
+  - Scaffold: package.json, tsconfig.json, eslint.config.js, .prettierrc
+  - All source files ported: Deno.\* APIs -> node:fs/promises, node:path,
+    Bun.spawn
+  - Tests run under `bun --bun vitest` for full Bun runtime access (Bun.spawn).
+  - Added setXattr(path, name, value) export — get/set consistency, tests use
+    module's own setXattr instead of local helper.
+  - Deno.FileInfo properties (isSymlink, isDirectory) -> Stats methods
+    (isSymbolicLink(), isDirectory())
+  - All 5 test files ported from Deno.test to vitest, sync APIs replaced with
+    async (node:fs/promises)
+  - Removed console.warn from getXattrNames — silently returns [] on failure
+  - Removed deno.json, deno.lock, .prettierrc (all defaults), .prettierignore
+    (prettier v3 respects .gitignore)
+  - CLAUDE.md, AGENTS.md updated to bun commands
+  - 27 tests passing, bun run ci green
