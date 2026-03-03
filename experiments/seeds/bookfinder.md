@@ -3,6 +3,17 @@
 Audiobook scanner CLI tool. Recursively scans directories for audio files and
 extracts metadata using ffprobe.
 
+## Status
+
+- Winner: `bookfinder-opencode-gpt-5-2` : subjectively the best ui
+- Experiment concluded.
+  - `bookfinder-opencode-gpt-5-2`: best ui, had benefit of seeing other
+    implementations
+  - `bookfinder-opencode-kimi`: good enough, proof kimi can follow a good spec
+  - `bookfinder-claude-opus-4-5`: good ui, first to implement open-tui,
+    - more work because of unrefined spec, api, tanstack,...
+  - `bookfinder-antigravity-gemini-3-pro-high`: ok, prettier output
+
 ## Workflow / CI
 
 - Each experiment created from this seed should include a local `AGENTS.md`.
@@ -138,3 +149,46 @@ Use `ffprobe` to extract:
   overflow from the top; if headers disappear, suspect row-count math first. cap
   data columns (Author, Title, File) with max widths and ellipsis truncation.
   Test with 100+ files early to catch overflow.
+
+## Compare Implementations
+
+### Metrics
+
+| Implementation                  | Prod | Files | LoC | Test LoC | Test/Prod | Cmplx/Fn | Cmplx/Sum |  Avg | P90 | Max |
+| ------------------------------- | ---: | ----: | --: | -------: | --------: | -------: | --------: | ---: | --: | --: |
+| `antigravity-gemini-3-pro-high` |    4 |     1 | 418 |        9 |      0.02 |       12 |        69 | 5.75 |   6 |  17 |
+| `claude-opus-4-5`               |    8 |     4 | 689 |      323 |      0.47 |       20 |       124 | 6.20 |  10 |  20 |
+| `opencode`                      |    4 |     1 | 193 |       41 |      0.21 |      n/a |       n/a |  n/a | n/a | n/a |
+| `opencode-gemini-3-pro`         |    9 |     1 | 726 |        7 |      0.01 |       24 |       111 | 4.62 |   7 |  15 |
+| `opencode-gpt-5-2`              |    9 |     4 | 917 |       99 |      0.11 |       39 |       190 | 4.87 |   8 |  25 |
+| `opencode-kimi`                 |    8 |     1 | 615 |        5 |      0.01 |       17 |        76 | 4.47 |   6 |  15 |
+
+### Compliance Notes
+
+- `bookfinder-opencode` is not seed-compliant overall (Yargs instead of
+  Commander, no OpenTUI flow, and JSON output shape diverges from required
+  single array semantics).
+- `bookfinder-antigravity-gemini-3-pro-high` has a good core scan/probe loop but
+  misses key seed requirements (no explicit ffprobe timeout in code, fixed table
+  widths, and incomplete renderer lifecycle config).
+- `bookfinder-claude-opus-4-5` has strong test depth and solid TUI behavior, but
+  diverges from seed contracts (`BOOKTUI_ROOTPATH` instead of `ROOTPATH`,
+  fixed-width table layout, and result columns differ from required
+  Author/Title/Duration/Bitrate/Codec/File order).
+- `bookfinder-opencode-gemini-3-pro` is broadly functional but misses
+  `.env.example` and still uses fixed table widths.
+- `bookfinder-opencode-gpt-5-2` is the most robust engineering implementation
+  (worker pool, timeout handling, dynamic table layout, interactive controls),
+  but misses the seed env contract (`ROOTPATH` + `.env.example`) and its result
+  columns differ from the seed’s required table columns.
+- `bookfinder-opencode-kimi` is the closest overall to the seed behavior set:
+  OpenTUI flow, dynamic sizing, required sort/navigation controls, in-flight
+  progress, timeout handling, and required output shape. Main gaps are env name
+  drift (`ROOT_PATH` vs `ROOTPATH`) and minimal test coverage.
+
+### Key Lessons for Future Seeds
+
+- Enforce env-contract names in tests (`ROOTPATH` vs `ROOT_PATH`) and require
+  `.env.example`.
+- Add acceptance tests for result-column order and required keybindings.
+- Keep the “Bun-only/OpenTUI runtime” constraint explicit from the first phase.
