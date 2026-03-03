@@ -16,9 +16,14 @@ async function main(): Promise<void> {
 
   const scanState = createScanState();
   const cb = makeScanCallback(scanState);
-  await startTui(scanState);
+  const tui = await startTui(scanState);
 
-  await traverse(config.rootPath, cb);
-  scanState.done = true;
-  // TUI stays alive — ResultsTable handles exit via q/esc
+  try {
+    await traverse(config.rootPath, cb);
+    scanState.done = true;
+    // TUI stays alive — ResultsTable handles exit via q/esc
+  } catch (err) {
+    tui.destroy(); // restore terminal before error propagates
+    throw err;
+  }
 }

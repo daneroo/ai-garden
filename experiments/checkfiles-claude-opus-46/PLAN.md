@@ -155,7 +155,7 @@ Cleanup:
 ### Issues
 
 - [x] tsconfig misses seed-recommended OpenTUI/Node types (node, @opentui/react). (tsconfig.json:13)
-- [ ] Terminal cleanup on non-render errors is weak. startTui() returns cleanup, but caller discards it; traversal/config errors after renderer start can skip explicit destroy.( index.ts:19 render.tsx:8)
+- [x] Terminal cleanup on non-render errors is weak. startTui() returns cleanup, but caller discards it; traversal/config errors after renderer start can skip explicit destroy.( index.ts:19 render.tsx:8)
 - [ ] xattrs failures are silently swallowed; rare, but should throw. xattr.ts:22 - caught at top level (like we did with stat failures)
 - [ ] xattrs cell does not implement explicit ellipsis truncation requirement. It pads but can overflow. (ResultsTable.tsx:139)
 - [ ] add mtime column
@@ -303,4 +303,11 @@ Cleanup:
   - Added "node" to types array. @opentui/react requires no change — JSX types
     come from jsxImportSource, and module types resolve normally. No functional
     gap existed; this makes Node built-in type coverage explicit.
+  - 68 tests passing, bun run ci green
+- Issue: terminal cleanup on traversal errors
+  - startTui() now returns TuiHandle { quit, destroy } instead of a single
+    cleanup fn. quit() is for user exit (destroy + exit 0); destroy() restores
+    the terminal without exiting, for error paths.
+  - index.ts wraps traverse() in try/catch: calls tui.destroy() then rethrows,
+    so the alternate screen is always restored before any error output.
   - 68 tests passing, bun run ci green

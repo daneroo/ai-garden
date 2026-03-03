@@ -5,15 +5,27 @@ import { createRoot } from "@opentui/react";
 import { App } from "./App.tsx";
 import type { ScanState } from "./scan-state.ts";
 
-export async function startTui(scanState: ScanState): Promise<() => void> {
+export interface TuiHandle {
+  // Called by ResultsTable on q/esc: destroy renderer and exit 0
+  quit: () => void;
+  // Called by caller on traversal error: destroy renderer, let error propagate
+  destroy: () => void;
+}
+
+export async function startTui(scanState: ScanState): Promise<TuiHandle> {
   const renderer = await createCliRenderer({
     exitOnCtrlC: true,
     useAlternateScreen: true,
   });
 
-  const cleanup = () => {
-    renderer.destroy();
-    process.exit(0);
+  const handle: TuiHandle = {
+    quit: () => {
+      renderer.destroy();
+      process.exit(0);
+    },
+    destroy: () => {
+      renderer.destroy();
+    },
   };
 
   // Defensive: catch render exceptions and exit cleanly
@@ -23,7 +35,9 @@ export async function startTui(scanState: ScanState): Promise<() => void> {
     process.exit(1);
   });
 
-  createRoot(renderer).render(<App scanState={scanState} onQuit={cleanup} />);
+  createRoot(renderer).render(
+    <App scanState={scanState} onQuit={handle.quit} />,
+  );
 
-  return cleanup;
+  return handle;
 }
