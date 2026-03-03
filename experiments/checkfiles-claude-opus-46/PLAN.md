@@ -152,6 +152,15 @@ Cleanup:
 - [x] No dead imports or stale Deno references in source
 - [x] CI green (68 tests)
 
+### Issues
+
+- [x] tsconfig misses seed-recommended OpenTUI/Node types (node, @opentui/react). (tsconfig.json:13)
+- [ ] Terminal cleanup on non-render errors is weak. startTui() returns cleanup, but caller discards it; traversal/config errors after renderer start can skip explicit destroy.( index.ts:19 render.tsx:8)
+- [ ] xattrs failures are silently swallowed; rare, but should throw. xattr.ts:22 - caught at top level (like we did with stat failures)
+- [ ] xattrs cell does not implement explicit ellipsis truncation requirement. It pads but can overflow. (ResultsTable.tsx:139)
+- [ ] add mtime column
+- [ ] make scanning multipass (better counts and time - prepares for fix pass)
+
 ## Decisions / Notes
 
 - Test fixtures are programmatically created in gitignored `data/` — no
@@ -283,10 +292,15 @@ Cleanup:
     keybindings section documenting results view controls
   - Code audit: no dead imports, no stale Deno references, no cleanup needed
   - 68 tests passing, bun run ci green
-- Issue 1 (post-Phase 8)
+- Issue : violations count
   - Bug: violations count showed 0 — useMemo on mutable array reference never
     re-ran. Fix: track violations counter in ScanState, increment in callback,
     expose via Snapshot. App reads s.violations from snapshot (updates on 100ms
     poll).
   - Added elapsed: and rate: labels to both summary lines
+  - 68 tests passing, bun run ci green
+- Issue: tsconfig types
+  - Added "node" to types array. @opentui/react requires no change — JSX types
+    come from jsxImportSource, and module types resolve normally. No functional
+    gap existed; this makes Node built-in type coverage explicit.
   - 68 tests passing, bun run ci green
