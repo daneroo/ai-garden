@@ -57,12 +57,12 @@ using Bun, TypeScript, OpenTUI, and commander.
 
 ### Phase 5 - OpenTUI progress view
 
-- [ ] Implement renderer lifecycle (`exitOnCtrlC`, `useAlternateScreen`)
-- [ ] Implement progress stack view and aggregate metrics
-- [ ] Implement elapsed and ETA display
-- [ ] Ensure `renderer.destroy()` on all exits/errors
-- [ ] Add progress logic tests
-- [ ] CI green
+- [x] Implement renderer lifecycle (`exitOnCtrlC`, `useAlternateScreen`)
+- [x] Implement progress stack view and aggregate metrics
+- [x] Implement elapsed and ETA display
+- [x] Ensure `renderer.destroy()` on all exits/errors
+- [x] Add progress logic tests
+- [x] CI green
 
 ### Phase 6 - OpenTUI results table
 
@@ -114,6 +114,9 @@ using Bun, TypeScript, OpenTUI, and commander.
     recursive bulk mode only if profiling shows subprocess overhead is material.
   - `xattr -px <attr> <path>` returns hex with spacing (for example `00 FF 7F`),
     so any future value-level parsing should normalize whitespace.
+- Phase 5 keeps progress UI intentionally narrow: scan mutates `ScanState`, App
+  polls immutable snapshots, and renderer lifecycle is explicit in
+  `startTui()/destroy()`.
 
 ## Session Audit Trail
 
@@ -140,3 +143,8 @@ using Bun, TypeScript, OpenTUI, and commander.
   added startup xattr availability check (`src/index.ts`), and added xattr
   integration tests (`src/xattr.test.ts`). Recorded xattr recursive-output
   research and strategy decision. CI green (`bun run ci`).
+- 2026-03-03 15:48 local - Phase 5 completed. Added OpenTUI progress renderer
+  and app (`src/tui/render.tsx`, `src/tui/App.tsx`, `src/tui/ProgressView.tsx`),
+  mutable scan-state bridge (`src/tui/scan-state.ts`), wired traversal events to
+  progress updates in CLI (`src/index.ts`), and added progress logic tests
+  (`src/tui/scan-state.test.ts`). CI green (`bun run ci`).

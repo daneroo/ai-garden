@@ -3,9 +3,13 @@ import type { InspectedNodeRecord } from "./types.ts";
 import { inspectNode } from "./validate.ts";
 import { getXattrNames } from "./xattr.ts";
 
+interface ScanOptions extends TraverseOptions {
+  onTraverseEvent?: Parameters<typeof traverse>[1];
+}
+
 export async function scan(
   rootPath: string,
-  options?: TraverseOptions,
+  options?: ScanOptions,
 ): Promise<InspectedNodeRecord[]> {
   const records: InspectedNodeRecord[] = [];
   const inProgressDirs = new Map<string, InspectedNodeRecord>();
@@ -15,6 +19,8 @@ export async function scan(
   await traverse(
     rootPath,
     (event, node) => {
+      options?.onTraverseEvent?.(event, node);
+
       if (event === "dir-pre") {
         const record = inspectNode(event, node);
         inProgressDirs.set(node.relativePath, record);

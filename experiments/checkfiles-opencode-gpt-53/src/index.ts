@@ -1,5 +1,7 @@
 import { resolveConfig } from "./config.ts";
 import { scan } from "./scan.ts";
+import { applyTraverseEvent, createScanState } from "./tui/scan-state.ts";
+import { startTui } from "./tui/render.tsx";
 import { checkXattrAvailable } from "./xattr.ts";
 
 if (import.meta.main) {
@@ -9,7 +11,22 @@ if (import.meta.main) {
 async function main(): Promise<void> {
   const config = await resolveConfig();
   await checkXattrAvailable();
-  await scan(config.rootPath);
+
+  const scanState = createScanState();
+  const tui = await startTui(scanState);
+
+  try {
+    await scan(config.rootPath, {
+      onTraverseEvent: (event, node) => {
+        applyTraverseEvent(scanState, event, node);
+      },
+    });
+    scanState.done = true;
+    tui.destroy();
+  } catch (err) {
+    tui.destroy();
+    throw err;
+  }
 }
 
 function handleFatalError(err: unknown): never {
