@@ -1,5 +1,6 @@
 import { resolveConfig } from "./config.ts";
 import { scan } from "./scan.ts";
+import { checkXattrAvailable } from "./xattr.ts";
 
 if (import.meta.main) {
   await main().catch(handleFatalError);
@@ -7,6 +8,7 @@ if (import.meta.main) {
 
 async function main(): Promise<void> {
   const config = await resolveConfig();
+  await checkXattrAvailable();
   await scan(config.rootPath);
 }
 

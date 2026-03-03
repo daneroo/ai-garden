@@ -1,6 +1,7 @@
 import { traverse, type TraverseOptions } from "./traverse.ts";
 import type { InspectedNodeRecord } from "./types.ts";
 import { inspectNode } from "./validate.ts";
+import { getXattrNames } from "./xattr.ts";
 
 export async function scan(
   rootPath: string,
@@ -8,6 +9,8 @@ export async function scan(
 ): Promise<InspectedNodeRecord[]> {
   const records: InspectedNodeRecord[] = [];
   const inProgressDirs = new Map<string, InspectedNodeRecord>();
+
+  const collectXattrs = options?.collectXattrs ?? getXattrNames;
 
   await traverse(
     rootPath,
@@ -39,7 +42,7 @@ export async function scan(
 
       records.push(inspectNode(event, node));
     },
-    options,
+    { collectXattrs },
   );
 
   if (inProgressDirs.size > 0) {

@@ -47,13 +47,13 @@ using Bun, TypeScript, OpenTUI, and commander.
 
 ### Phase 4 - xattr helpers + integration tests + strategy notes
 
-- [ ] Implement xattr collection using Bun subprocess and system `xattr`
-- [ ] Filter `com.apple.provenance`
-- [ ] Fail fast if xattr binary missing
-- [ ] Fail run on per-path xattr command failure
-- [ ] Add xattr integration tests under gitignored `data/`
-- [ ] Record `xattr -r` / `xattr -rl` research and strategy decision in this file
-- [ ] CI green
+- [x] Implement xattr collection using Bun subprocess and system `xattr`
+- [x] Filter `com.apple.provenance`
+- [x] Fail fast if xattr binary missing
+- [x] Fail run on per-path xattr command failure
+- [x] Add xattr integration tests under gitignored `data/`
+- [x] Record `xattr -r` / `xattr -rl` research and strategy decision in this file
+- [x] CI green
 
 ### Phase 5 - OpenTUI progress view
 
@@ -102,6 +102,18 @@ using Bun, TypeScript, OpenTUI, and commander.
 - After user review, Phase 3 was simplified to reduce intermediate types:
   inspected-record type moved to `src/types.ts`, validation builder collapsed to
   a single `inspectNode()` function, and scan pipeline kept minimal.
+- Phase 4 xattr findings:
+  - `xattr -r <root>` outputs one line per path/attribute in the form
+    `<path>: <attr>`.
+  - `xattr -rl <root>` appends values in the form `<path>: <attr>: <value>`,
+    and binary-like values are not stable for strict machine parsing without
+    extra normalization.
+  - Both recursive formats are parseable but awkward for unusual filenames and
+    value payloads; per-path `xattr <path>` is simpler and less error-prone.
+  - Decision: keep per-path xattr calls for correctness and clarity; revisit
+    recursive bulk mode only if profiling shows subprocess overhead is material.
+  - `xattr -px <attr> <path>` returns hex with spacing (for example `00 FF 7F`),
+    so any future value-level parsing should normalize whitespace.
 
 ## Session Audit Trail
 
@@ -123,3 +135,8 @@ using Bun, TypeScript, OpenTUI, and commander.
 - 2026-03-03 15:40 local - Phase 3 refinement per user feedback. Reduced
   unnecessary intermediate typing and helper layering in validation code while
   keeping behavior unchanged. CI green (`bun run ci`).
+- 2026-03-03 15:44 local - Phase 4 completed. Added xattr helpers
+  (`src/xattr.ts`), wired scan to collect xattrs by default (`src/scan.ts`),
+  added startup xattr availability check (`src/index.ts`), and added xattr
+  integration tests (`src/xattr.test.ts`). Recorded xattr recursive-output
+  research and strategy decision. CI green (`bun run ci`).
