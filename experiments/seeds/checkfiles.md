@@ -4,6 +4,17 @@ Deterministic filesystem validation CLI/TUI. Recursively traverses a root path,
 inspects files and directories, and verifies required filesystem properties
 (permissions and xattrs) in a reproducible order.
 
+## Major Blocking Note (Runtime/TUI Compatibility)
+
+- **Critical discovery**: OpenTUI currently requires Bun runtime support and is
+  not a safe fit for a Deno-first implementation.
+- This seed now has a hard decision gate before implementation:
+  1. Keep **Deno** runtime and rewrite TUI requirements to a Deno-compatible TUI
+     stack (for example TermUI).
+  2. Keep **OpenTUI** and abandon Deno as the runtime.
+- Do not start implementation until this decision is made and the seed is
+  updated consistently end-to-end.
+
 ## Project Objective (Hard Requirement)
 
 - Validate inspected tree properties:
@@ -32,12 +43,13 @@ inspects files and directories, and verifies required filesystem properties
 - **Deno** is required runtime/tooling (`deno run`, `deno test`, `deno lint`,
   `deno check`).
 - No Bun/Node runtime APIs in application code.
-- TUI stack: OpenTUI + React via npm packages in Deno.
+- TUI framework is currently unresolved due to the blocking compatibility note
+  above.
 
 ## CLI Interface
 
-- Flag parsing: use `commander` (npm) for automatic --help, --version, and
-  error handling. (Originally `@std/cli/parse-args` — switched for built-in help
+- Flag parsing: use `commander` (npm) for automatic --help, --version, and error
+  handling. (Originally `@std/cli/parse-args` — switched for built-in help
   generation.)
 - Flags:
   - `-r, --rootpath <path>`: root directory to inspect (optional override)
@@ -132,7 +144,7 @@ Collect metadata for each emitted record:
 
 ## TUI / UX
 
-- Use OpenTUI for interactive mode.
+- Use the selected runtime-compatible TUI framework for interactive mode.
 - TUI renderer should be configured with:
   - `exitOnCtrlC: true`
   - `useAlternateScreen: true`
@@ -269,8 +281,8 @@ Collect metadata for each emitted record:
 
 - Integration tests must use a local `data/` directory (gitignored, never
   checked in).
-- Tests create their own fixture files/directories programmatically at test
-  time — no pre-built or checked-in fixture assets.
+- Tests create their own fixture files/directories programmatically at test time
+  — no pre-built or checked-in fixture assets.
 - Fixtures should cover: normal files, directories, hidden entries, symlinks,
   files with non-standard permissions, files/directories with xattrs.
 - Each test (or test group) is responsible for setup and teardown of its
