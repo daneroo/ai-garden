@@ -3,12 +3,13 @@
 ## Harness
 
 - Agent: Claude Code (Opus 4.6)
-- CI gate: `deno task ci` after every edit
+- CI gate: `bun run ci` after every edit (was `deno task ci` before Phase 4.5)
 
 ## Goal
 
 Implement the `checkfiles` seed: a deterministic filesystem validation CLI/TUI
-using Deno, OpenTUI, and React.
+using Bun, OpenTUI, and React. (Migrated from Deno in Phase 4.5 — OpenTUI
+requires Bun runtime.)
 
 ## Milestones
 
@@ -56,6 +57,50 @@ using Deno, OpenTUI, and React.
 - [x] Graceful per-path failure (warning + empty array)
 - [x] Integration tests: 5 tests with real xattr calls (27 total)
 - [x] CI green
+
+### Phase 4.5 — Migrate Deno to Bun
+
+OpenTUI requires Bun at runtime (bun:ffi for native Zig bindings). Deno
+type-checks pass but runtime crashes. Seed rewritten to Bun stack.
+
+Scaffold:
+
+- [ ] Remove deno.json, deno.lock
+- [ ] Create package.json (scripts: lint, check, test, fmt, fmt:check, ci)
+- [ ] Create tsconfig.json (strict, jsx: react-jsx, jsxImportSource:
+      @opentui/react)
+- [ ] Add eslint + prettier configs
+- [ ] bun add commander @opentui/core @opentui/react react
+- [ ] bun add -d vitest typescript eslint prettier @types/react
+- [ ] Update .gitignore (node_modules instead of deno cache)
+
+Port source files (Deno API -> Node/Bun API):
+
+- [ ] types.ts: Deno.FileInfo -> Stats from node:fs
+- [ ] config.ts: Deno.args -> process.argv, Deno.env -> process.env, Deno.stat
+      -> node:fs/promises stat, Deno.exit -> process.exit, Deno.errors ->
+      ENOENT/EACCES error codes
+- [ ] traverse.ts: Deno.lstat -> lstat, Deno.readDir -> readdir, @std/path ->
+      node:path
+- [ ] xattr.ts: Deno.Command -> Bun.spawn
+- [ ] validate.ts: no changes expected (pure function)
+- [ ] index.ts: import.meta.main stays (Bun supports it)
+
+Port tests (Deno.test -> vitest):
+
+- [ ] config_test.ts -> config.test.ts (vitest describe/test/expect)
+- [ ] index_test.ts -> index.test.ts (Bun.spawn subprocess tests)
+- [ ] traverse_test.ts -> traverse.test.ts
+- [ ] validate_test.ts -> validate.test.ts
+- [ ] xattr_test.ts -> xattr.test.ts
+
+Cleanup:
+
+- [ ] Remove src/tui/ scaffolding (will redo in Phase 5)
+- [ ] Update CLAUDE.md (bun run ci, bun add)
+- [ ] Update AGENTS.md (bun references)
+- [ ] bun run ci green
+- [ ] All 27 tests passing under vitest
 
 ### Phase 5 — OpenTUI progress view
 
@@ -117,6 +162,10 @@ using Deno, OpenTUI, and React.
   - com.apple.provenance is kernel-enforced, cannot be removed (xattr -d/-c
     silently fail), present on all files created since macOS 15+. Validation
     must treat it as expected/ignorable, not a violation.
+- OpenTUI requires Bun runtime (bun:ffi for native Zig bindings). Deno
+  type-checks pass but runtime crashes with "ERR_UNSUPPORTED_ESM_URL_SCHEME:
+  Received protocol 'bun'". This forced a full Deno -> Bun migration in Phase
+  4.5. Seed document rewritten accordingly.
 
 ## Audit Trail
 
