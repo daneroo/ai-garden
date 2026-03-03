@@ -4,6 +4,7 @@
 // timer — no event emitters, no immutable snapshots per callback.
 
 import type { TraversalCallback } from "../types.ts";
+import { buildResultRow, type ResultRow } from "./format.ts";
 
 export interface ScanState {
   dirStack: string[]; // relativePaths of in-progress directories
@@ -12,6 +13,7 @@ export interface ScanState {
   processed: number;
   startedAt: number; // Date.now()
   done: boolean;
+  results: ResultRow[];
 }
 
 export function createScanState(): ScanState {
@@ -22,6 +24,7 @@ export function createScanState(): ScanState {
     processed: 0,
     startedAt: Date.now(),
     done: false,
+    results: [],
   };
 }
 
@@ -36,10 +39,12 @@ export function makeScanCallback(state: ScanState): TraversalCallback {
       case "post":
         state.processed++;
         state.dirStack = state.dirStack.filter((p) => p !== node.relativePath);
+        state.results.push(buildResultRow(node));
         break;
       case "leaf":
         state.files++;
         state.processed++;
+        state.results.push(buildResultRow(node));
         break;
     }
   };

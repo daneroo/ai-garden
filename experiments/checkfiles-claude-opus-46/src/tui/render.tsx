@@ -11,7 +11,19 @@ export async function startTui(scanState: ScanState): Promise<() => void> {
     useAlternateScreen: true,
   });
 
-  createRoot(renderer).render(<App scanState={scanState} />);
+  const cleanup = () => {
+    renderer.destroy();
+    process.exit(0);
+  };
 
-  return () => renderer.destroy();
+  // Defensive: catch render exceptions and exit cleanly
+  process.on("uncaughtException", (err) => {
+    renderer.destroy();
+    process.stderr.write(`render error: ${err.message}\n${err.stack ?? ""}\n`);
+    process.exit(1);
+  });
+
+  createRoot(renderer).render(<App scanState={scanState} onQuit={cleanup} />);
+
+  return cleanup;
 }

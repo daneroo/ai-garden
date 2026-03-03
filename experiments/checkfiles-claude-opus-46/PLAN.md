@@ -118,14 +118,19 @@ Cleanup:
 
 ### Phase 6 — OpenTUI results table
 
-- [ ] Scrollable table with header pinned
-- [ ] Columns: mode (ls-like), path (compact/indented), xattrs
-- [ ] Keyboard controls (q/esc, arrows, sort cycling, reverse, jump)
-- [ ] Sort by path and xattrs with relativePath tie-breaker
-- [ ] Violation colorization (red)
-- [ ] Legend bar
-- [ ] Tests for compact path rendering and canonical sort
-- [ ] CI green
+- [x] Scrollable table with persistent header (title + summary stays across views)
+- [x] Columns: mode (ls-like via formatMode), xattrs (compact with ..prefix), path (indented)
+- [x] Keyboard controls (q/esc clean exit, up/down, left/right sort column, r reverse, g/G jump, home/end)
+- [x] Sort by path and xattrs with relativePath tie-breaker
+- [x] Per-field violation colorization (red on mode/xattr/path independently)
+- [x] Legend bar with keybinding summary
+- [x] Root "." displayed as "/" in path column
+- [x] xattr common prefix ellipsis (com.docker.grpcfuse.ownership -> ..ownership)
+- [x] Timer stops after scan, elapsed frozen, summary simplified for results view
+- [x] Clean exit via renderer.destroy() (no cursor artifacts)
+- [x] ErrorBoundary wraps App for defensive render exception handling
+- [x] Pure format helpers in format.ts (no OpenTUI dependency) with 26 unit tests
+- [x] CI green (61 tests)
 
 ### Phase 7 — Violations-only filter
 
@@ -232,3 +237,26 @@ Cleanup:
   - Fixed OpenTUI constraint: <br> must be inside <text>, replaced with <text>
     spacers
   - 35 tests passing, bun run ci green
+- Phase 6
+  - src/tui/format.ts: ResultRow interface, formatMode() (ls-like rwx with @
+    suffix), displayPath() (root "." -> "/"), buildResultRow() (calls validate,
+    classifies per-field violations), sortByPath/sortByXattrs comparators,
+    commonXattrPrefix() + compactXattr() for ..prefix ellipsis
+  - src/tui/format.test.ts: 26 unit tests (formatMode, displayPath, buildResultRow
+    with violation classification, sort comparators, xattr prefix/compact)
+  - src/tui/ResultsTable.tsx: manual cursor/viewport (no scrollbox), useKeyboard
+    for navigation + sort cycling + quit, per-field <span> coloring (mode/xattr/path
+    independently red), legend bar
+  - src/tui/App.tsx: owns persistent header (title + summary), polls scanState
+    with 100ms timer that stops on done, renders ProgressView or ResultsTable
+  - src/tui/ProgressView.tsx: simplified to stateless dirStack-only component,
+    exports snap/Snapshot/formatElapsed for App
+  - src/tui/render.tsx: ErrorBoundary class wraps App, onQuit callback destroys
+    renderer then exits (clean alternate screen teardown)
+  - src/tui/scan-state.ts: added results: ResultRow[] to ScanState, buildResultRow
+    called on leaf/post events during traversal
+  - src/index.ts: removed 300ms delay + cleanup, TUI stays alive for ResultsTable
+  - Iterative fixes from review: timer freeze, ETA removal for results view,
+    xattr prefix ellipsis, root "." -> "/", per-field coloring (not whole row),
+    <span> not nested <text> (OpenTUI constraint), clean exit via renderer.destroy
+  - 61 tests passing, bun run ci green

@@ -16,14 +16,9 @@ async function main(): Promise<void> {
 
   const scanState = createScanState();
   const cb = makeScanCallback(scanState);
-  const cleanup = await startTui(scanState);
+  await startTui(scanState);
 
-  try {
-    await traverse(config.rootPath, cb);
-    scanState.done = true;
-    // Brief delay to let the final frame render before cleanup
-    await new Promise((resolve) => setTimeout(resolve, 300));
-  } finally {
-    cleanup();
-  }
+  await traverse(config.rootPath, cb);
+  scanState.done = true;
+  // TUI stays alive — ResultsTable handles exit via q/esc
 }
