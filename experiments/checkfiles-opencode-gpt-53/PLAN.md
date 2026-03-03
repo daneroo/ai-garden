@@ -39,11 +39,11 @@ using Bun, TypeScript, OpenTUI, and commander.
 
 ### Phase 3 - Validation rules + fail-fast error handling
 
-- [ ] Implement validation rules (mode, xattrs, hidden, symlink)
-- [ ] Implement derived fields (`modePerm`, validity flags, violations)
-- [ ] Ensure fatal failures bubble to top-level error handler
-- [ ] Add validation tests
-- [ ] CI green
+- [x] Implement validation rules (mode, xattrs, hidden, symlink)
+- [x] Implement derived fields (`modePerm`, validity flags, violations)
+- [x] Ensure fatal failures bubble to top-level error handler
+- [x] Add validation tests
+- [x] CI green
 
 ### Phase 4 - xattr helpers + integration tests + strategy notes
 
@@ -96,6 +96,12 @@ using Bun, TypeScript, OpenTUI, and commander.
 - Phase 2 keeps traversal model minimal (`relativePath`, `basename`, `stat`,
   `xattrs`) and carries lifecycle in traversal events (`dir-pre`, `dir-post`,
   `file`) to avoid redundant persisted derived fields.
+- Phase 3 introduces a separate validation/derivation layer (`buildInspectedRecord`)
+  so traversal remains raw and deterministic while UI/reporting can consume the
+  full required record shape.
+- After user review, Phase 3 was simplified to reduce intermediate types:
+  inspected-record type moved to `src/types.ts`, validation builder collapsed to
+  a single `inspectNode()` function, and scan pipeline kept minimal.
 
 ## Session Audit Trail
 
@@ -109,3 +115,11 @@ using Bun, TypeScript, OpenTUI, and commander.
   node model (`src/traverse.ts`, `src/types.ts`) with deterministic lexical
   ordering, two-phase directory lifecycle, hidden/symlink non-recursion rules,
   and traversal tests (`src/traverse.test.ts`). CI green (`bun run ci`).
+- 2026-03-03 15:37 local - Phase 3 completed. Added derived inspected-record
+  builder (`src/validate.ts`), scan pipeline (`src/scan.ts`), top-level fatal
+  error handling in CLI (`src/index.ts`), and tests for validation/fail-fast
+  behavior (`src/validate.test.ts`, `src/scan.test.ts`, `src/index.test.ts`).
+  CI green (`bun run ci`).
+- 2026-03-03 15:40 local - Phase 3 refinement per user feedback. Reduced
+  unnecessary intermediate typing and helper layering in validation code while
+  keeping behavior unchanged. CI green (`bun run ci`).

@@ -1,9 +1,18 @@
 import { resolveConfig } from "./config.ts";
+import { scan } from "./scan.ts";
 
 if (import.meta.main) {
-  await main();
+  await main().catch(handleFatalError);
 }
 
 async function main(): Promise<void> {
-  await resolveConfig();
+  const config = await resolveConfig();
+  await scan(config.rootPath);
+}
+
+function handleFatalError(err: unknown): never {
+  const message =
+    err instanceof Error ? `${err.message}\n` : `${String(err)}\n`;
+  process.stderr.write(`Fatal: ${message}`);
+  process.exit(1);
 }
