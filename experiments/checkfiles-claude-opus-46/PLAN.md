@@ -283,3 +283,10 @@ Cleanup:
     keybindings section documenting results view controls
   - Code audit: no dead imports, no stale Deno references, no cleanup needed
   - 68 tests passing, bun run ci green
+- Issue 1 (post-Phase 8)
+  - Bug: violations count showed 0 — useMemo on mutable array reference never
+    re-ran. Fix: track violations counter in ScanState, increment in callback,
+    expose via Snapshot. App reads s.violations from snapshot (updates on 100ms
+    poll).
+  - Added elapsed: and rate: labels to both summary lines
+  - 68 tests passing, bun run ci green

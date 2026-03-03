@@ -7,6 +7,7 @@ export interface Snapshot {
   files: number;
   dirs: number;
   processed: number;
+  violations: number;
   total: number;
   elapsed: number;
   done: boolean;
@@ -19,6 +20,7 @@ export function snap(state: ScanState): Snapshot {
     files: state.files,
     dirs: state.dirs,
     processed: state.processed,
+    violations: state.violations,
     total: state.files + state.dirs,
     elapsed: now - state.startedAt,
     done: state.done,
