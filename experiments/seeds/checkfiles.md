@@ -4,6 +4,13 @@ Deterministic filesystem validation CLI/TUI. Recursively traverses a root path,
 inspects files and directories, and verifies required filesystem properties
 (permissions, xattrs, hidden entries, symlinks) in reproducible order.
 
+## Status
+
+- Experiment concluded.
+- Winner: `claude-opus-46` (Opus).
+- Key learning: OpenTUI requires Bun runtime (`bun:ffi`). Node/Deno paths may
+  type-check but fail at runtime.
+
 ## Project Objective (Hard Requirement)
 
 - Validate inspected tree properties:
@@ -88,7 +95,8 @@ ROOT_PATH=/Volumes/Space/Staging
 ## Deterministic Ordering (Hard Requirement)
 
 - Child ordering must be reproducible across runs on unchanged data.
-- Sort by full relative path ascending, using locale-independent lexical compare.
+- Sort by full relative path ascending, using locale-independent lexical
+  compare.
 - Document comparator choice in code comments and tests.
 
 ## Metadata Collection
@@ -121,7 +129,8 @@ Collect metadata for each node record:
 
 ### xattrs (Hard Requirement)
 
-- xattrs must be collected using system `xattr` command (not a JS xattr library).
+- xattrs must be collected using system `xattr` command (not a JS xattr
+  library).
 - Use Bun subprocess APIs (`Bun.spawn` or `Bun.spawnSync`).
 - A single path can have multiple xattrs; collect **all** attribute names.
 - Parse `xattr <path>` stdout as newline-delimited attribute names.
@@ -294,8 +303,8 @@ Collect metadata for each node record:
 - OpenTUI JSX constraints (differ from standard React):
   - use `<text>` spacer lines for blank rows — `<br>` is not a valid OpenTUI
     element
-  - use `<span fg="...">` for inline per-field coloring within a `<text>` row
-    — nested `<text>` elements are not valid inline children
+  - use `<span fg="...">` for inline per-field coloring within a `<text>` row —
+    nested `<text>` elements are not valid inline children
 - Keep row-count math explicit:
   - `visibleRows = terminalHeight - chromeLines` (header, separator, status)
 - Add tests for:
@@ -310,8 +319,8 @@ Collect metadata for each node record:
 
 ## Research Items (Required)
 
-- Verify exact behavior/parseability of recursive xattr listing via
-  `xattr -r` and `xattr -rl`:
+- Verify exact behavior/parseability of recursive xattr listing via `xattr -r`
+  and `xattr -rl`:
   - does one command reliably return all path + name/value pairs?
   - is output format stable enough for machine parsing?
   - how does it behave with binary values and unusual filenames?
@@ -336,3 +345,46 @@ Collect metadata for each node record:
   - correctness and determinism over UI polish
   - traversal and validation correctness are blocking prerequisites for TUI work
   - CI green (`bun run ci`) is required before closing each phase
+
+## Compare Implementations
+
+Top line from this experiment: prefer `claude-opus-46`, hands down.
+
+### Metrics
+
+| Metric                           | claude-opus-46 | opencode-gpt-53 |
+| -------------------------------- | -------------: | --------------: |
+| Prod files (.ts/.tsx, no tests)  |             12 |              13 |
+| Test files                       |              7 |               8 |
+| Prod LoC                         |            800 |             825 |
+| Test LoC                         |            889 |             589 |
+| Test/Prod ratio                  |           1.11 |            0.71 |
+| Complexity funcs (>1, prod only) |             39 |              41 |
+| Complexity sum (prod only)       |            144 |             151 |
+| Avg complexity (prod only)       |           3.69 |            3.68 |
+| P90 complexity (prod only)       |              8 |               6 |
+| Max complexity (prod only)       |             15 |              15 |
+
+### Takeaways
+
+- Both implementations are close on practical size/complexity metrics and both
+  can satisfy the seed requirements.
+- `claude-opus-46` is preferred for style and maintainability in this seed:
+  simpler core model, narrower type surface, and less cross-layer coupling.
+- `opencode-gpt-53` is stronger on explicit record modeling, but introduces a
+  broader shared contract (`InspectedNodeRecord`) that invites boundary coupling
+  as the codebase evolves.
+
+### Anti-Overtyping Guidance (Seed Rule)
+
+- Prefer minimal internal types and narrow function signatures over wide shared
+  interfaces.
+- Treat `violations: string[]` as the canonical validation output; derive UI
+  booleans/labels at presentation boundaries.
+- Do not export broad record interfaces unless they are required by multiple
+  runtime modules with clear ownership.
+- Avoid creating option bags and callback extension points unless there is an
+  active runtime use case (test-only injection does not justify public surface
+  growth by itself).
+- Keep scan/domain types separate from UI view-model types; map explicitly at
+  boundaries.
