@@ -1,4 +1,4 @@
-// ResultsTable — scrollable results with keyboard navigation and column sorting
+// ResultsTable — scrollable results with keyboard navigation and violations filter
 
 import { useState, useMemo } from "react";
 import { useKeyboard, useTerminalDimensions } from "@opentui/react";
@@ -7,11 +7,10 @@ import {
   compactXattr,
   commonXattrPrefix,
   sortByPath,
-  sortByXattrs,
+  filterViolations,
   type ResultRow,
 } from "./format.ts";
 
-type SortColumn = "path" | "xattrs";
 type SortDir = "asc" | "desc";
 
 // Lines reserved: App header (title+summary+blank=3) + table header (columns+separator=2) + footer (blank+legend=2) + padding (2)
@@ -29,24 +28,35 @@ export function ResultsTable({
 
   const [cursor, setCursor] = useState(0);
   const [offset, setOffset] = useState(0);
-  const [sortCol, setSortCol] = useState<SortColumn>("path");
   const [sortDir, setSortDir] = useState<SortDir>("asc");
+  const [showViolationsOnly, setShowViolationsOnly] = useState(false);
 
   const xattrPrefix = useMemo(() => commonXattrPrefix(rows), [rows]);
 
+  const filtered = useMemo(
+    () => (showViolationsOnly ? filterViolations(rows) : rows),
+    [rows, showViolationsOnly],
+  );
+
   const sorted = useMemo(() => {
-    const cmp = sortCol === "path" ? sortByPath : sortByXattrs;
-    const copy = [...rows].sort(cmp);
+    const copy = [...filtered].sort(sortByPath);
     if (sortDir === "desc") copy.reverse();
     return copy;
-  }, [rows, sortCol, sortDir]);
+  }, [filtered, sortDir]);
+
+  // Set of violation paths for dimming ancestors
+  const violationPathSet = useMemo(() => {
+    if (!showViolationsOnly) return null;
+    return new Set(
+      rows.filter((r) => r.violations.length > 0).map((r) => r.relativePath),
+    );
+  }, [rows, showViolationsOnly]);
 
   const clamp = (idx: number) => Math.max(0, Math.min(idx, sorted.length - 1));
 
   const moveCursor = (next: number) => {
     const clamped = clamp(next);
     setCursor(clamped);
-    // Adjust viewport to keep cursor visible
     if (clamped < offset) setOffset(clamped);
     else if (clamped >= offset + viewportSize)
       setOffset(clamped - viewportSize + 1);
@@ -72,12 +82,6 @@ export function ResultsTable({
           moveCursor(cursor + 1);
         }
         break;
-      case "left":
-        setSortCol((c) => (c === "path" ? "xattrs" : "path"));
-        break;
-      case "right":
-        setSortCol((c) => (c === "path" ? "xattrs" : "path"));
-        break;
       case "home":
         moveCursor(0);
         break;
@@ -86,6 +90,11 @@ export function ResultsTable({
         break;
       case "r":
         setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+        break;
+      case "v":
+        setShowViolationsOnly((v) => !v);
+        setCursor(0);
+        setOffset(0);
         break;
       case "g":
         if (!key.shift) moveCursor(0);
@@ -99,8 +108,7 @@ export function ResultsTable({
   });
 
   const visible = sorted.slice(offset, offset + viewportSize);
-  const arrow = (col: SortColumn) =>
-    sortCol === col ? (sortDir === "asc" ? " \u2191" : " \u2193") : "";
+  const arrow = sortDir === "asc" ? " \u2191" : " \u2193";
 
   // Column widths
   const modeWidth = 11; // "-rw-r--r--@"
@@ -112,8 +120,7 @@ export function ResultsTable({
       <text>
         {"MODE".padEnd(modeWidth + 1)}
         {"XATTRS".padEnd(xattrWidth)}
-        {`PATH${arrow("path")}`}
-        {sortCol === "xattrs" ? `  [xattrs${arrow("xattrs")}]` : ""}
+        {`PATH${arrow}`}
       </text>
       <text fg="#666666">
         {"─".repeat(Math.min(80, modeWidth + xattrWidth + 40))}
@@ -124,6 +131,9 @@ export function ResultsTable({
         const idx = offset + i;
         const bg = idx === cursor ? "#333333" : undefined;
         const red = "#ff4444";
+        const dim = "#666666";
+        const isAncestor =
+          violationPathSet !== null && !violationPathSet.has(row.relativePath);
 
         const modePart = row.mode.padEnd(modeWidth + 1);
         const xattrPart = (
@@ -133,11 +143,15 @@ export function ResultsTable({
         ).padEnd(xattrWidth);
         const pathPart = displayPath(row.depth, row.basename);
 
+        const modeFg = isAncestor ? dim : row.modeViolation ? red : undefined;
+        const xattrFg = isAncestor ? dim : row.xattrViolation ? red : undefined;
+        const pathFg = isAncestor ? dim : row.pathViolation ? red : undefined;
+
         return (
           <text key={row.relativePath} bg={bg}>
-            <span fg={row.modeViolation ? red : undefined}>{modePart}</span>
-            <span fg={row.xattrViolation ? red : undefined}>{xattrPart}</span>
-            <span fg={row.pathViolation ? red : undefined}>{pathPart}</span>
+            <span fg={modeFg}>{modePart}</span>
+            <span fg={xattrFg}>{xattrPart}</span>
+            <span fg={pathFg}>{pathPart}</span>
           </text>
         );
       })}
@@ -145,7 +159,8 @@ export function ResultsTable({
       {/* Legend */}
       <text> </text>
       <text fg="#666666">
-        ↑↓ navigate | ←→ sort column | r reverse | g/G top/bottom | q quit
+        ↑↓ navigate | shift-↑↓/r reverse | v violations | g/G top/bottom | q
+        quit
       </text>
     </box>
   );

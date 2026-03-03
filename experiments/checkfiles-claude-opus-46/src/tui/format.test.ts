@@ -7,7 +7,8 @@ import {
   commonXattrPrefix,
   buildResultRow,
   sortByPath,
-  sortByXattrs,
+  ancestorPaths,
+  filterViolations,
   type ResultRow,
 } from "./format.ts";
 import type { FileNode } from "../types.ts";
@@ -162,20 +163,93 @@ test("sortByPath: equal paths return 0", () => {
   expect(sortByPath(makeRow("same"), makeRow("same"))).toBe(0);
 });
 
-test("sortByXattrs: sorts by xattr key", () => {
-  const rows = [
-    makeRow("b.txt", ["com.z"]),
-    makeRow("a.txt", ["com.a"]),
-    makeRow("c.txt", []),
-  ];
-  rows.sort(sortByXattrs);
-  expect(rows.map((r) => r.relativePath)).toEqual(["c.txt", "a.txt", "b.txt"]);
+// --- ancestorPaths ---
+
+test("ancestorPaths: root has no ancestors", () => {
+  expect(ancestorPaths(".")).toEqual([]);
 });
 
-test("sortByXattrs: tie-breaker by path", () => {
-  const rows = [makeRow("z.txt", ["x"]), makeRow("a.txt", ["x"])];
-  rows.sort(sortByXattrs);
-  expect(rows.map((r) => r.relativePath)).toEqual(["a.txt", "z.txt"]);
+test("ancestorPaths: top-level file", () => {
+  expect(ancestorPaths("foo.txt")).toEqual(["."]);
+});
+
+test("ancestorPaths: single-level nested", () => {
+  expect(ancestorPaths("a/b.txt")).toEqual([".", "a"]);
+});
+
+test("ancestorPaths: deep nesting", () => {
+  expect(ancestorPaths("a/b/c.txt")).toEqual([".", "a", "a/b"]);
+});
+
+// --- filterViolations ---
+
+function makeViolationRow(
+  relativePath: string,
+  violations: string[] = [],
+): ResultRow {
+  return {
+    ...makeRow(relativePath),
+    violations,
+    modeViolation: violations.some((v) => v.startsWith("mode ")),
+    xattrViolation: violations.some((v) => v.startsWith("has xattrs")),
+    pathViolation: violations.some(
+      (v) => v === "hidden entry" || v === "symlink",
+    ),
+  };
+}
+
+test("filterViolations: no violations returns empty", () => {
+  const rows = [makeViolationRow("."), makeViolationRow("a.txt")];
+  expect(filterViolations(rows)).toEqual([]);
+});
+
+test("filterViolations: single violation includes ancestors", () => {
+  const rows = [
+    makeViolationRow("."),
+    makeViolationRow("src"),
+    makeViolationRow("src/bad.txt", ["mode 600"]),
+    makeViolationRow("other.txt"),
+  ];
+  const filtered = filterViolations(rows);
+  expect(filtered.map((r) => r.relativePath)).toEqual([
+    ".",
+    "src",
+    "src/bad.txt",
+  ]);
+});
+
+test("filterViolations: shared ancestors appear once", () => {
+  const rows = [
+    makeViolationRow("."),
+    makeViolationRow("a"),
+    makeViolationRow("a/x.txt", ["mode 600"]),
+    makeViolationRow("a/y.txt", ["has xattrs"]),
+  ];
+  const filtered = filterViolations(rows);
+  expect(filtered.map((r) => r.relativePath)).toEqual([
+    ".",
+    "a",
+    "a/x.txt",
+    "a/y.txt",
+  ]);
+});
+
+test("filterViolations: root violation shown alone", () => {
+  const rows = [
+    makeViolationRow(".", ["mode 600"]),
+    makeViolationRow("ok.txt"),
+  ];
+  const filtered = filterViolations(rows);
+  expect(filtered.map((r) => r.relativePath)).toEqual(["."]);
+});
+
+test("filterViolations: all violations keeps all with ancestors", () => {
+  const rows = [
+    makeViolationRow(".", ["mode 600"]),
+    makeViolationRow("a.txt", ["has xattrs"]),
+  ];
+  const filtered = filterViolations(rows);
+  expect(filtered.map((r) => r.relativePath)).toEqual([".", "a.txt"]);
 });
 
 // --- commonXattrPrefix / compactXattr ---

@@ -96,13 +96,32 @@ export function sortByPath(a: ResultRow, b: ResultRow): number {
       : 0;
 }
 
-export function sortByXattrs(a: ResultRow, b: ResultRow): number {
-  const cmp =
-    a.xattrSortKey < b.xattrSortKey
-      ? -1
-      : a.xattrSortKey > b.xattrSortKey
-        ? 1
-        : 0;
-  if (cmp !== 0) return cmp;
-  return sortByPath(a, b);
+// Return ancestor directory paths from root to parent (excluding the path itself)
+export function ancestorPaths(relativePath: string): string[] {
+  if (relativePath === ".") return [];
+  const parts = relativePath.split("/");
+  if (parts.length === 1) return ["."];
+  const ancestors: string[] = ["."];
+  for (let i = 1; i < parts.length; i++) {
+    ancestors.push(parts.slice(0, i).join("/"));
+  }
+  return ancestors;
+}
+
+// Filter to violation rows + their ancestor directories, sorted by path
+export function filterViolations(rows: ResultRow[]): ResultRow[] {
+  const violationPaths = new Set<string>();
+  const ancestorSet = new Set<string>();
+
+  for (const row of rows) {
+    if (row.violations.length > 0) {
+      violationPaths.add(row.relativePath);
+      for (const a of ancestorPaths(row.relativePath)) {
+        ancestorSet.add(a);
+      }
+    }
+  }
+
+  const keep = new Set([...violationPaths, ...ancestorSet]);
+  return rows.filter((r) => keep.has(r.relativePath)).sort(sortByPath);
 }

@@ -132,15 +132,19 @@ Cleanup:
 - [x] Pure format helpers in format.ts (no OpenTUI dependency) with 26 unit tests
 - [x] CI green (61 tests)
 
-### Phase 7 — Violations-only filter
+### Phase 7 — Violations-only filter + sort simplification
 
-- [ ] Toggle with `v` key
-- [ ] Show only rows with violations > 0
-- [ ] Include ancestor directories as dim context rows
-- [ ] De-duplicate shared ancestors
-- [ ] Maintain canonical path order
-- [ ] Tests for filter behavior
-- [ ] CI green
+- [x] `v` key toggles violations-only filter (resets cursor to top)
+- [x] filterViolations() keeps violation rows + ancestor directories
+- [x] ancestorPaths() computes parent chain from root to parent
+- [x] De-duplicate shared ancestors (Set-based)
+- [x] Ancestor rows rendered dim (fg="#666666") when filter active
+- [x] Removed sortCol state, SortColumn type, left/right key handlers
+- [x] Always sort by path; shift-up/shift-down and `r` reverse direction
+- [x] Header shows violation count in summary line
+- [x] Updated legend: shift-up/down/r reverse, v violations
+- [x] 9 new tests (4 ancestorPaths + 5 filterViolations), removed 2 sortByXattrs tests
+- [x] CI green (68 tests)
 
 ### Phase 8 — Polish / refactor / docs
 
@@ -260,3 +264,17 @@ Cleanup:
     xattr prefix ellipsis, root "." -> "/", per-field coloring (not whole row),
     <span> not nested <text> (OpenTUI constraint), clean exit via renderer.destroy
   - 61 tests passing, bun run ci green
+- Phase 7
+  - src/tui/format.ts: added ancestorPaths() (parent chain from root to parent),
+    filterViolations() (keeps violations + ancestor rows, deduped, path-sorted),
+    removed sortByXattrs (no longer used)
+  - src/tui/format.test.ts: 4 ancestorPaths tests (root/top-level/nested/deep),
+    5 filterViolations tests (no violations/single/shared ancestors/root/all),
+    removed 2 sortByXattrs tests
+  - src/tui/ResultsTable.tsx: removed sortCol state, SortColumn type, left/right
+    key handlers. Added showViolationsOnly state toggled by `v` (resets cursor).
+    Ancestor rows dimmed when filter active. Always sorts by path, shift-up/down
+    and `r` reverse direction. Updated legend.
+  - src/tui/App.tsx: computes violationCount from results, shows in header
+    summary line (items + violations + elapsed + rate)
+  - 68 tests passing, bun run ci green

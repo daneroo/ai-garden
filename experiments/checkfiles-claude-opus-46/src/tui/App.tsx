@@ -1,6 +1,6 @@
 // App — top-level TUI component: persistent header, progress or results below
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { ProgressView, snap, formatElapsed } from "./ProgressView.tsx";
 import { ResultsTable } from "./ResultsTable.tsx";
 import type { ScanState } from "./scan-state.ts";
@@ -23,6 +23,11 @@ export function App({
     return () => clearInterval(id);
   }, [scanState, s.done]);
 
+  const violationCount = useMemo(
+    () => scanState.results.filter((r) => r.violations.length > 0).length,
+    [scanState.results],
+  );
+
   const remaining = s.total - s.processed;
   const rate = s.elapsed > 0 ? Math.round((s.processed / s.elapsed) * 1000) : 0;
   const eta =
@@ -43,8 +48,8 @@ export function App({
       {/* Summary line */}
       {s.done ? (
         <text>
-          items: {s.total} (F:{s.files} D:{s.dirs}) | {formatElapsed(s.elapsed)}{" "}
-          | {rate}/s
+          items: {s.total} (F:{s.files} D:{s.dirs}) | violations:{" "}
+          {violationCount} | {formatElapsed(s.elapsed)} | {rate}/s
         </text>
       ) : (
         <text>
