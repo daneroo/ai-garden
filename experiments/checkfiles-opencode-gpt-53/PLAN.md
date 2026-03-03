@@ -85,9 +85,9 @@ using Bun, TypeScript, OpenTUI, and commander.
 
 ### Phase 8 - Polish / refactor / docs
 
-- [ ] Final docs cleanup (`README.md` usage and keybindings)
-- [ ] Code audit for seed compliance
-- [ ] CI green
+- [x] Final docs cleanup (`README.md` usage and keybindings)
+- [x] Code audit for seed compliance
+- [x] CI green
 
 ## Decisions / Notes
 
@@ -121,6 +121,8 @@ using Bun, TypeScript, OpenTUI, and commander.
   and canonical lexical compare over full `relativePath`.
 - Phase 7 adds `violations-only` as a view filter (not a new sort mode):
   violating rows stay authoritative, ancestor rows are context-only and dimmed.
+- Phase 8 focuses on reducing surprise: docs now explicitly mirror implemented
+  keyboard controls and fallback navigation keys.
 
 ## Session Audit Trail
 
@@ -162,3 +164,6 @@ using Bun, TypeScript, OpenTUI, and commander.
   canonical order retention in filtered mode, and filtering helpers/tests
   (`ancestorPaths`, `filterViolations`) in `src/tui/format.ts` and
   `src/tui/format.test.ts`. CI green (`bun run ci`).
+- 2026-03-03 15:55 local - Phase 8 completed. Updated README usage/keybindings,
+  performed code audit for current seed requirements, and revalidated full CI.
+  CI green (`bun run ci`).
