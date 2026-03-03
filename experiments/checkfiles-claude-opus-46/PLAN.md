@@ -106,12 +106,15 @@ Cleanup:
 
 ### Phase 5 — OpenTUI progress view
 
-- [ ] Renderer setup (exitOnCtrlC, useAlternateScreen)
-- [ ] Progress component: path stack, aggregate summary
-- [ ] Elapsed time, rate-based ETA
-- [ ] In-progress directory dimming
-- [ ] Cleanup on exit/error
-- [ ] CI green
+- [x] ScanState interface + createScanState() factory + makeScanCallback()
+- [x] Mutable bridge pattern: traversal mutates state, React polls at 100ms
+- [x] Renderer setup (exitOnCtrlC, useAlternateScreen)
+- [x] Progress component: path stack (grey, indented), aggregate summary
+- [x] Elapsed time, rate-based ETA, items/s rate
+- [x] In-progress directory dimming (fg="#666666")
+- [x] Cleanup on exit/error (try/finally + renderer.destroy())
+- [x] Unit tests for scan-state (6 tests, no OpenTUI dependency)
+- [x] CI green (35 tests)
 
 ### Phase 6 — OpenTUI results table
 
@@ -218,3 +221,14 @@ Cleanup:
     (prettier v3 respects .gitignore)
   - CLAUDE.md, AGENTS.md updated to bun commands
   - 27 tests passing, bun run ci green
+- Phase 5
+  - src/tui/scan-state.ts: ScanState interface, createScanState(), makeScanCallback()
+  - src/tui/ProgressView.tsx: 100ms polling via snap(), dirStack display (grey),
+    summary line (items, F:D, processed, remaining, elapsed, rate, ETA)
+  - src/tui/App.tsx: thin shell for ProgressView (Phase 6 adds results view)
+  - src/tui/render.tsx: startTui() creates renderer + React root, returns cleanup
+  - src/index.ts: wired traversal + TUI with try/finally cleanup
+  - src/tui/scan-state.test.ts: 6 unit tests (no OpenTUI dependency)
+  - Fixed OpenTUI constraint: <br> must be inside <text>, replaced with <text>
+    spacers
+  - 35 tests passing, bun run ci green
