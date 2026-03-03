@@ -103,7 +103,6 @@ Collect metadata for each node record:
 - `modePerm` (permission bits `mode & 0o777`, formatted as octal string like
   `755`)
 - `xattrs` (array of attribute names)
-- `xattrSortKey` (sorted xattr names joined with stable delimiter)
 - `modeValid` (whether mode matches required value for kind)
 - `xattrsValid` (whether xattrs array is empty)
 - `violations` (list of rule failures for that node)
@@ -122,11 +121,12 @@ Collect metadata for each node record:
 - Use Bun subprocess APIs (`Bun.spawn` or `Bun.spawnSync`).
 - A single path can have multiple xattrs; collect **all** attribute names.
 - Parse `xattr <path>` stdout as newline-delimited attribute names.
+- Filter out `com.apple.provenance` from validation/display for now (it is
+  kernel-enforced and not practically fixable).
 - For value-level diagnostics, use per-attr reads (`xattr -px <attr> <path>`)
   and parse hex safely.
 - If xattr command is missing, fail fast with a clear fatal error.
-- If xattr fails for a specific path, record warning and continue with
-  `xattrs: []`.
+- If xattr fails for a specific path, throw and fail the run (unexpected state).
 
 ## TUI / UX
 
@@ -177,8 +177,8 @@ Collect metadata for each node record:
   path prefixes.
 - v1 table columns (in order):
   - `mode` (derived)
-  - `path`
   - `xattrs`
+  - `path`
 - `mode` should use ls-like derived display:
   - kind prefix (`d` directory, `-` file, `l` symlink)
   - rwx bits derived from `mode & 0o777`
@@ -187,7 +187,6 @@ Collect metadata for each node record:
 - Required keyboard controls:
   - `q` / `esc` quit
   - up/down scroll line
-  - left/right cycle sort column
   - `v` toggle `all` / `violations-only` view
   - `r` or `shift-up`/`shift-down` reverse sort order on current column
   - `cmd-up` / `cmd-down` jump to top/bottom
@@ -204,10 +203,9 @@ Collect metadata for each node record:
   - column: `path`
   - direction: ascending
 - Sort semantics (hard requirement):
-  - sortable columns: `path` and `xattrs`
+  - only `path` sorting is required in v1
   - `path` sort uses lexical compare on full `relativePath`
-  - `xattrs` sort uses lexical compare on `xattrSortKey`
-  - tie-breaker for all sorts: `relativePath` ascending
+  - tie-breaker for equal paths is `relativePath` (stable deterministic order)
 - Filtering:
   - support toggle for `all` vs `violations-only`
   - keyboard shortcut `v` must toggle this filter
@@ -220,9 +218,9 @@ Collect metadata for each node record:
   - context rows are not collapsible in v1
   - context rows are not independently sortable/filter-matched rows
 - `xattrs` display formatting:
-  - render concatenated sorted xattr names for readability
-  - truncate cell with ellipsis when width-constrained
-  - sorting must still use full untruncated `xattrSortKey`
+  - strip `com.<vendor>.` prefix for readability where applicable
+  - when multiple xattrs exist, show first compacted name plus `+N`
+  - truncate with ellipsis when width-constrained
 
 ## Output
 
@@ -232,10 +230,12 @@ Collect metadata for each node record:
 
 ## Error Handling
 
-- Continue on per-path inspection failures (stat/xattr errors), log warning, and
-  keep traversing.
 - Fatal errors (invalid root path, missing xattr command) should exit code 1.
-- Successful run (even with warnings) exits code 0.
+- `readdir` -> `lstat` mismatches and per-path xattr command failures should be
+  treated as fatal and bubble to top-level error handling.
+- On fatal errors after TUI initialization, restore terminal state before
+  propagating/logging the error.
+- Successful run exits code 0.
 
 ## package.json Scripts
 
@@ -276,7 +276,13 @@ Collect metadata for each node record:
 - TypeScript/OpenTUI setup in `tsconfig.json` should include:
   - `"jsx": "react-jsx"`
   - `"jsxImportSource": "@opentui/react"`
-  - `"types": ["bun", "node", "@opentui/react"]`
+  - `"types": ["bun", "node"]`
+- Keep filesystem node model minimal/raw (`relativePath`, `basename`, `stat`,
+  `xattrs`) and treat traversal event (`pre`/`post`/`leaf`) as callback context,
+  not persistent node state.
+- Use distinct TUI lifecycle methods for:
+  - user quit (destroy renderer + exit 0)
+  - error cleanup (destroy renderer only, then rethrow)
 - Keep row-count math explicit:
   - `visibleRows = terminalHeight - chromeLines` (header, separator, status)
 - Add tests for:
@@ -307,7 +313,7 @@ Collect metadata for each node record:
 - Recommended phase order:
   1. scaffold + scripts + env/config validation
   2. deterministic traversal engine + node record lifecycle
-  3. validation rules (mode/xattr/hidden/symlink) + warnings/errors
+  3. validation rules (mode/xattr/hidden/symlink) + fail-fast error handling
   4. xattr helpers + integration tests
   5. OpenTUI progress view
   6. OpenTUI results table (sort, compact path display, legends)
