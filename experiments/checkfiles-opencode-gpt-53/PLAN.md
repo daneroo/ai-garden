@@ -28,14 +28,14 @@ using Bun, TypeScript, OpenTUI, and commander.
 
 ### Phase 2 - Deterministic traversal engine + node record lifecycle
 
-- [ ] Implement strict single-process sequential traversal
-- [ ] Implement two-phase directory lifecycle (`dir-pre`, `dir-post`) and file
+- [x] Implement strict single-process sequential traversal
+- [x] Implement two-phase directory lifecycle (`dir-pre`, `dir-post`) and file
       phase (`file`)
-- [ ] Ensure hidden/symlink entries are emitted but never traversed
-- [ ] Enforce deterministic lexical ordering by full `relativePath`
-- [ ] Implement one-record-per-node lifecycle updates
-- [ ] Add traversal and lifecycle tests
-- [ ] CI green
+- [x] Ensure hidden/symlink entries are emitted but never traversed
+- [x] Enforce deterministic lexical ordering by full `relativePath`
+- [x] Implement one-record-per-node lifecycle updates
+- [x] Add traversal and lifecycle tests
+- [x] CI green
 
 ### Phase 3 - Validation rules + fail-fast error handling
 
@@ -93,6 +93,9 @@ using Bun, TypeScript, OpenTUI, and commander.
 
 - Phase 1 completed with minimal non-TUI entrypoint (`src/index.ts`) that only
   validates startup config; traversal/TUI work begins in later phases.
+- Phase 2 keeps traversal model minimal (`relativePath`, `basename`, `stat`,
+  `xattrs`) and carries lifecycle in traversal events (`dir-pre`, `dir-post`,
+  `file`) to avoid redundant persisted derived fields.
 
 ## Session Audit Trail
 
@@ -102,3 +105,7 @@ using Bun, TypeScript, OpenTUI, and commander.
 - 2026-03-03 15:09 local - Phase 1 completed. Added scaffold, Bun scripts,
   TypeScript/ESLint config, `.env`/`.env.example`, config resolution/validation,
   and initial CLI/config tests. CI green (`bun run ci`).
+- 2026-03-03 15:15 local - Phase 2 completed. Added traversal engine and raw
+  node model (`src/traverse.ts`, `src/types.ts`) with deterministic lexical
+  ordering, two-phase directory lifecycle, hidden/symlink non-recursion rules,
+  and traversal tests (`src/traverse.test.ts`). CI green (`bun run ci`).
