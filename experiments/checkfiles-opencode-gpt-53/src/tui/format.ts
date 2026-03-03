@@ -27,6 +27,36 @@ export function sortByPath(
       : 0;
 }
 
+export function ancestorPaths(relativePath: string): string[] {
+  if (relativePath === ".") return [];
+  const parts = relativePath.split("/");
+  if (parts.length === 1) return ["."];
+
+  const ancestors = ["."];
+  for (let i = 1; i < parts.length; i++) {
+    ancestors.push(parts.slice(0, i).join("/"));
+  }
+  return ancestors;
+}
+
+export function filterViolations(
+  rows: InspectedNodeRecord[],
+): InspectedNodeRecord[] {
+  const violationPaths = new Set<string>();
+  const contextPaths = new Set<string>();
+
+  for (const row of rows) {
+    if (row.violations.length === 0) continue;
+    violationPaths.add(row.relativePath);
+    for (const ancestor of ancestorPaths(row.relativePath)) {
+      contextPaths.add(ancestor);
+    }
+  }
+
+  const keep = new Set([...violationPaths, ...contextPaths]);
+  return rows.filter((row) => keep.has(row.relativePath)).sort(sortByPath);
+}
+
 export function formatXattrCell(xattrs: string[], maxWidth: number): string {
   if (xattrs.length === 0) return "-";
 

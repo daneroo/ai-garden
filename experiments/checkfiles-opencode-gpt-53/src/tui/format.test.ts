@@ -1,7 +1,9 @@
 import { expect, test } from "vitest";
 import type { InspectedNodeRecord } from "../types.ts";
 import {
+  ancestorPaths,
   displayPath,
+  filterViolations,
   formatMode,
   formatXattrCell,
   sortByPath,
@@ -59,4 +61,34 @@ test("formatXattrCell compacts multiple attrs", () => {
   expect(formatXattrCell(["com.test.alpha", "com.test.beta"], 20)).toBe(
     "alpha +1",
   );
+});
+
+test("ancestorPaths returns chain from root to parent", () => {
+  expect(ancestorPaths("a/b/c.txt")).toEqual([".", "a", "a/b"]);
+});
+
+test("ancestorPaths for top-level file includes root", () => {
+  expect(ancestorPaths("top.txt")).toEqual(["."]);
+});
+
+test("filterViolations keeps violations and ancestor context rows", () => {
+  const rows = [
+    row({ relativePath: ".", basename: ".", kind: "dir" }),
+    row({ relativePath: "src", basename: "src", kind: "dir" }),
+    row({ relativePath: "src/good.ts", basename: "good.ts", depth: 1 }),
+    row({
+      relativePath: "src/bad.ts",
+      basename: "bad.ts",
+      depth: 1,
+      violations: ["mode 600 expected 644"],
+      modeValid: false,
+    }),
+  ];
+
+  const filtered = filterViolations(rows);
+  expect(filtered.map((r) => r.relativePath)).toEqual([
+    ".",
+    "src",
+    "src/bad.ts",
+  ]);
 });

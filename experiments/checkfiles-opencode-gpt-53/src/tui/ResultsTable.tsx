@@ -3,6 +3,7 @@ import { useKeyboard, useTerminalDimensions } from "@opentui/react";
 import type { InspectedNodeRecord } from "../types.ts";
 import {
   displayPath,
+  filterViolations,
   formatMode,
   formatXattrCell,
   sortByPath,
@@ -24,12 +25,27 @@ export function ResultsTable({
   const [cursor, setCursor] = useState(0);
   const [offset, setOffset] = useState(0);
   const [sortDir, setSortDir] = useState<SortDir>("asc");
+  const [showViolationsOnly, setShowViolationsOnly] = useState(false);
+
+  const filtered = useMemo(
+    () => (showViolationsOnly ? filterViolations(rows) : rows),
+    [rows, showViolationsOnly],
+  );
 
   const sorted = useMemo(() => {
-    const copy = [...rows].sort(sortByPath);
+    const copy = [...filtered].sort(sortByPath);
     if (sortDir === "desc") copy.reverse();
     return copy;
-  }, [rows, sortDir]);
+  }, [filtered, sortDir]);
+
+  const violationPathSet = useMemo(() => {
+    if (!showViolationsOnly) return null;
+    return new Set(
+      rows
+        .filter((row) => row.violations.length > 0)
+        .map((row) => row.relativePath),
+    );
+  }, [rows, showViolationsOnly]);
 
   function move(next: number) {
     const clamped = Math.max(0, Math.min(next, sorted.length - 1));
@@ -63,6 +79,11 @@ export function ResultsTable({
       case "r":
         setSortDir((d) => (d === "asc" ? "desc" : "asc"));
         break;
+      case "v":
+        setShowViolationsOnly((prev) => !prev);
+        setCursor(0);
+        setOffset(0);
+        break;
       case "q":
       case "escape":
         onQuit();
@@ -91,17 +112,31 @@ export function ResultsTable({
           xattrWidth,
         );
         const pathText = displayPath(row.depth, row.basename);
+        const isContextRow =
+          violationPathSet !== null && !violationPathSet.has(row.relativePath);
+        const dim = "#666666";
+        const red = "#ff4444";
 
         return (
           <text
             key={`${row.relativePath}:${idx}`}
             bg={selected ? "#333333" : undefined}
           >
-            <span fg={row.modeValid ? undefined : "#ff4444"}>{modeText}</span>
-            <span fg={row.xattrsValid ? undefined : "#ff4444"}>
+            <span fg={isContextRow ? dim : row.modeValid ? undefined : red}>
+              {modeText}
+            </span>
+            <span fg={isContextRow ? dim : row.xattrsValid ? undefined : red}>
               {xattrText}
             </span>
-            <span fg={row.isHidden || row.isSymlink ? "#ff4444" : undefined}>
+            <span
+              fg={
+                isContextRow
+                  ? dim
+                  : row.isHidden || row.isSymlink
+                    ? red
+                    : undefined
+              }
+            >
               {pathText}
             </span>
           </text>
@@ -109,7 +144,7 @@ export function ResultsTable({
       })}
       <text> </text>
       <text fg="#666666">
-        ↑↓ move | shift-↑↓/r reverse | g/G top/bottom | q quit
+        ↑↓ move | shift-↑↓/r reverse | v violations | g/G top/bottom | q quit
       </text>
     </box>
   );

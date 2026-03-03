@@ -77,11 +77,11 @@ using Bun, TypeScript, OpenTUI, and commander.
 
 ### Phase 7 - Violations-only filter
 
-- [ ] Implement `v` toggle (`all` vs `violations-only`)
-- [ ] Include ancestor context rows (deduped, dimmed)
-- [ ] Keep canonical ordering in filtered mode
-- [ ] Add filtering tests
-- [ ] CI green
+- [x] Implement `v` toggle (`all` vs `violations-only`)
+- [x] Include ancestor context rows (deduped, dimmed)
+- [x] Keep canonical ordering in filtered mode
+- [x] Add filtering tests
+- [x] CI green
 
 ### Phase 8 - Polish / refactor / docs
 
@@ -119,6 +119,8 @@ using Bun, TypeScript, OpenTUI, and commander.
   `startTui()/destroy()`.
 - Phase 6 keeps results sorting scope narrow (path only), with keyboard reverse
   and canonical lexical compare over full `relativePath`.
+- Phase 7 adds `violations-only` as a view filter (not a new sort mode):
+  violating rows stay authoritative, ancestor rows are context-only and dimmed.
 
 ## Session Audit Trail
 
@@ -155,3 +157,8 @@ using Bun, TypeScript, OpenTUI, and commander.
   tests (`src/tui/format.test.ts`), wired app to switch from progress to results
   after scan completion, and kept canonical path sort + reverse keybindings.
   CI green (`bun run ci`).
+- 2026-03-03 15:53 local - Phase 7 completed. Added `v` filter toggle in
+  results table, ancestor context row support with dedupe/dim rendering,
+  canonical order retention in filtered mode, and filtering helpers/tests
+  (`ancestorPaths`, `filterViolations`) in `src/tui/format.ts` and
+  `src/tui/format.test.ts`. CI green (`bun run ci`).
