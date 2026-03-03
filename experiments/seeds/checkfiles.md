@@ -30,6 +30,10 @@ inspects files and directories, and verifies required filesystem properties
 ## Tech Stack / Runtime
 
 - **Bun** is required runtime and package manager (not Deno/Node runtime paths).
+  OpenTUI uses `bun:ffi` for native Zig bindings — any other runtime (Deno,
+  Node) will type-check successfully but crash at runtime with
+  `ERR_UNSUPPORTED_ESM_URL_SCHEME: Received protocol 'bun'`. Do not attempt to
+  use OpenTUI outside Bun.
 - Language: TypeScript.
 - TUI stack: `@opentui/core`, `@opentui/react`, `react`.
 
@@ -244,7 +248,7 @@ Collect metadata for each node record:
   "scripts": {
     "lint": "eslint .",
     "check": "tsc --noEmit",
-    "test": "vitest run",
+    "test": "bun --bun vitest run --reporter=verbose",
     "fmt": "prettier --write .",
     "fmt:check": "prettier --check .",
     "ci": "bun run fmt:check && bun run lint && bun run check && bun run test"
@@ -283,6 +287,15 @@ Collect metadata for each node record:
 - Use distinct TUI lifecycle methods for:
   - user quit (destroy renderer + exit 0)
   - error cleanup (destroy renderer only, then rethrow)
+- Mutable bridge polling pitfall: never use `useMemo`/`useEffect` with mutable
+  `ScanState` properties (e.g. a pushed-to array) as React dependencies — the
+  reference never changes so React never re-evaluates. Snapshot all display
+  values in an immutable copy (`snap()`) and depend on that instead.
+- OpenTUI JSX constraints (differ from standard React):
+  - use `<text>` spacer lines for blank rows — `<br>` is not a valid OpenTUI
+    element
+  - use `<span fg="...">` for inline per-field coloring within a `<text>` row
+    — nested `<text>` elements are not valid inline children
 - Keep row-count math explicit:
   - `visibleRows = terminalHeight - chromeLines` (header, separator, status)
 - Add tests for:
