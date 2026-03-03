@@ -73,7 +73,6 @@ test("xattr: setXattr rejects on nonexistent path", async () => {
   ).rejects.toThrow();
 });
 
-test("xattr: getXattrNames returns empty array for nonexistent path", async () => {
-  const names = await getXattrNames("/nonexistent/path/file.txt");
-  expect(names).toEqual([]);
+test("xattr: getXattrNames throws on nonexistent path", async () => {
+  await expect(getXattrNames("/nonexistent/path/file.txt")).rejects.toThrow();
 });

@@ -14,14 +14,9 @@ export async function checkXattrAvailable(): Promise<void> {
 
 // Get xattr names for a single path. Returns sorted array of attribute names.
 // Filters out kernel-enforced unremovable attrs (com.apple.provenance).
-// On failure returns empty array.
+// Throws on xattr command failure — unexpected, caught at top level.
 export async function getXattrNames(path: string): Promise<string[]> {
-  let stdout: string;
-  try {
-    stdout = await runCapture("xattr", [path]);
-  } catch {
-    return [];
-  }
+  const stdout = await runCapture("xattr", [path]);
 
   const trimmed = stdout.trim();
   if (trimmed === "") return [];

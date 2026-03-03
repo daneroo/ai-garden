@@ -156,7 +156,7 @@ Cleanup:
 
 - [x] tsconfig misses seed-recommended OpenTUI/Node types (node, @opentui/react). (tsconfig.json:13)
 - [x] Terminal cleanup on non-render errors is weak. startTui() returns cleanup, but caller discards it; traversal/config errors after renderer start can skip explicit destroy.( index.ts:19 render.tsx:8)
-- [ ] xattrs failures are silently swallowed; rare, but should throw. xattr.ts:22 - caught at top level (like we did with stat failures)
+- [x] xattrs failures are silently swallowed; rare, but should throw. xattr.ts:22 - caught at top level (like we did with stat failures)
 - [ ] xattrs cell does not implement explicit ellipsis truncation requirement. It pads but can overflow. (ResultsTable.tsx:139)
 - [ ] add mtime column
 - [ ] make scanning multipass (better counts and time - prepares for fix pass)
@@ -310,4 +310,11 @@ Cleanup:
     the terminal without exiting, for error paths.
   - index.ts wraps traverse() in try/catch: calls tui.destroy() then rethrows,
     so the alternate screen is always restored before any error output.
+  - 68 tests passing, bun run ci green
+- Issue: xattr failures silently swallowed
+  - Removed try/catch in getXattrNames — failures now throw and propagate to
+    top level (caught by tui.destroy() + rethrow in index.ts). checkXattrAvailable
+    guards against missing binary at startup; any remaining failure is unexpected.
+  - Updated test: "returns empty array for nonexistent path" -> "throws on
+    nonexistent path" (rejects.toThrow())
   - 68 tests passing, bun run ci green
