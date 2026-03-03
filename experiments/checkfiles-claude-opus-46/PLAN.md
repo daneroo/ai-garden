@@ -148,9 +148,9 @@ Cleanup:
 
 ### Phase 8 — Polish / refactor / docs
 
-- [ ] README updates with usage instructions
-- [ ] Code cleanup
-- [ ] Final CI green
+- [x] README updated: Deno references replaced with Bun, keybindings section added
+- [x] No dead imports or stale Deno references in source
+- [x] CI green (68 tests)
 
 ## Decisions / Notes
 
@@ -277,4 +277,9 @@ Cleanup:
     and `r` reverse direction. Updated legend.
   - src/tui/App.tsx: computes violationCount from results, shows in header
     summary line (items + violations + elapsed + rate)
+  - 68 tests passing, bun run ci green
+- Phase 8
+  - README.md: replaced stale Deno references with Bun commands, added
+    keybindings section documenting results view controls
+  - Code audit: no dead imports, no stale Deno references, no cleanup needed
   - 68 tests passing, bun run ci green
