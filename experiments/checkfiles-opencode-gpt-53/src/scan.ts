@@ -1,10 +1,11 @@
 import { traverse, type TraverseOptions } from "./traverse.ts";
-import type { InspectedNodeRecord } from "./types.ts";
+import type { InspectedNodeRecord, TraverseCallback } from "./types.ts";
 import { inspectNode } from "./validate.ts";
 import { getXattrNames } from "./xattr.ts";
 
-interface ScanOptions extends TraverseOptions {
-  onTraverseEvent?: Parameters<typeof traverse>[1];
+interface ScanOptions {
+  collectXattrs?: TraverseOptions["collectXattrs"];
+  onTraverseEvent?: TraverseCallback;
 }
 
 export async function scan(
@@ -20,11 +21,11 @@ export async function scan(
     rootPath,
     (event, node) => {
       options?.onTraverseEvent?.(event, node);
+      const next = inspectNode(event, node);
 
       if (event === "dir-pre") {
-        const record = inspectNode(event, node);
-        inProgressDirs.set(node.relativePath, record);
-        records.push(record);
+        inProgressDirs.set(node.relativePath, next);
+        records.push(next);
         return;
       }
 
@@ -35,8 +36,7 @@ export async function scan(
             `Missing in-progress directory record: ${node.relativePath}`,
           );
         }
-        const completed = inspectNode(event, node);
-        Object.assign(existing, completed);
+        Object.assign(existing, next);
         const idx = records.indexOf(existing);
         if (idx >= 0) {
           records.splice(idx, 1);
@@ -46,7 +46,7 @@ export async function scan(
         return;
       }
 
-      records.push(inspectNode(event, node));
+      records.push(next);
     },
     { collectXattrs },
   );

@@ -123,6 +123,9 @@ using Bun, TypeScript, OpenTUI, and commander.
   violating rows stay authoritative, ancestor rows are context-only and dimmed.
 - Phase 8 focuses on reducing surprise: docs now explicitly mirror implemented
   keyboard controls and fallback navigation keys.
+- Post-phase simplification pass: reduced non-essential branching/typing in scan
+  orchestration and results table key handling, while preserving behavior and
+  test coverage.
 
 ## Session Audit Trail
 
@@ -167,3 +170,7 @@ using Bun, TypeScript, OpenTUI, and commander.
 - 2026-03-03 15:55 local - Phase 8 completed. Updated README usage/keybindings,
   performed code audit for current seed requirements, and revalidated full CI.
   CI green (`bun run ci`).
+- 2026-03-03 15:58 local - De-bloat refactor pass requested by user. Simplified
+  scan option typing and event handling (`src/scan.ts`), tightened top-level TUI
+  error cleanup flow (`src/index.ts`), and reduced repeated key-handler branches
+  in results table (`src/tui/ResultsTable.tsx`). CI green (`bun run ci`).

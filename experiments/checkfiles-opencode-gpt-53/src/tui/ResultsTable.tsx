@@ -27,6 +27,8 @@ export function ResultsTable({
   const [sortDir, setSortDir] = useState<SortDir>("asc");
   const [showViolationsOnly, setShowViolationsOnly] = useState(false);
 
+  const reverseSort = () => setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+
   const filtered = useMemo(
     () => (showViolationsOnly ? filterViolations(rows) : rows),
     [rows, showViolationsOnly],
@@ -54,30 +56,38 @@ export function ResultsTable({
     if (clamped >= offset + viewport) setOffset(clamped - viewport + 1);
   }
 
+  function jumpTop() {
+    move(0);
+  }
+
+  function jumpBottom() {
+    move(sorted.length - 1);
+  }
+
   useKeyboard((key) => {
     switch (key.name) {
       case "up":
-        if (key.shift) setSortDir((d) => (d === "asc" ? "desc" : "asc"));
-        else if (key.meta) move(0);
+        if (key.shift) reverseSort();
+        else if (key.meta) jumpTop();
         else move(cursor - 1);
         break;
       case "down":
-        if (key.shift) setSortDir((d) => (d === "asc" ? "desc" : "asc"));
-        else if (key.meta) move(sorted.length - 1);
+        if (key.shift) reverseSort();
+        else if (key.meta) jumpBottom();
         else move(cursor + 1);
         break;
       case "home":
-        move(0);
+        jumpTop();
         break;
       case "end":
-        move(sorted.length - 1);
+        jumpBottom();
         break;
       case "g":
-        if (key.shift) move(sorted.length - 1);
-        else move(0);
+        if (key.shift) jumpBottom();
+        else jumpTop();
         break;
       case "r":
-        setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+        reverseSort();
         break;
       case "v":
         setShowViolationsOnly((prev) => !prev);

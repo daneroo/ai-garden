@@ -14,6 +14,7 @@ async function main(): Promise<void> {
 
   const scanState = createScanState();
   const tui = await startTui(scanState);
+  let completed = false;
 
   try {
     const records = await scan(config.rootPath, {
@@ -23,9 +24,11 @@ async function main(): Promise<void> {
     });
     scanState.results = records;
     scanState.done = true;
-  } catch (err) {
-    tui.destroy();
-    throw err;
+    completed = true;
+  } finally {
+    if (!completed) {
+      tui.destroy();
+    }
   }
 }
 
