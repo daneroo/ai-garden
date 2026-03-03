@@ -9,6 +9,7 @@ import {
   sortByPath,
   ancestorPaths,
   filterViolations,
+  formatXattrCell,
   type ResultRow,
 } from "./format.ts";
 import type { FileNode } from "../types.ts";
@@ -145,7 +146,6 @@ function makeRow(relativePath: string, xattrs: string[] = []): ResultRow {
     depth: 0,
     mode: "-rw-r--r--",
     xattrs,
-    xattrSortKey: xattrs.join(","),
     violations: [],
     modeViolation: false,
     xattrViolation: false,
@@ -288,4 +288,55 @@ test("compactXattr: no prefix returns full name", () => {
 
 test("compactXattr: non-matching prefix returns full name", () => {
   expect(compactXattr("org.other.attr", "com.docker.")).toBe("org.other.attr");
+});
+
+// --- formatXattrCell ---
+
+test("formatXattrCell: no xattrs returns dash", () => {
+  expect(formatXattrCell([], 24)).toBe("—");
+});
+
+test("formatXattrCell: strips com.vendor. prefix", () => {
+  expect(formatXattrCell(["com.docker.grpcfuse.ownership"], 24)).toBe(
+    "grpcfuse.ownership",
+  );
+});
+
+test("formatXattrCell: strips com.apple. prefix", () => {
+  expect(formatXattrCell(["com.apple.quarantine"], 24)).toBe("quarantine");
+});
+
+test("formatXattrCell: no com.vendor. prefix left intact", () => {
+  expect(formatXattrCell(["org.freedesktop.attr"], 24)).toBe(
+    "org.freedesktop.attr",
+  );
+});
+
+test("formatXattrCell: single long attr left-truncated with ..", () => {
+  // "com.docker.grpcfuse.averylongnamethatexceeds" -> "grpcfuse.averylongnamethatexceeds" (33)
+  // truncated to 24: ".." + last 22 chars
+  const result = formatXattrCell(
+    ["com.docker.grpcfuse.averylongnamethatexceeds"],
+    24,
+  );
+  expect(result.length).toBe(24);
+  expect(result.startsWith("..")).toBe(true);
+});
+
+test("formatXattrCell: multiple attrs shows first + +N", () => {
+  const result = formatXattrCell(
+    ["com.docker.grpcfuse.ownership", "com.docker.grpcfuse.metadata"],
+    24,
+  );
+  expect(result).toBe("grpcfuse.ownership +1");
+});
+
+test("formatXattrCell: multiple with long first truncates to fit +N", () => {
+  const result = formatXattrCell(
+    ["com.docker.grpcfuse.averylongnamethatexceeds", "com.docker.grpcfuse.b"],
+    24,
+  );
+  // suffix is " +1" (3 chars), available = 21, result should be <= 24
+  expect(result.length).toBeLessThanOrEqual(24);
+  expect(result.endsWith("+1")).toBe(true);
 });

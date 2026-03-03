@@ -157,7 +157,7 @@ Cleanup:
 - [x] tsconfig misses seed-recommended OpenTUI/Node types (node, @opentui/react). (tsconfig.json:13)
 - [x] Terminal cleanup on non-render errors is weak. startTui() returns cleanup, but caller discards it; traversal/config errors after renderer start can skip explicit destroy.( index.ts:19 render.tsx:8)
 - [x] xattrs failures are silently swallowed; rare, but should throw. xattr.ts:22 - caught at top level (like we did with stat failures)
-- [ ] xattrs cell does not implement explicit ellipsis truncation requirement. It pads but can overflow. (ResultsTable.tsx:139)
+- [x] xattrs cell does not implement explicit ellipsis truncation requirement. It pads but can overflow. (ResultsTable.tsx:139)
 - [ ] add mtime column
 - [ ] make scanning multipass (better counts and time - prepares for fix pass)
 
@@ -311,6 +311,15 @@ Cleanup:
   - index.ts wraps traverse() in try/catch: calls tui.destroy() then rethrows,
     so the alternate screen is always restored before any error output.
   - 68 tests passing, bun run ci green
+- Issue: xattr cell overflow + formatXattrCell
+  - Added formatXattrCell(xattrs, maxWidth) to format.ts: strips com.[vendor].
+    prefix (e.g. com.docker.grpcfuse.ownership -> grpcfuse.ownership),
+    left-truncates with ".." if remainder still exceeds maxWidth, appends " +N"
+    for multiple attrs.
+  - Removed xattrSortKey from ResultRow and buildResultRow (dead since Phase 7).
+  - ResultsTable now uses formatXattrCell — drops commonXattrPrefix/compactXattr
+    imports and xattrPrefix memo.
+  - 7 new formatXattrCell tests; 75 tests passing, bun run ci green
 - Issue: xattr failures silently swallowed
   - Removed try/catch in getXattrNames — failures now throw and propagate to
     top level (caught by tui.destroy() + rethrow in index.ts). checkXattrAvailable

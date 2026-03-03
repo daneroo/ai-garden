@@ -9,7 +9,6 @@ export interface ResultRow {
   depth: number;
   mode: string; // ls-like: drwxr-xr-x, -rw-r--r--@
   xattrs: string[];
-  xattrSortKey: string; // joined for sorting
   violations: string[];
   modeViolation: boolean;
   xattrViolation: boolean;
@@ -49,7 +48,6 @@ export function buildResultRow(node: FileNode): ResultRow {
     depth,
     mode: formatMode(node.stat, node.xattrs.length > 0),
     xattrs: node.xattrs,
-    xattrSortKey: node.xattrs.join(","),
     violations,
     modeViolation: violations.some((v) => v.startsWith("mode ")),
     xattrViolation: violations.some((v) => v.startsWith("has xattrs")),
@@ -86,6 +84,28 @@ export function compactXattr(name: string, prefix: string): string {
   if (prefix && name.startsWith(prefix))
     return ".." + name.slice(prefix.length);
   return name;
+}
+
+// Strip com.[vendor]. prefix: com.docker.grpcfuse.ownership -> grpcfuse.ownership
+function stripComVendor(name: string): string {
+  const m = name.match(/^com\.[^.]+\.(.*)/s);
+  return m ? m[1] : name;
+}
+
+// Left-truncate to maxLen: if too long, ".." + right portion to fit exactly
+function leftTrunc(s: string, maxLen: number): string {
+  if (s.length <= maxLen) return s;
+  return ".." + s.slice(s.length - (maxLen - 2));
+}
+
+// Format xattr cell for display. Strips com.vendor. prefix, left-truncates to
+// fit maxWidth, appends " +N" for additional attrs beyond the first.
+export function formatXattrCell(xattrs: string[], maxWidth: number): string {
+  if (xattrs.length === 0) return "—";
+  const names = xattrs.map(stripComVendor);
+  if (xattrs.length === 1) return leftTrunc(names[0], maxWidth);
+  const suffix = ` +${xattrs.length - 1}`;
+  return leftTrunc(names[0], maxWidth - suffix.length) + suffix;
 }
 
 export function sortByPath(a: ResultRow, b: ResultRow): number {

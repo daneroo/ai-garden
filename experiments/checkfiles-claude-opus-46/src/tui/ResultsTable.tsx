@@ -4,8 +4,7 @@ import { useState, useMemo } from "react";
 import { useKeyboard, useTerminalDimensions } from "@opentui/react";
 import {
   displayPath,
-  compactXattr,
-  commonXattrPrefix,
+  formatXattrCell,
   sortByPath,
   filterViolations,
   type ResultRow,
@@ -30,8 +29,6 @@ export function ResultsTable({
   const [offset, setOffset] = useState(0);
   const [sortDir, setSortDir] = useState<SortDir>("asc");
   const [showViolationsOnly, setShowViolationsOnly] = useState(false);
-
-  const xattrPrefix = useMemo(() => commonXattrPrefix(rows), [rows]);
 
   const filtered = useMemo(
     () => (showViolationsOnly ? filterViolations(rows) : rows),
@@ -136,11 +133,9 @@ export function ResultsTable({
           violationPathSet !== null && !violationPathSet.has(row.relativePath);
 
         const modePart = row.mode.padEnd(modeWidth + 1);
-        const xattrPart = (
-          row.xattrs.length > 0
-            ? row.xattrs.map((x) => compactXattr(x, xattrPrefix)).join(",")
-            : "—"
-        ).padEnd(xattrWidth);
+        const xattrPart = formatXattrCell(row.xattrs, xattrWidth).padEnd(
+          xattrWidth,
+        );
         const pathPart = displayPath(row.depth, row.basename);
 
         const modeFg = isAncestor ? dim : row.modeViolation ? red : undefined;
