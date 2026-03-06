@@ -3,6 +3,15 @@
 Local-first web app for browsing audiobook directories (with optional ebook and
 transcripts) and reading while listening.
 
+## Status
+
+- Experiment concluded.
+- Winner: `bookplayer-agy-opus46` (Opus).
+- Runner-up: `bookplayer-codex-gpt-5.3-codex` (strong validation and CI
+  discipline, but over-typed and less seed-aligned).
+- Key takeaway: stricter seed-contract alignment and smaller public type
+  surfaces beat heavier abstraction for this app domain.
+
 ## Workflow / CI
 
 - Each experiment created from this seed should include a local `AGENTS.md`.
@@ -504,3 +513,52 @@ Extract or derive:
   - click a result -> verify navigation and visible highlight on matched text
   - verify highlighted match remains within reader bounds (no spill into chrome)
   - verify search results remain stable after navigation (no silent reset)
+
+## Compare Implementations
+
+### Metrics
+
+| Implementation                    | Prod files | Test files | Prod LoC | Test LoC | Test/Prod | Cmplx/Fn | Cmplx/Sum |  Avg | P90 | Max | CI now |
+| --------------------------------- | ---------: | ---------: | -------: | -------: | --------: | -------: | --------: | ---: | --: | --: | :----: |
+| `bookplayer-agy-opus46`           |         19 |          0 |     2397 |        0 |      0.00 |       68 |       375 | 5.51 |  10 |  41 |   ❌   |
+| `bookplayer-claude-opus-46`       |          7 |          1 |     1110 |        8 |      0.01 |       35 |       191 | 5.46 |   9 |  31 |   ❌   |
+| `bookplayer-codex-gpt-5.3-codex`  |         15 |          2 |     2441 |      149 |      0.06 |       61 |       444 | 7.28 |  14 |  60 |   ✅   |
+| `bookplayer-opencode-gemini3pro-high` |      17 |          2 |     1687 |      116 |      0.07 |       37 |       280 | 7.57 |  20 |  43 |   ❌   |
+
+Notes:
+
+- LoC includes `.ts/.tsx` production files plus generated route tree files.
+- Complexity numbers are AST-based cyclomatic approximations over production
+  files, counting functions with complexity `>1`.
+- `CI now` reflects a direct `bun run ci` check at comparison time.
+
+### Compliance / Elegance Notes
+
+- `bookplayer-agy-opus46` is the strongest overall match to the seed shape:
+  canonical scanner (`.m4b` + cover, optional `.epub`), short hashed `bookId`,
+  route-served media endpoints, and reader/transcript/player integration. Main
+  gaps are no tests, filter defaults not matching seed default-on behavior, and
+  a current lint failure.
+- `bookplayer-codex-gpt-5.3-codex` is the most defensive implementation
+  operationally (green CI, stronger error handling, better route/media
+  validation), but it drifts from seed contracts: `/player/$pairId` instead of
+  `/player/$bookId`, and strict pair inclusion requiring `.epub` where seed
+  defines `.epub` as optional. It also has the heaviest type boundary surface
+  (`LibraryPair`, `PublicLibraryPair`, separate asset URL contracts), which
+  raises coupling risk for future change.
+- `bookplayer-opencode-gemini3pro-high` has useful performance intent
+  (scan lock + cache + bounded metadata concurrency), but core route wiring is
+  incomplete: UI expects `/api/media/*` endpoints that are not implemented as
+  server routes in `src/routes/api/...`. Player code is monolithic and less
+  maintainable.
+- `bookplayer-claude-opus-46` is the lightest code footprint and easiest to
+  read at a glance, but it is under-complete against this seed (phase depth,
+  route naming, scanner contract looseness, and transcript-strip behavior when
+  VTT is absent).
+
+### Bottom Line
+
+- For this experiment, `bookplayer-agy-opus46` is preferred for practical
+  seed-compliance and architectural balance.
+- `bookplayer-codex-gpt-5.3-codex` remains a technically strong alternate if
+  its contract drift and public type surface are trimmed.
