@@ -26,6 +26,8 @@ Use that doc for:
 
 Specific info for each agent
 
+- [ ] [T3 codes](https://t3.codes/) - `npx t3` works too!
+- [ ] [maruel/cais-xyz/md](https://github.com/caic-xyz/md)
 - [ ] [Crush](https://github.com/charmbracelet/crush)
 - [ ] [Pi Monorepo](https://github.com/badlogic/pi-mono) - [Pi](https://pi.dev/)
 - [ ] [Open Agent/Sandboxed](https://sandboxed.sh/) - Sam author as v
@@ -35,7 +37,6 @@ Specific info for each agent
 - [OpenClaw](./openclaw/README.md)
   - [ ] gogcli
         [auth - can have scopes](https://github.com/steipete/gogcli?tab=readme-ov-file#1-get-oauth2-credentials)
-
 - [OpenCode](./opencode/README.md)
 - [ ] [Claude](./claude/README.md)
 - [ ] [Codex](./codex/README.md)
