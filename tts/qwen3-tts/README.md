@@ -4,6 +4,7 @@ Always use `uv` with `--prerelease=allow` (mlx-audio is pre-release).
 
 ## TODO
 
+- [clawhub skill (basic)](https://clawhub.ai/paki81/qwen-tts)
 - Could we use `qwen3-tts` for long-form narration (epub)?
   - custom model caching, runtime characteristics, with content length
 - Compare 0.6B vs 1.7B clone quality (both work, 1.7B is currently set)
