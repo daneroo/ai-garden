@@ -1,6 +1,7 @@
 # Eleven Reader - Audio Book Production
 
-This is the process to capture the audio for an epub book using ElevenReader audio output capture
+This is the process to capture the audio for an epub book using ElevenReader
+audio output capture
 
 ## TODO
 
@@ -17,15 +18,17 @@ This is the process to capture the audio for an epub book using ElevenReader aud
   - Remove unwanted "chapters"
   - Remove unreferenced images (report)
   - Save and upload to Eleven Reader
-  - Convention rename to *title*-Trimmed.epub
+  - Convention rename to _title_-Trimmed.epub
 
 ## Capture Eleven Reader audio
 
 **Working Dir**: `/Volumes/Space/Staging/ElevenReader-Captured-Audio`
 
-- Upload the *X*-Trimmed.epu to ElevenReader
+- Upload the _X_-Trimmed.epu to ElevenReader
 - Record playback to .mp3 (see below)
 - Final Trim of mp3 (remove ending) - `open -a Audacity`
+- or e.g.,
+  `ffmpeg -ss 00:00:05.000 -to 13:52:02.000 -i original.mp3 -c copy trimmed.mp3`
 
 ```bash
 docker rm -f audio_ripper 2>/dev/null
