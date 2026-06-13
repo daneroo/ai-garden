@@ -7,7 +7,7 @@ use:
 
 - engine: Antigravity, opencode, claude-code, codex
 - subscriptions: Claude Pro, ChatGPTPlus, Google AI Pro, OPenCode Zen,
-  openclaw(clawdbot)
+  openclaw(clawdbot), hermes (NousResearch)
 - top models: across different subs: opus-4.5 (Claude Pro,Antigravity), Kimi
   K2.5, openai/gpt-5.2-[codex], and their lesser brethren
 - agentic harnesses I have tried:
