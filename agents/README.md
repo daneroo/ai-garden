@@ -33,16 +33,16 @@ Specific info for each agent
 - [ ] [Open Agent/Sandboxed](https://sandboxed.sh/) - Sam author as v
   - [ ] [Ralph Wiggum Loop](https://github.com/Th0rgal/open-ralph-wiggum)
 - [x] [Kilo](./kilo/README.md): Not so much - deleted
+- [x] [Hermes](./hermes/README.md) - NousResearch
 - [ ] Amp - installed and delete from Antigravity - Later
-- [OpenClaw](./openclaw/README.md)
-  - [ ] gogcli
-        [auth - can have scopes](https://github.com/steipete/gogcli?tab=readme-ov-file#1-get-oauth2-credentials)
+- [x] [OpenClaw](./openclaw/README.md) - deprecated
 - [OpenCode](./opencode/README.md)
-- [ ] [Claude](./claude/README.md)
 - [ ] [Codex](./codex/README.md)
+- [x] [Claude](./claude/README.md) - deprecated
 
 ## TODO
 
+- [ ] migrate from openclaw to hermes
 - [ ] create `claude/` and `codex/`
 
 ## References
