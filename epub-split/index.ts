@@ -1,4 +1,4 @@
-import yargs from "yargs/yargs";
+import yargs from "yargs";
 import os from "node:os";
 import fg from "fast-glob";
 
