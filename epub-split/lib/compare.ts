@@ -2,7 +2,7 @@
   This need to be replaced with an accurate description when we are done
  */
 
-import { ParserResult, Toc, Manifest, ComparisonWarning } from "./types.ts";
+import { ParserResult, Toc, Manifest, ComparisonWarning, Spine } from "./types.ts";
 // -- Public API
 
 export interface CompareOptions {
@@ -51,11 +51,67 @@ export function compareBook(
   );
   warnings.push(...manifestWarnings);
 
-  // const spineWarnings = compareSpine(reference.spine, candidate.spine, options);
-  // warnings.push(...spineWarnings);
+  warnings.push(
+    ...compareSpine(
+      reference.spine,
+      candidate.spine,
+      reference.parser,
+      candidate.parser
+    )
+  );
 
   // const tocWarnings = compareToc(reference.toc, candidate.toc, options);
   // warnings.push(...tocWarnings);
+
+  return warnings;
+}
+
+export function compareSpine(
+  reference: Spine,
+  candidate: Spine,
+  referenceName: string = "reference",
+  candidateName: string = "candidate"
+): ComparisonWarning[] {
+  const warnings: ComparisonWarning[] = [];
+
+  if (reference.length !== candidate.length) {
+    warnings.push({
+      type: "spine.length",
+      message: `Spine length mismatch ${referenceName}:${reference.length} ${candidateName}:${candidate.length}`,
+    });
+  }
+
+  const commonLength = Math.min(reference.length, candidate.length);
+  for (let index = 0; index < commonLength; index++) {
+    const referenceItem = reference[index];
+    const candidateItem = candidate[index];
+    if (referenceItem.idref !== candidateItem.idref) {
+      warnings.push({
+        type: "spine.idref.mismatch",
+        message: `index:${index} ${referenceName}:${referenceItem.idref} ${candidateName}:${candidateItem.idref}`,
+      });
+    }
+    if (referenceItem.href !== candidateItem.href) {
+      warnings.push({
+        type: "spine.href.mismatch",
+        message: `index:${index} ${referenceName}:${referenceItem.href} ${candidateName}:${candidateItem.href}`,
+      });
+    }
+    if (referenceItem.linear !== candidateItem.linear) {
+      warnings.push({
+        type: "spine.linear.mismatch",
+        message: `index:${index} ${referenceName}:${referenceItem.linear} ${candidateName}:${candidateItem.linear}`,
+      });
+    }
+    const referenceProperties = JSON.stringify(referenceItem.properties);
+    const candidateProperties = JSON.stringify(candidateItem.properties);
+    if (referenceProperties !== candidateProperties) {
+      warnings.push({
+        type: "spine.properties.mismatch",
+        message: `index:${index} ${referenceName}:${referenceProperties} ${candidateName}:${candidateProperties}`,
+      });
+    }
+  }
 
   return warnings;
 }

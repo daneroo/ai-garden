@@ -71,3 +71,18 @@ Local generated evidence:
 
 - `data/reports/epubjs-vs-epubts-space.md`
 - `data/reports/epubjs-vs-epubts-drop.md`
+
+## Spine and Reading Order Comparison
+
+Classification: no differences found
+
+Both adapters now expose the ordered package spine using the same minimal
+representation: `idref`, `href`, `linear`, and `properties`. Comparison is
+strict and ordered; no normalization is applied.
+
+- `test`: 4/4 compared with zero spine differences.
+- `space`: 587/587 compared with zero spine differences.
+- `drop`: 706/706 compared with zero spine differences.
+
+The existing local comparison reports now cover parse outcome, manifest, and
+spine equivalence.

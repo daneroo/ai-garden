@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import type { Manifest, Toc, TocEntry } from "./types.ts";
+import type { Manifest, Spine, Toc, TocEntry } from "./types.ts";
 
 const manifestItemSchema = z.object({
   href: z.string(),
@@ -32,6 +32,22 @@ interface EpubjsTocEntry {
 
 export function convertEpubjsManifest(manifest: unknown): Manifest {
   return manifestSchema.parse(manifest);
+}
+
+interface EpubjsSpineItem {
+  idref?: string;
+  href?: string;
+  linear?: boolean;
+  properties?: string[];
+}
+
+export function convertEpubjsSpine(items: EpubjsSpineItem[]): Spine {
+  return items.map((item) => ({
+    idref: item.idref ?? "",
+    href: item.href ?? "",
+    linear: item.linear ?? true,
+    properties: item.properties ?? [],
+  }));
 }
 
 export function convertEpubjsToc(entries: EpubjsTocEntry[]): Toc {

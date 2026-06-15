@@ -4,6 +4,7 @@ import { Archive, Book } from "@likecoin/epub-ts/node";
 
 import {
   convertEpubjsManifest,
+  convertEpubjsSpine,
   convertEpubjsToc,
 } from "./epubjs-shared.ts";
 import type { ParserResult, ParseOptions } from "./types.ts";
@@ -50,6 +51,7 @@ export async function parse(
     return {
       parser: "epubts",
       manifest: convertEpubjsManifest(book.packaging.manifest),
+      spine: convertEpubjsSpine(book.spine.spineItems),
       toc: convertEpubjsToc(book.navigation.toc),
       errors: [],
       warnings,

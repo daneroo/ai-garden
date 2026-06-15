@@ -4,7 +4,7 @@ import { basename } from "node:path";
 import { chromium } from "playwright";
 import type { Page } from "playwright";
 import type { ParserResult, ParseOptions } from "./types.ts";
-import { convertEpubjsManifest } from "./epubjs-shared.ts";
+import { convertEpubjsManifest, convertEpubjsSpine } from "./epubjs-shared.ts";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import assert from "node:assert";
@@ -109,7 +109,7 @@ export async function parse(
     await checkClientUploadIntegrity(page, bookPath, verbosity);
   }
 
-  const { manifest, toc } = await page.evaluate(async () => {
+  const { manifest, spine, toc } = await page.evaluate(async () => {
     // Calling parseEpubFromInputFiles() implies that:
     //  - the file is already uploaded with uploadWithSetInputFiles
     // Type assertion needed because this is client-side code where parseEpubFromInputFiles is injected
@@ -118,6 +118,7 @@ export async function parse(
     return {
       parser: "epubjs",
       manifest: convertEpubjsManifest(manifest),
+      spine: convertEpubjsSpine(spine),
       toc,
       errors: errors,
       warnings: warnings,

@@ -149,5 +149,11 @@ window.parseEpubFromInputFiles = async function () {
   book.navigation.toc.forEach((item) => toc.push(item));
 
   const newTOC = await augmentEntriesAndChildren(toc);
-  return { toc: newTOC, manifest: book.packaging.manifest };
+  const spine = book.spine.spineItems.map((item) => ({
+    idref: item.idref,
+    href: item.href,
+    linear: item.linear,
+    properties: item.properties,
+  }));
+  return { toc: newTOC, manifest: book.packaging.manifest, spine };
 };

@@ -15,6 +15,15 @@ export interface ManifestItem {
  */
 export type Manifest = Record<string, ManifestItem>;
 
+export interface SpineItem {
+  idref: string;
+  href: string;
+  linear: boolean;
+  properties: string[];
+}
+
+export type Spine = SpineItem[];
+
 /**
  * Represents a single node in the table of contents tree
  */
@@ -53,8 +62,8 @@ export interface ParserResult {
   // metadata: Metadata;
   /** manifest */
   manifest: Manifest;
-  /** The reading order of the content */
-  // spine: Spine;
+  /** Ordered reading sequence from the package spine */
+  spine: Spine;
   /** Table of contents */
   toc: Toc;
   /** NOT-WANTED (for now, maybe never) */
@@ -95,6 +104,11 @@ export interface ComparisonWarning {
     | "manifest.id.mismatch" // Manifest entry id mismatch
     | "manifest.href.mismatch" // Manifest entry href mismatch
     | "manifest.mediaType.mismatch" // Manifest entry mediaType mismatch
+    | "spine.length" // Spine length mismatch
+    | "spine.idref.mismatch" // Ordered spine idref mismatch
+    | "spine.href.mismatch" // Ordered spine href mismatch
+    | "spine.linear.mismatch" // Ordered spine linearity mismatch
+    | "spine.properties.mismatch" // Ordered spine properties mismatch
     | "parse.failure" // One parser failed for this book
     | "toc.presence" // One or both TOCs are empty
     | "toc.id.set" // IDs present in one TOC but not the other - not used

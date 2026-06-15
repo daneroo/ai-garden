@@ -246,12 +246,12 @@ fix, but every commit must leave the experiment runnable.
 Do not start until parse outcome and manifest behavior are understood on
 `space`.
 
-- [ ] Add the minimal spine representation required to `ParserResult`.
-- [ ] Extract it symmetrically from both adapters.
-- [ ] Compare strict ordered spine values first.
-- [ ] Preserve IDs, hrefs, ordering, and linearity where available.
-- [ ] Run `test`, then `space`, then `drop`.
-- [ ] Investigate and classify all meaningful differences before proceeding.
+- [x] Add the minimal spine representation required to `ParserResult`.
+- [x] Extract it symmetrically from both adapters.
+- [x] Compare strict ordered spine values first.
+- [x] Preserve IDs, hrefs, ordering, and linearity where available.
+- [x] Run `test`, then `space`, then `drop`.
+- [x] Investigate and classify all meaningful differences before proceeding.
 
 Checkpoint commit:
 

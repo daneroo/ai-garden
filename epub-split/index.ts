@@ -279,6 +279,7 @@ async function captureParseFailure(
         message,
       },
       manifest: {},
+      spine: [],
       toc: [],
       errors: [message],
       warnings: [],
