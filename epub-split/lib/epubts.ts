@@ -16,13 +16,11 @@ export async function parse(
   bookPath: string,
   opts: ParseOptions = {}
 ): Promise<ParserResult> {
-  const { verbosity = 0 } = opts;
   const data = await readFile(bookPath);
   const arrayBuffer = data.buffer.slice(
     data.byteOffset,
     data.byteOffset + data.byteLength
   ) as ArrayBuffer;
-  const start = Date.now();
   const warnings: string[] = [];
   let book = new Book({ replacements: "none" });
 
@@ -53,10 +51,6 @@ export async function parse(
       );
     }
     const chapters = await extractChapters(book, bookPath);
-
-    if (verbosity > 1) {
-      console.error(`- epubts parse duration:${Date.now() - start}ms`);
-    }
 
     return {
       parser: "epubts",
