@@ -86,3 +86,46 @@ strict and ordered; no normalization is applied.
 
 The existing local comparison reports now cover parse outcome, manifest, and
 spine equivalence.
+
+## TOC Label Normalization
+
+Classification: `comparison-only normalization`
+
+Strict comparison first exposed 2,796 label differences on `space`. These were
+serialization differences rather than TOC structure differences: CRLF versus
+LF, repeated whitespace, and serialized character references retained by
+epub.ts but omitted by browser epub.js.
+
+TOC comparison, and only TOC comparison, normalizes labels by:
+
+- Treating CRLF and LF as equivalent.
+- Collapsing surrounding and repeated whitespace.
+- Removing serialized HTML character references such as `&hellip;`,
+  `&ldquo;`, and `&rdquo;`.
+
+The adapters retain their raw labels. This normalization exists only to compare
+the browser epub.js reference with epub.ts and must be removed with `compare`
+when epub.js is retired, unless the later single-parser validator independently
+justifies a display-label normalization invariant.
+
+## Table of Contents Comparison
+
+Strict recursive comparison preserves entry position, IDs, hrefs including
+fragments, labels, sibling counts, and nesting. It does not use the previous
+set-based comparison, so duplicate labels and hrefs remain independently
+observable.
+
+- `test`: 4/4 compared with zero TOC differences.
+- `space`: 587/587 compared; 586 equal and 1 classified difference.
+- `drop`: 706/706 compared; 705 equal and the same 1 classified difference.
+
+The sole remaining difference is `David Mitchell - The Thousand Autumns of
+Jacob De Zoet.epub`: browser epub.js returns only `Cover` and `Author's Note`
+at the root, while epub.ts also returns the five valid part entries and their
+chapter descendants. Classification: `reference bug fixed by candidate`.
+The difference remains reported as `toc.length`; it is not normalized away.
+
+Local generated evidence:
+
+- `data/reports/epubjs-vs-epubts-space.md`
+- `data/reports/epubjs-vs-epubts-drop.md`

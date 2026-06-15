@@ -111,10 +111,9 @@ export interface ComparisonWarning {
     | "spine.properties.mismatch" // Ordered spine properties mismatch
     | "parse.failure" // One parser failed for this book
     | "toc.presence" // One or both TOCs are empty
-    | "toc.id.set" // IDs present in one TOC but not the other - not used
-    | "toc.label.set" // Labels present in one TOC but not the other
-    | "toc.href.set" // Hrefs present in one TOC but not the other
-    | "toc.label.order" // Labels appear in different order in the two TOCs
-    | "toc.label.depth"; // Labels have different nesting depths in the two TOCs
+    | "toc.length" // Ordered sibling count mismatch
+    | "toc.id.mismatch" // Ordered TOC id mismatch
+    | "toc.href.mismatch" // Ordered TOC href mismatch
+    | "toc.label.mismatch"; // Ordered TOC label mismatch
   message: string;
 }

@@ -263,17 +263,17 @@ feat: compare epub spine reading order
 
 Do not start until spine behavior is understood on `space`.
 
-- [ ] Enable TOC comparison in `compareBook()`.
-- [ ] Remove remaining parser-specific assumptions from TOC comparison.
-- [ ] Compare strict TOC values before normalization.
-- [ ] Compare presence, labels, hrefs, order, and tree depth.
-- [ ] Preserve fragments, IDs, order, and nesting.
-- [ ] Add label whitespace or href normalization only when demonstrated by a
+- [x] Enable TOC comparison in `compareBook()`.
+- [x] Remove remaining parser-specific assumptions from TOC comparison.
+- [x] Compare strict TOC values before normalization.
+- [x] Compare presence, labels, hrefs, order, and tree depth.
+- [x] Preserve fragments, IDs, order, and nesting.
+- [x] Add label whitespace or href normalization only when demonstrated by a
       real mismatch and recorded in findings.
-- [ ] Improve comparison handling for duplicate labels or hrefs if the corpus
+- [x] Improve comparison handling for duplicate labels or hrefs if the corpus
       demonstrates that the existing set-based approach is insufficient.
-- [ ] Run `test`, then `space`, then `drop`.
-- [ ] Investigate and classify all meaningful differences before proceeding.
+- [x] Run `test`, then `space`, then `drop`.
+- [x] Investigate and classify all meaningful differences before proceeding.
 
 Checkpoint commit:
 
