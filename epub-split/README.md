@@ -3,22 +3,28 @@
 ## Objectives
 
 - Trying to extract structure, then content from epub ebook files.
-- Need to validate epub concepts: spine, toc, reading order, links (internal, etc)
+- Need to validate epub concepts: spine, toc, reading order, links (internal,
+  etc)
 
 ## Libraries
 
-- `epubjs`: Browser reference because this is what the Audiobookshelf client uses.
-- `@likecoin/epub-ts`: Maintained TypeScript rewrite of epub.js with a Node entry point.
-- `@gxl/epub-parser`: (last commit 4 years ago) Deprecated- we are dropping this!
+- `epubjs`: Browser reference because this is what the Audiobookshelf client
+  uses.
+- `@likecoin/epub-ts`: Maintained TypeScript rewrite of epub.js with a Node
+  entry point.
+- `@gxl/epub-parser`: (last commit 4 years ago) Deprecated- we are dropping
+  this!
 
 ## Development Objectives
 
 - [ ] use createProgress on stderr (show.ts)
 - [ ] look at [zod v4](https://v4.zod.dev/v4) - z.prettifyError?
-- [ ] look at [markitdown epub converter](https://github.com/microsoft/markitdown/blob/main/packages/markitdown/src/markitdown/converters/_epub_converter.py)
+- [ ] look at
+      [markitdown epub converter](https://github.com/microsoft/markitdown/blob/main/packages/markitdown/src/markitdown/converters/_epub_converter.py)
 - [ ] consider fresh for ui instead of error reporting?
 - refine error strategy
-  - anything that fatal to parsing: throw - should not be captured in ParserResult
+  - anything that fatal to parsing: throw - should not be captured in
+    ParserResult
   - categorize warnings: add to ParserResult.warnings
 - [x] capture all error in epub parsing (3 corpora)
   - [x] epubjs
@@ -29,7 +35,8 @@
 - [x] extract TOC structure
 - [ ] extract First sentences from each "chapter"
   - [ ] epubjs works for Two Towers, but not Pax
-  - [ ] epub-parser has content (markdown) in sections, but _I_ cannot link spine(structure) to sections(content)
+  - [ ] epub-parser has content (markdown) in sections, but _I_ cannot link
+        spine(structure) to sections(content)
 
 ## Usage (Development)
 
@@ -39,17 +46,14 @@ time pnpx tsx index.ts -r space --unzip -s Real.epub
 ```
 
 ```bash
-time pnpx tsx index.ts -r space -p compare -v | tee coco.md | gum format
-time pnpx tsx index.ts -r space -p compare | tee coco.md | gum format
+pnpx tsx index.ts -r test -p compare -v > reports/epubjs-vs-epubts-test.md
+pnpx tsx index.ts -r space -p compare -v > reports/epubjs-vs-epubts-space.md
+pnpx tsx index.ts -r drop -p compare -v > reports/epubjs-vs-epubts-drop.md
 
-time pnpx tsx index.ts -r space -p compare
-time pnpx tsx index.ts -r drop -p compare
-
-time pnpx tsx index.ts -p epubts -r drop --summary > data/summary.epubts.drop.md
-time pnpx tsx index.ts -p epubts -r space --summary > data/summary.epubts.space.md
-
-time pnpx tsx index.ts -p epubjs -r drop --summary > data/summary.epubjs.drop.md
-time pnpx tsx index.ts -p epubjs -r space --summary > data/summary.epubjs.space.md
+pnpx tsx index.ts -r space -p epubjs -v > reports/parser-validation-space-epubjs.md
+pnpx tsx index.ts -r drop -p epubjs -v > reports/parser-validation-drop-epubjs.md
+pnpx tsx index.ts -r space -p epubts -v > reports/parser-validation-space-epubts.md
+pnpx tsx index.ts -r drop -p epubts -v > reports/parser-validation-drop-epubts.md
 ```
 
 ## Compare TOC
@@ -86,7 +90,8 @@ A toc is defined as {id, label, href, children[]}
   - ✓ handles flat vs nested and mismatched depths
   - ✗ does not yet verify tree structure isomorphism
 
-The comparison is considered successful when all warnings are empty, indicating that:
+The comparison is considered successful when all warnings are empty, indicating
+that:
 
 - all labels and hrefs are present in both TOCs
 - common labels appear in the same order
