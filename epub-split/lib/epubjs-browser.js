@@ -155,10 +155,53 @@ window.parseEpubFromInputFiles = async function () {
     linear: item.linear,
     properties: item.properties,
   }));
+  const chapters = [];
+  for (const section of book.spine.spineItems) {
+    try {
+      const xhtml = await section.render(book.load.bind(book));
+      chapters.push({
+        idref: section.idref || "",
+        href: section.href || "",
+        xhtml,
+        canonicalXhtml: canonicalizeNode(section.contents),
+        text: section.contents ? section.contents.textContent || "" : "",
+      });
+    } catch (error) {
+      chapters.push({
+        idref: section.idref || "",
+        href: section.href || "",
+        xhtml: "",
+        canonicalXhtml: "",
+        text: "",
+        failure: error instanceof Error ? error.message : String(error),
+      });
+    } finally {
+      section.unload();
+    }
+  }
   return {
     metadata: book.packaging.metadata,
     toc: newTOC,
     manifest: book.packaging.manifest,
     spine,
+    chapters,
   };
 };
+
+function canonicalizeNode(node) {
+  if (!node) return "";
+  if (node.nodeType === 3) return node.nodeValue || "";
+  if (node.nodeType === 8) return `<!--${node.nodeValue || ""}-->`;
+  if (node.nodeType !== 1) return "";
+  if (node.tagName.toLowerCase() === "base") return "";
+
+  const attributes = Array.from(node.attributes)
+    .map((attribute) => [attribute.name, attribute.value])
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([name, value]) => ` ${name}=${JSON.stringify(value)}`)
+    .join("");
+  const children = Array.from(node.childNodes)
+    .map(canonicalizeNode)
+    .join("");
+  return `<${node.tagName}${attributes}>${children}</${node.tagName}>`;
+}

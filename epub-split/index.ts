@@ -110,6 +110,13 @@ async function main(): Promise<void> {
     return;
   }
   let hasWarnings = 0;
+  const chapterLevels: Record<string, number> = {
+    raw: 0,
+    canonical: 0,
+    text: 0,
+    mismatch: 0,
+    loadFailure: 0,
+  };
   const parseFailures: Array<{ book: string; message: string }> = [];
   const { updateProgress, leaveTrace, doneProgress } = createProgress(
     matchingBookPaths.length,
@@ -140,17 +147,24 @@ async function main(): Promise<void> {
           { verbosity }
         );
         const warnings = compareBook(bookEpubjs, bookEpubts, { verbosity });
-        if (warnings.length > 0) {
+        countChapterLevels(warnings, chapterLevels);
+        const differences = warnings.filter(
+          (warning) => !isChapterMatchLevel(warning.type)
+        );
+        if (differences.length > 0) {
           hasWarnings++;
           console.log(`\n## ${basename(bookPath)}\n`);
-          showWarnings(warnings);
+          showWarnings(verbosity > 1 ? warnings : differences, verbosity);
           if (verbosity > 0) {
             leaveTrace(
-              `  - ${warningMark}: ${warnings.length} warnings - ${basename(
+              `  - ${warningMark}: ${differences.length} warnings - ${basename(
                 bookPath
               )}`
             );
           }
+        } else if (verbosity > 1) {
+          console.log(`\n## ${basename(bookPath)}\n`);
+          showWarnings(warnings, verbosity);
         } else {
           // console.log(`\n## ${basename(bookPath)}\n`);
           // console.log(`  ${checkMark} All validations passed`);
@@ -251,6 +265,35 @@ async function main(): Promise<void> {
       console.log(`  - ${failure.book}: ${failure.message}`);
     }
   }
+  if (parser === "compare") {
+    console.log("\n## Chapter comparison\n");
+    console.log(`- raw XHTML matches: ${chapterLevels.raw}`);
+    console.log(`- canonical DOM matches: ${chapterLevels.canonical}`);
+    console.log(`- normalized text matches: ${chapterLevels.text}`);
+    console.log(`- content mismatches: ${chapterLevels.mismatch}`);
+    console.log(`- chapter load failures: ${chapterLevels.loadFailure}`);
+  }
+}
+
+function isChapterMatchLevel(type: string): boolean {
+  return (
+    type === "chapter.content.raw" ||
+    type === "chapter.content.canonical" ||
+    type === "chapter.content.text"
+  );
+}
+
+function countChapterLevels(
+  warnings: Array<{ type: string }>,
+  totals: Record<string, number>
+): void {
+  for (const warning of warnings) {
+    if (warning.type === "chapter.content.raw") totals.raw++;
+    if (warning.type === "chapter.content.canonical") totals.canonical++;
+    if (warning.type === "chapter.content.text") totals.text++;
+    if (warning.type === "chapter.content.mismatch") totals.mismatch++;
+    if (warning.type === "chapter.load.failure") totals.loadFailure++;
+  }
 }
 
 type Parser = (
@@ -298,6 +341,7 @@ async function captureParseFailure(
       },
       manifest: {},
       spine: [],
+      chapters: [],
       toc: [],
       errors: [message],
       warnings: [],

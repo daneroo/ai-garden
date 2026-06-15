@@ -8,7 +8,7 @@ import {
   convertEpubjsSpine,
   convertEpubjsToc,
 } from "./epubjs-shared.ts";
-import type { Metadata, ParserResult, ParseOptions } from "./types.ts";
+import type { Chapters, Metadata, ParserResult, ParseOptions } from "./types.ts";
 
 const PARSE_TIMEOUT_MS = 10_000;
 
@@ -52,6 +52,7 @@ export async function parse(
         "Reconstructed metadata from full element textContent for epub-ts/linkedom compatibility"
       );
     }
+    const chapters = await extractChapters(book, bookPath);
 
     if (verbosity > 1) {
       console.error(`- epubts parse duration:${Date.now() - start}ms`);
@@ -62,6 +63,7 @@ export async function parse(
       metadata,
       manifest: convertEpubjsManifest(book.packaging.manifest),
       spine: convertEpubjsSpine(book.spine.spineItems),
+      chapters,
       toc: convertEpubjsToc(book.navigation.toc),
       errors: [],
       warnings,
@@ -69,6 +71,56 @@ export async function parse(
   } finally {
     book.destroy();
   }
+}
+
+async function extractChapters(book: Book, bookPath: string): Promise<Chapters> {
+  const chapters: Chapters = [];
+  for (const section of book.spine.spineItems) {
+    try {
+      const xhtml = await withTimeout(
+        section.render(book.load.bind(book)),
+        bookPath
+      );
+      chapters.push({
+        idref: section.idref ?? "",
+        href: section.href ?? "",
+        xhtml,
+        canonicalXhtml: canonicalizeNode(section.contents),
+        text: section.contents?.textContent ?? "",
+      });
+    } catch (error: unknown) {
+      chapters.push({
+        idref: section.idref ?? "",
+        href: section.href ?? "",
+        xhtml: "",
+        canonicalXhtml: "",
+        text: "",
+        failure: error instanceof Error ? error.message : String(error),
+      });
+    } finally {
+      section.unload();
+    }
+  }
+  return chapters;
+}
+
+function canonicalizeNode(node: Node | undefined): string {
+  if (!node) return "";
+  if (node.nodeType === 3) return node.nodeValue ?? "";
+  if (node.nodeType === 8) return `<!--${node.nodeValue ?? ""}-->`;
+  if (node.nodeType !== 1) return "";
+
+  const element = node as Element;
+  if (element.tagName.toLowerCase() === "base") return "";
+  const attributes = Array.from(element.attributes)
+    .map((attribute) => [attribute.name, attribute.value] as const)
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([name, value]) => ` ${name}=${JSON.stringify(value)}`)
+    .join("");
+  const children = Array.from(element.childNodes)
+    .map(canonicalizeNode)
+    .join("");
+  return `<${element.tagName}${attributes}>${children}</${element.tagName}>`;
 }
 
 async function extractMetadataTextContent(

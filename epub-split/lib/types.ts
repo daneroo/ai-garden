@@ -24,6 +24,17 @@ export interface SpineItem {
 
 export type Spine = SpineItem[];
 
+export interface Chapter {
+  idref: string;
+  href: string;
+  xhtml: string;
+  canonicalXhtml: string;
+  text: string;
+  failure?: string;
+}
+
+export type Chapters = Chapter[];
+
 /**
  * Represents a single node in the table of contents tree
  */
@@ -83,6 +94,8 @@ export interface ParserResult {
   manifest: Manifest;
   /** Ordered reading sequence from the package spine */
   spine: Spine;
+  /** Serialized content associated with each ordered spine entry */
+  chapters: Chapters;
   /** Table of contents */
   toc: Toc;
   /** NOT-WANTED (for now, maybe never) */
@@ -134,6 +147,13 @@ export interface ComparisonWarning {
     | "toc.id.mismatch" // Ordered TOC id mismatch
     | "toc.href.mismatch" // Ordered TOC href mismatch
     | "toc.label.mismatch" // Ordered TOC label mismatch
-    | "metadata.field.mismatch"; // Strict metadata field mismatch
+    | "metadata.field.mismatch" // Strict metadata field mismatch
+    | "chapter.length" // Chapter count mismatch
+    | "chapter.identity.mismatch" // Ordered chapter ID or href mismatch
+    | "chapter.load.failure" // One or both parsers could not load a chapter
+    | "chapter.content.raw" // Raw XHTML matches
+    | "chapter.content.canonical" // Raw differs but canonical DOM matches
+    | "chapter.content.text" // Canonical DOM differs but normalized text matches
+    | "chapter.content.mismatch"; // Chapter content differs after all comparison levels
   message: string;
 }

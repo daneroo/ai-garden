@@ -39,12 +39,12 @@ Do not create the branch as part of planning.
 - Start with strict equality at every stage.
 - Add normalization only after a real corpus mismatch demonstrates the need.
 - Document every normalization and never use it to hide missing information.
-- Collect all useful differences for a book instead of returning after the
-  first mismatch.
+- Collect all useful differences for a book instead of returning after the first
+  mismatch.
 - A candidate improvement over an epub.js bug is not automatically a failure.
 - Do not add automated tests; this is a corpus-validation experiment.
-- Continue running both Deno and Node type-checks until a concrete incompatibility
-  requires reconsidering Deno.
+- Continue running both Deno and Node type-checks until a concrete
+  incompatibility requires reconsidering Deno.
 - Do not add JSON output or benchmark instrumentation.
 
 ## CLI During Validation
@@ -140,8 +140,8 @@ independently so comparison cannot hide a broken adapter or a changed reference.
       `data/reports/parser-validation-space-epubts.md`.
 - [x] Run `epubts` alone over the complete `drop` corpus and save
       `data/reports/parser-validation-drop-epubts.md`.
-- [x] Require both epub.ts runs to attempt every discovered book and finish
-      with zero unclassified parse failures.
+- [x] Require both epub.ts runs to attempt every discovered book and finish with
+      zero unclassified parse failures.
 - [x] Record any compatibility workaround as a visible parser warning and in
       `FINDINGS-epub-ts-2026-06-14.md`; do not silently normalize failures.
 - [x] Do not resume `compare` on `space` or `drop` until this phase is complete.
@@ -177,8 +177,8 @@ Comparison messages use:
 - `reference (epubjs)`
 - `candidate (epubts)`
 
-The comparison functions derive concrete names from `ParserResult.parser`,
-while the CLI guarantees reference-first ordering.
+The comparison functions derive concrete names from `ParserResult.parser`, while
+the CLI guarantees reference-first ordering.
 
 Classify investigated mismatches as:
 
@@ -201,8 +201,8 @@ without a second parser.
 - [x] Add an `epubts` adapter using `@likecoin/epub-ts/node`.
 - [x] Read each EPUB with `node:fs/promises` and pass an exact sliced
       `ArrayBuffer` to epub.ts.
-- [x] Reuse the existing epub.js extraction semantics where necessary: the
-      same readiness points, selected fields, TOC traversal, spine lookup, and
+- [x] Reuse the existing epub.js extraction semantics where necessary: the same
+      readiness points, selected fields, TOC traversal, spine lookup, and
       content extraction behavior. Do not use Playwright in the epub.ts adapter.
 - [x] Change fixed `compare` mode to epub.js reference versus epub.ts candidate.
 - [x] Make `compare` the default CLI parser mode.
@@ -238,8 +238,8 @@ Validate one stage across the primary corpus before adding the next stage.
 - [x] Save Markdown reports under `data/reports/`.
 
 The first checkpoint commit already introduces manifest comparison. Additional
-commits are allowed when investigation reveals a coherent manifest-specific
-fix, but every commit must leave the experiment runnable.
+commits are allowed when investigation reveals a coherent manifest-specific fix,
+but every commit must leave the experiment runnable.
 
 ## Phase 3: Spine and Reading Order
 
@@ -304,17 +304,17 @@ feat: compare epub metadata
 
 Do not start until metadata behavior is understood on `space`.
 
-- [ ] Add chapter results incrementally to `ParserResult`.
-- [ ] Associate chapter content with ordered spine entries by ID and href.
-- [ ] Start with raw chapter XHTML equality.
-- [ ] Only when raw equality fails, compare canonically serialized DOM output.
-- [ ] Only when canonical DOM equality fails, compare normalized extracted text.
-- [ ] Treat similarity metrics as diagnostics only, never equality.
-- [ ] Report the strictest level at which each chapter matches.
-- [ ] For text mismatches, report lengths, stable hashes, and the first useful
+- [x] Add chapter results incrementally to `ParserResult`.
+- [x] Associate chapter content with ordered spine entries by ID and href.
+- [x] Start with raw chapter XHTML equality.
+- [x] Only when raw equality fails, compare canonically serialized DOM output.
+- [x] Only when canonical DOM equality fails, compare normalized extracted text.
+- [x] Treat similarity metrics as diagnostics only, never equality.
+- [x] Report the strictest level at which each chapter matches.
+- [x] For text mismatches, report lengths, stable hashes, and the first useful
       differing region.
-- [ ] Run `test`, then `space`, then `drop`.
-- [ ] Investigate and classify all meaningful differences.
+- [x] Run `test`, then `space`, then `drop`.
+- [x] Investigate and classify all meaningful differences.
 
 Checkpoint commit:
 
@@ -325,6 +325,8 @@ feat: compare epub chapter content
 ## Phase 7: Record the Decision
 
 - [ ] Ensure final `test`, `space`, and `drop` reports are saved.
+  - [ ] you can save the comparisons as ./reports/epubjs-vs-epubts-<root>.md for
+        commit (instead of data/reports/epubjs-vs-epubts-<root>>.md)
 - [ ] Summarize explained differences and normalizations in
       `FINDINGS-epub-ts-2026-06-14.md`.
 - [ ] State whether epub.ts is equivalent for the EPUB behavior this project
@@ -366,8 +368,8 @@ Do not perform this phase without explicit approval.
 - [ ] Rewrite the README around the final objective: use one epub.ts parser to
       validate every EPUB against the requirements and invariants we care about.
 - [ ] Remove comparison-era usage instructions that no longer apply.
-- [ ] Preserve the historical plans and reports as experimental evidence until
-      a separate cleanup decision is made.
+- [ ] Preserve the historical plans and reports as experimental evidence until a
+      separate cleanup decision is made.
 - [ ] Identify the first concrete EPUB invariants to enforce in subsequent work.
 
 Checkpoint commit:

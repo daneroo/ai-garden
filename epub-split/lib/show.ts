@@ -58,9 +58,32 @@ export function showParserValidation(
   }
 }
 
-export function showWarnings(warnings: ComparisonWarning[]) {
+export function showWarnings(
+  warnings: ComparisonWarning[],
+  verbosity: number = 0
+) {
   if (warnings.length === 0) return;
-  warnings.forEach((w) => console.log(`  ${xMark} ${w.type}: ${w.message}`));
+  const byType = new Map<string, ComparisonWarning[]>();
+  for (const warning of warnings) {
+    const group = byType.get(warning.type) ?? [];
+    group.push(warning);
+    byType.set(warning.type, group);
+  }
+  for (const [type, group] of byType) {
+    if (verbosity === 0) {
+      console.log(`  ${xMark} ${type}: ${group.length}`);
+      continue;
+    }
+    const visible = verbosity > 1 ? group : group.slice(0, 15);
+    for (const warning of visible) {
+      console.log(`  ${xMark} ${warning.type}: ${warning.message}`);
+    }
+    if (visible.length < group.length) {
+      console.log(
+        `  ${xMark} ${type}: ${group.length - visible.length} additional differences omitted`
+      );
+    }
+  }
 }
 
 /**
