@@ -226,16 +226,16 @@ refactor: replace lingo comparison with epubts
 
 Validate one stage across the primary corpus before adding the next stage.
 
-- [ ] Compare independent parser success and failure outcomes.
-- [ ] Compare manifest values strictly before adding normalization.
-- [ ] Report manifest count differences without returning early.
-- [ ] Report keys missing from either side.
-- [ ] Report all relevant field differences for common entries.
-- [ ] Run `test`, then the complete `space` corpus.
-- [ ] Investigate and classify all meaningful mismatch patterns.
-- [ ] Add only narrowly justified manifest normalization, if required.
-- [ ] Run `drop` after `space` and investigate unique or path-specific results.
-- [ ] Save Markdown reports under `data/reports/`.
+- [x] Compare independent parser success and failure outcomes.
+- [x] Compare manifest values strictly before adding normalization.
+- [x] Report manifest count differences without returning early.
+- [x] Report keys missing from either side.
+- [x] Report all relevant field differences for common entries.
+- [x] Run `test`, then the complete `space` corpus.
+- [x] Investigate and classify all meaningful mismatch patterns.
+- [x] Add only narrowly justified manifest normalization, if required.
+- [x] Run `drop` after `space` and investigate unique or path-specific results.
+- [x] Save Markdown reports under `data/reports/`.
 
 The first checkpoint commit already introduces manifest comparison. Additional
 commits are allowed when investigation reveals a coherent manifest-specific

@@ -50,3 +50,24 @@ Normalized legacy opf: element prefixes for epub-ts/linkedom compatibility
 This workaround must remain visible during comparison and must not be treated
 as proof of stock epub.ts equivalence. It is adapter compatibility behavior for
 a documented candidate regression.
+
+## Parse Outcome and Manifest Comparison
+
+Classification: no differences found
+
+The fixed epub.js-reference versus epub.ts-candidate comparison completed all
+books in both current corpora:
+
+- `space`: 587/587 compared with zero parse-outcome or strict manifest
+  differences.
+- `drop`: 706/706 compared with zero parse-outcome or strict manifest
+  differences.
+
+No manifest normalization was added. The legacy OPF namespace workaround above
+remains visible in the standalone epub.ts reports, but the resulting manifests
+are strictly equal to the browser epub.js reference.
+
+Local generated evidence:
+
+- `data/reports/epubjs-vs-epubts-space.md`
+- `data/reports/epubjs-vs-epubts-drop.md`

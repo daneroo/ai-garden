@@ -68,33 +68,39 @@ export function compareManifest(
   options: Partial<CompareOptions> = {}
 ): ComparisonWarning[] {
   const warnings: ComparisonWarning[] = [];
+  const referenceKeys = Object.keys(reference);
+  const candidateKeys = Object.keys(candidate);
 
-  // Compare the Manifest length: i.e. the number of entries
-  if (
-    Object.keys(reference).length !== Object.keys(candidate).length
-  ) {
+  if (referenceKeys.length !== candidateKeys.length) {
     warnings.push({
       type: "manifest.length",
-      message: `Manifest length mismatch ${referenceName}:${
-        Object.keys(reference).length
-      } ${candidateName}:${Object.keys(candidate).length}`,
+      message: `Manifest length mismatch ${referenceName}:${referenceKeys.length} ${candidateName}:${candidateKeys.length}`,
     });
-    return warnings;
   }
-  // since we had an early return when lengths do not match
-  // we can assume the lengths match
-  for (const key in reference) {
+
+  for (const key of referenceKeys) {
     if (!(key in candidate)) {
       warnings.push({
         type: "manifest.missing.key",
         message: `Manifest entry missing in ${candidateName}: ${key}`,
       });
-      continue;
     }
-    // now we have both reference and candidate entries
+  }
+
+  for (const key of candidateKeys) {
+    if (!(key in reference)) {
+      warnings.push({
+        type: "manifest.missing.key",
+        message: `Manifest entry missing in ${referenceName}: ${key}`,
+      });
+    }
+  }
+
+  for (const key of referenceKeys) {
+    if (!(key in candidate)) continue;
+
     const referenceEntry = reference[key];
     const candidateEntry = candidate[key];
-    // I think this is impossible, but just in case!!
     if (referenceEntry.id !== candidateEntry.id) {
       warnings.push({
         type: "manifest.id.mismatch",
