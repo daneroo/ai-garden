@@ -106,7 +106,9 @@ data/reports/epubjs-vs-epubts-space.md
 data/reports/epubjs-vs-epubts-drop.md
 ```
 
-The CLI does not write reports automatically. Redirect output as needed.
+The CLI does not write reports automatically. Redirect output as needed. These
+reports are local generated evidence under the ignored `data/` directory and
+must not remain tracked in Git.
 
 Create `FINDINGS-epub-ts-2026-06-14.md` only when the first meaningful mismatch
 needs interpretation, or when recording the final conclusion. Reports contain
@@ -143,6 +145,10 @@ independently so comparison cannot hide a broken adapter or a changed reference.
 - [x] Record any compatibility workaround as a visible parser warning and in
       `FINDINGS-epub-ts-2026-06-14.md`; do not silently normalize failures.
 - [x] Do not resume `compare` on `space` or `drop` until this phase is complete.
+- [x] Remove the four force-added `parser-validation-*-epubjs.md` and
+      `parser-validation-*-epubts.md` files from Git tracking with
+      `git rm --cached`, while preserving the local files under ignored
+      `data/reports/`. Do not remove or modify `data/reports-orig/`.
 
 Standalone report commands:
 
