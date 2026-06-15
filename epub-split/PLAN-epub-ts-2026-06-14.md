@@ -324,14 +324,14 @@ feat: compare epub chapter content
 
 ## Phase 7: Record the Decision
 
-- [ ] Ensure final `test`, `space`, and `drop` reports are saved.
-  - [ ] you can save the comparisons as ./reports/epubjs-vs-epubts-<root>.md for
+- [x] Ensure final `test`, `space`, and `drop` reports are saved.
+  - [x] you can save the comparisons as ./reports/epubjs-vs-epubts-<root>.md for
         commit (instead of data/reports/epubjs-vs-epubts-<root>>.md)
-- [ ] Summarize explained differences and normalizations in
+- [x] Summarize explained differences and normalizations in
       `FINDINGS-epub-ts-2026-06-14.md`.
-- [ ] State whether epub.ts is equivalent for the EPUB behavior this project
+- [x] State whether epub.ts is equivalent for the EPUB behavior this project
       requires.
-- [ ] Record any accepted epub.ts improvements over epub.js reference behavior.
+- [x] Record any accepted epub.ts improvements over epub.js reference behavior.
 - [ ] Request explicit approval before removing epub.js or Playwright.
 
 Checkpoint commit:

@@ -229,3 +229,35 @@ Local generated evidence:
 - `data/reports/epubjs-vs-epubts-test.md`
 - `data/reports/epubjs-vs-epubts-space.md`
 - `data/reports/epubjs-vs-epubts-drop.md`
+
+## Final Decision
+
+The epub.ts adapter is accepted as equivalent or better for the EPUB behavior
+this project requires across the checked-in test books and both real-world
+corpora. No candidate content regression remains unresolved.
+
+This conclusion applies to the adapter implemented here, not unmodified stock
+`@likecoin/epub-ts`. The adapter must retain its visible compatibility handling
+for legacy OPF namespace prefixes and linkedom metadata text-node behavior.
+Comparison-only TOC, metadata, canonical-DOM, and text normalizations must be
+removed with the comparison stack unless the future single-parser validator
+independently justifies them as EPUB invariants.
+
+Accepted epub.ts improvements over browser epub.js are:
+
+- More complete TOC extraction for the David Mitchell book.
+- Correct Unicode decoding where browser epub.js produced control characters.
+- Correct body-text extraction for malformed XHTML that browser epub.js exposed
+  as serialized head markup.
+
+The symmetric chapter-load failures identify broken or unsupported source-book
+content and should become explicit validation findings in the later
+single-parser EPUB validator.
+
+Tracked final evidence:
+
+- `reports/epubjs-vs-epubts-test.md`
+- `reports/epubjs-vs-epubts-space.md`
+- `reports/epubjs-vs-epubts-drop.md`
+
+Removal of epub.js and Playwright remains explicitly gated on user approval.
