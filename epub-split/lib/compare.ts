@@ -2,7 +2,14 @@
   This need to be replaced with an accurate description when we are done
  */
 
-import { ParserResult, Toc, Manifest, ComparisonWarning, Spine } from "./types.ts";
+import {
+  ParserResult,
+  Toc,
+  Manifest,
+  ComparisonWarning,
+  Metadata,
+  Spine,
+} from "./types.ts";
 // -- Public API
 
 export interface CompareOptions {
@@ -57,8 +64,40 @@ export function compareBook(
   );
 
   warnings.push(...compareToc(reference.toc, candidate.toc, options));
+  warnings.push(...compareMetadata(reference.metadata, candidate.metadata));
 
   return warnings;
+}
+
+export function compareMetadata(
+  reference: Metadata,
+  candidate: Metadata
+): ComparisonWarning[] {
+  const warnings: ComparisonWarning[] = [];
+  for (const field of Object.keys(reference) as Array<keyof Metadata>) {
+    const referenceValue = normalizeMetadataForComparison(
+      field,
+      reference[field]
+    );
+    const candidateValue = normalizeMetadataForComparison(
+      field,
+      candidate[field]
+    );
+    if (referenceValue !== candidateValue) {
+      warnings.push({
+        type: "metadata.field.mismatch",
+        message: `field:${field} reference:${JSON.stringify(referenceValue)} candidate:${JSON.stringify(candidateValue)}`,
+      });
+    }
+  }
+  return warnings;
+}
+
+function normalizeMetadataForComparison(
+  _field: keyof Metadata,
+  value: string
+): string {
+  return value.replace(/\r\n?/g, "\n");
 }
 
 export function compareSpine(

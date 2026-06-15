@@ -4,10 +4,11 @@ import { Archive, Book } from "@likecoin/epub-ts/node";
 
 import {
   convertEpubjsManifest,
+  convertEpubjsMetadata,
   convertEpubjsSpine,
   convertEpubjsToc,
 } from "./epubjs-shared.ts";
-import type { ParserResult, ParseOptions } from "./types.ts";
+import type { Metadata, ParserResult, ParseOptions } from "./types.ts";
 
 const PARSE_TIMEOUT_MS = 10_000;
 
@@ -44,12 +45,21 @@ export async function parse(
     await withTimeout(book.loaded.navigation, bookPath);
     await withTimeout(book.loaded.spine, bookPath);
 
+    const stockMetadata = convertEpubjsMetadata(book.packaging.metadata);
+    const metadata = await extractMetadataTextContent(book, bookPath);
+    if (JSON.stringify(metadata) !== JSON.stringify(stockMetadata)) {
+      warnings.push(
+        "Reconstructed metadata from full element textContent for epub-ts/linkedom compatibility"
+      );
+    }
+
     if (verbosity > 1) {
       console.error(`- epubts parse duration:${Date.now() - start}ms`);
     }
 
     return {
       parser: "epubts",
+      metadata,
       manifest: convertEpubjsManifest(book.packaging.manifest),
       spine: convertEpubjsSpine(book.spine.spineItems),
       toc: convertEpubjsToc(book.navigation.toc),
@@ -59,6 +69,67 @@ export async function parse(
   } finally {
     book.destroy();
   }
+}
+
+async function extractMetadataTextContent(
+  book: Book,
+  bookPath: string
+): Promise<Metadata> {
+  const packagePath = book.container?.packagePath;
+  if (!packagePath || !book.archive) {
+    return convertEpubjsMetadata(book.packaging.metadata);
+  }
+
+  const document = (await withTimeout(
+    book.archive.request(`/${packagePath}`) as Promise<Document>,
+    bookPath
+  )) as Document;
+  const metadataElement = firstElement(document, "metadata");
+  const spineElement = firstElement(document, "spine");
+
+  const dcText = (name: string): string => {
+    const namespaced = metadataElement.getElementsByTagNameNS(
+      "http://purl.org/dc/elements/1.1/",
+      name
+    );
+    const element =
+      namespaced[0] ?? metadataElement.getElementsByTagName(`dc:${name}`)[0];
+    return element?.textContent ?? "";
+  };
+  const propertyText = (property: string): string => {
+    const elements = metadataElement.getElementsByTagName("meta");
+    for (const element of Array.from(elements)) {
+      if (element.getAttribute("property") === property) {
+        return element.textContent ?? "";
+      }
+    }
+    return "";
+  };
+
+  return {
+    title: dcText("title"),
+    creator: dcText("creator"),
+    description: dcText("description"),
+    pubdate: dcText("date"),
+    publisher: dcText("publisher"),
+    identifier: dcText("identifier"),
+    language: dcText("language"),
+    rights: dcText("rights"),
+    modifiedDate: propertyText("dcterms:modified"),
+    layout: propertyText("rendition:layout"),
+    orientation: propertyText("rendition:orientation"),
+    flow: propertyText("rendition:flow"),
+    viewport: propertyText("rendition:viewport"),
+    mediaActiveClass: propertyText("media:active-class"),
+    spread: propertyText("rendition:spread"),
+    direction: spineElement.getAttribute("page-progression-direction") ?? "",
+  };
+}
+
+function firstElement(document: Document, name: string): Element {
+  const element = document.getElementsByTagName(name)[0];
+  if (!element) throw new Error(`No ${name} element found in package document`);
+  return element;
 }
 
 async function normalizeLegacyOpfPrefixes(

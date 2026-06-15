@@ -1,6 +1,46 @@
 import { z } from "zod";
 
-import type { Manifest, Spine, Toc, TocEntry } from "./types.ts";
+import type { Manifest, Metadata, Spine, Toc, TocEntry } from "./types.ts";
+
+interface EpubjsMetadata {
+  title?: string;
+  creator?: string;
+  description?: string;
+  pubdate?: string;
+  publisher?: string;
+  identifier?: string;
+  language?: string;
+  rights?: string;
+  modified_date?: string;
+  layout?: string;
+  orientation?: string;
+  flow?: string;
+  viewport?: string;
+  media_active_class?: string;
+  spread?: string;
+  direction?: string;
+}
+
+export function convertEpubjsMetadata(metadata: EpubjsMetadata): Metadata {
+  return {
+    title: metadata.title ?? "",
+    creator: metadata.creator ?? "",
+    description: metadata.description ?? "",
+    pubdate: metadata.pubdate ?? "",
+    publisher: metadata.publisher ?? "",
+    identifier: metadata.identifier ?? "",
+    language: metadata.language ?? "",
+    rights: metadata.rights ?? "",
+    modifiedDate: metadata.modified_date ?? "",
+    layout: metadata.layout ?? "",
+    orientation: metadata.orientation ?? "",
+    flow: metadata.flow ?? "",
+    viewport: metadata.viewport ?? "",
+    mediaActiveClass: metadata.media_active_class ?? "",
+    spread: metadata.spread ?? "",
+    direction: metadata.direction ?? "",
+  };
+}
 
 const manifestItemSchema = z.object({
   href: z.string(),

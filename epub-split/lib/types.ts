@@ -50,6 +50,25 @@ export interface TocEntry {
  */
 export type Toc = TocEntry[];
 
+export interface Metadata {
+  title: string;
+  creator: string;
+  description: string;
+  pubdate: string;
+  publisher: string;
+  identifier: string;
+  language: string;
+  rights: string;
+  modifiedDate: string;
+  layout: string;
+  orientation: string;
+  flow: string;
+  viewport: string;
+  mediaActiveClass: string;
+  spread: string;
+  direction: string;
+}
+
 /**
  * Result from parsing an EPUB file
  */
@@ -58,8 +77,8 @@ export interface ParserResult {
   parser: string;
   /** Book-specific parser failure captured so corpus processing can continue */
   failure?: ParseFailure;
-  /** LATER: Book metadata like title, author, etc */
-  // metadata: Metadata;
+  /** Package metadata exposed by both parsers */
+  metadata: Metadata;
   /** manifest */
   manifest: Manifest;
   /** Ordered reading sequence from the package spine */
@@ -114,6 +133,7 @@ export interface ComparisonWarning {
     | "toc.length" // Ordered sibling count mismatch
     | "toc.id.mismatch" // Ordered TOC id mismatch
     | "toc.href.mismatch" // Ordered TOC href mismatch
-    | "toc.label.mismatch"; // Ordered TOC label mismatch
+    | "toc.label.mismatch" // Ordered TOC label mismatch
+    | "metadata.field.mismatch"; // Strict metadata field mismatch
   message: string;
 }

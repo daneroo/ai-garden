@@ -72,6 +72,41 @@ Local generated evidence:
 - `data/reports/epubjs-vs-epubts-space.md`
 - `data/reports/epubjs-vs-epubts-drop.md`
 
+## Metadata Comparison
+
+Classification: `candidate regression with adapter compatibility handling`
+
+Both libraries expose the same epub.js-derived, single-value package metadata
+surface. Strict comparison initially found 337 field differences on `space`:
+298 descriptions, 23 publishers, 11 rights values, and 5 titles. The epub.ts
+values were truncated at escaped markup or named entities, often to just `<`.
+
+The package documents are valid. linkedom represents decoded XML entities as
+separate text nodes, while epub.ts reads only the first child node's value.
+The epub.ts adapter therefore reconstructs the same fields from each element's
+complete `textContent`. It emits this standalone parser warning whenever that
+changes stock epub.ts output:
+
+```text
+Reconstructed metadata from full element textContent for epub-ts/linkedom compatibility
+```
+
+This is candidate compatibility behavior, not proof that stock epub.ts metadata
+is equivalent to browser epub.js. Unlike comparison-only normalization, it is
+needed to prevent data loss if epub.ts becomes the sole parser.
+
+After reconstruction, six `space` descriptions and one `drop` identifier
+differed only by CRLF versus LF. Metadata comparison normalizes line endings
+only; raw metadata remains unchanged. This line-ending normalization must be
+removed with `compare` unless a later validator independently requires it.
+
+- `test`: 4/4 compared with zero metadata differences.
+- `space`: 587/587 compared with zero metadata differences.
+- `drop`: 706/706 compared with zero metadata differences.
+
+The cumulative reports retain only the previously classified David Mitchell
+TOC difference.
+
 ## Spine and Reading Order Comparison
 
 Classification: no differences found

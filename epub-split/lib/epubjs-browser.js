@@ -155,5 +155,10 @@ window.parseEpubFromInputFiles = async function () {
     linear: item.linear,
     properties: item.properties,
   }));
-  return { toc: newTOC, manifest: book.packaging.manifest, spine };
+  return {
+    metadata: book.packaging.metadata,
+    toc: newTOC,
+    manifest: book.packaging.manifest,
+    spine,
+  };
 };

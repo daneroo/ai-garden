@@ -285,14 +285,14 @@ feat: compare epub table of contents
 
 Do not start until TOC behavior is understood on `space`.
 
-- [ ] Add only the metadata fields required for the comparison to
+- [x] Add only the metadata fields required for the comparison to
       `ParserResult`.
-- [ ] Extract the same metadata semantics from both adapters.
-- [ ] Compare strict values first, including multiplicity and ordering where
+- [x] Extract the same metadata semantics from both adapters.
+- [x] Compare strict values first, including multiplicity and ordering where
       observable and meaningful.
-- [ ] Add normalization only in response to explained corpus differences.
-- [ ] Run `test`, then `space`, then `drop`.
-- [ ] Investigate and classify all meaningful differences before proceeding.
+- [x] Add normalization only in response to explained corpus differences.
+- [x] Run `test`, then `space`, then `drop`.
+- [x] Investigate and classify all meaningful differences before proceeding.
 
 Checkpoint commit:
 
