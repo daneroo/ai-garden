@@ -9,14 +9,7 @@ export function showParserValidation(
   interface ClassifiedMessage {
     level: "error" | "warning";
     msg: string;
-    code?:
-      | "metadata.id.missing" // lingo
-      | "manifest.resource.missing" // lingo
-      | "archive.resource.missing" // epubjs - probably cover image
-      | "guide.element.missing" // lingo
-      | "toc.navpoints.missing" // lingo - happens in parseNavMap when navPoints undefined rather than empty?
-      | "xml.syntax.error" // lingo - happens in parsexml when XML is malformed (e.g. double closing tags)
-      | "manifest.resource.readError"; // lingo - happens when trying to read a resource from filesystem
+    code?: "archive.resource.missing";
   }
 
   const messages: ClassifiedMessage[] = [];
@@ -24,26 +17,6 @@ export function showParserValidation(
   // Classify warnings
   for (const warning of parserResult.warnings) {
     if (
-      // lingo metadata.missing.id
-      warning.includes("No element with id") &&
-      warning.includes("parsing <metadata>")
-    ) {
-      messages.push({
-        level: "warning",
-        msg: warning,
-        code: "metadata.id.missing",
-      });
-    } else if (
-      // Warning: <path/to/resource.ext> file was not exit in <epub-file-path>
-      // caused by lingo readResource when saves all the media/images
-      warning.includes("file was not exit in")
-    ) {
-      messages.push({
-        level: "warning",
-        msg: warning,
-        code: "manifest.resource.missing",
-      });
-    } else if (
       // Warning: {message: File not found in the epub: <path/to/resource.ext>, stack: Error
       // caused by epubjs in archive.createUrl - not sure why cover image?
       // so i'll just use the code: archive.missing.resource
@@ -61,51 +34,7 @@ export function showParserValidation(
 
   // Add errors
   for (const error of parserResult.errors) {
-    if (
-      // happens in lingo parseRoot->parseGuide
-      error.includes("Within the package there may be one guide element")
-    ) {
-      messages.push({
-        level: "error",
-        msg: error,
-        code: "guide.element.missing",
-      });
-    } else if (
-      // happens in lingo parseNavMap when navPoints undefined rather than empty?
-      // implies no TOC found
-      error.includes("navPoints is not iterable")
-    ) {
-      messages.push({
-        level: "error",
-        msg: error,
-        code: "toc.navpoints.missing",
-      });
-    } else if (
-      // happens in lingo parsexml when XML is malformed
-      // example found in toc.ncx: double closing tag </navPoint></navPoint>
-      // lingo calls parsexml in three places:
-      // - const containerAST = await parsexml(containerXml)
-      // - const xml = await parsexml(rootFileOPF)
-      // - const ncx = (await parsexml(tocNcxFile)).ncx
-      // the only instance we found error comes from the last one (ncx)
-      error.includes("Unexpected close tag")
-    ) {
-      messages.push({ level: "error", msg: error, code: "xml.syntax.error" });
-    } else if (
-      // happens in lingo when trying to read resources from filesystem
-      // example: trying to read CSS files that are referenced in manifest but not present
-      // from the error we gather they are being read back from the resourceDir.
-      // similar to manifest.resource.missing but happens during read rather than during manifest parsing
-      error.includes("ENOENT: no such file or directory, open")
-    ) {
-      messages.push({
-        level: "error",
-        msg: error,
-        code: "manifest.resource.readError",
-      });
-    } else {
-      messages.push({ level: "error", msg: error });
-    }
+    messages.push({ level: "error", msg: error });
   }
 
   const manifestLength = Object.keys(parserResult.manifest).length;

@@ -1,11 +1,13 @@
+/// <reference lib="dom" />
+
 import { basename } from "node:path";
 import { chromium } from "playwright";
 import type { Page } from "playwright";
-import { Manifest, ParserResult, ParseOptions } from "./types.ts";
+import type { ParserResult, ParseOptions } from "./types.ts";
+import { convertEpubjsManifest } from "./epubjs-shared.ts";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import assert from "node:assert";
-import { z } from "zod";
 
 /**
  * @param {string} bookPath
@@ -28,7 +30,8 @@ export async function parse(
   const warnings: string[] = [];
 
   const browser = await chromium.launch(/*{ headless: false, slowMo: 50 }*/);
-  const page = await browser.newPage();
+  try {
+    const page = await browser.newPage();
 
   // await page.goto("about:blank");
   // Set up the page with jsSHA,jszip,epubjs libraries
@@ -112,54 +115,16 @@ export async function parse(
     // Type assertion needed because this is client-side code where parseEpubFromInputFiles is injected
     return (window as any).parseEpubFromInputFiles();
   });
-  await browser.close();
-  return {
-    parser: "epubjs",
-    manifest: fixManifest(manifest),
-    toc,
-    errors: errors,
-    warnings: warnings,
-  };
-}
-
-function fixManifest(manifest: any): Manifest {
-  // const ex = {
-  //   BODY1: {
-  //     href: "01_cover.xhtml",
-  //     type: "application/xhtml+xml",
-  //     overlay: "",
-  //     properties: [],
-  //   },
-  //   BODY2: {
-  //     href: "02_advertisement-title.xhtml",
-  //     type: "application/xhtml+xml",
-  //     overlay: "",
-  //     properties: [],
-  //   },
-  // };
-
-  const manifestItemSchema = z.object({
-    href: z.string(),
-    type: z.string(),
-    overlay: z.string().optional(),
-    properties: z.array(z.string()).optional(),
-  });
-
-  const manifestSchema = z.record(manifestItemSchema).transform((data) => {
-    const result: Record<string, any> = {};
-    for (const [id, item] of Object.entries(data)) {
-      result[id] = {
-        id,
-        href: item.href,
-        mediaType: item.type,
-        mediaOverlay: item.overlay || undefined,
-        properties: item.properties?.join(",") || undefined,
-      };
-    }
-    return result as Manifest;
-  });
-
-  return manifestSchema.parse(manifest);
+    return {
+      parser: "epubjs",
+      manifest: convertEpubjsManifest(manifest),
+      toc,
+      errors: errors,
+      warnings: warnings,
+    };
+  } finally {
+    await browser.close();
+  }
 }
 
 async function uploadWithSetInputFiles(

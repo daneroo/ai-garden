@@ -235,3 +235,4 @@ async function getClientSHA(page: Page): Promise<string> {
 main().catch((err) => {
   console.error("Error:", err);
 });
+/// <reference lib="dom" />

@@ -97,6 +97,10 @@ Keep manual Markdown report generation under the existing `data/reports/`
 convention:
 
 ```text
+data/reports/parser-validation-space-epubjs.md
+data/reports/parser-validation-drop-epubjs.md
+data/reports/parser-validation-space-epubts.md
+data/reports/parser-validation-drop-epubts.md
 data/reports/epubjs-vs-epubts-test.md
 data/reports/epubjs-vs-epubts-space.md
 data/reports/epubjs-vs-epubts-drop.md
@@ -115,6 +119,39 @@ raw evidence; the findings document records:
 - Final equivalence decision.
 
 Leave existing Lingo reports and historical plans unchanged.
+
+## Phase 0: Standalone Parser Baselines
+
+This phase is a hard gate before any `compare` corpus run. Validate each parser
+independently so comparison cannot hide a broken adapter or a changed reference.
+
+- [x] Run `epubjs` alone over the complete `space` corpus and save
+      `data/reports/parser-validation-space-epubjs.md`.
+- [x] Run `epubjs` alone over the complete `drop` corpus and save
+      `data/reports/parser-validation-drop-epubjs.md`.
+- [x] Compare fresh epub.js reports with the historical reports. Corpus counts
+      may grow, but the baseline behavior must remain the same: complete every
+      book and emit no new per-book error sections.
+- [x] Investigate and resolve every epub.js baseline regression before
+      proceeding.
+- [x] Run `epubts` alone over the complete `space` corpus and save
+      `data/reports/parser-validation-space-epubts.md`.
+- [x] Run `epubts` alone over the complete `drop` corpus and save
+      `data/reports/parser-validation-drop-epubts.md`.
+- [x] Require both epub.ts runs to attempt every discovered book and finish
+      with zero unclassified parse failures.
+- [x] Record any compatibility workaround as a visible parser warning and in
+      `FINDINGS-epub-ts-2026-06-14.md`; do not silently normalize failures.
+- [x] Do not resume `compare` on `space` or `drop` until this phase is complete.
+
+Standalone report commands:
+
+```bash
+pnpx tsx index.ts -p epubjs -r space > data/reports/parser-validation-space-epubjs.md
+pnpx tsx index.ts -p epubjs -r drop > data/reports/parser-validation-drop-epubjs.md
+pnpx tsx index.ts -p epubts -r space > data/reports/parser-validation-space-epubts.md
+pnpx tsx index.ts -p epubts -r drop > data/reports/parser-validation-drop-epubts.md
+```
 
 ## Failure Model
 
@@ -153,25 +190,25 @@ and judgment.
 This phase must be one coherent, runnable checkpoint. Do not leave `compare`
 without a second parser.
 
-- [ ] Add `@likecoin/epub-ts` and its Node peer dependency, `linkedom`, with
+- [x] Add `@likecoin/epub-ts` and its Node peer dependency, `linkedom`, with
       pnpm.
-- [ ] Add an `epubts` adapter using `@likecoin/epub-ts/node`.
-- [ ] Read each EPUB with `node:fs/promises` and pass an exact sliced
+- [x] Add an `epubts` adapter using `@likecoin/epub-ts/node`.
+- [x] Read each EPUB with `node:fs/promises` and pass an exact sliced
       `ArrayBuffer` to epub.ts.
-- [ ] Reuse the existing epub.js extraction semantics where necessary: the
+- [x] Reuse the existing epub.js extraction semantics where necessary: the
       same readiness points, selected fields, TOC traversal, spine lookup, and
       content extraction behavior. Do not use Playwright in the epub.ts adapter.
-- [ ] Change fixed `compare` mode to epub.js reference versus epub.ts candidate.
-- [ ] Make `compare` the default CLI parser mode.
-- [ ] Add `epubts` and remove `lingo` from parser choices.
-- [ ] Generalize hard-coded Lingo/epub.js parameter names and messages to
+- [x] Change fixed `compare` mode to epub.js reference versus epub.ts candidate.
+- [x] Make `compare` the default CLI parser mode.
+- [x] Add `epubts` and remove `lingo` from parser choices.
+- [x] Generalize hard-coded Lingo/epub.js parameter names and messages to
       reference/candidate terminology.
-- [ ] Remove the Lingo adapter and `@lingo-reader/epub-parser` dependency.
-- [ ] Remove Lingo-specific warning handling.
-- [ ] Remove `jsdom` and `@types/jsdom`; retain `zod` while Playwright remains.
-- [ ] Preserve sequential parsing: epub.js first, epub.ts second.
-- [ ] Run Node and Deno type-checks.
-- [ ] Run the initial comparison on the `test` domain.
+- [x] Remove the Lingo adapter and `@lingo-reader/epub-parser` dependency.
+- [x] Remove Lingo-specific warning handling.
+- [x] Remove `jsdom` and `@types/jsdom`; retain `zod` while Playwright remains.
+- [x] Preserve sequential parsing: epub.js first, epub.ts second.
+- [x] Run Node and Deno type-checks.
+- [x] Run the initial comparison on the `test` domain.
 
 Checkpoint commit:
 
@@ -342,4 +379,3 @@ This plan is complete when one of these conclusions is documented:
    invariant validation.
 2. epub.ts has unresolved or unacceptable regressions, Playwright remains, and
    the findings clearly document why replacement was rejected or deferred.
-

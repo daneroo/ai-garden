@@ -3,7 +3,7 @@
  */
 export interface ManifestItem {
   id: string;
-  href: string; // relative to opf file: lingo is rebased from contentBaseDir to opfDir
+  href: string;
   mediaType: string;
   properties?: string;
   mediaOverlay?: string;
@@ -25,7 +25,7 @@ export interface TocEntry {
   href: string;
   /** Display text of the TOC entry */
   label: string;
-  /** Reading order sequence (from lingo-reader) */
+  /** Reading order sequence, when available */
   playOrder?: string;
   /** Raw text content of the entry (from epubjs) */
   textContent?: string;
@@ -45,8 +45,10 @@ export type Toc = TocEntry[];
  * Result from parsing an EPUB file
  */
 export interface ParserResult {
-  /** Name of the parser used ('lingo' or 'epubjs') */
+  /** Name of the parser used */
   parser: string;
+  /** Book-specific parser failure captured so corpus processing can continue */
+  failure?: ParseFailure;
   /** LATER: Book metadata like title, author, etc */
   // metadata: Metadata;
   /** manifest */
@@ -71,6 +73,12 @@ export interface ParserResult {
   warnings: string[];
 }
 
+export interface ParseFailure {
+  stage: "parse";
+  category: string;
+  message: string;
+}
+
 /**
  * Options for parsing an EPUB file
  */
@@ -87,6 +95,7 @@ export interface ComparisonWarning {
     | "manifest.id.mismatch" // Manifest entry id mismatch
     | "manifest.href.mismatch" // Manifest entry href mismatch
     | "manifest.mediaType.mismatch" // Manifest entry mediaType mismatch
+    | "parse.failure" // One parser failed for this book
     | "toc.presence" // One or both TOCs are empty
     | "toc.id.set" // IDs present in one TOC but not the other - not used
     | "toc.label.set" // Labels present in one TOC but not the other

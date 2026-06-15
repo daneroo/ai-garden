@@ -20,78 +20,98 @@ const defaultOptions: CompareOptions = {
 };
 
 export function compareBook(
-  bookLingo: ParserResult,
-  bookEpubjs: ParserResult,
+  reference: ParserResult,
+  candidate: ParserResult,
   options: Partial<CompareOptions> = {}
 ): ComparisonWarning[] {
   const warnings: ComparisonWarning[] = [];
 
+  if (reference.failure) {
+    warnings.push({
+      type: "parse.failure",
+      message: `reference (${reference.parser}) ${reference.failure.category}: ${reference.failure.message}`,
+    });
+  }
+  if (candidate.failure) {
+    warnings.push({
+      type: "parse.failure",
+      message: `candidate (${candidate.parser}) ${candidate.failure.category}: ${candidate.failure.message}`,
+    });
+  }
+  if (reference.failure || candidate.failure) {
+    return warnings;
+  }
+
   const manifestWarnings = compareManifest(
-    bookLingo.manifest,
-    bookEpubjs.manifest,
+    reference.manifest,
+    candidate.manifest,
+    reference.parser,
+    candidate.parser,
     options
   );
   warnings.push(...manifestWarnings);
 
-  // const spineWarnings = compareSpine(bookLingo.spine, bookEpubjs.spine, options);
+  // const spineWarnings = compareSpine(reference.spine, candidate.spine, options);
   // warnings.push(...spineWarnings);
 
-  // const tocWarnings = compareToc(bookLingo.toc, bookEpubjs.toc, options);
+  // const tocWarnings = compareToc(reference.toc, candidate.toc, options);
   // warnings.push(...tocWarnings);
 
   return warnings;
 }
 
 export function compareManifest(
-  manifestLingo: Manifest,
-  manifestEpubjs: Manifest,
+  reference: Manifest,
+  candidate: Manifest,
+  referenceName: string = "reference",
+  candidateName: string = "candidate",
   options: Partial<CompareOptions> = {}
 ): ComparisonWarning[] {
   const warnings: ComparisonWarning[] = [];
 
   // Compare the Manifest length: i.e. the number of entries
   if (
-    Object.keys(manifestLingo).length !== Object.keys(manifestEpubjs).length
+    Object.keys(reference).length !== Object.keys(candidate).length
   ) {
     warnings.push({
       type: "manifest.length",
-      message: `Manifest length mismatch lingo:${
-        Object.keys(manifestLingo).length
-      } epubjs:${Object.keys(manifestEpubjs).length}`,
+      message: `Manifest length mismatch ${referenceName}:${
+        Object.keys(reference).length
+      } ${candidateName}:${Object.keys(candidate).length}`,
     });
     return warnings;
   }
   // since we had an early return when lengths do not match
   // we can assume the lengths match
-  for (const key in manifestLingo) {
-    if (!(key in manifestEpubjs)) {
+  for (const key in reference) {
+    if (!(key in candidate)) {
       warnings.push({
         type: "manifest.missing.key",
-        message: `Manifest entry missing in epubjs: ${key}`,
+        message: `Manifest entry missing in ${candidateName}: ${key}`,
       });
       continue;
     }
-    // now we have both lingo and epubjs entries
-    const lEntry = manifestLingo[key];
-    const eEntry = manifestEpubjs[key];
+    // now we have both reference and candidate entries
+    const referenceEntry = reference[key];
+    const candidateEntry = candidate[key];
     // I think this is impossible, but just in case!!
-    if (lEntry.id !== eEntry.id) {
+    if (referenceEntry.id !== candidateEntry.id) {
       warnings.push({
         type: "manifest.id.mismatch",
-        message: `key:${key} lingo:${lEntry.id} epubjs:${eEntry.id}`,
+        message: `key:${key} ${referenceName}:${referenceEntry.id} ${candidateName}:${candidateEntry.id}`,
       });
     }
     // compare hrefs, as they are.
-    if (lEntry.href !== eEntry.href) {
+    if (referenceEntry.href !== candidateEntry.href) {
       warnings.push({
         type: "manifest.href.mismatch",
-        message: `key:${key} lingo:${lEntry.href} epubjs:${eEntry.href}`,
+        message: `key:${key} ${referenceName}:${referenceEntry.href} ${candidateName}:${candidateEntry.href}`,
       });
     }
-    if (lEntry.mediaType !== eEntry.mediaType) {
+    if (referenceEntry.mediaType !== candidateEntry.mediaType) {
       warnings.push({
         type: "manifest.mediaType.mismatch",
-        message: `key:${key} lingo:${lEntry.mediaType} epubjs:${eEntry.mediaType}`,
+        message: `key:${key} ${referenceName}:${referenceEntry.mediaType} ${candidateName}:${candidateEntry.mediaType}`,
       });
     }
   }
@@ -100,26 +120,26 @@ export function compareManifest(
 }
 
 export function compareToc(
-  tocLingo: Toc,
-  tocEpubjs: Toc,
+  referenceToc: Toc,
+  candidateToc: Toc,
   options: Partial<CompareOptions> = {}
 ): ComparisonWarning[] {
   const opts = { ...defaultOptions, ...options } as CompareOptions;
 
   const warnings: ComparisonWarning[] = [];
   // - quick guard – empty TOC on either side
-  const emptyLingo = tocLingo.length === 0;
-  const emptyEpub = tocEpubjs.length === 0;
-  if (emptyLingo || emptyEpub) {
-    if (emptyLingo && emptyEpub) {
+  const emptyReference = referenceToc.length === 0;
+  const emptyCandidate = candidateToc.length === 0;
+  if (emptyReference || emptyCandidate) {
+    if (emptyReference && emptyCandidate) {
       warnings.push({
         type: "toc.presence",
         message:
           "Both parsers produced an empty TOC - no further comparisons possible",
       });
     } else {
-      const emptyName = emptyLingo ? "lingo" : "epubjs";
-      const otherName = emptyLingo ? "epubjs" : "lingo";
+      const emptyName = emptyReference ? "reference" : "candidate";
+      const otherName = emptyReference ? "candidate" : "reference";
       warnings.push({
         type: "toc.presence",
         message: `${emptyName} produced an empty TOC while ${otherName} has entries`,
@@ -129,18 +149,18 @@ export function compareToc(
   }
 
   // - flatten & normalize – flatten & normalize
-  const lingoEntries = flattenToc(tocLingo, 0, opts);
-  const epubEntries = flattenToc(tocEpubjs, 0, opts);
+  const referenceEntries = flattenToc(referenceToc, 0, opts);
+  const candidateEntries = flattenToc(candidateToc, 0, opts);
 
   // - compare
-  const labelDiff = compareFieldSet(lingoEntries, epubEntries, "label");
-  const hrefDiff = compareFieldSet(lingoEntries, epubEntries, "href", (h) =>
+  const labelDiff = compareFieldSet(referenceEntries, candidateEntries, "label");
+  const hrefDiff = compareFieldSet(referenceEntries, candidateEntries, "href", (h) =>
     opts.normalizeHref ? normalizeHref(h) : h
   );
   //  Not used: comparison not useful
-  // const idDiff = compareFieldSet(lingoEntries, epubEntries, "id");
-  const orderDiff = compareLabelOrder(lingoEntries, epubEntries);
-  const depthDiff = compareTreeDepth(lingoEntries, epubEntries);
+  // const idDiff = compareFieldSet(referenceEntries, candidateEntries, "id");
+  const orderDiff = compareLabelOrder(referenceEntries, candidateEntries);
+  const depthDiff = compareTreeDepth(referenceEntries, candidateEntries);
 
   //- aggregate warnings
   warnings.push(
@@ -152,8 +172,8 @@ export function compareToc(
   );
 
   if (opts.verbosity > 0) {
-    showSideBySideTOC(lingoEntries, epubEntries, "label");
-    showSideBySideTOC(lingoEntries, epubEntries, "href");
+    showSideBySideTOC(referenceEntries, candidateEntries, "label");
+    showSideBySideTOC(referenceEntries, candidateEntries, "href");
   }
 
   return warnings;
@@ -207,22 +227,22 @@ function normalizeLabel(label: string): string {
 /**
  * Returns a Set of values that are present in both TOCs for a given field.
  *
- * @param lingo - Array of flattened TOC entries from Lingo parser
- * @param epub - Array of flattened TOC entries from EpubJS parser
+ * @param reference - Flattened TOC entries from the reference parser
+ * @param candidate - Flattened TOC entries from the candidate parser
  * @param field - The string-valued field to compare (e.g. "label" or "href")
  * @param normalize - Optional function to normalize field values before comparison
  * @returns A Set of values present in both TOCs
  */
 function commonEntries(
-  lingo: FlatEntry[],
-  epub: FlatEntry[],
+  reference: FlatEntry[],
+  candidate: FlatEntry[],
   field: keyof FlatEntry & string,
   normalize?: (value: string) => string
 ): Set<string> {
   const norm = normalize ?? ((x: string) => x);
-  const setLingo = new Set(lingo.map((e) => norm(e[field] as string)));
-  const setEpub = new Set(epub.map((e) => norm(e[field] as string)));
-  return new Set([...setLingo].filter((x) => setEpub.has(x)));
+  const referenceSet = new Set(reference.map((e) => norm(e[field] as string)));
+  const candidateSet = new Set(candidate.map((e) => norm(e[field] as string)));
+  return new Set([...referenceSet].filter((x) => candidateSet.has(x)));
 }
 
 // Map field names to their corresponding warning types
@@ -244,37 +264,37 @@ function mapFieldToWarningType(
  * Compares the sets of values for a given string field between two TOC entries.
  * TODO(daneroo): add duplicate checks
  *
- * @param lingo - Array of flattened TOC entries from Lingo parser
- * @param epub - Array of flattened TOC entries from EpubJS parser
+ * @param reference - Flattened TOC entries from the reference parser
+ * @param candidate - Flattened TOC entries from the candidate parser
  * @param field - The string-valued field to compare (e.g. "label" or "href")
  * @param normalize - Optional function to normalize field values before comparison
  * @returns Array of warnings for values only present in one set
  */
 function compareFieldSet(
-  lingo: FlatEntry[],
-  epub: FlatEntry[],
+  reference: FlatEntry[],
+  candidate: FlatEntry[],
   field: keyof Omit<FlatEntry, "depth">,
   normalize?: (value: string) => string
 ): ComparisonWarning[] {
   const norm = normalize ?? ((x: string) => x);
-  const setLingo = new Set(lingo.map((e) => norm(e[field] as string)));
-  const setEpub = new Set(epub.map((e) => norm(e[field] as string)));
-  const common = commonEntries(lingo, epub, field, normalize);
+  const referenceSet = new Set(reference.map((e) => norm(e[field] as string)));
+  const candidateSet = new Set(candidate.map((e) => norm(e[field] as string)));
+  const common = commonEntries(reference, candidate, field, normalize);
   const warnings: ComparisonWarning[] = [];
 
-  const onlyInLingo = [...setLingo].filter((l) => !common.has(l));
-  const onlyInEpubjs = [...setEpub].filter((l) => !common.has(l));
+  const onlyInReference = [...referenceSet].filter((value) => !common.has(value));
+  const onlyInCandidate = [...candidateSet].filter((value) => !common.has(value));
 
-  if (onlyInLingo.length > 0) {
+  if (onlyInReference.length > 0) {
     warnings.push({
       type: mapFieldToWarningType(field),
-      message: `Only in Lingo: ${onlyInLingo.join(", ")}`,
+      message: `Only in reference: ${onlyInReference.join(", ")}`,
     });
   }
-  if (onlyInEpubjs.length > 0) {
+  if (onlyInCandidate.length > 0) {
     warnings.push({
       type: mapFieldToWarningType(field),
-      message: `Only in EpubJS: ${onlyInEpubjs.join(", ")}`,
+      message: `Only in candidate: ${onlyInCandidate.join(", ")}`,
     });
   }
 
@@ -282,22 +302,22 @@ function compareFieldSet(
 }
 
 function compareLabelOrder(
-  lingo: FlatEntry[],
-  epub: FlatEntry[]
+  reference: FlatEntry[],
+  candidate: FlatEntry[]
 ): ComparisonWarning[] {
-  const commonLabels = commonEntries(lingo, epub, "label");
-  const seqLingo = lingo
+  const commonLabels = commonEntries(reference, candidate, "label");
+  const referenceSequence = reference
     .filter((e) => commonLabels.has(e.label))
     .map((e) => e.label);
-  const seqEpub = epub
+  const candidateSequence = candidate
     .filter((e) => commonLabels.has(e.label))
     .map((e) => e.label);
   const warnings: ComparisonWarning[] = [];
-  for (let i = 0; i < Math.min(seqLingo.length, seqEpub.length); i++) {
-    if (seqLingo[i] !== seqEpub[i]) {
+  for (let i = 0; i < Math.min(referenceSequence.length, candidateSequence.length); i++) {
+    if (referenceSequence[i] !== candidateSequence[i]) {
       warnings.push({
         type: "toc.label.order",
-        message: `#${i}: lingo:"${seqLingo[i]}" vs epubjs:"${seqEpub[i]}"`,
+        message: `#${i}: reference:"${referenceSequence[i]}" vs candidate:"${candidateSequence[i]}"`,
       });
     }
   }
@@ -305,26 +325,26 @@ function compareLabelOrder(
 }
 
 function compareTreeDepth(
-  lingo: FlatEntry[],
-  epub: FlatEntry[]
+  reference: FlatEntry[],
+  candidate: FlatEntry[]
 ): ComparisonWarning[] {
-  const commonLabels = commonEntries(lingo, epub, "label");
-  const depthLingo = lingo
+  const commonLabels = commonEntries(reference, candidate, "label");
+  const referenceDepths = reference
     .filter((e) => commonLabels.has(e.label))
     .map((e) => e.depth);
-  const depthEpub = epub
+  const candidateDepths = candidate
     .filter((e) => commonLabels.has(e.label))
     .map((e) => e.depth);
-  const maxL = Math.max(...depthLingo);
-  const maxE = Math.max(...depthEpub);
+  const maxReferenceDepth = Math.max(...referenceDepths);
+  const maxCandidateDepth = Math.max(...candidateDepths);
 
   const warnings: ComparisonWarning[] = [];
 
   // Handle flat vs nested case
-  if ((maxL === 0 && maxE > 0) || (maxE === 0 && maxL > 0)) {
-    const flatSide = maxL === 0 ? "lingo" : "epubjs";
-    const otherSide = maxL === 0 ? "epubjs" : "lingo";
-    const otherMaxDepth = maxL === 0 ? maxE : maxL;
+  if ((maxReferenceDepth === 0 && maxCandidateDepth > 0) || (maxCandidateDepth === 0 && maxReferenceDepth > 0)) {
+    const flatSide = maxReferenceDepth === 0 ? "reference" : "candidate";
+    const otherSide = maxReferenceDepth === 0 ? "candidate" : "reference";
+    const otherMaxDepth = maxReferenceDepth === 0 ? maxCandidateDepth : maxReferenceDepth;
     warnings.push({
       type: "toc.label.depth",
       message: `${flatSide} is flat while ${otherSide} has depth ${otherMaxDepth}`,
@@ -333,21 +353,21 @@ function compareTreeDepth(
   }
 
   // Handle depth mismatches - for common entries
-  const mapL = Object.fromEntries(lingo.map((e) => [e.label, e.depth]));
-  const mapE = Object.fromEntries(epub.map((e) => [e.label, e.depth]));
-  const mismatches = Object.keys(mapL)
+  const referenceMap = Object.fromEntries(reference.map((e) => [e.label, e.depth]));
+  const candidateMap = Object.fromEntries(candidate.map((e) => [e.label, e.depth]));
+  const mismatches = Object.keys(referenceMap)
     .filter((lbl) => commonLabels.has(lbl))
-    .filter((lbl) => mapL[lbl] !== mapE[lbl])
+    .filter((lbl) => referenceMap[lbl] !== candidateMap[lbl])
     .map((lbl) => ({
       label: lbl,
-      lingoDepth: mapL[lbl],
-      epubjsDepth: mapE[lbl],
+      referenceDepth: referenceMap[lbl],
+      candidateDepth: candidateMap[lbl],
     }));
 
   mismatches.forEach((m) => {
     warnings.push({
       type: "toc.label.depth",
-      message: `${m.label} - depth lingo:${m.lingoDepth}, epubjs:${m.epubjsDepth}`,
+      message: `${m.label} - depth reference:${m.referenceDepth}, candidate:${m.candidateDepth}`,
     });
   });
 
@@ -358,14 +378,14 @@ function compareTreeDepth(
 
 // Just a utility to show the TOC side by side
 function showSideBySideTOC(
-  lingoEntries: FlatEntry[],
-  epubEntries: FlatEntry[],
+  referenceEntries: FlatEntry[],
+  candidateEntries: FlatEntry[],
   foi: keyof FlatEntry = "label" // field of interest, defaulting to "label"
 ) {
   console.log(`\nSide by Side: ${foi} w/depth\n`);
-  console.log("| # | D | Lingo | D | EpubJS |");
+  console.log("| # | D | Reference | D | Candidate |");
   console.log("|---|---|-------|---|--------|");
-  const maxLength = Math.max(lingoEntries.length, epubEntries.length);
+  const maxLength = Math.max(referenceEntries.length, candidateEntries.length);
 
   function formatEntry(entry: FlatEntry | undefined): string {
     if (!entry) return "-";
@@ -376,15 +396,15 @@ function showSideBySideTOC(
   }
 
   for (let i = 0; i < maxLength; i++) {
-    const lingoEntry = lingoEntries?.[i];
-    const epubEntry = epubEntries?.[i];
+    const referenceEntry = referenceEntries?.[i];
+    const candidateEntry = candidateEntries?.[i];
 
     console.log(
       `| ${i.toString().padStart(3)} | ${
-        lingoEntry?.depth ?? "-"
-      } | ${formatEntry(lingoEntry).padEnd(40)} | ${
-        epubEntry?.depth ?? "-"
-      } | ${formatEntry(epubEntry).padEnd(40)} |`
+        referenceEntry?.depth ?? "-"
+      } | ${formatEntry(referenceEntry).padEnd(40)} | ${
+        candidateEntry?.depth ?? "-"
+      } | ${formatEntry(candidateEntry).padEnd(40)} |`
     );
   }
 }

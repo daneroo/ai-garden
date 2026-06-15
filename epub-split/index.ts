@@ -5,7 +5,7 @@ import fg from "fast-glob";
 import { basename } from "node:path";
 
 import { parse as parseEpubjs } from "./lib/epubjs-playwright.ts";
-import { parse as parseLingo } from "./lib/epub-parser-lingo.ts";
+import { parse as parseEpubts } from "./lib/epubts.ts";
 import { showTOC, showSummary } from "./lib/showToc.ts";
 import {
   checkMark,
@@ -17,19 +17,17 @@ import {
 } from "./lib/show.ts";
 import { compareBook } from "./lib/compare.ts";
 import { unzipOneOfMany } from "./lib/unzip.ts";
-import { ParserResult } from "./lib/types.ts";
-import { exit } from "node:process";
+import type { ParserResult, ParseOptions } from "./lib/types.ts";
 import { showManifest } from "./lib/showManifest.ts";
 
 // Wrap in IIFE to support top-level await in CommonJS context (tsx default)
 (async () => {
   try {
     await main();
-    exit(0);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.error("Error:", message);
-    exit(1);
+    process.exitCode = 1;
   }
 })();
 
@@ -46,9 +44,9 @@ async function main(): Promise<void> {
     .option("parser", {
       alias: "p",
       type: "string",
-      choices: ["epubjs", "lingo", "compare"],
-      default: "lingo",
-      describe: "Parse epub files withe the given library",
+      choices: ["epubjs", "epubts", "compare"],
+      default: "compare",
+      describe: "Parse EPUB files with the given library or compare both",
     })
     .option("search", {
       alias: "s",
@@ -112,6 +110,7 @@ async function main(): Promise<void> {
     return;
   }
   let hasWarnings = 0;
+  const parseFailures: Array<{ book: string; message: string }> = [];
   const { updateProgress, leaveTrace, doneProgress } = createProgress(
     matchingBookPaths.length,
     `Parse (${unverifiedRootPath},${parser})`
@@ -128,10 +127,19 @@ async function main(): Promise<void> {
       updateProgress(bkIndex, basename(bookPath));
       if (parser === "compare") {
         // do these sequentially
-        const bookEpubjs = await parseEpubjs(bookPath, { verbosity });
-        const bookLingo = await parseLingo(bookPath, { verbosity });
-
-        const warnings = compareBook(bookLingo, bookEpubjs, { verbosity });
+        const bookEpubjs = await captureParseFailure(
+          "epubjs",
+          parseEpubjs,
+          bookPath,
+          { verbosity }
+        );
+        const bookEpubts = await captureParseFailure(
+          "epubts",
+          parseEpubts,
+          bookPath,
+          { verbosity }
+        );
+        const warnings = compareBook(bookEpubjs, bookEpubts, { verbosity });
         if (warnings.length > 0) {
           hasWarnings++;
           console.log(`\n## ${basename(bookPath)}\n`);
@@ -148,13 +156,31 @@ async function main(): Promise<void> {
           // console.log(`  ${checkMark} All validations passed`);
         }
       } else {
-        let parseResult: ParserResult; // parseResult is the result of parsing the book
-        if (parser === "lingo") {
-          parseResult = await parseLingo(bookPath, { verbosity });
-        } else if (parser === "epubjs") {
-          parseResult = await parseEpubjs(bookPath, { verbosity });
+        let parseResult: ParserResult;
+        if (parser === "epubjs") {
+          parseResult = await captureParseFailure(
+            "epubjs",
+            parseEpubjs,
+            bookPath,
+            { verbosity }
+          );
+        } else if (parser === "epubts") {
+          parseResult = await captureParseFailure(
+            "epubts",
+            parseEpubts,
+            bookPath,
+            { verbosity }
+          );
         } else {
           throw new Error(`Unknown parser: ${parser}`);
+        }
+
+        if (parseResult.failure) {
+          hasWarnings++;
+          parseFailures.push({
+            book: basename(bookPath),
+            message: parseResult.failure.message,
+          });
         }
 
         if (summary) {
@@ -207,7 +233,7 @@ async function main(): Promise<void> {
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : String(error);
       leaveTrace(`** Book level error: ${basename(bookPath)} - ${message}`);
-      process.exit(1);
+      throw error;
     }
   }
 
@@ -219,6 +245,52 @@ async function main(): Promise<void> {
       `- found ${matchingBookPaths.length - hasWarnings} files with no warnings`
     );
   }
+  if (parseFailures.length > 0) {
+    console.log(`- parse failures: ${parseFailures.length}`);
+    for (const failure of parseFailures) {
+      console.log(`  - ${failure.book}: ${failure.message}`);
+    }
+  }
+}
+
+type Parser = (
+  bookPath: string,
+  options?: ParseOptions
+) => Promise<ParserResult>;
+
+async function captureParseFailure(
+  parserName: string,
+  parser: Parser,
+  bookPath: string,
+  options: ParseOptions
+): Promise<ParserResult> {
+  try {
+    return await parser(bookPath, options);
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (isSetupFailure(message)) {
+      throw error;
+    }
+    return {
+      parser: parserName,
+      failure: {
+        stage: "parse",
+        category: error instanceof Error ? error.name : "UnknownError",
+        message,
+      },
+      manifest: {},
+      toc: [],
+      errors: [message],
+      warnings: [],
+    };
+  }
+}
+
+function isSetupFailure(message: string): boolean {
+  return (
+    message.includes("browserType.launch") ||
+    message.includes("Executable doesn't exist")
+  );
 }
 
 /**

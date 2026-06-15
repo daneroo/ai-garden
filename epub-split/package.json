@@ -5,27 +5,26 @@
   "main": "index.mjs",
   "scripts": {
     "start": "pnpx tsx index.ts -h",
-    "test": "pnpm typecheck",
-    "typecheck": "pnpm typecheck:deno && pnpm typecheck:node",
+    "test": "deno check *.ts **/*.ts && tsc --noEmit --esModuleInterop --allowImportingTsExtensions --downlevelIteration --target es2015 --module esnext --moduleResolution bundler lib/*.ts *.ts",
+    "typecheck": "deno check *.ts **/*.ts && tsc --noEmit --esModuleInterop --allowImportingTsExtensions --downlevelIteration --target es2015 --module esnext --moduleResolution bundler lib/*.ts *.ts",
     "typecheck:deno": "deno check *.ts **/*.ts",
-    "typecheck:node": "pnpm exec tsc --noEmit --esModuleInterop --allowImportingTsExtensions --downlevelIteration --target es2015 --moduleResolution node lib/*.ts *.ts"
+    "typecheck:node": "tsc --noEmit --esModuleInterop --allowImportingTsExtensions --downlevelIteration --target es2015 --module esnext --moduleResolution bundler lib/*.ts *.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lingo-reader/epub-parser": "^0.2.5",
+    "@likecoin/epub-ts": "^0.6.6",
     "epubjs": "^0.3.93",
     "fast-glob": "^3.3.3",
-    "jsdom": "^26.1.0",
-    "playwright": "^1.38.1",
+    "linkedom": "^0.18.12",
+    "playwright": "^1.60.0",
     "yargs": "^17.7.2",
-    "zod": "^3.24.3"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@types/jsdom": "^21.1.7",
-    "@types/node": "^22.14.1",
-    "@types/yargs": "^17.0.33",
-    "typescript": "^5.8.3"
+    "@types/node": "^22.19.21",
+    "@types/yargs": "^17.0.35",
+    "typescript": "^5.9.3"
   }
 }
