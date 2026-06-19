@@ -7,9 +7,9 @@ Design reference:
 
 ## Status
 
-- Overall: `GATE 2 EVIDENCE VERIFIED — AWAITING APPROVAL`
-- Current gate: `Gate 2`
-- Next action: Daniel approves Gate 2 to unblock Gate 3
+- Overall: `GATE 3 IN PROGRESS`
+- Current gate: `Gate 3`
+- Next action: enable browser epub.ts open outcomes in the proven harness
 
 ## Tracking Rules
 
@@ -28,8 +28,8 @@ Design reference:
 | Gate | Scope | Status |
 |---|---|---|
 | 1 | Empty loop and deterministic reports | `APPROVED` |
-| 2 | Typed Playwright browser boundary | `EVIDENCE VERIFIED` |
-| 3 | Browser epub.ts open outcomes | `BLOCKED BY GATE 2` |
+| 2 | Typed Playwright browser boundary | `APPROVED` |
+| 3 | Browser epub.ts open outcomes | `IN PROGRESS` |
 | 4A | Node epub.ts open outcomes | `BLOCKED BY GATE 3` |
 | 4B | Storyteller open outcomes | `BLOCKED BY GATE 4A` |
 | 5 | Three-parser metadata comparison | `BLOCKED BY GATE 4B` |
@@ -104,7 +104,7 @@ feat(inspect): establish deterministic full-corpus reports
 
 ## Gate 2: Typed Playwright Browser Boundary
 
-Status: `EVIDENCE VERIFIED — AWAITING APPROVAL`
+Status: `APPROVED`
 
 ### Implementation
 
@@ -153,7 +153,7 @@ Status: `EVIDENCE VERIFIED — AWAITING APPROVAL`
 - [x] Structured diagnostics reviewed.
 - [x] Gate findings recorded.
 - [x] Gate checkpoint committed.
-- [ ] **APPROVED: proceed to Gate 3.**
+- [x] **APPROVED: proceed to Gate 3.**
 
 Checkpoint subject:
 
