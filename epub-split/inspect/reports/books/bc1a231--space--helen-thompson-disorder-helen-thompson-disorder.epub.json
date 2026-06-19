@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Helen Thompson - Disorder/Helen Thompson - Disorder.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 619002,
       "sha256": "bc1a231e6fbf1d7387e2e6d92fb4e8c5a78d3b09a0f26a0cdb3b9a143a187540",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

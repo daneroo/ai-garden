@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Tracey Kidder - The Soul of a New Machine/Tracey Kidder - The Soul of a New Machine.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 670037,
       "sha256": "f9800568be8085e9026f3e85a590106e27c1d9c449949cf28565cdf07b96d585",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

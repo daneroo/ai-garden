@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "drop",
     "relativePath": "Brent Weeks - The Lightbringer Saga 02 - The Blinding Knife.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 891183,
       "sha256": "654162c68b5a40effa4f8e14f5d5dfcbf3b1bfc0f14faa842acdb567c45d4a71",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

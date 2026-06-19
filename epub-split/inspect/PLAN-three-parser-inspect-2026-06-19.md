@@ -7,9 +7,9 @@ Design reference:
 
 ## Status
 
-- Overall: `GATE 3 IN PROGRESS`
-- Current gate: `Gate 3`
-- Next action: enable browser epub.ts open outcomes in the proven harness
+- Overall: `GATE 4A NOT STARTED`
+- Current gate: `Gate 4A`
+- Next action: begin Gate 4A after Daniel's confirmation run of Gate 3
 
 ## Tracking Rules
 
@@ -29,8 +29,8 @@ Design reference:
 |---|---|---|
 | 1 | Empty loop and deterministic reports | `APPROVED` |
 | 2 | Typed Playwright browser boundary | `APPROVED` |
-| 3 | Browser epub.ts open outcomes | `IN PROGRESS` |
-| 4A | Node epub.ts open outcomes | `BLOCKED BY GATE 3` |
+| 3 | Browser epub.ts open outcomes | `APPROVED` |
+| 4A | Node epub.ts open outcomes | `NOT STARTED` |
 | 4B | Storyteller open outcomes | `BLOCKED BY GATE 4A` |
 | 5 | Three-parser metadata comparison | `BLOCKED BY GATE 4B` |
 | Final | Feasibility decision | `BLOCKED BY GATE 5` |
@@ -163,39 +163,39 @@ feat(inspect): prove typed Playwright browser boundary
 
 ## Gate 3: Browser epub.ts Open Outcomes
 
-Status: `BLOCKED BY GATE 2`
+Status: `APPROVED`
 
 ### Implementation
 
-- [ ] Enable browser epub.ts parsing in the proven browser harness.
-- [ ] Record open success as a structured observation.
-- [ ] Record open failure with stage, category, and message.
-- [ ] Record declared EPUB version when exposed.
-- [ ] Preserve browser/page diagnostics separately from parser outcomes.
-- [ ] Guarantee book cleanup after every attempt.
-- [ ] Keep `epubts-node` and `storyteller-node` as `not-implemented`.
-- [ ] Do not extract metadata, manifest, spine, TOC, or content.
-- [ ] Do not repair, retry, or normalize failing EPUBs.
+- [x] Enable browser epub.ts parsing in the proven browser harness.
+- [x] Record open success as a structured observation.
+- [x] Record open failure with stage, category, and message.
+- [x] Record declared EPUB version when exposed.
+- [x] Preserve browser/page diagnostics separately from parser outcomes.
+- [x] Guarantee book cleanup after every attempt.
+- [x] Keep `epubts-node` and `storyteller-node` as `not-implemented`.
+- [x] Do not extract metadata, manifest, spine, TOC, or content.
+- [x] Do not repair, retry, or normalize failing EPUBs.
 
 ### Full-Corpus Evidence
 
-- [ ] `test` browser epub.ts open run completed.
-- [ ] `drop` browser epub.ts open run completed.
-- [ ] `space` browser epub.ts open run completed.
-- [ ] Every book has exactly one browser epub.ts outcome.
-- [ ] No book failure terminates the complete run.
-- [ ] No parser failure exists only as console output.
-- [ ] Open failures are individually inspectable.
-- [ ] A second unchanged complete run produces no report diff.
+- [x] `test` browser epub.ts open run completed.
+- [x] `drop` browser epub.ts open run completed.
+- [x] `space` browser epub.ts open run completed.
+- [x] Every book has exactly one browser epub.ts outcome.
+- [x] No book failure terminates the complete run.
+- [x] No parser failure exists only as console output.
+- [x] Open failures are individually inspectable.
+- [x] A second unchanged complete run produces no report diff.
 
 ### Review and Approval
 
-- [ ] All browser epub.ts failures reviewed.
-- [ ] Failure classifications reviewed for lost information.
-- [ ] Browser cleanup behavior reviewed.
-- [ ] Gate findings recorded.
-- [ ] Gate checkpoint committed.
-- [ ] **APPROVED: proceed to Gate 4A.**
+- [x] All browser epub.ts failures reviewed.
+- [x] Failure classifications reviewed for lost information.
+- [x] Browser cleanup behavior reviewed.
+- [x] Gate findings recorded.
+- [x] Gate checkpoint committed.
+- [x] **APPROVED: proceed to Gate 4A.**
 
 Checkpoint subject:
 
@@ -205,7 +205,7 @@ feat(inspect): record browser epubts open outcomes
 
 ## Gate 4A: Node epub.ts Open Outcomes
 
-Status: `BLOCKED BY GATE 3`
+Status: `NOT STARTED`
 
 ### Implementation
 

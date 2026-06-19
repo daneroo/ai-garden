@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "drop",
     "relativePath": "Brent Weeks - The Lightbringer Saga 04 - The Blood Mirror.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 4637293,
       "sha256": "5f6d2bebd6610e5a1d3163c135c864288b648931a906d262c239c99ccaa65f84",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

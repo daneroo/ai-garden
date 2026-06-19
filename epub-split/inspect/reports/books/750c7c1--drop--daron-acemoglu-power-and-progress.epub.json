@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "drop",
     "relativePath": "Daron Acemoglu - Power and Progress.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 3655089,
       "sha256": "750c7c1cc0572c2f0b0777b30e7a800513bbcb884760df98377b345c93c7dead",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

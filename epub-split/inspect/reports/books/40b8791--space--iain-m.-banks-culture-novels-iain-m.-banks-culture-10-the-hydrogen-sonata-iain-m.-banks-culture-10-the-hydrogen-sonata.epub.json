@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Iain M. Banks - Culture Novels/Iain M. Banks - Culture 10 - The Hydrogen Sonata/Iain M. Banks - Culture 10 - The Hydrogen Sonata.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 553746,
       "sha256": "40b87910a0b106fbb3af278739e0af8a0a0e00a4f7448fbc346877a8d6abad1e",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

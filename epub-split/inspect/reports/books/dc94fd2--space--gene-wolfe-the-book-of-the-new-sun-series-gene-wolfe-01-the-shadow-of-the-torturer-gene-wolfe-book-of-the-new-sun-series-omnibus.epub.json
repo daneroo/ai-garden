@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Gene Wolfe - The Book of the New Sun Series/Gene Wolfe - 01 The Shadow of the Torturer/Gene Wolfe -Book of the New Sun Series Omnibus.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 2162170,
       "sha256": "dc94fd220629e41954b166f8b4eca6c3894941a0351ad12b1b9d22ed08b9d534",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

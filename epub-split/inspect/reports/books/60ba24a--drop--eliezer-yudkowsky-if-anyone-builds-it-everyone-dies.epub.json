@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "drop",
     "relativePath": "Eliezer Yudkowsky - If Anyone Builds It Everyone Dies.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1220024,
       "sha256": "60ba24ad323e63ba89cfcb1daba5e458e5d28869bd3a10aeba4627564a44d527",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

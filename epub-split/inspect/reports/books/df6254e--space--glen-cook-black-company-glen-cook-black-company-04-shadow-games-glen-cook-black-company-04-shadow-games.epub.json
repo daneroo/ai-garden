@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Glen Cook - Black Company/Glen Cook - Black Company 04 - Shadow Games/Glen Cook - Black Company 04 - Shadow Games.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 310661,
       "sha256": "df6254e8fce8f704053fb0bc35e89b39733b7ac65f452f250b2f94f3cf834f4c",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

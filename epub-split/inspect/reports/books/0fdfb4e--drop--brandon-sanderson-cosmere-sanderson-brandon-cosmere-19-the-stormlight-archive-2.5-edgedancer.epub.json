@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "drop",
     "relativePath": "Brandon Sanderson - Cosmere/Sanderson, Brandon - Cosmere 19 - The Stormlight Archive 2.5 - Edgedancer.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 577442,
       "sha256": "0fdfb4ef0ef62928f9e7877d2ede9bb0295de9754173b24b633f89c6249cd0a7",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

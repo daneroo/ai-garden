@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Frank Herbert - Dune Saga/Frank Herbert - Dune 05 - Heretics of Dune/Frank Herbert - Dune 05 - Heretics of Dune.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 558053,
       "sha256": "e26c2ee9f0124fb7b134c966bb047ac13646afbcfbcbbdba1860d90b5094f1df",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

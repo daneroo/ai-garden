@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Joe Abercrombie - The Devils/Joe Abercrombie - The Devils 01 - The Devils/Joe Abercrombie - The Devils 01 - The Devils.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 6862263,
       "sha256": "791cf2ca3a4367af71f4211dd5207f07036d4405b264308e8ad95fae6482681f",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Steven Erikson - The Malazan Book of the Fallen/Steven Erikson - Malazan - 06 The Bonehunters/Steven Erikson - Malazan - 06 The Bonehunters.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 955861,
       "sha256": "4dc36e1e453e385b47bda143978f4cea03e43228f789a258f93f8187893d17c3",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

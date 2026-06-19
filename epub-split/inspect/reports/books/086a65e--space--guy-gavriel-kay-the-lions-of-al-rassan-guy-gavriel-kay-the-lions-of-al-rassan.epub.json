@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Guy Gavriel Kay - The Lions of al-Rassan/Guy Gavriel Kay - The Lions of Al-Rassan.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1286848,
       "sha256": "086a65e3aa3d0b89459ab9ec3a225046abac3d9303f929d29f1fe4fd15a96d6a",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

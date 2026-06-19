@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Steven Erikson - The Malazan Book of the Fallen/Steven Erikson - Malazan - 07 Reaper's Gale/Steven Erikson - Malazan - 07 Reaper's Gale.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1105283,
       "sha256": "c337468e230e34104374bc21855e9650da6261c927866714cd2470b5482d9cc1",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

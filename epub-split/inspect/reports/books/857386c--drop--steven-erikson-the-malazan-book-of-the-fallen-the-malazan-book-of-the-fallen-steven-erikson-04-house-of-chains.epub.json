@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "drop",
     "relativePath": "Steven Erikson - The Malazan Book of the Fallen/The Malazan Book of the Fallen (Steven Erikson) 04 - House of Chains.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 2316824,
       "sha256": "857386c12207bd68037d7b621bba9f97d1623ba6ea1cd4d36cb9ae24ccaa9ec3",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

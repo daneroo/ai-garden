@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "drop",
     "relativePath": "Bernard Cornwell - The Warlord Chronicles/Bernard Cornwell - The Warlord Chronicles 02 - Enemy of God.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 396080,
       "sha256": "c36a129200e876a52412e745b3895e3ffbfac8ec45bea664cacb221ef387a732",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

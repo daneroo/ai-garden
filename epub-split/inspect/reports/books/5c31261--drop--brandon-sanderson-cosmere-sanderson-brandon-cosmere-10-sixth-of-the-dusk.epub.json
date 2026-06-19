@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "drop",
     "relativePath": "Brandon Sanderson - Cosmere/Sanderson, Brandon - Cosmere 10 - Sixth of the Dusk.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 843018,
       "sha256": "5c31261e5481da29c4bd085f8fd4e3d8bb94da7ad84f5e7ce28be98cec73024c",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

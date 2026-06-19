@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "drop",
     "relativePath": "Brandon Sanderson - Cosmere/Sanderson, Brandon - Cosmere 20 - The Stormlight Archive 3 - Oathbringer.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 107736051,
       "sha256": "d45e3eedb4946928fcf5a018d63162e16d3752b75cb337e48e98afe0a286d619",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

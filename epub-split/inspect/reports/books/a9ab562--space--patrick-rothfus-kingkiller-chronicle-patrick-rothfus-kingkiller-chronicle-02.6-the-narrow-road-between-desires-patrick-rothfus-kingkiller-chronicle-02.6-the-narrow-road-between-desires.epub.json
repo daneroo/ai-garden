@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Patrick Rothfus - Kingkiller Chronicle/Patrick Rothfus - Kingkiller Chronicle 02.6 - The Narrow Road Between Desires/Patrick Rothfus - Kingkiller Chronicle 02.6 - The Narrow Road Between Desires.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 43120528,
       "sha256": "a9ab5623f8871f583ca32f705d608a2f7e7516096a7796214a5ab6774120eec1",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

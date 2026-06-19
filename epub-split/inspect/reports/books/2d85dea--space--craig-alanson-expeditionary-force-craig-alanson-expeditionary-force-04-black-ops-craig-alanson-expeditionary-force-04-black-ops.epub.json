@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Craig Alanson - Expeditionary Force/Craig Alanson - Expeditionary Force 04 - Black Ops/Craig Alanson - Expeditionary Force 04 - Black Ops.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 632141,
       "sha256": "2d85dea637b0317860c7cc1de604b8384e9be95d8c035fc1406e14de96f71a5c",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

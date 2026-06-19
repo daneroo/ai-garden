@@ -121,10 +121,10 @@ export class BrowserTransport {
 
       return {
         status: "transported",
-        parserStatus: "not-implemented",
         byteLength: result.byteLength,
         sha256: result.sha256,
         epubtsVersion: result.epubtsVersion,
+        open: result.open,
         diagnostics,
       };
     } catch (error: unknown) {
@@ -170,11 +170,47 @@ function validateHarnessResult(value: unknown): BrowserHarnessResult {
     typeof value.sha256 !== "string" ||
     !/^[a-f0-9]{64}$/.test(value.sha256) ||
     !("epubtsVersion" in value) ||
-    typeof value.epubtsVersion !== "string"
+    typeof value.epubtsVersion !== "string" ||
+    !("open" in value) ||
+    !isValidOpenOutcome(value.open)
   ) {
     throw new TypeError("Browser harness returned an invalid transport result");
   }
   return value as BrowserHarnessResult;
+}
+
+function isValidOpenOutcome(open: unknown): boolean {
+  if (typeof open !== "object" || open === null || !("status" in open)) {
+    return false;
+  }
+  if (open.status === "opened") {
+    return "version" in open && isValidDeclaredVersion(open.version);
+  }
+  if (open.status === "open-failed") {
+    return (
+      "stage" in open &&
+      open.stage === "browser-open" &&
+      "category" in open &&
+      typeof open.category === "string" &&
+      "message" in open &&
+      typeof open.message === "string"
+    );
+  }
+  return false;
+}
+
+function isValidDeclaredVersion(version: unknown): boolean {
+  if (
+    typeof version !== "object" ||
+    version === null ||
+    !("status" in version)
+  ) {
+    return false;
+  }
+  if (version.status === "exposed") {
+    return "value" in version && typeof version.value === "string";
+  }
+  return version.status === "skipped";
 }
 
 function failure(
@@ -184,7 +220,6 @@ function failure(
 ): BrowserTransportFailure {
   return {
     status: "transport-failed",
-    parserStatus: "not-implemented",
     failure: {
       stage: "browser-transport",
       category,

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Patrick Rothfus - Kingkiller Chronicle/Patrick Rothfus - Kingkiller Chronicle 02.5 - The Slow Regard of Silent Things/Patrick Rothfus - Kingkiller Chronicle 02.5 - The Slow Regard of Silent Things.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1949100,
       "sha256": "711eee77fa1acf4475f32e2165280fb45e379e5b61038367996b15e7e10d2731",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

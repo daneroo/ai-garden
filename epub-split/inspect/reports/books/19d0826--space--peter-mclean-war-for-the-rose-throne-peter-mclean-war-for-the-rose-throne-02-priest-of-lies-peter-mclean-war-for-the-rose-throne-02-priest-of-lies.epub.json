@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Peter McLean - War for the Rose Throne/Peter McLean - War for the Rose Throne 02 - Priest of Lies/Peter McLean - War for the Rose Throne 02 - Priest of Lies.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 3506064,
       "sha256": "19d0826270948571061dd562496551b0e8f798cc4a3e89e5a2dcd964dfa701cd",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

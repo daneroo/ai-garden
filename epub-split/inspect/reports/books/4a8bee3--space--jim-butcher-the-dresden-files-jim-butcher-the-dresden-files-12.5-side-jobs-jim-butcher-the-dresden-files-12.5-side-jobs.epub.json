@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Jim Butcher - The Dresden Files/Jim Butcher - The Dresden Files 12.5 - Side Jobs/Jim Butcher - The Dresden Files 12.5 - Side Jobs.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 372638,
       "sha256": "4a8bee354f669176ee6007cfa49ed2f89608b13a72e1ac1938c6b6f5e246c5b6",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

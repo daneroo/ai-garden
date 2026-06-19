@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Ursula K. Le Guin - Hainish Cycle/Ursula K. Le Guin - Hainish Cycle 08 - The Telling/Ursula K. Le Guin - Hainish Cycle 08 - The Telling.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 463680,
       "sha256": "79c2b387293b7045489bbef084c698b3b830a74cffc9f19d2da96b2e3d20472e",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

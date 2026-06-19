@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "David Mitchell - The Thousand Autumns of Jacob de Zoet/David Mitchell - The Thousand Autumns of Jacob De Zoet.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 806715,
       "sha256": "49b2c222abaf049262a28df800c7798536ceed42098d789a1d809d4755dcac33",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

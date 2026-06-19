@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Dan Jones - Essex Dogs/Dan Jones - Essex Dogs 02 - Wolves of Winter/Dan Jones - Essex Dogs 02 - Wolves of Winter.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 2167534,
       "sha256": "1afff776fadf528d2ed125d62bfc984bc3c9864d99ad98dc9f3abbd872530c53",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

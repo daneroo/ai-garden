@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Terry Pratchett - Discworld/Terry Pratchett - Discworld 19 - Feet of Clay/Terry Pratchett - Discworld 19 - Feet of Clay.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 429146,
       "sha256": "986f1b0ef422a765437bff607b49cb0d0c82e4c3a164339fd8af98e55aae2b11",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

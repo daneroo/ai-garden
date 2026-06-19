@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Stephen R. Donaldson - Second Chronicles of Thomas Covenant/Stephen R. Donaldson - Second Chronicles of Thomas Covenant 03 - White Gold Wielder/Stephen R. Donaldson - Second Chronicles of Thomas Covenant 03 - White Gold Wielder.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 630637,
       "sha256": "ef973578047dd913b69120b8eeaa1ca09d8cd96486a46031f0c906571ff733d7",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

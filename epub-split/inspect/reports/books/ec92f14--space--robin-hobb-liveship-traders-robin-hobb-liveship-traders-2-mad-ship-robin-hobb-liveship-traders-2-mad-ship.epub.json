@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Robin Hobb - Liveship Traders/Robin Hobb - Liveship Traders 2 - Mad Ship/Robin Hobb - Liveship Traders 2 - Mad Ship.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1136587,
       "sha256": "ec92f14bbdd39591fd543f56ffbde84779513e9bf2b57569e13ead989a325948",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

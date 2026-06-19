@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "drop",
     "relativePath": "Jeff VanderMeer - Southern Reach Trilogy/Jeff VanderMeer - Southern Reach Trilogy 01- Annihilation.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 220192,
       "sha256": "a3a510d47fddf63461262df5e1a92427d77f813ebbc2f0b59c49a5f9c2529875",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

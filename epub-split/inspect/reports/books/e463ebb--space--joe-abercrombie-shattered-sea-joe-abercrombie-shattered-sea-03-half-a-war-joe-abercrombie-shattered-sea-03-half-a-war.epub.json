@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Joe Abercrombie - Shattered Sea/Joe Abercrombie - Shattered Sea 03 - Half a War/Joe Abercrombie - Shattered Sea 03 - Half a War.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1493578,
       "sha256": "e463ebbb78f6e90eb7efe70b76fbbe0520f5bcba050acf559d27bb94bc064da0",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

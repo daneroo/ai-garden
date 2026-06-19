@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Steven Erikson - The Malazan Book of the Fallen/Steven Erikson - Malazan - 01 Gardens of the Moon/Steven Erikson - Malazan - 01 Gardens of the Moon.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1446614,
       "sha256": "1a4d09e74a852a8c75c6f0f6f8ff343b74e5d2d1dee21019eb4862e28d386674",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Cory Doctorow - Little Brother Series/Cory Doctorow - Little Brother 02.75 - Force Multiplier/Cory Doctorow - Force Multiplier.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 796830,
       "sha256": "aa671b70608518de9e6e928884a4a33b7e0a7d7ea4c0712d74aae98f86059380",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

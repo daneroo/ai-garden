@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Glen Cook - Black Company/Glen Cook - Black Company 01 - The Black Company/Glen Cook - Black Company 01 - The Black Company.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 275280,
       "sha256": "e3a136adee6e72806ad0767a322eb4f54ffa7d74bb20cd5c3211f7ebbd878f55",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

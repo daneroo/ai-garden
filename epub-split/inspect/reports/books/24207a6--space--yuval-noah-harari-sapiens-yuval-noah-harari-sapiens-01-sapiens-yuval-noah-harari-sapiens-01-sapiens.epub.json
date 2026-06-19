@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Yuval Noah Harari - Sapiens/Yuval Noah Harari - Sapiens 01 - Sapiens/Yuval Noah Harari - Sapiens 01 - Sapiens.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 14445943,
       "sha256": "24207a6b585103fe09299167db04e98f735caba35ff271460cb0a62e86cadfd9",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

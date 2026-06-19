@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Iain M. Banks - Culture Novels/Iain M. Banks - Culture 06 - Inversions/Iain M. Banks - Culture 06 - Inversions.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1099551,
       "sha256": "1b1f06ab43b9783bf3d687fbc3bf8fbf2daae7daef0cf02eb7c86bc266d38d74",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

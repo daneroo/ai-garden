@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Maurice Druon - The Accursed Kings/Maurice Druon - The Accursed Kings 04 - The Royal Succession/Maurice Druon - The Accursed Kings 04 - The Royal Succession.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1406040,
       "sha256": "34c30655659cefce036620b17f135a65161b979f9bd9e58229c1b342bcb2fd8e",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

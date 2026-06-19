@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Fredrik Backman - And Every Morning the Way Home Gets Longer and Longer/Fredrik Backman - And Every Morning the Way Home Gets Longer and Longer.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 4682716,
       "sha256": "dfb74562ba44f00ea9dc255c59dba9eabc8d21ae6806c3d80e3d454098adb809",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

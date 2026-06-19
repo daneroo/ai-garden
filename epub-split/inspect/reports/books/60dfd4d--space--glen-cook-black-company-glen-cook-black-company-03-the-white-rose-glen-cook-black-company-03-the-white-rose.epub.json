@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Glen Cook - Black Company/Glen Cook - Black Company 03 - The White Rose/Glen Cook - Black Company 03 - The White Rose.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 324886,
       "sha256": "60dfd4dc02964a5e0c4e4321dccdf38827a55e151310137ec8ebd6f53c20e6b0",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

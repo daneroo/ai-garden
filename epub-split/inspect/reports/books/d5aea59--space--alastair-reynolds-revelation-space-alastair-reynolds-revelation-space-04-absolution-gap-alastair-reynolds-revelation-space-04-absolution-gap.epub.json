@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Alastair Reynolds - Revelation Space/Alastair Reynolds - Revelation Space 04 - Absolution Gap/Alastair Reynolds - Revelation Space 04 - Absolution Gap.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 695959,
       "sha256": "d5aea596d4272fccd2d803d91d893898d978cf8eca5011a4382869f92f60c95d",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Andrzej Sapkowski - The Witcher/Andrzej Sapkowski - The Witcher 3 - Baptism of Fire The Witcher/Andrzej Sapkowski - The Witcher 3 - Baptism of Fire The Witcher.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 677227,
       "sha256": "fb3336ee42aadb368d68be2442044a85bd136279d9860356ca15486fbaf909b9",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

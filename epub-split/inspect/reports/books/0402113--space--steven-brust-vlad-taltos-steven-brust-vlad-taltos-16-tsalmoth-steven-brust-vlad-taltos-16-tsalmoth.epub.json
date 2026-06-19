@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Steven Brust - Vlad Taltos/Steven Brust - Vlad Taltos 16 - Tsalmoth/Steven Brust - Vlad Taltos 16 - Tsalmoth.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 3335810,
       "sha256": "040211383313d046efbc1e0cc3b698b74fbec0a9b94996638bd4fd1afae22aed",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

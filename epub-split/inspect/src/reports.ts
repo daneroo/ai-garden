@@ -19,6 +19,7 @@ import {
 import type {
   BookInventoryEntry,
   BookObservation,
+  BrowserOpenOutcome,
   BrowserRuntime,
   HashedBook,
   ParserPathAttempt,
@@ -61,6 +62,7 @@ export async function generateReports(
       parserStates: Object.fromEntries(
         PARSER_NAMES.map((name) => [name, observation.parsers[name].status])
       ) as BookInventoryEntry["parserStates"],
+      browserOpen: browserOpenStatus(observation),
     });
   }
 
@@ -123,6 +125,8 @@ function renderIndex(run: RunReport): string {
     `- epub.ts: ${run.packages.epubts}`,
     `- Playwright: ${run.packages.playwright}`,
     `- Books: ${run.books.length}`,
+    `- epubts-browser opened: ${countOpen(run, "opened")}`,
+    `- epubts-browser open-failed: ${countOpen(run, "open-failed")}`,
     "",
   ];
 
@@ -170,7 +174,11 @@ async function validateReports(run: RunReport): Promise<void> {
       throw new Error(`Unknown root in inventory: ${book.root}`);
     }
     const reportPath = join(TEMP_REPORTS_DIRECTORY, book.report);
-    const parsed = JSON.parse(await readFile(reportPath, "utf8")) as BookObservation;
+    const raw = await readFile(reportPath, "utf8");
+    if (raw.includes("/Users/") || raw.includes("/Volumes/")) {
+      throw new Error(`Absolute machine path leaked into ${book.report}`);
+    }
+    const parsed = JSON.parse(raw) as BookObservation;
     if (
       parsed.book.sha256 !== book.sha256 ||
       parsed.book.relativePath !== book.relativePath ||
@@ -191,6 +199,13 @@ async function validateReports(run: RunReport): Promise<void> {
         browserAttempt.sha256 !== book.sha256)
     ) {
       throw new Error(`Browser transport identity mismatch: ${book.report}`);
+    }
+    if (
+      browserAttempt.status === "transported" &&
+      browserAttempt.open.status !== "opened" &&
+      browserAttempt.open.status !== "open-failed"
+    ) {
+      throw new Error(`Missing browser open outcome: ${book.report}`);
     }
     for (const parserName of ["epubts-node", "storyteller-node"] as const) {
       if (parsed.parsers[parserName].status !== "not-implemented") {
@@ -260,13 +275,30 @@ function notImplemented(): ParserPathAttempt {
   return { status: "not-implemented" };
 }
 
+function browserOpenStatus(
+  observation: BookObservation
+): BrowserOpenOutcome["status"] | null {
+  const attempt = observation.parsers["epubts-browser"];
+  return attempt.status === "transported" ? attempt.open.status : null;
+}
+
+function countOpen(
+  run: RunReport,
+  status: BrowserOpenOutcome["status"]
+): number {
+  return run.books.filter((book) => book.browserOpen === status).length;
+}
+
 function detailPath(
   observation: BookObservation,
   reportFilename: string
 ): string | null {
   const attempt = observation.parsers["epubts-browser"];
+  const openFailed =
+    attempt.status === "transported" && attempt.open.status === "open-failed";
   if (
     attempt.status === "transport-failed" ||
+    openFailed ||
     (attempt.status === "transported" && attempt.diagnostics.length > 0)
   ) {
     return `details/${reportFilename.replace(/\.json$/, ".md")}`;
@@ -275,9 +307,12 @@ function detailPath(
 }
 
 function renderParserStates(book: BookInventoryEntry): string {
-  const states = PARSER_NAMES.map(
-    (name) => `${name}: ${book.parserStates[name]}`
-  ).join("; ");
+  const states = PARSER_NAMES.map((name) => {
+    if (name === "epubts-browser" && book.browserOpen) {
+      return `${name}: ${book.parserStates[name]}/${book.browserOpen}`;
+    }
+    return `${name}: ${book.parserStates[name]}`;
+  }).join("; ");
   if (!book.detail) return states;
   return `[${escapeTable(states)}](${book.detail})`;
 }
@@ -298,6 +333,21 @@ function renderDetail(observation: BookObservation): string {
       `- Failure category: ${attempt.failure.category}`,
       `- Failure message: ${attempt.failure.message}`
     );
+  }
+  if (attempt.status === "transported") {
+    lines.push(`- Open: ${attempt.open.status}`);
+    if (attempt.open.status === "opened") {
+      const version = attempt.open.version;
+      lines.push(
+        `- Declared version: ${version.status === "exposed" ? version.value : "skipped"}`
+      );
+    } else {
+      lines.push(
+        `- Open failure stage: ${attempt.open.stage}`,
+        `- Open failure category: ${attempt.open.category}`,
+        `- Open failure message: ${attempt.open.message}`
+      );
+    }
   }
   if (
     (attempt.status === "transported" || attempt.status === "transport-failed") &&

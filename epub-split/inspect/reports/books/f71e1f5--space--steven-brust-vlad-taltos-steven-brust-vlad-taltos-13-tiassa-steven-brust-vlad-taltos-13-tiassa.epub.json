@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Steven Brust - Vlad Taltos/Steven Brust - Vlad Taltos 13 - Tiassa/Steven Brust - Vlad Taltos 13 - Tiassa.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 284369,
       "sha256": "f71e1f526c3cedb5eabfd7c9f688dd689753c05559064c2b0bb61f4fdec92fa5",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

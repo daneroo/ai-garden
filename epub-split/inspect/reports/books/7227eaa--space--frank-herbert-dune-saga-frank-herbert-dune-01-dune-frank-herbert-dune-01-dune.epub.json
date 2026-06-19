@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Frank Herbert - Dune Saga/Frank Herbert - Dune 01 - Dune/Frank Herbert - Dune 01 - Dune.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1105610,
       "sha256": "7227eaa7e2d4673e6601d6a685ce2fa40bad0abad6bfb9eab53b236632434d80",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

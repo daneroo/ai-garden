@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Iain M. Banks - The Algebraist - n. Peter Kenny/Iain M. Banks - The Algebraist.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 546118,
       "sha256": "4f0dc5e7e5b81dc1622996a07d7c1efa9803bccb82a55a4cc1ae7f247fcfa269",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

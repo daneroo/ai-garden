@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Alastair Reynolds - Revelation Space/Alastair Reynolds - Revelation Space 08 - Galactic North/Alastair Reynolds - Revelation Space 08 - Galactic North.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 361833,
       "sha256": "c93d52fc4ddd820aa508a892a1d9ec0beda691a55b0230de80454e9045572c5d",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

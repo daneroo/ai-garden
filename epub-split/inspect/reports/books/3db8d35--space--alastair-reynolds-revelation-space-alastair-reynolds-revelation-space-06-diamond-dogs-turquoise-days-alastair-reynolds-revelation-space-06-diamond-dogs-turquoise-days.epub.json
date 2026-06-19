@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Alastair Reynolds - Revelation Space/Alastair Reynolds - Revelation Space 06 - Diamond Dogs Turquoise Days/Alastair Reynolds - Revelation Space 06 - Diamond Dogs Turquoise Days.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 123443,
       "sha256": "3db8d35daac2eaac27374993cd22009372da2b7cb09c1cde1e95235a78ce3fa8",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

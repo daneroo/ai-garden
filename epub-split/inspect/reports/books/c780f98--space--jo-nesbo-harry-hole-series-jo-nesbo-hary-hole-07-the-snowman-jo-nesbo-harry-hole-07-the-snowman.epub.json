@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Jo Nesbo - Harry Hole Series/Jo Nesbo - Hary Hole 07 -  The Snowman/Jo Nesbo - Harry Hole 07 - The Snowman.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1398636,
       "sha256": "c780f9898cb571f3c2dc626b2ac1f0a581a666c288f36fb2445eb3d202c9c826",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

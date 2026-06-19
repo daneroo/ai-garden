@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Robin Hobb - Farseer Trilogy/Robin Hobb - Farseer Trilogy 0.5 - The Wilful Princess and the Piebald Prince/Robin Hobb - Farseer Trilogy 0.5 - The Wilful Princess and the Piebald Prince.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 473839,
       "sha256": "de05ffb1500ca1db0d2fbea54c525b7ed901b680404a1647396f17a2e7e6ad5e",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

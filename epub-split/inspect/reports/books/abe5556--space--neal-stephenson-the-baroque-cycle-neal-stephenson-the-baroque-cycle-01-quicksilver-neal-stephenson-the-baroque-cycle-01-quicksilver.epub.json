@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Neal Stephenson - The Baroque Cycle/Neal Stephenson - The Baroque Cycle 01 - Quicksilver/Neal Stephenson - The Baroque Cycle 01 - Quicksilver.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1213781,
       "sha256": "abe5556f62ebb2ef50e2951d28575e4a51ae862b3375be3555bc83146ec67de6",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Evan Winter - The Burning/Evan Winter - The Burning 2 - The Fires of Vengeance/Evan Winter - The Burning 2 - The Fires of Vengeance.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 5256961,
       "sha256": "640ca217d157acf65f94b83474e85833260d5211e3dcc204438b50f9b51b2b31",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

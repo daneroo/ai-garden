@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Peter McLean - War for the Rose Throne/Peter McLean - War for the Rose Throne 01 - Priest of Bones/Peter McLean - War for the Rose Throne 01 - Priest of Bones.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 3472254,
       "sha256": "5df9ecc4d646fd31c00547b23f97f1abcb6a159df9e8cd15236a68d924a19afe",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

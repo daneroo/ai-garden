@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Fonda Lee - The Green Bone Saga/Fonda Lee - The Green Bone Saga 0.75 - Jade Shards/Fonda Lee - The Green Bone Saga 0.75 - Jade Shards.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 308266,
       "sha256": "4156e614b86a90fe120de7879879d930fd08de09a51be17cdb5d705a60972bf4",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

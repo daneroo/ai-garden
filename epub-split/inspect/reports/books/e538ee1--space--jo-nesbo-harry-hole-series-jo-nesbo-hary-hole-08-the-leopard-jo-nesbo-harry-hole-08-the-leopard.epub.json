@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Jo Nesbo - Harry Hole Series/Jo Nesbo - Hary Hole 08 - The Leopard/Jo Nesbo - Harry Hole 08 - The Leopard.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1592227,
       "sha256": "e538ee1a15faa0ed2cafab0afc3ac75ff748e0a6c60ae735697579bce48fcae8",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

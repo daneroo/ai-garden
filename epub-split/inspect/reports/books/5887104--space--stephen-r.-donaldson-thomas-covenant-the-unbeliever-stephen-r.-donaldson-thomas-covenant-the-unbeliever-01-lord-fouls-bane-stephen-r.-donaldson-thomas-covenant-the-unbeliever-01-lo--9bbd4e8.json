@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Stephen R. Donaldson - Thomas Covenant the Unbeliever/Stephen R. Donaldson - Thomas Covenant the Unbeliever 01 - Lord Fouls Bane/Stephen R. Donaldson - Thomas Covenant the Unbeliever 01 - Lord Fouls Bane.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 522909,
       "sha256": "5887104cc828b7429b93331c74fe6c3e05a1a2381671d0bb090375a851c73053",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

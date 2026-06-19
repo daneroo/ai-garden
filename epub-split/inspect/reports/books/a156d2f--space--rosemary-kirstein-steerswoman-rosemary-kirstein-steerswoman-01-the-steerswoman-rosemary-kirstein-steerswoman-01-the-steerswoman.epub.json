@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Rosemary Kirstein - Steerswoman/Rosemary Kirstein - Steerswoman 01 - The Steerswoman/Rosemary Kirstein - Steerswoman 01 - The Steerswoman.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 553329,
       "sha256": "a156d2fc16c00f2231448fe2aa0a6cfbdee7a543f411ce0ebf54590b7117f018",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

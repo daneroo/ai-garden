@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Terry Pratchett - Discworld/Terry Pratchett - Discworld 39 - Snuff/Terry Pratchett - Discworld 39 - Snuff.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 496611,
       "sha256": "23cd0bc8ec4576b652b56a883d45324acd3ef28b8654ffe7fe1c64048b3f4ac0",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

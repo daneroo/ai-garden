@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Alastair Reynolds - Revelation Space/Alastair Reynolds - Revelation Space 07 - Inhibitor Phase/Alastair Reynolds - Revelation Space 07 - Inhibitor Phase.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 611030,
       "sha256": "6f28ed58dd2100ba28d484c45e6e116804912cc1ba799eee4fd840c56a9b831a",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

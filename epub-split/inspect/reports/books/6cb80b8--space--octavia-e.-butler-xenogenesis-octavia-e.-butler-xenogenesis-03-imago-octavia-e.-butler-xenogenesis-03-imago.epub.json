@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Octavia E. Butler - Xenogenesis/Octavia E. Butler - Xenogenesis 03 - Imago/Octavia E. Butler - Xenogenesis 03 - Imago.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 3155359,
       "sha256": "6cb80b88339b50380e6843aa2272a0fc16fba568bdce65fad2ceda27b788a32f",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

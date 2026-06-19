@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Brandon Sanderson - Mistborn/Brandon Sanderson - Mistborn 06 - The Bands of Mourning/Brandon Sanderson - Mistborn 06 - The Bands of Mourning.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 2983399,
       "sha256": "9f77564a06891e5fe74937843e318614a313677765746ac4930bdabc06d08a04",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

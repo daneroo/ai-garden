@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Robin Hobb - Tawny Man Trilogy/Robin Hobb - Tawny Man Trilogy 1 - Fools Errand/Robin Hobb - Tawny Man Trilogy - Omnibus.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 2307404,
       "sha256": "86cbcdee55e04b7ba46a70f50e4b87407d95c4a443d01e3fd3d7d467e93d0c2d",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

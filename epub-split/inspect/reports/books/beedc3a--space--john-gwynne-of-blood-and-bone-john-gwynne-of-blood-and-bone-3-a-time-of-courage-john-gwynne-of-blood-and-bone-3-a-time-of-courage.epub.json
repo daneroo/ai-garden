@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "John Gwynne - Of Blood and Bone/John Gwynne - Of Blood and Bone 3 - A Time of Courage/John Gwynne - Of Blood and Bone 3 - A Time of Courage.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 3973898,
       "sha256": "beedc3ab34629227ad1d2417890eb2108f8798d6b37acd0f5efd606672b04f40",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

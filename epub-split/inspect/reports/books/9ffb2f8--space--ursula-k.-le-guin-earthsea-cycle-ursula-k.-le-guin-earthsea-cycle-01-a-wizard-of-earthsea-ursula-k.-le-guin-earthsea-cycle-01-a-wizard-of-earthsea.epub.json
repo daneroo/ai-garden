@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Ursula K. Le Guin - Earthsea Cycle/Ursula K. Le Guin - Earthsea Cycle 01 - A Wizard of Earthsea/Ursula K. Le Guin - Earthsea Cycle 01 - A Wizard of Earthsea.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1481939,
       "sha256": "9ffb2f8cb02a9ad6a232cfaebdc150230aa71c5be0ec9c9a010e0ee9572a8607",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

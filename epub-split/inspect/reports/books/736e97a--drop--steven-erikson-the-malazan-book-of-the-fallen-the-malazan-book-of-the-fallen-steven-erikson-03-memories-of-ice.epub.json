@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "drop",
     "relativePath": "Steven Erikson - The Malazan Book of the Fallen/The Malazan Book of the Fallen (Steven Erikson) 03 - Memories of Ice.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1095571,
       "sha256": "736e97a5db89cdac05253c29b78b360618342d9453f70d3ae282a53401190cfe",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

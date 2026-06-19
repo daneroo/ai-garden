@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Jo Nesbo - Harry Hole Series/Jo Nesbo - Hary Hole 09 - Phantom/Jo Nesbo - Harry Hole 09 - Phantom.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1574084,
       "sha256": "52aa0f4d939bf7cf0f663c800c44117c23bda90118b63c3c2e6497dbd1663be6",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

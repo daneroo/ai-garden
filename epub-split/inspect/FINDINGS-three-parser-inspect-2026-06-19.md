@@ -82,3 +82,40 @@ each run completed. Across all 1,301 books, zero console or page-error
 diagnostics were emitted, so the structured-diagnostics and progress-separation
 paths are verified by construction and code review rather than by a live
 diagnostic event.
+
+## Gate 3: Browser epub.ts Open Outcomes
+
+Status: evidence verified across the full corpus; awaiting approval.
+
+The browser harness now opens each book with epub.ts (`ePub(bytes)` reusing the
+already-fetched, integrity-checked bytes; `await book.opened`), records the
+outcome, and tears the book down with `book.destroy()`. `epubts-node` and
+`storyteller-node` remain `not-implemented`. The report schema was raised to
+version 2: the `epubts-browser` attempt drops the placeholder `parserStatus`
+and gains a nested `open` outcome.
+
+Full-corpus results: all 1,301 books **opened** under the browser path, with
+zero open failures, across `test`, `drop`, and `space`. epub.ts opens both
+EPUB 2 and EPUB 3 books here (the EPUB-version split surfaces only once
+storyteller-node is added, at Gate 4B).
+
+Declared EPUB version is reported as `skipped` for every book. epub.ts reads the
+OPF package `version` attribute but discards it (`e==null||e.getAttribute(
+"version")` assigns nowhere), so this parser path cannot surface the declared
+2.0/3.0 version. The field is modelled as a tagged `DeclaredVersion`
+(`exposed`/`skipped`) so a parser that does expose it can populate it later.
+Version reporting is intentionally not a blocker for the body-text/spine work.
+
+A first implementation produced a non-deterministic report tree (two runs
+disagreed). The cause: epub.ts, with its default archive `replacements`
+("blobUrl"), asynchronously builds cover/CSS blob URLs *after* `book.opened`
+resolves. On 18 books that pass emitted a console error (a `replaceCss`
+`TypeError`, and a cover `EpubError`) whose timing raced page teardown, so the
+errors landed in `diagnostics[]` inconsistently. Those messages also embedded
+the absolute bundle path. The no-diff invariant caught both. The fix opens with
+`replacements: "none"`, which scopes the operation to container + package parse
+(the actual definition of "open") and removes the asynchronous resource side
+effect entirely. After the fix, two consecutive full runs are byte-identical,
+diagnostics are empty for all 1,301 books, and no report file contains an
+absolute path. Report validation was also hardened to scan every per-book JSON
+for absolute-path leaks, not only `run.json`.

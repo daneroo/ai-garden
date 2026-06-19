@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Robin Hobb - Fitz and the Fool/Robin Hobb - Fitz and the Fool 01 - Fools Assassin/Robin Hobb - Fitz and the Fool 01 - Fools Assassin.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 2912448,
       "sha256": "4c15d292d43532ce05d9f05be888642cadbad144eaa634d04ab8c4cc6cb6c7c6",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

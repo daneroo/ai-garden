@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Ursula K. Le Guin - Hainish Cycle/Ursula K. Le Guin - Hainish Cycle 02 - Planet of Exile/Ursula K. Le Guin - Hainish Cycle 02 - Planet of Exile.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 209392,
       "sha256": "3b7c9203c857b160ea2885ccdf6b72a3da1bed72f2c1ab3a44d7bc7190a57caa",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

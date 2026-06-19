@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Robin Hobb - Liveship Traders/Robin Hobb - Liveship Traders 1 - Ship of Magic/Robin Hobb - Liveship Traders 1 - Ship of Magic.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1371064,
       "sha256": "cc0ee1413dc2cbb47b36e7c116224b84ba3c3a7e9e1278278f158bb370e7abfa",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

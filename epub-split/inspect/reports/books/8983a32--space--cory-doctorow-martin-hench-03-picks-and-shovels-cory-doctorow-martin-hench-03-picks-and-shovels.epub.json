@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Cory Doctorow - Martin Hench 03 - Picks and Shovels/Cory Doctorow - Martin Hench 03 - Picks and Shovels.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1298742,
       "sha256": "8983a32fad5257af2fbd1dbc9d789da2466eb299915a666204251a4d7f4b5f93",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

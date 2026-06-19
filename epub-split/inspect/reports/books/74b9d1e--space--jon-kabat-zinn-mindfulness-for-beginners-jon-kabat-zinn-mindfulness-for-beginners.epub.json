@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Jon Kabat-Zinn - Mindfulness For Beginners/Jon Kabat-Zinn - Mindfulness For Beginners.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 500472,
       "sha256": "74b9d1ecfd5fa86157b1e127396e1ca53eb706848afacbcac158b56e2726c8e1",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

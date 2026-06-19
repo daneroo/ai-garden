@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Philip Matyszak - A Walk Through Ancient Rome/Philip Matyszak - A Walk Through Ancient Rome.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 6367572,
       "sha256": "9c8d6dbe9c37ce5449befae4801f8fa7cf3aedf52c119acf0839954aa23aa081",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

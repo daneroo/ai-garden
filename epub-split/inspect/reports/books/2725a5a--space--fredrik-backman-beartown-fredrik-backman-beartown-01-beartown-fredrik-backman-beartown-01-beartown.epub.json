@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Fredrik Backman - Beartown/Fredrik Backman - Beartown 01 - Beartown/Fredrik Backman - Beartown 01 - Beartown.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 3084229,
       "sha256": "2725a5ad1b71de63e6c0c4221cb83f2770f97c736b47a7c357184bd312896c8e",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

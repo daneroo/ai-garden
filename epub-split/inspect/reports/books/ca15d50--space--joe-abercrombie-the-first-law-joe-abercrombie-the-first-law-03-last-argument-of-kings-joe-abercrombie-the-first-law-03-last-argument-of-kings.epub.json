@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Joe Abercrombie - The First Law/Joe Abercrombie - The First Law 03 - Last Argument Of Kings/Joe Abercrombie - The First Law 03 - Last Argument Of Kings.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 851097,
       "sha256": "ca15d50cc7143c4258cc18584c946efd2b1498dc344622d0460d05c78ddab0df",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Robin Hobb - Rain Wild Chronicles/Robin Hobb - Rain Wild Chronicles 01 - Dragon Keeper/Robin Hobb - Rain Wild Chronicles 01 - Dragon Keeper.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1338955,
       "sha256": "661d9f64f50b248c896ff5b4719a77cecac1df9b2c09e5a2f89858a086f92f6d",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

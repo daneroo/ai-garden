@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "James Clavell - Asian Saga/James Clavell - Asian Saga 2 - Tai-Pan/James Clavell - Asian Saga 2 - Tai-Pan.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 724785,
       "sha256": "4ed80332cf939b5ca6fcdfd279015e445f28016a022ea222ad6b50f73245f203",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

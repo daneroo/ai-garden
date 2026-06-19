@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Iain M. Banks - Culture Novels/Iain M. Banks - Culture 02 - The Player of Games/Iain M. Banks - Culture 02 - The Player Of Games.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 580505,
       "sha256": "bdef0e6109fa4449c3479b02c72353f9af5927e8daaebc1bc485ef2178b6cdbc",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

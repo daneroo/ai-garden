@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Rick Atkinson - Liberation Trilogy/Rick Atkinson - Liberation Trilogy 2 - The Day of Battle/Rick Atkinson - Liberation Trilogy 2 - The Day of Battle.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 2568981,
       "sha256": "8029098971ee94f44dc3d3932b663fa9bbcb7aa9e6696e7387ebd7f42a81ba6c",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

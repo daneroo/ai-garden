@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Joe Abercrombie - Shattered Sea/Joe Abercrombie - Shattered Sea 01 - Half a King/Joe Abercrombie - Shattered Sea 01 - Half a King.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 2052679,
       "sha256": "9fa33dc91fcdaa969682d4af3d7c4de62e773c8dea87b4500b1b5ec1a7a0f08d",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

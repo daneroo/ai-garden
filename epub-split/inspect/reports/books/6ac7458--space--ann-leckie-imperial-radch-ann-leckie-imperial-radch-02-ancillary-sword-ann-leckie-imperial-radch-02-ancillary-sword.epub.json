@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Ann Leckie - Imperial Radch/Ann Leckie - Imperial Radch 02 - Ancillary Sword/Ann Leckie - Imperial Radch 02 - Ancillary Sword.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 430330,
       "sha256": "6ac74583a22383cd241ddcea924a754ceafeef095e221b40ad7a0af5a9e66abf",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

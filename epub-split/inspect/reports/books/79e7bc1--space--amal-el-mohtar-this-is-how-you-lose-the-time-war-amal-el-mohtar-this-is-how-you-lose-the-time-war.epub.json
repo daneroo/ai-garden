@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Amal El-Mohtar - This Is How You Lose the Time War/Amal El-Mohtar - This Is How You Lose the Time War.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 2170207,
       "sha256": "79e7bc157ab510d7fe415d68dc2d89ac00c08ecb7a3ca8de1101ce4852fd9508",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

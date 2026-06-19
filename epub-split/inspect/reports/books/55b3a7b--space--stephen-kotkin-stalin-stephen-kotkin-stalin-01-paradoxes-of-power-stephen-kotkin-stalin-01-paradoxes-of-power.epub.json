@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Stephen Kotkin - Stalin/Stephen Kotkin - Stalin 01 - Paradoxes of Power/Stephen Kotkin - Stalin 01 - Paradoxes of Power.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 24373582,
       "sha256": "55b3a7bc104c7952e793fbd4ba2210cf0bcf6dab425128f9594fb3ae2b77a20a",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

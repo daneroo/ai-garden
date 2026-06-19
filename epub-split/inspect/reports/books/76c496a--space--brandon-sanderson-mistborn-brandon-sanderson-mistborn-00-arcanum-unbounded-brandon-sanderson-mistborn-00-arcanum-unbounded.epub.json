@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Brandon Sanderson - Mistborn/Brandon Sanderson - Mistborn 00 - Arcanum Unbounded/Brandon Sanderson - Mistborn 00 - Arcanum Unbounded.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 94633599,
       "sha256": "76c496a1e4849c52c024d1da93df4cdfbec58b00705a1315cdcdfdcbb509c850",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

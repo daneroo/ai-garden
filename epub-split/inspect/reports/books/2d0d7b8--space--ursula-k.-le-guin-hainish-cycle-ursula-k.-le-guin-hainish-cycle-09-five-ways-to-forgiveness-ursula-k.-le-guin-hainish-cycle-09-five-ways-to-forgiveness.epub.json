@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Ursula K. Le Guin - Hainish Cycle/Ursula K. Le Guin - Hainish Cycle 09 - Five Ways to Forgiveness/Ursula K. Le Guin - Hainish Cycle 09 - Five Ways to Forgiveness.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1661953,
       "sha256": "2d0d7b8babf80ae5e8223b71c858de87e1a83216ce2ca04026af1e1b81efbd6b",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Ursula K. Le Guin - Earthsea Cycle/Ursula K. Le Guin - Earthsea Cycle 05 - Tales From Earthsea/Ursula K. Le Guin - Earthsea Cycle 05 - Tales From Earthsea.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1897298,
       "sha256": "bd1a00f7502e6a583a88c8a98d05d148e63dfc66fcc19c37c88b3bfbd0b3baff",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

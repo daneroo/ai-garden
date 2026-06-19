@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Steven Erikson - The Malazan Book of the Fallen/Steven Erikson - Malazan - 10 The Crippled God/Steven Erikson - Malazan - 10 The Crippled God.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1150670,
       "sha256": "b87f4762ec20577192daee3f2a45f2d42fe00e73cebf37fd5cf7ee904b1a7b8d",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

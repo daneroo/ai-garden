@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "drop",
     "relativePath": "Steven Erikson - The Malazan Book of the Fallen/The Malazan Book of the Fallen (Steven Erikson) 02 - Deadhouse Gates.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1324145,
       "sha256": "0ff1c5e27a743554f056a3daf801bed2eda182ef7e21deaa8144e0f4ad5e36cc",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Maurice Druon - The Accursed Kings/Maurice Druon - The Accursed Kings 05 - The She-Wolf/Maurice Druon - The Accursed Kings 05 - The She Wolf.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 990160,
       "sha256": "1a0ed54dc01b64444fce5de3d8583314b433146253a41c853d8a263e4801b989",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

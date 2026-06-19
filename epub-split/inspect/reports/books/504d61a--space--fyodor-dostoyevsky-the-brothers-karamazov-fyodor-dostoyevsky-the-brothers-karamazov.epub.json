@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Fyodor Dostoyevsky - The Brothers Karamazov/Fyodor Dostoyevsky - The Brothers Karamazov.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1499937,
       "sha256": "504d61ab72f27690cfc42c661239879e186e3a54dbf1d4ce51ffdc6ed42268ce",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

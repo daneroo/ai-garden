@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Ann Leckie - Imperial Radch/Ann Leckie - Imperial Radch 03 - Ancillary Mercy/Ann Leckie - Imperial Radch 03 - Ancillary Mercy.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 406127,
       "sha256": "7db32be47e3d3313256886786f51f71d03e7eb7e9442333cef0ff3df7bda9024",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

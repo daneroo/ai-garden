@@ -24,18 +24,40 @@ export interface AttemptFailure {
   message: string;
 }
 
+// The OPF-declared EPUB version (e.g. "2.0", "3.0") when the parser exposes it.
+// epub.ts reads the package `version` attribute but discards it, so the
+// epubts-browser path always reports `skipped`; `exposed` stays available for
+// parsers that do surface it. Version reporting is intentionally not a blocker
+// for the body-text/spine work that follows.
+export type DeclaredVersion =
+  | { status: "exposed"; value: string }
+  | { status: "skipped" };
+
+export interface BrowserOpenSuccess {
+  status: "opened";
+  version: DeclaredVersion;
+}
+
+export interface BrowserOpenFailure {
+  status: "open-failed";
+  stage: "browser-open";
+  category: string;
+  message: string;
+}
+
+export type BrowserOpenOutcome = BrowserOpenSuccess | BrowserOpenFailure;
+
 export interface BrowserTransportSuccess {
   status: "transported";
-  parserStatus: "not-implemented";
   byteLength: number;
   sha256: string;
   epubtsVersion: string;
+  open: BrowserOpenOutcome;
   diagnostics: BrowserDiagnostic[];
 }
 
 export interface BrowserTransportFailure {
   status: "transport-failed";
-  parserStatus: "not-implemented";
   failure: AttemptFailure;
   diagnostics: BrowserDiagnostic[];
 }
@@ -66,6 +88,7 @@ export interface BookInventoryEntry extends BookIdentity {
   report: string;
   detail: string | null;
   parserStates: Record<ParserName, ParserPathAttempt["status"]>;
+  browserOpen: BrowserOpenOutcome["status"] | null;
 }
 
 export interface RootInventory {
@@ -113,6 +136,7 @@ export interface BrowserHarnessResult {
   byteLength: number;
   sha256: string;
   epubtsVersion: string;
+  open: BrowserOpenOutcome;
 }
 
 export interface BrowserRuntime {

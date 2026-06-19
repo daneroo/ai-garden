@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Cory Doctorow - Martin Hench Series/Cory Doctorow - Martin Hench 01 - Red Team Blues/Cory Doctorow - Martin Hench 01 - Red Team Blues.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1318169,
       "sha256": "0189f8d66deb721241fed2697f32aba5133061065a72398711f1fe2dadc4455e",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Yuval Noah Harari - 21 Lessons for the 21st Century/Yuval Noah Harari - 21 Lessons for the 21st Century.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 3261975,
       "sha256": "1061567f32fe500ef601616c8a9e9d0788f8586ebca5f333777e6e19528a8992",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

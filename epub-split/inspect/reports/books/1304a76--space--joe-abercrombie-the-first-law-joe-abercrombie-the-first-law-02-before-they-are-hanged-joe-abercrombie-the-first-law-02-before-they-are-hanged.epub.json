@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Joe Abercrombie - The First Law/Joe Abercrombie - The First Law 02 - Before They Are Hanged/Joe Abercrombie - The First Law 02 - Before They Are Hanged.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 631140,
       "sha256": "1304a769f5fa31294355baddf70825e57d22fc74d67662672dc3e0f22d3045a5",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

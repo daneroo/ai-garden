@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Pierce Brown - Red Rising/Pierce Brown - Red Rising 01 - Red Rising/Pierce Brown - Red Rising 01 - Red Rising.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1995499,
       "sha256": "de05df9b46020658bf05388087572241246d455b3349f1f2cec49359568aa156",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

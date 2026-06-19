@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Ursula K. Le Guin - Hainish Cycle/Ursula K. Le Guin - Hainish Cycle 01 - Rocannons World/Ursula K. Le Guin - Hainish Cycle 1-2-3 - Three Hainish Novels.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1189183,
       "sha256": "2e221f57b9435f24e0657fe20f98cd8287e7d777b3f28f073a266b14e11f3b93",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

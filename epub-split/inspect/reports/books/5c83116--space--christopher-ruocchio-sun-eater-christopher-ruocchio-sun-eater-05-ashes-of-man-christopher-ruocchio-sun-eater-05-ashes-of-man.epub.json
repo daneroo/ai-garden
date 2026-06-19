@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Christopher Ruocchio - Sun Eater/Christopher Ruocchio - Sun Eater 05 - Ashes of Man/Christopher Ruocchio - Sun Eater 05 - Ashes of Man.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 2260329,
       "sha256": "5c831167bcf2c61a7781436f070745a5e689df5981c3be76fd51c9e743e379eb",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

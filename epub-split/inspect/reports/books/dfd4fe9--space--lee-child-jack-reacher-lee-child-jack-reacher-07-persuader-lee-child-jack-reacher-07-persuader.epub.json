@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Lee Child - Jack Reacher/Lee Child - Jack Reacher 07 - Persuader/Lee Child - Jack Reacher 07 - Persuader.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 341514,
       "sha256": "dfd4fe9054c9f1f93108786cf0d5efe82b8c1034346b3c187ee19626bdfc3b56",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

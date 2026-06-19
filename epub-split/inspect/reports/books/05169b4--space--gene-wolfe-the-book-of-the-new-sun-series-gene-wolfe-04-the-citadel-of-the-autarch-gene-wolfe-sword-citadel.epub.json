@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Gene Wolfe - The Book of the New Sun Series/Gene Wolfe - 04 The Citadel of the Autarch/Gene Wolfe - Sword & Citadel.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 587226,
       "sha256": "05169b456cdf3125bd4f398cd92ff603c8d27d8631faf5c3e51ba4b8d5957e60",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

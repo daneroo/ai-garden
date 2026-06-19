@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Ken Liu - The Dandelion Dynasty/Ken Liu - The Dandelion Dynasty 03 - The Veiled Throne/Ken Liu - The Dandelion Dynasty 03 - The Veiled Throne.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 4807615,
       "sha256": "5ce5eb0dcf53262ebe3e889d8fce2c0f681583114a904ad907cec1225e73ff10",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

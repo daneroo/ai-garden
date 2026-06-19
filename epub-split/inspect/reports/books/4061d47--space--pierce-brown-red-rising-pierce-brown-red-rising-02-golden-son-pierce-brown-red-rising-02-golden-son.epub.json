@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Pierce Brown - Red Rising/Pierce Brown - Red Rising 02 - Golden Son/Pierce Brown - Red Rising 02 - Golden Son.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 2190838,
       "sha256": "4061d4752751daac7b5da4a58d7f58993697747635e35c0973d928f745fa7aa7",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

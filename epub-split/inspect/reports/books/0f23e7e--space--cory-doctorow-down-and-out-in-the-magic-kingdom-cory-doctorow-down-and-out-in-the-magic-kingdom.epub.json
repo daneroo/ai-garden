@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Cory Doctorow - Down and Out in the Magic Kingdom/Cory Doctorow - Down and Out in the Magic Kingdom.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 342805,
       "sha256": "0f23e7e58cb32d4bad31f06dfa79ff9e31009277d58c0746470e660b4ba14f42",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

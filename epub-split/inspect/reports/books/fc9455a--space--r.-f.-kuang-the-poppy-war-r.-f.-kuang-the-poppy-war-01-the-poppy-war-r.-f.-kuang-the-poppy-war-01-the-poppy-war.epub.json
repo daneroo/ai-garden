@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "R. F. Kuang - The Poppy War/R. F. Kuang - The Poppy War 01 - The Poppy War/R. F. Kuang - The Poppy War 01 - The Poppy War.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1685709,
       "sha256": "fc9455ac9274c9f97ee691b8e27b1b3460aadb5230108b70ebac9b6c98707605",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

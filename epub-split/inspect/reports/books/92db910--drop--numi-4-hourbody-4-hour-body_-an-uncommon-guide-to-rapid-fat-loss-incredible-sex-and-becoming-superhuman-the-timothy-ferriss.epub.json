@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "drop",
     "relativePath": "Numi/4-HourBody/4-Hour Body_ An Uncommon Guide to Rapid Fat-Loss, Incredible Sex, and Becoming Superhuman, The - Timothy Ferriss.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 40735492,
       "sha256": "92db9104311717d16a2fff3755f1f96a40f76197c9d6c229651df5a9ed4d8071",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Robin Hobb - Fitz and the Fool/Robin Hobb - Fitz and the Fool 03 - Assassins Fate/Robin Hobb - Fitz and the Fool 03 - Assassins Fate.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1079822,
       "sha256": "d5d07dc667ebd5e9bb11ab7887238c9ac9472026ee13eeac87cd43f424d61e83",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

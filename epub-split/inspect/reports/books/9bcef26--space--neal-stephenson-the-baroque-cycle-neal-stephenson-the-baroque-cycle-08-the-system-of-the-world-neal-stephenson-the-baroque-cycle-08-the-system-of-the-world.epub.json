@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Neal Stephenson - The Baroque Cycle/Neal Stephenson - The Baroque Cycle 08 - The System of the World/Neal Stephenson - The Baroque Cycle 08 - The System of the World.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 982161,
       "sha256": "9bcef26ed7f1bf9d719242496d799a73a1010564de9755507bd4161be1d7091b",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

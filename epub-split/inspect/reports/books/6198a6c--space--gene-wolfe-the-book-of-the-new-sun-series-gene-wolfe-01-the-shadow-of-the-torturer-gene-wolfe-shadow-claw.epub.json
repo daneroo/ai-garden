@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Gene Wolfe - The Book of the New Sun Series/Gene Wolfe - 01 The Shadow of the Torturer/Gene Wolfe - Shadow & Claw.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 599057,
       "sha256": "6198a6c42928188fba44447819104cc6145c362eba1045d7421dd7b2ea6f2c98",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

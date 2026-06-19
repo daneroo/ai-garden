@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Rosemary Kirstein - Steerswoman/Rosemary Kirstein - Steerswoman 03 - The Lost Steersman/Rosemary Kirstein - Steerswoman 03 - The Lost Steersman.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 619928,
       "sha256": "f5302de19a3fd012bea6d10523922846fbc48ab8dd8c6143eae11e9edec632e6",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

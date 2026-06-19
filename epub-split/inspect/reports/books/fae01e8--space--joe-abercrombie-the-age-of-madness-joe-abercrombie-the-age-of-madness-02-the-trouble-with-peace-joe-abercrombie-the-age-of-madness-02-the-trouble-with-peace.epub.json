@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Joe Abercrombie - The Age of Madness/Joe Abercrombie - The Age of Madness 02 - The Trouble with Peace/Joe Abercrombie - The Age of Madness - 02 - The Trouble with Peace.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 1812055,
       "sha256": "fae01e896d2dc3e9d2f8ee451bc987edb376f922d4da475e4db3b3fa49e576bd",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

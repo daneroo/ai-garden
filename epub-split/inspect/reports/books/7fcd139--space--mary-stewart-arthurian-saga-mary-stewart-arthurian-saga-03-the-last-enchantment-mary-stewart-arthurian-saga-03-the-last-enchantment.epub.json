@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Mary Stewart - Arthurian Saga/Mary Stewart - Arthurian Saga 03 - The Last Enchantment/Mary Stewart - Arthurian Saga 03 - The Last Enchantment.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 407192,
       "sha256": "7fcd1396b0c4b82e44ac5332f42c8fd5b37e096cde4ecfa134311e8aaf7c1fb2",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

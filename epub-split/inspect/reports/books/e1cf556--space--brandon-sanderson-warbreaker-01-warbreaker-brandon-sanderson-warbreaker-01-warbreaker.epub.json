@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Brandon Sanderson - Warbreaker 01 - Warbreaker/Brandon Sanderson - Warbreaker 01 - Warbreaker.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 787730,
       "sha256": "e1cf5564ba17efa2a7035db83a2e9d966a9a442a8ccf1004e26f0af2a416e48a",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {

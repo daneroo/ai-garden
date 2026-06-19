@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "book": {
     "root": "space",
     "relativePath": "Andrzej Sapkowski - The Witcher/Andrzej Sapkowski - The Witcher 2 - Time of Contempt/Andrzej Sapkowski - The Witcher 2 - Time of Contempt.epub",
@@ -10,10 +10,15 @@
   "parsers": {
     "epubts-browser": {
       "status": "transported",
-      "parserStatus": "not-implemented",
       "byteLength": 408475,
       "sha256": "f8e7b8f25fd7288c5d3d0cb42e0b431a3b489f313ffa597a25347af5102d563c",
       "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        }
+      },
       "diagnostics": []
     },
     "epubts-node": {
