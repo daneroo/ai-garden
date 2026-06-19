@@ -167,7 +167,7 @@ Local generated evidence:
 
 ## Chapter Content Comparison
 
-Classification: no candidate regressions found
+Classification: inconclusive for strict equivalence
 
 Each adapter now loads every ordered spine entry and records its `idref`, href,
 raw serialized XHTML, deterministic DOM representation, and extracted text.
@@ -230,34 +230,133 @@ Local generated evidence:
 - `data/reports/epubjs-vs-epubts-space.md`
 - `data/reports/epubjs-vs-epubts-drop.md`
 
+### epub.ts Content Hook Coupling
+
+The epub.ts adapter originally extracted spine-item content with:
+
+```ts
+section.render(book.load.bind(book))
+```
+
+That is not a pure content extraction API. In epub.ts, `Section.render()` calls
+`Section.load()`, and `Section.load()` triggers the spine content hooks before
+serialization. Those hooks are reader/rendering behavior: they mutate or inspect
+the loaded document to add base/canonical/resource behavior and assume they are
+operating on a DOM document.
+
+This matters because some EPUBs contain spine resources with no file extension,
+for example `.html_split_001`. epub.ts infers resource type from the path. For
+extensionless spine resources, it can load the resource as a string instead of a
+DOM document. The content hook runner then catches the internal exception and
+prints it with `console.error`, producing stack traces such as:
+
+```text
+TypeError: l.querySelector is not a function
+```
+
+The exception is not a normal parser failure surfaced through `ParserResult`; it
+is a swallowed hook failure logged by epub.ts internals. That makes the current
+chapter extraction path unsuitable as a stable validation boundary.
+
+The attempted scoped adapter change is to keep `Section.render()` for ordinary
+`.xhtml`/`.html` spine resources but explicitly load and parse extensionless
+spine resources as XHTML from the archive. This is a targeted compatibility
+candidate, not final proof of equivalence. It must be validated across `test`,
+`space`, and `drop` before being committed, and the reports must be regenerated
+without formatting transforms.
+
+The more principled future validator should avoid `Section.render()` for content
+validation entirely. It should read spine resources directly from the archive,
+choose the parser from manifest media type and content sniffing, and extract
+text from the resulting document. epub.ts rendering hooks should only be used
+when explicitly validating reader/render behavior.
+
 ## Final Decision
 
-The epub.ts adapter is accepted as equivalent or better for the EPUB behavior
-this project requires across the checked-in test books and both real-world
-corpora. No candidate content regression remains unresolved.
+The comparison experiment is inconclusive for strict epub.js-versus-epub.ts
+equivalence.
 
-This conclusion applies to the adapter implemented here, not unmodified stock
-`@likecoin/epub-ts`. The adapter must retain its visible compatibility handling
-for legacy OPF namespace prefixes and linkedom metadata text-node behavior.
-Comparison-only TOC, metadata, canonical-DOM, and text normalizations must be
-removed with the comparison stack unless the future single-parser validator
-independently justifies them as EPUB invariants.
+The earlier reports are still useful as exploratory evidence, but they should
+not be treated as proof that epub.ts is equivalent to browser epub.js. Report
+format and extraction behavior changed during the experiment, so line-by-line
+report diffs are not reliable evidence.
 
-Accepted epub.ts improvements over browser epub.js are:
+Useful findings to carry forward into an epub.ts-only validator are:
 
-- More complete TOC extraction for the David Mitchell book.
-- Correct Unicode decoding where browser epub.js produced control characters.
-- Correct body-text extraction for malformed XHTML that browser epub.js exposed
-  as serialized head markup.
+- Legacy OPF namespace prefixes require explicit adapter compatibility handling.
+- epub.ts/linkedom metadata extraction can truncate entity-split text unless the
+  adapter reads full element `textContent`.
+- `Section.render()` couples extraction to epub.ts rendering hooks and is not a
+  clean validation boundary.
+- Extensionless spine resources need explicit content-type handling.
+- Browser epub.js showed likely reference bugs: incomplete TOC extraction in one
+  book, Unicode control-character corruption in some content, and head markup
+  leaking into extracted text for some malformed XHTML.
 
 The symmetric chapter-load failures identify broken or unsupported source-book
-content and should become explicit validation findings in the later
+content and should become explicit validation findings in any later
 single-parser EPUB validator.
 
-Tracked final evidence:
+## epub.ts-Only Validator Invariant Seeds
+
+These are not conclusions from equivalence testing. They are a starting point
+for a new epub.ts-only validator and should be rewritten into a real design
+before implementation.
+
+- The EPUB opens with epub.ts, or the validator reports one structured fatal
+  error for the book.
+- The container and package document are found and parsed.
+- Metadata extraction reads complete element text, not only the first child
+  node. If stock epub.ts metadata differs from full `textContent`, report a
+  compatibility warning such as:
+
+  ```text
+  Reconstructed metadata from full element textContent for epub-ts/linkedom compatibility
+  ```
+
+  This means linkedom/epub.ts split or truncated the stock metadata value, often
+  around escaped markup or entities, and the adapter recovered the full metadata
+  text from the OPF element.
+
+  Example from `Andrzej Sapkowski - The Witcher 0.5 - The Last Wish.epub`:
+
+  ```xml
+  <dc:description>&lt;p class="description"&gt;Geralt de Rivia is a witcher...&lt;/p&gt;</dc:description>
+  ```
+
+  The OPF stores an escaped HTML paragraph inside the description. epub.ts'
+  stock metadata path can see only the first decoded fragment, effectively
+  truncating the value around the opening `<p ...>` markup. Reading the
+  `dc:description` element's full `textContent` recovers the complete escaped
+  paragraph text as one metadata value.
+- Manifest entries have an ID, href, media type, and archive target that exists.
+- Spine itemrefs resolve to manifest entries and preserve package order.
+- Spine content resources are loaded by explicit classification: prefer manifest
+  media type, then content sniffing, and do not rely only on filename extension.
+  Extensionless resources must be classified rather than guessed by epub.ts.
+- Spine content validation does not use `Section.render()` or epub.ts rendering
+  hooks as the extraction boundary.
+- Linear spine items produce extracted body text, or a classified reason for
+  empty text such as image-only cover, title art, blank separator, or broken
+  source content.
+- Extracted text must not contain parser artifacts such as serialized `<head>`,
+  `<meta>`, or `<link>` markup unless that markup is literal book content.
+- Extracted text should not retain common entity syntax such as `&nbsp;`,
+  `&hellip;`, `&ldquo;`, or `&rdquo;`; those should decode to text.
+- Extracted text should flag replacement characters and suspicious C1 control
+  characters that look like mojibake.
+- TOC entries have labels and hrefs, and hrefs resolve to content resources or
+  a classified fragment/link warning.
+- Every warning or error includes book, resource href/idref where applicable,
+  invariant ID, severity, and message.
+- Report format is versioned and fixed before corpus runs.
+
+Tracked exploratory evidence:
 
 - `reports/epubjs-vs-epubts-test.md`
 - `reports/epubjs-vs-epubts-space.md`
 - `reports/epubjs-vs-epubts-drop.md`
 
-Removal of epub.js and Playwright remains explicitly gated on user approval.
+Phase 8 removal of epub.js and Playwright is blocked. A future direction should
+be scoped as an epub.ts-only EPUB validator with explicit invariants, not as a
+continuation of the current equivalence claim.

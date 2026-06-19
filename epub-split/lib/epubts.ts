@@ -1,4 +1,5 @@
 import { readFile } from "node:fs/promises";
+import { extname } from "node:path";
 
 import { Archive, Book } from "@likecoin/epub-ts/node";
 
@@ -14,7 +15,7 @@ const PARSE_TIMEOUT_MS = 10_000;
 
 export async function parse(
   bookPath: string,
-  opts: ParseOptions = {}
+  _opts: ParseOptions = {}
 ): Promise<ParserResult> {
   const data = await readFile(bookPath);
   const arrayBuffer = data.buffer.slice(
@@ -69,18 +70,19 @@ export async function parse(
 
 async function extractChapters(book: Book, bookPath: string): Promise<Chapters> {
   const chapters: Chapters = [];
+
   for (const section of book.spine.spineItems) {
     try {
-      const xhtml = await withTimeout(
-        section.render(book.load.bind(book)),
-        bookPath
-      );
+      const extensionless = extname(section.href ?? "") === "";
+      const { xhtml, contents } = extensionless
+        ? await extractExtensionlessChapter(book, section.url, bookPath)
+        : await extractRenderedChapter(book, section, bookPath);
       chapters.push({
         idref: section.idref ?? "",
         href: section.href ?? "",
         xhtml,
-        canonicalXhtml: canonicalizeNode(section.contents),
-        text: section.contents?.textContent ?? "",
+        canonicalXhtml: canonicalizeNode(contents),
+        text: contents?.textContent ?? "",
       });
     } catch (error: unknown) {
       chapters.push({
@@ -96,6 +98,36 @@ async function extractChapters(book: Book, bookPath: string): Promise<Chapters> 
     }
   }
   return chapters;
+}
+
+async function extractRenderedChapter(
+  book: Book,
+  section: Book["spine"]["spineItems"][number],
+  bookPath: string
+): Promise<{ xhtml: string; contents: Element | undefined }> {
+  const xhtml = await withTimeout(
+    section.render(book.load.bind(book)),
+    bookPath
+  );
+  return { xhtml, contents: section.contents };
+}
+
+async function extractExtensionlessChapter(
+  book: Book,
+  sectionUrl: string | undefined,
+  bookPath: string
+): Promise<{ xhtml: string; contents: Element }> {
+  if (!book.archive) throw new Error("EPUB archive is unavailable");
+  if (!sectionUrl) throw new Error("Spine section has no resource URL");
+  const xhtml = (await withTimeout(
+    book.archive.request(sectionUrl, "text") as Promise<string>,
+    bookPath
+  )) as string;
+  const document = new DOMParser().parseFromString(
+    xhtml,
+    "application/xhtml+xml"
+  );
+  return { xhtml, contents: document.documentElement };
 }
 
 function canonicalizeNode(node: Node | undefined): string {

@@ -61,21 +61,21 @@
 
 ## Terry Pratchett - Discworld 38 - I Shall Wear Midnight.epub
 
-  ✗ chapter.load.failure: index:1 idref:id149 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
-  ✗ chapter.load.failure: index:2 idref:id148 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
-  ✗ chapter.load.failure: index:3 idref:id147 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
-  ✗ chapter.load.failure: index:4 idref:id146 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
-  ✗ chapter.load.failure: index:5 idref:id145 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
-  ✗ chapter.load.failure: index:6 idref:id144 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
-  ✗ chapter.load.failure: index:7 idref:id143 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
-  ✗ chapter.load.failure: index:8 idref:id142 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
-  ✗ chapter.load.failure: index:9 idref:id141 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
-  ✗ chapter.load.failure: index:10 idref:id140 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
-  ✗ chapter.load.failure: index:11 idref:id139 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
-  ✗ chapter.load.failure: index:12 idref:id138 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
-  ✗ chapter.load.failure: index:13 idref:id137 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
-  ✗ chapter.load.failure: index:14 idref:id136 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
-  ✗ chapter.load.failure: index:15 idref:id135 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:"Cannot read properties of undefined (reading 'toString')"
+  ✗ chapter.load.failure: index:1 idref:id149 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
+  ✗ chapter.load.failure: index:2 idref:id148 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
+  ✗ chapter.load.failure: index:3 idref:id147 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
+  ✗ chapter.load.failure: index:4 idref:id146 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
+  ✗ chapter.load.failure: index:5 idref:id145 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
+  ✗ chapter.load.failure: index:6 idref:id144 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
+  ✗ chapter.load.failure: index:7 idref:id143 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
+  ✗ chapter.load.failure: index:8 idref:id142 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
+  ✗ chapter.load.failure: index:9 idref:id141 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
+  ✗ chapter.load.failure: index:10 idref:id140 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
+  ✗ chapter.load.failure: index:11 idref:id139 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
+  ✗ chapter.load.failure: index:12 idref:id138 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
+  ✗ chapter.load.failure: index:13 idref:id137 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
+  ✗ chapter.load.failure: index:14 idref:id136 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
+  ✗ chapter.load.failure: index:15 idref:id135 reference:"Failed to execute 'serializeToString' on 'XMLSerializer': parameter 1 is not of type 'Node'." candidate:""
   ✗ chapter.load.failure: 25 additional differences omitted
 
 ## Tim Butcher - The Trigger.epub
