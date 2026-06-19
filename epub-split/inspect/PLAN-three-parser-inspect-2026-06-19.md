@@ -1,169 +1,100 @@
-# Three-Path EPUB Inspection Feasibility Plan
+# Three-Path EPUB Inspection Execution Plan
 
 Date: 2026-06-19
 
+Design reference:
+[`DESIGN-three-parser-inspect-2026-06-19.md`](DESIGN-three-parser-inspect-2026-06-19.md)
+
 ## Status
 
-Planning only. No implementation has started.
+- Overall: `NOT STARTED`
+- Current gate: `Gate 1`
+- Next action: implement the empty full-corpus loop and report structure
 
-Every phase below is a feasibility gate. Complete the gate over all configured
-corpus roots, inspect its committed evidence, and obtain explicit approval
-before starting the next phase.
+## Tracking Rules
 
-## Objective
+- `[ ]` means pending.
+- `[x]` means completed and supported by inspectable evidence.
+- Check implementation tasks as they are completed.
+- Check corpus evidence only after one complete run covers `test`, `drop`, and
+  `space` sequentially.
+- Check review tasks only after the generated evidence has been inspected.
+- Check an **APPROVED** item only after Daniel explicitly approves proceeding.
+- Do not begin a gate until the preceding gate's **APPROVED** item is checked.
+- Update the dashboard and current-gate status whenever task state changes.
 
-Determine whether a new, isolated runner can produce inspectable and
-reproducible observations from three EPUB parser paths:
+## Dashboard
 
-1. `epubts-browser`: `@likecoin/epub-ts` running with a browser-native DOM.
-2. `epubts-node`: `@likecoin/epub-ts/node` running with LinkeDOM.
-3. `storyteller-node`: `@storyteller-platform/epub` using its XML model.
-
-The experiment uses parser agreement only to discover cases requiring
-investigation. Agreement does not prove correctness, a two-to-one result does
-not establish a winner, and disagreement does not by itself establish a defect.
-
-The eventual purpose is to identify a reliable EPUB extraction path for
-ebook-to-audiobook alignment and to define requirements that can be validated
-without treating another parser as an oracle.
-
-## Isolation
-
-Build the experiment entirely under `inspect/`, with its own Bun setup and no
-imports from the existing `epub-split` implementation:
-
-```text
-inspect/
-  package.json
-  bun.lock
-  tsconfig.json
-  src/
-  reports/
-```
-
-The existing project, reports, plans, and findings remain historical evidence.
-Do not refactor or reuse the legacy adapters or comparator in the new runner.
-
-Use Bun for dependency installation, scripts, type checking, and browser
-bundling. Do not use `pnpm`, `pnpx`, or `tsx` inside `inspect/`.
-
-## Non-Negotiable Run Model
-
-The runner has one operational mode: a complete run.
-
-- Discover EPUBs under `test`, `drop`, and `space` on every run.
-- Process the roots sequentially in that order.
-- Process every discovered EPUB sequentially.
-- Invoke every implemented parser path for every book.
-- Do not expose root selection, parser selection, sampling, deduplication, or
-  early-acceptance modes.
-- Process byte-identical books independently in every root where they occur.
-- Record book/parser failures and continue with the remaining work.
-- Abort on infrastructure failures that invalidate the run.
-- Replace the current reports only after the complete run finishes and the
-  report set passes its integrity checks.
-
-Counts and conclusions remain separate by root because `drop` and `space`
-substantially overlap.
-
-## Current-Truth Reports
-
-Maintain one stable report tree with no timestamped run directories:
-
-```text
-inspect/reports/
-  run.json
-  index.md
-  books/
-    <short-sha>--<root>--<normalized-relative-path>.json
-  details/
-    <short-sha>--<root>--<normalized-relative-path>.md
-```
-
-Report rules:
-
-- JSON is the authoritative evidence format.
-- Markdown is a deterministic projection of the JSON.
-- `run.json` inventories every discovered book and links to its book JSON.
-- Each book JSON contains the observations from every implemented parser path
-  and the derived comparison for that book.
-- `index.md` summarizes each root separately and links to every book JSON.
-- Generate detail Markdown only for books with parser failures or
-  disagreements; link each detail report to its book JSON.
-- Do not put evidence in Markdown that is absent from the JSON.
-- Sort roots, books, parser names, fields, and findings deterministically.
-- Exclude timestamps, durations, hostnames, and absolute paths from committed
-  reports.
-- Record report schema, parser package, runtime, browser, and runner versions in
-  `run.json`.
-
-### Book Identity
-
-Hash the exact bytes of each `.epub` with SHA-256.
-
-- Begin filenames with the first seven hexadecimal characters of the SHA-256.
-- Extend only colliding prefixes to the shortest unique length required by the
-  current complete corpus.
-- Include the root name and a normalized root-relative source path after the
-  hash.
-- Keep the complete SHA-256 and original root-relative path in the book JSON.
-- Truncate only the readable filename component if required by filesystem
-  limits.
-
-The hash prefix causes byte-identical `drop` and `space` files to sort together
-without deduplicating their runs.
-
-## Observation and Comparison Boundaries
-
-Each parser adapter returns plain serializable observations. Adapters do not
-normalize values to make parsers agree.
-
-The comparison stage consumes completed observations and classifies each
-implemented field as:
-
-- all three agree;
-- two agree and one differs;
-- all three differ;
-- unavailable because one or more parsers failed.
-
-The report must preserve raw parser observations alongside every derived
-comparison. Any later comparison-only normalization requires a documented
-corpus example, explicit approval, and both raw and normalized results.
+| Gate | Scope | Status |
+|---|---|---|
+| 1 | Empty loop and deterministic reports | `NOT STARTED` |
+| 2 | Typed Playwright browser boundary | `BLOCKED BY GATE 1` |
+| 3 | Browser epub.ts open outcomes | `BLOCKED BY GATE 2` |
+| 4A | Node epub.ts open outcomes | `BLOCKED BY GATE 3` |
+| 4B | Storyteller open outcomes | `BLOCKED BY GATE 4A` |
+| 5 | Three-parser metadata comparison | `BLOCKED BY GATE 4B` |
+| Final | Feasibility decision | `BLOCKED BY GATE 5` |
 
 ## Gate 1: Empty Full-Corpus Loop and Reports
 
-Prove the execution and evidence mechanics before installing or invoking an
-EPUB parser.
+Status: `NOT STARTED`
 
-Implementation scope:
+### Implementation
 
-- Create the isolated Bun project and strict TypeScript configuration.
-- Configure the existing `test`, `drop`, and `space` roots without copying
-  absolute machine paths into reports.
-- Discover every `.epub` in all three roots.
-- Read and SHA-256 every EPUB file.
-- Produce one book observation containing identity only and an explicit
-  `not-implemented` parser state for each of the three parser paths.
-- Generate the complete JSON and Markdown report tree.
-- Generate reports into a temporary sibling directory.
-- Validate report linkage, inventory counts, parser-slot completeness,
-  filename uniqueness, and absence of stale files.
-- Atomically replace `inspect/reports/` only after successful validation.
+- [ ] Create an isolated Bun package under `inspect/`.
+- [ ] Add strict TypeScript configuration.
+- [ ] Add the single full-run `inspect` script.
+- [ ] Configure the existing `test`, `drop`, and `space` roots.
+- [ ] Discover every `.epub` under all three roots.
+- [ ] Process roots sequentially in `test`, `drop`, `space` order.
+- [ ] Process every discovered book sequentially.
+- [ ] Read the exact bytes of every EPUB.
+- [ ] Compute the full SHA-256 of every EPUB.
+- [ ] Compute seven-character short hashes.
+- [ ] Extend colliding short hashes to the shortest unique prefix.
+- [ ] Normalize root-relative paths for report filenames.
+- [ ] Keep full hashes and original root-relative paths in book JSON.
+- [ ] Define the first versioned report schema.
+- [ ] Represent all three parser paths as explicit `not-implemented` attempts.
+- [ ] Generate one authoritative JSON file per book.
+- [ ] Generate `run.json` with links to every book JSON.
+- [ ] Generate deterministic `index.md` with separate root totals.
+- [ ] Generate detail Markdown only for failures or disagreements.
+- [ ] Validate that Markdown contains no evidence absent from JSON.
+- [ ] Sort all generated output deterministically.
+- [ ] Exclude timestamps, durations, hostnames, and absolute paths.
+- [ ] Generate reports in a temporary sibling directory.
+- [ ] Validate report inventory, links, counts, and filename uniqueness.
+- [ ] Replace `reports/` only after all report validation succeeds.
+- [ ] Remove stale report files through complete-directory replacement.
+- [ ] Preserve the previous reports when generation or validation fails.
 
-Acceptance evidence:
+### Full-Corpus Evidence
 
-- All three roots complete in one run.
-- Every discovered EPUB has exactly one book JSON.
-- Every book JSON has placeholders for all three parser paths.
-- `run.json` counts match the generated files and `index.md` counts.
-- Byte-identical books across roots share the same hash prefix and sort
-  together.
-- A deliberately interrupted or failed run leaves the previous report tree
-  unchanged.
-- A second unchanged run produces no report diff.
+- [ ] `test` discovery and identity processing completed.
+- [ ] `drop` discovery and identity processing completed.
+- [ ] `space` discovery and identity processing completed.
+- [ ] Every discovered EPUB has exactly one book JSON.
+- [ ] Every book JSON contains all three parser placeholders.
+- [ ] `run.json` inventory counts match generated book files.
+- [ ] `index.md` root counts match `run.json`.
+- [ ] Byte-identical books across roots share the same hash prefix.
+- [ ] Byte-identical books remain separate root observations.
+- [ ] All report links resolve.
+- [ ] A deliberately failed run leaves previous reports unchanged.
+- [ ] A second unchanged complete run produces no report diff.
 
-Stop after this gate. Review the report layout and committed diff before adding
-any parser dependency.
+### Review and Approval
+
+- [ ] Report filenames and flat directory structure reviewed.
+- [ ] Per-book JSON inspected on representative `test`, `drop`, and `space`
+  books.
+- [ ] `run.json` inspected for traceability and reproducibility.
+- [ ] `index.md` inspected for useful corpus visibility.
+- [ ] Failure behavior inspected.
+- [ ] Gate findings recorded in the design or a dedicated findings document.
+- [ ] Gate checkpoint committed.
+- [ ] **APPROVED: proceed to Gate 2.**
 
 Checkpoint subject:
 
@@ -171,49 +102,58 @@ Checkpoint subject:
 feat(inspect): establish deterministic full-corpus reports
 ```
 
-## Gate 2: Browser Execution Boundary
+## Gate 2: Typed Playwright Browser Boundary
 
-Determine how browser-side epub.ts will be built, loaded, supplied an EPUB, and
-return typed observations. Do not add the server parsers in this gate.
+Status: `BLOCKED BY GATE 1`
 
-Proposed design to prove rather than assume:
+### Implementation
 
-- Write a browser-only TypeScript entrypoint under `src/browser/`.
-- Import the browser export `@likecoin/epub-ts`, never the `/node` export.
-- Bundle the entrypoint and its dependencies with Bun for a browser target.
-- Expose one narrow harness function on `globalThis`.
-- Launch Playwright once for the complete run.
-- Use a clean page or context boundary between books, while reusing the browser
-  process unless isolation testing proves that unsafe.
-- Load the generated bundle with Playwright's supported script-loading API.
-- Supply the exact EPUB bytes through a synthetic same-origin browser route and
-  fetch them as an `ArrayBuffer`; do not use an HTML file input.
-- Return only plain serializable data through `page.evaluate`.
-- Share compile-time protocol types between browser and host code and validate
-  returned observations at runtime.
-- Capture browser console errors and unhandled page errors as structured
-  parser-attempt diagnostics rather than allowing them to corrupt progress or
-  report output.
+- [ ] Add Playwright and the browser epub.ts package dependency.
+- [ ] Write a browser-only TypeScript entrypoint.
+- [ ] Import `@likecoin/epub-ts`, never `@likecoin/epub-ts/node`, in the
+  browser entrypoint.
+- [ ] Bundle the browser entrypoint with Bun for a browser target.
+- [ ] Verify the bundle does not contain LinkeDOM or Node-only imports.
+- [ ] Expose one narrow typed harness function on `globalThis`.
+- [ ] Define a shared serializable browser/host protocol.
+- [ ] Add runtime validation for values returned across Playwright.
+- [ ] Launch one browser process for the complete run.
+- [ ] Establish a clean page or context boundary between books.
+- [ ] Load the generated bundle through Playwright's script-loading API.
+- [ ] Serve each exact EPUB through a synthetic same-origin browser route.
+- [ ] Fetch each EPUB as an `ArrayBuffer` inside the browser.
+- [ ] Return a constant typed response, byte length, and SHA-256 only.
+- [ ] Capture page errors as structured browser-attempt diagnostics.
+- [ ] Capture browser console errors without writing into report/progress
+  output.
+- [ ] Close each per-book browser boundary reliably.
+- [ ] Close the shared browser process reliably.
+- [ ] Keep epub.ts parsing disabled throughout this gate.
 
-This gate initially asks the browser harness only to return a constant typed
-response plus the received EPUB byte length and hash. It does not parse EPUB
-metadata yet. This isolates bundling, transport, lifecycle, serialization, and
-error capture from parser behavior.
+### Full-Corpus Evidence
 
-Acceptance evidence:
+- [ ] `test` browser transport completed.
+- [ ] `drop` browser transport completed.
+- [ ] `space` browser transport completed.
+- [ ] Every book has one successful or structured failed browser attempt.
+- [ ] Browser byte lengths match host byte lengths for every EPUB.
+- [ ] Browser SHA-256 values match host SHA-256 values for every EPUB.
+- [ ] Page state from one book does not affect the next book.
+- [ ] Console and page errors are visible in structured observations.
+- [ ] Terminal progress remains intact when browser diagnostics occur.
+- [ ] No browser process or page remains after the run.
+- [ ] A second unchanged complete run produces no report diff.
 
-- The browser bundle contains no Node or LinkeDOM path.
-- Playwright loads the bundle without legacy source injection.
-- The browser receives the exact bytes for every EPUB in all three roots, as
-  demonstrated by matching byte lengths and SHA-256 values.
-- Every book receives one successful or structured failed browser attempt.
-- Page state from one book cannot affect the next book.
-- Browser console output does not corrupt terminal progress or reports.
-- The complete run finishes without browser-process leakage.
-- A second unchanged run produces no report diff.
+### Review and Approval
 
-Stop after this gate. Decide whether the demonstrated Playwright/bundle design
-is acceptable before allowing epub.ts to parse a book.
+- [ ] Browser bundle contents and build command reviewed.
+- [ ] Playwright lifecycle and isolation reviewed.
+- [ ] EPUB byte transport reviewed.
+- [ ] Browser/host type and runtime-validation boundary reviewed.
+- [ ] Structured diagnostics reviewed.
+- [ ] Gate findings recorded.
+- [ ] Gate checkpoint committed.
+- [ ] **APPROVED: proceed to Gate 3.**
 
 Checkpoint subject:
 
@@ -221,27 +161,41 @@ Checkpoint subject:
 feat(inspect): prove typed Playwright browser boundary
 ```
 
-## Gate 3: Browser epub.ts Open Outcome
+## Gate 3: Browser epub.ts Open Outcomes
 
-Use the proven browser harness to open every EPUB with browser epub.ts.
+Status: `BLOCKED BY GATE 2`
 
-Implementation scope:
+### Implementation
 
-- Record open success or a structured failure.
-- Record the declared EPUB version when exposed.
-- Do not extract metadata, manifest, spine, TOC, or content.
-- Preserve browser/page diagnostics separately from the parser outcome.
-- Keep the other two parser paths as explicit `not-implemented` observations.
+- [ ] Enable browser epub.ts parsing in the proven browser harness.
+- [ ] Record open success as a structured observation.
+- [ ] Record open failure with stage, category, and message.
+- [ ] Record declared EPUB version when exposed.
+- [ ] Preserve browser/page diagnostics separately from parser outcomes.
+- [ ] Guarantee book cleanup after every attempt.
+- [ ] Keep `epubts-node` and `storyteller-node` as `not-implemented`.
+- [ ] Do not extract metadata, manifest, spine, TOC, or content.
+- [ ] Do not repair, retry, or normalize failing EPUBs.
 
-Acceptance evidence:
+### Full-Corpus Evidence
 
-- Every EPUB in every root receives a browser epub.ts outcome.
-- No single book failure terminates the corpus run.
-- No parser exception is present only as console text.
-- Repeated runs are deterministic except for explicitly prohibited transient
-  data, which must not enter reports.
+- [ ] `test` browser epub.ts open run completed.
+- [ ] `drop` browser epub.ts open run completed.
+- [ ] `space` browser epub.ts open run completed.
+- [ ] Every book has exactly one browser epub.ts outcome.
+- [ ] No book failure terminates the complete run.
+- [ ] No parser failure exists only as console output.
+- [ ] Open failures are individually inspectable.
+- [ ] A second unchanged complete run produces no report diff.
 
-Stop and review all browser failures before adding another parser path.
+### Review and Approval
+
+- [ ] All browser epub.ts failures reviewed.
+- [ ] Failure classifications reviewed for lost information.
+- [ ] Browser cleanup behavior reviewed.
+- [ ] Gate findings recorded.
+- [ ] Gate checkpoint committed.
+- [ ] **APPROVED: proceed to Gate 4A.**
 
 Checkpoint subject:
 
@@ -249,77 +203,158 @@ Checkpoint subject:
 feat(inspect): record browser epubts open outcomes
 ```
 
-## Gate 4: Server Parser Open Outcomes
+## Gate 4A: Node epub.ts Open Outcomes
 
-Add `epubts-node`, then Storyteller, as separate sub-gates. A parser must complete
-the full corpus before adding the next parser.
+Status: `BLOCKED BY GATE 3`
 
-For each server parser:
+### Implementation
 
-- Open every EPUB independently from exact file bytes or the parser's documented
-  file API.
-- Record success, declared EPUB version when exposed, and structured failure.
-- Guarantee cleanup after every attempt.
-- Do not add compatibility retries or repair input files.
-- Do not normalize failures between parsers.
-- Confirm whether Bun can host the parser reliably. If Bun incompatibility is
-  demonstrated, stop and decide explicitly whether a compiled Node host is
-  acceptable; do not silently change runtime.
+- [ ] Add `@likecoin/epub-ts/node` and its LinkeDOM peer dependency.
+- [ ] Implement an independent server adapter.
+- [ ] Read or pass exact EPUB bytes using the documented API.
+- [ ] Record open success as a structured observation.
+- [ ] Record open failure with stage, category, and message.
+- [ ] Record declared EPUB version when exposed.
+- [ ] Guarantee parser cleanup after every attempt.
+- [ ] Keep Storyteller as `not-implemented`.
+- [ ] Do not add compatibility retries or repair input files.
+- [ ] Confirm whether Bun hosts the Node export reliably.
+- [ ] Stop for an explicit runtime decision if Bun incompatibility is found.
 
-Acceptance evidence for each sub-gate:
+### Full-Corpus Evidence
 
-- Every book has exactly one outcome for that parser.
-- Full-corpus completion and cleanup are demonstrated.
-- EPUB 2 rejection, malformed-input rejection, and runtime failures remain
-  distinguishable.
-- Adding the parser does not alter prior parser observations.
-- A second unchanged run produces no report diff.
+- [ ] `test` Node epub.ts open run completed.
+- [ ] `drop` Node epub.ts open run completed.
+- [ ] `space` Node epub.ts open run completed.
+- [ ] Every book has exactly one Node epub.ts outcome.
+- [ ] Browser epub.ts observations remain unchanged.
+- [ ] Runtime failures are distinguishable from EPUB parse failures.
+- [ ] EPUB-version failures remain distinguishable from malformed input.
+- [ ] No parser resources remain after the run.
+- [ ] A second unchanged complete run produces no report diff.
 
-Stop after `epubts-node`, and again after Storyteller.
+### Review and Approval
 
-Checkpoint subjects:
+- [ ] All Node epub.ts failures reviewed.
+- [ ] Browser-versus-LinkeDOM outcome differences reviewed.
+- [ ] Bun runtime suitability reviewed explicitly.
+- [ ] Gate findings recorded.
+- [ ] Gate checkpoint committed.
+- [ ] **APPROVED: proceed to Gate 4B.**
+
+Checkpoint subject:
 
 ```text
 feat(inspect): record node epubts open outcomes
+```
+
+## Gate 4B: Storyteller Open Outcomes
+
+Status: `BLOCKED BY GATE 4A`
+
+### Implementation
+
+- [ ] Add `@storyteller-platform/epub`.
+- [ ] Implement an independent Storyteller adapter.
+- [ ] Read or pass exact EPUB bytes using the documented API.
+- [ ] Record open success as a structured observation.
+- [ ] Record open failure with stage, category, and message.
+- [ ] Record declared EPUB version when exposed.
+- [ ] Guarantee parser cleanup after every attempt.
+- [ ] Do not invoke EPUB 2-to-3 conversion automatically.
+- [ ] Do not repair, retry, or normalize failing EPUBs.
+- [ ] Confirm whether Bun hosts Storyteller reliably.
+- [ ] Stop for an explicit runtime decision if Bun incompatibility is found.
+
+### Full-Corpus Evidence
+
+- [ ] `test` Storyteller open run completed.
+- [ ] `drop` Storyteller open run completed.
+- [ ] `space` Storyteller open run completed.
+- [ ] Every book has exactly one Storyteller outcome.
+- [ ] Both epub.ts parser-path observations remain unchanged.
+- [ ] EPUB 2 rejection remains distinguishable from malformed input.
+- [ ] Runtime failures remain distinguishable from parser failures.
+- [ ] No parser resources remain after the run.
+- [ ] A second unchanged complete run produces no report diff.
+
+### Review and Approval
+
+- [ ] All Storyteller failures reviewed.
+- [ ] EPUB 2 behavior reviewed explicitly.
+- [ ] Bun runtime suitability reviewed explicitly.
+- [ ] Three-path open-outcome reports reviewed.
+- [ ] Gate findings recorded.
+- [ ] Gate checkpoint committed.
+- [ ] **APPROVED: proceed to Gate 5.**
+
+Checkpoint subject:
+
+```text
 feat(inspect): record storyteller open outcomes
 ```
 
-## Gate 5: Metadata Observations and Comparison
+## Gate 5: Three-Parser Metadata Comparison
 
-Only after all three open paths are trustworthy, extract metadata from all three
-parsers over the complete corpus.
+Status: `BLOCKED BY GATE 4B`
 
-Metadata observations must preserve, where exposed:
+### Schema Investigation
 
-- repeated entries;
-- source ordering;
-- exact values;
-- element or property names;
-- attributes;
-- refinements and relationships;
-- the parser's semantic convenience values separately from lower-level entries.
+- [ ] Inventory each parser's low-level metadata API.
+- [ ] Inventory each parser's semantic convenience metadata API.
+- [ ] Define metadata entries without flattening repeated fields.
+- [ ] Preserve source ordering where exposed.
+- [ ] Preserve exact values.
+- [ ] Preserve element or property names.
+- [ ] Preserve attributes.
+- [ ] Preserve refinements and relationships.
+- [ ] Keep semantic convenience values separate from low-level entries.
+- [ ] Version the expanded observation schema.
+- [ ] Obtain explicit schema review before the full implementation run.
 
-Do not force metadata into the old single-string `ParserResult` shape. Define
-the observation schema from the actual APIs and corpus evidence gathered during
-this gate.
+### Implementation
 
-Comparison begins with exact typed values. Differences are reported by field,
-entry position, multiplicity, attributes, and value. Do not introduce entity,
-markup, whitespace, or line-ending normalization in this gate.
+- [ ] Extract metadata independently in browser epub.ts.
+- [ ] Extract metadata independently in Node epub.ts.
+- [ ] Extract metadata independently in Storyteller.
+- [ ] Record metadata-stage failures separately from open failures.
+- [ ] Preserve raw metadata observations for all three parsers.
+- [ ] Compare exact typed values without normalization.
+- [ ] Compare field presence.
+- [ ] Compare multiplicity.
+- [ ] Compare entry ordering where represented.
+- [ ] Compare attributes and refinements.
+- [ ] Compare exact values.
+- [ ] Classify all-three agreement, two-to-one difference, all-three
+  difference, and unavailable comparisons.
+- [ ] Link every comparison directly to its source observations.
+- [ ] Do not declare a majority parser correct.
+- [ ] Do not normalize entities, markup, whitespace, or line endings.
 
-Acceptance evidence:
+### Full-Corpus Evidence
 
-- Every successfully opened book has a metadata observation or a structured
-  metadata-stage failure from each parser.
-- Raw metadata remains inspectable per parser in each book JSON.
-- Every comparison links directly to the three source observations.
-- Aggregate counts can be traced to individual books and fields.
-- Previously observed entity/markup cases appear as inspectable evidence rather
-  than a generic warning.
-- A second unchanged run produces no report diff.
+- [ ] `test` three-parser metadata run completed.
+- [ ] `drop` three-parser metadata run completed.
+- [ ] `space` three-parser metadata run completed.
+- [ ] Every successfully opened book has metadata or a structured metadata
+  failure for every parser.
+- [ ] Raw metadata remains inspectable per parser and book.
+- [ ] Every aggregate count traces to individual books and fields.
+- [ ] Entity and escaped-markup cases have concrete before/after observations.
+- [ ] No generic compatibility warning replaces actual differing values.
+- [ ] A second unchanged complete run produces no report diff.
 
-Stop after this gate and decide whether the three paths and report model are
-useful enough to continue the project.
+### Review and Approval
+
+- [ ] Representative all-three agreements reviewed.
+- [ ] Representative two-to-one differences reviewed.
+- [ ] Representative all-three differences reviewed.
+- [ ] Every recurring metadata difference class investigated.
+- [ ] Any proposed normalization deferred to a separately approved gate.
+- [ ] Report usefulness for future structural/content work assessed.
+- [ ] Gate findings recorded.
+- [ ] Gate checkpoint committed.
+- [ ] **APPROVED: make the final feasibility decision.**
 
 Checkpoint subject:
 
@@ -327,51 +362,22 @@ Checkpoint subject:
 feat(inspect): compare three-parser metadata observations
 ```
 
-## Planned Later Gates
-
-These are directions, not approved implementation phases. Define each gate in
-detail only after the metadata feasibility decision.
-
-1. Manifest entries and resource existence.
-2. Ordered spine and itemref resolution.
-3. TOC structure and target resolution.
-4. Direct XHTML resource loading without rendering hooks.
-5. Body-text extraction with stable source locations.
-6. Alignment-oriented invariants independent of parser agreement.
-
-Every later gate must run all roots and all three parsers, preserve raw
-observations, regenerate the entire current-truth report set, and stop for
-approval.
-
-## Historical Findings as Hypotheses
-
-Create an `inspect/HYPOTHESES.md` catalogue before defining post-metadata
-invariants. Translate earlier findings into unverified questions, including:
-
-- Can valid namespace-prefixed OPF documents be opened without repair?
-- Do metadata values containing entities or escaped markup remain complete?
-- Which observations differ between browser DOM and LinkeDOM?
-- Can extraction avoid `Section.render()` and rendering-hook behavior?
-- Are extensionless spine resources classified from manifest media type rather
-  than filename extension?
-- Does extracted text preserve Unicode without replacement characters or C1
-  control substitutions?
-- Can head markup leak into extracted body text?
-- Do TOC entries and fragments resolve to actual resources?
-- Are missing manifest and spine resources reported precisely?
-
-The previous reports remain exploratory source material. Do not import their
-comparisons as expected values, golden files, or proof that any parser was
-correct.
-
 ## Final Feasibility Decision
 
-After Gate 5, explicitly choose one outcome:
+Status: `BLOCKED BY GATE 5`
 
-- Continue adding structural and content gates because the runner produces
-  useful, traceable evidence.
-- Narrow the parser matrix based on demonstrated operational limitations.
-- Stop the experiment because the reports do not improve confidence or support
-  the alignment objective.
+- [ ] Review Gate 1 through Gate 5 evidence and findings.
+- [ ] Decide whether the runner produces useful, traceable evidence.
+- [ ] Decide whether all three parser paths remain justified.
+- [ ] Decide whether Bun remains the accepted host runtime.
+- [ ] Decide whether to plan manifest and resource-existence observations.
+- [ ] Decide whether to stop or continue the experiment.
+- [ ] Record the decision and its evidence in the design/findings documents.
+- [ ] Commit the approved feasibility conclusion.
 
-Do not proceed by inertia.
+Exactly one outcome must be checked:
+
+- [ ] **CONTINUE:** write a separately approved plan for structural gates.
+- [ ] **NARROW:** remove one or more paths based on demonstrated limitations.
+- [ ] **STOP:** the experiment does not improve confidence or support the
+  alignment objective.
