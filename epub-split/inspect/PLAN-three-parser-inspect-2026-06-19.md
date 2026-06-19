@@ -7,9 +7,9 @@ Design reference:
 
 ## Status
 
-- Overall: `NOT STARTED`
-- Current gate: `Gate 1`
-- Next action: implement the empty full-corpus loop and report structure
+- Overall: `GATE 1 APPROVED`
+- Current gate: `Gate 2`
+- Next action: implement the typed Playwright browser boundary
 
 ## Tracking Rules
 
@@ -27,8 +27,8 @@ Design reference:
 
 | Gate | Scope | Status |
 |---|---|---|
-| 1 | Empty loop and deterministic reports | `NOT STARTED` |
-| 2 | Typed Playwright browser boundary | `BLOCKED BY GATE 1` |
+| 1 | Empty loop and deterministic reports | `APPROVED` |
+| 2 | Typed Playwright browser boundary | `NOT STARTED` |
 | 3 | Browser epub.ts open outcomes | `BLOCKED BY GATE 2` |
 | 4A | Node epub.ts open outcomes | `BLOCKED BY GATE 3` |
 | 4B | Storyteller open outcomes | `BLOCKED BY GATE 4A` |
@@ -37,64 +37,64 @@ Design reference:
 
 ## Gate 1: Empty Full-Corpus Loop and Reports
 
-Status: `NOT STARTED`
+Status: `APPROVED`
 
 ### Implementation
 
-- [ ] Create an isolated Bun package under `inspect/`.
-- [ ] Add strict TypeScript configuration.
-- [ ] Add the single full-run `inspect` script.
-- [ ] Configure the existing `test`, `drop`, and `space` roots.
-- [ ] Discover every `.epub` under all three roots.
-- [ ] Process roots sequentially in `test`, `drop`, `space` order.
-- [ ] Process every discovered book sequentially.
-- [ ] Read the exact bytes of every EPUB.
-- [ ] Compute the full SHA-256 of every EPUB.
-- [ ] Compute seven-character short hashes.
-- [ ] Extend colliding short hashes to the shortest unique prefix.
-- [ ] Normalize root-relative paths for report filenames.
-- [ ] Keep full hashes and original root-relative paths in book JSON.
-- [ ] Define the first versioned report schema.
-- [ ] Represent all three parser paths as explicit `not-implemented` attempts.
-- [ ] Generate one authoritative JSON file per book.
-- [ ] Generate `run.json` with links to every book JSON.
-- [ ] Generate deterministic `index.md` with separate root totals.
-- [ ] Generate detail Markdown only for failures or disagreements.
-- [ ] Validate that Markdown contains no evidence absent from JSON.
-- [ ] Sort all generated output deterministically.
-- [ ] Exclude timestamps, durations, hostnames, and absolute paths.
-- [ ] Generate reports in a temporary sibling directory.
-- [ ] Validate report inventory, links, counts, and filename uniqueness.
-- [ ] Replace `reports/` only after all report validation succeeds.
-- [ ] Remove stale report files through complete-directory replacement.
-- [ ] Preserve the previous reports when generation or validation fails.
+- [x] Create an isolated Bun package under `inspect/`.
+- [x] Add strict TypeScript configuration.
+- [x] Add the single full-run `inspect` script.
+- [x] Configure the existing `test`, `drop`, and `space` roots.
+- [x] Discover every `.epub` under all three roots.
+- [x] Process roots sequentially in `test`, `drop`, `space` order.
+- [x] Process every discovered book sequentially.
+- [x] Read the exact bytes of every EPUB.
+- [x] Compute the full SHA-256 of every EPUB.
+- [x] Compute seven-character short hashes.
+- [x] Extend colliding short hashes to the shortest unique prefix.
+- [x] Normalize root-relative paths for report filenames.
+- [x] Keep full hashes and original root-relative paths in book JSON.
+- [x] Define the first versioned report schema.
+- [x] Represent all three parser paths as explicit `not-implemented` attempts.
+- [x] Generate one authoritative JSON file per book.
+- [x] Generate `run.json` with links to every book JSON.
+- [x] Generate deterministic `index.md` with separate root totals.
+- [x] Generate detail Markdown only for failures or disagreements.
+- [x] Validate that Markdown contains no evidence absent from JSON.
+- [x] Sort all generated output deterministically.
+- [x] Exclude timestamps, durations, hostnames, and absolute paths.
+- [x] Generate reports in a temporary sibling directory.
+- [x] Validate report inventory, links, counts, and filename uniqueness.
+- [x] Replace `reports/` only after all report validation succeeds.
+- [x] Remove stale report files through complete-directory replacement.
+- [x] Preserve the previous reports when generation or validation fails.
 
 ### Full-Corpus Evidence
 
-- [ ] `test` discovery and identity processing completed.
-- [ ] `drop` discovery and identity processing completed.
-- [ ] `space` discovery and identity processing completed.
-- [ ] Every discovered EPUB has exactly one book JSON.
-- [ ] Every book JSON contains all three parser placeholders.
-- [ ] `run.json` inventory counts match generated book files.
-- [ ] `index.md` root counts match `run.json`.
-- [ ] Byte-identical books across roots share the same hash prefix.
-- [ ] Byte-identical books remain separate root observations.
-- [ ] All report links resolve.
-- [ ] A deliberately failed run leaves previous reports unchanged.
-- [ ] A second unchanged complete run produces no report diff.
+- [x] `test` discovery and identity processing completed.
+- [x] `drop` discovery and identity processing completed.
+- [x] `space` discovery and identity processing completed.
+- [x] Every discovered EPUB has exactly one book JSON.
+- [x] Every book JSON contains all three parser placeholders.
+- [x] `run.json` inventory counts match generated book files.
+- [x] `index.md` root counts match `run.json`.
+- [x] Byte-identical books across roots share the same hash prefix.
+- [x] Byte-identical books remain separate root observations.
+- [x] All report links resolve.
+- [x] A deliberately failed run leaves previous reports unchanged.
+- [x] A second unchanged complete run produces no report diff.
 
 ### Review and Approval
 
-- [ ] Report filenames and flat directory structure reviewed.
-- [ ] Per-book JSON inspected on representative `test`, `drop`, and `space`
+- [x] Report filenames and flat directory structure reviewed.
+- [x] Per-book JSON inspected on representative `test`, `drop`, and `space`
   books.
-- [ ] `run.json` inspected for traceability and reproducibility.
-- [ ] `index.md` inspected for useful corpus visibility.
-- [ ] Failure behavior inspected.
-- [ ] Gate findings recorded in the design or a dedicated findings document.
-- [ ] Gate checkpoint committed.
-- [ ] **APPROVED: proceed to Gate 2.**
+- [x] `run.json` inspected for traceability and reproducibility.
+- [x] `index.md` inspected for useful corpus visibility.
+- [x] Failure behavior inspected.
+- [x] Gate findings recorded in the design or a dedicated findings document.
+- [x] Gate checkpoint committed.
+- [x] **APPROVED: proceed to Gate 2.**
 
 Checkpoint subject:
 
@@ -104,7 +104,7 @@ feat(inspect): establish deterministic full-corpus reports
 
 ## Gate 2: Typed Playwright Browser Boundary
 
-Status: `BLOCKED BY GATE 1`
+Status: `NOT STARTED`
 
 ### Implementation
 

@@ -24,3 +24,5 @@ See:
   for the architecture, evidence model, and feasibility-gate rationale.
 - [PLAN-three-parser-inspect-2026-06-19.md](PLAN-three-parser-inspect-2026-06-19.md)
   for implementation, evidence, review, and approval status.
+- [FINDINGS-three-parser-inspect-2026-06-19.md](FINDINGS-three-parser-inspect-2026-06-19.md)
+  for evidence and conclusions recorded at each gate.
