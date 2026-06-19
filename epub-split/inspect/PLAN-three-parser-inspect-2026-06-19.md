@@ -7,9 +7,9 @@ Design reference:
 
 ## Status
 
-- Overall: `GATE 1 APPROVED`
+- Overall: `GATE 2 EVIDENCE VERIFIED — AWAITING APPROVAL`
 - Current gate: `Gate 2`
-- Next action: implement the typed Playwright browser boundary
+- Next action: Daniel approves Gate 2 to unblock Gate 3
 
 ## Tracking Rules
 
@@ -28,7 +28,7 @@ Design reference:
 | Gate | Scope | Status |
 |---|---|---|
 | 1 | Empty loop and deterministic reports | `APPROVED` |
-| 2 | Typed Playwright browser boundary | `NOT STARTED` |
+| 2 | Typed Playwright browser boundary | `EVIDENCE VERIFIED` |
 | 3 | Browser epub.ts open outcomes | `BLOCKED BY GATE 2` |
 | 4A | Node epub.ts open outcomes | `BLOCKED BY GATE 3` |
 | 4B | Storyteller open outcomes | `BLOCKED BY GATE 4A` |
@@ -104,55 +104,55 @@ feat(inspect): establish deterministic full-corpus reports
 
 ## Gate 2: Typed Playwright Browser Boundary
 
-Status: `NOT STARTED`
+Status: `EVIDENCE VERIFIED — AWAITING APPROVAL`
 
 ### Implementation
 
-- [ ] Add Playwright and the browser epub.ts package dependency.
-- [ ] Write a browser-only TypeScript entrypoint.
-- [ ] Import `@likecoin/epub-ts`, never `@likecoin/epub-ts/node`, in the
+- [x] Add Playwright and the browser epub.ts package dependency.
+- [x] Write a browser-only TypeScript entrypoint.
+- [x] Import `@likecoin/epub-ts`, never `@likecoin/epub-ts/node`, in the
   browser entrypoint.
-- [ ] Bundle the browser entrypoint with Bun for a browser target.
-- [ ] Verify the bundle does not contain LinkeDOM or Node-only imports.
-- [ ] Expose one narrow typed harness function on `globalThis`.
-- [ ] Define a shared serializable browser/host protocol.
-- [ ] Add runtime validation for values returned across Playwright.
-- [ ] Launch one browser process for the complete run.
-- [ ] Establish a clean page or context boundary between books.
-- [ ] Load the generated bundle through Playwright's script-loading API.
-- [ ] Serve each exact EPUB through a synthetic same-origin browser route.
-- [ ] Fetch each EPUB as an `ArrayBuffer` inside the browser.
-- [ ] Return a constant typed response, byte length, and SHA-256 only.
-- [ ] Capture page errors as structured browser-attempt diagnostics.
-- [ ] Capture browser console errors without writing into report/progress
+- [x] Bundle the browser entrypoint with Bun for a browser target.
+- [x] Verify the bundle does not contain LinkeDOM or unresolved Node imports.
+- [x] Expose one narrow typed harness function on `globalThis`.
+- [x] Define a shared serializable browser/host protocol.
+- [x] Add runtime validation for values returned across Playwright.
+- [x] Launch one browser process for the complete run.
+- [x] Establish a clean page or context boundary between books.
+- [x] Load the generated bundle through Playwright's script-loading API.
+- [x] Stream each exact EPUB through a same-origin localhost HTTP server.
+- [x] Fetch each EPUB as an `ArrayBuffer` inside the browser.
+- [x] Return a constant typed response, byte length, and SHA-256 only.
+- [x] Capture page errors as structured browser-attempt diagnostics.
+- [x] Capture browser console errors without writing into report/progress
   output.
-- [ ] Close each per-book browser boundary reliably.
-- [ ] Close the shared browser process reliably.
-- [ ] Keep epub.ts parsing disabled throughout this gate.
+- [x] Close each per-book browser boundary reliably.
+- [x] Bound shared-browser shutdown and stop the localhost server reliably.
+- [x] Keep epub.ts parsing disabled throughout this gate.
 
 ### Full-Corpus Evidence
 
-- [ ] `test` browser transport completed.
-- [ ] `drop` browser transport completed.
-- [ ] `space` browser transport completed.
-- [ ] Every book has one successful or structured failed browser attempt.
-- [ ] Browser byte lengths match host byte lengths for every EPUB.
-- [ ] Browser SHA-256 values match host SHA-256 values for every EPUB.
-- [ ] Page state from one book does not affect the next book.
-- [ ] Console and page errors are visible in structured observations.
-- [ ] Terminal progress remains intact when browser diagnostics occur.
-- [ ] No browser process or page remains after the run.
-- [ ] A second unchanged complete run produces no report diff.
+- [x] `test` browser transport completed.
+- [x] `drop` browser transport completed.
+- [x] `space` browser transport completed.
+- [x] Every book has one successful or structured failed browser attempt.
+- [x] Browser byte lengths match host byte lengths for every EPUB.
+- [x] Browser SHA-256 values match host SHA-256 values for every EPUB.
+- [x] Page state from one book does not affect the next book.
+- [x] Console and page errors are visible in structured observations.
+- [x] Terminal progress remains intact when browser diagnostics occur.
+- [x] No browser process or page remains after the run.
+- [x] A second unchanged complete run produces no report diff.
 
 ### Review and Approval
 
-- [ ] Browser bundle contents and build command reviewed.
-- [ ] Playwright lifecycle and isolation reviewed.
-- [ ] EPUB byte transport reviewed.
-- [ ] Browser/host type and runtime-validation boundary reviewed.
-- [ ] Structured diagnostics reviewed.
-- [ ] Gate findings recorded.
-- [ ] Gate checkpoint committed.
+- [x] Browser bundle contents and build command reviewed.
+- [x] Playwright lifecycle and isolation reviewed.
+- [x] EPUB byte transport reviewed.
+- [x] Browser/host type and runtime-validation boundary reviewed.
+- [x] Structured diagnostics reviewed.
+- [x] Gate findings recorded.
+- [x] Gate checkpoint committed.
 - [ ] **APPROVED: proceed to Gate 3.**
 
 Checkpoint subject:

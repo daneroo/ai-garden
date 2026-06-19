@@ -1,4 +1,5 @@
 import { assignReportNames, discoverBooks, hashBook } from "./books.ts";
+import { BrowserTransport } from "./browser-transport.ts";
 import { ROOTS } from "./config.ts";
 import { generateReports, reportPathForDisplay } from "./reports.ts";
 import type { HashedBook, RootInventory } from "./types.ts";
@@ -25,7 +26,21 @@ for (const root of ROOTS) {
 }
 
 assignReportNames(books);
-await generateReports(books, rootInventory);
+
+const browser = await BrowserTransport.launch();
+try {
+  console.error(`- Browser transport: ${books.length} books`);
+  for (let index = 0; index < books.length; index++) {
+    const book = books[index];
+    if (!book) throw new Error(`Missing hashed book at index ${index}`);
+    writeProgress("browser", index + 1, books.length, book.relativePath);
+    book.parserAttempts["epubts-browser"] = await browser.inspect(book);
+  }
+  clearProgress();
+  await generateReports(books, rootInventory, browser.runtime);
+} finally {
+  await browser.close();
+}
 
 console.log(`Inspected ${books.length} EPUB files.`);
 for (const root of rootInventory) {
@@ -39,7 +54,12 @@ function writeProgress(
   total: number,
   relativePath: string
 ): void {
-  if (!process.stderr.isTTY) return;
+  if (!process.stderr.isTTY) {
+    if (current === 1 || current === total || current % 100 === 0) {
+      console.error(`  ${root}: ${current}/${total}`);
+    }
+    return;
+  }
   const width = Math.max(20, (process.stderr.columns ?? 100) - 35);
   const name =
     relativePath.length > width

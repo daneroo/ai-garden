@@ -4,22 +4,29 @@ import { fileURLToPath } from "node:url";
 
 import type { RootConfig } from "./types.ts";
 
-const inspectDirectory = resolve(
+export const INSPECT_DIRECTORY = resolve(
   dirname(fileURLToPath(import.meta.url)),
   ".."
 );
 
-export const REPORTS_DIRECTORY = resolve(inspectDirectory, "reports");
-export const TEMP_REPORTS_DIRECTORY = resolve(inspectDirectory, ".reports-next");
+export const BROWSER_BUNDLE_PATH = resolve(
+  INSPECT_DIRECTORY,
+  "dist/epubts-browser.js"
+);
+export const REPORTS_DIRECTORY = resolve(INSPECT_DIRECTORY, "reports");
+export const TEMP_REPORTS_DIRECTORY = resolve(
+  INSPECT_DIRECTORY,
+  ".reports-next"
+);
 export const BACKUP_REPORTS_DIRECTORY = resolve(
-  inspectDirectory,
+  INSPECT_DIRECTORY,
   ".reports-previous"
 );
 
 export const ROOTS: readonly RootConfig[] = [
   {
     name: "test",
-    path: resolve(inspectDirectory, "..", "test-books"),
+    path: resolve(INSPECT_DIRECTORY, "..", "test-books"),
   },
   {
     name: "drop",

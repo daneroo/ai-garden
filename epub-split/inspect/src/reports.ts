@@ -19,7 +19,9 @@ import {
 import type {
   BookInventoryEntry,
   BookObservation,
+  BrowserRuntime,
   HashedBook,
+  ParserPathAttempt,
   RootInventory,
   RunReport,
 } from "./types.ts";
@@ -28,7 +30,8 @@ const RUNNER_VERSION = "0.1.0";
 
 export async function generateReports(
   books: HashedBook[],
-  roots: RootInventory[]
+  roots: RootInventory[],
+  browser: BrowserRuntime
 ): Promise<void> {
   await rm(TEMP_REPORTS_DIRECTORY, { recursive: true, force: true });
   await mkdir(join(TEMP_REPORTS_DIRECTORY, "books"), { recursive: true });
@@ -38,7 +41,15 @@ export async function generateReports(
   for (const book of books) {
     const observation = createBookObservation(book);
     const report = `books/${book.reportFilename}`;
+    const detail = detailPath(observation, book.reportFilename);
     await writeJson(join(TEMP_REPORTS_DIRECTORY, report), observation);
+    if (detail) {
+      await writeFile(
+        join(TEMP_REPORTS_DIRECTORY, detail),
+        renderDetail(observation),
+        "utf8"
+      );
+    }
     inventory.push({
       root: book.root,
       relativePath: book.relativePath,
@@ -46,7 +57,10 @@ export async function generateReports(
       sha256: book.sha256,
       shortSha: book.shortSha,
       report,
-      detail: null,
+      detail,
+      parserStates: Object.fromEntries(
+        PARSER_NAMES.map((name) => [name, observation.parsers[name].status])
+      ) as BookInventoryEntry["parserStates"],
     });
   }
 
@@ -56,6 +70,11 @@ export async function generateReports(
       name: "epub-inspect",
       version: RUNNER_VERSION,
       bun: Bun.version,
+    },
+    packages: browser.packages,
+    browser: {
+      name: browser.name,
+      version: browser.version,
     },
     parserPaths: PARSER_NAMES,
     roots,
@@ -84,7 +103,8 @@ function createBookObservation(book: HashedBook): BookObservation {
       shortSha: book.shortSha,
     },
     parsers: {
-      "epubts-browser": { status: "not-implemented" },
+      "epubts-browser":
+        book.parserAttempts["epubts-browser"] ?? notImplemented(),
       "epubts-node": { status: "not-implemented" },
       "storyteller-node": { status: "not-implemented" },
     },
@@ -99,6 +119,9 @@ function renderIndex(run: RunReport): string {
     `- Schema: ${run.schemaVersion}`,
     `- Runner: ${run.runner.name} ${run.runner.version}`,
     `- Bun: ${run.runner.bun}`,
+    `- Chromium: ${run.browser.version}`,
+    `- epub.ts: ${run.packages.epubts}`,
+    `- Playwright: ${run.packages.playwright}`,
     `- Books: ${run.books.length}`,
     "",
   ];
@@ -108,7 +131,7 @@ function renderIndex(run: RunReport): string {
     lines.push("| SHA | Book | Parser state |", "|---|---|---|");
     for (const book of run.books.filter((entry) => entry.root === root.name)) {
       lines.push(
-        `| ${book.shortSha} | [${escapeTable(book.relativePath)}](${book.report}) | not implemented |`
+        `| ${book.shortSha} | [${escapeTable(book.relativePath)}](${book.report}) | ${renderParserStates(book)} |`
       );
     }
     lines.push("");
@@ -155,10 +178,29 @@ async function validateReports(run: RunReport): Promise<void> {
     ) {
       throw new Error(`Book identity mismatch: ${book.report}`);
     }
-    for (const parserName of PARSER_NAMES) {
-      if (parsed.parsers[parserName]?.status !== "not-implemented") {
-        throw new Error(`Missing parser placeholder: ${book.report} ${parserName}`);
+    const browserAttempt = parsed.parsers["epubts-browser"];
+    if (
+      browserAttempt.status !== "transported" &&
+      browserAttempt.status !== "transport-failed"
+    ) {
+      throw new Error(`Missing browser transport outcome: ${book.report}`);
+    }
+    if (
+      browserAttempt.status === "transported" &&
+      (browserAttempt.byteLength !== book.size ||
+        browserAttempt.sha256 !== book.sha256)
+    ) {
+      throw new Error(`Browser transport identity mismatch: ${book.report}`);
+    }
+    for (const parserName of ["epubts-node", "storyteller-node"] as const) {
+      if (parsed.parsers[parserName].status !== "not-implemented") {
+        throw new Error(
+          `Unexpected parser implementation: ${book.report} ${parserName}`
+        );
       }
+    }
+    if (book.detail) {
+      await stat(join(TEMP_REPORTS_DIRECTORY, book.detail));
     }
   }
 
@@ -166,6 +208,9 @@ async function validateReports(run: RunReport): Promise<void> {
   for (const book of run.books) {
     if (!index.includes(`](${book.report})`)) {
       throw new Error(`Index does not link report: ${book.report}`);
+    }
+    if (book.detail && !index.includes(`](${book.detail})`)) {
+      throw new Error(`Index does not link detail: ${book.detail}`);
     }
   }
 
@@ -209,6 +254,63 @@ function escapeTable(value: string): string {
     .replace(/\[/g, "\\[")
     .replace(/\]/g, "\\]")
     .replace(/\|/g, "\\|");
+}
+
+function notImplemented(): ParserPathAttempt {
+  return { status: "not-implemented" };
+}
+
+function detailPath(
+  observation: BookObservation,
+  reportFilename: string
+): string | null {
+  const attempt = observation.parsers["epubts-browser"];
+  if (
+    attempt.status === "transport-failed" ||
+    (attempt.status === "transported" && attempt.diagnostics.length > 0)
+  ) {
+    return `details/${reportFilename.replace(/\.json$/, ".md")}`;
+  }
+  return null;
+}
+
+function renderParserStates(book: BookInventoryEntry): string {
+  const states = PARSER_NAMES.map(
+    (name) => `${name}: ${book.parserStates[name]}`
+  ).join("; ");
+  if (!book.detail) return states;
+  return `[${escapeTable(states)}](${book.detail})`;
+}
+
+function renderDetail(observation: BookObservation): string {
+  const attempt = observation.parsers["epubts-browser"];
+  const lines = [
+    `# ${observation.book.relativePath}`,
+    "",
+    `- Root: ${observation.book.root}`,
+    `- SHA-256: ${observation.book.sha256}`,
+    `- Browser transport: ${attempt.status}`,
+  ];
+
+  if (attempt.status === "transport-failed") {
+    lines.push(
+      `- Failure stage: ${attempt.failure.stage}`,
+      `- Failure category: ${attempt.failure.category}`,
+      `- Failure message: ${attempt.failure.message}`
+    );
+  }
+  if (
+    (attempt.status === "transported" || attempt.status === "transport-failed") &&
+    attempt.diagnostics.length > 0
+  ) {
+    lines.push("", "## Diagnostics", "");
+    for (const diagnostic of attempt.diagnostics) {
+      lines.push(
+        `- ${diagnostic.source}/${diagnostic.level}: ${diagnostic.message}`
+      );
+    }
+  }
+  return `${lines.join("\n")}\n`;
 }
 
 export function reportPathForDisplay(): string {

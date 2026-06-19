@@ -49,6 +49,7 @@ export async function hashBook(book: DiscoveredBook): Promise<HashedBook> {
     sha256: createHash("sha256").update(bytes).digest("hex"),
     shortSha: "",
     reportFilename: "",
+    parserAttempts: {},
   };
 }
 

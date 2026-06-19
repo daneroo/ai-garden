@@ -9,7 +9,12 @@
   },
   "parsers": {
     "epubts-browser": {
-      "status": "not-implemented"
+      "status": "transported",
+      "parserStatus": "not-implemented",
+      "byteLength": 123443,
+      "sha256": "3db8d35daac2eaac27374993cd22009372da2b7cb09c1cde1e95235a78ce3fa8",
+      "epubtsVersion": "0.3",
+      "diagnostics": []
     },
     "epubts-node": {
       "status": "not-implemented"

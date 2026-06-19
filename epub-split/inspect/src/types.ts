@@ -12,6 +12,39 @@ export interface ParserAttempt {
   status: "not-implemented";
 }
 
+export interface BrowserDiagnostic {
+  source: "console" | "page-error";
+  level: string;
+  message: string;
+}
+
+export interface AttemptFailure {
+  stage: "browser-transport";
+  category: string;
+  message: string;
+}
+
+export interface BrowserTransportSuccess {
+  status: "transported";
+  parserStatus: "not-implemented";
+  byteLength: number;
+  sha256: string;
+  epubtsVersion: string;
+  diagnostics: BrowserDiagnostic[];
+}
+
+export interface BrowserTransportFailure {
+  status: "transport-failed";
+  parserStatus: "not-implemented";
+  failure: AttemptFailure;
+  diagnostics: BrowserDiagnostic[];
+}
+
+export type ParserPathAttempt =
+  | ParserAttempt
+  | BrowserTransportSuccess
+  | BrowserTransportFailure;
+
 export interface BookIdentity {
   root: RootName;
   relativePath: string;
@@ -23,7 +56,7 @@ export interface BookIdentity {
 export interface BookObservation {
   schemaVersion: number;
   book: BookIdentity;
-  parsers: Record<ParserName, ParserAttempt>;
+  parsers: Record<ParserName, ParserPathAttempt>;
   comparison: {
     status: "not-implemented";
   };
@@ -31,7 +64,8 @@ export interface BookObservation {
 
 export interface BookInventoryEntry extends BookIdentity {
   report: string;
-  detail: null;
+  detail: string | null;
+  parserStates: Record<ParserName, ParserPathAttempt["status"]>;
 }
 
 export interface RootInventory {
@@ -45,6 +79,14 @@ export interface RunReport {
     name: "epub-inspect";
     version: string;
     bun: string;
+  };
+  packages: {
+    epubts: string;
+    playwright: string;
+  };
+  browser: {
+    name: "chromium";
+    version: string;
   };
   parserPaths: readonly ParserName[];
   roots: RootInventory[];
@@ -63,4 +105,21 @@ export interface HashedBook extends DiscoveredBook {
   sha256: string;
   shortSha: string;
   reportFilename: string;
+  parserAttempts: Partial<Record<ParserName, ParserPathAttempt>>;
+}
+
+export interface BrowserHarnessResult {
+  status: "transported";
+  byteLength: number;
+  sha256: string;
+  epubtsVersion: string;
+}
+
+export interface BrowserRuntime {
+  name: "chromium";
+  version: string;
+  packages: {
+    epubts: string;
+    playwright: string;
+  };
 }
