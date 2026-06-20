@@ -220,3 +220,12 @@ of the three. epub.js (both browser and node) opens nearly everything; Storytell
 only opens conformant EPUB 3. This makes the declared version trustworthy where it
 opens, but means two-thirds of the corpus has no Storyteller path without an
 EPUB 2 to 3 upgrade.
+
+## Gate 4C log
+
+Reproduction book: Terry Pratchett - Discworld 05 - Sourcery (550 KB, sha
+`bdcc1dc`) — the smallest of the 15 node timeouts.
+
+- E0. Confirmed the hang reproduces with the current worker on this one book:
+  killed at 11s (exit 124), no stdout emitted before the kill. The loop starts
+  before any result is written.
