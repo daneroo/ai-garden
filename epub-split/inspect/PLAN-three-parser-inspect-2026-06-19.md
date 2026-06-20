@@ -7,9 +7,9 @@ Design reference:
 
 ## Status
 
-- Overall: `GATE 4C IMPLEMENTED; AWAITING FULL-CORPUS RUN`
-- Current gate: `Gate 4C`
-- Next action: run Gate 4C micro-experiments one at a time, checking in after each
+- Overall: `GATE 5 READY (NOT STARTED)`
+- Current gate: `Gate 5`
+- Next action: begin Gate 5 (three-parser metadata comparison) when ready
 
 ## Tracking Rules
 
@@ -32,8 +32,8 @@ Design reference:
 | 3 | Browser epub.ts open outcomes | `APPROVED` |
 | 4A | Node epub.ts open outcomes | `APPROVED` |
 | 4B | Storyteller open outcomes | `APPROVED` |
-| 4C | Resolve node epub.ts hangs (exploration) | `IN PROGRESS` |
-| 5 | Three-parser metadata comparison | `BLOCKED BY GATE 4B` |
+| 4C | Resolve node epub.ts hangs (exploration) | `APPROVED` |
+| 5 | Three-parser metadata comparison | `READY (NOT STARTED)` |
 | Final | Feasibility decision | `BLOCKED BY GATE 5` |
 
 ## Gate 1: Empty Full-Corpus Loop and Reports
@@ -299,7 +299,7 @@ feat(inspect): record storyteller open outcomes
 
 ## Gate 4C: Resolve Node epub.ts Hangs (Exploration)
 
-Status: `NOT STARTED`
+Status: `APPROVED`
 
 Gate 4A found that at least nine distinct books drive `@likecoin/epub-ts/node`
 (LinkeDOM) into a synchronous infinite loop on open, currently contained by a
@@ -378,17 +378,17 @@ is a useful result — LinkeDOM's tolerance may be masking malformed XML).
 
 ### Validation (deferred to Daniel; only if E12 changes code)
 
-- [ ] Daniel re-runs the full corpus once with the change.
-- [ ] Hang count changes as predicted; no other parser path regresses.
-- [ ] A second unchanged complete run produces no report diff.
+- [x] Daniel re-runs the full corpus once with the change.
+- [x] Hang count changes as predicted; no other parser path regresses.
+- [x] A second unchanged complete run produces no report diff.
 
 ### Review and Approval
 
-- [ ] Per-experiment results recorded in the Gate 4C log.
-- [ ] Resolution decision recorded with rationale.
-- [ ] Gate findings recorded.
-- [ ] Gate checkpoint committed.
-- [ ] **APPROVED.**
+- [x] Per-experiment results recorded in the Gate 4C log.
+- [x] Resolution decision recorded with rationale.
+- [x] Gate findings recorded.
+- [x] Gate checkpoint committed.
+- [x] **APPROVED.**
 
 Checkpoint subject:
 
@@ -398,7 +398,7 @@ docs(inspect): resolve or characterize node epubts hangs
 
 ## Gate 5: Three-Parser Metadata Comparison
 
-Status: `BLOCKED BY GATE 4B`
+Status: `READY (NOT STARTED)`
 
 ### Schema Investigation
 

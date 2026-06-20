@@ -294,3 +294,9 @@ Reproduction book: Terry Pratchett - Discworld 05 - Sourcery (550 KB, sha
   minimal reproduction of the deeper epub.ts-under-LinkeDOM loop, and an upstream
   bug report. The jsdom fallback is the accepted resolution; the defect can be
   characterized further if we decide to file upstream later.
+- E12. Full-corpus verification (Daniel's run, schema 5). epubts-node opened
+  rose 1286 -> 1301, open-failed fell 15 -> 0, with "opened via jsdom fallback:
+  15" (the 9 distinct hanging books plus drop/space duplicates). Browser and
+  storyteller observations unchanged. Determinism confirmed: reports staged, the
+  full corpus re-run, no diff. The 10s LinkeDOM deadline is accepted; the
+  linkedom/jsdom partition is stable across runs. Gate 4C approved.

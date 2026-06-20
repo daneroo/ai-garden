@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "book": {
     "root": "drop",
     "relativePath": "Steven Erikson - The Malazan Book of the Fallen/The Malazan Book of the Fallen (Steven Erikson) 05 - Midnight Tides.epub",
@@ -25,7 +25,8 @@
       "status": "node-opened",
       "version": {
         "status": "skipped"
-      }
+      },
+      "engine": "linkedom"
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",

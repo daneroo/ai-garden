@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "book": {
     "root": "space",
     "relativePath": "Stephen Fry - Mythos/Stephen Fry - Mythos 04 - Odyssey/Stephen Fry - Mythos 04 - Odyssey.epub",
@@ -25,7 +25,8 @@
       "status": "node-opened",
       "version": {
         "status": "skipped"
-      }
+      },
+      "engine": "linkedom"
     },
     "storyteller-node": {
       "status": "storyteller-opened",

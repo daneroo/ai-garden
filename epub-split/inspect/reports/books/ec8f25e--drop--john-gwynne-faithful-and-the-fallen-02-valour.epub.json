@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "book": {
     "root": "drop",
     "relativePath": "John Gwynne - Faithful and the Fallen 02 - Valour.epub",
@@ -22,10 +22,11 @@
       "diagnostics": []
     },
     "epubts-node": {
-      "status": "node-open-failed",
-      "stage": "node-open",
-      "category": "Timeout",
-      "message": "open did not settle within 10000ms"
+      "status": "node-opened",
+      "version": {
+        "status": "skipped"
+      },
+      "engine": "jsdom"
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "book": {
     "root": "space",
     "relativePath": "Dan Jones - Essex Dogs/Dan Jones - Essex Dogs 03 - Lion Hearts/Dan Jones - Essex Dogs 03 - Lion Hearts.epub",
@@ -25,7 +25,8 @@
       "status": "node-opened",
       "version": {
         "status": "skipped"
-      }
+      },
+      "engine": "linkedom"
     },
     "storyteller-node": {
       "status": "storyteller-opened",

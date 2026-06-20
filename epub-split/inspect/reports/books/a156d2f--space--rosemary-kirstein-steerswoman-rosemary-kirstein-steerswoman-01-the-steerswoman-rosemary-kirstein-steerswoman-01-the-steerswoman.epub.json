@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "book": {
     "root": "space",
     "relativePath": "Rosemary Kirstein - Steerswoman/Rosemary Kirstein - Steerswoman 01 - The Steerswoman/Rosemary Kirstein - Steerswoman 01 - The Steerswoman.epub",
@@ -25,7 +25,8 @@
       "status": "node-opened",
       "version": {
         "status": "skipped"
-      }
+      },
+      "engine": "linkedom"
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",

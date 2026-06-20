@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "book": {
     "root": "space",
     "relativePath": "Immanuel Kant - The Critique of Pure Reason - n. Martin Wilson/Immanuel Kant, Paul Guyer, Allen Wood - Critique of Pure Reason - Cambridge - 2009.epub",
@@ -25,7 +25,8 @@
       "status": "node-opened",
       "version": {
         "status": "skipped"
-      }
+      },
+      "engine": "linkedom"
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",

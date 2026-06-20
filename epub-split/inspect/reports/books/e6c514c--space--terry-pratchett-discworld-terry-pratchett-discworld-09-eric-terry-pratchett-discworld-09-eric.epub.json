@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "book": {
     "root": "space",
     "relativePath": "Terry Pratchett - Discworld/Terry Pratchett - Discworld 09 - Eric/Terry Pratchett - Discworld 09 - Eric.epub",
@@ -25,7 +25,8 @@
       "status": "node-opened",
       "version": {
         "status": "skipped"
-      }
+      },
+      "engine": "linkedom"
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",

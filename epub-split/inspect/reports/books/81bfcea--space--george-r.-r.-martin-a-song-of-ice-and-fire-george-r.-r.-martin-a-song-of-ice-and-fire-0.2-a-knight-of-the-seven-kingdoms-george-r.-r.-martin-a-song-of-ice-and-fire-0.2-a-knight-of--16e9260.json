@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "book": {
     "root": "space",
     "relativePath": "George R. R. Martin - A Song of Ice and Fire/George R. R. Martin - A Song of Ice and Fire 0.2 - A Knight of the Seven Kingdoms/George R. R. Martin - A Song of Ice and Fire 0.2 - A Knight of the Seven Kingdoms.epub",
@@ -25,7 +25,8 @@
       "status": "node-opened",
       "version": {
         "status": "skipped"
-      }
+      },
+      "engine": "linkedom"
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",

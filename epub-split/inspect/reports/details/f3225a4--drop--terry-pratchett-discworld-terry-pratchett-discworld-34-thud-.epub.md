@@ -5,10 +5,10 @@
 - Browser transport: transported
 - Open: opened
 - Declared version: skipped
-- Node epub.ts: node-open-failed
-- Node open failure stage: node-open
-- Node open failure category: Timeout
-- Node open failure message: open did not settle within 10000ms
+- Node epub.ts: node-opened
+- Node parser engine: jsdom
+- Note: opened via jsdom fallback (LinkeDOM hung on this book)
+- Node declared version: skipped
 - Storyteller: storyteller-open-failed
 - Storyteller open failure stage: storyteller-open
 - Storyteller open failure category: Error
