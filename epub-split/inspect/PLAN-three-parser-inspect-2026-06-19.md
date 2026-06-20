@@ -327,14 +327,14 @@ micro-experiment with a check-in:
 
 ### Experiments (each is one check-in)
 
-- [ ] E0. Pick the reproduction book: the SMALLEST of the known hanging books
+- [x] E0. Pick the reproduction book: the SMALLEST of the known hanging books
   (fastest to load). Record its name, size, and sha. Confirm it still hangs
   (killed at 10s) with the current worker.
-- [ ] E1. Capture stderr. Re-open the same single book with the subprocess
+- [x] E1. Capture stderr. Re-open the same single book with the subprocess
   stderr PIPED (not ignored) and a 10s kill. Record anything LinkeDOM/epub.ts
   prints before spinning (or "silent"). This also informs whether the shipped
   worker should stop ignoring stderr.
-- [ ] E2. Localize the loop. Split the open into stages with markers:
+- [x] E2. Localize the loop. Split the open into stages with markers:
   (a) read bytes, (b) construct `new Book(bytes, {replacements:"none"})`,
   (c) `await book.opened`. Record which stage never returns.
 - [ ] E3. Enumerate options (NO execution). List the epub.ts node

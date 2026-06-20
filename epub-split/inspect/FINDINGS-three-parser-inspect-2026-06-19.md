@@ -229,3 +229,10 @@ Reproduction book: Terry Pratchett - Discworld 05 - Sourcery (550 KB, sha
 - E0. Confirmed the hang reproduces with the current worker on this one book:
   killed at 11s (exit 124), no stdout emitted before the kill. The loop starts
   before any result is written.
+- E1. stderr capture: LinkeDOM/epub.ts print NOTHING before spinning (silent
+  hang). The shipped worker's `stderr: "ignore"` is not hiding a diagnostic in
+  this case; there is no pre-hang output to capture.
+- E2. Stage localized with markers: reaches "bytes read" and "Book constructed"
+  but never "opened". The loop is inside `await book.opened` (container/package
+  XML parse via LinkeDOM), not byte read and not construction. `replacements:
+  "none"` is already set, so resource replacement is not the cause.
