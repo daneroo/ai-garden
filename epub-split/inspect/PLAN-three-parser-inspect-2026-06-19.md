@@ -7,7 +7,7 @@ Design reference:
 
 ## Status
 
-- Overall: `GATE 4C IN PROGRESS (E0-E3 done)`
+- Overall: `GATE 4C IN PROGRESS (E0-E4 done; root cause = linkedom parse)`
 - Current gate: `Gate 4C`
 - Next action: run Gate 4C micro-experiments one at a time, checking in after each
 

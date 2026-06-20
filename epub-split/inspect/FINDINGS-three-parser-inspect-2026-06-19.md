@@ -242,3 +242,11 @@ Reproduction book: Terry Pratchett - Discworld 05 - Sourcery (550 KB, sha
   LinkeDOM parse during `opened`, no constructor option can avoid it. The real
   lever is the global DOMParser that `@likecoin/epub-ts/node` installs from
   LinkeDOM. Next: try swapping the DOM implementation (E4), not options.
+- E4. Root cause confirmed. `epub.node.js` installs LinkeDOM's DOMParser only
+  when `globalThis.DOMParser` is undefined (line 6722) and the parse calls the
+  global `DOMParser` (line 151). Bun 1.3.14 ships no native DOMParser
+  (`typeof globalThis.DOMParser === "undefined"`), so LinkeDOM is the engine and
+  LinkeDOM's `parseFromString` is where the infinite loop lives, on the
+  container/OPF XML. The override hook (set `globalThis.DOMParser` before open)
+  is feasible, but testing an alternative parser (e.g. @xmldom/xmldom, jsdom)
+  needs an isolated scratch install and changes parse semantics for ALL books.
