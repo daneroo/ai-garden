@@ -7,7 +7,7 @@ Design reference:
 
 ## Status
 
-- Overall: `GATE 4C IN PROGRESS (E0-E4 done; root cause = linkedom parse)`
+- Overall: `GATE 4C IN PROGRESS (root cause found; next: inject jsdom/xmldom)`
 - Current gate: `Gate 4C`
 - Next action: run Gate 4C micro-experiments one at a time, checking in after each
 
@@ -317,8 +317,9 @@ micro-experiment with a check-in:
 - Hard timebox every open attempt: kill at <= 10s. A true hang is infinite, so
   10s is conclusive.
 - Keep all scratch code under `epub-split/inspect/.scratch-4c/` (gitignored).
-  Do not modify `src/` during exploration; `src/` changes happen only in E9,
-  after a decision.
+  Do not modify `src/` during exploration; `src/` changes happen only in E12,
+  after a decision. Adding dependencies with `bun add` is fine (easily reverted);
+  it is not a `src/` change.
 - After each experiment: record ONE short result line in FINDINGS under a
   "Gate 4C log" heading, then STOP and report to Daniel. Do not chain
   experiments in a single turn.
@@ -340,21 +341,42 @@ micro-experiment with a check-in:
 - [x] E3. Enumerate options (NO execution). List the epub.ts node
   constructor/open options from its type declarations that could plausibly
   affect the loop (beyond `replacements`). Record the candidate list.
-- [ ] E4. Test option candidate #1 on the one book (10s kill). Record
-  hang/open.
-- [ ] E5. Test option candidate #2 on the one book (10s kill). Record
-  hang/open. (Add E5b, E5c... only if more candidates remain; one per turn.)
-- [ ] E6. Version probe (NO lockfile change to the project). In an isolated
-  scratch install, check whether a different LinkeDOM version changes the
-  outcome for the one book. Record result only; do not bump the project.
-- [ ] E7. (Optional) If a stage is identified, reduce to a minimal HTML/XML
-  input that reproduces the LinkeDOM loop in isolation, for an upstream report.
-- [ ] E8. Decision: option change, version bump, upstream fix, or keep the
-  subprocess timeout guard as the permanent answer. Record rationale.
-- [ ] E9. If (and only if) E8 chooses a code change, apply it to `src/`,
-  then hand off to Daniel for a single full-corpus re-validation run.
+- [x] E4. Root cause confirmed. Bun ships no native `DOMParser`, so
+  `@likecoin/epub-ts/node` installs LinkeDOM's, and the loop is inside
+  LinkeDOM's `DOMParser.parseFromString` during `opened`. epub.ts parses
+  through the GLOBAL `DOMParser` (set only when undefined), so overriding
+  `globalThis.DOMParser` before open is a feasible injection hook. Constructor
+  options are eliminated.
 
-### Validation (deferred to Daniel; only if E9 changes code)
+Constructor options are eliminated. The remaining lever is the parser engine
+itself. Add `jsdom` and `@xmldom/xmldom` as normal Bun dependencies (easily
+reverted) and test whether either, injected via `globalThis.DOMParser`, either
+RESOLVES the parse or REVEALS the underlying defect (a stricter parser throwing
+is a useful result — LinkeDOM's tolerance may be masking malformed XML).
+
+- [ ] E5. Add `jsdom` and `@xmldom/xmldom` with `bun add`. Confirm each imports
+  and constructs a `DOMParser` under Bun (trivial parse of `<a/>`).
+- [ ] E6. Prove the injection works on a KNOWN-GOOD book. Override
+  `globalThis.DOMParser` before importing `@likecoin/epub-ts/node`, open a small
+  book that already opens, and confirm it still opens via the injected parser
+  (so a later hang/throw is attributable to the parser, not a broken hook).
+- [ ] E7. xmldom on the repro book. Inject `@xmldom/xmldom`, open the one book
+  (10s kill). Record: opens / hangs / throws. A throw with a location is the
+  ideal outcome — capture the message; it likely pinpoints the malformation.
+- [ ] E8. jsdom on the repro book. Inject jsdom's `DOMParser`, open the one book
+  (10s kill). Record: opens / hangs / throws.
+- [ ] E9. Interpret E7/E8: did either resolve the parse, and/or reveal the
+  actual defect? State whether LinkeDOM tolerance is hiding a real malformation.
+- [ ] E10. If either parser opens (or cleanly errors) on the repro book, run it
+  against the other distinct hanging books, ONE book at a time, 10s each (this
+  is 8-9 single-book runs, never a corpus loop). Record per-book outcome.
+- [ ] E11. Decision: inject a replacement parser in `src/`, add a node fallback
+  (try epub.ts-node, on timeout/throw fall back), keep the subprocess timeout
+  guard, or report the defect upstream. Record rationale.
+- [ ] E12. If (and only if) E11 chooses a code change, apply it to `src/`, then
+  hand off to Daniel for a single full-corpus re-validation run.
+
+### Validation (deferred to Daniel; only if E12 changes code)
 
 - [ ] Daniel re-runs the full corpus once with the change.
 - [ ] Hang count changes as predicted; no other parser path regresses.
