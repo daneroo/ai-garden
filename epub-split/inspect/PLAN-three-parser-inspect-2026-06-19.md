@@ -299,32 +299,70 @@ feat(inspect): record storyteller open outcomes
 
 ## Gate 4C: Resolve Node epub.ts Hangs (Exploration)
 
-Status: `BLOCKED BY GATE 4B`
+Status: `NOT STARTED`
 
 Gate 4A found that at least nine distinct books drive `@likecoin/epub-ts/node`
 (LinkeDOM) into a synchronous infinite loop on open, currently contained by a
 hard-killed subprocess and recorded as `Timeout`. This gate explores whether
-those hangs can be resolved rather than only contained.
+those hangs can be resolved rather than only contained. It is a side experiment,
+not a corpus change.
 
-### Implementation
+### Micro-Experiment Protocol (read first)
 
-- [ ] Catalogue the hanging books and confirm the set is stable.
-- [ ] Reduce one hanging book to a minimal reproduction.
-- [ ] Locate where the loop occurs (LinkeDOM parse vs epub.ts unpack).
-- [ ] Test whether epub.ts/LinkeDOM options avoid the loop without repair.
-- [ ] Determine whether a LinkeDOM or epub.ts version changes the outcome.
-- [ ] Decide: upstream fix, option change, or keep the subprocess timeout guard.
-- [ ] Do not silently repair or normalize input EPUBs.
+This gate is strictly token-budgeted. Every step is a self-contained
+micro-experiment with a check-in:
 
-### Full-Corpus Evidence
+- ONE book only. Never run `bun run inspect` or any full-corpus / multi-book
+  loop in this gate. Daniel runs the full corpus, never the assistant.
+- Hard timebox every open attempt: kill at <= 10s. A true hang is infinite, so
+  10s is conclusive.
+- Keep all scratch code under `epub-split/inspect/.scratch-4c/` (gitignored).
+  Do not modify `src/` during exploration; `src/` changes happen only in E9,
+  after a decision.
+- After each experiment: record ONE short result line in FINDINGS under a
+  "Gate 4C log" heading, then STOP and report to Daniel. Do not chain
+  experiments in a single turn.
+- A single negative result is a finding, not a failure. Record and move on.
+- Do not repair, normalize, or rewrite any input EPUB.
 
-- [ ] Hanging-book set reproduced deterministically.
-- [ ] Any option or version change re-validated across the full corpus.
+### Experiments (each is one check-in)
+
+- [ ] E0. Pick the reproduction book: the SMALLEST of the known hanging books
+  (fastest to load). Record its name, size, and sha. Confirm it still hangs
+  (killed at 10s) with the current worker.
+- [ ] E1. Capture stderr. Re-open the same single book with the subprocess
+  stderr PIPED (not ignored) and a 10s kill. Record anything LinkeDOM/epub.ts
+  prints before spinning (or "silent"). This also informs whether the shipped
+  worker should stop ignoring stderr.
+- [ ] E2. Localize the loop. Split the open into stages with markers:
+  (a) read bytes, (b) construct `new Book(bytes, {replacements:"none"})`,
+  (c) `await book.opened`. Record which stage never returns.
+- [ ] E3. Enumerate options (NO execution). List the epub.ts node
+  constructor/open options from its type declarations that could plausibly
+  affect the loop (beyond `replacements`). Record the candidate list.
+- [ ] E4. Test option candidate #1 on the one book (10s kill). Record
+  hang/open.
+- [ ] E5. Test option candidate #2 on the one book (10s kill). Record
+  hang/open. (Add E5b, E5c... only if more candidates remain; one per turn.)
+- [ ] E6. Version probe (NO lockfile change to the project). In an isolated
+  scratch install, check whether a different LinkeDOM version changes the
+  outcome for the one book. Record result only; do not bump the project.
+- [ ] E7. (Optional) If a stage is identified, reduce to a minimal HTML/XML
+  input that reproduces the LinkeDOM loop in isolation, for an upstream report.
+- [ ] E8. Decision: option change, version bump, upstream fix, or keep the
+  subprocess timeout guard as the permanent answer. Record rationale.
+- [ ] E9. If (and only if) E8 chooses a code change, apply it to `src/`,
+  then hand off to Daniel for a single full-corpus re-validation run.
+
+### Validation (deferred to Daniel; only if E9 changes code)
+
+- [ ] Daniel re-runs the full corpus once with the change.
+- [ ] Hang count changes as predicted; no other parser path regresses.
 - [ ] A second unchanged complete run produces no report diff.
 
 ### Review and Approval
 
-- [ ] Root-cause findings reviewed.
+- [ ] Per-experiment results recorded in the Gate 4C log.
 - [ ] Resolution decision recorded with rationale.
 - [ ] Gate findings recorded.
 - [ ] Gate checkpoint committed.
