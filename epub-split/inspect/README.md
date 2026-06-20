@@ -3,6 +3,27 @@
 Three-path EPUB inspection experiment covering the complete `test`, `drop`,
 and `space` corpora.
 
+## Context
+
+The end goal is a **global EPUB parsing approach** for downstream audiobook
+alignment work. That parser must run in **Node/Bun only** — invoking a browser
+at runtime is not acceptable for the real pipeline.
+
+This experiment presents a three-way comparison, but it is really **two pairs
+with different purposes**:
+
+- **epub.ts browser vs epub.ts node** — the browser path is used here *only* to
+  bypass LinkeDOM and serve as a trusted reference, confirming our Node/Bun-only
+  parsing is truly equivalent. We carry this comparison until we are satisfied —
+  likely once we have extracted the spine and actual chapter content. The browser
+  is a verification tool, not part of the target pipeline.
+
+- **epub.ts node vs storyteller (@storyteller-platform/epub)** — Storyteller is
+  compared because that project has a full alignment solution we may want to
+  interoperate with. The goal is to validate whether the two are interchangeable,
+  and if not, why not. Storyteller is constrained (by default) to EPUB 3, though
+  its EPUB 2-to-3 up-conversion facility may give us some leeway.
+
 ## Setup
 
 ```bash
