@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "book": {
     "root": "space",
     "relativePath": "Mark Lawrence - The Library Trilogy/Mark Lawrence - The Library Trilogy 02 - The Book That Broke the World/Mark Lawrence - The Library Trilogy 02 - The Book That Broke the World.epub",
@@ -28,7 +28,11 @@
       }
     },
     "storyteller-node": {
-      "status": "not-implemented"
+      "status": "storyteller-opened",
+      "version": {
+        "status": "exposed",
+        "value": "3.0"
+      }
     }
   },
   "comparison": {

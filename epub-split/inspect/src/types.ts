@@ -78,12 +78,34 @@ export interface NodeOpenFailure {
 
 export type NodeOpenOutcome = NodeOpenSuccess | NodeOpenFailure;
 
+// storyteller-node path (@storyteller-platform/epub, in-memory read-only). Like
+// the node path, there is no browser transport, so the attempt is the open
+// outcome directly. Storyteller validates EPUB 3 and exposes the declared
+// version, so EPUB 2 archives surface as an open failure.
+export interface StorytellerOpenSuccess {
+  status: "storyteller-opened";
+  version: DeclaredVersion;
+}
+
+export interface StorytellerOpenFailure {
+  status: "storyteller-open-failed";
+  stage: "storyteller-open";
+  category: string;
+  message: string;
+}
+
+export type StorytellerOpenOutcome =
+  | StorytellerOpenSuccess
+  | StorytellerOpenFailure;
+
 export type ParserPathAttempt =
   | ParserAttempt
   | BrowserTransportSuccess
   | BrowserTransportFailure
   | NodeOpenSuccess
-  | NodeOpenFailure;
+  | NodeOpenFailure
+  | StorytellerOpenSuccess
+  | StorytellerOpenFailure;
 
 export interface BookIdentity {
   root: RootName;
@@ -123,6 +145,7 @@ export interface RunReport {
   };
   packages: {
     epubts: string;
+    storyteller: string;
     playwright: string;
   };
   browser: {
@@ -162,6 +185,7 @@ export interface BrowserRuntime {
   version: string;
   packages: {
     epubts: string;
+    storyteller: string;
     playwright: string;
   };
 }

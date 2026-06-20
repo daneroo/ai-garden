@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "book": {
     "root": "drop",
     "relativePath": "Terry Pratchett - Discworld/Terry Pratchett - Discworld 06 - Wyrd Sisters.epub",
@@ -28,7 +28,10 @@
       }
     },
     "storyteller-node": {
-      "status": "not-implemented"
+      "status": "storyteller-open-failed",
+      "stage": "storyteller-open",
+      "category": "Error",
+      "message": "This is not a valid EPUB 3 publication. This library only supports EPUB 3, not EPUB 2. Use Epub.upgrade(path) to convert."
     }
   },
   "comparison": {

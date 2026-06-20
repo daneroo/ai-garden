@@ -26,6 +26,7 @@ import type {
   ParserPathAttempt,
   RootInventory,
   RunReport,
+  StorytellerOpenOutcome,
 } from "./types.ts";
 
 const RUNNER_VERSION = "0.1.0";
@@ -109,7 +110,8 @@ function createBookObservation(book: HashedBook): BookObservation {
       "epubts-browser":
         book.parserAttempts["epubts-browser"] ?? notImplemented(),
       "epubts-node": book.parserAttempts["epubts-node"] ?? notImplemented(),
-      "storyteller-node": { status: "not-implemented" },
+      "storyteller-node":
+        book.parserAttempts["storyteller-node"] ?? notImplemented(),
     },
     comparison: { status: "not-implemented" },
   };
@@ -124,12 +126,15 @@ function renderIndex(run: RunReport): string {
     `- Bun: ${run.runner.bun}`,
     `- Chromium: ${run.browser.version}`,
     `- epub.ts: ${run.packages.epubts}`,
+    `- Storyteller: ${run.packages.storyteller}`,
     `- Playwright: ${run.packages.playwright}`,
     `- Books: ${run.books.length}`,
     `- epubts-browser opened: ${countOpen(run, "opened")}`,
     `- epubts-browser open-failed: ${countOpen(run, "open-failed")}`,
     `- epubts-node opened: ${countNode(run, "node-opened")}`,
     `- epubts-node open-failed: ${countNode(run, "node-open-failed")}`,
+    `- storyteller opened: ${countStoryteller(run, "storyteller-opened")}`,
+    `- storyteller open-failed: ${countStoryteller(run, "storyteller-open-failed")}`,
     "",
   ];
 
@@ -217,10 +222,12 @@ async function validateReports(run: RunReport): Promise<void> {
     ) {
       throw new Error(`Missing node open outcome: ${book.report}`);
     }
-    if (parsed.parsers["storyteller-node"].status !== "not-implemented") {
-      throw new Error(
-        `Unexpected parser implementation: ${book.report} storyteller-node`
-      );
+    const storytellerAttempt = parsed.parsers["storyteller-node"];
+    if (
+      storytellerAttempt.status !== "storyteller-opened" &&
+      storytellerAttempt.status !== "storyteller-open-failed"
+    ) {
+      throw new Error(`Missing storyteller open outcome: ${book.report}`);
     }
     if (book.detail) {
       await stat(join(TEMP_REPORTS_DIRECTORY, book.detail));
@@ -306,19 +313,30 @@ function countNode(
   ).length;
 }
 
+function countStoryteller(
+  run: RunReport,
+  status: StorytellerOpenOutcome["status"]
+): number {
+  return run.books.filter(
+    (book) => book.parserStates["storyteller-node"] === status
+  ).length;
+}
+
 function detailPath(
   observation: BookObservation,
   reportFilename: string
 ): string | null {
   const attempt = observation.parsers["epubts-browser"];
   const node = observation.parsers["epubts-node"];
+  const storyteller = observation.parsers["storyteller-node"];
   const browserOpenFailed =
     attempt.status === "transported" && attempt.open.status === "open-failed";
   if (
     attempt.status === "transport-failed" ||
     browserOpenFailed ||
     (attempt.status === "transported" && attempt.diagnostics.length > 0) ||
-    node.status === "node-open-failed"
+    node.status === "node-open-failed" ||
+    storyteller.status === "storyteller-open-failed"
   ) {
     return `details/${reportFilename.replace(/\.json$/, ".md")}`;
   }
@@ -392,6 +410,21 @@ function renderDetail(observation: BookObservation): string {
       `- Node open failure stage: ${node.stage}`,
       `- Node open failure category: ${node.category}`,
       `- Node open failure message: ${node.message}`
+    );
+  }
+
+  const storyteller = observation.parsers["storyteller-node"];
+  lines.push(`- Storyteller: ${storyteller.status}`);
+  if (storyteller.status === "storyteller-opened") {
+    lines.push(
+      `- Storyteller declared version: ${storyteller.version.status === "exposed" ? storyteller.version.value : "skipped"}`
+    );
+  }
+  if (storyteller.status === "storyteller-open-failed") {
+    lines.push(
+      `- Storyteller open failure stage: ${storyteller.stage}`,
+      `- Storyteller open failure category: ${storyteller.category}`,
+      `- Storyteller open failure message: ${storyteller.message}`
     );
   }
 

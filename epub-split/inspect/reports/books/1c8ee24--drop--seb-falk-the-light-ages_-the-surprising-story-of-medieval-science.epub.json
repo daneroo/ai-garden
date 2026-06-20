@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "book": {
     "root": "drop",
     "relativePath": "Seb Falk - The Light Ages_ The Surprising Story of Medieval Science.epub",
@@ -28,7 +28,11 @@
       }
     },
     "storyteller-node": {
-      "status": "not-implemented"
+      "status": "storyteller-opened",
+      "version": {
+        "status": "exposed",
+        "value": "3.0"
+      }
     }
   },
   "comparison": {

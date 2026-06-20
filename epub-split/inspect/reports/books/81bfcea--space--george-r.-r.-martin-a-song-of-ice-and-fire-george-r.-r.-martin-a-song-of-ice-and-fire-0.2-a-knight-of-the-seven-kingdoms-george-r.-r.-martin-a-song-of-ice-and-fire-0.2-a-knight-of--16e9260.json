@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "book": {
     "root": "space",
     "relativePath": "George R. R. Martin - A Song of Ice and Fire/George R. R. Martin - A Song of Ice and Fire 0.2 - A Knight of the Seven Kingdoms/George R. R. Martin - A Song of Ice and Fire 0.2 - A Knight of the Seven Kingdoms.epub",
@@ -28,7 +28,10 @@
       }
     },
     "storyteller-node": {
-      "status": "not-implemented"
+      "status": "storyteller-open-failed",
+      "stage": "storyteller-open",
+      "category": "Error",
+      "message": "This is not a valid EPUB 3 publication. This library only supports EPUB 3, not EPUB 2. Use Epub.upgrade(path) to convert."
     }
   },
   "comparison": {

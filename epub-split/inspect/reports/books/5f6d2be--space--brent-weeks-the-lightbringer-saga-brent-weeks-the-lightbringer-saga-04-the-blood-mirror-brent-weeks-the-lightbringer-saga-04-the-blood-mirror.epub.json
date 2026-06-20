@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "book": {
     "root": "space",
     "relativePath": "Brent Weeks - The LightBringer Saga/Brent Weeks - The Lightbringer Saga 04 - The Blood Mirror/Brent Weeks - The Lightbringer Saga 04 - The Blood Mirror.epub",
@@ -28,7 +28,11 @@
       }
     },
     "storyteller-node": {
-      "status": "not-implemented"
+      "status": "storyteller-opened",
+      "version": {
+        "status": "exposed",
+        "value": "3.0"
+      }
     }
   },
   "comparison": {

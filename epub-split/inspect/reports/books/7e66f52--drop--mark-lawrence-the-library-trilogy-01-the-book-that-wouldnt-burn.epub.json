@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "book": {
     "root": "drop",
     "relativePath": "Mark Lawrence - The Library Trilogy 01 - The Book That Wouldnt Burn.epub",
@@ -28,7 +28,11 @@
       }
     },
     "storyteller-node": {
-      "status": "not-implemented"
+      "status": "storyteller-opened",
+      "version": {
+        "status": "exposed",
+        "value": "3.0"
+      }
     }
   },
   "comparison": {

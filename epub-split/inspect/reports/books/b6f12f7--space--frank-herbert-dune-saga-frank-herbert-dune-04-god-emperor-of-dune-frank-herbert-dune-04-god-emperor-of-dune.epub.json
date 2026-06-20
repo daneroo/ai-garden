@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "book": {
     "root": "space",
     "relativePath": "Frank Herbert - Dune Saga/Frank Herbert - Dune 04 - God Emperor of Dune/Frank Herbert - Dune 04 - God Emperor of Dune.epub",
@@ -28,7 +28,11 @@
       }
     },
     "storyteller-node": {
-      "status": "not-implemented"
+      "status": "storyteller-opened",
+      "version": {
+        "status": "exposed",
+        "value": "3.0"
+      }
     }
   },
   "comparison": {

@@ -1,0 +1,13 @@
+# Terry Pratchett - Discworld/Terry Pratchett - Discworld 07 - Pyramids/Terry Pratchett - Discworld 07 - Pyramids.epub
+
+- Root: space
+- SHA-256: 42b9f893c1a72793903893fb9002ad28da6f4e5f4796631b2647ef22ba586a21
+- Browser transport: transported
+- Open: opened
+- Declared version: skipped
+- Node epub.ts: node-opened
+- Node declared version: skipped
+- Storyteller: storyteller-open-failed
+- Storyteller open failure stage: storyteller-open
+- Storyteller open failure category: Error
+- Storyteller open failure message: This is not a valid EPUB 3 publication. This library only supports EPUB 3, not EPUB 2. Use Epub.upgrade(path) to convert.

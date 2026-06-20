@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "book": {
     "root": "space",
     "relativePath": "Kevin J. Anderson - Clockwork Angels/Kevin J. Anderson - Clockwork Angels 02 - Clockwork Lives/Kevin J. Anderson - Clockwork Angels 02 - Clockwork Lives.epub",
@@ -28,7 +28,11 @@
       }
     },
     "storyteller-node": {
-      "status": "not-implemented"
+      "status": "storyteller-opened",
+      "version": {
+        "status": "exposed",
+        "value": "3.0"
+      }
     }
   },
   "comparison": {

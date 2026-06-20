@@ -156,3 +156,67 @@ full runs produce a byte-identical report tree.
 The report schema was raised to version 3: epubts-node now carries a real open
 outcome (`node-opened` / `node-open-failed`) instead of `not-implemented`; only
 storyteller-node remains `not-implemented`.
+
+## Gate 4B: Storyteller Open Outcomes
+
+Status: evidence verified across the full corpus; awaiting approval.
+
+The storyteller-node path opens each book with `@storyteller-platform/epub`
+(0.6.2) via `Epub.using(MemoryAdapter).from(bytes, { readonly: true })` — an
+in-memory, read-only open that never unpacks the archive to disk. The reader is
+disposed with `discardAndClose()`. Bun hosts the package directly with no
+special wiring, so no runtime decision was required.
+
+Each book is opened in a dedicated hard-killable subprocess
+(`storyteller-open-one.ts`) on the same 10s deadline as the epubts-node path.
+Storyteller has not exhibited the LinkeDOM synchronous hang, but the guard is
+kept so any future synchronous stall cannot freeze the whole run.
+
+EPUB-version split. Storyteller validates EPUB 3 and rejects EPUB 2 with a clear
+message ("This is not a valid EPUB 3 publication … Use Epub.upgrade(path)"),
+surfaced as a `storyteller-open-failed` outcome. This is the first parser path
+that distinguishes the two versions: EPUB 3 books open, EPUB 2 books fail by
+design (no automatic upgrade). Confirmed on samples — EPUB 3 books opened and
+EPUB 2 books failed with that message; the full split count comes from the
+corpus run.
+
+Declared version is now genuinely **exposed**: `getVersion()` returns the OPF
+package version (e.g. "3.0"), so the `DeclaredVersion` `exposed` branch is
+populated for the first time (both epub.ts paths report `skipped`).
+
+The report schema was raised to version 4: storyteller-node now carries a real
+open outcome (`storyteller-opened` / `storyteller-open-failed`); no parser path
+remains `not-implemented`. The run report also records the Storyteller package
+version alongside epub.ts and Playwright.
+
+Full-corpus results (1,301 observations; 754 distinct books by SHA-256):
+
+- epubts-browser: 1,301 opened, 0 failed (unchanged from Gate 3).
+- epubts-node: 1,286 opened, 15 timed out (unchanged from Gate 4A; the LinkeDOM
+  infinite hangs).
+- storyteller: 368 opened, 933 failed.
+
+Storyteller failure breakdown (distinct books):
+
+- 523 EPUB 2 rejections ("not a valid EPUB 3 … use Epub.upgrade") — the genuine
+  version split; ~69% of the distinct library is EPUB 2.
+- 213 EPUB 3 opened (~28%); every one reports declared version `3.0`.
+- 17 "could not read the package document" — stricter than epub.js: 30 of the 36
+  raw occurrences opened in BOTH epub.ts paths, so these are parser strictness,
+  not version. Distinct titles include the Maurice Druon Accursed Kings series,
+  several Revelation Space, Lightbringer, Black Company, Nexus, Pratchett
+  Sourcery/Thud!, and Expeditionary Force.
+- 1 "End of Central Directory Record not found" (bad zip) — Madeline Miller,
+  Circe — rejected by @zip.js though epub.js reads it.
+
+Determinism was verified with git: the run-1 report tree was staged, the full
+corpus was run a second time, and the working tree showed zero differences from
+the staged tree (a byte-identical second run). Report validation passed for both
+runs (counts reconcile across roots; no per-book JSON or run.json contained an
+absolute path).
+
+Notable cross-parser signal for the comparison gate: Storyteller is the strictest
+of the three. epub.js (both browser and node) opens nearly everything; Storyteller
+only opens conformant EPUB 3. This makes the declared version trustworthy where it
+opens, but means two-thirds of the corpus has no Storyteller path without an
+EPUB 2 to 3 upgrade.

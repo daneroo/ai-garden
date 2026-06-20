@@ -39,10 +39,12 @@ export class BrowserTransport {
   static async launch(): Promise<BrowserTransport> {
     await verifyBrowserBundle();
     const browser = await chromium.launch();
-    const [epubtsPackage, playwrightPackage] = await Promise.all([
-      readPackageVersion("@likecoin/epub-ts"),
-      readPackageVersion("playwright"),
-    ]);
+    const [epubtsPackage, storytellerPackage, playwrightPackage] =
+      await Promise.all([
+        readPackageVersion("@likecoin/epub-ts"),
+        readPackageVersion("@storyteller-platform/epub"),
+        readPackageVersion("playwright"),
+      ]);
     const serverState: BookServerState = { path: null };
     const server = Bun.serve({
       hostname: "127.0.0.1",
@@ -73,6 +75,7 @@ export class BrowserTransport {
         version: browser.version(),
         packages: {
           epubts: epubtsPackage,
+          storyteller: storytellerPackage,
           playwright: playwrightPackage,
         },
       },

@@ -7,9 +7,9 @@ Design reference:
 
 ## Status
 
-- Overall: `GATE 4B NOT STARTED`
+- Overall: `GATE 4B EVIDENCE VERIFIED; AWAITING APPROVAL`
 - Current gate: `Gate 4B`
-- Next action: begin Gate 4B (Storyteller), reusing the node subprocess+timeout guard
+- Next action: Daniel approves Gate 4B, then choose Gate 4C vs Gate 5 direction
 
 ## Tracking Rules
 
@@ -31,7 +31,7 @@ Design reference:
 | 2 | Typed Playwright browser boundary | `APPROVED` |
 | 3 | Browser epub.ts open outcomes | `APPROVED` |
 | 4A | Node epub.ts open outcomes | `APPROVED` |
-| 4B | Storyteller open outcomes | `NOT STARTED` |
+| 4B | Storyteller open outcomes | `EVIDENCE VERIFIED; AWAITING APPROVAL` |
 | 4C | Resolve node epub.ts hangs (exploration) | `BLOCKED BY GATE 4B` |
 | 5 | Three-parser metadata comparison | `BLOCKED BY GATE 4B` |
 | Final | Feasibility decision | `BLOCKED BY GATE 5` |
@@ -251,43 +251,43 @@ feat(inspect): record node epubts open outcomes
 
 ## Gate 4B: Storyteller Open Outcomes
 
-Status: `BLOCKED BY GATE 4A`
+Status: `EVIDENCE VERIFIED; AWAITING APPROVAL`
 
 ### Implementation
 
-- [ ] Add `@storyteller-platform/epub`.
-- [ ] Implement an independent Storyteller adapter.
-- [ ] Open each book in a hard-killable subprocess with a timeout (reuse the
+- [x] Add `@storyteller-platform/epub`.
+- [x] Implement an independent Storyteller adapter.
+- [x] Open each book in a hard-killable subprocess with a timeout (reuse the
   `node-open-one.ts` pattern) so a synchronous hang cannot freeze the run.
-- [ ] Read or pass exact EPUB bytes using the documented API.
-- [ ] Record open success as a structured observation.
-- [ ] Record open failure with stage, category, and message.
-- [ ] Record declared EPUB version when exposed.
-- [ ] Guarantee parser cleanup after every attempt.
-- [ ] Do not invoke EPUB 2-to-3 conversion automatically.
-- [ ] Do not repair, retry, or normalize failing EPUBs.
-- [ ] Confirm whether Bun hosts Storyteller reliably.
-- [ ] Stop for an explicit runtime decision if Bun incompatibility is found.
+- [x] Read or pass exact EPUB bytes using the documented API.
+- [x] Record open success as a structured observation.
+- [x] Record open failure with stage, category, and message.
+- [x] Record declared EPUB version when exposed.
+- [x] Guarantee parser cleanup after every attempt.
+- [x] Do not invoke EPUB 2-to-3 conversion automatically.
+- [x] Do not repair, retry, or normalize failing EPUBs.
+- [x] Confirm whether Bun hosts Storyteller reliably.
+- [x] Stop for an explicit runtime decision if Bun incompatibility is found.
 
 ### Full-Corpus Evidence
 
-- [ ] `test` Storyteller open run completed.
-- [ ] `drop` Storyteller open run completed.
-- [ ] `space` Storyteller open run completed.
-- [ ] Every book has exactly one Storyteller outcome.
-- [ ] Both epub.ts parser-path observations remain unchanged.
-- [ ] EPUB 2 rejection remains distinguishable from malformed input.
-- [ ] Runtime failures remain distinguishable from parser failures.
-- [ ] No parser resources remain after the run.
-- [ ] A second unchanged complete run produces no report diff.
+- [x] `test` Storyteller open run completed.
+- [x] `drop` Storyteller open run completed.
+- [x] `space` Storyteller open run completed.
+- [x] Every book has exactly one Storyteller outcome.
+- [x] Both epub.ts parser-path observations remain unchanged.
+- [x] EPUB 2 rejection remains distinguishable from malformed input.
+- [x] Runtime failures remain distinguishable from parser failures.
+- [x] No parser resources remain after the run.
+- [x] A second unchanged complete run produces no report diff.
 
 ### Review and Approval
 
-- [ ] All Storyteller failures reviewed.
-- [ ] EPUB 2 behavior reviewed explicitly.
-- [ ] Bun runtime suitability reviewed explicitly.
-- [ ] Three-path open-outcome reports reviewed.
-- [ ] Gate findings recorded.
+- [x] All Storyteller failures reviewed.
+- [x] EPUB 2 behavior reviewed explicitly.
+- [x] Bun runtime suitability reviewed explicitly.
+- [x] Three-path open-outcome reports reviewed.
+- [x] Gate findings recorded.
 - [ ] Gate checkpoint committed.
 - [ ] **APPROVED: proceed to Gate 5.**
 

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "book": {
     "root": "space",
     "relativePath": "Joe Abercrombie - The Age of Madness/Joe Abercrombie - The Age of Madness 03 - The Wisdom of Crowds/Joe Abercrombie - The Age of Madness - 03 - The Wisdom of Crowds.epub",
@@ -28,7 +28,11 @@
       }
     },
     "storyteller-node": {
-      "status": "not-implemented"
+      "status": "storyteller-opened",
+      "version": {
+        "status": "exposed",
+        "value": "3.0"
+      }
     }
   },
   "comparison": {

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "book": {
     "root": "space",
     "relativePath": "Craig Alanson - Expeditionary Force/Craig Alanson - Expeditionary Force 09 - Valkyrie/Craig Alanson - Expeditionary Force 09 - Valkyrie.epub",
@@ -28,7 +28,10 @@
       }
     },
     "storyteller-node": {
-      "status": "not-implemented"
+      "status": "storyteller-open-failed",
+      "stage": "storyteller-open",
+      "category": "Error",
+      "message": "This is not a valid EPUB 3 publication. This library only supports EPUB 3, not EPUB 2. Use Epub.upgrade(path) to convert."
     }
   },
   "comparison": {

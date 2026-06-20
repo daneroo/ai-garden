@@ -1,5 +1,8 @@
 scratch/
 media/
-books/
+# Repo-root /books only (leading slash anchors it). Without the slash this
+# matched any "books/" dir, e.g. epub-split/inspect/reports/books. Remove this
+# line once the top-level /books folder is gone — it appears unused.
+/books/
 external-repos/
 .DS_Store

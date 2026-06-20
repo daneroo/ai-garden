@@ -1,0 +1,13 @@
+# Doris Lessing - Canopus in Argos 1 - Shikasta.epub
+
+- Root: drop
+- SHA-256: 9f5313283e7eb4b3c08b5798b9b549a13e3b19a8f15ade6754f62030266c572e
+- Browser transport: transported
+- Open: opened
+- Declared version: skipped
+- Node epub.ts: node-opened
+- Node declared version: skipped
+- Storyteller: storyteller-open-failed
+- Storyteller open failure stage: storyteller-open
+- Storyteller open failure category: Error
+- Storyteller open failure message: This is not a valid EPUB 3 publication. This library only supports EPUB 3, not EPUB 2. Use Epub.upgrade(path) to convert.

@@ -1,0 +1,13 @@
+# Patrick Rothfus - Kingkiller Chronicle/Patrick Rothfus - Kingkiller Chronicle 02.5 - The Slow Regard of Silent Things/Patrick Rothfus - Kingkiller Chronicle 02.5 - The Slow Regard of Silent Things.epub
+
+- Root: space
+- SHA-256: 711eee77fa1acf4475f32e2165280fb45e379e5b61038367996b15e7e10d2731
+- Browser transport: transported
+- Open: opened
+- Declared version: skipped
+- Node epub.ts: node-opened
+- Node declared version: skipped
+- Storyteller: storyteller-open-failed
+- Storyteller open failure stage: storyteller-open
+- Storyteller open failure category: Error
+- Storyteller open failure message: This is not a valid EPUB 3 publication. This library only supports EPUB 3, not EPUB 2. Use Epub.upgrade(path) to convert.
