@@ -7,9 +7,9 @@ Design reference:
 
 ## Status
 
-- Overall: `GATE 4B EVIDENCE VERIFIED; AWAITING APPROVAL`
-- Current gate: `Gate 4B`
-- Next action: Daniel approves Gate 4B, then choose Gate 4C vs Gate 5 direction
+- Overall: `GATE 4C NOT STARTED`
+- Current gate: `Gate 4C`
+- Next action: run Gate 4C micro-experiments one at a time, checking in after each
 
 ## Tracking Rules
 
@@ -31,8 +31,8 @@ Design reference:
 | 2 | Typed Playwright browser boundary | `APPROVED` |
 | 3 | Browser epub.ts open outcomes | `APPROVED` |
 | 4A | Node epub.ts open outcomes | `APPROVED` |
-| 4B | Storyteller open outcomes | `EVIDENCE VERIFIED; AWAITING APPROVAL` |
-| 4C | Resolve node epub.ts hangs (exploration) | `BLOCKED BY GATE 4B` |
+| 4B | Storyteller open outcomes | `APPROVED` |
+| 4C | Resolve node epub.ts hangs (exploration) | `NOT STARTED` |
 | 5 | Three-parser metadata comparison | `BLOCKED BY GATE 4B` |
 | Final | Feasibility decision | `BLOCKED BY GATE 5` |
 
@@ -251,7 +251,7 @@ feat(inspect): record node epubts open outcomes
 
 ## Gate 4B: Storyteller Open Outcomes
 
-Status: `EVIDENCE VERIFIED; AWAITING APPROVAL`
+Status: `APPROVED`
 
 ### Implementation
 
@@ -288,8 +288,8 @@ Status: `EVIDENCE VERIFIED; AWAITING APPROVAL`
 - [x] Bun runtime suitability reviewed explicitly.
 - [x] Three-path open-outcome reports reviewed.
 - [x] Gate findings recorded.
-- [ ] Gate checkpoint committed.
-- [ ] **APPROVED: proceed to Gate 5.**
+- [x] Gate checkpoint committed.
+- [x] **APPROVED: proceed to Gate 4C (then Gate 5).**
 
 Checkpoint subject:
 
