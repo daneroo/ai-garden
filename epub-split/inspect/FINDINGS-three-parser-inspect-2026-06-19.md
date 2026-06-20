@@ -250,3 +250,22 @@ Reproduction book: Terry Pratchett - Discworld 05 - Sourcery (550 KB, sha
   container/OPF XML. The override hook (set `globalThis.DOMParser` before open)
   is feasible, but testing an alternative parser (e.g. @xmldom/xmldom, jsdom)
   needs an isolated scratch install and changes parse semantics for ALL books.
+- E5. Added `jsdom@29.1.1` and `@xmldom/xmldom@0.9.10` as normal Bun deps; both
+  import and parse a trivial document under Bun.
+- E6. Injection hook proven: setting `globalThis.DOMParser` before importing
+  `@likecoin/epub-ts/node` makes epub.ts parse through the injected engine. jsdom
+  opens the known-good book (flatland). xmldom HANGS even on flatland, so xmldom
+  is not a viable drop-in (its DOM is incompatible with how epub.ts walks the
+  tree) — eliminated.
+- E7. xmldom on the repro book: hang (but xmldom hangs on good books too, so
+  inconclusive about malformation).
+- E8. jsdom on the repro book (Sourcery): OPENED, no hang.
+- E9. Interpretation: the document is almost certainly NOT malformed — jsdom
+  parses it cleanly. LinkeDOM has a genuine parser defect (infinite loop) on
+  this input that jsdom does not. So this is a LinkeDOM bug, not tolerant
+  parsing masking bad XML.
+- E10. jsdom injection opened ALL 9 distinct hanging books (Sourcery, Revelation
+  Space 01, Thud!, Shakespeare Four Great Histories, Rapture of the Nerds,
+  Gwynne Valour, Ken Liu Veiled Throne, Malazan Omnibus 13MB, Steve Jobs 16MB),
+  one book at a time, each well under the deadline. jsdom resolves every node
+  hang in the corpus.

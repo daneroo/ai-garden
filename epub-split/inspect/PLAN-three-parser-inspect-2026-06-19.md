@@ -7,7 +7,7 @@ Design reference:
 
 ## Status
 
-- Overall: `GATE 4C IN PROGRESS (root cause found; next: inject jsdom/xmldom)`
+- Overall: `GATE 4C IN PROGRESS (jsdom resolves all 9 hangs; decision E11 pending)`
 - Current gate: `Gate 4C`
 - Next action: run Gate 4C micro-experiments one at a time, checking in after each
 
@@ -354,20 +354,20 @@ reverted) and test whether either, injected via `globalThis.DOMParser`, either
 RESOLVES the parse or REVEALS the underlying defect (a stricter parser throwing
 is a useful result — LinkeDOM's tolerance may be masking malformed XML).
 
-- [ ] E5. Add `jsdom` and `@xmldom/xmldom` with `bun add`. Confirm each imports
+- [x] E5. Add `jsdom` and `@xmldom/xmldom` with `bun add`. Confirm each imports
   and constructs a `DOMParser` under Bun (trivial parse of `<a/>`).
-- [ ] E6. Prove the injection works on a KNOWN-GOOD book. Override
+- [x] E6. Prove the injection works on a KNOWN-GOOD book. Override
   `globalThis.DOMParser` before importing `@likecoin/epub-ts/node`, open a small
   book that already opens, and confirm it still opens via the injected parser
   (so a later hang/throw is attributable to the parser, not a broken hook).
-- [ ] E7. xmldom on the repro book. Inject `@xmldom/xmldom`, open the one book
+- [x] E7. xmldom on the repro book. Inject `@xmldom/xmldom`, open the one book
   (10s kill). Record: opens / hangs / throws. A throw with a location is the
   ideal outcome — capture the message; it likely pinpoints the malformation.
-- [ ] E8. jsdom on the repro book. Inject jsdom's `DOMParser`, open the one book
+- [x] E8. jsdom on the repro book. Inject jsdom's `DOMParser`, open the one book
   (10s kill). Record: opens / hangs / throws.
-- [ ] E9. Interpret E7/E8: did either resolve the parse, and/or reveal the
+- [x] E9. Interpret E7/E8: did either resolve the parse, and/or reveal the
   actual defect? State whether LinkeDOM tolerance is hiding a real malformation.
-- [ ] E10. If either parser opens (or cleanly errors) on the repro book, run it
+- [x] E10. If either parser opens (or cleanly errors) on the repro book, run it
   against the other distinct hanging books, ONE book at a time, 10s each (this
   is 8-9 single-book runs, never a corpus loop). Record per-book outcome.
 - [ ] E11. Decision: inject a replacement parser in `src/`, add a node fallback
