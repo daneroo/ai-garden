@@ -236,3 +236,9 @@ Reproduction book: Terry Pratchett - Discworld 05 - Sourcery (550 KB, sha
   but never "opened". The loop is inside `await book.opened` (container/package
   XML parse via LinkeDOM), not byte read and not construction. `replacements:
   "none"` is already set, so resource replacement is not the cause.
+- E3. epub.ts 0.6.7 BookOptions are requestMethod, encoding, replacements,
+  canonical, openAs, store. None affect the XML parser; they govern input
+  transport, asset replacement, and caching. Since the loop is inside the
+  LinkeDOM parse during `opened`, no constructor option can avoid it. The real
+  lever is the global DOMParser that `@likecoin/epub-ts/node` installs from
+  LinkeDOM. Next: try swapping the DOM implementation (E4), not options.

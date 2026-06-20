@@ -7,7 +7,7 @@ Design reference:
 
 ## Status
 
-- Overall: `GATE 4C NOT STARTED`
+- Overall: `GATE 4C IN PROGRESS (E0-E3 done)`
 - Current gate: `Gate 4C`
 - Next action: run Gate 4C micro-experiments one at a time, checking in after each
 
@@ -32,7 +32,7 @@ Design reference:
 | 3 | Browser epub.ts open outcomes | `APPROVED` |
 | 4A | Node epub.ts open outcomes | `APPROVED` |
 | 4B | Storyteller open outcomes | `APPROVED` |
-| 4C | Resolve node epub.ts hangs (exploration) | `NOT STARTED` |
+| 4C | Resolve node epub.ts hangs (exploration) | `IN PROGRESS` |
 | 5 | Three-parser metadata comparison | `BLOCKED BY GATE 4B` |
 | Final | Feasibility decision | `BLOCKED BY GATE 5` |
 
@@ -337,7 +337,7 @@ micro-experiment with a check-in:
 - [x] E2. Localize the loop. Split the open into stages with markers:
   (a) read bytes, (b) construct `new Book(bytes, {replacements:"none"})`,
   (c) `await book.opened`. Record which stage never returns.
-- [ ] E3. Enumerate options (NO execution). List the epub.ts node
+- [x] E3. Enumerate options (NO execution). List the epub.ts node
   constructor/open options from its type declarations that could plausibly
   affect the loop (beyond `replacements`). Record the candidate list.
 - [ ] E4. Test option candidate #1 on the one book (10s kill). Record
