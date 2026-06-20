@@ -287,3 +287,10 @@ Reproduction book: Terry Pratchett - Discworld 05 - Sourcery (550 KB, sha
   deeper in epub.ts's packaging parse under LinkeDOM, not the bare parse of
   container/OPF; a minimal upstream reproduction is deferred. jsdom as the DOM
   parser avoids the loop entirely, confirming the defect is LinkeDOM-specific.
+- Root-cause investigation PARKED (sufficient for now). Tried: isolating which
+  document hangs (standalone LinkeDOM parse of container.xml and content.opf in
+  both text/xml and application/xml, plus querySelectorAll) — all instant; and
+  confirming epub.ts resolves the same hoisted linkedom 0.18.12. Not pursued: a
+  minimal reproduction of the deeper epub.ts-under-LinkeDOM loop, and an upstream
+  bug report. The jsdom fallback is the accepted resolution; the defect can be
+  characterized further if we decide to file upstream later.
