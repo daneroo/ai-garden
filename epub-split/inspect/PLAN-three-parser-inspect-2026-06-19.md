@@ -7,9 +7,9 @@ Design reference:
 
 ## Status
 
-- Overall: `GATE 4A NOT STARTED`
-- Current gate: `Gate 4A`
-- Next action: begin Gate 4A after Daniel's confirmation run of Gate 3
+- Overall: `GATE 4B NOT STARTED`
+- Current gate: `Gate 4B`
+- Next action: begin Gate 4B (Storyteller), reusing the node subprocess+timeout guard
 
 ## Tracking Rules
 
@@ -30,8 +30,9 @@ Design reference:
 | 1 | Empty loop and deterministic reports | `APPROVED` |
 | 2 | Typed Playwright browser boundary | `APPROVED` |
 | 3 | Browser epub.ts open outcomes | `APPROVED` |
-| 4A | Node epub.ts open outcomes | `NOT STARTED` |
-| 4B | Storyteller open outcomes | `BLOCKED BY GATE 4A` |
+| 4A | Node epub.ts open outcomes | `APPROVED` |
+| 4B | Storyteller open outcomes | `NOT STARTED` |
+| 4C | Resolve node epub.ts hangs (exploration) | `BLOCKED BY GATE 4B` |
 | 5 | Three-parser metadata comparison | `BLOCKED BY GATE 4B` |
 | Final | Feasibility decision | `BLOCKED BY GATE 5` |
 
@@ -205,42 +206,42 @@ feat(inspect): record browser epubts open outcomes
 
 ## Gate 4A: Node epub.ts Open Outcomes
 
-Status: `NOT STARTED`
+Status: `APPROVED`
 
 ### Implementation
 
-- [ ] Add `@likecoin/epub-ts/node` and its LinkeDOM peer dependency.
-- [ ] Implement an independent server adapter.
-- [ ] Read or pass exact EPUB bytes using the documented API.
-- [ ] Record open success as a structured observation.
-- [ ] Record open failure with stage, category, and message.
-- [ ] Record declared EPUB version when exposed.
-- [ ] Guarantee parser cleanup after every attempt.
-- [ ] Keep Storyteller as `not-implemented`.
-- [ ] Do not add compatibility retries or repair input files.
-- [ ] Confirm whether Bun hosts the Node export reliably.
-- [ ] Stop for an explicit runtime decision if Bun incompatibility is found.
+- [x] Add `@likecoin/epub-ts/node` and its LinkeDOM peer dependency.
+- [x] Implement an independent server adapter.
+- [x] Read or pass exact EPUB bytes using the documented API.
+- [x] Record open success as a structured observation.
+- [x] Record open failure with stage, category, and message.
+- [x] Record declared EPUB version when exposed.
+- [x] Guarantee parser cleanup after every attempt.
+- [x] Keep Storyteller as `not-implemented`.
+- [x] Do not add compatibility retries or repair input files.
+- [x] Confirm whether Bun hosts the Node export reliably.
+- [x] Stop for an explicit runtime decision if Bun incompatibility is found.
 
 ### Full-Corpus Evidence
 
-- [ ] `test` Node epub.ts open run completed.
-- [ ] `drop` Node epub.ts open run completed.
-- [ ] `space` Node epub.ts open run completed.
-- [ ] Every book has exactly one Node epub.ts outcome.
-- [ ] Browser epub.ts observations remain unchanged.
-- [ ] Runtime failures are distinguishable from EPUB parse failures.
-- [ ] EPUB-version failures remain distinguishable from malformed input.
-- [ ] No parser resources remain after the run.
-- [ ] A second unchanged complete run produces no report diff.
+- [x] `test` Node epub.ts open run completed.
+- [x] `drop` Node epub.ts open run completed.
+- [x] `space` Node epub.ts open run completed.
+- [x] Every book has exactly one Node epub.ts outcome.
+- [x] Browser epub.ts observations remain unchanged.
+- [x] Runtime failures are distinguishable from EPUB parse failures.
+- [x] EPUB-version failures remain distinguishable from malformed input.
+- [x] No parser resources remain after the run.
+- [x] A second unchanged complete run produces no report diff.
 
 ### Review and Approval
 
-- [ ] All Node epub.ts failures reviewed.
-- [ ] Browser-versus-LinkeDOM outcome differences reviewed.
-- [ ] Bun runtime suitability reviewed explicitly.
-- [ ] Gate findings recorded.
-- [ ] Gate checkpoint committed.
-- [ ] **APPROVED: proceed to Gate 4B.**
+- [x] All Node epub.ts failures reviewed.
+- [x] Browser-versus-LinkeDOM outcome differences reviewed.
+- [x] Bun runtime suitability reviewed explicitly.
+- [x] Gate findings recorded.
+- [x] Gate checkpoint committed.
+- [x] **APPROVED: proceed to Gate 4B.**
 
 Checkpoint subject:
 
@@ -256,6 +257,8 @@ Status: `BLOCKED BY GATE 4A`
 
 - [ ] Add `@storyteller-platform/epub`.
 - [ ] Implement an independent Storyteller adapter.
+- [ ] Open each book in a hard-killable subprocess with a timeout (reuse the
+  `node-open-one.ts` pattern) so a synchronous hang cannot freeze the run.
 - [ ] Read or pass exact EPUB bytes using the documented API.
 - [ ] Record open success as a structured observation.
 - [ ] Record open failure with stage, category, and message.
@@ -292,6 +295,45 @@ Checkpoint subject:
 
 ```text
 feat(inspect): record storyteller open outcomes
+```
+
+## Gate 4C: Resolve Node epub.ts Hangs (Exploration)
+
+Status: `BLOCKED BY GATE 4B`
+
+Gate 4A found that at least nine distinct books drive `@likecoin/epub-ts/node`
+(LinkeDOM) into a synchronous infinite loop on open, currently contained by a
+hard-killed subprocess and recorded as `Timeout`. This gate explores whether
+those hangs can be resolved rather than only contained.
+
+### Implementation
+
+- [ ] Catalogue the hanging books and confirm the set is stable.
+- [ ] Reduce one hanging book to a minimal reproduction.
+- [ ] Locate where the loop occurs (LinkeDOM parse vs epub.ts unpack).
+- [ ] Test whether epub.ts/LinkeDOM options avoid the loop without repair.
+- [ ] Determine whether a LinkeDOM or epub.ts version changes the outcome.
+- [ ] Decide: upstream fix, option change, or keep the subprocess timeout guard.
+- [ ] Do not silently repair or normalize input EPUBs.
+
+### Full-Corpus Evidence
+
+- [ ] Hanging-book set reproduced deterministically.
+- [ ] Any option or version change re-validated across the full corpus.
+- [ ] A second unchanged complete run produces no report diff.
+
+### Review and Approval
+
+- [ ] Root-cause findings reviewed.
+- [ ] Resolution decision recorded with rationale.
+- [ ] Gate findings recorded.
+- [ ] Gate checkpoint committed.
+- [ ] **APPROVED.**
+
+Checkpoint subject:
+
+```text
+docs(inspect): resolve or characterize node epubts hangs
 ```
 
 ## Gate 5: Three-Parser Metadata Comparison

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "book": {
     "root": "space",
     "relativePath": "Neal Stephenson - Dodge/Neal Stephenson - Dodge 01 - Reamde/Neal Stephenson - Reamde.epub",
@@ -22,7 +22,10 @@
       "diagnostics": []
     },
     "epubts-node": {
-      "status": "not-implemented"
+      "status": "node-opened",
+      "version": {
+        "status": "skipped"
+      }
     },
     "storyteller-node": {
       "status": "not-implemented"

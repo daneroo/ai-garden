@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "book": {
     "root": "space",
     "relativePath": "John Gwynne - The Bloodsworn Saga/John Gwynne - The Bloodsworn Saga 1 - The Shadow of the Gods/John Gwynne - The Bloodsworn Saga 1 - The Shadow of the Gods.epub",
@@ -22,7 +22,10 @@
       "diagnostics": []
     },
     "epubts-node": {
-      "status": "not-implemented"
+      "status": "node-opened",
+      "version": {
+        "status": "skipped"
+      }
     },
     "storyteller-node": {
       "status": "not-implemented"

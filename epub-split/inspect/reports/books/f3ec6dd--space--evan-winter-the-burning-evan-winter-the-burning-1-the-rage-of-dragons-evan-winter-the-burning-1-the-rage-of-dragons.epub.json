@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "book": {
     "root": "space",
     "relativePath": "Evan Winter - The Burning/Evan Winter - The Burning 1 - The Rage of Dragons/Evan Winter - The Burning 1 - The Rage of Dragons.epub",
@@ -22,7 +22,10 @@
       "diagnostics": []
     },
     "epubts-node": {
-      "status": "not-implemented"
+      "status": "node-opened",
+      "version": {
+        "status": "skipped"
+      }
     },
     "storyteller-node": {
       "status": "not-implemented"

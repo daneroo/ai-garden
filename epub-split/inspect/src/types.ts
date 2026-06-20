@@ -62,10 +62,28 @@ export interface BrowserTransportFailure {
   diagnostics: BrowserDiagnostic[];
 }
 
+// epubts-node path (@likecoin/epub-ts/node + LinkeDOM, hosted on Bun). There is
+// no browser transport here, so the attempt is the open outcome directly.
+export interface NodeOpenSuccess {
+  status: "node-opened";
+  version: DeclaredVersion;
+}
+
+export interface NodeOpenFailure {
+  status: "node-open-failed";
+  stage: "node-open";
+  category: string;
+  message: string;
+}
+
+export type NodeOpenOutcome = NodeOpenSuccess | NodeOpenFailure;
+
 export type ParserPathAttempt =
   | ParserAttempt
   | BrowserTransportSuccess
-  | BrowserTransportFailure;
+  | BrowserTransportFailure
+  | NodeOpenSuccess
+  | NodeOpenFailure;
 
 export interface BookIdentity {
   root: RootName;

@@ -1,6 +1,7 @@
 import { assignReportNames, discoverBooks, hashBook } from "./books.ts";
 import { BrowserTransport } from "./browser-transport.ts";
 import { ROOTS } from "./config.ts";
+import { inspectNode } from "./node-parser.ts";
 import { generateReports, reportPathForDisplay } from "./reports.ts";
 import type { HashedBook, RootInventory } from "./types.ts";
 
@@ -28,6 +29,7 @@ for (const root of ROOTS) {
 assignReportNames(books);
 
 const browser = await BrowserTransport.launch();
+const browserRuntime = browser.runtime;
 try {
   console.error(`- Browser transport: ${books.length} books`);
   for (let index = 0; index < books.length; index++) {
@@ -37,16 +39,33 @@ try {
     book.parserAttempts["epubts-browser"] = await browser.inspect(book);
   }
   clearProgress();
-  await generateReports(books, rootInventory, browser.runtime);
 } finally {
   await browser.close();
 }
+
+// The node phase runs only after the browser, its localhost server, and all
+// Playwright handles are fully torn down, keeping the LinkeDOM parser isolated
+// from the browser runtime.
+console.error(`- Node epub.ts: ${books.length} books`);
+for (let index = 0; index < books.length; index++) {
+  const book = books[index];
+  if (!book) throw new Error(`Missing hashed book at index ${index}`);
+  writeProgress("node", index + 1, books.length, book.relativePath);
+  book.parserAttempts["epubts-node"] = await inspectNode(book);
+}
+clearProgress();
+
+await generateReports(books, rootInventory, browserRuntime);
 
 console.log(`Inspected ${books.length} EPUB files.`);
 for (const root of rootInventory) {
   console.log(`- ${root.name}: ${root.count}`);
 }
 console.log(`Reports: ${reportPathForDisplay()}`);
+
+// Force a clean exit: a parser that left a pending promise or timer must not
+// keep the process alive after reports are written.
+process.exit(0);
 
 function writeProgress(
   root: string,

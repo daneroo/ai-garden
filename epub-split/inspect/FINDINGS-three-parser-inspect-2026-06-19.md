@@ -119,3 +119,40 @@ effect entirely. After the fix, two consecutive full runs are byte-identical,
 diagnostics are empty for all 1,301 books, and no report file contains an
 absolute path. Report validation was also hardened to scan every per-book JSON
 for absolute-path leaks, not only `run.json`.
+
+## Gate 4A: Node epub.ts Open Outcomes
+
+Status: evidence verified across the full corpus; awaiting approval.
+
+The epubts-node path opens each book with `@likecoin/epub-ts/node`. The node
+build imports LinkeDOM itself and installs the DOMParser/document globals it
+needs, so no global wiring is required. Opening is scoped with
+`replacements: "none"`, matching the browser path.
+
+Runtime decision (Bun hosting). Bun hosts the node export reliably only when the
+entry resolves from the project's node_modules; a script run from outside the
+project resolves epub-ts from Bun's global cache, where the bare
+`import "linkedom"` cannot be found. The in-project adapter resolves correctly,
+so no bundling is required.
+
+Synchronous hang. At least nine distinct books drive LinkeDOM into a
+**synchronous** busy loop (≈99% CPU, never returns) during open — confirmed by
+running each in isolation with a 120s cap, where every one was killed without
+finishing. A synchronous hang blocks the event loop, so an in-process timer
+cannot interrupt it. Each book is therefore opened in a dedicated subprocess
+(`node-open-one.ts`) that the parent hard-kills on a deadline. Because the hangs
+are infinite and legitimate opens complete in well under a second, a 10s
+deadline separates the two cleanly with a wide margin, so the Timeout outcome is
+deterministic. `process.exit(0)` guarantees shutdown despite any handles left by
+killed children.
+
+Full-corpus results: 1,286 books opened, 15 timed out (nine distinct books, the
+rest drop/space duplicates); every timeout is the deterministic infinite hang
+above, not a slow parse. Declared version is `skipped` for every opened book
+(epub.ts discards the OPF version on the node path too). No per-book report
+contains an absolute path. Browser observations are unchanged from Gate 3. Two
+full runs produce a byte-identical report tree.
+
+The report schema was raised to version 3: epubts-node now carries a real open
+outcome (`node-opened` / `node-open-failed`) instead of `not-implemented`; only
+storyteller-node remains `not-implemented`.

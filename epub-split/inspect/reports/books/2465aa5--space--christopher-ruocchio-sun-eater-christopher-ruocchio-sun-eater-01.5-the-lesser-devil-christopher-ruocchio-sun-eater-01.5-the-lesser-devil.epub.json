@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "book": {
     "root": "space",
     "relativePath": "Christopher Ruocchio - Sun Eater/Christopher Ruocchio - Sun Eater 01.5 - The Lesser Devil/Christopher Ruocchio - Sun Eater 01.5 - The Lesser Devil.epub",
@@ -22,7 +22,10 @@
       "diagnostics": []
     },
     "epubts-node": {
-      "status": "not-implemented"
+      "status": "node-opened",
+      "version": {
+        "status": "skipped"
+      }
     },
     "storyteller-node": {
       "status": "not-implemented"

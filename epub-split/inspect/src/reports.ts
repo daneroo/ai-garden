@@ -22,6 +22,7 @@ import type {
   BrowserOpenOutcome,
   BrowserRuntime,
   HashedBook,
+  NodeOpenOutcome,
   ParserPathAttempt,
   RootInventory,
   RunReport,
@@ -107,7 +108,7 @@ function createBookObservation(book: HashedBook): BookObservation {
     parsers: {
       "epubts-browser":
         book.parserAttempts["epubts-browser"] ?? notImplemented(),
-      "epubts-node": { status: "not-implemented" },
+      "epubts-node": book.parserAttempts["epubts-node"] ?? notImplemented(),
       "storyteller-node": { status: "not-implemented" },
     },
     comparison: { status: "not-implemented" },
@@ -127,6 +128,8 @@ function renderIndex(run: RunReport): string {
     `- Books: ${run.books.length}`,
     `- epubts-browser opened: ${countOpen(run, "opened")}`,
     `- epubts-browser open-failed: ${countOpen(run, "open-failed")}`,
+    `- epubts-node opened: ${countNode(run, "node-opened")}`,
+    `- epubts-node open-failed: ${countNode(run, "node-open-failed")}`,
     "",
   ];
 
@@ -207,12 +210,17 @@ async function validateReports(run: RunReport): Promise<void> {
     ) {
       throw new Error(`Missing browser open outcome: ${book.report}`);
     }
-    for (const parserName of ["epubts-node", "storyteller-node"] as const) {
-      if (parsed.parsers[parserName].status !== "not-implemented") {
-        throw new Error(
-          `Unexpected parser implementation: ${book.report} ${parserName}`
-        );
-      }
+    const nodeAttempt = parsed.parsers["epubts-node"];
+    if (
+      nodeAttempt.status !== "node-opened" &&
+      nodeAttempt.status !== "node-open-failed"
+    ) {
+      throw new Error(`Missing node open outcome: ${book.report}`);
+    }
+    if (parsed.parsers["storyteller-node"].status !== "not-implemented") {
+      throw new Error(
+        `Unexpected parser implementation: ${book.report} storyteller-node`
+      );
     }
     if (book.detail) {
       await stat(join(TEMP_REPORTS_DIRECTORY, book.detail));
@@ -289,17 +297,28 @@ function countOpen(
   return run.books.filter((book) => book.browserOpen === status).length;
 }
 
+function countNode(
+  run: RunReport,
+  status: NodeOpenOutcome["status"]
+): number {
+  return run.books.filter(
+    (book) => book.parserStates["epubts-node"] === status
+  ).length;
+}
+
 function detailPath(
   observation: BookObservation,
   reportFilename: string
 ): string | null {
   const attempt = observation.parsers["epubts-browser"];
-  const openFailed =
+  const node = observation.parsers["epubts-node"];
+  const browserOpenFailed =
     attempt.status === "transported" && attempt.open.status === "open-failed";
   if (
     attempt.status === "transport-failed" ||
-    openFailed ||
-    (attempt.status === "transported" && attempt.diagnostics.length > 0)
+    browserOpenFailed ||
+    (attempt.status === "transported" && attempt.diagnostics.length > 0) ||
+    node.status === "node-open-failed"
   ) {
     return `details/${reportFilename.replace(/\.json$/, ".md")}`;
   }
@@ -360,6 +379,22 @@ function renderDetail(observation: BookObservation): string {
       );
     }
   }
+
+  const node = observation.parsers["epubts-node"];
+  lines.push(`- Node epub.ts: ${node.status}`);
+  if (node.status === "node-opened") {
+    lines.push(
+      `- Node declared version: ${node.version.status === "exposed" ? node.version.value : "skipped"}`
+    );
+  }
+  if (node.status === "node-open-failed") {
+    lines.push(
+      `- Node open failure stage: ${node.stage}`,
+      `- Node open failure category: ${node.category}`,
+      `- Node open failure message: ${node.message}`
+    );
+  }
+
   return `${lines.join("\n")}\n`;
 }
 

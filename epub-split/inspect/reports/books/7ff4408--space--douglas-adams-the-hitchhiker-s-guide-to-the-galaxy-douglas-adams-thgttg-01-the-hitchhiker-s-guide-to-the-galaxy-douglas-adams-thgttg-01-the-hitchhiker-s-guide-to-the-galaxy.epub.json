@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "book": {
     "root": "space",
     "relativePath": "Douglas Adams - The Hitchhiker's Guide to the Galaxy/Douglas Adams - THGTTG 01 - The Hitchhiker's Guide to the Galaxy/Douglas Adams - THGTTG 01 - The Hitchhiker’s Guide to the Galaxy.epub",
@@ -22,7 +22,10 @@
       "diagnostics": []
     },
     "epubts-node": {
-      "status": "not-implemented"
+      "status": "node-opened",
+      "version": {
+        "status": "skipped"
+      }
     },
     "storyteller-node": {
       "status": "not-implemented"

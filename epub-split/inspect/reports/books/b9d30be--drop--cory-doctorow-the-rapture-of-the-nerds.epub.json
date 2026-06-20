@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "book": {
     "root": "drop",
     "relativePath": "Cory Doctorow - The Rapture of the Nerds.epub",
@@ -22,7 +22,10 @@
       "diagnostics": []
     },
     "epubts-node": {
-      "status": "not-implemented"
+      "status": "node-open-failed",
+      "stage": "node-open",
+      "category": "Timeout",
+      "message": "open did not settle within 10000ms"
     },
     "storyteller-node": {
       "status": "not-implemented"
