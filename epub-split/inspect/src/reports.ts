@@ -22,6 +22,7 @@ import type {
   BrowserOpenOutcome,
   BrowserRuntime,
   HashedBook,
+  DOMParserImpl,
   NodeOpenOutcome,
   ParserPathAttempt,
   RootInventory,
@@ -65,6 +66,7 @@ export async function generateReports(
         PARSER_NAMES.map((name) => [name, observation.parsers[name].status])
       ) as BookInventoryEntry["parserStates"],
       browserOpen: browserOpenStatus(observation),
+      nodeEngine: nodeEngineUsed(observation),
     });
   }
 
@@ -132,6 +134,7 @@ function renderIndex(run: RunReport): string {
     `- epubts-browser opened: ${countOpen(run, "opened")}`,
     `- epubts-browser open-failed: ${countOpen(run, "open-failed")}`,
     `- epubts-node opened: ${countNode(run, "node-opened")}`,
+    `- epubts-node opened via jsdom fallback: ${countDOMParserImpl(run, "jsdom")}`,
     `- epubts-node open-failed: ${countNode(run, "node-open-failed")}`,
     `- storyteller opened: ${countStoryteller(run, "storyteller-opened")}`,
     `- storyteller open-failed: ${countStoryteller(run, "storyteller-open-failed")}`,
@@ -222,6 +225,13 @@ async function validateReports(run: RunReport): Promise<void> {
     ) {
       throw new Error(`Missing node open outcome: ${book.report}`);
     }
+    if (
+      nodeAttempt.status === "node-opened" &&
+      nodeAttempt.engine !== "linkedom" &&
+      nodeAttempt.engine !== "jsdom"
+    ) {
+      throw new Error(`Missing node engine: ${book.report}`);
+    }
     const storytellerAttempt = parsed.parsers["storyteller-node"];
     if (
       storytellerAttempt.status !== "storyteller-opened" &&
@@ -297,6 +307,11 @@ function browserOpenStatus(
   return attempt.status === "transported" ? attempt.open.status : null;
 }
 
+function nodeEngineUsed(observation: BookObservation): DOMParserImpl | null {
+  const node = observation.parsers["epubts-node"];
+  return node.status === "node-opened" ? node.engine : null;
+}
+
 function countOpen(
   run: RunReport,
   status: BrowserOpenOutcome["status"]
@@ -311,6 +326,10 @@ function countNode(
   return run.books.filter(
     (book) => book.parserStates["epubts-node"] === status
   ).length;
+}
+
+function countDOMParserImpl(run: RunReport, engine: DOMParserImpl): number {
+  return run.books.filter((book) => book.nodeEngine === engine).length;
 }
 
 function countStoryteller(
@@ -331,11 +350,14 @@ function detailPath(
   const storyteller = observation.parsers["storyteller-node"];
   const browserOpenFailed =
     attempt.status === "transported" && attempt.open.status === "open-failed";
+  const nodeFallback =
+    node.status === "node-opened" && node.engine === "jsdom";
   if (
     attempt.status === "transport-failed" ||
     browserOpenFailed ||
     (attempt.status === "transported" && attempt.diagnostics.length > 0) ||
     node.status === "node-open-failed" ||
+    nodeFallback ||
     storyteller.status === "storyteller-open-failed"
   ) {
     return `details/${reportFilename.replace(/\.json$/, ".md")}`;
@@ -401,6 +423,12 @@ function renderDetail(observation: BookObservation): string {
   const node = observation.parsers["epubts-node"];
   lines.push(`- Node epub.ts: ${node.status}`);
   if (node.status === "node-opened") {
+    lines.push(`- Node parser engine: ${node.engine}`);
+    if (node.engine === "jsdom") {
+      lines.push(
+        "- Note: opened via jsdom fallback (LinkeDOM hung on this book)"
+      );
+    }
     lines.push(
       `- Node declared version: ${node.version.status === "exposed" ? node.version.value : "skipped"}`
     );

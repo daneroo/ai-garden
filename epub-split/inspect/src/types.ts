@@ -64,9 +64,15 @@ export interface BrowserTransportFailure {
 
 // epubts-node path (@likecoin/epub-ts/node + LinkeDOM, hosted on Bun). There is
 // no browser transport here, so the attempt is the open outcome directly.
+// `engine` records which DOM parser opened the book on the node path. epub.ts
+// uses LinkeDOM by default; a few books hang LinkeDOM's parser, so those fall
+// back to jsdom. The fallback is surfaced here and in the detail report.
+export type DOMParserImpl = "linkedom" | "jsdom";
+
 export interface NodeOpenSuccess {
   status: "node-opened";
   version: DeclaredVersion;
+  engine: DOMParserImpl;
 }
 
 export interface NodeOpenFailure {
@@ -129,6 +135,7 @@ export interface BookInventoryEntry extends BookIdentity {
   detail: string | null;
   parserStates: Record<ParserName, ParserPathAttempt["status"]>;
   browserOpen: BrowserOpenOutcome["status"] | null;
+  nodeEngine: DOMParserImpl | null;
 }
 
 export interface RootInventory {

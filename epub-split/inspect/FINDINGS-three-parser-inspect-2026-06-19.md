@@ -269,3 +269,21 @@ Reproduction book: Terry Pratchett - Discworld 05 - Sourcery (550 KB, sha
   Gwynne Valour, Ken Liu Veiled Throne, Malazan Omnibus 13MB, Steve Jobs 16MB),
   one book at a time, each well under the deadline. jsdom resolves every node
   hang in the corpus.
+- E11. Decision: hybrid fallback. The node path opens with LinkeDOM as before;
+  on a timeout it retries the same book once in a fresh subprocess with jsdom
+  injected as the DOM parser. The 1286 already-working books are unchanged; only
+  the timing-out books take the jsdom path. The DOM implementation that opened
+  the book is recorded (`engine: "linkedom" | "jsdom"`, type `DOMParserImpl`),
+  surfaced in the index header (jsdom-fallback count) and in each affected book's
+  detail page. Verified end-to-end on one normal book (engine linkedom) and one
+  hanging book (engine jsdom). Report schema raised to version 5. The eliminated
+  `@xmldom/xmldom` dependency was removed; `jsdom` + `@types/jsdom` added.
+- Root-cause characterization (for a possible upstream report). The loop needs
+  epub.ts's own parse flow: feeding this book's `META-INF/container.xml` and
+  `OEBPS/content.opf` to a standalone LinkeDOM `DOMParser.parseFromString`
+  (`text/xml` and `application/xml`) plus `querySelectorAll` all complete
+  instantly. epub.ts resolves the SAME hoisted linkedom 0.18.12 used in that
+  standalone test, so it is not a version mismatch. The trigger is therefore
+  deeper in epub.ts's packaging parse under LinkeDOM, not the bare parse of
+  container/OPF; a minimal upstream reproduction is deferred. jsdom as the DOM
+  parser avoids the loop entirely, confirming the defect is LinkeDOM-specific.

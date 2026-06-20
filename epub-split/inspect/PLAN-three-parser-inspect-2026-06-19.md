@@ -7,7 +7,7 @@ Design reference:
 
 ## Status
 
-- Overall: `GATE 4C IN PROGRESS (jsdom resolves all 9 hangs; decision E11 pending)`
+- Overall: `GATE 4C IMPLEMENTED; AWAITING FULL-CORPUS RUN`
 - Current gate: `Gate 4C`
 - Next action: run Gate 4C micro-experiments one at a time, checking in after each
 
@@ -370,10 +370,10 @@ is a useful result — LinkeDOM's tolerance may be masking malformed XML).
 - [x] E10. If either parser opens (or cleanly errors) on the repro book, run it
   against the other distinct hanging books, ONE book at a time, 10s each (this
   is 8-9 single-book runs, never a corpus loop). Record per-book outcome.
-- [ ] E11. Decision: inject a replacement parser in `src/`, add a node fallback
+- [x] E11. Decision: inject a replacement parser in `src/`, add a node fallback
   (try epub.ts-node, on timeout/throw fall back), keep the subprocess timeout
   guard, or report the defect upstream. Record rationale.
-- [ ] E12. If (and only if) E11 chooses a code change, apply it to `src/`, then
+- [x] E12. If (and only if) E11 chooses a code change, apply it to `src/`, then
   hand off to Daniel for a single full-corpus re-validation run.
 
 ### Validation (deferred to Daniel; only if E12 changes code)
