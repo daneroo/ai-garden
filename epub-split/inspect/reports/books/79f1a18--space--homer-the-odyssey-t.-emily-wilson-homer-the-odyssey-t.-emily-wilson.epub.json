@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Homer - The Odyssey - t. Emily Wilson/Homer - The Odyssey - t. Emily Wilson.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Odyssey",
+          "creator": "Homer",
+          "date": "2017"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Odyssey",
+        "creator": "Homer",
+        "date": "2017"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Odyssey",
+      "node": "The Odyssey"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Homer",
+      "node": "Homer"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2017",
+      "node": "2017"
+    }
   }
 }

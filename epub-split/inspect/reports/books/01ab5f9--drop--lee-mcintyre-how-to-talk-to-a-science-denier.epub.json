@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Lee McIntyre - How to Talk to a Science Denier.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "How to Talk to a Science Denier",
+          "creator": "Lee McIntyre",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "How to Talk to a Science Denier",
+        "creator": "Lee McIntyre",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "How to Talk to a Science Denier",
+        "creator": "Lee McIntyre",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "How to Talk to a Science Denier",
+      "node": "How to Talk to a Science Denier",
+      "storyteller": "How to Talk to a Science Denier"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Lee McIntyre",
+      "node": "Lee McIntyre",
+      "storyteller": "Lee McIntyre"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

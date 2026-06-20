@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Philip K. Dick - Blade Runner.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Do Androids Dream of Electric Sheep",
+          "creator": "Philip K. Dick",
+          "date": "2007-12-06T08:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Do Androids Dream of Electric Sheep",
+        "creator": "Philip K. Dick",
+        "date": "2007-12-06T08:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Do Androids Dream of Electric Sheep",
+      "node": "Do Androids Dream of Electric Sheep"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Philip K. Dick",
+      "node": "Philip K. Dick"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2007-12-06T08:00:00+00:00",
+      "node": "2007-12-06T08:00:00+00:00"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "test",
     "relativePath": "abbott-flatland.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Flatland: A Romance of Many Dimensions",
+          "creator": "Edwin Abbott Abbott",
+          "date": "1995-01-01"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Flatland: A Romance of Many Dimensions",
+        "creator": "Edwin Abbott Abbott",
+        "date": "1995-01-01"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Flatland: A Romance of Many Dimensions",
+        "creator": "Edwin Abbott Abbott",
+        "date": "1995-01-01"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Flatland: A Romance of Many Dimensions",
+      "node": "Flatland: A Romance of Many Dimensions",
+      "storyteller": "Flatland: A Romance of Many Dimensions"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Edwin Abbott Abbott",
+      "node": "Edwin Abbott Abbott",
+      "storyteller": "Edwin Abbott Abbott"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "1995-01-01",
+      "node": "1995-01-01",
+      "storyteller": "1995-01-01"
+    }
   }
 }

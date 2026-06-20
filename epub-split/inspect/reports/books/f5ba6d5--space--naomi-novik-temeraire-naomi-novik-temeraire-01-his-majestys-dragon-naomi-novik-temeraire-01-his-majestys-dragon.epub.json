@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Naomi Novik - Temeraire/Naomi Novik - Temeraire 01 - His Majestys Dragon/Naomi Novik - Temeraire 01 - His Majestys Dragon.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "His Majesty’s Dragon",
+          "creator": "Naomi Novik",
+          "date": "2006"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "His Majesty",
+        "creator": "Naomi Novik",
+        "date": "2006"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-differ",
+      "browser": "His Majesty’s Dragon",
+      "node": "His Majesty"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Naomi Novik",
+      "node": "Naomi Novik"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2006",
+      "node": "2006"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Philip K. Dick - A Scanner Darkly/Philip K. Dick - A Scanner Darkly.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "A Scanner Darkly",
+          "creator": "Philip K. Dick",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "A Scanner Darkly",
+        "creator": "Philip K. Dick",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "A Scanner Darkly",
+      "node": "A Scanner Darkly"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Philip K. Dick",
+      "node": "Philip K. Dick"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

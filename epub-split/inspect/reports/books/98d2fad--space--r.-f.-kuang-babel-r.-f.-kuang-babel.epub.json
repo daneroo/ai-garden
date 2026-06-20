@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "R. F. Kuang - Babel/R. F. Kuang - Babel.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Babel",
+          "creator": "R. F. Kuang",
+          "date": "2022-06-02T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Babel",
+        "creator": "R. F. Kuang",
+        "date": "2022-06-02T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Babel",
+        "creator": "R. F. Kuang",
+        "date": "2022-06-02T00:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Babel",
+      "node": "Babel",
+      "storyteller": "Babel"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "R. F. Kuang",
+      "node": "R. F. Kuang",
+      "storyteller": "R. F. Kuang"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-06-02T00:00:00+00:00",
+      "node": "2022-06-02T00:00:00+00:00",
+      "storyteller": "2022-06-02T00:00:00+00:00"
+    }
   }
 }

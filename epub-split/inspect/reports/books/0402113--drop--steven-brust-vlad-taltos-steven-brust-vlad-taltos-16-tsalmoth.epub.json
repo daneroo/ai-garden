@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Steven Brust - Vlad Taltos/Steven Brust - Vlad Taltos 16 - Tsalmoth.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Tsalmoth",
+          "creator": "Steven Brust",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Tsalmoth",
+        "creator": "Steven Brust",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Tsalmoth",
+        "creator": "Steven Brust",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Tsalmoth",
+      "node": "Tsalmoth",
+      "storyteller": "Tsalmoth"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Steven Brust",
+      "node": "Steven Brust",
+      "storyteller": "Steven Brust"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

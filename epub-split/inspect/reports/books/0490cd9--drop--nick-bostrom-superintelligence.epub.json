@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Nick Bostrom - Superintelligence.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Superintelligence: Paths, Dangers, Strategies",
+          "creator": "Nick Bostrom",
+          "date": "2014"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Superintelligence: Paths, Dangers, Strategies",
+        "creator": "Nick Bostrom",
+        "date": "2014"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Superintelligence: Paths, Dangers, Strategies",
+      "node": "Superintelligence: Paths, Dangers, Strategies"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Nick Bostrom",
+      "node": "Nick Bostrom"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014",
+      "node": "2014"
+    }
   }
 }

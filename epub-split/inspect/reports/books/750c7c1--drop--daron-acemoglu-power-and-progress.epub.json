@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Daron Acemoglu - Power and Progress.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Power and Progress",
+          "creator": "Daron Acemoglu;Simon Johnson;",
+          "date": "2023-05-16T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Power and Progress",
+        "creator": "Daron Acemoglu;Simon Johnson;",
+        "date": "2023-05-16T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Power and Progress",
+      "node": "Power and Progress"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Daron Acemoglu;Simon Johnson;",
+      "node": "Daron Acemoglu;Simon Johnson;"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2023-05-16T00:00:00+00:00",
+      "node": "2023-05-16T00:00:00+00:00"
+    }
   }
 }

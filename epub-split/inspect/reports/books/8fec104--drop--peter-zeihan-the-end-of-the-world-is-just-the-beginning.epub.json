@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Peter Zeihan - The End of the World is Just the Beginning.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The End of the World is Just the Beginning",
+          "creator": "Peter Zeihan",
+          "date": "2022-04-22"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The End of the World is Just the Beginning",
+        "creator": "Peter Zeihan",
+        "date": "2022-04-22"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The End of the World is Just the Beginning",
+        "creator": "Peter Zeihan",
+        "date": "2022-04-22"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The End of the World is Just the Beginning",
+      "node": "The End of the World is Just the Beginning",
+      "storyteller": "The End of the World is Just the Beginning"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Peter Zeihan",
+      "node": "Peter Zeihan",
+      "storyteller": "Peter Zeihan"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-04-22",
+      "node": "2022-04-22",
+      "storyteller": "2022-04-22"
+    }
   }
 }

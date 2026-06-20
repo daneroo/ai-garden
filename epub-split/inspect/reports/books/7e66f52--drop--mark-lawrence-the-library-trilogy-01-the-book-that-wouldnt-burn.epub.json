@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Mark Lawrence - The Library Trilogy 01 - The Book That Wouldnt Burn.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Book That Wouldn't Burn",
+          "creator": "Mark Lawrence",
+          "date": "2023-05-09T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Book That Wouldn't Burn",
+        "creator": "Mark Lawrence",
+        "date": "2023-05-09T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Book That Wouldn't Burn",
+        "creator": "Mark Lawrence",
+        "date": "2023-05-09T00:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Book That Wouldn't Burn",
+      "node": "The Book That Wouldn't Burn",
+      "storyteller": "The Book That Wouldn't Burn"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Mark Lawrence",
+      "node": "Mark Lawrence",
+      "storyteller": "Mark Lawrence"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2023-05-09T00:00:00+00:00",
+      "node": "2023-05-09T00:00:00+00:00",
+      "storyteller": "2023-05-09T00:00:00+00:00"
+    }
   }
 }

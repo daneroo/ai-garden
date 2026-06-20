@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Steven Erikson - The Malazan Book of the Fallen/Steven Erikson - Malazan - 06 The Bonehunters/Steven Erikson - Malazan - 06 The Bonehunters.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Erikson, Steven - Malazan 06 - Erikson, Steven",
+          "creator": "Erikson, Steven",
+          "date": "2011-03-08T22:10:15.375000+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Erikson, Steven - Malazan 06 - Erikson, Steven",
+        "creator": "Erikson, Steven",
+        "date": "2011-03-08T22:10:15.375000+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Erikson, Steven - Malazan 06 - Erikson, Steven",
+      "node": "Erikson, Steven - Malazan 06 - Erikson, Steven"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Erikson, Steven",
+      "node": "Erikson, Steven"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-03-08T22:10:15.375000+00:00",
+      "node": "2011-03-08T22:10:15.375000+00:00"
+    }
   }
 }

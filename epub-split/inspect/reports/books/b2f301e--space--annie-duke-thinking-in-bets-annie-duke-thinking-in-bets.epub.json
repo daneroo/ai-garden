@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Annie Duke - Thinking in Bets/Annie Duke - Thinking in Bets.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Thinking in Bets",
+          "creator": "Annie Duke",
+          "date": "2018-02-06"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Thinking in Bets",
+        "creator": "Annie Duke",
+        "date": "2018-02-06"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Thinking in Bets",
+        "creator": "Annie Duke",
+        "date": "2018-02-06"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Thinking in Bets",
+      "node": "Thinking in Bets",
+      "storyteller": "Thinking in Bets"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Annie Duke",
+      "node": "Annie Duke",
+      "storyteller": "Annie Duke"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2018-02-06",
+      "node": "2018-02-06",
+      "storyteller": "2018-02-06"
+    }
   }
 }

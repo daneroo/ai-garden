@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "David Chalmers - Reality+/David Chalmers - Reality+.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Reality+",
+          "creator": "David J. Chalmers",
+          "date": "2021-12-15"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Reality+",
+        "creator": "David J. Chalmers",
+        "date": "2021-12-15"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Reality+",
+        "creator": "David J. Chalmers",
+        "date": "2021-12-15"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Reality+",
+      "node": "Reality+",
+      "storyteller": "Reality+"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "David J. Chalmers",
+      "node": "David J. Chalmers",
+      "storyteller": "David J. Chalmers"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021-12-15",
+      "node": "2021-12-15",
+      "storyteller": "2021-12-15"
+    }
   }
 }

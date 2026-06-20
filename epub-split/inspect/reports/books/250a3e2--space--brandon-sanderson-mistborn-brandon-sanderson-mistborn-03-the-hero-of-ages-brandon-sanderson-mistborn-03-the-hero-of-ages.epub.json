@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Brandon Sanderson - Mistborn/Brandon Sanderson - Mistborn 03 - The Hero of Ages/Brandon Sanderson - Mistborn 03 - The Hero of Ages.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Hero of Ages",
+          "creator": "Brandon Sanderson",
+          "date": "2009-12-02T04:00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Hero of Ages",
+        "creator": "Brandon Sanderson",
+        "date": "2009-12-02T04:00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Hero of Ages",
+      "node": "The Hero of Ages"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Brandon Sanderson",
+      "node": "Brandon Sanderson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2009-12-02T04:00:00",
+      "node": "2009-12-02T04:00:00"
+    }
   }
 }

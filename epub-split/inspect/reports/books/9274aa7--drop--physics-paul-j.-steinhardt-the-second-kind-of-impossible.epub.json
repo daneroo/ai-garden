@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Physics/Paul J. Steinhardt - The Second Kind of Impossible.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Second Kind of Impossible",
+          "creator": "Paul Steinhardt",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Second Kind of Impossible",
+        "creator": "Paul Steinhardt",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Second Kind of Impossible",
+      "node": "The Second Kind of Impossible"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Paul Steinhardt",
+      "node": "Paul Steinhardt"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

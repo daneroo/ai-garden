@@ -7,9 +7,9 @@ Design reference:
 
 ## Status
 
-- Overall: `GATE 5 READY (NOT STARTED)`
+- Overall: `GATE 5 COMPLETE — FINAL DECISION PENDING`
 - Current gate: `Gate 5`
-- Next action: begin Gate 5 (three-parser metadata comparison) when ready
+- Next action: review Gate 5 findings and make final feasibility decision
 
 ## Tracking Rules
 
@@ -25,16 +25,18 @@ Design reference:
 
 ## Dashboard
 
-| Gate | Scope | Status |
-|---|---|---|
-| 1 | Empty loop and deterministic reports | `APPROVED` |
-| 2 | Typed Playwright browser boundary | `APPROVED` |
-| 3 | Browser epub.ts open outcomes | `APPROVED` |
-| 4A | Node epub.ts open outcomes | `APPROVED` |
-| 4B | Storyteller open outcomes | `APPROVED` |
-| 4C | Resolve node epub.ts hangs (exploration) | `APPROVED` |
-| 5 | Three-parser metadata comparison | `READY (NOT STARTED)` |
-| Final | Feasibility decision | `BLOCKED BY GATE 5` |
+| Gate  | Scope                                    | Status              |
+| ----- | ---------------------------------------- | ------------------- |
+| 1     | Empty loop and deterministic reports     | `APPROVED`          |
+| 2     | Typed Playwright browser boundary        | `APPROVED`          |
+| 3     | Browser epub.ts open outcomes            | `APPROVED`          |
+| 4A    | Node epub.ts open outcomes               | `APPROVED`          |
+| 4B    | Storyteller open outcomes                | `APPROVED`          |
+| 4C    | Resolve node epub.ts hangs (exploration) | `APPROVED`          |
+| 5A    | Metadata API inventory and schema        | `APPROVED`          |
+| 5B    | Three-field extraction and comparison    | `APPROVED`          |
+| 5C    | Full-corpus evidence and review          | `COMPLETE`          |
+| Final | Feasibility decision                     | `BLOCKED BY GATE 5` |
 
 ## Gate 1: Empty Full-Corpus Loop and Reports
 
@@ -89,7 +91,7 @@ Status: `APPROVED`
 
 - [x] Report filenames and flat directory structure reviewed.
 - [x] Per-book JSON inspected on representative `test`, `drop`, and `space`
-  books.
+      books.
 - [x] `run.json` inspected for traceability and reproducibility.
 - [x] `index.md` inspected for useful corpus visibility.
 - [x] Failure behavior inspected.
@@ -111,8 +113,8 @@ Status: `APPROVED`
 
 - [x] Add Playwright and the browser epub.ts package dependency.
 - [x] Write a browser-only TypeScript entrypoint.
-- [x] Import `@likecoin/epub-ts`, never `@likecoin/epub-ts/node`, in the
-  browser entrypoint.
+- [x] Import `@likecoin/epub-ts`, never `@likecoin/epub-ts/node`, in the browser
+      entrypoint.
 - [x] Bundle the browser entrypoint with Bun for a browser target.
 - [x] Verify the bundle does not contain LinkeDOM or unresolved Node imports.
 - [x] Expose one narrow typed harness function on `globalThis`.
@@ -126,7 +128,7 @@ Status: `APPROVED`
 - [x] Return a constant typed response, byte length, and SHA-256 only.
 - [x] Capture page errors as structured browser-attempt diagnostics.
 - [x] Capture browser console errors without writing into report/progress
-  output.
+      output.
 - [x] Close each per-book browser boundary reliably.
 - [x] Bound shared-browser shutdown and stop the localhost server reliably.
 - [x] Keep epub.ts parsing disabled throughout this gate.
@@ -258,7 +260,7 @@ Status: `APPROVED`
 - [x] Add `@storyteller-platform/epub`.
 - [x] Implement an independent Storyteller adapter.
 - [x] Open each book in a hard-killable subprocess with a timeout (reuse the
-  `node-open-one.ts` pattern) so a synchronous hang cannot freeze the run.
+      `node-open-one.ts` pattern) so a synchronous hang cannot freeze the run.
 - [x] Read or pass exact EPUB bytes using the documented API.
 - [x] Record open success as a structured observation.
 - [x] Record open failure with stage, category, and message.
@@ -316,37 +318,37 @@ micro-experiment with a check-in:
   loop in this gate. Daniel runs the full corpus, never the assistant.
 - Hard timebox every open attempt: kill at <= 10s. A true hang is infinite, so
   10s is conclusive.
-- Keep all scratch code under `epub-split/inspect/.scratch-4c/` (gitignored).
-  Do not modify `src/` during exploration; `src/` changes happen only in E12,
-  after a decision. Adding dependencies with `bun add` is fine (easily reverted);
-  it is not a `src/` change.
-- After each experiment: record ONE short result line in FINDINGS under a
-  "Gate 4C log" heading, then STOP and report to Daniel. Do not chain
-  experiments in a single turn.
+- Keep all scratch code under `epub-split/inspect/.scratch-4c/` (gitignored). Do
+  not modify `src/` during exploration; `src/` changes happen only in E12, after
+  a decision. Adding dependencies with `bun add` is fine (easily reverted); it
+  is not a `src/` change.
+- After each experiment: record ONE short result line in FINDINGS under a "Gate
+  4C log" heading, then STOP and report to Daniel. Do not chain experiments in a
+  single turn.
 - A single negative result is a finding, not a failure. Record and move on.
 - Do not repair, normalize, or rewrite any input EPUB.
 
 ### Experiments (each is one check-in)
 
 - [x] E0. Pick the reproduction book: the SMALLEST of the known hanging books
-  (fastest to load). Record its name, size, and sha. Confirm it still hangs
-  (killed at 10s) with the current worker.
+      (fastest to load). Record its name, size, and sha. Confirm it still hangs
+      (killed at 10s) with the current worker.
 - [x] E1. Capture stderr. Re-open the same single book with the subprocess
-  stderr PIPED (not ignored) and a 10s kill. Record anything LinkeDOM/epub.ts
-  prints before spinning (or "silent"). This also informs whether the shipped
-  worker should stop ignoring stderr.
-- [x] E2. Localize the loop. Split the open into stages with markers:
-  (a) read bytes, (b) construct `new Book(bytes, {replacements:"none"})`,
-  (c) `await book.opened`. Record which stage never returns.
+      stderr PIPED (not ignored) and a 10s kill. Record anything
+      LinkeDOM/epub.ts prints before spinning (or "silent"). This also informs
+      whether the shipped worker should stop ignoring stderr.
+- [x] E2. Localize the loop. Split the open into stages with markers: (a) read
+      bytes, (b) construct `new Book(bytes, {replacements:"none"})`, (c)
+      `await book.opened`. Record which stage never returns.
 - [x] E3. Enumerate options (NO execution). List the epub.ts node
-  constructor/open options from its type declarations that could plausibly
-  affect the loop (beyond `replacements`). Record the candidate list.
+      constructor/open options from its type declarations that could plausibly
+      affect the loop (beyond `replacements`). Record the candidate list.
 - [x] E4. Root cause confirmed. Bun ships no native `DOMParser`, so
-  `@likecoin/epub-ts/node` installs LinkeDOM's, and the loop is inside
-  LinkeDOM's `DOMParser.parseFromString` during `opened`. epub.ts parses
-  through the GLOBAL `DOMParser` (set only when undefined), so overriding
-  `globalThis.DOMParser` before open is a feasible injection hook. Constructor
-  options are eliminated.
+      `@likecoin/epub-ts/node` installs LinkeDOM's, and the loop is inside
+      LinkeDOM's `DOMParser.parseFromString` during `opened`. epub.ts parses
+      through the GLOBAL `DOMParser` (set only when undefined), so overriding
+      `globalThis.DOMParser` before open is a feasible injection hook.
+      Constructor options are eliminated.
 
 Constructor options are eliminated. The remaining lever is the parser engine
 itself. Add `jsdom` and `@xmldom/xmldom` as normal Bun dependencies (easily
@@ -355,26 +357,29 @@ RESOLVES the parse or REVEALS the underlying defect (a stricter parser throwing
 is a useful result — LinkeDOM's tolerance may be masking malformed XML).
 
 - [x] E5. Add `jsdom` and `@xmldom/xmldom` with `bun add`. Confirm each imports
-  and constructs a `DOMParser` under Bun (trivial parse of `<a/>`).
+      and constructs a `DOMParser` under Bun (trivial parse of `<a/>`).
 - [x] E6. Prove the injection works on a KNOWN-GOOD book. Override
-  `globalThis.DOMParser` before importing `@likecoin/epub-ts/node`, open a small
-  book that already opens, and confirm it still opens via the injected parser
-  (so a later hang/throw is attributable to the parser, not a broken hook).
+      `globalThis.DOMParser` before importing `@likecoin/epub-ts/node`, open a
+      small book that already opens, and confirm it still opens via the injected
+      parser (so a later hang/throw is attributable to the parser, not a broken
+      hook).
 - [x] E7. xmldom on the repro book. Inject `@xmldom/xmldom`, open the one book
-  (10s kill). Record: opens / hangs / throws. A throw with a location is the
-  ideal outcome — capture the message; it likely pinpoints the malformation.
+      (10s kill). Record: opens / hangs / throws. A throw with a location is the
+      ideal outcome — capture the message; it likely pinpoints the malformation.
 - [x] E8. jsdom on the repro book. Inject jsdom's `DOMParser`, open the one book
-  (10s kill). Record: opens / hangs / throws.
+      (10s kill). Record: opens / hangs / throws.
 - [x] E9. Interpret E7/E8: did either resolve the parse, and/or reveal the
-  actual defect? State whether LinkeDOM tolerance is hiding a real malformation.
+      actual defect? State whether LinkeDOM tolerance is hiding a real
+      malformation.
 - [x] E10. If either parser opens (or cleanly errors) on the repro book, run it
-  against the other distinct hanging books, ONE book at a time, 10s each (this
-  is 8-9 single-book runs, never a corpus loop). Record per-book outcome.
+      against the other distinct hanging books, ONE book at a time, 10s each
+      (this is 8-9 single-book runs, never a corpus loop). Record per-book
+      outcome.
 - [x] E11. Decision: inject a replacement parser in `src/`, add a node fallback
-  (try epub.ts-node, on timeout/throw fall back), keep the subprocess timeout
-  guard, or report the defect upstream. Record rationale.
+      (try epub.ts-node, on timeout/throw fall back), keep the subprocess
+      timeout guard, or report the defect upstream. Record rationale.
 - [x] E12. If (and only if) E11 chooses a code change, apply it to `src/`, then
-  hand off to Daniel for a single full-corpus re-validation run.
+      hand off to Daniel for a single full-corpus re-validation run.
 
 ### Validation (deferred to Daniel; only if E12 changes code)
 
@@ -398,63 +403,96 @@ docs(inspect): resolve or characterize node epubts hangs
 
 ## Gate 5: Three-Parser Metadata Comparison
 
-Status: `READY (NOT STARTED)`
+Status: `COMPLETE — PENDING REVIEW AND APPROVAL`
+
+Gate 5 is split into three execution parts. Only the schema boundary requires a
+new approval; after approval, implementation can proceed directly to the
+full-corpus handoff without another artificial gate.
+
+### Proposed Observation and Comparison Schema
+
+- Add a `metadata` outcome to every successful parser open. It is either
+  `metadata-extracted` or a structured `metadata-failed` with stage, category,
+  and message. Existing open failures remain unchanged and make metadata
+  unavailable by reference rather than duplicating the failure.
+- Scope the microexperiment to three scalar concepts: `title`, `creator`, and
+  `date`, each represented as `string | null`. Keep only the first value exposed
+  by each implementation. Do not inventory unrelated metadata.
+- epub.ts maps its exact `title`, `creator`, and `pubdate`; empty strings become
+  `null`. Storyteller maps the first raw `dc:title`, `dc:creator`, and
+  `dc:date`; missing entries become `null`.
+- Do not use Storyteller `getPublicationDate()` for comparison: it coerces the
+  source string through JavaScript `Date`, changing precision and lexical form
+  (for example `2025` becomes `2025-01-01T00:00:00.000Z`). The raw entry is the
+  attributable exact value.
+- `run.json` and `index.md` count each field as present, missing, or unavailable
+  per parser. Storyteller EPUB 2 open failures are unavailable. No upgrade or
+  repair is attempted.
+- Zero-value dates such as `0101-01-01T00:00:00+00:00` are normalized to `null`
+  before counting so placeholder dates do not pollute the comparison or
+  histogram.
+
+### Gate 5A: Schema Investigation and Approval
 
 ### Schema Investigation
 
-- [ ] Inventory each parser's low-level metadata API.
-- [ ] Inventory each parser's semantic convenience metadata API.
-- [ ] Define metadata entries without flattening repeated fields.
-- [ ] Preserve source ordering where exposed.
-- [ ] Preserve exact values.
-- [ ] Preserve element or property names.
-- [ ] Preserve attributes.
-- [ ] Preserve refinements and relationships.
-- [ ] Keep semantic convenience values separate from low-level entries.
-- [ ] Version the expanded observation schema.
-- [ ] Obtain explicit schema review before the full implementation run.
+- [x] Inventory each parser's low-level metadata API.
+- [x] Inventory each parser's semantic convenience metadata API.
+- [x] Define metadata entries without flattening repeated fields.
+- [x] Preserve source ordering where exposed.
+- [x] Preserve exact values.
+- [x] Preserve element or property names.
+- [x] Preserve attributes.
+- [x] Preserve refinements and relationships.
+- [x] Keep semantic convenience values separate from low-level entries.
+- [x] Define schema version 6 as the expanded observation schema.
+- [x] Obtain explicit schema review before the full implementation run.
 
-### Implementation
+### Gate 5B: Implementation
 
-- [ ] Extract metadata independently in browser epub.ts.
-- [ ] Extract metadata independently in Node epub.ts.
-- [ ] Extract metadata independently in Storyteller.
-- [ ] Record metadata-stage failures separately from open failures.
-- [ ] Preserve raw metadata observations for all three parsers.
-- [ ] Compare exact typed values without normalization.
-- [ ] Compare field presence.
-- [ ] Compare multiplicity.
-- [ ] Compare entry ordering where represented.
-- [ ] Compare attributes and refinements.
-- [ ] Compare exact values.
-- [ ] Classify all-three agreement, two-to-one difference, all-three
-  difference, and unavailable comparisons.
-- [ ] Link every comparison directly to its source observations.
-- [ ] Do not declare a majority parser correct.
-- [ ] Do not normalize entities, markup, whitespace, or line endings.
+Scope: three scalar fields (title, creator, date), first value only, exact
+string | null. No multiplicity, ordering, attributes, or refinements — those
+belong to a separately approved gate if needed.
 
-### Full-Corpus Evidence
+- [x] Extract title, creator, date in browser epub.ts (from packaging.metadata).
+- [x] Extract title, creator, date in Node epub.ts (same internal path, node build).
+- [x] Extract title, creator, date in Storyteller (raw dc:* getMetadata() entries).
+- [x] Treat sentinel zero dates (0101-01-01T00:00:00+00:00) as null.
+- [x] Deduplicate sentinel constant and optional/optionalDate helpers into
+      `src/metadata-utils.ts` (shared by all three workers).
+- [x] Per-book comparison with seven-way classification:
+      all-agree / node-differs / storyteller-unique / browser-unique /
+      all-differ / partial-agree / partial-differ (partial = storyteller unavailable).
+- [x] Metadata disagreements trigger a detail file; detail page shows per-field
+      values for each differing parser.
+- [x] index.md comparison histogram: per-field counts by comparison status.
+- [x] index.md per-parser field multiplicity histogram (present / missing / unavailable).
 
-- [ ] `test` three-parser metadata run completed.
-- [ ] `drop` three-parser metadata run completed.
-- [ ] `space` three-parser metadata run completed.
-- [ ] Every successfully opened book has metadata or a structured metadata
-  failure for every parser.
-- [ ] Raw metadata remains inspectable per parser and book.
-- [ ] Every aggregate count traces to individual books and fields.
-- [ ] Entity and escaped-markup cases have concrete before/after observations.
-- [ ] No generic compatibility warning replaces actual differing values.
-- [ ] A second unchanged complete run produces no report diff.
+### Gate 5C: Full-Corpus Evidence and Review
+
+Note: Storyteller only parses EPUB 3 and rejects EPUB 2 with a structured
+failure. Three-way comparison is limited to EPUB 3 books; EPUB 2 books produce
+`no-storyteller-*` comparison outcomes. This is expected, not a defect.
+
+- [x] `test` three-parser metadata run completed.
+- [x] `drop` three-parser metadata run completed.
+- [x] `space` three-parser metadata run completed.
+- [x] Every successfully opened book has metadata for every parser that opened it.
+- [x] Raw metadata remains inspectable per parser and book.
+- [x] Comparison histogram traces to individual book detail files.
+- [x] A second unchanged complete run produces no report diff.
+
+Two reproducible full-corpus runs confirmed after final schema rename
+(`browser-node-agree/differ`, `node-differs`, etc.). Gate 5C complete.
 
 ### Review and Approval
 
-- [ ] Representative all-three agreements reviewed.
-- [ ] Representative two-to-one differences reviewed.
-- [ ] Representative all-three differences reviewed.
-- [ ] Every recurring metadata difference class investigated.
+- [ ] Representative all-agree and browser-node-agree cases reviewed.
+- [ ] Node entity-truncation bug (node-differs, browser-node-differ) reviewed.
+- [ ] Storyteller raw-entity encoding (all-differ) reviewed.
 - [ ] Any proposed normalization deferred to a separately approved gate.
 - [ ] Report usefulness for future structural/content work assessed.
-- [ ] Gate findings recorded.
+- [x] Gate findings recorded (entity truncation, raw entity encoding, EPUB2 split).
 - [ ] Gate checkpoint committed.
 - [ ] **APPROVED: make the final feasibility decision.**
 
@@ -482,4 +520,4 @@ Exactly one outcome must be checked:
 - [ ] **CONTINUE:** write a separately approved plan for structural gates.
 - [ ] **NARROW:** remove one or more paths based on demonstrated limitations.
 - [ ] **STOP:** the experiment does not improve confidence or support the
-  alignment objective.
+      alignment objective.

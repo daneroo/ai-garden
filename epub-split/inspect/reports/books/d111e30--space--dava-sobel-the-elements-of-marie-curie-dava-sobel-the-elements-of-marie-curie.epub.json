@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Dava Sobel - The Elements of Marie Curie/Dava Sobel - The Elements of Marie Curie.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Elements of Marie Curie",
+          "creator": "Dava Sobel",
+          "date": "2024-08-20T17:00:00Z"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Elements of Marie Curie",
+        "creator": "Dava Sobel",
+        "date": "2024-08-20T17:00:00Z"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Elements of Marie Curie",
+        "creator": "Dava Sobel",
+        "date": "2024-08-20T17:00:00Z"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Elements of Marie Curie",
+      "node": "The Elements of Marie Curie",
+      "storyteller": "The Elements of Marie Curie"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Dava Sobel",
+      "node": "Dava Sobel",
+      "storyteller": "Dava Sobel"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2024-08-20T17:00:00Z",
+      "node": "2024-08-20T17:00:00Z",
+      "storyteller": "2024-08-20T17:00:00Z"
+    }
   }
 }

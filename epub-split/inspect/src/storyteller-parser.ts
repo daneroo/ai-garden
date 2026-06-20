@@ -1,6 +1,7 @@
 import type {
   DeclaredVersion,
   HashedBook,
+  MetadataFields,
   StorytellerOpenOutcome,
 } from "./types.ts";
 
@@ -16,6 +17,7 @@ const OPEN_TIMEOUT_MS =
 interface WorkerResult {
   ok?: boolean;
   version?: DeclaredVersion;
+  metadata?: MetadataFields;
   category?: string;
   message?: string;
 }
@@ -62,8 +64,8 @@ export async function inspectStoryteller(
     };
   }
 
-  if (parsed.ok === true && parsed.version) {
-    return { status: "storyteller-opened", version: parsed.version };
+  if (parsed.ok === true && parsed.version && parsed.metadata) {
+    return { status: "storyteller-opened", version: parsed.version, metadata: parsed.metadata };
   }
   return {
     status: "storyteller-open-failed",

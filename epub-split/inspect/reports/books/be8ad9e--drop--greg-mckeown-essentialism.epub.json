@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Greg McKeown - Essentialism.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Essentialism: The Disciplined Pursuit of Less",
+          "creator": "Mckeown, Greg",
+          "date": "2014-04-15T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Essentialism: The Disciplined Pursuit of Less",
+        "creator": "Mckeown, Greg",
+        "date": "2014-04-15T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Essentialism: The Disciplined Pursuit of Less",
+      "node": "Essentialism: The Disciplined Pursuit of Less"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Mckeown, Greg",
+      "node": "Mckeown, Greg"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-04-15T00:00:00+00:00",
+      "node": "2014-04-15T00:00:00+00:00"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Sebastian Mallaby - The Infinity Machine/Sebastian Mallaby - The Infinity Machine.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Infinity Machine",
+          "creator": "Sebastian Mallaby;",
+          "date": "2026-03-31"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Infinity Machine",
+        "creator": "Sebastian Mallaby;",
+        "date": "2026-03-31"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Infinity Machine",
+        "creator": "Sebastian Mallaby;",
+        "date": "2026-03-31"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Infinity Machine",
+      "node": "The Infinity Machine",
+      "storyteller": "The Infinity Machine"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Sebastian Mallaby;",
+      "node": "Sebastian Mallaby;",
+      "storyteller": "Sebastian Mallaby;"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2026-03-31",
+      "node": "2026-03-31",
+      "storyteller": "2026-03-31"
+    }
   }
 }

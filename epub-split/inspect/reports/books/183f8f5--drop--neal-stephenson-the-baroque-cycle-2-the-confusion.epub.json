@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Neal Stephenson - The Baroque Cycle 2 - The Confusion.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Confusion (Baroque Cycle, #2)",
+          "creator": "Neal Stephenson",
+          "date": "2009-08-02T00:00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Confusion (Baroque Cycle, #2)",
+        "creator": "Neal Stephenson",
+        "date": "2009-08-02T00:00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Confusion (Baroque Cycle, #2)",
+      "node": "The Confusion (Baroque Cycle, #2)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Neal Stephenson",
+      "node": "Neal Stephenson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2009-08-02T00:00:00",
+      "node": "2009-08-02T00:00:00"
+    }
   }
 }

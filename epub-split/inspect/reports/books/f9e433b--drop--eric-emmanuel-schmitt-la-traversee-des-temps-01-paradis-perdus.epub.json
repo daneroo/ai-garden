@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Eric-Emmanuel Schmitt - La Traversee des temps 01 - Paradis perdus.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Paradis perdus",
+          "creator": "Éric-Emmanuel Schmitt",
+          "date": "2020-11-22T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Paradis perdus",
+        "creator": "Éric-Emmanuel Schmitt",
+        "date": "2020-11-22T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Paradis perdus",
+        "creator": "Éric-Emmanuel Schmitt",
+        "date": "2020-11-22T00:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Paradis perdus",
+      "node": "Paradis perdus",
+      "storyteller": "Paradis perdus"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Éric-Emmanuel Schmitt",
+      "node": "Éric-Emmanuel Schmitt",
+      "storyteller": "Éric-Emmanuel Schmitt"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2020-11-22T00:00:00+00:00",
+      "node": "2020-11-22T00:00:00+00:00",
+      "storyteller": "2020-11-22T00:00:00+00:00"
+    }
   }
 }

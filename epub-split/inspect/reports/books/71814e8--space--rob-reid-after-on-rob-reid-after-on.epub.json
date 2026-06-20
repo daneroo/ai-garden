@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Rob Reid - After On/Rob Reid - After On.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "After On",
+          "creator": "Rob Reid",
+          "date": "2017-08-01"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "After On",
+        "creator": "Rob Reid",
+        "date": "2017-08-01"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "After On",
+        "creator": "Rob Reid",
+        "date": "2017-08-01"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "After On",
+      "node": "After On",
+      "storyteller": "After On"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Rob Reid",
+      "node": "Rob Reid",
+      "storyteller": "Rob Reid"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2017-08-01",
+      "node": "2017-08-01",
+      "storyteller": "2017-08-01"
+    }
   }
 }

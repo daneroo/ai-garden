@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "James Clavell - Asian Saga/James Clavell - Asian Saga 4 - King Rat/James Clavell - Asian Saga 4 - King Rat.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "King Rat",
+          "creator": "James Clavell",
+          "date": "1962-01-02T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "King Rat",
+        "creator": "James Clavell",
+        "date": "1962-01-02T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "King Rat",
+      "node": "King Rat"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "James Clavell",
+      "node": "James Clavell"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1962-01-02T00:00:00+00:00",
+      "node": "1962-01-02T00:00:00+00:00"
+    }
   }
 }

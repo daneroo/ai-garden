@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Travel/Anthony Doerr - Four seasons in Rome.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Four Seasons in Rome: On Twins, Insomnia and the Biggest Funeral in the History of the World",
+          "creator": "Anthony Doerr",
+          "date": "2011-11-10T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Four Seasons in Rome: On Twins, Insomnia and the Biggest Funeral in the History of the World",
+        "creator": "Anthony Doerr",
+        "date": "2011-11-10T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Four Seasons in Rome: On Twins, Insomnia and the Biggest Funeral in the History of the World",
+      "node": "Four Seasons in Rome: On Twins, Insomnia and the Biggest Funeral in the History of the World"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Anthony Doerr",
+      "node": "Anthony Doerr"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-11-10T00:00:00+00:00",
+      "node": "2011-11-10T00:00:00+00:00"
+    }
   }
 }

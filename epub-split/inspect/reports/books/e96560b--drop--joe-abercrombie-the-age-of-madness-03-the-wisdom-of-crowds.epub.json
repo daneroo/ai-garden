@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Joe Abercrombie - The Age of Madness - 03 - The Wisdom of Crowds.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Wisdom of Crowds",
+          "creator": "Joe Abercrombie",
+          "date": "2021-09-14T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Wisdom of Crowds",
+        "creator": "Joe Abercrombie",
+        "date": "2021-09-14T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Wisdom of Crowds",
+        "creator": "Joe Abercrombie",
+        "date": "2021-09-14T00:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Wisdom of Crowds",
+      "node": "The Wisdom of Crowds",
+      "storyteller": "The Wisdom of Crowds"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Joe Abercrombie",
+      "node": "Joe Abercrombie",
+      "storyteller": "Joe Abercrombie"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021-09-14T00:00:00+00:00",
+      "node": "2021-09-14T00:00:00+00:00",
+      "storyteller": "2021-09-14T00:00:00+00:00"
+    }
   }
 }

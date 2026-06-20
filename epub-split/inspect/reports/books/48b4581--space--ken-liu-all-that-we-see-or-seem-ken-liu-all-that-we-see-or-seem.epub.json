@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Ken Liu - All That We See or Seem/Ken Liu - All That We See or Seem.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "All That We See or Seem",
+          "creator": "Ken Liu",
+          "date": "2025-09-09"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "All That We See or Seem",
+        "creator": "Ken Liu",
+        "date": "2025-09-09"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "All That We See or Seem",
+        "creator": "Ken Liu",
+        "date": "2025-09-09"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "All That We See or Seem",
+      "node": "All That We See or Seem",
+      "storyteller": "All That We See or Seem"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Ken Liu",
+      "node": "Ken Liu",
+      "storyteller": "Ken Liu"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2025-09-09",
+      "node": "2025-09-09",
+      "storyteller": "2025-09-09"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Carlo Rovelli - The First Scientist - Anaximander and His Legacy.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The First Scientist",
+          "creator": "Carlo Rovelli",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The First Scientist",
+        "creator": "Carlo Rovelli",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The First Scientist",
+      "node": "The First Scientist"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Carlo Rovelli",
+      "node": "Carlo Rovelli"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

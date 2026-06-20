@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Dmitri Alperovitch - World on the Brink.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "World on the Brink",
+          "creator": "Dmitri Alperovitch",
+          "date": "2024-04-30"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "World on the Brink",
+        "creator": "Dmitri Alperovitch",
+        "date": "2024-04-30"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "World on the Brink",
+        "creator": "Dmitri Alperovitch",
+        "date": "2024-04-30"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "World on the Brink",
+      "node": "World on the Brink",
+      "storyteller": "World on the Brink"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Dmitri Alperovitch",
+      "node": "Dmitri Alperovitch",
+      "storyteller": "Dmitri Alperovitch"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2024-04-30",
+      "node": "2024-04-30",
+      "storyteller": "2024-04-30"
+    }
   }
 }

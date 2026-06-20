@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Nick Lane - Transformer/Nick Lane - Transformer.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Transformer",
+          "creator": "Nick Lane",
+          "date": "2022-06-04"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Transformer",
+        "creator": "Nick Lane",
+        "date": "2022-06-04"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Transformer",
+        "creator": "Nick Lane",
+        "date": "2022-06-04"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Transformer",
+      "node": "Transformer",
+      "storyteller": "Transformer"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Nick Lane",
+      "node": "Nick Lane",
+      "storyteller": "Nick Lane"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-06-04",
+      "node": "2022-06-04",
+      "storyteller": "2022-06-04"
+    }
   }
 }

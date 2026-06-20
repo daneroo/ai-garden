@@ -33,9 +33,16 @@ export type DeclaredVersion =
   | { status: "exposed"; value: string }
   | { status: "skipped" };
 
+export interface MetadataFields {
+  title: string | null;
+  creator: string | null;
+  date: string | null;
+}
+
 export interface BrowserOpenSuccess {
   status: "opened";
   version: DeclaredVersion;
+  metadata: MetadataFields;
 }
 
 export interface BrowserOpenFailure {
@@ -73,6 +80,7 @@ export interface NodeOpenSuccess {
   status: "node-opened";
   version: DeclaredVersion;
   engine: DOMParserImpl;
+  metadata: MetadataFields;
 }
 
 export interface NodeOpenFailure {
@@ -91,6 +99,7 @@ export type NodeOpenOutcome = NodeOpenSuccess | NodeOpenFailure;
 export interface StorytellerOpenSuccess {
   status: "storyteller-opened";
   version: DeclaredVersion;
+  metadata: MetadataFields;
 }
 
 export interface StorytellerOpenFailure {
@@ -121,13 +130,42 @@ export interface BookIdentity {
   shortSha: string;
 }
 
+// Per-field comparison across the three parser paths. Every status carries
+// individual parser values so any result is fully traceable.
+//
+// Three-parser statuses (all three parsers opened the book):
+//   all-agree        — browser == node == storyteller
+//   node-differs     — browser == storyteller, node is the outlier
+//   storyteller-differs — browser == node, storyteller is the outlier
+//   browser-differs  — node == storyteller, browser is the outlier
+//   all-differ       — all three values distinct
+//
+// Two-parser statuses (storyteller unavailable — EPUB 2 or open failure):
+//   browser-node-agree  — browser == node (storyteller absent)
+//   browser-node-differ — browser != node (storyteller absent)
+//
+// "unavailable" — no metadata from any available parser.
+export type FieldComparison =
+  | { status: "all-agree"; browser: string | null; node: string | null; storyteller: string | null }
+  | { status: "node-differs"; browser: string | null; node: string | null; storyteller: string | null }
+  | { status: "storyteller-differs"; browser: string | null; node: string | null; storyteller: string | null }
+  | { status: "browser-differs"; browser: string | null; node: string | null; storyteller: string | null }
+  | { status: "all-differ"; browser: string | null; node: string | null; storyteller: string | null }
+  | { status: "browser-node-agree"; browser: string | null; node: string | null }
+  | { status: "browser-node-differ"; browser: string | null; node: string | null }
+  | { status: "unavailable" };
+
+export interface MetadataComparison {
+  title: FieldComparison;
+  creator: FieldComparison;
+  date: FieldComparison;
+}
+
 export interface BookObservation {
   schemaVersion: number;
   book: BookIdentity;
   parsers: Record<ParserName, ParserPathAttempt>;
-  comparison: {
-    status: "not-implemented";
-  };
+  comparison: MetadataComparison;
 }
 
 export interface BookInventoryEntry extends BookIdentity {
@@ -162,6 +200,12 @@ export interface RunReport {
   parserPaths: readonly ParserName[];
   roots: RootInventory[];
   books: BookInventoryEntry[];
+  metadataHistogram: Record<ParserName, Record<keyof MetadataFields, {
+    unavailable: number;
+    missing: number;
+    present: number;
+  }>>;
+  comparisonHistogram: Record<keyof MetadataFields, Record<FieldComparison["status"], number>>;
 }
 
 export interface DiscoveredBook {

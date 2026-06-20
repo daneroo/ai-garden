@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Tim Harford - The Undercover Economist/Tim Harford - The Undercover Economist.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Undercover Economist",
+          "creator": "Tim Harford",
+          "date": "2005-10-14T05:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Undercover Economist",
+        "creator": "Tim Harford",
+        "date": "2005-10-14T05:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Undercover Economist",
+      "node": "The Undercover Economist"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Tim Harford",
+      "node": "Tim Harford"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2005-10-14T05:00:00+00:00",
+      "node": "2005-10-14T05:00:00+00:00"
+    }
   }
 }

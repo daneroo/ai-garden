@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Irving Finkel - The Ark Before Noah.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Ark Before Noah",
+          "creator": "Irving Finkel",
+          "date": "2014-03-25"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Ark Before Noah",
+        "creator": "Irving Finkel",
+        "date": "2014-03-25"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Ark Before Noah",
+      "node": "The Ark Before Noah"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Irving Finkel",
+      "node": "Irving Finkel"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-03-25",
+      "node": "2014-03-25"
+    }
   }
 }

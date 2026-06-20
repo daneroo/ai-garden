@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Ursula K. Le Guin - The Left Hand of Darkness.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Left Hand of Darkness",
+          "creator": "Ursula K. Le Guin",
+          "date": "2010-01-21T23:53:42"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Left Hand of Darkness",
+        "creator": "Ursula K. Le Guin",
+        "date": "2010-01-21T23:53:42"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Left Hand of Darkness",
+      "node": "The Left Hand of Darkness"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Ursula K. Le Guin",
+      "node": "Ursula K. Le Guin"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2010-01-21T23:53:42",
+      "node": "2010-01-21T23:53:42"
+    }
   }
 }

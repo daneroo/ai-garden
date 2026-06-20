@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Wolfgang Munchau - Kaput.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Kaput",
+          "creator": "Wolfgang Münchau",
+          "date": "2024-10-02T16:09:55Z"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Kaput",
+        "creator": "Wolfgang Münchau",
+        "date": "2024-10-02T16:09:55Z"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Kaput",
+        "creator": "Wolfgang Münchau",
+        "date": "2024-10-02T16:09:55Z"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Kaput",
+      "node": "Kaput",
+      "storyteller": "Kaput"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Wolfgang Münchau",
+      "node": "Wolfgang Münchau",
+      "storyteller": "Wolfgang Münchau"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2024-10-02T16:09:55Z",
+      "node": "2024-10-02T16:09:55Z",
+      "storyteller": "2024-10-02T16:09:55Z"
+    }
   }
 }

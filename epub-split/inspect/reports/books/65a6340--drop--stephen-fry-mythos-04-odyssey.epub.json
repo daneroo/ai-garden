@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Stephen Fry - Mythos 04 - Odyssey.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Odyssey",
+          "creator": "Stephen Fry",
+          "date": "2024-09-26"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Odyssey",
+        "creator": "Stephen Fry",
+        "date": "2024-09-26"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Odyssey",
+        "creator": "Stephen Fry",
+        "date": "2024-09-26"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Odyssey",
+      "node": "Odyssey",
+      "storyteller": "Odyssey"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Stephen Fry",
+      "node": "Stephen Fry",
+      "storyteller": "Stephen Fry"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2024-09-26",
+      "node": "2024-09-26",
+      "storyteller": "2024-09-26"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Bill Browder - Red Notice/Bill Browder - Red Notice.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Red Notice: A True Story of High Finance, Murder, and One Man's Fight for Justice",
+          "creator": "Bill Browder",
+          "date": "2015-02-03T05:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Red Notice: A True Story of High Finance, Murder, and One Man's Fight for Justice",
+        "creator": "Bill Browder",
+        "date": "2015-02-03T05:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Red Notice: A True Story of High Finance, Murder, and One Man's Fight for Justice",
+      "node": "Red Notice: A True Story of High Finance, Murder, and One Man's Fight for Justice"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Bill Browder",
+      "node": "Bill Browder"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2015-02-03T05:00:00+00:00",
+      "node": "2015-02-03T05:00:00+00:00"
+    }
   }
 }

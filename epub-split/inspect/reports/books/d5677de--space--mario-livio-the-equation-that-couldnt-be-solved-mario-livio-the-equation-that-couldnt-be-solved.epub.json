@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Mario Livio - The Equation that Couldnt be Solved/Mario Livio - The Equation that Couldnt be Solved.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Equation That Couldn't Be Solved",
+          "creator": "Mario Livio",
+          "date": "2005"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Equation That Couldn't Be Solved",
+        "creator": "Mario Livio",
+        "date": "2005"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Equation That Couldn't Be Solved",
+      "node": "The Equation That Couldn't Be Solved"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Mario Livio",
+      "node": "Mario Livio"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2005",
+      "node": "2005"
+    }
   }
 }

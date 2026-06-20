@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Oscar Wilde - Complete Works of Oscar Wilde.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Delphi Complete Works of Oscar Wilde (Illustrated)",
+          "creator": "WILDE, OSCAR",
+          "date": "2011-04-24T23:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Delphi Complete Works of Oscar Wilde (Illustrated)",
+        "creator": "WILDE, OSCAR",
+        "date": "2011-04-24T23:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Delphi Complete Works of Oscar Wilde (Illustrated)",
+      "node": "Delphi Complete Works of Oscar Wilde (Illustrated)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "WILDE, OSCAR",
+      "node": "WILDE, OSCAR"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-04-24T23:00:00+00:00",
+      "node": "2011-04-24T23:00:00+00:00"
+    }
   }
 }

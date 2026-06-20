@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Roger Penrose - Cycles of time.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Cycles of Time",
+          "creator": "Roger Penrose",
+          "date": "2011-05-03"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Cycles of Time",
+        "creator": "Roger Penrose",
+        "date": "2011-05-03"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Cycles of Time",
+      "node": "Cycles of Time"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Roger Penrose",
+      "node": "Roger Penrose"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-05-03",
+      "node": "2011-05-03"
+    }
   }
 }

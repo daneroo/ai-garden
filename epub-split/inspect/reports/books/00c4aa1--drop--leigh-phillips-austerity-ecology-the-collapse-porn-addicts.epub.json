@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Leigh Phillips - Austerity Ecology & the Collapse-Porn Addicts.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Austerity Ecology & the Collapse-Porn Addicts: A Defence Of Growth, Progress, Industry And Stuff",
+          "creator": "Leigh Phillips",
+          "date": "2015-10-29T18:30:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Austerity Ecology ",
+        "creator": "Leigh Phillips",
+        "date": "2015-10-29T18:30:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-differ",
+      "browser": "Austerity Ecology & the Collapse-Porn Addicts: A Defence Of Growth, Progress, Industry And Stuff",
+      "node": "Austerity Ecology "
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Leigh Phillips",
+      "node": "Leigh Phillips"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2015-10-29T18:30:00+00:00",
+      "node": "2015-10-29T18:30:00+00:00"
+    }
   }
 }

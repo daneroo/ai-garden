@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Stephen R. Donaldson - Thomas Covenant the Unbeliever 03 - The Power That Preserves.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Power That Preserves",
+          "creator": "Donaldson, Stephen R",
+          "date": "1977-12-13T05:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Power That Preserves",
+        "creator": "Donaldson, Stephen R",
+        "date": "1977-12-13T05:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Power That Preserves",
+      "node": "The Power That Preserves"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Donaldson, Stephen R",
+      "node": "Donaldson, Stephen R"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1977-12-13T05:00:00+00:00",
+      "node": "1977-12-13T05:00:00+00:00"
+    }
   }
 }

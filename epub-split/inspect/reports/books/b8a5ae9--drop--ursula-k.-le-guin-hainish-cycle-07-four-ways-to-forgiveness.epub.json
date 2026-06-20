@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Ursula K. Le Guin - Hainish Cycle 07 - Four Ways to Forgiveness.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Four Ways to Forgiveness",
+          "creator": "Ursula K Le Guin",
+          "date": "2014-03-01"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Four Ways to Forgiveness",
+        "creator": "Ursula K Le Guin",
+        "date": "2014-03-01"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Four Ways to Forgiveness",
+      "node": "Four Ways to Forgiveness"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Ursula K Le Guin",
+      "node": "Ursula K Le Guin"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-03-01",
+      "node": "2014-03-01"
+    }
   }
 }

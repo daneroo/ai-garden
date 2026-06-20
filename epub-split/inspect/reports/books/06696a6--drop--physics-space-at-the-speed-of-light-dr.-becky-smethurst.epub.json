@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Physics/Space at the Speed of Light - Dr. Becky Smethurst.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Space at the Speed of Light",
+          "creator": "Dr. Becky Smethurst",
+          "date": "2020-06-02"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Space at the Speed of Light",
+        "creator": "Dr. Becky Smethurst",
+        "date": "2020-06-02"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Space at the Speed of Light",
+        "creator": "Dr. Becky Smethurst",
+        "date": "2020-06-02"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Space at the Speed of Light",
+      "node": "Space at the Speed of Light",
+      "storyteller": "Space at the Speed of Light"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Dr. Becky Smethurst",
+      "node": "Dr. Becky Smethurst",
+      "storyteller": "Dr. Becky Smethurst"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2020-06-02",
+      "node": "2020-06-02",
+      "storyteller": "2020-06-02"
+    }
   }
 }

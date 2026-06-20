@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Evan Winter - The Burning/Evan Winter - The Burning 2 - The Fires of Vengeance/Evan Winter - The Burning 2 - The Fires of Vengeance.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Fires of Vengeance",
+          "creator": "Evan Winter",
+          "date": "2020-11-10T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Fires of Vengeance",
+        "creator": "Evan Winter",
+        "date": "2020-11-10T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Fires of Vengeance",
+      "node": "The Fires of Vengeance"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Evan Winter",
+      "node": "Evan Winter"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2020-11-10T00:00:00+00:00",
+      "node": "2020-11-10T00:00:00+00:00"
+    }
   }
 }

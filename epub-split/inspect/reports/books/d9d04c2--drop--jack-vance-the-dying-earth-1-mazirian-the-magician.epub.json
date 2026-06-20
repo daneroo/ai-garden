@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Jack Vance - The Dying Earth 1 - Mazirian the Magician.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Mazirian the Magician",
+          "creator": "Jack Vance",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Mazirian the Magician",
+        "creator": "Jack Vance",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Mazirian the Magician",
+      "node": "Mazirian the Magician"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Jack Vance",
+      "node": "Jack Vance"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

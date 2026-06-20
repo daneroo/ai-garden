@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Douglas Adams - The Hitchhiker's Guide to the Galaxy/Douglas Adams - THGTTG 01 - The Hitchhiker’s Guide to the Galaxy - Not Illustrated.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Hitchhiker’s Guide to the Galaxy",
+          "creator": "Douglas Adams",
+          "date": "1979-01-01"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Hitchhiker’s Guide to the Galaxy",
+        "creator": "Douglas Adams",
+        "date": "1979-01-01"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Hitchhiker’s Guide to the Galaxy",
+      "node": "The Hitchhiker’s Guide to the Galaxy"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Douglas Adams",
+      "node": "Douglas Adams"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1979-01-01",
+      "node": "1979-01-01"
+    }
   }
 }

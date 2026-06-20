@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "David A. Sinclair - Lifespan.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Lifespan",
+          "creator": "David A. Sinclair",
+          "date": "2019-09-10"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Lifespan",
+        "creator": "David A. Sinclair",
+        "date": "2019-09-10"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Lifespan",
+      "node": "Lifespan"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "David A. Sinclair",
+      "node": "David A. Sinclair"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2019-09-10",
+      "node": "2019-09-10"
+    }
   }
 }

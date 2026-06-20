@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Kurt Vonnegut - A Man Without a Country/Kurt Vonnegut - A Man without a Country.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "A Man Without a Country",
+          "creator": "Kurt Vonnegut",
+          "date": "2005-08-31T04:58:13+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "A Man Without a Country",
+        "creator": "Kurt Vonnegut",
+        "date": "2005-08-31T04:58:13+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "A Man Without a Country",
+      "node": "A Man Without a Country"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Kurt Vonnegut",
+      "node": "Kurt Vonnegut"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2005-08-31T04:58:13+00:00",
+      "node": "2005-08-31T04:58:13+00:00"
+    }
   }
 }

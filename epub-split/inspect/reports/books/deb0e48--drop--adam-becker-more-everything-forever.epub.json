@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Adam Becker - More Everything Forever.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "More Everything Forever",
+          "creator": "Adam Becker",
+          "date": "2025-04-22"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "More Everything Forever",
+        "creator": "Adam Becker",
+        "date": "2025-04-22"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "More Everything Forever",
+        "creator": "Adam Becker",
+        "date": "2025-04-22"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "More Everything Forever",
+      "node": "More Everything Forever",
+      "storyteller": "More Everything Forever"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Adam Becker",
+      "node": "Adam Becker",
+      "storyteller": "Adam Becker"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2025-04-22",
+      "node": "2025-04-22",
+      "storyteller": "2025-04-22"
+    }
   }
 }

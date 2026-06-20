@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Jim Butcher - Dresden Files 01 Storm Front.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Storm Front",
+          "creator": "Jim Butcher",
+          "date": "2007-11-05T08:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Storm Front",
+        "creator": "Jim Butcher",
+        "date": "2007-11-05T08:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Storm Front",
+      "node": "Storm Front"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Jim Butcher",
+      "node": "Jim Butcher"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2007-11-05T08:00:00+00:00",
+      "node": "2007-11-05T08:00:00+00:00"
+    }
   }
 }

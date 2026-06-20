@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Steven Brust - Khaavren Romances/Steven Brust - Khaavren Romances 3.3 - Sethra Lavode.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Sethra Lavode",
+          "creator": "Steven Brust",
+          "date": "2004-01-01T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Sethra Lavode",
+        "creator": "Steven Brust",
+        "date": "2004-01-01T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Sethra Lavode",
+      "node": "Sethra Lavode"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Steven Brust",
+      "node": "Steven Brust"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2004-01-01T00:00:00+00:00",
+      "node": "2004-01-01T00:00:00+00:00"
+    }
   }
 }

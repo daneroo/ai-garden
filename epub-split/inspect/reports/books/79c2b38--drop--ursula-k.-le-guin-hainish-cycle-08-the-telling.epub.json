@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Ursula K. Le Guin - Hainish Cycle 08 - The Telling.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Telling (hc-8)",
+          "creator": "Ursula Le Guin",
+          "date": "2000"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Telling (hc-8)",
+        "creator": "Ursula Le Guin",
+        "date": "2000"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Telling (hc-8)",
+      "node": "The Telling (hc-8)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Ursula Le Guin",
+      "node": "Ursula Le Guin"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2000",
+      "node": "2000"
+    }
   }
 }

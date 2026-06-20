@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Glen Cook - Black Company/Glen Cook - Black Company 07 - She is the Darkness/Glen Cook - Black Company 07 - She is the Darkness.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "She Is The Darkness",
+          "creator": "Glen Cook",
+          "date": "1997-09-11"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "She Is The Darkness",
+        "creator": "Glen Cook",
+        "date": "1997-09-11"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "She Is The Darkness",
+      "node": "She Is The Darkness"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Glen Cook",
+      "node": "Glen Cook"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1997-09-11",
+      "node": "1997-09-11"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Rosemary Kirstein - Steerswoman 04 - The Language of Power.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Rosemary Kirstein - Steerswoman 04",
+          "creator": "The Language of Power",
+          "date": "2012-08-08T11:57:54+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Rosemary Kirstein - Steerswoman 04",
+        "creator": "The Language of Power",
+        "date": "2012-08-08T11:57:54+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Rosemary Kirstein - Steerswoman 04",
+      "node": "Rosemary Kirstein - Steerswoman 04"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "The Language of Power",
+      "node": "The Language of Power"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2012-08-08T11:57:54+00:00",
+      "node": "2012-08-08T11:57:54+00:00"
+    }
   }
 }

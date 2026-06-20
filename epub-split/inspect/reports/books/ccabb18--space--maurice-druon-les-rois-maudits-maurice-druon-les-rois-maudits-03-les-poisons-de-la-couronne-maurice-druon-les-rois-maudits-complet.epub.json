@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Maurice Druon - Les Rois Maudits/Maurice Druon - Les Rois Maudits 03 - Les Poisons de la Couronne/Maurice Druon - Les Rois Maudits - Complet.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Les Rois Maudits - L'intégrale",
+          "creator": "Maurice Druon",
+          "date": "2011-09-05"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Les Rois Maudits - L'intégrale",
+        "creator": "Maurice Druon",
+        "date": "2011-09-05"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Les Rois Maudits - L'intégrale",
+      "node": "Les Rois Maudits - L'intégrale"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Maurice Druon",
+      "node": "Maurice Druon"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-09-05",
+      "node": "2011-09-05"
+    }
   }
 }

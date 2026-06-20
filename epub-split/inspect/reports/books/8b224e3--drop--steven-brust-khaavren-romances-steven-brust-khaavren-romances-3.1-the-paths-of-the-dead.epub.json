@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Steven Brust - Khaavren Romances/Steven Brust - Khaavren Romances 3.1 - The Paths of the Dead.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Paths of the Dead",
+          "creator": "Steven Brust",
+          "date": "2002-01-01T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Paths of the Dead",
+        "creator": "Steven Brust",
+        "date": "2002-01-01T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Paths of the Dead",
+      "node": "The Paths of the Dead"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Steven Brust",
+      "node": "Steven Brust"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2002-01-01T00:00:00+00:00",
+      "node": "2002-01-01T00:00:00+00:00"
+    }
   }
 }

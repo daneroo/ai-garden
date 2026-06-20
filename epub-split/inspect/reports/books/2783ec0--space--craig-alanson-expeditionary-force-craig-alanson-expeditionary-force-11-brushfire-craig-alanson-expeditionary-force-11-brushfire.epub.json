@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Craig Alanson - Expeditionary Force/Craig Alanson - Expeditionary Force 11 - Brushfire/Craig Alanson - Expeditionary Force 11 - Brushfire.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Brushfire",
+          "creator": "Craig Alanson",
+          "date": "2020-12-14T22:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Brushfire",
+        "creator": "Craig Alanson",
+        "date": "2020-12-14T22:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Brushfire",
+      "node": "Brushfire"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Craig Alanson",
+      "node": "Craig Alanson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2020-12-14T22:00:00+00:00",
+      "node": "2020-12-14T22:00:00+00:00"
+    }
   }
 }

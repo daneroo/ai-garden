@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Lee Smolin - Einsteins Unfinished Revolution.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Einstein's Unfinished Revolution",
+          "creator": "Lee Smolin",
+          "date": "2019-04-09"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Einstein's Unfinished Revolution",
+        "creator": "Lee Smolin",
+        "date": "2019-04-09"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Einstein's Unfinished Revolution",
+        "creator": "Lee Smolin",
+        "date": "2019-04-09"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Einstein's Unfinished Revolution",
+      "node": "Einstein's Unfinished Revolution",
+      "storyteller": "Einstein's Unfinished Revolution"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Lee Smolin",
+      "node": "Lee Smolin",
+      "storyteller": "Lee Smolin"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2019-04-09",
+      "node": "2019-04-09",
+      "storyteller": "2019-04-09"
+    }
   }
 }

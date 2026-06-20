@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Yuval Noah Harari - 21 Lessons for the 21st Century.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "21 Lessons for the 21st Century",
+          "creator": "Yuval Noah Harari",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "21 Lessons for the 21st Century",
+        "creator": "Yuval Noah Harari",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "21 Lessons for the 21st Century",
+        "creator": "Yuval Noah Harari",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "21 Lessons for the 21st Century",
+      "node": "21 Lessons for the 21st Century",
+      "storyteller": "21 Lessons for the 21st Century"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Yuval Noah Harari",
+      "node": "Yuval Noah Harari",
+      "storyteller": "Yuval Noah Harari"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

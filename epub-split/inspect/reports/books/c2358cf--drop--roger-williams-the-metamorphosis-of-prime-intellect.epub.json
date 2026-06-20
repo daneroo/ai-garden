@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Roger Williams - The Metamorphosis of Prime Intellect.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Metamorphosis of Prime Intellect",
+          "creator": "Roger Williams",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Metamorphosis of Prime Intellect",
+        "creator": "Roger Williams",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Metamorphosis of Prime Intellect",
+      "node": "The Metamorphosis of Prime Intellect"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Roger Williams",
+      "node": "Roger Williams"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

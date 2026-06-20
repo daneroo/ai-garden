@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Ann Leckie - Imperial Radch 02 - Ancillary Sword.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Ancillary Sword",
+          "creator": "Ann Leckie",
+          "date": "2014-10-07"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Ancillary Sword",
+        "creator": "Ann Leckie",
+        "date": "2014-10-07"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Ancillary Sword",
+      "node": "Ancillary Sword"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Ann Leckie",
+      "node": "Ann Leckie"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-10-07",
+      "node": "2014-10-07"
+    }
   }
 }

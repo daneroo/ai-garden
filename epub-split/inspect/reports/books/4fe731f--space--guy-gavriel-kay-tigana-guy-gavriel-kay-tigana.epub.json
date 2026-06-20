@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Guy Gavriel Kay - Tigana/Guy Gavriel Kay - Tigana.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Tigana",
+          "creator": "Guy Gavriel Kay",
+          "date": "2011-04-16"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Tigana",
+        "creator": "Guy Gavriel Kay",
+        "date": "2011-04-16"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Tigana",
+      "node": "Tigana"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Guy Gavriel Kay",
+      "node": "Guy Gavriel Kay"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-04-16",
+      "node": "2011-04-16"
+    }
   }
 }

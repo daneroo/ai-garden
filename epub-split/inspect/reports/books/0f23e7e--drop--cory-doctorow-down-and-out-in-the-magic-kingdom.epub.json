@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Cory Doctorow - Down and Out in the Magic Kingdom.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Down and Out in the Magic Kingdom",
+          "creator": "Cory Doctorow",
+          "date": "2003-11-18T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Down and Out in the Magic Kingdom",
+        "creator": "Cory Doctorow",
+        "date": "2003-11-18T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Down and Out in the Magic Kingdom",
+      "node": "Down and Out in the Magic Kingdom"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Cory Doctorow",
+      "node": "Cory Doctorow"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2003-11-18T00:00:00+00:00",
+      "node": "2003-11-18T00:00:00+00:00"
+    }
   }
 }

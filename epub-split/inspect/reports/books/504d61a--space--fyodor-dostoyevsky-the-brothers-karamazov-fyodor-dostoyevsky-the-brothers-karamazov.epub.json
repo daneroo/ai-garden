@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Fyodor Dostoyevsky - The Brothers Karamazov/Fyodor Dostoyevsky - The Brothers Karamazov.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Brothers Karamazov (Penguin Classics)",
+          "creator": "Fyodor Dostoyevsky",
+          "date": "2003-02-27T05:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Brothers Karamazov (Penguin Classics)",
+        "creator": "Fyodor Dostoyevsky",
+        "date": "2003-02-27T05:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Brothers Karamazov (Penguin Classics)",
+      "node": "The Brothers Karamazov (Penguin Classics)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Fyodor Dostoyevsky",
+      "node": "Fyodor Dostoyevsky"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2003-02-27T05:00:00+00:00",
+      "node": "2003-02-27T05:00:00+00:00"
+    }
   }
 }

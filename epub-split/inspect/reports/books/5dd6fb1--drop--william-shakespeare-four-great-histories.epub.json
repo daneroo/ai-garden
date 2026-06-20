@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "William Shakespeare - Four Great Histories.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Four Great Histories",
+          "creator": "William Shakespeare",
+          "date": "2012-10-11"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "jsdom"
+      "engine": "jsdom",
+      "metadata": {
+        "title": "Four Great Histories",
+        "creator": "William Shakespeare",
+        "date": "2012-10-11"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Four Great Histories",
+      "node": "Four Great Histories"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "William Shakespeare",
+      "node": "William Shakespeare"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2012-10-11",
+      "node": "2012-10-11"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Charles Stross - Accelerando.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Accelerando",
+          "creator": "Charles Stross",
+          "date": "2015-03-30"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Accelerando",
+        "creator": "Charles Stross",
+        "date": "2015-03-30"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Accelerando",
+        "creator": "Charles Stross",
+        "date": "2015-03-30"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Accelerando",
+      "node": "Accelerando",
+      "storyteller": "Accelerando"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Charles Stross",
+      "node": "Charles Stross",
+      "storyteller": "Charles Stross"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2015-03-30",
+      "node": "2015-03-30",
+      "storyteller": "2015-03-30"
+    }
   }
 }

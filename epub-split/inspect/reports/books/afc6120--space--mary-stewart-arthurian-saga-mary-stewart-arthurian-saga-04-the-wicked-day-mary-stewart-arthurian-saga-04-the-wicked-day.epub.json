@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Mary Stewart - Arthurian Saga/Mary Stewart - Arthurian Saga 04 - The Wicked Day/Mary Stewart - Arthurian Saga 04 - The Wicked Day.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Wicked Day",
+          "creator": "Mary Stewart",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Wicked Day",
+        "creator": "Mary Stewart",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Wicked Day",
+      "node": "Wicked Day"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Mary Stewart",
+      "node": "Mary Stewart"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

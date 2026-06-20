@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Alastair Reynolds - Revelation Space 01 - Revelation Space.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Revelation Space",
+          "creator": "Alastair Reynolds",
+          "date": "2000-05-27"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "jsdom"
+      "engine": "jsdom",
+      "metadata": {
+        "title": "Revelation Space",
+        "creator": "Alastair Reynolds",
+        "date": "2000-05-27"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Revelation Space",
+      "node": "Revelation Space"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Alastair Reynolds",
+      "node": "Alastair Reynolds"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2000-05-27",
+      "node": "2000-05-27"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Bernard Cornwell - The Saxon Chronicles/Bernard Cornwell - Saxon Chronicles 08 - The Empty Throne/Bernard Cornwell - Saxon Chronicles 08 - The Empty Throne.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Empty Throne (The Warrior Chronicles, Book 8)",
+          "creator": "Cornwell, Bernard",
+          "date": "2014-10-22T16:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Empty Throne (The Warrior Chronicles, Book 8)",
+        "creator": "Cornwell, Bernard",
+        "date": "2014-10-22T16:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Empty Throne (The Warrior Chronicles, Book 8)",
+      "node": "The Empty Throne (The Warrior Chronicles, Book 8)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Cornwell, Bernard",
+      "node": "Cornwell, Bernard"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-10-22T16:00:00+00:00",
+      "node": "2014-10-22T16:00:00+00:00"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Erwin Schrodinger - What is Life.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "What is Life?",
+          "creator": "Erwin Schroedinger",
+          "date": "2014-06-29T23:47:48+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "What is Life?",
+        "creator": "Erwin Schroedinger",
+        "date": "2014-06-29T23:47:48+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "What is Life?",
+      "node": "What is Life?"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Erwin Schroedinger",
+      "node": "Erwin Schroedinger"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-06-29T23:47:48+00:00",
+      "node": "2014-06-29T23:47:48+00:00"
+    }
   }
 }

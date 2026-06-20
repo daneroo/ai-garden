@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Frank Herbert - Dune 03 - Children of Dune.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Children of Dune",
+          "creator": "Frank Herbert",
+          "date": "1976-01-01"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Children of Dune",
+        "creator": "Frank Herbert",
+        "date": "1976-01-01"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Children of Dune",
+      "node": "Children of Dune"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Frank Herbert",
+      "node": "Frank Herbert"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1976-01-01",
+      "node": "1976-01-01"
+    }
   }
 }

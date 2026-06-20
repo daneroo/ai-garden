@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Christopher Ruocchio - Sun Eater/Christopher Ruocchio - Sun Eater 03 - Demon in White/Christopher Ruocchio - Sun Eater 03 - Demon in White.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Demon in White",
+          "creator": "Christopher Ruocchio",
+          "date": "2020-07-28"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Demon in White",
+        "creator": "Christopher Ruocchio",
+        "date": "2020-07-28"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Demon in White",
+        "creator": "Christopher Ruocchio",
+        "date": "2020-07-28"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Demon in White",
+      "node": "Demon in White",
+      "storyteller": "Demon in White"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Christopher Ruocchio",
+      "node": "Christopher Ruocchio",
+      "storyteller": "Christopher Ruocchio"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2020-07-28",
+      "node": "2020-07-28",
+      "storyteller": "2020-07-28"
+    }
   }
 }

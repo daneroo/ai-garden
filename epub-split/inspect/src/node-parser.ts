@@ -2,6 +2,7 @@ import type {
   DeclaredVersion,
   HashedBook,
   DOMParserImpl,
+  MetadataFields,
   NodeOpenOutcome,
 } from "./types.ts";
 
@@ -23,6 +24,7 @@ interface WorkerResult {
   ok?: boolean;
   version?: DeclaredVersion;
   engine?: DOMParserImpl;
+  metadata?: MetadataFields;
   category?: string;
   message?: string;
 }
@@ -69,8 +71,8 @@ function parseResult(output: string, engine: DOMParserImpl): NodeOpenOutcome {
     };
   }
 
-  if (parsed.ok === true && parsed.version) {
-    return { status: "node-opened", version: parsed.version, engine };
+  if (parsed.ok === true && parsed.version && parsed.metadata) {
+    return { status: "node-opened", version: parsed.version, engine, metadata: parsed.metadata };
   }
   return {
     status: "node-open-failed",

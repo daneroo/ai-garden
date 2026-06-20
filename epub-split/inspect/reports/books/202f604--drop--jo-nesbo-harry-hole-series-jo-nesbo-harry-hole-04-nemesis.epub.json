@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Jo Nesbo - Harry Hole Series/Jo Nesbo - Harry Hole 04 - Nemesis.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Nemesis: A Harry Hole Novel",
+          "creator": "Jo Nesbø",
+          "date": "2012-02-28T06:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Nemesis: A Harry Hole Novel",
+        "creator": "Jo Nesbø",
+        "date": "2012-02-28T06:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Nemesis: A Harry Hole Novel",
+      "node": "Nemesis: A Harry Hole Novel"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Jo Nesbø",
+      "node": "Jo Nesbø"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2012-02-28T06:00:00+00:00",
+      "node": "2012-02-28T06:00:00+00:00"
+    }
   }
 }

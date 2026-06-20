@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Naomi Klein - Doppelganger/Naomi Klein - Doppelganger.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Doppelganger",
+          "creator": "Naomi Klein",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Doppelganger",
+        "creator": "Naomi Klein",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Doppelganger",
+        "creator": "Naomi Klein",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Doppelganger",
+      "node": "Doppelganger",
+      "storyteller": "Doppelganger"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Naomi Klein",
+      "node": "Naomi Klein",
+      "storyteller": "Naomi Klein"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

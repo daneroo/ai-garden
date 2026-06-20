@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Glen Cook - Black Company 01 - Black Company.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Black Company",
+          "creator": "Glen Cook",
+          "date": "1984-05-09"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Black Company",
+        "creator": "Glen Cook",
+        "date": "1984-05-09"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Black Company",
+      "node": "The Black Company"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Glen Cook",
+      "node": "Glen Cook"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1984-05-09",
+      "node": "1984-05-09"
+    }
   }
 }

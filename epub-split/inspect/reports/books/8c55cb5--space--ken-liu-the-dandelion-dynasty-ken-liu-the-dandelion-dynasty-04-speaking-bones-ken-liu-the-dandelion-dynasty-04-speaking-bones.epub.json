@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Ken Liu - The Dandelion Dynasty/Ken Liu - The Dandelion Dynasty 04 - Speaking Bones/Ken Liu - The Dandelion Dynasty 04 - Speaking Bones.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Speaking Bones",
+          "creator": "Ken Liu",
+          "date": "2022-06-21T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Speaking Bones",
+        "creator": "Ken Liu",
+        "date": "2022-06-21T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Speaking Bones",
+        "creator": "Ken Liu",
+        "date": "2022-06-21T00:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Speaking Bones",
+      "node": "Speaking Bones",
+      "storyteller": "Speaking Bones"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Ken Liu",
+      "node": "Ken Liu",
+      "storyteller": "Ken Liu"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-06-21T00:00:00+00:00",
+      "node": "2022-06-21T00:00:00+00:00",
+      "storyteller": "2022-06-21T00:00:00+00:00"
+    }
   }
 }

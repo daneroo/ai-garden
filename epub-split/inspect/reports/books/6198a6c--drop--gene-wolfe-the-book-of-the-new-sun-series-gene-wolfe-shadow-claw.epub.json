@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Gene Wolfe - The Book of the New Sun Series/Gene Wolfe - Shadow & Claw.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Shadow and Claw",
+          "creator": "Gene Wolfe",
+          "date": "1994-01-01T05:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Shadow and Claw",
+        "creator": "Gene Wolfe",
+        "date": "1994-01-01T05:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Shadow and Claw",
+      "node": "Shadow and Claw"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Gene Wolfe",
+      "node": "Gene Wolfe"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1994-01-01T05:00:00+00:00",
+      "node": "1994-01-01T05:00:00+00:00"
+    }
   }
 }

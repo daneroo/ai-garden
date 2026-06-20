@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Brandon Sanderson - Cosmere/Sanderson, Brandon - Cosmere 1 - Mistborn 1 - The Final Empire.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Mistborn: The Final Empire",
+          "creator": "Brandon Sanderson",
+          "date": "2007-07-31T07:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Mistborn: The Final Empire",
+        "creator": "Brandon Sanderson",
+        "date": "2007-07-31T07:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Mistborn: The Final Empire",
+      "node": "Mistborn: The Final Empire"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Brandon Sanderson",
+      "node": "Brandon Sanderson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2007-07-31T07:00:00+00:00",
+      "node": "2007-07-31T07:00:00+00:00"
+    }
   }
 }

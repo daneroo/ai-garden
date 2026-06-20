@@ -1,5 +1,7 @@
 import { Epub, MemoryAdapter } from "@storyteller-platform/epub";
 
+import { optionalDate } from "./metadata-utils.ts";
+
 // Worker: open exactly one EPUB via the Storyteller path and emit a single JSON
 // line. Run as a subprocess so the parent can hard-kill any synchronous hang,
 // matching the epubts-node worker. The in-memory read-only adapter opens the
@@ -19,7 +21,16 @@ try {
     typeof declared === "string"
       ? { status: "exposed", value: declared }
       : { status: "skipped" };
-  process.stdout.write(JSON.stringify({ ok: true, version }));
+  const entries = await reader.getMetadata();
+  const values = (type: string) => entries
+    .filter((entry) => entry.type === type && typeof entry.value === "string")
+    .map((entry) => entry.value as string);
+  const metadata = {
+    title: values("dc:title")[0] ?? null,
+    creator: values("dc:creator")[0] ?? null,
+    date: optionalDate(values("dc:date")[0]),
+  };
+  process.stdout.write(JSON.stringify({ ok: true, version, metadata }));
   await reader.discardAndClose();
 } catch (error: unknown) {
   process.stdout.write(

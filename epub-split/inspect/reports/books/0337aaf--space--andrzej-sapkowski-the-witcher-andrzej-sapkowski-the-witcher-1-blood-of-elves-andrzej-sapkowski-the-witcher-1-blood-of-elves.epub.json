@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Andrzej Sapkowski - The Witcher/Andrzej Sapkowski - The Witcher 1 - Blood of Elves/Andrzej Sapkowski - The Witcher 1 - Blood of Elves.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Blood of Elves",
+          "creator": "Andrzej Sapkowski",
+          "date": "2009-04-30T16:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Blood of Elves",
+        "creator": "Andrzej Sapkowski",
+        "date": "2009-04-30T16:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Blood of Elves",
+        "creator": "Andrzej Sapkowski",
+        "date": "2009-04-30T16:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Blood of Elves",
+      "node": "Blood of Elves",
+      "storyteller": "Blood of Elves"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Andrzej Sapkowski",
+      "node": "Andrzej Sapkowski",
+      "storyteller": "Andrzej Sapkowski"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2009-04-30T16:00:00+00:00",
+      "node": "2009-04-30T16:00:00+00:00",
+      "storyteller": "2009-04-30T16:00:00+00:00"
+    }
   }
 }

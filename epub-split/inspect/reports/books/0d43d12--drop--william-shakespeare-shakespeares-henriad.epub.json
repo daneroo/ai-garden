@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "William Shakespeare - Shakespeares Henriad.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Shakespeare's Henriad--Complete Tetralogy",
+          "creator": "William Shakespeare",
+          "date": "2019-11-21"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Shakespeare's Henriad--Complete Tetralogy",
+        "creator": "William Shakespeare",
+        "date": "2019-11-21"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Shakespeare's Henriad--Complete Tetralogy",
+      "node": "Shakespeare's Henriad--Complete Tetralogy"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "William Shakespeare",
+      "node": "William Shakespeare"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2019-11-21",
+      "node": "2019-11-21"
+    }
   }
 }

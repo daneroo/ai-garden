@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Walter Isaacson - Elon Musk/Walter Isaacson - Elon Musk.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Elon Musk",
+          "creator": "Walter Isaacson",
+          "date": "2023-09-12"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Elon Musk",
+        "creator": "Walter Isaacson",
+        "date": "2023-09-12"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Elon Musk",
+        "creator": "Walter Isaacson",
+        "date": "2023-09-12"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Elon Musk",
+      "node": "Elon Musk",
+      "storyteller": "Elon Musk"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Walter Isaacson",
+      "node": "Walter Isaacson",
+      "storyteller": "Walter Isaacson"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2023-09-12",
+      "node": "2023-09-12",
+      "storyteller": "2023-09-12"
+    }
   }
 }

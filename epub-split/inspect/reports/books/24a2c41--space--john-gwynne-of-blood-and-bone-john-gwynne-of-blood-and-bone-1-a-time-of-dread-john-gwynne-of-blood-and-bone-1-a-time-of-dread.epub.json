@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "John Gwynne - Of Blood and Bone/John Gwynne - Of Blood and Bone 1 - A Time of Dread/John Gwynne - Of Blood and Bone 1 - A Time of Dread.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "A Time of Dread",
+          "creator": "John Gwynne",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "A Time of Dread",
+        "creator": "John Gwynne",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "A Time of Dread",
+        "creator": "John Gwynne",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "A Time of Dread",
+      "node": "A Time of Dread",
+      "storyteller": "A Time of Dread"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "John Gwynne",
+      "node": "John Gwynne",
+      "storyteller": "John Gwynne"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

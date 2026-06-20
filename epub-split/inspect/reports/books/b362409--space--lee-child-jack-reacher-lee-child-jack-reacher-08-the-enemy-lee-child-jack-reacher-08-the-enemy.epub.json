@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Lee Child - Jack Reacher/Lee Child - Jack Reacher 08 - The Enemy/Lee Child - Jack Reacher 08 - The Enemy.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Enemy",
+          "creator": "Lee Child",
+          "date": "2009-10-01T05:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Enemy",
+        "creator": "Lee Child",
+        "date": "2009-10-01T05:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Enemy",
+      "node": "The Enemy"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Lee Child",
+      "node": "Lee Child"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2009-10-01T05:00:00+00:00",
+      "node": "2009-10-01T05:00:00+00:00"
+    }
   }
 }

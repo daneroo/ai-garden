@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Brent Weeks - The LightBringer Saga/Brent Weeks - The Lightbringer Saga 04 - The Blood Mirror/Brent Weeks - The Lightbringer Saga 04 - The Blood Mirror.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Blood Mirror",
+          "creator": "Brent Weeks",
+          "date": "2016-10-25T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Blood Mirror",
+        "creator": "Brent Weeks",
+        "date": "2016-10-25T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Blood Mirror",
+        "creator": "Brent Weeks",
+        "date": "2016-10-25T00:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Blood Mirror",
+      "node": "The Blood Mirror",
+      "storyteller": "The Blood Mirror"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Brent Weeks",
+      "node": "Brent Weeks",
+      "storyteller": "Brent Weeks"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2016-10-25T00:00:00+00:00",
+      "node": "2016-10-25T00:00:00+00:00",
+      "storyteller": "2016-10-25T00:00:00+00:00"
+    }
   }
 }

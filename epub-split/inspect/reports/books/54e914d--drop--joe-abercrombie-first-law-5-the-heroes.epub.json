@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Joe Abercrombie - First Law 5 The Heroes.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Heroes",
+          "creator": "Abercrombie, Joe",
+          "date": "2011-01-27T06:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Heroes",
+        "creator": "Abercrombie, Joe",
+        "date": "2011-01-27T06:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Heroes",
+      "node": "The Heroes"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Abercrombie, Joe",
+      "node": "Abercrombie, Joe"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-01-27T06:00:00+00:00",
+      "node": "2011-01-27T06:00:00+00:00"
+    }
   }
 }

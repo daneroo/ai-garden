@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Fonda Lee - The Green Bone Saga 0.5 - The Jade Setter of Janloon.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Jade Setter of Janloon",
+          "creator": "Fonda Lee",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Jade Setter of Janloon",
+        "creator": "Fonda Lee",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Jade Setter of Janloon",
+        "creator": "Fonda Lee",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Jade Setter of Janloon",
+      "node": "The Jade Setter of Janloon",
+      "storyteller": "The Jade Setter of Janloon"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Fonda Lee",
+      "node": "Fonda Lee",
+      "storyteller": "Fonda Lee"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "M. L. Wang - Blood Over Bright Haven/M. L. Wang - Blood Over Bright Haven.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Blood Over Bright Haven",
+          "creator": "M. L. Wang",
+          "date": "2023-07-24T23:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Blood Over Bright Haven",
+        "creator": "M. L. Wang",
+        "date": "2023-07-24T23:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Blood Over Bright Haven",
+      "node": "Blood Over Bright Haven"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "M. L. Wang",
+      "node": "M. L. Wang"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2023-07-24T23:00:00+00:00",
+      "node": "2023-07-24T23:00:00+00:00"
+    }
   }
 }

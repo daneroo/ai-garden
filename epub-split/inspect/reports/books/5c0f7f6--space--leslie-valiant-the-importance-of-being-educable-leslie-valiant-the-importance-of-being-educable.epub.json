@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Leslie Valiant - The Importance of Being Educable/Leslie Valiant - The Importance of Being Educable.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Importance of Being Educable",
+          "creator": "Leslie Valiant;",
+          "date": "2024-01-12"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Importance of Being Educable",
+        "creator": "Leslie Valiant;",
+        "date": "2024-01-12"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Importance of Being Educable",
+        "creator": "Leslie Valiant;",
+        "date": "2024-01-12"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Importance of Being Educable",
+      "node": "The Importance of Being Educable",
+      "storyteller": "The Importance of Being Educable"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Leslie Valiant;",
+      "node": "Leslie Valiant;",
+      "storyteller": "Leslie Valiant;"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2024-01-12",
+      "node": "2024-01-12",
+      "storyteller": "2024-01-12"
+    }
   }
 }

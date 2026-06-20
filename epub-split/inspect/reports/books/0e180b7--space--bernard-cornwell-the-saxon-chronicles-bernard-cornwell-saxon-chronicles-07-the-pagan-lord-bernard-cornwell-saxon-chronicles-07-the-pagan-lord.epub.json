@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Bernard Cornwell - The Saxon Chronicles/Bernard Cornwell - Saxon Chronicles 07 - The Pagan Lord/Bernard Cornwell - Saxon Chronicles 07 - The Pagan Lord.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Pagan Lord",
+          "creator": "Bernard Cornwell",
+          "date": "2013-09-25T23:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Pagan Lord",
+        "creator": "Bernard Cornwell",
+        "date": "2013-09-25T23:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Pagan Lord",
+      "node": "The Pagan Lord"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Bernard Cornwell",
+      "node": "Bernard Cornwell"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2013-09-25T23:00:00+00:00",
+      "node": "2013-09-25T23:00:00+00:00"
+    }
   }
 }

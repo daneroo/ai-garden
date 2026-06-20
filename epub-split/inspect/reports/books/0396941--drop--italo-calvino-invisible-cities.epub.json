@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Italo Calvino - Invisible Cities.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Invisible Cities",
+          "creator": "Italo Calvino",
+          "date": "2009-01-01"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Invisible Cities",
+        "creator": "Italo Calvino",
+        "date": "2009-01-01"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Invisible Cities",
+      "node": "Invisible Cities"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Italo Calvino",
+      "node": "Italo Calvino"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2009-01-01",
+      "node": "2009-01-01"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Pierce Brown - Red Rising/Pierce Brown - Red Rising 03 - Morning Star/Pierce Brown - Red Rising 03 - Morning Star.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Morning Star: Book III of the Red Rising Trilogy",
+          "creator": "Pierce Brown",
+          "date": "2016-02-09T06:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Morning Star: Book III of the Red Rising Trilogy",
+        "creator": "Pierce Brown",
+        "date": "2016-02-09T06:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Morning Star: Book III of the Red Rising Trilogy",
+      "node": "Morning Star: Book III of the Red Rising Trilogy"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Pierce Brown",
+      "node": "Pierce Brown"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2016-02-09T06:00:00+00:00",
+      "node": "2016-02-09T06:00:00+00:00"
+    }
   }
 }

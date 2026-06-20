@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Elliot Ackerman - 2034 - A Novel of the Next World War.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "2034: A Novel of the Next World War",
+          "creator": "Elliot Ackerman",
+          "date": "2021-03-09T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "2034: A Novel of the Next World War",
+        "creator": "Elliot Ackerman",
+        "date": "2021-03-09T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "2034: A Novel of the Next World War",
+        "creator": "Elliot Ackerman",
+        "date": "2021-03-09T00:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "2034: A Novel of the Next World War",
+      "node": "2034: A Novel of the Next World War",
+      "storyteller": "2034: A Novel of the Next World War"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Elliot Ackerman",
+      "node": "Elliot Ackerman",
+      "storyteller": "Elliot Ackerman"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021-03-09T00:00:00+00:00",
+      "node": "2021-03-09T00:00:00+00:00",
+      "storyteller": "2021-03-09T00:00:00+00:00"
+    }
   }
 }

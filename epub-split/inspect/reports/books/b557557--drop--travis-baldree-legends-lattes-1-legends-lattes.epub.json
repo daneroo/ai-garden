@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Travis Baldree - Legends & Lattes 1 - Legends & Lattes.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Legends & Lattes: A Novel of High Fantasy and Low Stakes",
+          "creator": "Travis Baldree",
+          "date": "2022-02-21T16:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Legends ",
+        "creator": "Travis Baldree",
+        "date": "2022-02-21T16:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-differ",
+      "browser": "Legends & Lattes: A Novel of High Fantasy and Low Stakes",
+      "node": "Legends "
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Travis Baldree",
+      "node": "Travis Baldree"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2022-02-21T16:00:00+00:00",
+      "node": "2022-02-21T16:00:00+00:00"
+    }
   }
 }

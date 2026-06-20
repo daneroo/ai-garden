@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Michael Lewis - The Premonition A Pandemic Story.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Premonition: A Pandemic Story",
+          "creator": "Michael Lewis",
+          "date": "2021-05-04T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Premonition: A Pandemic Story",
+        "creator": "Michael Lewis",
+        "date": "2021-05-04T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Premonition: A Pandemic Story",
+        "creator": "Michael Lewis",
+        "date": "2021-05-04T00:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Premonition: A Pandemic Story",
+      "node": "The Premonition: A Pandemic Story",
+      "storyteller": "The Premonition: A Pandemic Story"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Michael Lewis",
+      "node": "Michael Lewis",
+      "storyteller": "Michael Lewis"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021-05-04T00:00:00+00:00",
+      "node": "2021-05-04T00:00:00+00:00",
+      "storyteller": "2021-05-04T00:00:00+00:00"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Nick Chater - The Mind Is Flat.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Mind Is Flat",
+          "creator": "Nick Chater",
+          "date": "2018"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Mind Is Flat",
+        "creator": "Nick Chater",
+        "date": "2018"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Mind Is Flat",
+      "node": "Mind Is Flat"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Nick Chater",
+      "node": "Nick Chater"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2018",
+      "node": "2018"
+    }
   }
 }

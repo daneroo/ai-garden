@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Craig Alanson - Expeditionary Force/Craig Alanson - Expeditionary Force 13 - Fallout/Craig Alanson - Expeditionary Force 13 - Fallout.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Fallout",
+          "creator": "Craig Alanson",
+          "date": "2021-12-06T16:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Fallout",
+        "creator": "Craig Alanson",
+        "date": "2021-12-06T16:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Fallout",
+      "node": "Fallout"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Craig Alanson",
+      "node": "Craig Alanson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2021-12-06T16:00:00+00:00",
+      "node": "2021-12-06T16:00:00+00:00"
+    }
   }
 }

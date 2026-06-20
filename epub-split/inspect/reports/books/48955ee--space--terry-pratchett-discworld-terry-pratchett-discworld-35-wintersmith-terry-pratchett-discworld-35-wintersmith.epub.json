@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Terry Pratchett - Discworld/Terry Pratchett - Discworld 35 - Wintersmith/Terry Pratchett - Discworld 35 - Wintersmith.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Wintersmith",
+          "creator": "Terry Pratchett",
+          "date": "2010-09-26 00:00:00+10:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Wintersmith",
+        "creator": "Terry Pratchett",
+        "date": "2010-09-26 00:00:00+10:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Wintersmith",
+      "node": "Wintersmith"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Terry Pratchett",
+      "node": "Terry Pratchett"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2010-09-26 00:00:00+10:00",
+      "node": "2010-09-26 00:00:00+10:00"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Jeff VanderMeer - Southern Reach Trilogy/Jeff VanderMeer - Southern Reach Trilogy 1-2-3.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Area X Three Book Bundle",
+          "creator": "Jeff VanderMeer",
+          "date": "2014"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Area X Three Book Bundle",
+        "creator": "Jeff VanderMeer",
+        "date": "2014"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Area X Three Book Bundle",
+      "node": "Area X Three Book Bundle"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Jeff VanderMeer",
+      "node": "Jeff VanderMeer"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014",
+      "node": "2014"
+    }
   }
 }

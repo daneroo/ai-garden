@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Bernard Cornwell - The Warlord Chronicles/Bernard Cornwell - The Warlord Chronicles 03 - Excalibur.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Excalibur",
+          "creator": "Bernard Cornwell",
+          "date": "1999-07-28T04:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Excalibur",
+        "creator": "Bernard Cornwell",
+        "date": "1999-07-28T04:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Excalibur",
+      "node": "Excalibur"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Bernard Cornwell",
+      "node": "Bernard Cornwell"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1999-07-28T04:00:00+00:00",
+      "node": "1999-07-28T04:00:00+00:00"
+    }
   }
 }

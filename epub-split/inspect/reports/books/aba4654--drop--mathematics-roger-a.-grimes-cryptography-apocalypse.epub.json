@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Mathematics/Roger A. Grimes - Cryptography Apocalypse.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Cryptography Apocalypse",
+          "creator": "Roger A. Grimes",
+          "date": "2019-11-26T00:00:00Z"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Cryptography Apocalypse",
+        "creator": "Roger A. Grimes",
+        "date": "2019-11-26T00:00:00Z"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Cryptography Apocalypse",
+        "creator": "Roger A. Grimes",
+        "date": "2019-11-26T00:00:00Z"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Cryptography Apocalypse",
+      "node": "Cryptography Apocalypse",
+      "storyteller": "Cryptography Apocalypse"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Roger A. Grimes",
+      "node": "Roger A. Grimes",
+      "storyteller": "Roger A. Grimes"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2019-11-26T00:00:00Z",
+      "node": "2019-11-26T00:00:00Z",
+      "storyteller": "2019-11-26T00:00:00Z"
+    }
   }
 }

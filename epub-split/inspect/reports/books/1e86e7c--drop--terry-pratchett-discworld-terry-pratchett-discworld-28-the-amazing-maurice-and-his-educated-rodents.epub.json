@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Terry Pratchett - Discworld/Terry Pratchett - Discworld 28 - The Amazing Maurice and His Educated Rodents.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Amazing Maurice and His Educated Rodents (d(-1)",
+          "creator": "Terry Pratchett",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Amazing Maurice and His Educated Rodents (d(-1)",
+        "creator": "Terry Pratchett",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Amazing Maurice and His Educated Rodents (d(-1)",
+      "node": "The Amazing Maurice and His Educated Rodents (d(-1)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Terry Pratchett",
+      "node": "Terry Pratchett"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

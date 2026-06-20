@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Mark Lawrence - Book of the Ancestor/Mark Lawrence - Book of the Ancestor 3 - Holy Sister/Mark Lawrence - Book of the Ancestor 3 - Holy Sister.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Holy Sister",
+          "creator": "Mark Lawrence",
+          "date": "2019-04-09T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Holy Sister",
+        "creator": "Mark Lawrence",
+        "date": "2019-04-09T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Holy Sister",
+        "creator": "Mark Lawrence",
+        "date": "2019-04-09T00:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Holy Sister",
+      "node": "Holy Sister",
+      "storyteller": "Holy Sister"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Mark Lawrence",
+      "node": "Mark Lawrence",
+      "storyteller": "Mark Lawrence"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2019-04-09T00:00:00+00:00",
+      "node": "2019-04-09T00:00:00+00:00",
+      "storyteller": "2019-04-09T00:00:00+00:00"
+    }
   }
 }

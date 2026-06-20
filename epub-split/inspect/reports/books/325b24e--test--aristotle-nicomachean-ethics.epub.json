@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "test",
     "relativePath": "aristotle-nicomachean-ethics.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Ethics of Aristotle",
+          "creator": "Aristotle",
+          "date": "2005-07-01"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Ethics of Aristotle",
+        "creator": "Aristotle",
+        "date": "2005-07-01"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Ethics of Aristotle",
+        "creator": "Aristotle",
+        "date": "2005-07-01"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Ethics of Aristotle",
+      "node": "The Ethics of Aristotle",
+      "storyteller": "The Ethics of Aristotle"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Aristotle",
+      "node": "Aristotle",
+      "storyteller": "Aristotle"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2005-07-01",
+      "node": "2005-07-01",
+      "storyteller": "2005-07-01"
+    }
   }
 }

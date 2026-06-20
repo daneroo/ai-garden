@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Elbridge A. Colby - The Strategy of Denial.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Strategy of Denial",
+          "creator": "Elbridge A. Colby",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Strategy of Denial",
+        "creator": "Elbridge A. Colby",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Strategy of Denial",
+      "node": "The Strategy of Denial"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Elbridge A. Colby",
+      "node": "Elbridge A. Colby"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

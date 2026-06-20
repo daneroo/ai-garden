@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Helen Castor - The Eagle and the Hart/Helen Castor - The Eagle and the Hart.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Eagle and the Hart",
+          "creator": "Helen Castor",
+          "date": "2024-10-03"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Eagle and the Hart",
+        "creator": "Helen Castor",
+        "date": "2024-10-03"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Eagle and the Hart",
+        "creator": "Helen Castor",
+        "date": "2024-10-03"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Eagle and the Hart",
+      "node": "The Eagle and the Hart",
+      "storyteller": "The Eagle and the Hart"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Helen Castor",
+      "node": "Helen Castor",
+      "storyteller": "Helen Castor"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2024-10-03",
+      "node": "2024-10-03",
+      "storyteller": "2024-10-03"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Patrick Rothfus - Kingkiller Chronicle/Patrick Rothfus - Kingkiller Chronicle 02.5 - The Slow Regard of Silent Things/Patrick Rothfus - Kingkiller Chronicle 02.5 - The Slow Regard of Silent Things.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Slow Regard of Silent Things: A Kingkiller Chronicle Novella (The Kingkiller Chronicle)",
+          "creator": "Patrick Rothfuss",
+          "date": "2014-10-28T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Slow Regard of Silent Things: A Kingkiller Chronicle Novella (The Kingkiller Chronicle)",
+        "creator": "Patrick Rothfuss",
+        "date": "2014-10-28T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Slow Regard of Silent Things: A Kingkiller Chronicle Novella (The Kingkiller Chronicle)",
+      "node": "The Slow Regard of Silent Things: A Kingkiller Chronicle Novella (The Kingkiller Chronicle)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Patrick Rothfuss",
+      "node": "Patrick Rothfuss"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-10-28T00:00:00+00:00",
+      "node": "2014-10-28T00:00:00+00:00"
+    }
   }
 }

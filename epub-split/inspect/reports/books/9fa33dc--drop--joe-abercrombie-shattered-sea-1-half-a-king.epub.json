@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Joe Abercrombie - Shattered Sea 1 - Half a King.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Half a King",
+          "creator": "Joe Abercrombie",
+          "date": "2014-05-08"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Half a King",
+        "creator": "Joe Abercrombie",
+        "date": "2014-05-08"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Half a King",
+      "node": "Half a King"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Joe Abercrombie",
+      "node": "Joe Abercrombie"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-05-08",
+      "node": "2014-05-08"
+    }
   }
 }

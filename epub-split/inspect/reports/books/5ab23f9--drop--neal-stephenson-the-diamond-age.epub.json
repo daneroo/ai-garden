@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Neal Stephenson - The Diamond Age.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Diamond Age",
+          "creator": "Neal Stephenson",
+          "date": "2000-05-02T07:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Diamond Age",
+        "creator": "Neal Stephenson",
+        "date": "2000-05-02T07:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Diamond Age",
+      "node": "The Diamond Age"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Neal Stephenson",
+      "node": "Neal Stephenson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2000-05-02T07:00:00+00:00",
+      "node": "2000-05-02T07:00:00+00:00"
+    }
   }
 }

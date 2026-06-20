@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Guy Gavriel Kay - All the Seas of the World/Guy Gavriel Kay - All the Seas of the World.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "All the Seas of the World",
+          "creator": "Guy Gavriel Kay",
+          "date": "2022-05-17"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "All the Seas of the World",
+        "creator": "Guy Gavriel Kay",
+        "date": "2022-05-17"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "All the Seas of the World",
+        "creator": "Guy Gavriel Kay",
+        "date": "2022-05-17"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "All the Seas of the World",
+      "node": "All the Seas of the World",
+      "storyteller": "All the Seas of the World"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Guy Gavriel Kay",
+      "node": "Guy Gavriel Kay",
+      "storyteller": "Guy Gavriel Kay"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-05-17",
+      "node": "2022-05-17",
+      "storyteller": "2022-05-17"
+    }
   }
 }

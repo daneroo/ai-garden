@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Addy Pross - What Is Life.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "What is Life?",
+          "creator": "Pross, Addy; ",
+          "date": "2012"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "What is Life?",
+        "creator": "Pross, Addy; ",
+        "date": "2012"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "What is Life?",
+      "node": "What is Life?"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Pross, Addy; ",
+      "node": "Pross, Addy; "
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2012",
+      "node": "2012"
+    }
   }
 }

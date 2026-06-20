@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Fredrik Backman - Beartown/Fredrik Backman - Beartown 03 - The Winners/Fredrik Backman - Beartown 03 - The Winners.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Winners: A Novel (Beartown Series)",
+          "creator": "Fredrik Backman",
+          "date": "2022-09-26T18:30:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Winners: A Novel (Beartown Series)",
+        "creator": "Fredrik Backman",
+        "date": "2022-09-26T18:30:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Winners: A Novel (Beartown Series)",
+      "node": "The Winners: A Novel (Beartown Series)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Fredrik Backman",
+      "node": "Fredrik Backman"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2022-09-26T18:30:00+00:00",
+      "node": "2022-09-26T18:30:00+00:00"
+    }
   }
 }

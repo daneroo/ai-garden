@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Murasaki Shikibu - Tale of Genji - t. Kencho Suematsu.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Tale of Genji",
+          "creator": "Murasaki Shikibu",
+          "date": "2017-06-09"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Tale of Genji",
+        "creator": "Murasaki Shikibu",
+        "date": "2017-06-09"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Tale of Genji",
+      "node": "Tale of Genji"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Murasaki Shikibu",
+      "node": "Murasaki Shikibu"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2017-06-09",
+      "node": "2017-06-09"
+    }
   }
 }

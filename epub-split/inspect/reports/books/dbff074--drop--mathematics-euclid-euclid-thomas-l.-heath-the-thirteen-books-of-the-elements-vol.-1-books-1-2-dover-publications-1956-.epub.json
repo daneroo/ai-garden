@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Mathematics/Euclid/Euclid - Thomas L. Heath,  - The Thirteen Books of the Elements, Vol. 1 - Books 1-2-Dover Publications (1956).epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Thirteen Books of Euclid’s Elements",
+          "creator": "Sirthomas L. Heath,",
+          "date": "1956"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Thirteen Books of Euclid’s Elements",
+        "creator": "Sirthomas L. Heath,",
+        "date": "1956"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Thirteen Books of Euclid’s Elements",
+      "node": "The Thirteen Books of Euclid’s Elements"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Sirthomas L. Heath,",
+      "node": "Sirthomas L. Heath,"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1956",
+      "node": "1956"
+    }
   }
 }

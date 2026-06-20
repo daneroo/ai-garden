@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Joe Abercrombie - First Law 4 Best Served Cold.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Best Served Cold",
+          "creator": "Joe Abercrombie",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Best Served Cold",
+        "creator": "Joe Abercrombie",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Best Served Cold",
+      "node": "Best Served Cold"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Joe Abercrombie",
+      "node": "Joe Abercrombie"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

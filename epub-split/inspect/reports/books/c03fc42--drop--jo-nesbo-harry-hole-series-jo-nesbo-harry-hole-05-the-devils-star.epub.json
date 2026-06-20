@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Jo Nesbo - Harry Hole Series/Jo Nesbo - Harry Hole 05 The Devils Star.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Devil's Star",
+          "creator": "Jo Nesbø",
+          "date": "2011-02-01T06:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Devil's Star",
+        "creator": "Jo Nesbø",
+        "date": "2011-02-01T06:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Devil's Star",
+      "node": "The Devil's Star"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Jo Nesbø",
+      "node": "Jo Nesbø"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-02-01T06:00:00+00:00",
+      "node": "2011-02-01T06:00:00+00:00"
+    }
   }
 }

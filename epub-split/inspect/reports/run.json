@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "runner": {
     "name": "epub-inspect",
     "version": "0.1.0",
@@ -1801,7 +1801,7 @@
       "sha256": "bcb9a94e6205a4ddda56120009abff08cf5c9a49ad0ae00467439c03229a9710",
       "shortSha": "bcb9a94",
       "report": "books/bcb9a94--drop--cory-doctorow-reverse-centaurs-guide-to-life-after-ai.epub.json",
-      "detail": null,
+      "detail": "details/bcb9a94--drop--cory-doctorow-reverse-centaurs-guide-to-life-after-ai.epub.md",
       "parserStates": {
         "epubts-browser": "transported",
         "epubts-node": "node-opened",
@@ -10809,7 +10809,7 @@
       "sha256": "84b753d6894ffcf1b6f6f0d7c63cfdfa7ec605c030f16286a77030fdb20323e9",
       "shortSha": "84b753d",
       "report": "books/84b753d--drop--travis-baldree-legends-lattes-2-bookshops-bonedust.epub.json",
-      "detail": null,
+      "detail": "details/84b753d--drop--travis-baldree-legends-lattes-2-bookshops-bonedust.epub.md",
       "parserStates": {
         "epubts-browser": "transported",
         "epubts-node": "node-opened",
@@ -13065,7 +13065,7 @@
       "sha256": "bcb9a94e6205a4ddda56120009abff08cf5c9a49ad0ae00467439c03229a9710",
       "shortSha": "bcb9a94",
       "report": "books/bcb9a94--space--cory-doctorow-reverse-centaurs-guide-to-life-after-ai-cory-doctorow-reverse-centaurs-guide-to-life-after-ai.epub.json",
-      "detail": null,
+      "detail": "details/bcb9a94--space--cory-doctorow-reverse-centaurs-guide-to-life-after-ai-cory-doctorow-reverse-centaurs-guide-to-life-after-ai.epub.md",
       "parserStates": {
         "epubts-browser": "transported",
         "epubts-node": "node-opened",
@@ -20345,7 +20345,7 @@
       "sha256": "84b753d6894ffcf1b6f6f0d7c63cfdfa7ec605c030f16286a77030fdb20323e9",
       "shortSha": "84b753d",
       "report": "books/84b753d--space--travis-baldree-legends-lattes-travis-baldree-legends-lattes-2-bookshops-bonedust-travis-baldree-legends-lattes-2-bookshops-bonedust.epub.json",
-      "detail": null,
+      "detail": "details/84b753d--space--travis-baldree-legends-lattes-travis-baldree-legends-lattes-2-bookshops-bonedust-travis-baldree-legends-lattes-2-bookshops-bonedust.epub.md",
       "parserStates": {
         "epubts-browser": "transported",
         "epubts-node": "node-opened",
@@ -20850,5 +20850,90 @@
       "browserOpen": "opened",
       "nodeEngine": "linkedom"
     }
-  ]
+  ],
+  "metadataHistogram": {
+    "epubts-browser": {
+      "title": {
+        "unavailable": 0,
+        "missing": 1,
+        "present": 1300
+      },
+      "creator": {
+        "unavailable": 0,
+        "missing": 1,
+        "present": 1300
+      },
+      "date": {
+        "unavailable": 0,
+        "missing": 208,
+        "present": 1093
+      }
+    },
+    "epubts-node": {
+      "title": {
+        "unavailable": 0,
+        "missing": 1,
+        "present": 1300
+      },
+      "creator": {
+        "unavailable": 0,
+        "missing": 1,
+        "present": 1300
+      },
+      "date": {
+        "unavailable": 0,
+        "missing": 208,
+        "present": 1093
+      }
+    },
+    "storyteller-node": {
+      "title": {
+        "unavailable": 933,
+        "missing": 0,
+        "present": 368
+      },
+      "creator": {
+        "unavailable": 933,
+        "missing": 0,
+        "present": 368
+      },
+      "date": {
+        "unavailable": 933,
+        "missing": 76,
+        "present": 292
+      }
+    }
+  },
+  "comparisonHistogram": {
+    "title": {
+      "all-agree": 364,
+      "node-differs": 2,
+      "storyteller-differs": 0,
+      "browser-differs": 0,
+      "all-differ": 2,
+      "browser-node-agree": 927,
+      "browser-node-differ": 5,
+      "unavailable": 1
+    },
+    "creator": {
+      "all-agree": 368,
+      "node-differs": 0,
+      "storyteller-differs": 0,
+      "browser-differs": 0,
+      "all-differ": 0,
+      "browser-node-agree": 931,
+      "browser-node-differ": 1,
+      "unavailable": 1
+    },
+    "date": {
+      "all-agree": 368,
+      "node-differs": 0,
+      "storyteller-differs": 0,
+      "browser-differs": 0,
+      "all-differ": 0,
+      "browser-node-agree": 801,
+      "browser-node-differ": 0,
+      "unavailable": 132
+    }
+  }
 }

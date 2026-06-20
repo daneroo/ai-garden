@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Stephen R. Donaldson - Thomas Covenant the Unbeliever/Stephen R. Donaldson - Thomas Covenant the Unbeliever 02 - The Illearth War/Stephen R. Donaldson - Thomas Covenant the Unbeliever 02 - The Illearth War.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The 1st Chronicles of Thomas Covenant #2: The Illearth War",
+          "creator": "Stephen R. Donaldson",
+          "date": "1987-10-12T07:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The 1st Chronicles of Thomas Covenant #2: The Illearth War",
+        "creator": "Stephen R. Donaldson",
+        "date": "1987-10-12T07:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The 1st Chronicles of Thomas Covenant #2: The Illearth War",
+      "node": "The 1st Chronicles of Thomas Covenant #2: The Illearth War"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Stephen R. Donaldson",
+      "node": "Stephen R. Donaldson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1987-10-12T07:00:00+00:00",
+      "node": "1987-10-12T07:00:00+00:00"
+    }
   }
 }

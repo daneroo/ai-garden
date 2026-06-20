@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Madeline Miller - The Song of Achilles.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Song of Achilles",
+          "creator": "Miller, Madeline",
+          "date": "2012-03-06T06:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Song of Achilles",
+        "creator": "Miller, Madeline",
+        "date": "2012-03-06T06:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Song of Achilles",
+      "node": "The Song of Achilles"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Miller, Madeline",
+      "node": "Miller, Madeline"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2012-03-06T06:00:00+00:00",
+      "node": "2012-03-06T06:00:00+00:00"
+    }
   }
 }

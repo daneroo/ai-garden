@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Immanuel Kant - Prolegomena.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Prolegomena To Any Future Metaphysics",
+          "creator": "Ellington, James W., Kant, Immanuel",
+          "date": "2010-11-03"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Prolegomena To Any Future Metaphysics",
+        "creator": "Ellington, James W., Kant, Immanuel",
+        "date": "2010-11-03"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Prolegomena To Any Future Metaphysics",
+      "node": "Prolegomena To Any Future Metaphysics"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Ellington, James W., Kant, Immanuel",
+      "node": "Ellington, James W., Kant, Immanuel"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2010-11-03",
+      "node": "2010-11-03"
+    }
   }
 }

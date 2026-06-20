@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Mathematics/Scott Aaronson - Quantum Computing since Democritus.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Quantum Computing since Democritus",
+          "creator": "Aaronson, Scott",
+          "date": "2013-02-27T21:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Quantum Computing since Democritus",
+        "creator": "Aaronson, Scott",
+        "date": "2013-02-27T21:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Quantum Computing since Democritus",
+      "node": "Quantum Computing since Democritus"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Aaronson, Scott",
+      "node": "Aaronson, Scott"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2013-02-27T21:00:00+00:00",
+      "node": "2013-02-27T21:00:00+00:00"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Mary Stewart - Arthurian Saga/Mary Stewart - Arthurian Saga 02 - The Hollow Hills/Mary Stewart - Arthurian Saga 02 - The Hollow Hills.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Hollow Hills (Merlin 2)",
+          "creator": "Mary Stewart",
+          "date": "2003-04-23T14:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Hollow Hills (Merlin 2)",
+        "creator": "Mary Stewart",
+        "date": "2003-04-23T14:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Hollow Hills (Merlin 2)",
+      "node": "The Hollow Hills (Merlin 2)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Mary Stewart",
+      "node": "Mary Stewart"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2003-04-23T14:00:00+00:00",
+      "node": "2003-04-23T14:00:00+00:00"
+    }
   }
 }

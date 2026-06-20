@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Ursula K. Le Guin - Earthsea Cycle/Ursula K. Le Guin - Earthsea Cycle 03 - The Farthest Shore/Ursula K. Le Guin - Earthsea Cycle 03 - The Farthest Shore.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Farthest Shore",
+          "creator": "Ursula Kroeber Le Guin",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Farthest Shore",
+        "creator": "Ursula Kroeber Le Guin",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Farthest Shore",
+      "node": "The Farthest Shore"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Ursula Kroeber Le Guin",
+      "node": "Ursula Kroeber Le Guin"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

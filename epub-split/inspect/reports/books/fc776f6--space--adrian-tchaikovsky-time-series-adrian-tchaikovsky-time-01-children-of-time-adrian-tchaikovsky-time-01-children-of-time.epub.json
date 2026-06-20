@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Adrian Tchaikovsky - Time Series/Adrian Tchaikovsky - Time 01 - Children of Time/Adrian Tchaikovsky - Time 01 - Children of Time.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Children of Time",
+          "creator": "Adrian Tchaikovsky",
+          "date": "2015-06-03T16:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Children of Time",
+        "creator": "Adrian Tchaikovsky",
+        "date": "2015-06-03T16:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Children of Time",
+      "node": "Children of Time"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Adrian Tchaikovsky",
+      "node": "Adrian Tchaikovsky"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2015-06-03T16:00:00+00:00",
+      "node": "2015-06-03T16:00:00+00:00"
+    }
   }
 }

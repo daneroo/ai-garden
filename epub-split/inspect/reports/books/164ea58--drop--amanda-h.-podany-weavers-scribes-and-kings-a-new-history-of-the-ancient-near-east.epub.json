@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Amanda H. Podany - Weavers, Scribes, and Kings - A New History of the Ancient Near East.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Weavers, Scribes, and Kings",
+          "creator": "Amanda H. Podany",
+          "date": "2022"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Weavers, Scribes, and Kings",
+        "creator": "Amanda H. Podany",
+        "date": "2022"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Weavers, Scribes, and Kings",
+        "creator": "Amanda H. Podany",
+        "date": "2022"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Weavers, Scribes, and Kings",
+      "node": "Weavers, Scribes, and Kings",
+      "storyteller": "Weavers, Scribes, and Kings"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Amanda H. Podany",
+      "node": "Amanda H. Podany",
+      "storyteller": "Amanda H. Podany"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022",
+      "node": "2022",
+      "storyteller": "2022"
+    }
   }
 }

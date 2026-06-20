@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Edward Chancellor - The Price of Time The Real Story of Interest.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Price of Time",
+          "creator": "Edward Chancellor",
+          "date": "2022-05-10"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Price of Time",
+        "creator": "Edward Chancellor",
+        "date": "2022-05-10"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Price of Time",
+        "creator": "Edward Chancellor",
+        "date": "2022-05-10"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Price of Time",
+      "node": "The Price of Time",
+      "storyteller": "The Price of Time"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Edward Chancellor",
+      "node": "Edward Chancellor",
+      "storyteller": "Edward Chancellor"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-05-10",
+      "node": "2022-05-10",
+      "storyteller": "2022-05-10"
+    }
   }
 }

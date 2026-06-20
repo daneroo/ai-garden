@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Evan Winter - The Burning/Evan Winter - The Burning 1 - The Rage of Dragons/Evan Winter - The Burning 1 - The Rage of Dragons.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Rage of Dragons",
+          "creator": "Evan Winter",
+          "date": "2019-02-12"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Rage of Dragons",
+        "creator": "Evan Winter",
+        "date": "2019-02-12"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Rage of Dragons",
+        "creator": "Evan Winter",
+        "date": "2019-02-12"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Rage of Dragons",
+      "node": "The Rage of Dragons",
+      "storyteller": "The Rage of Dragons"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Evan Winter",
+      "node": "Evan Winter",
+      "storyteller": "Evan Winter"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2019-02-12",
+      "node": "2019-02-12",
+      "storyteller": "2019-02-12"
+    }
   }
 }

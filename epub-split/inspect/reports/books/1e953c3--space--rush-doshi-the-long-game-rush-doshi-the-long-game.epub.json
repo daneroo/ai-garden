@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Rush Doshi - The Long Game/Rush Doshi - The Long Game.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Long Game",
+          "creator": "Doshi, Rush",
+          "date": "2021"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Long Game",
+        "creator": "Doshi, Rush",
+        "date": "2021"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Long Game",
+        "creator": "Doshi, Rush",
+        "date": "2021"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Long Game",
+      "node": "The Long Game",
+      "storyteller": "The Long Game"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Doshi, Rush",
+      "node": "Doshi, Rush",
+      "storyteller": "Doshi, Rush"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021",
+      "node": "2021",
+      "storyteller": "2021"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Ada Palmer - Inventing the Renaissance/Ada Palmer - Inventing the Renaissance.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Inventing the Renaissance",
+          "creator": "Ada Palmer",
+          "date": "2025"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Inventing the Renaissance",
+        "creator": "Ada Palmer",
+        "date": "2025"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Inventing the Renaissance",
+        "creator": "Ada Palmer",
+        "date": "2025"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Inventing the Renaissance",
+      "node": "Inventing the Renaissance",
+      "storyteller": "Inventing the Renaissance"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Ada Palmer",
+      "node": "Ada Palmer",
+      "storyteller": "Ada Palmer"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2025",
+      "node": "2025",
+      "storyteller": "2025"
+    }
   }
 }

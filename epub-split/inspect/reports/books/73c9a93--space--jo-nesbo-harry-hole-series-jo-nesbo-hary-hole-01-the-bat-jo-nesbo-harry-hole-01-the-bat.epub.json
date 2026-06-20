@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Jo Nesbo - Harry Hole Series/Jo Nesbo - Hary Hole 01 - The Bat/Jo Nesbo - Harry Hole 01 - The Bat.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Bat: The First Inspector Harry Hole Novel",
+          "creator": "Jo Nesbø",
+          "date": "2013-07-02T05:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Bat: The First Inspector Harry Hole Novel",
+        "creator": "Jo Nesbø",
+        "date": "2013-07-02T05:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Bat: The First Inspector Harry Hole Novel",
+      "node": "The Bat: The First Inspector Harry Hole Novel"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Jo Nesbø",
+      "node": "Jo Nesbø"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2013-07-02T05:00:00+00:00",
+      "node": "2013-07-02T05:00:00+00:00"
+    }
   }
 }

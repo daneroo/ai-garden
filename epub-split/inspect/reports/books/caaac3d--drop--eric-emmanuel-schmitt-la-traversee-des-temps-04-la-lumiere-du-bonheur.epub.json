@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Eric-Emmanuel Schmitt - La Traversee des temps 04 - La Lumiere du bonheur.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "La Traversée des temps T4 : La Lumière du bonheur",
+          "creator": "Éric-Emmanuel Schmitt",
+          "date": "2024-04-18T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "La Traversée des temps T4 : La Lumière du bonheur",
+        "creator": "Éric-Emmanuel Schmitt",
+        "date": "2024-04-18T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "La Traversée des temps T4 : La Lumière du bonheur",
+        "creator": "Éric-Emmanuel Schmitt",
+        "date": "2024-04-18T00:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "La Traversée des temps T4 : La Lumière du bonheur",
+      "node": "La Traversée des temps T4 : La Lumière du bonheur",
+      "storyteller": "La Traversée des temps T4 : La Lumière du bonheur"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Éric-Emmanuel Schmitt",
+      "node": "Éric-Emmanuel Schmitt",
+      "storyteller": "Éric-Emmanuel Schmitt"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2024-04-18T00:00:00+00:00",
+      "node": "2024-04-18T00:00:00+00:00",
+      "storyteller": "2024-04-18T00:00:00+00:00"
+    }
   }
 }

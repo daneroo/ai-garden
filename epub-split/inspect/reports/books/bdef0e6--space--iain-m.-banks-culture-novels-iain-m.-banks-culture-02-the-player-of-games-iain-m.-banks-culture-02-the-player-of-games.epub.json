@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Iain M. Banks - Culture Novels/Iain M. Banks - Culture 02 - The Player of Games/Iain M. Banks - Culture 02 - The Player Of Games.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Player of Games",
+          "creator": "Iain M. Banks",
+          "date": "2009-12-01"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Player of Games",
+        "creator": "Iain M. Banks",
+        "date": "2009-12-01"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Player of Games",
+      "node": "The Player of Games"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Iain M. Banks",
+      "node": "Iain M. Banks"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2009-12-01",
+      "node": "2009-12-01"
+    }
   }
 }

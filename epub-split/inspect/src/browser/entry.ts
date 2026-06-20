@@ -1,6 +1,7 @@
 import ePub from "@likecoin/epub-ts";
 
-import type { BrowserOpenOutcome, DeclaredVersion } from "../types.ts";
+import { optional, optionalDate } from "../metadata-utils.ts";
+import type { BrowserOpenOutcome, DeclaredVersion, MetadataFields } from "../types.ts";
 import type { BrowserHarness } from "./protocol.ts";
 
 const harness: BrowserHarness = {
@@ -33,7 +34,11 @@ async function openBook(bytes: ArrayBuffer): Promise<BrowserOpenOutcome> {
   const book = ePub(bytes, { replacements: "none" });
   try {
     await book.opened;
-    return { status: "opened", version: declaredVersion(book) };
+    return {
+      status: "opened",
+      version: declaredVersion(book),
+      metadata: epubtsMetadata(book.packaging.metadata),
+    };
   } catch (error) {
     return {
       status: "open-failed",
@@ -49,6 +54,20 @@ async function openBook(bytes: ArrayBuffer): Promise<BrowserOpenOutcome> {
     }
   }
 }
+
+function epubtsMetadata(metadata: {
+  title?: unknown;
+  creator?: unknown;
+  pubdate?: unknown;
+}): MetadataFields {
+  return {
+    title: optional(metadata.title),
+    creator: optional(metadata.creator),
+    date: optionalDate(metadata.pubdate),
+  };
+}
+
+
 
 function declaredVersion(book: ReturnType<typeof ePub>): DeclaredVersion {
   const packaging = book.packaging as { version?: unknown } | undefined;

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Jim Butcher - The Dresden Files/Jim Butcher - The Dresden Files 12.5 - Side Jobs/Jim Butcher - The Dresden Files 12.5 - Side Jobs.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Side Jobs: Stories from the Dresden Files",
+          "creator": "Butcher, Jim",
+          "date": "2010-10-14T16:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Side Jobs: Stories from the Dresden Files",
+        "creator": "Butcher, Jim",
+        "date": "2010-10-14T16:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Side Jobs: Stories from the Dresden Files",
+      "node": "Side Jobs: Stories from the Dresden Files"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Butcher, Jim",
+      "node": "Butcher, Jim"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2010-10-14T16:00:00+00:00",
+      "node": "2010-10-14T16:00:00+00:00"
+    }
   }
 }

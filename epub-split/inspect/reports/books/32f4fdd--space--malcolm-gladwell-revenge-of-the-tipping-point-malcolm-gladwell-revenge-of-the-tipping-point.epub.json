@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Malcolm Gladwell - Revenge of the Tipping Point/Malcolm Gladwell - Revenge of the Tipping Point.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Revenge of the Tipping Point",
+          "creator": "Malcolm Gladwell",
+          "date": "2024-10-01"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Revenge of the Tipping Point",
+        "creator": "Malcolm Gladwell",
+        "date": "2024-10-01"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Revenge of the Tipping Point",
+        "creator": "Malcolm Gladwell",
+        "date": "2024-10-01"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Revenge of the Tipping Point",
+      "node": "Revenge of the Tipping Point",
+      "storyteller": "Revenge of the Tipping Point"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Malcolm Gladwell",
+      "node": "Malcolm Gladwell",
+      "storyteller": "Malcolm Gladwell"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2024-10-01",
+      "node": "2024-10-01",
+      "storyteller": "2024-10-01"
+    }
   }
 }

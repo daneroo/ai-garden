@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Craig Alanson - Expeditionary Force/Craig Alanson - Expeditionary Force 08 - Armageddon/Craig Alanson - Expeditionary Force 08 - Armageddon.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Armageddon (Expeditionary Force Book 8)",
+          "creator": "Craig Alanson",
+          "date": "2019-08-08T16:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Armageddon (Expeditionary Force Book 8)",
+        "creator": "Craig Alanson",
+        "date": "2019-08-08T16:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Armageddon (Expeditionary Force Book 8)",
+      "node": "Armageddon (Expeditionary Force Book 8)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Craig Alanson",
+      "node": "Craig Alanson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2019-08-08T16:00:00+00:00",
+      "node": "2019-08-08T16:00:00+00:00"
+    }
   }
 }

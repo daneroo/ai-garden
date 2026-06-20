@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Ray Kurzweil - The Singularity Is Nearer.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Singularity Is Nearer",
+          "creator": "Ray Kurzweil",
+          "date": "2024-06-25"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Singularity Is Nearer",
+        "creator": "Ray Kurzweil",
+        "date": "2024-06-25"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Singularity Is Nearer",
+        "creator": "Ray Kurzweil",
+        "date": "2024-06-25"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Singularity Is Nearer",
+      "node": "The Singularity Is Nearer",
+      "storyteller": "The Singularity Is Nearer"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Ray Kurzweil",
+      "node": "Ray Kurzweil",
+      "storyteller": "Ray Kurzweil"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2024-06-25",
+      "node": "2024-06-25",
+      "storyteller": "2024-06-25"
+    }
   }
 }

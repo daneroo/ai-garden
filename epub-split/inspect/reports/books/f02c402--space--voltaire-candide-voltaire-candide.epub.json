@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Voltaire - Candide/Voltaire - Candide.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Candide, ou l'Optimisme",
+          "creator": "Voltaire",
+          "date": "1759"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Candide, ou l'Optimisme",
+        "creator": "Voltaire",
+        "date": "1759"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Candide, ou l'Optimisme",
+      "node": "Candide, ou l'Optimisme"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Voltaire",
+      "node": "Voltaire"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1759",
+      "node": "1759"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Christopher Ruocchio - Sun Eater 02.6 Queen Amid Ashes.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Queen Amid Ashes",
+          "creator": "Christopher Ruocchio",
+          "date": "2022-06-27T23:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Queen Amid Ashes",
+        "creator": "Christopher Ruocchio",
+        "date": "2022-06-27T23:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Queen Amid Ashes",
+      "node": "Queen Amid Ashes"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Christopher Ruocchio",
+      "node": "Christopher Ruocchio"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2022-06-27T23:00:00+00:00",
+      "node": "2022-06-27T23:00:00+00:00"
+    }
   }
 }

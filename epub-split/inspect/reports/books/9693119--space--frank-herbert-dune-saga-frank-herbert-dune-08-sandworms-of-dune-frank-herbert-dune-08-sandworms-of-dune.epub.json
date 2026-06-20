@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Frank Herbert - Dune Saga/Frank Herbert - Dune 08 - Sandworms of Dune/Frank Herbert - Dune 08 - Sandworms of Dune.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Sandworms of Dune",
+          "creator": "Anderson, Kevin J.",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Sandworms of Dune",
+        "creator": "Anderson, Kevin J.",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Sandworms of Dune",
+      "node": "Sandworms of Dune"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Anderson, Kevin J.",
+      "node": "Anderson, Kevin J."
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

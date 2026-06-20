@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Steven Pinker - Rationality/Steven Pinker - Rationality.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Rationality",
+          "creator": "Steven Pinker",
+          "date": "2021-09-28"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Rationality",
+        "creator": "Steven Pinker",
+        "date": "2021-09-28"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Rationality",
+        "creator": "Steven Pinker",
+        "date": "2021-09-28"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Rationality",
+      "node": "Rationality",
+      "storyteller": "Rationality"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Steven Pinker",
+      "node": "Steven Pinker",
+      "storyteller": "Steven Pinker"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021-09-28",
+      "node": "2021-09-28",
+      "storyteller": "2021-09-28"
+    }
   }
 }

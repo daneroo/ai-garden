@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Neal Stephenson - Cryptonomicon/Neal Stephenson - Cryptonomicon.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Cryptonomicon",
+          "creator": "Neal Stephenson",
+          "date": "2003-02-19T05:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Cryptonomicon",
+        "creator": "Neal Stephenson",
+        "date": "2003-02-19T05:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Cryptonomicon",
+      "node": "Cryptonomicon"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Neal Stephenson",
+      "node": "Neal Stephenson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2003-02-19T05:00:00+00:00",
+      "node": "2003-02-19T05:00:00+00:00"
+    }
   }
 }

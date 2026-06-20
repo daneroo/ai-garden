@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Eliezer Yudkowsky - If Anyone Builds It Everyone Dies.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "If Anyone Builds It, Everyone Dies",
+          "creator": "Eliezer Yudkowsky",
+          "date": "2025-09-16"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "If Anyone Builds It, Everyone Dies",
+        "creator": "Eliezer Yudkowsky",
+        "date": "2025-09-16"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "If Anyone Builds It, Everyone Dies",
+        "creator": "Eliezer Yudkowsky",
+        "date": "2025-09-16"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "If Anyone Builds It, Everyone Dies",
+      "node": "If Anyone Builds It, Everyone Dies",
+      "storyteller": "If Anyone Builds It, Everyone Dies"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Eliezer Yudkowsky",
+      "node": "Eliezer Yudkowsky",
+      "storyteller": "Eliezer Yudkowsky"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2025-09-16",
+      "node": "2025-09-16",
+      "storyteller": "2025-09-16"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "1066 and before all that-2017.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "1066 and Before All That",
+          "creator": "Ed West",
+          "date": "2017"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "1066 and Before All That",
+        "creator": "Ed West",
+        "date": "2017"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "1066 and Before All That",
+      "node": "1066 and Before All That"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Ed West",
+      "node": "Ed West"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2017",
+      "node": "2017"
+    }
   }
 }

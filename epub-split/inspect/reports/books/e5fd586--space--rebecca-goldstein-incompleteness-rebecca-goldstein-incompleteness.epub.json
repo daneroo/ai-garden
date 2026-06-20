@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Rebecca Goldstein - Incompleteness/Rebecca Goldstein - Incompleteness.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Incompleteness: The Proof and Paradox of Kurt Gödel [Great Discoveries]",
+          "creator": "Rebecca Goldstein",
+          "date": "2013-08-05"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Incompleteness: The Proof and Paradox of Kurt Gödel [Great Discoveries]",
+        "creator": "Rebecca Goldstein",
+        "date": "2013-08-05"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Incompleteness: The Proof and Paradox of Kurt Gödel [Great Discoveries]",
+      "node": "Incompleteness: The Proof and Paradox of Kurt Gödel [Great Discoveries]"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Rebecca Goldstein",
+      "node": "Rebecca Goldstein"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2013-08-05",
+      "node": "2013-08-05"
+    }
   }
 }

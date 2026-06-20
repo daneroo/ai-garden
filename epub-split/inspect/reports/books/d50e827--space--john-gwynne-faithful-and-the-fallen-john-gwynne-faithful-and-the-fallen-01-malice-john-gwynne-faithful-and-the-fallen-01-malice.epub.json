@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "John Gwynne - Faithful and the Fallen/John Gwynne - Faithful and the Fallen 01 - Malice/John Gwynne - Faithful and the Fallen 01 - Malice.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Malice",
+          "creator": "John Gwynne",
+          "date": "2012-12-05T23:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Malice",
+        "creator": "John Gwynne",
+        "date": "2012-12-05T23:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Malice",
+      "node": "Malice"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "John Gwynne",
+      "node": "John Gwynne"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2012-12-05T23:00:00+00:00",
+      "node": "2012-12-05T23:00:00+00:00"
+    }
   }
 }

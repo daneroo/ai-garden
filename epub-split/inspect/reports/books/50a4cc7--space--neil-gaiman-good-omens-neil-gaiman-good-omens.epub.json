@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Neil Gaiman - Good Omens/Neil Gaiman - Good Omens.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Good Omens",
+          "creator": "Neil Gaiman",
+          "date": "2006-08-15T04:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Good Omens",
+        "creator": "Neil Gaiman",
+        "date": "2006-08-15T04:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Good Omens",
+      "node": "Good Omens"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Neil Gaiman",
+      "node": "Neil Gaiman"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2006-08-15T04:00:00+00:00",
+      "node": "2006-08-15T04:00:00+00:00"
+    }
   }
 }

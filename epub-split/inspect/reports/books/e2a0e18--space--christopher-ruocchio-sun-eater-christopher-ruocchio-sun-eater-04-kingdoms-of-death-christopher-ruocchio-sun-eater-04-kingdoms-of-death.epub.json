@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Christopher Ruocchio - Sun Eater/Christopher Ruocchio - Sun Eater 04 - Kingdoms of Death/Christopher Ruocchio - Sun Eater 04 - Kingdoms of Death.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Kingdoms of Death",
+          "creator": "Christopher Ruocchio",
+          "date": "2022-03-22"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Kingdoms of Death",
+        "creator": "Christopher Ruocchio",
+        "date": "2022-03-22"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Kingdoms of Death",
+        "creator": "Christopher Ruocchio",
+        "date": "2022-03-22"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Kingdoms of Death",
+      "node": "Kingdoms of Death",
+      "storyteller": "Kingdoms of Death"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Christopher Ruocchio",
+      "node": "Christopher Ruocchio",
+      "storyteller": "Christopher Ruocchio"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-03-22",
+      "node": "2022-03-22",
+      "storyteller": "2022-03-22"
+    }
   }
 }

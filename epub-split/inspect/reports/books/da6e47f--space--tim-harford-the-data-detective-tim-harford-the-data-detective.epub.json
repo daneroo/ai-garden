@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Tim Harford - The Data Detective/Tim Harford - The Data Detective.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Data Detective",
+          "creator": "Tim Harford",
+          "date": "2021-02-02"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Data Detective",
+        "creator": "Tim Harford",
+        "date": "2021-02-02"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Data Detective",
+        "creator": "Tim Harford",
+        "date": "2021-02-02"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Data Detective",
+      "node": "The Data Detective",
+      "storyteller": "The Data Detective"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Tim Harford",
+      "node": "Tim Harford",
+      "storyteller": "Tim Harford"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021-02-02",
+      "node": "2021-02-02",
+      "storyteller": "2021-02-02"
+    }
   }
 }

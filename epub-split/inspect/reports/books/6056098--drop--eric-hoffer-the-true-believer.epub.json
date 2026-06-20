@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Eric Hoffer - The True Believer.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The True Believer: Thoughts on the Nature of Mass Movements (Perennial Classics)",
+          "creator": "Hoffer, Eric",
+          "date": "2011-05-10T07:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The True Believer: Thoughts on the Nature of Mass Movements (Perennial Classics)",
+        "creator": "Hoffer, Eric",
+        "date": "2011-05-10T07:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The True Believer: Thoughts on the Nature of Mass Movements (Perennial Classics)",
+      "node": "The True Believer: Thoughts on the Nature of Mass Movements (Perennial Classics)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Hoffer, Eric",
+      "node": "Hoffer, Eric"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-05-10T07:00:00+00:00",
+      "node": "2011-05-10T07:00:00+00:00"
+    }
   }
 }

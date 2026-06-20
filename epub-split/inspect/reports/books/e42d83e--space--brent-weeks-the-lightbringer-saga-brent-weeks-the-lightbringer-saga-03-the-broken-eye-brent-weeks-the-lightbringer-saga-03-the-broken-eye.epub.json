@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Brent Weeks - The LightBringer Saga/Brent Weeks - The Lightbringer Saga 03 - The Broken Eye/Brent Weeks - The Lightbringer Saga 03 - The Broken Eye.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Broken Eye",
+          "creator": "Brent Weeks",
+          "date": "2014-08-26T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Broken Eye",
+        "creator": "Brent Weeks",
+        "date": "2014-08-26T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Broken Eye",
+      "node": "The Broken Eye"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Brent Weeks",
+      "node": "Brent Weeks"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-08-26T00:00:00+00:00",
+      "node": "2014-08-26T00:00:00+00:00"
+    }
   }
 }

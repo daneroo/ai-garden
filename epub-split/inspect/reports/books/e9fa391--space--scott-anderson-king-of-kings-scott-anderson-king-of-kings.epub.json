@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Scott Anderson - King of Kings/Scott Anderson - King of Kings.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "King of Kings",
+          "creator": "Scott Anderson",
+          "date": "2025-08-05"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "King of Kings",
+        "creator": "Scott Anderson",
+        "date": "2025-08-05"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "King of Kings",
+        "creator": "Scott Anderson",
+        "date": "2025-08-05"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "King of Kings",
+      "node": "King of Kings",
+      "storyteller": "King of Kings"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Scott Anderson",
+      "node": "Scott Anderson",
+      "storyteller": "Scott Anderson"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2025-08-05",
+      "node": "2025-08-05",
+      "storyteller": "2025-08-05"
+    }
   }
 }

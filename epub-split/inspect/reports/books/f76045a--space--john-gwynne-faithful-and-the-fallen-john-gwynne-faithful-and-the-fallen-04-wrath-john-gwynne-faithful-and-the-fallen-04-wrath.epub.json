@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "John Gwynne - Faithful and the Fallen/John Gwynne - Faithful and the Fallen 04 - Wrath/John Gwynne - Faithful and the Fallen 04 - Wrath.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Wrath",
+          "creator": "John Gwynne",
+          "date": "2016-12-06T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Wrath",
+        "creator": "John Gwynne",
+        "date": "2016-12-06T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Wrath",
+      "node": "Wrath"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "John Gwynne",
+      "node": "John Gwynne"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2016-12-06T00:00:00+00:00",
+      "node": "2016-12-06T00:00:00+00:00"
+    }
   }
 }

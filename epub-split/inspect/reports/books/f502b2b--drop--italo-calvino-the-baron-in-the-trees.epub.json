@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Italo Calvino - The Baron in the Trees.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Baron in the Trees",
+          "creator": "Calvino, Italo",
+          "date": "2017-10-03"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Baron in the Trees",
+        "creator": "Calvino, Italo",
+        "date": "2017-10-03"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Baron in the Trees",
+        "creator": "Calvino, Italo",
+        "date": "2017-10-03"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Baron in the Trees",
+      "node": "The Baron in the Trees",
+      "storyteller": "The Baron in the Trees"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Calvino, Italo",
+      "node": "Calvino, Italo",
+      "storyteller": "Calvino, Italo"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2017-10-03",
+      "node": "2017-10-03",
+      "storyteller": "2017-10-03"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Physics/Mapping the Heavens - Priyamvada Natarajan.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Mapping the Heavens",
+          "creator": "Priyamvada Natarajan",
+          "date": "2016"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Mapping the Heavens",
+        "creator": "Priyamvada Natarajan",
+        "date": "2016"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Mapping the Heavens",
+      "node": "Mapping the Heavens"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Priyamvada Natarajan",
+      "node": "Priyamvada Natarajan"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2016",
+      "node": "2016"
+    }
   }
 }

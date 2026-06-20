@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Bernard Cornwell - The Saxon Chronicles/Bernard Cornwell - Saxon Chronicles 06 - Death Of Kings/Bernard Cornwell - Saxon Chronicles 06 - Death Of Kings.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Death of Kings",
+          "creator": "Bernard Cornwell",
+          "date": "2012-01-01"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Death of Kings",
+        "creator": "Bernard Cornwell",
+        "date": "2012-01-01"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Death of Kings",
+      "node": "Death of Kings"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Bernard Cornwell",
+      "node": "Bernard Cornwell"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2012-01-01",
+      "node": "2012-01-01"
+    }
   }
 }

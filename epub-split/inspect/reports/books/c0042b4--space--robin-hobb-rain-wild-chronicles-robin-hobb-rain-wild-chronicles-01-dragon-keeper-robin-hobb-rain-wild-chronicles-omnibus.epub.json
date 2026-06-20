@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Robin Hobb - Rain Wild Chronicles/Robin Hobb - Rain Wild Chronicles 01 - Dragon Keeper/Robin Hobb - Rain Wild Chronicles Omnibus.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Rain Wilds Chronicles",
+          "creator": "Robin Hobb",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Rain Wilds Chronicles",
+        "creator": "Robin Hobb",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Rain Wilds Chronicles",
+      "node": "Rain Wilds Chronicles"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Robin Hobb",
+      "node": "Robin Hobb"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Brandon Sanderson - Stormlight Archive/Brandon Sanderson - Stormlight Archive 04 - Rhythm of War/Brandon Sanderson - Stormlight Archive 04 - Rhythm of War.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Rhythm of War (9781429952040)",
+          "creator": "Sanderson, Brandon",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Rhythm of War (9781429952040)",
+        "creator": "Sanderson, Brandon",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Rhythm of War (9781429952040)",
+        "creator": "Sanderson, Brandon",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Rhythm of War (9781429952040)",
+      "node": "Rhythm of War (9781429952040)",
+      "storyteller": "Rhythm of War (9781429952040)"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Sanderson, Brandon",
+      "node": "Sanderson, Brandon",
+      "storyteller": "Sanderson, Brandon"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

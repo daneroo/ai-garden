@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Ian Johnson - Sparks.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Sparks",
+          "creator": "Ian Johnson",
+          "date": "2023-09-26"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Sparks",
+        "creator": "Ian Johnson",
+        "date": "2023-09-26"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Sparks",
+        "creator": "Ian Johnson",
+        "date": "2023-09-26"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Sparks",
+      "node": "Sparks",
+      "storyteller": "Sparks"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Ian Johnson",
+      "node": "Ian Johnson",
+      "storyteller": "Ian Johnson"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2023-09-26",
+      "node": "2023-09-26",
+      "storyteller": "2023-09-26"
+    }
   }
 }

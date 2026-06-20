@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "N. K. Jemisin - The Fifth Season.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Fifth Season",
+          "creator": "N. K. Jemisin",
+          "date": "2015-08-04"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Fifth Season",
+        "creator": "N. K. Jemisin",
+        "date": "2015-08-04"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Fifth Season",
+        "creator": "N. K. Jemisin",
+        "date": "2015-08-04"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Fifth Season",
+      "node": "The Fifth Season",
+      "storyteller": "The Fifth Season"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "N. K. Jemisin",
+      "node": "N. K. Jemisin",
+      "storyteller": "N. K. Jemisin"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2015-08-04",
+      "node": "2015-08-04",
+      "storyteller": "2015-08-04"
+    }
   }
 }

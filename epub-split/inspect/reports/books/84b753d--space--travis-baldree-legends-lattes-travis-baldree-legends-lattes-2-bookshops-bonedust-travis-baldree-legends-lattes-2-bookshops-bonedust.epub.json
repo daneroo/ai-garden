@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Travis Baldree - Legends & Lattes/Travis Baldree - Legends & Lattes 2 - Bookshops & Bonedust/Travis Baldree - Legends & Lattes 2 - Bookshops & Bonedust.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Bookshops & Bonedust",
+          "creator": "Travis Baldree",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Bookshops ",
+        "creator": "Travis Baldree",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Bookshops & Bonedust",
+        "creator": "Travis Baldree",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "node-differs",
+      "browser": "Bookshops & Bonedust",
+      "node": "Bookshops ",
+      "storyteller": "Bookshops & Bonedust"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Travis Baldree",
+      "node": "Travis Baldree",
+      "storyteller": "Travis Baldree"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

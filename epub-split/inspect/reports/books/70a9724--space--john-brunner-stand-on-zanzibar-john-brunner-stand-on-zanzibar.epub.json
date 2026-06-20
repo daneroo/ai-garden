@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "John Brunner - Stand on Zanzibar/John Brunner - Stand on Zanzibar.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Stand on Zanzibar",
+          "creator": "John Brunner",
+          "date": "2011-08-16"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Stand on Zanzibar",
+        "creator": "John Brunner",
+        "date": "2011-08-16"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Stand on Zanzibar",
+      "node": "Stand on Zanzibar"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "John Brunner",
+      "node": "John Brunner"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-08-16",
+      "node": "2011-08-16"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Steven Brust - Vlad Taltos/Steven Brust - Vlad Taltos 17 - Lyorn/Steven Brust - Vlad Taltos 17 - Lyorn.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Lyorn",
+          "creator": "Steven Brust",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Lyorn",
+        "creator": "Steven Brust",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Lyorn",
+      "node": "Lyorn"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Steven Brust",
+      "node": "Steven Brust"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

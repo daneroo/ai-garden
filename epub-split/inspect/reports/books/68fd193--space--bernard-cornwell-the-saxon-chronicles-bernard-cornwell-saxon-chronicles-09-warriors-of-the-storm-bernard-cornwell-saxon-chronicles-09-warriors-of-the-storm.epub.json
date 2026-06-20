@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Bernard Cornwell - The Saxon Chronicles/Bernard Cornwell - Saxon Chronicles 09 - Warriors Of The Storm/Bernard Cornwell - Saxon Chronicles 09 - Warriors Of The Storm.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Warriors of the Storm (2015)",
+          "creator": "Bernard Cornwell",
+          "date": "2015-10-07T22:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Warriors of the Storm (2015)",
+        "creator": "Bernard Cornwell",
+        "date": "2015-10-07T22:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Warriors of the Storm (2015)",
+      "node": "Warriors of the Storm (2015)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Bernard Cornwell",
+      "node": "Bernard Cornwell"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2015-10-07T22:00:00+00:00",
+      "node": "2015-10-07T22:00:00+00:00"
+    }
   }
 }

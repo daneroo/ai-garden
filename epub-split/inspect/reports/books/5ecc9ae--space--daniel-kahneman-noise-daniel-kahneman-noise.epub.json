@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Daniel Kahneman - Noise/Daniel Kahneman - Noise.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Noise: A Flaw in Human Judgment",
+          "creator": "Sunstein, Cass R.",
+          "date": "2021-05-18"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Noise: A Flaw in Human Judgment",
+        "creator": "Sunstein, Cass R.",
+        "date": "2021-05-18"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Noise: A Flaw in Human Judgment",
+      "node": "Noise: A Flaw in Human Judgment"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Sunstein, Cass R.",
+      "node": "Sunstein, Cass R."
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2021-05-18",
+      "node": "2021-05-18"
+    }
   }
 }

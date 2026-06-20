@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Edward Frenkel - Love and Math.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Love and Math",
+          "creator": "Frenkel, Edward",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Love and Math",
+        "creator": "Frenkel, Edward",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Love and Math",
+      "node": "Love and Math"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Frenkel, Edward",
+      "node": "Frenkel, Edward"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

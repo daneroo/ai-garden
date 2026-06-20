@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Jo Nesbo - The Jealousy Man and Other Stories.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Jealousy Man and Other Stories",
+          "creator": "Jo Nesbo",
+          "date": "2021-10-05"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Jealousy Man and Other Stories",
+        "creator": "Jo Nesbo",
+        "date": "2021-10-05"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Jealousy Man and Other Stories",
+        "creator": "Jo Nesbo",
+        "date": "2021-10-05"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Jealousy Man and Other Stories",
+      "node": "The Jealousy Man and Other Stories",
+      "storyteller": "The Jealousy Man and Other Stories"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Jo Nesbo",
+      "node": "Jo Nesbo",
+      "storyteller": "Jo Nesbo"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021-10-05",
+      "node": "2021-10-05",
+      "storyteller": "2021-10-05"
+    }
   }
 }

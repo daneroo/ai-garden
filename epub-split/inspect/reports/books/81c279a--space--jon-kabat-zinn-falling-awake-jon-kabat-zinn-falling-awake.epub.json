@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Jon Kabat-Zinn - Falling Awake/Jon Kabat-Zinn - Falling Awake.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Falling Awake",
+          "creator": "Jon Kabat-Zinn",
+          "date": "2018-08-07"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Falling Awake",
+        "creator": "Jon Kabat-Zinn",
+        "date": "2018-08-07"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Falling Awake",
+        "creator": "Jon Kabat-Zinn",
+        "date": "2018-08-07"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Falling Awake",
+      "node": "Falling Awake",
+      "storyteller": "Falling Awake"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Jon Kabat-Zinn",
+      "node": "Jon Kabat-Zinn",
+      "storyteller": "Jon Kabat-Zinn"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2018-08-07",
+      "node": "2018-08-07",
+      "storyteller": "2018-08-07"
+    }
   }
 }

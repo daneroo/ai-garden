@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Jon Kabat-Zinn - Mindfulness For Beginners/Jon Kabat-Zinn - Mindfulness For Beginners.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Mindfulness for Beginners : Reclaiming the Present Moment - and Your Life (9781604077742)",
+          "creator": "Kabat-Zinn, Jon",
+          "date": "2012"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Mindfulness for Beginners : Reclaiming the Present Moment - and Your Life (9781604077742)",
+        "creator": "Kabat-Zinn, Jon",
+        "date": "2012"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Mindfulness for Beginners : Reclaiming the Present Moment - and Your Life (9781604077742)",
+      "node": "Mindfulness for Beginners : Reclaiming the Present Moment - and Your Life (9781604077742)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Kabat-Zinn, Jon",
+      "node": "Kabat-Zinn, Jon"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2012",
+      "node": "2012"
+    }
   }
 }

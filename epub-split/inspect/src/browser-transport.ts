@@ -7,6 +7,7 @@ import type {
   BrowserDiagnostic,
   BrowserHarnessResult,
   BrowserRuntime,
+  MetadataFields,
   BrowserTransportFailure,
   BrowserTransportSuccess,
   HashedBook,
@@ -187,7 +188,8 @@ function isValidOpenOutcome(open: unknown): boolean {
     return false;
   }
   if (open.status === "opened") {
-    return "version" in open && isValidDeclaredVersion(open.version);
+    return "version" in open && isValidDeclaredVersion(open.version) &&
+      "metadata" in open && isValidMetadata(open.metadata);
   }
   if (open.status === "open-failed") {
     return (
@@ -200,6 +202,14 @@ function isValidOpenOutcome(open: unknown): boolean {
     );
   }
   return false;
+}
+
+function isValidMetadata(value: unknown): value is MetadataFields {
+  if (typeof value !== "object" || value === null) return false;
+  if (!("title" in value) || !("creator" in value) || !("date" in value)) return false;
+  return (value.title === null || typeof value.title === "string") &&
+    (value.creator === null || typeof value.creator === "string") &&
+    (value.date === null || typeof value.date === "string");
 }
 
 function isValidDeclaredVersion(version: unknown): boolean {

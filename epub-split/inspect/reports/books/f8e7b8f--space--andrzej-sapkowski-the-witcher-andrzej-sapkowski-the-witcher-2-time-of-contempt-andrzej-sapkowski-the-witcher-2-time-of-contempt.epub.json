@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Andrzej Sapkowski - The Witcher/Andrzej Sapkowski - The Witcher 2 - Time of Contempt/Andrzej Sapkowski - The Witcher 2 - Time of Contempt.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Time of Contempt",
+          "creator": "Sapkowski, Andrzej",
+          "date": "2013-06-27T06:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Time of Contempt",
+        "creator": "Sapkowski, Andrzej",
+        "date": "2013-06-27T06:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Time of Contempt",
+      "node": "Time of Contempt"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Sapkowski, Andrzej",
+      "node": "Sapkowski, Andrzej"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2013-06-27T06:00:00+00:00",
+      "node": "2013-06-27T06:00:00+00:00"
+    }
   }
 }

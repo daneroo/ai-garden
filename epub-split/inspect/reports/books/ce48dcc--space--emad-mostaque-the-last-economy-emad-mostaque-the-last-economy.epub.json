@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Emad Mostaque - The Last Economy/Emad Mostaque - The Last Economy.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Last Economy",
+          "creator": "Emad Mostaque",
+          "date": "2025-8-22"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Last Economy",
+        "creator": "Emad Mostaque",
+        "date": "2025-8-22"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Last Economy",
+        "creator": "Emad Mostaque",
+        "date": "2025-8-22"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Last Economy",
+      "node": "The Last Economy",
+      "storyteller": "The Last Economy"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Emad Mostaque",
+      "node": "Emad Mostaque",
+      "storyteller": "Emad Mostaque"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2025-8-22",
+      "node": "2025-8-22",
+      "storyteller": "2025-8-22"
+    }
   }
 }

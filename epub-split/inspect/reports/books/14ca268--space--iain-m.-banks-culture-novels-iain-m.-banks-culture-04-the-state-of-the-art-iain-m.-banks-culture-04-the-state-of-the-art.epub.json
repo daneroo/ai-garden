@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Iain M. Banks - Culture Novels/Iain M. Banks - Culture 04 - The State of the Art/Iain M. Banks - Culture 04 - The State of the Art.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The State of the Art",
+          "creator": "Iain M. Banks",
+          "date": "2010-02-04T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The State of the Art",
+        "creator": "Iain M. Banks",
+        "date": "2010-02-04T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The State of the Art",
+      "node": "The State of the Art"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Iain M. Banks",
+      "node": "Iain M. Banks"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2010-02-04T00:00:00+00:00",
+      "node": "2010-02-04T00:00:00+00:00"
+    }
   }
 }

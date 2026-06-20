@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Physics/Carlo Rovelli - Helgoland.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Helgoland",
+          "creator": "Rovelli, Carlo, Carnell, Simon, Segre, Erica",
+          "date": "2021-05-25"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Helgoland",
+        "creator": "Rovelli, Carlo, Carnell, Simon, Segre, Erica",
+        "date": "2021-05-25"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Helgoland",
+        "creator": "Rovelli, Carlo, Carnell, Simon, Segre, Erica",
+        "date": "2021-05-25"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Helgoland",
+      "node": "Helgoland",
+      "storyteller": "Helgoland"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Rovelli, Carlo, Carnell, Simon, Segre, Erica",
+      "node": "Rovelli, Carlo, Carnell, Simon, Segre, Erica",
+      "storyteller": "Rovelli, Carlo, Carnell, Simon, Segre, Erica"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021-05-25",
+      "node": "2021-05-25",
+      "storyteller": "2021-05-25"
+    }
   }
 }

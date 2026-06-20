@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "J. Bradford DeLong - Slouching Towards Utopia.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Slouching Towards Utopia",
+          "creator": "J. Bradford DeLong;",
+          "date": "2022-09-06"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Slouching Towards Utopia",
+        "creator": "J. Bradford DeLong;",
+        "date": "2022-09-06"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Slouching Towards Utopia",
+        "creator": "J. Bradford DeLong;",
+        "date": "2022-09-06"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Slouching Towards Utopia",
+      "node": "Slouching Towards Utopia",
+      "storyteller": "Slouching Towards Utopia"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "J. Bradford DeLong;",
+      "node": "J. Bradford DeLong;",
+      "storyteller": "J. Bradford DeLong;"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-09-06",
+      "node": "2022-09-06",
+      "storyteller": "2022-09-06"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Michael Lewis - The Undoing Project/Michael Lewis - The Undoing Project.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Undoing Project: A Friendship That Changed Our Minds",
+          "creator": "Michael Lewis",
+          "date": "2016-12-05T23:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Undoing Project: A Friendship That Changed Our Minds",
+        "creator": "Michael Lewis",
+        "date": "2016-12-05T23:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Undoing Project: A Friendship That Changed Our Minds",
+      "node": "The Undoing Project: A Friendship That Changed Our Minds"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Michael Lewis",
+      "node": "Michael Lewis"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2016-12-05T23:00:00+00:00",
+      "node": "2016-12-05T23:00:00+00:00"
+    }
   }
 }

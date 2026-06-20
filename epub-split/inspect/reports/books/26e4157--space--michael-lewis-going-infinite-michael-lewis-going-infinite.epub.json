@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Michael Lewis - Going Infinite/Michael Lewis - Going Infinite.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Going Infinite",
+          "creator": "Michael Lewis",
+          "date": "2023"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Going Infinite",
+        "creator": "Michael Lewis",
+        "date": "2023"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Going Infinite",
+        "creator": "Michael Lewis",
+        "date": "2023"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Going Infinite",
+      "node": "Going Infinite",
+      "storyteller": "Going Infinite"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Michael Lewis",
+      "node": "Michael Lewis",
+      "storyteller": "Michael Lewis"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2023",
+      "node": "2023",
+      "storyteller": "2023"
+    }
   }
 }

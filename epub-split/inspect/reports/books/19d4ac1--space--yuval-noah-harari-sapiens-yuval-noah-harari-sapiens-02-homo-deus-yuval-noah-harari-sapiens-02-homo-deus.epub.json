@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Yuval Noah Harari - Sapiens/Yuval Noah Harari - Sapiens 02 - Homo Deus/Yuval Noah Harari - Sapiens 02 - Homo Deus.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Homo Deus: A Brief History of Tomorrow",
+          "creator": "Yuval Noah Harari",
+          "date": "2016-09-05T16:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Homo Deus: A Brief History of Tomorrow",
+        "creator": "Yuval Noah Harari",
+        "date": "2016-09-05T16:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Homo Deus: A Brief History of Tomorrow",
+      "node": "Homo Deus: A Brief History of Tomorrow"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Yuval Noah Harari",
+      "node": "Yuval Noah Harari"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2016-09-05T16:00:00+00:00",
+      "node": "2016-09-05T16:00:00+00:00"
+    }
   }
 }

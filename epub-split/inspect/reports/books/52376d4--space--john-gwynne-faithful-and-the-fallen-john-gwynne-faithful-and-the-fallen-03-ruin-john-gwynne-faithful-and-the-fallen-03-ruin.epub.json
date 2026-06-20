@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "John Gwynne - Faithful and the Fallen/John Gwynne - Faithful and the Fallen 03 - Ruin/John Gwynne - Faithful and the Fallen 03 - Ruin.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Ruin",
+          "creator": "John Gwynne",
+          "date": "2015-10-13"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Ruin",
+        "creator": "John Gwynne",
+        "date": "2015-10-13"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Ruin",
+        "creator": "John Gwynne",
+        "date": "2015-10-13"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Ruin",
+      "node": "Ruin",
+      "storyteller": "Ruin"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "John Gwynne",
+      "node": "John Gwynne",
+      "storyteller": "John Gwynne"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2015-10-13",
+      "node": "2015-10-13",
+      "storyteller": "2015-10-13"
+    }
   }
 }

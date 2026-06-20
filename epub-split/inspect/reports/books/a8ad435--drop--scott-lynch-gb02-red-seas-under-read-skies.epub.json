@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Scott Lynch - GB02 - Red Seas Under Read Skies.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Gentlemen Bastards #02 - Red Seas Under Read Skies",
+          "creator": "Scott Lynch",
+          "date": "2007-10-24T05:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Gentlemen Bastards #02 - Red Seas Under Read Skies",
+        "creator": "Scott Lynch",
+        "date": "2007-10-24T05:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Gentlemen Bastards #02 - Red Seas Under Read Skies",
+      "node": "Gentlemen Bastards #02 - Red Seas Under Read Skies"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Scott Lynch",
+      "node": "Scott Lynch"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2007-10-24T05:00:00+00:00",
+      "node": "2007-10-24T05:00:00+00:00"
+    }
   }
 }

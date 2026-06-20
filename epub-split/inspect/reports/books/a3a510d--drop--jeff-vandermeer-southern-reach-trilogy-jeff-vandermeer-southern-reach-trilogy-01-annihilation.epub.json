@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Jeff VanderMeer - Southern Reach Trilogy/Jeff VanderMeer - Southern Reach Trilogy 01- Annihilation.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Annihilation: A Novel (The Southern Reach Trilogy)",
+          "creator": "VanderMeer, Jeff",
+          "date": "2014-02-04T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Annihilation: A Novel (The Southern Reach Trilogy)",
+        "creator": "VanderMeer, Jeff",
+        "date": "2014-02-04T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Annihilation: A Novel (The Southern Reach Trilogy)",
+      "node": "Annihilation: A Novel (The Southern Reach Trilogy)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "VanderMeer, Jeff",
+      "node": "VanderMeer, Jeff"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-02-04T00:00:00+00:00",
+      "node": "2014-02-04T00:00:00+00:00"
+    }
   }
 }

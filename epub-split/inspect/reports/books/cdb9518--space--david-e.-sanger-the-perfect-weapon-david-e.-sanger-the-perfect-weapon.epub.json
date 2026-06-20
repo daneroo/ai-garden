@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "David E. Sanger - The Perfect Weapon/David E. Sanger - The Perfect Weapon.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Perfect Weapon: War, Sabotage, and Fear in the Cyber Age",
+          "creator": "David E. Sanger",
+          "date": "2018-06-19T03:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Perfect Weapon: War, Sabotage, and Fear in the Cyber Age",
+        "creator": "David E. Sanger",
+        "date": "2018-06-19T03:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Perfect Weapon: War, Sabotage, and Fear in the Cyber Age",
+        "creator": "David E. Sanger",
+        "date": "2018-06-19T03:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Perfect Weapon: War, Sabotage, and Fear in the Cyber Age",
+      "node": "The Perfect Weapon: War, Sabotage, and Fear in the Cyber Age",
+      "storyteller": "The Perfect Weapon: War, Sabotage, and Fear in the Cyber Age"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "David E. Sanger",
+      "node": "David E. Sanger",
+      "storyteller": "David E. Sanger"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2018-06-19T03:00:00+00:00",
+      "node": "2018-06-19T03:00:00+00:00",
+      "storyteller": "2018-06-19T03:00:00+00:00"
+    }
   }
 }

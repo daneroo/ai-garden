@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Orville Schell - My Old Home/Orville Schell - My Old Home.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "My Old Home",
+          "creator": "Orville Schell",
+          "date": "2021-03-09"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "My Old Home",
+        "creator": "Orville Schell",
+        "date": "2021-03-09"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "My Old Home",
+        "creator": "Orville Schell",
+        "date": "2021-03-09"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "My Old Home",
+      "node": "My Old Home",
+      "storyteller": "My Old Home"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Orville Schell",
+      "node": "Orville Schell",
+      "storyteller": "Orville Schell"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021-03-09",
+      "node": "2021-03-09",
+      "storyteller": "2021-03-09"
+    }
   }
 }

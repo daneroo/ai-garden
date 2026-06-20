@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Douglas Adams - The Hitchhiker's Guide to the Galaxy/Douglas Adams - THGTTG 06 - And Another Thing - Eoin Colfer.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "And Another Thing…",
+          "creator": "Eoin Colfer",
+          "date": "2009"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "And Another Thing…",
+        "creator": "Eoin Colfer",
+        "date": "2009"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "And Another Thing…",
+      "node": "And Another Thing…"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Eoin Colfer",
+      "node": "Eoin Colfer"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2009",
+      "node": "2009"
+    }
   }
 }

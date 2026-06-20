@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Max Tegmark - Life 3.0/Max Tegmark - Life 3.0.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Life 3.0: Being Human in the Age of Artificial Intelligence",
+          "creator": "Max Tegmark",
+          "date": "2017-08-29T04:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Life 3.0: Being Human in the Age of Artificial Intelligence",
+        "creator": "Max Tegmark",
+        "date": "2017-08-29T04:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Life 3.0: Being Human in the Age of Artificial Intelligence",
+      "node": "Life 3.0: Being Human in the Age of Artificial Intelligence"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Max Tegmark",
+      "node": "Max Tegmark"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2017-08-29T04:00:00+00:00",
+      "node": "2017-08-29T04:00:00+00:00"
+    }
   }
 }

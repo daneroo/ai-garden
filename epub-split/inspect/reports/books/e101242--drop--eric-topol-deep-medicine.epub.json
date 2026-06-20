@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Eric Topol - Deep Medicine.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Deep Medicine: How Artificial Intelligence Can Make Healthcare Human Again",
+          "creator": "Eric Topol",
+          "date": "2019-03-12T05:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Deep Medicine: How Artificial Intelligence Can Make Healthcare Human Again",
+        "creator": "Eric Topol",
+        "date": "2019-03-12T05:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Deep Medicine: How Artificial Intelligence Can Make Healthcare Human Again",
+      "node": "Deep Medicine: How Artificial Intelligence Can Make Healthcare Human Again"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Eric Topol",
+      "node": "Eric Topol"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2019-03-12T05:00:00+00:00",
+      "node": "2019-03-12T05:00:00+00:00"
+    }
   }
 }

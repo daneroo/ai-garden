@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Ursula K. Le Guin - Hainish Cycle/Ursula K. Le Guin - Hainish Cycle 05 - The Word for World Is Forest/Ursula K. Le Guin - Hainish Cycle 05 - The Word for World Is Forest.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Word for World is Forest",
+          "creator": "Ursula K Le Guin",
+          "date": "2014-02-25T05:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Word for World is Forest",
+        "creator": "Ursula K Le Guin",
+        "date": "2014-02-25T05:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Word for World is Forest",
+      "node": "The Word for World is Forest"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Ursula K Le Guin",
+      "node": "Ursula K Le Guin"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-02-25T05:00:00+00:00",
+      "node": "2014-02-25T05:00:00+00:00"
+    }
   }
 }

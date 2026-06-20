@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Mark Lawrence - Book of the Ancestor 2 - Grey Sister.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "(eng) Mark Lawrence - Book of The Ancestor 02",
+          "creator": "Grey Sister",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "(eng) Mark Lawrence - Book of The Ancestor 02",
+        "creator": "Grey Sister",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "(eng) Mark Lawrence - Book of The Ancestor 02",
+      "node": "(eng) Mark Lawrence - Book of The Ancestor 02"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Grey Sister",
+      "node": "Grey Sister"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "J.R.R. Tolkien - The Lord of the Rings - Rob Inglis/J.R.R. Tolkien - The Hobbit - Rob Inglis/J.R.R. Tolkien - The Hobbit.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Hobbit",
+          "creator": "J. R. R. Tolkien",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Hobbit",
+        "creator": "J. R. R. Tolkien",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Hobbit",
+      "node": "The Hobbit"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "J. R. R. Tolkien",
+      "node": "J. R. R. Tolkien"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

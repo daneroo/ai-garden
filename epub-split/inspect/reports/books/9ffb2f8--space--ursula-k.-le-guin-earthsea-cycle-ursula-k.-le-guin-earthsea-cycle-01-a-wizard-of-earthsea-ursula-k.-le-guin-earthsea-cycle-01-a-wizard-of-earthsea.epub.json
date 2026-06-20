@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Ursula K. Le Guin - Earthsea Cycle/Ursula K. Le Guin - Earthsea Cycle 01 - A Wizard of Earthsea/Ursula K. Le Guin - Earthsea Cycle 01 - A Wizard of Earthsea.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "A Wizard of Earthsea",
+          "creator": "Ursula K. le Guin",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "A Wizard of Earthsea",
+        "creator": "Ursula K. le Guin",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "A Wizard of Earthsea",
+      "node": "A Wizard of Earthsea"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Ursula K. le Guin",
+      "node": "Ursula K. le Guin"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

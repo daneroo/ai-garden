@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Niall Ferguson - The Ascent of Money.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Ascent of Money",
+          "creator": "Niall Ferguson",
+          "date": "2010-03-01"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Ascent of Money",
+        "creator": "Niall Ferguson",
+        "date": "2010-03-01"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Ascent of Money",
+      "node": "The Ascent of Money"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Niall Ferguson",
+      "node": "Niall Ferguson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2010-03-01",
+      "node": "2010-03-01"
+    }
   }
 }

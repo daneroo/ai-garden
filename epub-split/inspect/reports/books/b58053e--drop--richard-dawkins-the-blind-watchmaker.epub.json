@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Richard Dawkins - The Blind Watchmaker.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Blind Watchmaker",
+          "creator": "Richard Dawkins",
+          "date": "2015"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Blind Watchmaker",
+        "creator": "Richard Dawkins",
+        "date": "2015"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Blind Watchmaker",
+      "node": "The Blind Watchmaker"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Richard Dawkins",
+      "node": "Richard Dawkins"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2015",
+      "node": "2015"
+    }
   }
 }

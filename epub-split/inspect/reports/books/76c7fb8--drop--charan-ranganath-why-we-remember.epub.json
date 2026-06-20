@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Charan Ranganath - Why We Remember.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Why We Remember: Unlocking Memory's Power to Hold on to What Matters",
+          "creator": "Charan Ranganath",
+          "date": "2024-02-20T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Why We Remember: Unlocking Memory's Power to Hold on to What Matters",
+        "creator": "Charan Ranganath",
+        "date": "2024-02-20T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Why We Remember: Unlocking Memory's Power to Hold on to What Matters",
+      "node": "Why We Remember: Unlocking Memory's Power to Hold on to What Matters"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Charan Ranganath",
+      "node": "Charan Ranganath"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2024-02-20T00:00:00+00:00",
+      "node": "2024-02-20T00:00:00+00:00"
+    }
   }
 }

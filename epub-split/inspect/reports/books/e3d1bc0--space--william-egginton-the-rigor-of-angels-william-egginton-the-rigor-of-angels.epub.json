@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "William Egginton - The Rigor of Angels/William Egginton - The Rigor of Angels.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Rigor of Angels: Borges, Heisenberg, Kant, and the Ultimate Nature of Reality",
+          "creator": "William Egginton",
+          "date": "2023-11-05"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Rigor of Angels: Borges, Heisenberg, Kant, and the Ultimate Nature of Reality",
+        "creator": "William Egginton",
+        "date": "2023-11-05"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Rigor of Angels: Borges, Heisenberg, Kant, and the Ultimate Nature of Reality",
+        "creator": "William Egginton",
+        "date": "2023-11-05"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Rigor of Angels: Borges, Heisenberg, Kant, and the Ultimate Nature of Reality",
+      "node": "The Rigor of Angels: Borges, Heisenberg, Kant, and the Ultimate Nature of Reality",
+      "storyteller": "The Rigor of Angels: Borges, Heisenberg, Kant, and the Ultimate Nature of Reality"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "William Egginton",
+      "node": "William Egginton",
+      "storyteller": "William Egginton"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2023-11-05",
+      "node": "2023-11-05",
+      "storyteller": "2023-11-05"
+    }
   }
 }

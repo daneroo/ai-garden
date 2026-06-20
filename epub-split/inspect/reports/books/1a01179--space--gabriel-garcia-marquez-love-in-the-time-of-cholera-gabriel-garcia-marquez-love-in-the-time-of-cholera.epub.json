@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Gabriel Garcia Marquez - Love in the Time of Cholera/Gabriel Garcia Marquez - Love in the Time of Cholera.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Love in the Time of Cholera",
+          "creator": "Gabriel Garcia Marquez",
+          "date": "2007-10-05 00:00:00+01:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Love in the Time of Cholera",
+        "creator": "Gabriel Garcia Marquez",
+        "date": "2007-10-05 00:00:00+01:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Love in the Time of Cholera",
+      "node": "Love in the Time of Cholera"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Gabriel Garcia Marquez",
+      "node": "Gabriel Garcia Marquez"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2007-10-05 00:00:00+01:00",
+      "node": "2007-10-05 00:00:00+01:00"
+    }
   }
 }

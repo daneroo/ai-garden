@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Pierce Brown - Red Rising 02 - Golden Son.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Golden Son",
+          "creator": "Pierce Brown",
+          "date": "0100-12-31T16:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Golden Son",
+        "creator": "Pierce Brown",
+        "date": "0100-12-31T16:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Golden Son",
+      "node": "Golden Son"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Pierce Brown",
+      "node": "Pierce Brown"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "0100-12-31T16:00:00+00:00",
+      "node": "0100-12-31T16:00:00+00:00"
+    }
   }
 }

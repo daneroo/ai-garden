@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Neil deGrasse Tyson - Origins_ Fourteen Billion Years of Cosmic Evolution.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Origins",
+          "creator": "Neil DeGrasse Tyson",
+          "date": "2012-07-05"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Origins",
+        "creator": "Neil DeGrasse Tyson",
+        "date": "2012-07-05"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Origins",
+      "node": "Origins"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Neil DeGrasse Tyson",
+      "node": "Neil DeGrasse Tyson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2012-07-05",
+      "node": "2012-07-05"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Christopher Ruocchio - Sun Eater 05 - Ashes of Man.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Ashes of Man",
+          "creator": "Christopher Ruocchio",
+          "date": "2022-12-06T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Ashes of Man",
+        "creator": "Christopher Ruocchio",
+        "date": "2022-12-06T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Ashes of Man",
+        "creator": "Christopher Ruocchio",
+        "date": "2022-12-06T00:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Ashes of Man",
+      "node": "Ashes of Man",
+      "storyteller": "Ashes of Man"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Christopher Ruocchio",
+      "node": "Christopher Ruocchio",
+      "storyteller": "Christopher Ruocchio"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-12-06T00:00:00+00:00",
+      "node": "2022-12-06T00:00:00+00:00",
+      "storyteller": "2022-12-06T00:00:00+00:00"
+    }
   }
 }

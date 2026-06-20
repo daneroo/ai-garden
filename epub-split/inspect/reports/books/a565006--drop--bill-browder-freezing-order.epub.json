@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Bill Browder - Freezing Order.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Freezing Order",
+          "creator": "Bill Browder",
+          "date": "2022-04-12"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Freezing Order",
+        "creator": "Bill Browder",
+        "date": "2022-04-12"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Freezing Order",
+        "creator": "Bill Browder",
+        "date": "2022-04-12"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Freezing Order",
+      "node": "Freezing Order",
+      "storyteller": "Freezing Order"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Bill Browder",
+      "node": "Bill Browder",
+      "storyteller": "Bill Browder"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-04-12",
+      "node": "2022-04-12",
+      "storyteller": "2022-04-12"
+    }
   }
 }

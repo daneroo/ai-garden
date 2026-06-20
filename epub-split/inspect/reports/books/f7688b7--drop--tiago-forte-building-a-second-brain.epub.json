@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Tiago Forte - Building a Second Brain.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Building a Second Brain",
+          "creator": "Tiago Forte",
+          "date": "2022-06-14"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Building a Second Brain",
+        "creator": "Tiago Forte",
+        "date": "2022-06-14"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Building a Second Brain",
+        "creator": "Tiago Forte",
+        "date": "2022-06-14"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Building a Second Brain",
+      "node": "Building a Second Brain",
+      "storyteller": "Building a Second Brain"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Tiago Forte",
+      "node": "Tiago Forte",
+      "storyteller": "Tiago Forte"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-06-14",
+      "node": "2022-06-14",
+      "storyteller": "2022-06-14"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Travel/Olly Richards - Italian Short Stories V1.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Short Stories in Italian for Beginners",
+          "creator": "Richards, Olly",
+          "date": "2018-10-04"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Short Stories in Italian for Beginners",
+        "creator": "Richards, Olly",
+        "date": "2018-10-04"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Short Stories in Italian for Beginners",
+      "node": "Short Stories in Italian for Beginners"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Richards, Olly",
+      "node": "Richards, Olly"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2018-10-04",
+      "node": "2018-10-04"
+    }
   }
 }

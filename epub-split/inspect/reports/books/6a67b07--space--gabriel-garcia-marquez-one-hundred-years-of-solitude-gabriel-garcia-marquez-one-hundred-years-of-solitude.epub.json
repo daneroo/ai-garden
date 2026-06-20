@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Gabriel Garcia Marquez - One Hundred Years of Solitude/Gabriel Garcia Marquez - One Hundred Years of Solitude.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "One Hundred Years of Solitude",
+          "creator": "Gabriel García Márquez",
+          "date": "2006-05-18 00:00:00-07:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "One Hundred Years of Solitude",
+        "creator": "Gabriel García Márquez",
+        "date": "2006-05-18 00:00:00-07:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "One Hundred Years of Solitude",
+      "node": "One Hundred Years of Solitude"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Gabriel García Márquez",
+      "node": "Gabriel García Márquez"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2006-05-18 00:00:00-07:00",
+      "node": "2006-05-18 00:00:00-07:00"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Camilla Townsend - Fifth Sun.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Fifth Sun",
+          "creator": "Camilla Townsend",
+          "date": "2019-09-06"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Fifth Sun",
+        "creator": "Camilla Townsend",
+        "date": "2019-09-06"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Fifth Sun",
+        "creator": "Camilla Townsend",
+        "date": "2019-09-06"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Fifth Sun",
+      "node": "Fifth Sun",
+      "storyteller": "Fifth Sun"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Camilla Townsend",
+      "node": "Camilla Townsend",
+      "storyteller": "Camilla Townsend"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2019-09-06",
+      "node": "2019-09-06",
+      "storyteller": "2019-09-06"
+    }
   }
 }

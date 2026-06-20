@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Terry Pratchett - Discworld/Terry Pratchett - Discworld 05 - Sourcery/Terry Pratchett - Discworld 05 - Sourcery.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Sourcery",
+          "creator": "Terry Pratchett",
+          "date": "1988-10-13T07:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "jsdom"
+      "engine": "jsdom",
+      "metadata": {
+        "title": "Sourcery",
+        "creator": "Terry Pratchett",
+        "date": "1988-10-13T07:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Sourcery",
+      "node": "Sourcery"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Terry Pratchett",
+      "node": "Terry Pratchett"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1988-10-13T07:00:00+00:00",
+      "node": "1988-10-13T07:00:00+00:00"
+    }
   }
 }

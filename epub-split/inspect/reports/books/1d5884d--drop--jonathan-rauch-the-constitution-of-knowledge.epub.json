@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Jonathan Rauch - The Constitution of Knowledge.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Constitution of Knowledge",
+          "creator": "Jonathan Rauch",
+          "date": "2021-06-21T22:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Constitution of Knowledge",
+        "creator": "Jonathan Rauch",
+        "date": "2021-06-21T22:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Constitution of Knowledge",
+      "node": "The Constitution of Knowledge"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Jonathan Rauch",
+      "node": "Jonathan Rauch"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2021-06-21T22:00:00+00:00",
+      "node": "2021-06-21T22:00:00+00:00"
+    }
   }
 }

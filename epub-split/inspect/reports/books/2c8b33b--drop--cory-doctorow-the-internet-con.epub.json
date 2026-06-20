@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Cory Doctorow - The Internet Con.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Internet Con: How to Seize the Means of Computation",
+          "creator": "Cory Doctorow",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Internet Con: How to Seize the Means of Computation",
+        "creator": "Cory Doctorow",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Internet Con: How to Seize the Means of Computation",
+        "creator": "Cory Doctorow",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Internet Con: How to Seize the Means of Computation",
+      "node": "The Internet Con: How to Seize the Means of Computation",
+      "storyteller": "The Internet Con: How to Seize the Means of Computation"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Cory Doctorow",
+      "node": "Cory Doctorow",
+      "storyteller": "Cory Doctorow"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

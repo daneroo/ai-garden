@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Robin Hobb - Fitz and the Fool 02 - Fools Quest.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Fool's Quest",
+          "creator": "Robin Hobb",
+          "date": "2015-08-11"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Fool's Quest",
+        "creator": "Robin Hobb",
+        "date": "2015-08-11"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Fool's Quest",
+        "creator": "Robin Hobb",
+        "date": "2015-08-11"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Fool's Quest",
+      "node": "Fool's Quest",
+      "storyteller": "Fool's Quest"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Robin Hobb",
+      "node": "Robin Hobb",
+      "storyteller": "Robin Hobb"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2015-08-11",
+      "node": "2015-08-11",
+      "storyteller": "2015-08-11"
+    }
   }
 }

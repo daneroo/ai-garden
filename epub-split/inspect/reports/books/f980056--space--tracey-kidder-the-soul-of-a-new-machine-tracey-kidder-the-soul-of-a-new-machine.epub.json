@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Tracey Kidder - The Soul of a New Machine/Tracey Kidder - The Soul of a New Machine.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Soul of a New Machine",
+          "creator": "Tracy Kidder",
+          "date": "2011-08-23"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Soul of a New Machine",
+        "creator": "Tracy Kidder",
+        "date": "2011-08-23"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Soul of a New Machine",
+      "node": "The Soul of a New Machine"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Tracy Kidder",
+      "node": "Tracy Kidder"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-08-23",
+      "node": "2011-08-23"
+    }
   }
 }

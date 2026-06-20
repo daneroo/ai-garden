@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Thomas Hughes - Tom Brown's Schoodays/Thomas Hughes - Tom Brown's Schoodays.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Tom Brown's School Days",
+          "creator": "Thomas Hughes",
+          "date": "2006-02-15"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Tom Brown's School Days",
+        "creator": "Thomas Hughes",
+        "date": "2006-02-15"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Tom Brown's School Days",
+        "creator": "Thomas Hughes",
+        "date": "2006-02-15"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Tom Brown's School Days",
+      "node": "Tom Brown's School Days",
+      "storyteller": "Tom Brown's School Days"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Thomas Hughes",
+      "node": "Thomas Hughes",
+      "storyteller": "Thomas Hughes"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2006-02-15",
+      "node": "2006-02-15",
+      "storyteller": "2006-02-15"
+    }
   }
 }

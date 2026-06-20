@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Oliver Sacks - The Man Who Mistook His Wife for a Hat/Oliver Sacks - The Man Who Mistook His Wife for a Hat.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Man Who Mistook His Wife for a Hat",
+          "creator": "Oliver Sacks",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Man Who Mistook His Wife for a Hat",
+        "creator": "Oliver Sacks",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Man Who Mistook His Wife for a Hat",
+      "node": "The Man Who Mistook His Wife for a Hat"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Oliver Sacks",
+      "node": "Oliver Sacks"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

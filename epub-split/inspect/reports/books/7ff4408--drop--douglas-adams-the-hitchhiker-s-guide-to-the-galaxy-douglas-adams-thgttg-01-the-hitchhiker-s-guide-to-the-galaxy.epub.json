@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Douglas Adams - The Hitchhiker's Guide to the Galaxy/Douglas Adams - THGTTG 01 - The Hitchhiker’s Guide to the Galaxy.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Hitchhiker's Guide to the Galaxy",
+          "creator": "Douglas Adams",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Hitchhiker's Guide to the Galaxy",
+        "creator": "Douglas Adams",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Hitchhiker's Guide to the Galaxy",
+        "creator": "Douglas Adams",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Hitchhiker's Guide to the Galaxy",
+      "node": "The Hitchhiker's Guide to the Galaxy",
+      "storyteller": "The Hitchhiker's Guide to the Galaxy"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Douglas Adams",
+      "node": "Douglas Adams",
+      "storyteller": "Douglas Adams"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

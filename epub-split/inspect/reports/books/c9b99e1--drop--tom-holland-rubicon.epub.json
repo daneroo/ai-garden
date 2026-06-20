@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Tom Holland - Rubicon.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Rubicon: The Last Years of the Roman Republic",
+          "creator": "Tom Holland",
+          "date": "2015-06-26"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Rubicon: The Last Years of the Roman Republic",
+        "creator": "Tom Holland",
+        "date": "2015-06-26"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Rubicon: The Last Years of the Roman Republic",
+      "node": "Rubicon: The Last Years of the Roman Republic"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Tom Holland",
+      "node": "Tom Holland"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2015-06-26",
+      "node": "2015-06-26"
+    }
   }
 }

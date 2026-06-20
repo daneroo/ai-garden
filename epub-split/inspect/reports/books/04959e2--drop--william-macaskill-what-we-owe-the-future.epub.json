@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "William MacAskill - What We Owe the Future.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "What We Owe the Future",
+          "creator": "William MacAskill",
+          "date": "2022-06-09"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "What We Owe the Future",
+        "creator": "William MacAskill",
+        "date": "2022-06-09"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "What We Owe the Future",
+        "creator": "William MacAskill",
+        "date": "2022-06-09"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "What We Owe the Future",
+      "node": "What We Owe the Future",
+      "storyteller": "What We Owe the Future"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "William MacAskill",
+      "node": "William MacAskill",
+      "storyteller": "William MacAskill"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-06-09",
+      "node": "2022-06-09",
+      "storyteller": "2022-06-09"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Walter Isaacson - The Code Breaker - Jennifer Doudna.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Code Breaker",
+          "creator": "Walter Isaacson",
+          "date": "2021-03-09"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Code Breaker",
+        "creator": "Walter Isaacson",
+        "date": "2021-03-09"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Code Breaker",
+        "creator": "Walter Isaacson",
+        "date": "2021-03-09"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Code Breaker",
+      "node": "The Code Breaker",
+      "storyteller": "The Code Breaker"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Walter Isaacson",
+      "node": "Walter Isaacson",
+      "storyteller": "Walter Isaacson"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021-03-09",
+      "node": "2021-03-09",
+      "storyteller": "2021-03-09"
+    }
   }
 }

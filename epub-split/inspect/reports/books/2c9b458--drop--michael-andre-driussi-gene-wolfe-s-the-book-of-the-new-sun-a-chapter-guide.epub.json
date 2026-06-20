@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Michael Andre-Driussi - Gene Wolfe's The Book of the New Sun - A Chapter Guide.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Gene Wolfe's The Book of the New Sun: A Chapter Guide",
+          "creator": "Michael Andre-Driussi",
+          "date": "2019-11-11T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Gene Wolfe's The Book of the New Sun: A Chapter Guide",
+        "creator": "Michael Andre-Driussi",
+        "date": "2019-11-11T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Gene Wolfe's The Book of the New Sun: A Chapter Guide",
+      "node": "Gene Wolfe's The Book of the New Sun: A Chapter Guide"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Michael Andre-Driussi",
+      "node": "Michael Andre-Driussi"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2019-11-11T00:00:00+00:00",
+      "node": "2019-11-11T00:00:00+00:00"
+    }
   }
 }

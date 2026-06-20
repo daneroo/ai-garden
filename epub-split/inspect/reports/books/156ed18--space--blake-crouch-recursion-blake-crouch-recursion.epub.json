@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Blake Crouch - Recursion/Blake Crouch - Recursion.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Recursion",
+          "creator": "Blake Crouch",
+          "date": "2019-06-11"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Recursion",
+        "creator": "Blake Crouch",
+        "date": "2019-06-11"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Recursion",
+        "creator": "Blake Crouch",
+        "date": "2019-06-11"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Recursion",
+      "node": "Recursion",
+      "storyteller": "Recursion"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Blake Crouch",
+      "node": "Blake Crouch",
+      "storyteller": "Blake Crouch"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2019-06-11",
+      "node": "2019-06-11",
+      "storyteller": "2019-06-11"
+    }
   }
 }

@@ -44,4 +44,4 @@ export const PARSER_NAMES = [
   "storyteller-node",
 ] as const;
 
-export const REPORT_SCHEMA_VERSION = 5;
+export const REPORT_SCHEMA_VERSION = 6;

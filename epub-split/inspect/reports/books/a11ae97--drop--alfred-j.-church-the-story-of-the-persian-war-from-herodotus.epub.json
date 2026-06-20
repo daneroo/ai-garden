@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Alfred J. Church - The Story of the Persian War from Herodotus.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Story of the Persian War from Herodotus, Illustrated Edition (Yesterday's Classics)",
+          "creator": "Church, Alfred J.",
+          "date": "2010-11-08T17:02:37.234000+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Story of the Persian War from Herodotus, Illustrated Edition (Yesterday's Classics)",
+        "creator": "Church, Alfred J.",
+        "date": "2010-11-08T17:02:37.234000+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Story of the Persian War from Herodotus, Illustrated Edition (Yesterday's Classics)",
+      "node": "The Story of the Persian War from Herodotus, Illustrated Edition (Yesterday's Classics)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Church, Alfred J.",
+      "node": "Church, Alfred J."
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2010-11-08T17:02:37.234000+00:00",
+      "node": "2010-11-08T17:02:37.234000+00:00"
+    }
   }
 }

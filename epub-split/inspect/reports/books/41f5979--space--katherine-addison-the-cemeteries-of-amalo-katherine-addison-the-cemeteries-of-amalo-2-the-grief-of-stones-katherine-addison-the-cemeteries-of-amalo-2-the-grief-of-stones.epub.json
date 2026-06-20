@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Katherine Addison - The Cemeteries of Amalo/Katherine Addison - The Cemeteries of Amalo 2 - The Grief of Stones/Katherine Addison - The Cemeteries of Amalo 2 - The Grief of Stones.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Grief of Stones (9781250813909)",
+          "creator": "Addison, Katherine",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Grief of Stones (9781250813909)",
+        "creator": "Addison, Katherine",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Grief of Stones (9781250813909)",
+        "creator": "Addison, Katherine",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Grief of Stones (9781250813909)",
+      "node": "Grief of Stones (9781250813909)",
+      "storyteller": "Grief of Stones (9781250813909)"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Addison, Katherine",
+      "node": "Addison, Katherine",
+      "storyteller": "Addison, Katherine"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

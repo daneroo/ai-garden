@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Alastair Reynolds - Revelation Space/Alastair Reynolds - Revelation Space 04 - Absolution Gap/Alastair Reynolds - Revelation Space 04 - Absolution Gap.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Absolution Gap",
+          "creator": "Alastair Reynolds",
+          "date": "2005-05-30"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Absolution Gap",
+        "creator": "Alastair Reynolds",
+        "date": "2005-05-30"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Absolution Gap",
+      "node": "Absolution Gap"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Alastair Reynolds",
+      "node": "Alastair Reynolds"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2005-05-30",
+      "node": "2005-05-30"
+    }
   }
 }

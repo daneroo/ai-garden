@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Scott Lynch - GB01 - The Lies of Locke Lamora.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Lies of Locke Lamora: Book One of the Gentleman Bastard Sequence",
+          "creator": "Scott Lynch",
+          "date": "2008-09-18T03:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Lies of Locke Lamora: Book One of the Gentleman Bastard Sequence",
+        "creator": "Scott Lynch",
+        "date": "2008-09-18T03:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Lies of Locke Lamora: Book One of the Gentleman Bastard Sequence",
+      "node": "The Lies of Locke Lamora: Book One of the Gentleman Bastard Sequence"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Scott Lynch",
+      "node": "Scott Lynch"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2008-09-18T03:00:00+00:00",
+      "node": "2008-09-18T03:00:00+00:00"
+    }
   }
 }

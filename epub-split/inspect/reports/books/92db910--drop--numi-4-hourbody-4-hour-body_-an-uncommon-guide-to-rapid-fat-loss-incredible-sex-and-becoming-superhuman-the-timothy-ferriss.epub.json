@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Numi/4-HourBody/4-Hour Body_ An Uncommon Guide to Rapid Fat-Loss, Incredible Sex, and Becoming Superhuman, The - Timothy Ferriss.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The 4-Hour Body: An Uncommon Guide to Rapid Fat-Loss, Incredible Sex, and Becoming Superhuman",
+          "creator": "Timothy Ferriss",
+          "date": "2010-12-14"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The 4-Hour Body: An Uncommon Guide to Rapid Fat-Loss, Incredible Sex, and Becoming Superhuman",
+        "creator": "Timothy Ferriss",
+        "date": "2010-12-14"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The 4-Hour Body: An Uncommon Guide to Rapid Fat-Loss, Incredible Sex, and Becoming Superhuman",
+      "node": "The 4-Hour Body: An Uncommon Guide to Rapid Fat-Loss, Incredible Sex, and Becoming Superhuman"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Timothy Ferriss",
+      "node": "Timothy Ferriss"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2010-12-14",
+      "node": "2010-12-14"
+    }
   }
 }

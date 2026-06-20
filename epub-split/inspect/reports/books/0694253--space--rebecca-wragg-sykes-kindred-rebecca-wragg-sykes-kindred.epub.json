@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Rebecca Wragg Sykes - Kindred/Rebecca Wragg Sykes - Kindred.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Kindred",
+          "creator": "Rebecca Wragg Sykes",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Kindred",
+        "creator": "Rebecca Wragg Sykes",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Kindred",
+        "creator": "Rebecca Wragg Sykes",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Kindred",
+      "node": "Kindred",
+      "storyteller": "Kindred"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Rebecca Wragg Sykes",
+      "node": "Rebecca Wragg Sykes",
+      "storyteller": "Rebecca Wragg Sykes"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

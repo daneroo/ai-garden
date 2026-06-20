@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "William Faulkner - Light in August.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Light in August",
+          "creator": "William Faulkner",
+          "date": "2011-01-29T00:04:52.640000+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Light in August",
+        "creator": "William Faulkner",
+        "date": "2011-01-29T00:04:52.640000+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Light in August",
+      "node": "Light in August"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "William Faulkner",
+      "node": "William Faulkner"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-01-29T00:04:52.640000+00:00",
+      "node": "2011-01-29T00:04:52.640000+00:00"
+    }
   }
 }

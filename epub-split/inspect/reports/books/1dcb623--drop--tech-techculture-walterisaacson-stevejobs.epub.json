@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Tech/TechCulture/WalterIsaacson-SteveJobs.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Steve Jobs",
+          "creator": "Walter Isaacson",
+          "date": "2011"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "jsdom"
+      "engine": "jsdom",
+      "metadata": {
+        "title": "Steve Jobs",
+        "creator": "Walter Isaacson",
+        "date": "2011"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Steve Jobs",
+      "node": "Steve Jobs"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Walter Isaacson",
+      "node": "Walter Isaacson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011",
+      "node": "2011"
+    }
   }
 }

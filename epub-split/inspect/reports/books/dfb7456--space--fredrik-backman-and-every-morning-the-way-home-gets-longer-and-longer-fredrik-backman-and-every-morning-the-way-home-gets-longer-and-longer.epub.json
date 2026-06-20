@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Fredrik Backman - And Every Morning the Way Home Gets Longer and Longer/Fredrik Backman - And Every Morning the Way Home Gets Longer and Longer.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "And Every Morning the Way Home Gets Longer and Longer",
+          "creator": "Fredrik Backman",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "And Every Morning the Way Home Gets Longer and Longer",
+        "creator": "Fredrik Backman",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "And Every Morning the Way Home Gets Longer and Longer",
+      "node": "And Every Morning the Way Home Gets Longer and Longer"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Fredrik Backman",
+      "node": "Fredrik Backman"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

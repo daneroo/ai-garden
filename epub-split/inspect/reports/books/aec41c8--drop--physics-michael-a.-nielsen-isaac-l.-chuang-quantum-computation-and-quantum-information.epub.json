@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Physics/Michael A. Nielsen, Isaac L. Chuang - Quantum Computation and Quantum Information.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Quantum Computation and Quantum Information",
+          "creator": "Michael A. Nielsen, Isaac L. Chuang",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Quantum Computation and Quantum Information",
+        "creator": "Michael A. Nielsen, Isaac L. Chuang",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Quantum Computation and Quantum Information",
+      "node": "Quantum Computation and Quantum Information"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Michael A. Nielsen, Isaac L. Chuang",
+      "node": "Michael A. Nielsen, Isaac L. Chuang"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

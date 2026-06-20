@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Jon Kabat-Zinn - Full Catastrophe Living/Jon Kabat-Zinn - Full Catastrophe Living.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Full Catastrophe Living (Revised Edition)",
+          "creator": "Jon Kabat-Zinn",
+          "date": "2013-09-24"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Full Catastrophe Living (Revised Edition)",
+        "creator": "Jon Kabat-Zinn",
+        "date": "2013-09-24"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Full Catastrophe Living (Revised Edition)",
+      "node": "Full Catastrophe Living (Revised Edition)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Jon Kabat-Zinn",
+      "node": "Jon Kabat-Zinn"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2013-09-24",
+      "node": "2013-09-24"
+    }
   }
 }

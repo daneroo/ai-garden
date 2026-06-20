@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Brandon Sanderson - Cosmere/Sanderson, Brandon - Cosmere 18 - The Stormlight Archive 2 - Words of Radiance.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Words of Radiance",
+          "creator": "Brandon Sanderson",
+          "date": "2014-03-04T06:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Words of Radiance",
+        "creator": "Brandon Sanderson",
+        "date": "2014-03-04T06:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Words of Radiance",
+      "node": "Words of Radiance"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Brandon Sanderson",
+      "node": "Brandon Sanderson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-03-04T06:00:00+00:00",
+      "node": "2014-03-04T06:00:00+00:00"
+    }
   }
 }

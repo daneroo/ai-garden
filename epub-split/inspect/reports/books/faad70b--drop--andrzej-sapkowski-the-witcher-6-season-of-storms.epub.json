@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Andrzej Sapkowski - The Witcher 6 - Season of Storms.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Season of Storms",
+          "creator": "Andrzej Sapkowski",
+          "date": "2018-04-17T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Season of Storms",
+        "creator": "Andrzej Sapkowski",
+        "date": "2018-04-17T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Season of Storms",
+      "node": "Season of Storms"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Andrzej Sapkowski",
+      "node": "Andrzej Sapkowski"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2018-04-17T00:00:00+00:00",
+      "node": "2018-04-17T00:00:00+00:00"
+    }
   }
 }

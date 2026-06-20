@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Homer - The Iliad - t. Emily Wilson.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Iliad",
+          "creator": "Homer",
+          "date": "2023-08-10"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Iliad",
+        "creator": "Homer",
+        "date": "2023-08-10"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Iliad",
+        "creator": "Homer",
+        "date": "2023-08-10"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Iliad",
+      "node": "The Iliad",
+      "storyteller": "The Iliad"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Homer",
+      "node": "Homer",
+      "storyteller": "Homer"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2023-08-10",
+      "node": "2023-08-10",
+      "storyteller": "2023-08-10"
+    }
   }
 }

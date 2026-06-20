@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "George F. Will - American happiness and discontents.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "American Happiness and Discontents",
+          "creator": "George F. Will",
+          "date": "2021-09-14"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "American Happiness and Discontents",
+        "creator": "George F. Will",
+        "date": "2021-09-14"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "American Happiness and Discontents",
+        "creator": "George F. Will",
+        "date": "2021-09-14"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "American Happiness and Discontents",
+      "node": "American Happiness and Discontents",
+      "storyteller": "American Happiness and Discontents"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "George F. Will",
+      "node": "George F. Will",
+      "storyteller": "George F. Will"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021-09-14",
+      "node": "2021-09-14",
+      "storyteller": "2021-09-14"
+    }
   }
 }

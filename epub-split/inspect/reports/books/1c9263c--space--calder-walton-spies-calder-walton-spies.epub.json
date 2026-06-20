@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Calder Walton - Spies/Calder Walton - Spies.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Spies: The Epic Intelligence War Between East and West",
+          "creator": "Calder Walton",
+          "date": "2023-06-06T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Spies: The Epic Intelligence War Between East and West",
+        "creator": "Calder Walton",
+        "date": "2023-06-06T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Spies: The Epic Intelligence War Between East and West",
+      "node": "Spies: The Epic Intelligence War Between East and West"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Calder Walton",
+      "node": "Calder Walton"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2023-06-06T00:00:00+00:00",
+      "node": "2023-06-06T00:00:00+00:00"
+    }
   }
 }

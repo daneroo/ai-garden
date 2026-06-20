@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Brene Brown - Atlas of the Heart/Brene Brown - Atlas of the Heart.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Atlas of the Heart : Mapping Meaningful Connection and the Language of Human Experience (9780399592577)",
+          "creator": "Brown, Bren",
+          "date": "2021-11-30"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Atlas of the Heart : Mapping Meaningful Connection and the Language of Human Experience (9780399592577)",
+        "creator": "Brown, Bren",
+        "date": "2021-11-30"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Atlas of the Heart : Mapping Meaningful Connection and the Language of Human Experience (9780399592577)",
+        "creator": "Brown, Bren",
+        "date": "2021-11-30"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Atlas of the Heart : Mapping Meaningful Connection and the Language of Human Experience (9780399592577)",
+      "node": "Atlas of the Heart : Mapping Meaningful Connection and the Language of Human Experience (9780399592577)",
+      "storyteller": "Atlas of the Heart : Mapping Meaningful Connection and the Language of Human Experience (9780399592577)"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Brown, Bren",
+      "node": "Brown, Bren",
+      "storyteller": "Brown, Bren"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021-11-30",
+      "node": "2021-11-30",
+      "storyteller": "2021-11-30"
+    }
   }
 }

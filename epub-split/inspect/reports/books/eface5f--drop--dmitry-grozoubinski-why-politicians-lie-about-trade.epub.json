@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Dmitry Grozoubinski - Why Politicians Lie About Trade.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Why Politicians Lie About Trade",
+          "creator": "Dmitry Grozoubinski;",
+          "date": "2024"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Why Politicians Lie About Trade",
+        "creator": "Dmitry Grozoubinski;",
+        "date": "2024"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Why Politicians Lie About Trade",
+        "creator": "Dmitry Grozoubinski;",
+        "date": "2024"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Why Politicians Lie About Trade",
+      "node": "Why Politicians Lie About Trade",
+      "storyteller": "Why Politicians Lie About Trade"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Dmitry Grozoubinski;",
+      "node": "Dmitry Grozoubinski;",
+      "storyteller": "Dmitry Grozoubinski;"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2024",
+      "node": "2024",
+      "storyteller": "2024"
+    }
   }
 }

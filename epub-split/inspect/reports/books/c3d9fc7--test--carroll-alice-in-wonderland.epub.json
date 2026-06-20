@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "test",
     "relativePath": "carroll-alice-in-wonderland.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Alice's Adventures in Wonderland",
+          "creator": "Lewis Carroll",
+          "date": "2006-08-12"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Alice's Adventures in Wonderland",
+        "creator": "Lewis Carroll",
+        "date": "2006-08-12"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Alice's Adventures in Wonderland",
+        "creator": "Lewis Carroll",
+        "date": "2006-08-12"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Alice's Adventures in Wonderland",
+      "node": "Alice's Adventures in Wonderland",
+      "storyteller": "Alice's Adventures in Wonderland"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Lewis Carroll",
+      "node": "Lewis Carroll",
+      "storyteller": "Lewis Carroll"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2006-08-12",
+      "node": "2006-08-12",
+      "storyteller": "2006-08-12"
+    }
   }
 }

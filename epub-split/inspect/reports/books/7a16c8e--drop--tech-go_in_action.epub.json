@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Tech/Go_in_Action.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Go in Action",
+          "creator": "William Kennedy",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Go in Action",
+        "creator": "William Kennedy",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Go in Action",
+      "node": "Go in Action"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "William Kennedy",
+      "node": "William Kennedy"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Brandon Sanderson - Stormlight Archive/Brandon Sanderson - Stormlight Archive 01 - The Way of Kings/Brandon Sanderson - Stormlight Archive 01 - The Way of Kings.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Way of Kings",
+          "creator": "Brandon Sanderson",
+          "date": "2015-11-17"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Way of Kings",
+        "creator": "Brandon Sanderson",
+        "date": "2015-11-17"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Way of Kings",
+        "creator": "Brandon Sanderson",
+        "date": "2015-11-17"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Way of Kings",
+      "node": "The Way of Kings",
+      "storyteller": "The Way of Kings"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Brandon Sanderson",
+      "node": "Brandon Sanderson",
+      "storyteller": "Brandon Sanderson"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2015-11-17",
+      "node": "2015-11-17",
+      "storyteller": "2015-11-17"
+    }
   }
 }

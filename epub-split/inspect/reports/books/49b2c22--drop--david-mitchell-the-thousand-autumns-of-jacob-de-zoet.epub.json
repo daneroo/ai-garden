@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "David Mitchell - The Thousand Autumns of Jacob De Zoet.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Thousand Autumns of Jacob de Zoet (2010)",
+          "creator": "David Mitchell",
+          "date": "2010"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Thousand Autumns of Jacob de Zoet (2010)",
+        "creator": "David Mitchell",
+        "date": "2010"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Thousand Autumns of Jacob de Zoet (2010)",
+      "node": "The Thousand Autumns of Jacob de Zoet (2010)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "David Mitchell",
+      "node": "David Mitchell"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2010",
+      "node": "2010"
+    }
   }
 }

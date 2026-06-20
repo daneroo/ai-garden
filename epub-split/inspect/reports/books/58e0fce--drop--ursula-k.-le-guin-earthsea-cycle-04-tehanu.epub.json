@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Ursula K. Le Guin - Earthsea Cycle 04 - Tehanu.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Tehanu The Last Book of Earthsea",
+          "creator": "Ursula Kroeber Le Guin",
+          "date": "1990"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Tehanu The Last Book of Earthsea",
+        "creator": "Ursula Kroeber Le Guin",
+        "date": "1990"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Tehanu The Last Book of Earthsea",
+      "node": "Tehanu The Last Book of Earthsea"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Ursula Kroeber Le Guin",
+      "node": "Ursula Kroeber Le Guin"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1990",
+      "node": "1990"
+    }
   }
 }

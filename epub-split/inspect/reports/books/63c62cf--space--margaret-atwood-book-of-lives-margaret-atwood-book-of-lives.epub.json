@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Margaret Atwood - Book of Lives/Margaret Atwood - Book of Lives.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Book of Lives",
+          "creator": "Margaret Atwood",
+          "date": "2025-11-04"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Book of Lives",
+        "creator": "Margaret Atwood",
+        "date": "2025-11-04"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Book of Lives",
+        "creator": "Margaret Atwood",
+        "date": "2025-11-04"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Book of Lives",
+      "node": "Book of Lives",
+      "storyteller": "Book of Lives"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Margaret Atwood",
+      "node": "Margaret Atwood",
+      "storyteller": "Margaret Atwood"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2025-11-04",
+      "node": "2025-11-04",
+      "storyteller": "2025-11-04"
+    }
   }
 }

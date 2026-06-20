@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Niall Ferguson - Doom.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Doom: The Politics of Catastrophe",
+          "creator": "Niall Ferguson",
+          "date": "2021-05-06T04:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Doom: The Politics of Catastrophe",
+        "creator": "Niall Ferguson",
+        "date": "2021-05-06T04:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Doom: The Politics of Catastrophe",
+        "creator": "Niall Ferguson",
+        "date": "2021-05-06T04:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Doom: The Politics of Catastrophe",
+      "node": "Doom: The Politics of Catastrophe",
+      "storyteller": "Doom: The Politics of Catastrophe"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Niall Ferguson",
+      "node": "Niall Ferguson",
+      "storyteller": "Niall Ferguson"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021-05-06T04:00:00+00:00",
+      "node": "2021-05-06T04:00:00+00:00",
+      "storyteller": "2021-05-06T04:00:00+00:00"
+    }
   }
 }

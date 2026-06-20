@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Joe Abercrombie - The First Law/Joe Abercrombie - The First Law 01 - The Blade Itself/Joe Abercrombie - The First Law 01 - The Blade Itself.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Blade Itself",
+          "creator": "Joe Abercrombie",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Blade Itself",
+        "creator": "Joe Abercrombie",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Blade Itself",
+      "node": "The Blade Itself"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Joe Abercrombie",
+      "node": "Joe Abercrombie"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

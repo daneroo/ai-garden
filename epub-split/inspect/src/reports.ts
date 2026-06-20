@@ -21,7 +21,10 @@ import type {
   BookObservation,
   BrowserOpenOutcome,
   BrowserRuntime,
+  FieldComparison,
   HashedBook,
+  MetadataComparison,
+  MetadataFields,
   DOMParserImpl,
   NodeOpenOutcome,
   ParserPathAttempt,
@@ -42,8 +45,10 @@ export async function generateReports(
   await mkdir(join(TEMP_REPORTS_DIRECTORY, "details"), { recursive: true });
 
   const inventory: BookInventoryEntry[] = [];
+  const observations: BookObservation[] = [];
   for (const book of books) {
     const observation = createBookObservation(book);
+    observations.push(observation);
     const report = `books/${book.reportFilename}`;
     const detail = detailPath(observation, book.reportFilename);
     await writeJson(join(TEMP_REPORTS_DIRECTORY, report), observation);
@@ -85,6 +90,8 @@ export async function generateReports(
     parserPaths: PARSER_NAMES,
     roots,
     books: inventory,
+    metadataHistogram: buildMetadataHistogram(books),
+    comparisonHistogram: buildComparisonHistogram(observations),
   };
 
   await writeJson(join(TEMP_REPORTS_DIRECTORY, "run.json"), runReport);
@@ -99,6 +106,13 @@ export async function generateReports(
 }
 
 function createBookObservation(book: HashedBook): BookObservation {
+  const parsers = {
+    "epubts-browser":
+      book.parserAttempts["epubts-browser"] ?? notImplemented(),
+    "epubts-node": book.parserAttempts["epubts-node"] ?? notImplemented(),
+    "storyteller-node":
+      book.parserAttempts["storyteller-node"] ?? notImplemented(),
+  };
   return {
     schemaVersion: REPORT_SCHEMA_VERSION,
     book: {
@@ -108,15 +122,45 @@ function createBookObservation(book: HashedBook): BookObservation {
       sha256: book.sha256,
       shortSha: book.shortSha,
     },
-    parsers: {
-      "epubts-browser":
-        book.parserAttempts["epubts-browser"] ?? notImplemented(),
-      "epubts-node": book.parserAttempts["epubts-node"] ?? notImplemented(),
-      "storyteller-node":
-        book.parserAttempts["storyteller-node"] ?? notImplemented(),
-    },
-    comparison: { status: "not-implemented" },
+    parsers,
+    comparison: compareMetadata(
+      metadataFor(parsers["epubts-browser"]),
+      metadataFor(parsers["epubts-node"]),
+      metadataFor(parsers["storyteller-node"])
+    ),
   };
+}
+
+function compareMetadata(
+  browser: MetadataFields | null,
+  node: MetadataFields | null,
+  storyteller: MetadataFields | null
+): MetadataComparison {
+  const storytellerAvailable = storyteller !== null;
+  return {
+    title: compareField(browser?.title ?? null, node?.title ?? null, storytellerAvailable, storyteller?.title ?? null),
+    creator: compareField(browser?.creator ?? null, node?.creator ?? null, storytellerAvailable, storyteller?.creator ?? null),
+    date: compareField(browser?.date ?? null, node?.date ?? null, storytellerAvailable, storyteller?.date ?? null),
+  };
+}
+
+function compareField(
+  browser: string | null,
+  node: string | null,
+  storytellerAvailable: boolean,
+  storyteller: string | null
+): FieldComparison {
+  if (!storytellerAvailable) {
+    if (browser === null && node === null) return { status: "unavailable" };
+    return browser === node
+      ? { status: "browser-node-agree", browser, node }
+      : { status: "browser-node-differ", browser, node };
+  }
+  if (browser === node && node === storyteller) return { status: "all-agree", browser, node, storyteller };
+  if (browser === storyteller) return { status: "node-differs", browser, node, storyteller };
+  if (browser === node) return { status: "storyteller-differs", browser, node, storyteller };
+  if (node === storyteller) return { status: "browser-differs", browser, node, storyteller };
+  return { status: "all-differ", browser, node, storyteller };
 }
 
 function renderIndex(run: RunReport): string {
@@ -138,6 +182,26 @@ function renderIndex(run: RunReport): string {
     `- epubts-node open-failed: ${countNode(run, "node-open-failed")}`,
     `- storyteller opened: ${countStoryteller(run, "storyteller-opened")}`,
     `- storyteller open-failed: ${countStoryteller(run, "storyteller-open-failed")}`,
+    "",
+    "## Metadata field multiplicity",
+    "",
+    "| Parser | Field | unavailable | missing | present |",
+    "|---|---|---:|---:|---:|",
+    ...PARSER_NAMES.flatMap((parser) =>
+      (["title", "creator", "date"] as const).map((field) => {
+        const counts = run.metadataHistogram[parser][field];
+        return `| ${parser} | ${field} | ${counts.unavailable} | ${counts.missing} | ${counts.present} |`;
+      })
+    ),
+    "",
+    "## Metadata comparison",
+    "",
+    "| Status | title | creator | date |",
+    "|---|---:|---:|---:|",
+    ...(["all-agree", "node-differs", "storyteller-differs", "browser-differs",
+         "all-differ", "browser-node-agree", "browser-node-differ", "unavailable"] as const).map((status) => {
+      return `| ${status} | ${run.comparisonHistogram.title[status]} | ${run.comparisonHistogram.creator[status]} | ${run.comparisonHistogram.date[status]} |`;
+    }),
     "",
   ];
 
@@ -218,6 +282,9 @@ async function validateReports(run: RunReport): Promise<void> {
     ) {
       throw new Error(`Missing browser open outcome: ${book.report}`);
     }
+    if (browserAttempt.status === "transported" && browserAttempt.open.status === "opened") {
+      validateMetadata(browserAttempt.open.metadata, book.report);
+    }
     const nodeAttempt = parsed.parsers["epubts-node"];
     if (
       nodeAttempt.status !== "node-opened" &&
@@ -232,12 +299,16 @@ async function validateReports(run: RunReport): Promise<void> {
     ) {
       throw new Error(`Missing node engine: ${book.report}`);
     }
+    if (nodeAttempt.status === "node-opened") validateMetadata(nodeAttempt.metadata, book.report);
     const storytellerAttempt = parsed.parsers["storyteller-node"];
     if (
       storytellerAttempt.status !== "storyteller-opened" &&
       storytellerAttempt.status !== "storyteller-open-failed"
     ) {
       throw new Error(`Missing storyteller open outcome: ${book.report}`);
+    }
+    if (storytellerAttempt.status === "storyteller-opened") {
+      validateMetadata(storytellerAttempt.metadata, book.report);
     }
     if (book.detail) {
       await stat(join(TEMP_REPORTS_DIRECTORY, book.detail));
@@ -258,6 +329,72 @@ async function validateReports(run: RunReport): Promise<void> {
   if (serialized.includes("/Users/") || serialized.includes("/Volumes/")) {
     throw new Error("Absolute machine path leaked into run.json");
   }
+}
+
+function validateMetadata(metadata: MetadataFields, report: string): void {
+  if (metadata.title !== null && typeof metadata.title !== "string") {
+    throw new Error(`Invalid metadata title: ${report}`);
+  }
+  if (metadata.creator !== null && typeof metadata.creator !== "string") {
+    throw new Error(`Invalid metadata creator: ${report}`);
+  }
+  if (metadata.date !== null && typeof metadata.date !== "string") {
+    throw new Error(`Invalid metadata date: ${report}`);
+  }
+}
+
+function buildMetadataHistogram(
+  books: HashedBook[]
+): RunReport["metadataHistogram"] {
+  const histogram = Object.fromEntries(PARSER_NAMES.map((parser) => [
+    parser,
+    Object.fromEntries((["title", "creator", "date"] as const).map((field) => [
+      field,
+      { unavailable: 0, missing: 0, present: 0 },
+    ])),
+  ])) as RunReport["metadataHistogram"];
+
+  for (const book of books) {
+    for (const parser of PARSER_NAMES) {
+      const metadata = metadataFor(book.parserAttempts[parser]);
+      for (const field of ["title", "creator", "date"] as const) {
+        const counts = histogram[parser][field];
+        if (!metadata) counts.unavailable++;
+        else if (metadata[field] === null) counts.missing++;
+        else counts.present++;
+      }
+    }
+  }
+  return histogram;
+}
+
+function buildComparisonHistogram(
+  observations: BookObservation[]
+): RunReport["comparisonHistogram"] {
+  const statuses: FieldComparison["status"][] = [
+    "all-agree", "node-differs", "storyteller-differs", "browser-differs",
+    "all-differ", "browser-node-agree", "browser-node-differ", "unavailable",
+  ];
+  const histogram = Object.fromEntries(
+    (["title", "creator", "date"] as const).map((field) => [
+      field,
+      Object.fromEntries(statuses.map((s) => [s, 0])),
+    ])
+  ) as RunReport["comparisonHistogram"];
+
+  for (const obs of observations) {
+    for (const field of ["title", "creator", "date"] as const) {
+      histogram[field][obs.comparison[field].status]++;
+    }
+  }
+  return histogram;
+}
+
+function metadataFor(attempt: ParserPathAttempt | undefined): MetadataFields | null {
+  if (!attempt) return null;
+  if (attempt.status === "transported" && attempt.open.status === "opened") return attempt.open.metadata;
+  if (attempt.status === "node-opened" || attempt.status === "storyteller-opened") return attempt.metadata;
+  return null;
 }
 
 async function replaceReports(): Promise<void> {
@@ -341,6 +478,18 @@ function countStoryteller(
   ).length;
 }
 
+const COMPARISON_DISAGREEMENT_STATUSES = new Set<FieldComparison["status"]>([
+  "node-differs", "storyteller-differs", "browser-differs", "all-differ", "browser-node-differ",
+]);
+
+function hasMetadataDisagreement(comparison: MetadataComparison): boolean {
+  return (
+    COMPARISON_DISAGREEMENT_STATUSES.has(comparison.title.status) ||
+    COMPARISON_DISAGREEMENT_STATUSES.has(comparison.creator.status) ||
+    COMPARISON_DISAGREEMENT_STATUSES.has(comparison.date.status)
+  );
+}
+
 function detailPath(
   observation: BookObservation,
   reportFilename: string
@@ -358,7 +507,8 @@ function detailPath(
     (attempt.status === "transported" && attempt.diagnostics.length > 0) ||
     node.status === "node-open-failed" ||
     nodeFallback ||
-    storyteller.status === "storyteller-open-failed"
+    storyteller.status === "storyteller-open-failed" ||
+    hasMetadataDisagreement(observation.comparison)
   ) {
     return `details/${reportFilename.replace(/\.json$/, ".md")}`;
   }
@@ -456,7 +606,32 @@ function renderDetail(observation: BookObservation): string {
     );
   }
 
+  if (hasMetadataDisagreement(observation.comparison)) {
+    lines.push("", "## Metadata disagreement", "");
+    for (const field of ["title", "creator", "date"] as const) {
+      const fc = observation.comparison[field];
+      if (!COMPARISON_DISAGREEMENT_STATUSES.has(fc.status)) continue;
+      lines.push(`### ${field} (${fc.status})`, "");
+      switch (fc.status) {
+        case "node-differs":
+        case "storyteller-differs":
+        case "browser-differs":
+        case "all-differ":
+          lines.push(`- browser: ${formatValue(fc.browser)}`, `- node: ${formatValue(fc.node)}`, `- storyteller: ${formatValue(fc.storyteller)}`);
+          break;
+        case "browser-node-differ":
+          lines.push(`- browser: ${formatValue(fc.browser)}`, `- node: ${formatValue(fc.node)}`, `- storyteller: unavailable`);
+          break;
+      }
+      lines.push("");
+    }
+  }
+
   return `${lines.join("\n")}\n`;
+}
+
+function formatValue(value: string | null): string {
+  return value === null ? "(null)" : JSON.stringify(value);
 }
 
 export function reportPathForDisplay(): string {

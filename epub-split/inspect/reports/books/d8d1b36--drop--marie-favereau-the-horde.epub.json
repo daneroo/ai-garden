@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Marie Favereau - The Horde.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Horde: How the Mongols Changed the World",
+          "creator": "Marie Favereau",
+          "date": "2021-04-19T19:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Horde: How the Mongols Changed the World",
+        "creator": "Marie Favereau",
+        "date": "2021-04-19T19:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Horde: How the Mongols Changed the World",
+      "node": "The Horde: How the Mongols Changed the World"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Marie Favereau",
+      "node": "Marie Favereau"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2021-04-19T19:00:00+00:00",
+      "node": "2021-04-19T19:00:00+00:00"
+    }
   }
 }

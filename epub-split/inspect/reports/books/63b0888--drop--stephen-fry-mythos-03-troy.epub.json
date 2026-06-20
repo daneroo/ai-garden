@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Stephen Fry - Mythos 03 - Troy.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Troy",
+          "creator": "Stephen Fry",
+          "date": "2020-09-11"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Troy",
+        "creator": "Stephen Fry",
+        "date": "2020-09-11"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Troy",
+        "creator": "Stephen Fry",
+        "date": "2020-09-11"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Troy",
+      "node": "Troy",
+      "storyteller": "Troy"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Stephen Fry",
+      "node": "Stephen Fry",
+      "storyteller": "Stephen Fry"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2020-09-11",
+      "node": "2020-09-11",
+      "storyteller": "2020-09-11"
+    }
   }
 }

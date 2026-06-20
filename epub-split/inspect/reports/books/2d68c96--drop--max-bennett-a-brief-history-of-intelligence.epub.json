@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Max Bennett - A Brief History of Intelligence.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "A Brief History of Intelligence",
+          "creator": "Max Bennett",
+          "date": "2023-08-22"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "A Brief History of Intelligence",
+        "creator": "Max Bennett",
+        "date": "2023-08-22"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "A Brief History of Intelligence",
+        "creator": "Max Bennett",
+        "date": "2023-08-22"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "A Brief History of Intelligence",
+      "node": "A Brief History of Intelligence",
+      "storyteller": "A Brief History of Intelligence"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Max Bennett",
+      "node": "Max Bennett",
+      "storyteller": "Max Bennett"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2023-08-22",
+      "node": "2023-08-22",
+      "storyteller": "2023-08-22"
+    }
   }
 }

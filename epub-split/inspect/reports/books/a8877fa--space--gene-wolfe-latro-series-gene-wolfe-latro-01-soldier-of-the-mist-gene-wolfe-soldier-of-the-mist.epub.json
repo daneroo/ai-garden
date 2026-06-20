@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Gene Wolfe - Latro Series/Gene Wolfe - Latro 01 - Soldier of the Mist/Gene Wolfe - Soldier of the Mist.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Soldier of the Mist",
+          "creator": "Gene Wolfe",
+          "date": "1985-12-31T16:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Soldier of the Mist",
+        "creator": "Gene Wolfe",
+        "date": "1985-12-31T16:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Soldier of the Mist",
+        "creator": "Gene Wolfe",
+        "date": "1985-12-31T16:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Soldier of the Mist",
+      "node": "Soldier of the Mist",
+      "storyteller": "Soldier of the Mist"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Gene Wolfe",
+      "node": "Gene Wolfe",
+      "storyteller": "Gene Wolfe"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "1985-12-31T16:00:00+00:00",
+      "node": "1985-12-31T16:00:00+00:00",
+      "storyteller": "1985-12-31T16:00:00+00:00"
+    }
   }
 }

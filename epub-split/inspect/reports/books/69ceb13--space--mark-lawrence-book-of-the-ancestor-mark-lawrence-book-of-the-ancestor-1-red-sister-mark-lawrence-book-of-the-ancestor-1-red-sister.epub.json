@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Mark Lawrence - Book of the Ancestor/Mark Lawrence - Book of the Ancestor 1 - Red Sister/Mark Lawrence - Book of the Ancestor 1 - Red Sister.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Red Sister",
+          "creator": "Mark Lawrence",
+          "date": "2017-03-17T11:45:11Z"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Red Sister",
+        "creator": "Mark Lawrence",
+        "date": "2017-03-17T11:45:11Z"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Red Sister",
+        "creator": "Mark Lawrence",
+        "date": "2017-03-17T11:45:11Z"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Red Sister",
+      "node": "Red Sister",
+      "storyteller": "Red Sister"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Mark Lawrence",
+      "node": "Mark Lawrence",
+      "storyteller": "Mark Lawrence"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2017-03-17T11:45:11Z",
+      "node": "2017-03-17T11:45:11Z",
+      "storyteller": "2017-03-17T11:45:11Z"
+    }
   }
 }

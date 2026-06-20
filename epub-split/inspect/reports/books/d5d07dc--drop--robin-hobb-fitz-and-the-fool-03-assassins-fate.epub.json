@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Robin Hobb - Fitz and the Fool 03 - Assassins Fate.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "FF3 Assassin’s Fate",
+          "creator": "Hobb Robin",
+          "date": "2017-03-27T14:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "FF3 Assassin’s Fate",
+        "creator": "Hobb Robin",
+        "date": "2017-03-27T14:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "FF3 Assassin’s Fate",
+      "node": "FF3 Assassin’s Fate"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Hobb Robin",
+      "node": "Hobb Robin"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2017-03-27T14:00:00+00:00",
+      "node": "2017-03-27T14:00:00+00:00"
+    }
   }
 }

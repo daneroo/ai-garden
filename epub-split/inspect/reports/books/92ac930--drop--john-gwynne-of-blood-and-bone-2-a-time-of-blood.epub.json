@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "John Gwynne - Of Blood and Bone 2 - A Time of Blood.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "A Time of Blood",
+          "creator": "John Gwynne",
+          "date": "2019-04-16"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "A Time of Blood",
+        "creator": "John Gwynne",
+        "date": "2019-04-16"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "A Time of Blood",
+        "creator": "John Gwynne",
+        "date": "2019-04-16"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "A Time of Blood",
+      "node": "A Time of Blood",
+      "storyteller": "A Time of Blood"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "John Gwynne",
+      "node": "John Gwynne",
+      "storyteller": "John Gwynne"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2019-04-16",
+      "node": "2019-04-16",
+      "storyteller": "2019-04-16"
+    }
   }
 }

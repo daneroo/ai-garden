@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Irvin Yalom - Staring at the Sun.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Staring at the Sun",
+          "creator": "Irvin D. Yalom",
+          "date": "2008-03-03"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Staring at the Sun",
+        "creator": "Irvin D. Yalom",
+        "date": "2008-03-03"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Staring at the Sun",
+      "node": "Staring at the Sun"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Irvin D. Yalom",
+      "node": "Irvin D. Yalom"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2008-03-03",
+      "node": "2008-03-03"
+    }
   }
 }

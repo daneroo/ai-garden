@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Sean Carroll - Quanta and Fields.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Quanta and Fields",
+          "creator": "Sean Carroll",
+          "date": "2024-05-14"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Quanta and Fields",
+        "creator": "Sean Carroll",
+        "date": "2024-05-14"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Quanta and Fields",
+        "creator": "Sean Carroll",
+        "date": "2024-05-14"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Quanta and Fields",
+      "node": "Quanta and Fields",
+      "storyteller": "Quanta and Fields"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Sean Carroll",
+      "node": "Sean Carroll",
+      "storyteller": "Sean Carroll"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2024-05-14",
+      "node": "2024-05-14",
+      "storyteller": "2024-05-14"
+    }
   }
 }

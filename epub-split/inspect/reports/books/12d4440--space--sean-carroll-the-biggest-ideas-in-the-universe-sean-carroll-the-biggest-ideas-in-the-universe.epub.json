@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Sean Carroll - The Biggest Ideas in the Universe/Sean Carroll - The Biggest Ideas in the Universe.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Biggest Ideas in the Universe 1",
+          "creator": "Sean Carroll",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Biggest Ideas in the Universe 1",
+        "creator": "Sean Carroll",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Biggest Ideas in the Universe 1",
+      "node": "The Biggest Ideas in the Universe 1"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Sean Carroll",
+      "node": "Sean Carroll"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

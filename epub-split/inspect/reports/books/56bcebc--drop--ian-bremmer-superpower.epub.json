@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Ian Bremmer - Superpower.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Superpower: Three Choices for America's Role in the World",
+          "creator": "Ian Bremmer",
+          "date": "2015-05-18T22:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Superpower: Three Choices for America's Role in the World",
+        "creator": "Ian Bremmer",
+        "date": "2015-05-18T22:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Superpower: Three Choices for America's Role in the World",
+      "node": "Superpower: Three Choices for America's Role in the World"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Ian Bremmer",
+      "node": "Ian Bremmer"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2015-05-18T22:00:00+00:00",
+      "node": "2015-05-18T22:00:00+00:00"
+    }
   }
 }

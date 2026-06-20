@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Katherine Addison - The Cemeteries of Amalo/Katherine Addison - The Cemeteries of Amalo 1 - The Witness for the Dead/Katherine Addison - The Cemeteries of Amalo 1 - The Witness for the Dead.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Witness for the Dead",
+          "creator": "Katherine Addison",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Witness for the Dead",
+        "creator": "Katherine Addison",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Witness for the Dead",
+        "creator": "Katherine Addison",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Witness for the Dead",
+      "node": "The Witness for the Dead",
+      "storyteller": "The Witness for the Dead"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Katherine Addison",
+      "node": "Katherine Addison",
+      "storyteller": "Katherine Addison"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

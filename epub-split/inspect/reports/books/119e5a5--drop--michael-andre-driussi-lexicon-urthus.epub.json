@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Michael Andre-Driussi - Lexicon Urthus.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Lexicon Urthus, Second Edition",
+          "creator": "Michael Andre-Driussi",
+          "date": "2008-08-25T22:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Lexicon Urthus, Second Edition",
+        "creator": "Michael Andre-Driussi",
+        "date": "2008-08-25T22:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Lexicon Urthus, Second Edition",
+      "node": "Lexicon Urthus, Second Edition"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Michael Andre-Driussi",
+      "node": "Michael Andre-Driussi"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2008-08-25T22:00:00+00:00",
+      "node": "2008-08-25T22:00:00+00:00"
+    }
   }
 }

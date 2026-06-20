@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Ernest Hemingway - The Old Man And The Sea/Ernest Hemingway - The Old Man and the Sea.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Old Man and the Sea",
+          "creator": "Ernest Hemingway;",
+          "date": "2020-07-21"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Old Man and the Sea",
+        "creator": "Ernest Hemingway;",
+        "date": "2020-07-21"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Old Man and the Sea",
+        "creator": "Ernest Hemingway;",
+        "date": "2020-07-21"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Old Man and the Sea",
+      "node": "The Old Man and the Sea",
+      "storyteller": "The Old Man and the Sea"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Ernest Hemingway;",
+      "node": "Ernest Hemingway;",
+      "storyteller": "Ernest Hemingway;"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2020-07-21",
+      "node": "2020-07-21",
+      "storyteller": "2020-07-21"
+    }
   }
 }

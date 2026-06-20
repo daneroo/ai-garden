@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Carlo Rovelli - White Holes/Carlo Rovelli - White Holes.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "White Holes",
+          "creator": "Carlo Rovelli;",
+          "date": "2023-10-31"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "White Holes",
+        "creator": "Carlo Rovelli;",
+        "date": "2023-10-31"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "White Holes",
+        "creator": "Carlo Rovelli;",
+        "date": "2023-10-31"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "White Holes",
+      "node": "White Holes",
+      "storyteller": "White Holes"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Carlo Rovelli;",
+      "node": "Carlo Rovelli;",
+      "storyteller": "Carlo Rovelli;"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2023-10-31",
+      "node": "2023-10-31",
+      "storyteller": "2023-10-31"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Robin Hobb - Fitz and the Fool/Robin Hobb - Fitz and the Fool 01 - Fools Assassin/Robin Hobb - Fitz and the Fool 01 - Fools Assassin.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Fitz and the Fool 01 - Fool's Assassin",
+          "creator": "Robin Hobb",
+          "date": "2014-06-09T23:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Fitz and the Fool 01 - Fool's Assassin",
+        "creator": "Robin Hobb",
+        "date": "2014-06-09T23:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Fitz and the Fool 01 - Fool's Assassin",
+      "node": "The Fitz and the Fool 01 - Fool's Assassin"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Robin Hobb",
+      "node": "Robin Hobb"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-06-09T23:00:00+00:00",
+      "node": "2014-06-09T23:00:00+00:00"
+    }
   }
 }

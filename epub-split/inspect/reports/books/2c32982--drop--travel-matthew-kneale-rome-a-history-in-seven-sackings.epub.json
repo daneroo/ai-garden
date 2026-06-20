@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Travel/Matthew Kneale - Rome - A History in Seven Sackings.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Rome",
+          "creator": "Matthew Kneale",
+          "date": "2017-11-17"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Rome",
+        "creator": "Matthew Kneale",
+        "date": "2017-11-17"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Rome",
+      "node": "Rome"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Matthew Kneale",
+      "node": "Matthew Kneale"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2017-11-17",
+      "node": "2017-11-17"
+    }
   }
 }

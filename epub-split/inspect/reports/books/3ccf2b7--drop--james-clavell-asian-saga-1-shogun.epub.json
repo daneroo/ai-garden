@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "James Clavell - Asian Saga 1 - Shogun.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Shōgun",
+          "creator": "James Clavell",
+          "date": "1986-08-31T23:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Shōgun",
+        "creator": "James Clavell",
+        "date": "1986-08-31T23:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Shōgun",
+      "node": "Shōgun"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "James Clavell",
+      "node": "James Clavell"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1986-08-31T23:00:00+00:00",
+      "node": "1986-08-31T23:00:00+00:00"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "John Gwynne - Faithful and the Fallen/John Gwynne - Faithful and the Fallen 02 - Valour/John Gwynne - Faithful and the Fallen 02 - Valour.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Faithful & the Fallen 02 -Valour",
+          "creator": "John Gwynne",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "jsdom"
+      "engine": "jsdom",
+      "metadata": {
+        "title": "Faithful & the Fallen 02 -Valour",
+        "creator": "John Gwynne",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Faithful & the Fallen 02 -Valour",
+      "node": "Faithful & the Fallen 02 -Valour"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "John Gwynne",
+      "node": "John Gwynne"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

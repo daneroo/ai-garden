@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Stephen Budiansky - Journey to the Edge of Reason/Stephen Budiansky - Journey to the Edge of Reason.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Journey to the Edge of Reason",
+          "creator": "Stephen Budiansky",
+          "date": "2021-04-05"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Journey to the Edge of Reason",
+        "creator": "Stephen Budiansky",
+        "date": "2021-04-05"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Journey to the Edge of Reason",
+        "creator": "Stephen Budiansky",
+        "date": "2021-04-05"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Journey to the Edge of Reason",
+      "node": "Journey to the Edge of Reason",
+      "storyteller": "Journey to the Edge of Reason"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Stephen Budiansky",
+      "node": "Stephen Budiansky",
+      "storyteller": "Stephen Budiansky"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2021-04-05",
+      "node": "2021-04-05",
+      "storyteller": "2021-04-05"
+    }
   }
 }

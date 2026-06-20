@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Glen Cook - Black Company 09 - Soldiers Live.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Soldiers Live",
+          "creator": "Glen Cook",
+          "date": "2010-01-22T00:01:29"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Soldiers Live",
+        "creator": "Glen Cook",
+        "date": "2010-01-22T00:01:29"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Soldiers Live",
+      "node": "Soldiers Live"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Glen Cook",
+      "node": "Glen Cook"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2010-01-22T00:01:29",
+      "node": "2010-01-22T00:01:29"
+    }
   }
 }

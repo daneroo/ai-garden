@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Ken Liu - The Dandelion Dynasty/Ken Liu - The Dandelion Dynasty 02 - The Wall of Storms/Ken Liu - The Dandelion Dynasty 02 - The Wall of Storms.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Wall of Storms",
+          "creator": "Ken Liu",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Wall of Storms",
+        "creator": "Ken Liu",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Wall of Storms",
+      "node": "The Wall of Storms"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Ken Liu",
+      "node": "Ken Liu"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

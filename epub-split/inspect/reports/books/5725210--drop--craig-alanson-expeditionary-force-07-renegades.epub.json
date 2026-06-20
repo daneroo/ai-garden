@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Craig Alanson - Expeditionary Force 07 - Renegades.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Renegades (Expeditionary Force Book 7)",
+          "creator": "Craig Alanson",
+          "date": "2018-11-15T07:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Renegades (Expeditionary Force Book 7)",
+        "creator": "Craig Alanson",
+        "date": "2018-11-15T07:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Renegades (Expeditionary Force Book 7)",
+      "node": "Renegades (Expeditionary Force Book 7)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Craig Alanson",
+      "node": "Craig Alanson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2018-11-15T07:00:00+00:00",
+      "node": "2018-11-15T07:00:00+00:00"
+    }
   }
 }

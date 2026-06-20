@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Elisabeth Tova Bailey - The Sound of a Wild Snail Eating/Elisabeth Tova Bailey - The Sound of a Wild Snail Eating.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Sound of a Wild Snail Eating",
+          "creator": "Elisabeth Tova Bailey",
+          "date": "2010"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Sound of a Wild Snail Eating",
+        "creator": "Elisabeth Tova Bailey",
+        "date": "2010"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Sound of a Wild Snail Eating",
+      "node": "The Sound of a Wild Snail Eating"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Elisabeth Tova Bailey",
+      "node": "Elisabeth Tova Bailey"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2010",
+      "node": "2010"
+    }
   }
 }

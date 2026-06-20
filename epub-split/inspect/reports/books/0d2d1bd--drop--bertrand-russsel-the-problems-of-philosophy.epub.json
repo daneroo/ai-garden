@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Bertrand Russsel - The Problems of Philosophy.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Problems of Philosophy",
+          "creator": "Bertrand Russell",
+          "date": "2004-06-01"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Problems of Philosophy",
+        "creator": "Bertrand Russell",
+        "date": "2004-06-01"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Problems of Philosophy",
+        "creator": "Bertrand Russell",
+        "date": "2004-06-01"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Problems of Philosophy",
+      "node": "The Problems of Philosophy",
+      "storyteller": "The Problems of Philosophy"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Bertrand Russell",
+      "node": "Bertrand Russell",
+      "storyteller": "Bertrand Russell"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2004-06-01",
+      "node": "2004-06-01",
+      "storyteller": "2004-06-01"
+    }
   }
 }

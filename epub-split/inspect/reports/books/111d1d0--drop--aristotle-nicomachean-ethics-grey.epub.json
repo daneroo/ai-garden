@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Aristotle - Nicomachean Ethics-Grey.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Nicomachean Ethics",
+          "creator": "Aristotle",
+          "date": "2021-10-08T23:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Nicomachean Ethics",
+        "creator": "Aristotle",
+        "date": "2021-10-08T23:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Nicomachean Ethics",
+      "node": "Nicomachean Ethics"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Aristotle",
+      "node": "Aristotle"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2021-10-08T23:00:00+00:00",
+      "node": "2021-10-08T23:00:00+00:00"
+    }
   }
 }

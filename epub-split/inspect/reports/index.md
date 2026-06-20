@@ -1,6 +1,6 @@
 # EPUB Inspection Report
 
-- Schema: 5
+- Schema: 6
 - Runner: epub-inspect 0.1.0
 - Bun: 1.3.14
 - Chromium: 149.0.7827.55
@@ -15,6 +15,33 @@
 - epubts-node open-failed: 0
 - storyteller opened: 368
 - storyteller open-failed: 933
+
+## Metadata field multiplicity
+
+| Parser | Field | unavailable | missing | present |
+|---|---|---:|---:|---:|
+| epubts-browser | title | 0 | 1 | 1300 |
+| epubts-browser | creator | 0 | 1 | 1300 |
+| epubts-browser | date | 0 | 208 | 1093 |
+| epubts-node | title | 0 | 1 | 1300 |
+| epubts-node | creator | 0 | 1 | 1300 |
+| epubts-node | date | 0 | 208 | 1093 |
+| storyteller-node | title | 933 | 0 | 368 |
+| storyteller-node | creator | 933 | 0 | 368 |
+| storyteller-node | date | 933 | 76 | 292 |
+
+## Metadata comparison
+
+| Status | title | creator | date |
+|---|---:|---:|---:|
+| all-agree | 364 | 368 | 368 |
+| node-differs | 2 | 0 | 0 |
+| storyteller-differs | 0 | 0 | 0 |
+| browser-differs | 0 | 0 | 0 |
+| all-differ | 2 | 0 | 0 |
+| browser-node-agree | 927 | 931 | 801 |
+| browser-node-differ | 5 | 1 | 0 |
+| unavailable | 1 | 1 | 132 |
 
 ## test
 
@@ -139,7 +166,7 @@ Books: 708
 | b7851c5 | [Cory Doctorow - Martin Hench 02 - The Bezzle.epub](books/b7851c5--drop--cory-doctorow-martin-hench-02-the-bezzle.epub.json) | epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened |
 | 8983a32 | [Cory Doctorow - Martin Hench 03 - Picks and Shovels.epub](books/8983a32--drop--cory-doctorow-martin-hench-03-picks-and-shovels.epub.json) | epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened |
 | 0189f8d | [Cory Doctorow - Red Team Blues.epub](books/0189f8d--drop--cory-doctorow-red-team-blues.epub.json) | epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened |
-| bcb9a94 | [Cory Doctorow - Reverse Centaurs Guide To Life After AI.epub](books/bcb9a94--drop--cory-doctorow-reverse-centaurs-guide-to-life-after-ai.epub.json) | epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened |
+| bcb9a94 | [Cory Doctorow - Reverse Centaurs Guide To Life After AI.epub](books/bcb9a94--drop--cory-doctorow-reverse-centaurs-guide-to-life-after-ai.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened](details/bcb9a94--drop--cory-doctorow-reverse-centaurs-guide-to-life-after-ai.epub.md) |
 | 2c8b33b | [Cory Doctorow - The Internet Con.epub](books/2c8b33b--drop--cory-doctorow-the-internet-con.epub.json) | epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened |
 | 4c96380 | [Cory Doctorow - The Lost Cause.epub](books/4c96380--drop--cory-doctorow-the-lost-cause.epub.json) | epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened |
 | b9d30be | [Cory Doctorow - The Rapture of the Nerds.epub](books/b9d30be--drop--cory-doctorow-the-rapture-of-the-nerds.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-open-failed](details/b9d30be--drop--cory-doctorow-the-rapture-of-the-nerds.epub.md) |
@@ -702,7 +729,7 @@ Books: 708
 | 140119f | [Travel/Olly Richards - Italian Short Stories V2.epub](books/140119f--drop--travel-olly-richards-italian-short-stories-v2.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-open-failed](details/140119f--drop--travel-olly-richards-italian-short-stories-v2.epub.md) |
 | 9c8d6db | [Travel/Philip Matyszak - A Walk Through Ancient Rome.epub](books/9c8d6db--drop--travel-philip-matyszak-a-walk-through-ancient-rome.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-open-failed](details/9c8d6db--drop--travel-philip-matyszak-a-walk-through-ancient-rome.epub.md) |
 | b557557 | [Travis Baldree - Legends & Lattes 1 - Legends & Lattes.epub](books/b557557--drop--travis-baldree-legends-lattes-1-legends-lattes.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-open-failed](details/b557557--drop--travis-baldree-legends-lattes-1-legends-lattes.epub.md) |
-| 84b753d | [Travis Baldree - Legends & Lattes 2 - Bookshops & Bonedust.epub](books/84b753d--drop--travis-baldree-legends-lattes-2-bookshops-bonedust.epub.json) | epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened |
+| 84b753d | [Travis Baldree - Legends & Lattes 2 - Bookshops & Bonedust.epub](books/84b753d--drop--travis-baldree-legends-lattes-2-bookshops-bonedust.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened](details/84b753d--drop--travis-baldree-legends-lattes-2-bookshops-bonedust.epub.md) |
 | 6cfb923 | [Tyler-Cowen-GOAT_Who-is-the-Greatest-Economist-of-all-time_Tyler-Cowen.epub](books/6cfb923--drop--tyler-cowen-goat_who-is-the-greatest-economist-of-all-time_tyler-cowen.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-open-failed](details/6cfb923--drop--tyler-cowen-goat_who-is-the-greatest-economist-of-all-time_tyler-cowen.epub.md) |
 | 0646585 | [Ursula K. Le Guin - Earthsea Cycle 01 - A Wizard of Earthsea.epub](books/0646585--drop--ursula-k.-le-guin-earthsea-cycle-01-a-wizard-of-earthsea.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-open-failed](details/0646585--drop--ursula-k.-le-guin-earthsea-cycle-01-a-wizard-of-earthsea.epub.md) |
 | bff6d53 | [Ursula K. Le Guin - Earthsea Cycle 02 - The Tombs of Atuan.epub](books/bff6d53--drop--ursula-k.-le-guin-earthsea-cycle-02-the-tombs-of-atuan.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-open-failed](details/bff6d53--drop--ursula-k.-le-guin-earthsea-cycle-02-the-tombs-of-atuan.epub.md) |
@@ -850,7 +877,7 @@ Books: 589
 | b7851c5 | [Cory Doctorow - Martin Hench 02 - The Bezzle/Cory Doctorow - Martin Hench 02 - The Bezzle.epub](books/b7851c5--space--cory-doctorow-martin-hench-02-the-bezzle-cory-doctorow-martin-hench-02-the-bezzle.epub.json) | epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened |
 | 8983a32 | [Cory Doctorow - Martin Hench 03 - Picks and Shovels/Cory Doctorow - Martin Hench 03 - Picks and Shovels.epub](books/8983a32--space--cory-doctorow-martin-hench-03-picks-and-shovels-cory-doctorow-martin-hench-03-picks-and-shovels.epub.json) | epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened |
 | 0189f8d | [Cory Doctorow - Martin Hench Series/Cory Doctorow - Martin Hench 01 - Red Team Blues/Cory Doctorow - Martin Hench 01 - Red Team Blues.epub](books/0189f8d--space--cory-doctorow-martin-hench-series-cory-doctorow-martin-hench-01-red-team-blues-cory-doctorow-martin-hench-01-red-team-blues.epub.json) | epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened |
-| bcb9a94 | [Cory Doctorow - Reverse Centaurs Guide To Life After AI/Cory Doctorow - Reverse Centaurs Guide To Life After AI.epub](books/bcb9a94--space--cory-doctorow-reverse-centaurs-guide-to-life-after-ai-cory-doctorow-reverse-centaurs-guide-to-life-after-ai.epub.json) | epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened |
+| bcb9a94 | [Cory Doctorow - Reverse Centaurs Guide To Life After AI/Cory Doctorow - Reverse Centaurs Guide To Life After AI.epub](books/bcb9a94--space--cory-doctorow-reverse-centaurs-guide-to-life-after-ai-cory-doctorow-reverse-centaurs-guide-to-life-after-ai.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened](details/bcb9a94--space--cory-doctorow-reverse-centaurs-guide-to-life-after-ai-cory-doctorow-reverse-centaurs-guide-to-life-after-ai.epub.md) |
 | 2c8b33b | [Cory Doctorow - The Internet Con/Cory Doctorow - The Internet Con.epub](books/2c8b33b--space--cory-doctorow-the-internet-con-cory-doctorow-the-internet-con.epub.json) | epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened |
 | 4c96380 | [Cory Doctorow - The Lost Cause/Cory Doctorow - The Lost Cause.epub](books/4c96380--space--cory-doctorow-the-lost-cause-cory-doctorow-the-lost-cause.epub.json) | epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened |
 | b9d30be | [Cory Doctorow - The Rapture of the Nerds/Cory Doctorow - The Rapture of the Nerds.epub](books/b9d30be--space--cory-doctorow-the-rapture-of-the-nerds-cory-doctorow-the-rapture-of-the-nerds.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-open-failed](details/b9d30be--space--cory-doctorow-the-rapture-of-the-nerds-cory-doctorow-the-rapture-of-the-nerds.epub.md) |
@@ -1305,7 +1332,7 @@ Books: 589
 | c16b78b | [Tom Holland - The Forge of Christendom/Tom Holland - The Forge of Christendom.epub](books/c16b78b--space--tom-holland-the-forge-of-christendom-tom-holland-the-forge-of-christendom.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-open-failed](details/c16b78b--space--tom-holland-the-forge-of-christendom-tom-holland-the-forge-of-christendom.epub.md) |
 | f980056 | [Tracey Kidder - The Soul of a New Machine/Tracey Kidder - The Soul of a New Machine.epub](books/f980056--space--tracey-kidder-the-soul-of-a-new-machine-tracey-kidder-the-soul-of-a-new-machine.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-open-failed](details/f980056--space--tracey-kidder-the-soul-of-a-new-machine-tracey-kidder-the-soul-of-a-new-machine.epub.md) |
 | b557557 | [Travis Baldree - Legends & Lattes/Travis Baldree - Legends & Lattes 1 - Legends & Lattes/Travis Baldree - Legends & Lattes 1 - Legends & Lattes.epub](books/b557557--space--travis-baldree-legends-lattes-travis-baldree-legends-lattes-1-legends-lattes-travis-baldree-legends-lattes-1-legends-lattes.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-open-failed](details/b557557--space--travis-baldree-legends-lattes-travis-baldree-legends-lattes-1-legends-lattes-travis-baldree-legends-lattes-1-legends-lattes.epub.md) |
-| 84b753d | [Travis Baldree - Legends & Lattes/Travis Baldree - Legends & Lattes 2 - Bookshops & Bonedust/Travis Baldree - Legends & Lattes 2 - Bookshops & Bonedust.epub](books/84b753d--space--travis-baldree-legends-lattes-travis-baldree-legends-lattes-2-bookshops-bonedust-travis-baldree-legends-lattes-2-bookshops-bonedust.epub.json) | epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened |
+| 84b753d | [Travis Baldree - Legends & Lattes/Travis Baldree - Legends & Lattes 2 - Bookshops & Bonedust/Travis Baldree - Legends & Lattes 2 - Bookshops & Bonedust.epub](books/84b753d--space--travis-baldree-legends-lattes-travis-baldree-legends-lattes-2-bookshops-bonedust-travis-baldree-legends-lattes-2-bookshops-bonedust.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-opened](details/84b753d--space--travis-baldree-legends-lattes-travis-baldree-legends-lattes-2-bookshops-bonedust-travis-baldree-legends-lattes-2-bookshops-bonedust.epub.md) |
 | 0646585 | [Ursula K. Le Guin - Earthsea - A Wizard of Earthsea/Ursula K. Le Guin - Earthsea - A Wizard of Earthsea.epub](books/0646585--space--ursula-k.-le-guin-earthsea-a-wizard-of-earthsea-ursula-k.-le-guin-earthsea-a-wizard-of-earthsea.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-open-failed](details/0646585--space--ursula-k.-le-guin-earthsea-a-wizard-of-earthsea-ursula-k.-le-guin-earthsea-a-wizard-of-earthsea.epub.md) |
 | 9ffb2f8 | [Ursula K. Le Guin - Earthsea Cycle/Ursula K. Le Guin - Earthsea Cycle 01 - A Wizard of Earthsea/Ursula K. Le Guin - Earthsea Cycle 01 - A Wizard of Earthsea.epub](books/9ffb2f8--space--ursula-k.-le-guin-earthsea-cycle-ursula-k.-le-guin-earthsea-cycle-01-a-wizard-of-earthsea-ursula-k.-le-guin-earthsea-cycle-01-a-wizard-of-earthsea.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-open-failed](details/9ffb2f8--space--ursula-k.-le-guin-earthsea-cycle-ursula-k.-le-guin-earthsea-cycle-01-a-wizard-of-earthsea-ursula-k.-le-guin-earthsea-cycle-01-a-wizard-of-earthsea.epub.md) |
 | bff6d53 | [Ursula K. Le Guin - Earthsea Cycle/Ursula K. Le Guin - Earthsea Cycle 02 - The Tombs of Atuan/Ursula K. Le Guin - Earthsea Cycle 02 - The Tombs of Atuan.epub](books/bff6d53--space--ursula-k.-le-guin-earthsea-cycle-ursula-k.-le-guin-earthsea-cycle-02-the-tombs-of-atuan-ursula-k.-le-guin-earthsea-cycle-02-the-tombs-of-atuan.epub.json) | [epubts-browser: transported/opened; epubts-node: node-opened; storyteller-node: storyteller-open-failed](details/bff6d53--space--ursula-k.-le-guin-earthsea-cycle-ursula-k.-le-guin-earthsea-cycle-02-the-tombs-of-atuan-ursula-k.-le-guin-earthsea-cycle-02-the-tombs-of-atuan.epub.md) |

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Robert Jordan - The Wheel of Time/Robert Jordan - The Wheel of Time 01 - The Eye of the World/Robert Jordan - The Wheel of Time 01 - The Eye of the World.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Eye of the World",
+          "creator": "Robert Jordan",
+          "date": "1990-01-01T04:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Eye of the World",
+        "creator": "Robert Jordan",
+        "date": "1990-01-01T04:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Eye of the World",
+        "creator": "Robert Jordan",
+        "date": "1990-01-01T04:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Eye of the World",
+      "node": "The Eye of the World",
+      "storyteller": "The Eye of the World"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Robert Jordan",
+      "node": "Robert Jordan",
+      "storyteller": "Robert Jordan"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "1990-01-01T04:00:00+00:00",
+      "node": "1990-01-01T04:00:00+00:00",
+      "storyteller": "1990-01-01T04:00:00+00:00"
+    }
   }
 }

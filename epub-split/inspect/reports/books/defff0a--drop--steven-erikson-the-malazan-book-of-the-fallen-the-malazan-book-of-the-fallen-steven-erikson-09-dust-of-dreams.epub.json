@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Steven Erikson - The Malazan Book of the Fallen/The Malazan Book of the Fallen (Steven Erikson) 09 - Dust of Dreams.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Dust of Dreams",
+          "creator": "Steven Erikson",
+          "date": "2009-01-02T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Dust of Dreams",
+        "creator": "Steven Erikson",
+        "date": "2009-01-02T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Dust of Dreams",
+      "node": "Dust of Dreams"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Steven Erikson",
+      "node": "Steven Erikson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2009-01-02T00:00:00+00:00",
+      "node": "2009-01-02T00:00:00+00:00"
+    }
   }
 }

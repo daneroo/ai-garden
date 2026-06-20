@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Cory Doctorow - The Rapture of the Nerds.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Rapture of the Nerds",
+          "creator": "Cory Doctorow and Charles Stross",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "jsdom"
+      "engine": "jsdom",
+      "metadata": {
+        "title": "The Rapture of the Nerds",
+        "creator": "Cory Doctorow and Charles Stross",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Rapture of the Nerds",
+      "node": "The Rapture of the Nerds"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Cory Doctorow and Charles Stross",
+      "node": "Cory Doctorow and Charles Stross"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Robert M. Sapolsky - Determined/Robert M. Sapolsky - Determined.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Determined",
+          "creator": "Robert M. Sapolsky",
+          "date": "2023-10-17"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Determined",
+        "creator": "Robert M. Sapolsky",
+        "date": "2023-10-17"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Determined",
+        "creator": "Robert M. Sapolsky",
+        "date": "2023-10-17"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Determined",
+      "node": "Determined",
+      "storyteller": "Determined"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Robert M. Sapolsky",
+      "node": "Robert M. Sapolsky",
+      "storyteller": "Robert M. Sapolsky"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2023-10-17",
+      "node": "2023-10-17",
+      "storyteller": "2023-10-17"
+    }
   }
 }

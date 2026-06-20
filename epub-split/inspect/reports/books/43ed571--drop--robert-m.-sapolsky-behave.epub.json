@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Robert M. Sapolsky - Behave.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Behave: The Biology of Humans at Our Best and Worst",
+          "creator": "Robert M. Sapolsky",
+          "date": "2017-05-02T04:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Behave: The Biology of Humans at Our Best and Worst",
+        "creator": "Robert M. Sapolsky",
+        "date": "2017-05-02T04:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Behave: The Biology of Humans at Our Best and Worst",
+      "node": "Behave: The Biology of Humans at Our Best and Worst"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Robert M. Sapolsky",
+      "node": "Robert M. Sapolsky"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2017-05-02T04:00:00+00:00",
+      "node": "2017-05-02T04:00:00+00:00"
+    }
   }
 }

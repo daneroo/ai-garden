@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Mihaly Csikszentmihalyi - Creativity/Mihaly Csikszentmihalyi - Creativity.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Creativity",
+          "creator": "Mihaly Csikszentmihalyi",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Creativity",
+        "creator": "Mihaly Csikszentmihalyi",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Creativity",
+      "node": "Creativity"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Mihaly Csikszentmihalyi",
+      "node": "Mihaly Csikszentmihalyi"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

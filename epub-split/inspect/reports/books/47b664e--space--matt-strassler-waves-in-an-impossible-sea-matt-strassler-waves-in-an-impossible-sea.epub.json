@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Matt Strassler  - Waves in an Impossible Sea/Matt Strassler  - Waves in an Impossible Sea.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Waves in an Impossible Sea",
+          "creator": "Matt Strassler",
+          "date": "2024-03-05"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Waves in an Impossible Sea",
+        "creator": "Matt Strassler",
+        "date": "2024-03-05"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Waves in an Impossible Sea",
+        "creator": "Matt Strassler",
+        "date": "2024-03-05"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Waves in an Impossible Sea",
+      "node": "Waves in an Impossible Sea",
+      "storyteller": "Waves in an Impossible Sea"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Matt Strassler",
+      "node": "Matt Strassler",
+      "storyteller": "Matt Strassler"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2024-03-05",
+      "node": "2024-03-05",
+      "storyteller": "2024-03-05"
+    }
   }
 }

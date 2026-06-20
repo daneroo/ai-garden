@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Ben Buchanan - The Hacker and the State.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Hacker and the State",
+          "creator": "Ben Buchanan",
+          "date": "2020-02-27T23:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Hacker and the State",
+        "creator": "Ben Buchanan",
+        "date": "2020-02-27T23:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Hacker and the State",
+        "creator": "Ben Buchanan",
+        "date": "2020-02-27T23:00:00+00:00"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Hacker and the State",
+      "node": "The Hacker and the State",
+      "storyteller": "The Hacker and the State"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Ben Buchanan",
+      "node": "Ben Buchanan",
+      "storyteller": "Ben Buchanan"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2020-02-27T23:00:00+00:00",
+      "node": "2020-02-27T23:00:00+00:00",
+      "storyteller": "2020-02-27T23:00:00+00:00"
+    }
   }
 }

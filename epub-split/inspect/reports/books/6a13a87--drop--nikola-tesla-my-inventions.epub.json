@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Nikola Tesla - My Inventions.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "My Inventions: The Autobiography of Nikola Tesla",
+          "creator": "Nikola Tesla",
+          "date": "1919"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "My Inventions: The Autobiography of Nikola Tesla",
+        "creator": "Nikola Tesla",
+        "date": "1919"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "My Inventions: The Autobiography of Nikola Tesla",
+      "node": "My Inventions: The Autobiography of Nikola Tesla"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Nikola Tesla",
+      "node": "Nikola Tesla"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1919",
+      "node": "1919"
+    }
   }
 }

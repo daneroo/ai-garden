@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Octavia E. Butler - Earthseed/Octavia E. Butler - Earthseed 01 - Parable Of The Sower/Octavia E. Butler - Earthseed 01 - Parable Of The Sower.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Parable of the Sower",
+          "creator": "Octavia E Butler",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Parable of the Sower",
+        "creator": "Octavia E Butler",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Parable of the Sower",
+      "node": "Parable of the Sower"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Octavia E Butler",
+      "node": "Octavia E Butler"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

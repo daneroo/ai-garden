@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Kevin J. Anderson - Clockwork Angels/Kevin J. Anderson - Clockwork Angels 01 - Clockwork Angels/Kevin J. Anderson - Clockwork Angels 01 - Clockwork Angels.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Clockwork Angels",
+          "creator": "Kevin J. Anderson",
+          "date": "2012-01-01T05:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Clockwork Angels",
+        "creator": "Kevin J. Anderson",
+        "date": "2012-01-01T05:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Clockwork Angels",
+      "node": "Clockwork Angels"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Kevin J. Anderson",
+      "node": "Kevin J. Anderson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2012-01-01T05:00:00+00:00",
+      "node": "2012-01-01T05:00:00+00:00"
+    }
   }
 }

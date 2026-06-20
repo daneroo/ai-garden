@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Bernard Cornwell - The Saxon Chronicles/Bernard Cornwell - Saxon Chronicles 03 - The Lords of the North/Bernard Cornwell - Saxon Chronicles 03 - The Lords of the North.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Lords of the North",
+          "creator": "Bernard Cornwell",
+          "date": "2009-12-08 13:00:00+11:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Lords of the North",
+        "creator": "Bernard Cornwell",
+        "date": "2009-12-08 13:00:00+11:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Lords of the North",
+      "node": "The Lords of the North"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Bernard Cornwell",
+      "node": "Bernard Cornwell"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2009-12-08 13:00:00+11:00",
+      "node": "2009-12-08 13:00:00+11:00"
+    }
   }
 }

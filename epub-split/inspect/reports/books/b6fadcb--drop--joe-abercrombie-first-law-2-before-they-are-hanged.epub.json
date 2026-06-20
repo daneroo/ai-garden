@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Joe Abercrombie - First Law 2 Before They are Hanged.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Before They Are Hanged",
+          "creator": "Joe Abercrombie",
+          "date": "2008-04-13T23:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Before They Are Hanged",
+        "creator": "Joe Abercrombie",
+        "date": "2008-04-13T23:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Before They Are Hanged",
+      "node": "Before They Are Hanged"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Joe Abercrombie",
+      "node": "Joe Abercrombie"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2008-04-13T23:00:00+00:00",
+      "node": "2008-04-13T23:00:00+00:00"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Dan Jones - Essex Dogs 01 - Essex Dogs.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Essex Dogs",
+          "creator": "Dan Jones",
+          "date": "2023-02-14"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Essex Dogs",
+        "creator": "Dan Jones",
+        "date": "2023-02-14"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Essex Dogs",
+        "creator": "Dan Jones",
+        "date": "2023-02-14"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Essex Dogs",
+      "node": "Essex Dogs",
+      "storyteller": "Essex Dogs"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Dan Jones",
+      "node": "Dan Jones",
+      "storyteller": "Dan Jones"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2023-02-14",
+      "node": "2023-02-14",
+      "storyteller": "2023-02-14"
+    }
   }
 }

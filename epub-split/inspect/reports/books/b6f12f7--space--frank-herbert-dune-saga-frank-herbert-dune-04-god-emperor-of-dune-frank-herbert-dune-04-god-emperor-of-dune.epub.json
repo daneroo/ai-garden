@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Frank Herbert - Dune Saga/Frank Herbert - Dune 04 - God Emperor of Dune/Frank Herbert - Dune 04 - God Emperor of Dune.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "God Emperor of Dune",
+          "creator": "Frank Herbert",
+          "date": "2008-09-02"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "God Emperor of Dune",
+        "creator": "Frank Herbert",
+        "date": "2008-09-02"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "God Emperor of Dune",
+        "creator": "Frank Herbert",
+        "date": "2008-09-02"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "God Emperor of Dune",
+      "node": "God Emperor of Dune",
+      "storyteller": "God Emperor of Dune"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Frank Herbert",
+      "node": "Frank Herbert",
+      "storyteller": "Frank Herbert"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2008-09-02",
+      "node": "2008-09-02",
+      "storyteller": "2008-09-02"
+    }
   }
 }

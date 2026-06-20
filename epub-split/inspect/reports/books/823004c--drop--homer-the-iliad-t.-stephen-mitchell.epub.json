@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Homer - The Iliad - t.  Stephen Mitchell.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Iliad: (The Stephen Mitchell Translation)",
+          "creator": "Homer",
+          "date": "2011-10-10T23:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Iliad: (The Stephen Mitchell Translation)",
+        "creator": "Homer",
+        "date": "2011-10-10T23:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Iliad: (The Stephen Mitchell Translation)",
+      "node": "The Iliad: (The Stephen Mitchell Translation)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Homer",
+      "node": "Homer"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-10-10T23:00:00+00:00",
+      "node": "2011-10-10T23:00:00+00:00"
+    }
   }
 }

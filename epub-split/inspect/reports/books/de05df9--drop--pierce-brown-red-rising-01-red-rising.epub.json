@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Pierce Brown - Red Rising 01 - Red Rising.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Red Rising",
+          "creator": "Pierce Brown",
+          "date": "2014-02-18"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Red Rising",
+        "creator": "Pierce Brown",
+        "date": "2014-02-18"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Red Rising",
+      "node": "Red Rising"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Pierce Brown",
+      "node": "Pierce Brown"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-02-18",
+      "node": "2014-02-18"
+    }
   }
 }

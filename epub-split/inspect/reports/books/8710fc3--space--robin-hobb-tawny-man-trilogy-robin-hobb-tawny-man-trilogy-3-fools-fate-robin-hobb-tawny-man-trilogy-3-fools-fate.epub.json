@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Robin Hobb - Tawny Man Trilogy/Robin Hobb - Tawny Man Trilogy 3 - Fools Fate/Robin Hobb - Tawny Man Trilogy 3 - Fools Fate.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": " Fool's Fate",
+          "creator": "Robin Hobb",
+          "date": "2003"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": " Fool's Fate",
+        "creator": "Robin Hobb",
+        "date": "2003"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": " Fool's Fate",
+      "node": " Fool's Fate"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Robin Hobb",
+      "node": "Robin Hobb"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2003",
+      "node": "2003"
+    }
   }
 }

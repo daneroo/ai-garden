@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Ursula K. Le Guin - Earthsea Cycle 06 - The Other Wind.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Other Wind (The Earthsea Cycle Series Book 6)",
+          "creator": "Le Guin, Ursula K.",
+          "date": "2001-09-13"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Other Wind (The Earthsea Cycle Series Book 6)",
+        "creator": "Le Guin, Ursula K.",
+        "date": "2001-09-13"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Other Wind (The Earthsea Cycle Series Book 6)",
+      "node": "The Other Wind (The Earthsea Cycle Series Book 6)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Le Guin, Ursula K.",
+      "node": "Le Guin, Ursula K."
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2001-09-13",
+      "node": "2001-09-13"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Steven Brust - Vlad Taltos/Steven Brust - Vlad Taltos 04 - Taltos.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Taltos",
+          "creator": "Steven Brust",
+          "date": "2012-04-10T08:30:50+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Taltos",
+        "creator": "Steven Brust",
+        "date": "2012-04-10T08:30:50+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Taltos",
+      "node": "Taltos"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Steven Brust",
+      "node": "Steven Brust"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2012-04-10T08:30:50+00:00",
+      "node": "2012-04-10T08:30:50+00:00"
+    }
   }
 }

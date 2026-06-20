@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Yoko Ogawa - The Housekeeper and the Professor/Yoko Ogawa - The Housekeeper and the Professor.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Housekeeper and the Professor",
+          "creator": "Yoko Ogawa",
+          "date": "2010-04-01T04:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Housekeeper and the Professor",
+        "creator": "Yoko Ogawa",
+        "date": "2010-04-01T04:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Housekeeper and the Professor",
+      "node": "The Housekeeper and the Professor"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Yoko Ogawa",
+      "node": "Yoko Ogawa"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2010-04-01T04:00:00+00:00",
+      "node": "2010-04-01T04:00:00+00:00"
+    }
   }
 }

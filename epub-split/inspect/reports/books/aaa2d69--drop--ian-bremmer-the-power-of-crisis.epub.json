@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Ian Bremmer - The Power of Crisis.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Power of Crisis",
+          "creator": "Ian Bremmer",
+          "date": "2022-05-17"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Power of Crisis",
+        "creator": "Ian Bremmer",
+        "date": "2022-05-17"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Power of Crisis",
+        "creator": "Ian Bremmer",
+        "date": "2022-05-17"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Power of Crisis",
+      "node": "The Power of Crisis",
+      "storyteller": "The Power of Crisis"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Ian Bremmer",
+      "node": "Ian Bremmer",
+      "storyteller": "Ian Bremmer"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-05-17",
+      "node": "2022-05-17",
+      "storyteller": "2022-05-17"
+    }
   }
 }

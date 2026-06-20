@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Mortimer J. Adler - How to Read a Book.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "How to Read a Book",
+          "creator": "Doren, Charles Van;Mortimer J. Adler",
+          "date": "2011-05-10T04:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "How to Read a Book",
+        "creator": "Doren, Charles Van;Mortimer J. Adler",
+        "date": "2011-05-10T04:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "How to Read a Book",
+      "node": "How to Read a Book"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Doren, Charles Van;Mortimer J. Adler",
+      "node": "Doren, Charles Van;Mortimer J. Adler"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-05-10T04:00:00+00:00",
+      "node": "2011-05-10T04:00:00+00:00"
+    }
   }
 }

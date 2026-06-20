@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Lee Child - Jack Reacher - 01 - Killing Floor.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Killing Floor",
+          "creator": "Lee Child",
+          "date": "2006-04-25T07:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Killing Floor",
+        "creator": "Lee Child",
+        "date": "2006-04-25T07:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Killing Floor",
+      "node": "Killing Floor"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Lee Child",
+      "node": "Lee Child"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2006-04-25T07:00:00+00:00",
+      "node": "2006-04-25T07:00:00+00:00"
+    }
   }
 }

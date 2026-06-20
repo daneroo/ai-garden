@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Nicole Perlroth - This Is How They Tell Me the World Ends.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "This Is How They Tell Me the World Ends",
+          "creator": "Nicole Perlroth",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "This Is How They Tell Me the World Ends",
+        "creator": "Nicole Perlroth",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "This Is How They Tell Me the World Ends",
+        "creator": "Nicole Perlroth",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "This Is How They Tell Me the World Ends",
+      "node": "This Is How They Tell Me the World Ends",
+      "storyteller": "This Is How They Tell Me the World Ends"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Nicole Perlroth",
+      "node": "Nicole Perlroth",
+      "storyteller": "Nicole Perlroth"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

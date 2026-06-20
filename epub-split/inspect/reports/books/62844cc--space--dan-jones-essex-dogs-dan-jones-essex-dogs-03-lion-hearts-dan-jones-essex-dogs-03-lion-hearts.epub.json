@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Dan Jones - Essex Dogs/Dan Jones - Essex Dogs 03 - Lion Hearts/Dan Jones - Essex Dogs 03 - Lion Hearts.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Lion Hearts",
+          "creator": "Dan Jones",
+          "date": "2025-06-19"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Lion Hearts",
+        "creator": "Dan Jones",
+        "date": "2025-06-19"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Lion Hearts",
+        "creator": "Dan Jones",
+        "date": "2025-06-19"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Lion Hearts",
+      "node": "Lion Hearts",
+      "storyteller": "Lion Hearts"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Dan Jones",
+      "node": "Dan Jones",
+      "storyteller": "Dan Jones"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2025-06-19",
+      "node": "2025-06-19",
+      "storyteller": "2025-06-19"
+    }
   }
 }

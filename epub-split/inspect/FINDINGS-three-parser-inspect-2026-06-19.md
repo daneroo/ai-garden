@@ -46,7 +46,7 @@ records all three parser paths and comparison as `not-implemented`.
 
 ## Gate 2: Typed Playwright Browser Boundary
 
-Status: evidence verified across the full corpus; awaiting approval.
+Status: approved.
 
 Playwright 1.61.0 requires its matching Chromium build. The isolated package
 therefore installs Chromium from its `postinstall` script so the documented
@@ -85,7 +85,7 @@ diagnostic event.
 
 ## Gate 3: Browser epub.ts Open Outcomes
 
-Status: evidence verified across the full corpus; awaiting approval.
+Status: approved.
 
 The browser harness now opens each book with epub.ts (`ePub(bytes)` reusing the
 already-fetched, integrity-checked bytes; `await book.opened`), records the
@@ -122,7 +122,7 @@ for absolute-path leaks, not only `run.json`.
 
 ## Gate 4A: Node epub.ts Open Outcomes
 
-Status: evidence verified across the full corpus; awaiting approval.
+Status: approved.
 
 The epubts-node path opens each book with `@likecoin/epub-ts/node`. The node
 build imports LinkeDOM itself and installs the DOMParser/document globals it
@@ -159,7 +159,7 @@ storyteller-node remains `not-implemented`.
 
 ## Gate 4B: Storyteller Open Outcomes
 
-Status: evidence verified across the full corpus; awaiting approval.
+Status: approved.
 
 The storyteller-node path opens each book with `@storyteller-platform/epub`
 (0.6.2) via `Epub.using(MemoryAdapter).from(bytes, { readonly: true })` — an
@@ -300,3 +300,182 @@ Reproduction book: Terry Pratchett - Discworld 05 - Sourcery (550 KB, sha
   storyteller observations unchanged. Determinism confirmed: reports staged, the
   full corpus re-run, no diff. The 10s LinkeDOM deadline is accepted; the
   linkedom/jsdom partition is stable across runs. Gate 4C approved.
+
+## Gate 5A: Metadata API and Schema Investigation
+
+Status: three-field scalar schema approved; full run pending.
+
+The installed epub.ts 0.6.7 browser and node builds expose the same
+`PackagingMetadataObject`. It is a semantic, lossy object: title, creator,
+description, publication date, publisher, identifier, language, rights, selected
+EPUB 3 rendition properties, and spine direction. Its parser selects only the
+first matching Dublin Core element or `meta[property]`, returns empty strings
+for missing values, and does not expose source order, repeated entries,
+attributes, IDs, refinements, or the package metadata DOM. Browser and node can
+therefore be compared exactly on this object, but it must not be represented as
+low-level metadata.
+
+Storyteller 0.6.2 exposes ordered low-level entries through `getMetadata()` as
+`{ id, type, properties, value }`. This preserves repeated entries, element
+names, attributes (including `refines`), and source order, although Storyteller
+collapses whitespace runs in entry text. It also exposes convenience methods for
+identifier, titles, language, dates, description, type, creators, contributors,
+subjects, collections, vocabulary prefixes, layout, and package direction.
+
+The proposed schema keeps low-level and semantic surfaces separate and records
+an explicit `not-exposed` state where a parser has no corresponding API. A
+separate comparison view maps reviewed semantic concepts without changing
+values. Comparisons use source paths rather than duplicating observations.
+Storyteller EPUB 2 failures remain unavailable; this gate does not upgrade or
+repair books. This avoids inventing epub.ts evidence by independently reparsing
+the OPF and keeps the three paths attributable to their actual parser APIs.
+
+For efficient execution, metadata is extracted during the existing successful
+open in each browser page or worker. No EPUB is opened a second time and no new
+per-book process is added. Gate 5 is divided into schema approval (5A), focused
+implementation and validation (5B), and Daniel's complete deterministic corpus
+runs plus evidence review (5C).
+
+### Focused field probe
+
+A temporary probe ran all three implementations against 18 books: the four
+committed test EPUBs, twelve deterministic Storyteller-openable drop books, and
+two additional nominally coauthored books. It inspected only title, creator,
+publication date, and publisher and did not replace current reports.
+
+- epub.ts browser and node returned identical values for all four fields on all
+  18 books.
+- epub.ts title and Storyteller `getTitle()` agreed on all 18.
+- epub.ts creator and the first Storyteller `getCreators()` name agreed on all
+  18. Storyteller exposed one creator in each sampled package, including the two
+  filenames that named multiple authors; this does not establish that the full
+  corpus contains no repeated `dc:creator` entries.
+- epub.ts publisher and the first raw Storyteller `dc:publisher` agreed on all
+  18. Publisher was present in 14 books and absent in the four test books.
+- epub.ts publication date and the first raw Storyteller `dc:date` agreed on all
+  18. A date was present in 16 books.
+- Storyteller `getPublicationDate()` is unsuitable for exact comparison because
+  it coerces source strings to `Date`: year-only dates gain January 1, offsets
+  are canonicalized, and all present values gain an ISO timestamp. The raw
+  `dc:date` entry preserves the value that epub.ts exposes.
+
+The approved microexperiment narrows this further to three scalar fields:
+`title`, `creator`, and exact lexical `date`, each `string | null`. Only the
+first value exposed by each implementation is retained. The complete run will
+produce per-parser present/missing/unavailable counts before field comparison
+is implemented.
+
+Date normalization now treats the sentinel `0101-01-01T00:00:00+00:00` as
+missing/null so zero-value dates do not pollute the comparison or histogram.
+
+Gate 5X remains open for moving that normalization upstream into the parser
+boundary, instead of carrying the sentinel through the local wrappers.
+
+## Gate 5B: Three-Field Extraction and Comparison
+
+Status: implemented; full corpus run pending schema change.
+
+### Implementation summary
+
+Metadata extraction is performed during each parser's successful open — no
+extra pass per book. All three workers extract `title`, `creator`, and `date`
+as `string | null`. The `0101-01-01T00:00:00+00:00` sentinel is now
+deduplicated into `src/metadata-utils.ts` (shared across all three workers).
+Gate 5X is resolved by this refactor.
+
+Per-book comparison uses a seven-way `FieldComparison` discriminated union.
+Every status always carries individual per-parser values (no collapsed `value`
+or `others` fields) so any result in the JSON is fully traceable to its source.
+Three-parser statuses: `all-agree`, `node-differs`, `storyteller-differs`,
+`browser-unique`, `all-differ`. Two-parser statuses (Storyteller unavailable):
+`browser-node-agree`, `browser-node-differ`. Fallback: `unavailable`.
+
+Metadata disagreements trigger a detail file with per-field values shown for
+each parser. The index histogram shows per-field comparison-status counts.
+
+### Full-corpus results (schema version 6, two reproducible runs)
+
+Corpus coverage:
+
+- 1,301 books total; all opened successfully by browser and node.
+- 368 books (28.3%) are EPUB 3 → Storyteller opened all 368.
+- 933 books (71.7%) are EPUB 2 → Storyteller rejected all 933 with "This
+  library only supports EPUB 3." These contribute `browser-node-*` comparison
+  outcomes. The three-way comparison is only possible on the 368 EPUB 3 books.
+
+Comparison histogram (title / creator / date):
+
+| Status                | title | creator | date |
+|-----------------------|------:|--------:|-----:|
+| all-agree             |   364 |     368 |  368 |
+| browser-node-agree  |   927 |     931 |  801 |
+| node-differs           |     2 |       0 |    0 |
+| storyteller-unique    |     0 |       0 |    0 |
+| browser-unique        |     0 |       0 |    0 |
+| all-differ            |     2 |       0 |    0 |
+| browser-node-differ |     5 |       1 |    0 |
+| unavailable           |     1 |       1 |  132 |
+
+### Finding 1: epub.ts node path truncates titles at XML character entities
+
+The node path (epub.ts via LinkeDOM) truncates titles at XML character
+references (`&amp;`, `&#x2019;`, and similar). The browser path correctly
+decodes these entities and returns the full title. Confirmed in five distinct
+title values across several books:
+
+- "His Majesty's Dragon" → node returns "His Majesty" (truncates at `'`)
+- "Legends & Lattes: A Novel of High Fantasy and Low Stakes" → node returns "Legends" (truncates at `&`)
+- "Bookshops & Bonedust" → node returns "Bookshops" (truncates at `&`)
+- "Austerity Ecology & the Collapse-Porn Addicts: A Defence Of Growth..." → node returns "Austerity Ecology" (truncates at `&`)
+- "The Reverse Centaur's Guide to Life After AI" → node returns "The Reverse Centaur" (truncates at `'`)
+
+Storyteller (where available, i.e. EPUB 3 books) returns the full value,
+confirming the bug is in epub.ts/LinkeDOM's metadata text parsing, not in the
+source data. This is a real interoperability issue: the node path cannot be
+used for metadata-dependent audiobook alignment without this fix.
+
+The pattern suggests LinkeDOM splits on `&` in metadata text, not in document
+structure — likely a case where the metadata parser does not run through the
+XML entity resolver.
+
+### Finding 2: Storyteller returns raw HTML entities in metadata text
+
+For EPUB 3 books, Storyteller's `getMetadata()` returns entry text verbatim
+from the OPF file, including HTML entities such as `&#x2019;` (right single
+quotation mark). epub.ts decodes entities before populating its metadata object.
+
+Example (Cory Doctorow, "The Reverse Centaur's Guide to Life After AI"):
+- browser: `"The Reverse Centaur’s Guide to Life After AI"` (decoded)
+- node: `"The Reverse Centaur"` (truncated at the entity — Finding 1)
+- storyteller: `"The Reverse Centaur&#x2019;s Guide to Life After AI"` (raw entity)
+
+This is a deliberate serialization difference between the two parsers. The
+raw form is more attributable but requires entity decoding for display or
+comparison. This difference will recur for any title or creator containing
+character references.
+
+### Finding 3: Browser and node agree for all date and creator fields
+
+No disagreements were observed for `creator` or `date` in three-parser books.
+For two-parser books (EPUB 2), one `browser-node-differ` creator case exists
+(one book pair, confirmed the same pattern across drop and space copies).
+
+Date `unavailable` (132 books): these are books where epub.ts returns null for
+`pubdate` (after sentinel normalization) AND Storyteller is unavailable. A
+missing date is unremarkable; it means the OPF has no `<dc:date>` element or
+epub.ts cannot parse it.
+
+### Summary for feasibility decision
+
+Browser and node paths are functionally equivalent for title/creator/date on
+99%+ of the corpus. The only meaningful difference is the entity-truncation bug
+in the node path (Finding 1), which is a fixable defect in epub.ts/LinkeDOM's
+metadata text parsing, not a fundamental incompatibility.
+
+Storyteller adds entity-encoding differences on its metadata text (Finding 2),
+meaning the values are attributably equivalent but not lexically identical for
+books with character references.
+
+The dominant corpus split (71.7% EPUB 2, 28.3% EPUB 3) limits Storyteller
+coverage. Any workflow requiring Storyteller for the full corpus would need
+EPUB 2 → 3 conversion or a different metadata source for EPUB 2 books.

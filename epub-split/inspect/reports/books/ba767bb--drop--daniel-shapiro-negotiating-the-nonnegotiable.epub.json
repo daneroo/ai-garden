@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Daniel Shapiro - Negotiating the Nonnegotiable.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Negotiating the Nonnegotiable: How to Resolve Your Most Emotionally Charged Conflicts",
+          "creator": "Daniel Shapiro",
+          "date": "2016-04-19T06:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Negotiating the Nonnegotiable: How to Resolve Your Most Emotionally Charged Conflicts",
+        "creator": "Daniel Shapiro",
+        "date": "2016-04-19T06:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Negotiating the Nonnegotiable: How to Resolve Your Most Emotionally Charged Conflicts",
+      "node": "Negotiating the Nonnegotiable: How to Resolve Your Most Emotionally Charged Conflicts"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Daniel Shapiro",
+      "node": "Daniel Shapiro"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2016-04-19T06:00:00+00:00",
+      "node": "2016-04-19T06:00:00+00:00"
+    }
   }
 }

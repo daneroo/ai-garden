@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Cory Doctorow - ChokepointCapitalism.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Chokepoint Capitalism: How to Beat Big Tech, Tame Big Content, and Get Artists Paid",
+          "creator": "Rebecca Giblin",
+          "date": "2022"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Chokepoint Capitalism: How to Beat Big Tech, Tame Big Content, and Get Artists Paid",
+        "creator": "Rebecca Giblin",
+        "date": "2022"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Chokepoint Capitalism: How to Beat Big Tech, Tame Big Content, and Get Artists Paid",
+        "creator": "Rebecca Giblin",
+        "date": "2022"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Chokepoint Capitalism: How to Beat Big Tech, Tame Big Content, and Get Artists Paid",
+      "node": "Chokepoint Capitalism: How to Beat Big Tech, Tame Big Content, and Get Artists Paid",
+      "storyteller": "Chokepoint Capitalism: How to Beat Big Tech, Tame Big Content, and Get Artists Paid"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Rebecca Giblin",
+      "node": "Rebecca Giblin",
+      "storyteller": "Rebecca Giblin"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022",
+      "node": "2022",
+      "storyteller": "2022"
+    }
   }
 }

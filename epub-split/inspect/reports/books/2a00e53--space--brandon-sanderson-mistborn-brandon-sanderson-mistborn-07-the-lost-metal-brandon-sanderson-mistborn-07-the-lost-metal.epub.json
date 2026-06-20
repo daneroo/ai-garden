@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Brandon Sanderson - Mistborn/Brandon Sanderson - Mistborn 07 - The Lost Metal/Brandon Sanderson - Mistborn 07 - The Lost Metal.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Lost Metal : A Mistborn Novel (9780765391209)",
+          "creator": "Sanderson, Brandon",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Lost Metal : A Mistborn Novel (9780765391209)",
+        "creator": "Sanderson, Brandon",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Lost Metal : A Mistborn Novel (9780765391209)",
+        "creator": "Sanderson, Brandon",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Lost Metal : A Mistborn Novel (9780765391209)",
+      "node": "Lost Metal : A Mistborn Novel (9780765391209)",
+      "storyteller": "Lost Metal : A Mistborn Novel (9780765391209)"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Sanderson, Brandon",
+      "node": "Sanderson, Brandon",
+      "storyteller": "Sanderson, Brandon"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

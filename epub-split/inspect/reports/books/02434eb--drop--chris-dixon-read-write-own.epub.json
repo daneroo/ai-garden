@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Chris Dixon - Read Write Own.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Read Write Own",
+          "creator": "Chris Dixon",
+          "date": "2024-01-30"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Read Write Own",
+        "creator": "Chris Dixon",
+        "date": "2024-01-30"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Read Write Own",
+        "creator": "Chris Dixon",
+        "date": "2024-01-30"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Read Write Own",
+      "node": "Read Write Own",
+      "storyteller": "Read Write Own"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Chris Dixon",
+      "node": "Chris Dixon",
+      "storyteller": "Chris Dixon"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2024-01-30",
+      "node": "2024-01-30",
+      "storyteller": "2024-01-30"
+    }
   }
 }

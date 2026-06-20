@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Cory Doctorow - Reverse Centaurs Guide To Life After AI.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Reverse Centaur’s Guide to Life After AI",
+          "creator": "Cory Doctorow",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Reverse Centaur",
+        "creator": "Cory Doctorow",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Reverse Centaur&#x2019;s Guide to Life After AI",
+        "creator": "Cory Doctorow",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-differ",
+      "browser": "The Reverse Centaur’s Guide to Life After AI",
+      "node": "The Reverse Centaur",
+      "storyteller": "The Reverse Centaur&#x2019;s Guide to Life After AI"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Cory Doctorow",
+      "node": "Cory Doctorow",
+      "storyteller": "Cory Doctorow"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Joe Abercrombie - The Age of Madness/Joe Abercrombie - The Age of Madness 01 - A Little Hatred/Joe Abercrombie - The Age of Madness - 01 - A Little Hatred.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "A Little Hatred: Book One (The Age of Madness)",
+          "creator": "Joe Abercrombie",
+          "date": "2019-09-16T23:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "A Little Hatred: Book One (The Age of Madness)",
+        "creator": "Joe Abercrombie",
+        "date": "2019-09-16T23:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "A Little Hatred: Book One (The Age of Madness)",
+      "node": "A Little Hatred: Book One (The Age of Madness)"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Joe Abercrombie",
+      "node": "Joe Abercrombie"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2019-09-16T23:00:00+00:00",
+      "node": "2019-09-16T23:00:00+00:00"
+    }
   }
 }

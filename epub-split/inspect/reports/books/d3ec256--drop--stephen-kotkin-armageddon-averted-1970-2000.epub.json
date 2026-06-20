@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Stephen Kotkin - Armageddon Averted - 1970-2000.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Armageddon Averted: The Soviet Collapse, 1970-2000",
+          "creator": "Stephen Kotkin",
+          "date": "2001-01-01T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Armageddon Averted: The Soviet Collapse, 1970-2000",
+        "creator": "Stephen Kotkin",
+        "date": "2001-01-01T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Armageddon Averted: The Soviet Collapse, 1970-2000",
+      "node": "Armageddon Averted: The Soviet Collapse, 1970-2000"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Stephen Kotkin",
+      "node": "Stephen Kotkin"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2001-01-01T00:00:00+00:00",
+      "node": "2001-01-01T00:00:00+00:00"
+    }
   }
 }

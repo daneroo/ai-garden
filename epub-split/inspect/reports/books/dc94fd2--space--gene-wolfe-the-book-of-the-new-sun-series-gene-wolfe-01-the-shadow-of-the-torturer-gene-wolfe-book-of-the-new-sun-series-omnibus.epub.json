@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Gene Wolfe - The Book of the New Sun Series/Gene Wolfe - 01 The Shadow of the Torturer/Gene Wolfe -Book of the New Sun Series Omnibus.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Complete Book of the New Sun",
+          "creator": "Wolfe, Gene",
+          "date": "2017-11-14"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Complete Book of the New Sun",
+        "creator": "Wolfe, Gene",
+        "date": "2017-11-14"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Complete Book of the New Sun",
+      "node": "The Complete Book of the New Sun"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Wolfe, Gene",
+      "node": "Wolfe, Gene"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2017-11-14",
+      "node": "2017-11-14"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "William Gibson - Jackpot/William Gibson - Jackpot 01 - The Peripheral/William Gibson - Jackpot 01 - The Peripheral.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Peripheral",
+          "creator": "William Gibson",
+          "date": "2014-09-25"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Peripheral",
+        "creator": "William Gibson",
+        "date": "2014-09-25"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Peripheral",
+      "node": "The Peripheral"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "William Gibson",
+      "node": "William Gibson"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-09-25",
+      "node": "2014-09-25"
+    }
   }
 }

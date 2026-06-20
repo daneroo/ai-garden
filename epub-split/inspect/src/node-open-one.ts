@@ -7,6 +7,8 @@
 // one is not already present. Setting globalThis.DOMParser to jsdom's before
 // importing the node build therefore swaps the parser engine without forking
 // epub.ts. LinkeDOM hangs on a few books; jsdom opens them.
+import { optional, optionalDate } from "./metadata-utils.ts";
+
 const path = process.argv[2];
 const engine = process.argv[3] === "jsdom" ? "jsdom" : "linkedom";
 if (!path) {
@@ -27,12 +29,22 @@ try {
   const bytes = await Bun.file(path).arrayBuffer();
   const book = new Book(bytes, { replacements: "none" });
   await book.opened;
-  const packaging = (book as { packaging?: { version?: unknown } }).packaging;
+  const packaging = (book as {
+    packaging?: {
+      version?: unknown;
+      metadata?: { title?: unknown; creator?: unknown; pubdate?: unknown };
+    };
+  }).packaging;
   const version =
     typeof packaging?.version === "string"
       ? { status: "exposed", value: packaging.version }
       : { status: "skipped" };
-  process.stdout.write(JSON.stringify({ ok: true, version, engine }));
+  const metadata = {
+    title: optional(packaging?.metadata?.title),
+    creator: optional(packaging?.metadata?.creator),
+    date: optionalDate(packaging?.metadata?.pubdate),
+  };
+  process.stdout.write(JSON.stringify({ ok: true, version, engine, metadata }));
   book.destroy();
 } catch (error: unknown) {
   process.stdout.write(

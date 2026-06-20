@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Geoff Manaugh Nicola Twilley - Until Proven Safe The History and Future of Quarantine.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Until Proven Safe",
+          "creator": "Nicola Twilley",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Until Proven Safe",
+        "creator": "Nicola Twilley",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Until Proven Safe",
+        "creator": "Nicola Twilley",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Until Proven Safe",
+      "node": "Until Proven Safe",
+      "storyteller": "Until Proven Safe"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Nicola Twilley",
+      "node": "Nicola Twilley",
+      "storyteller": "Nicola Twilley"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Morten H. Christiansen, Nick Chater - The Language Game.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Language Game",
+          "creator": "Morten H. Christiansen",
+          "date": "2022-02-22"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Language Game",
+        "creator": "Morten H. Christiansen",
+        "date": "2022-02-22"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Language Game",
+        "creator": "Morten H. Christiansen",
+        "date": "2022-02-22"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Language Game",
+      "node": "The Language Game",
+      "storyteller": "The Language Game"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Morten H. Christiansen",
+      "node": "Morten H. Christiansen",
+      "storyteller": "Morten H. Christiansen"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-02-22",
+      "node": "2022-02-22",
+      "storyteller": "2022-02-22"
+    }
   }
 }

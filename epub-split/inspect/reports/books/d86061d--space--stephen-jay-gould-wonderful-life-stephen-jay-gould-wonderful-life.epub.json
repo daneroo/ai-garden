@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Stephen Jay Gould - Wonderful Life/Stephen Jay Gould - Wonderful Life.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Wonderful Life: The Burgess Shale and the Nature of History",
+          "creator": "Stephen Jay Gould",
+          "date": "1990-09-17T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Wonderful Life: The Burgess Shale and the Nature of History",
+        "creator": "Stephen Jay Gould",
+        "date": "1990-09-17T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Wonderful Life: The Burgess Shale and the Nature of History",
+      "node": "Wonderful Life: The Burgess Shale and the Nature of History"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Stephen Jay Gould",
+      "node": "Stephen Jay Gould"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "1990-09-17T00:00:00+00:00",
+      "node": "1990-09-17T00:00:00+00:00"
+    }
   }
 }

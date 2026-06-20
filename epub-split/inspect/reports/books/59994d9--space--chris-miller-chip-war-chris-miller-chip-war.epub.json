@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "space",
     "relativePath": "Chris Miller - Chip War/Chris Miller - Chip War.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "Chip War",
+          "creator": "Chris Miller",
+          "date": "2022-10-04"
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Chip War",
+        "creator": "Chris Miller",
+        "date": "2022-10-04"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "Chip War",
+        "creator": "Chris Miller",
+        "date": "2022-10-04"
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "Chip War",
+      "node": "Chip War",
+      "storyteller": "Chip War"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Chris Miller",
+      "node": "Chris Miller",
+      "storyteller": "Chris Miller"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": "2022-10-04",
+      "node": "2022-10-04",
+      "storyteller": "2022-10-04"
+    }
   }
 }

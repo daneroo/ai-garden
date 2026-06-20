@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Maurice Druon - The Accursed Kings/Maurice Druon - The Accursed Kings 01 - The Iron King.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Iron King",
+          "creator": "Maurice Druon",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Iron King",
+        "creator": "Maurice Druon",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,18 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Iron King",
+      "node": "The Iron King"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Maurice Druon",
+      "node": "Maurice Druon"
+    },
+    "date": {
+      "status": "unavailable"
+    }
   }
 }

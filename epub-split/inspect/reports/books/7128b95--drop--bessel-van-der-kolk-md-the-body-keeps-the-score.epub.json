@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Bessel van der Kolk MD - The Body Keeps the Score.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Body Keeps the Score: Brain, Mind, and Body in the Healing of Trauma",
+          "creator": "Bessel van der Kolk MD",
+          "date": "2014-09-25T00:00:00+00:00"
         }
       },
       "diagnostics": []
@@ -26,7 +31,12 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Body Keeps the Score: Brain, Mind, and Body in the Healing of Trauma",
+        "creator": "Bessel van der Kolk MD",
+        "date": "2014-09-25T00:00:00+00:00"
+      }
     },
     "storyteller-node": {
       "status": "storyteller-open-failed",
@@ -36,6 +46,20 @@
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "The Body Keeps the Score: Brain, Mind, and Body in the Healing of Trauma",
+      "node": "The Body Keeps the Score: Brain, Mind, and Body in the Healing of Trauma"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Bessel van der Kolk MD",
+      "node": "Bessel van der Kolk MD"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2014-09-25T00:00:00+00:00",
+      "node": "2014-09-25T00:00:00+00:00"
+    }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "book": {
     "root": "drop",
     "relativePath": "Thomas Lin - The Prime Number Conspiracy.epub",
@@ -17,6 +17,11 @@
         "status": "opened",
         "version": {
           "status": "skipped"
+        },
+        "metadata": {
+          "title": "The Prime Number Conspiracy",
+          "creator": "Thomas Lin",
+          "date": null
         }
       },
       "diagnostics": []
@@ -26,17 +31,44 @@
       "version": {
         "status": "skipped"
       },
-      "engine": "linkedom"
+      "engine": "linkedom",
+      "metadata": {
+        "title": "The Prime Number Conspiracy",
+        "creator": "Thomas Lin",
+        "date": null
+      }
     },
     "storyteller-node": {
       "status": "storyteller-opened",
       "version": {
         "status": "exposed",
         "value": "3.0"
+      },
+      "metadata": {
+        "title": "The Prime Number Conspiracy",
+        "creator": "Thomas Lin",
+        "date": null
       }
     }
   },
   "comparison": {
-    "status": "not-implemented"
+    "title": {
+      "status": "all-agree",
+      "browser": "The Prime Number Conspiracy",
+      "node": "The Prime Number Conspiracy",
+      "storyteller": "The Prime Number Conspiracy"
+    },
+    "creator": {
+      "status": "all-agree",
+      "browser": "Thomas Lin",
+      "node": "Thomas Lin",
+      "storyteller": "Thomas Lin"
+    },
+    "date": {
+      "status": "all-agree",
+      "browser": null,
+      "node": null,
+      "storyteller": null
+    }
   }
 }
