@@ -43,9 +43,9 @@ The schema has two top-level sections.
 ```ts
 {
   schemaVersion: number;
-  parser: "epubts-browser" | "epubts-node" | "storyteller-node";
+  parser: "epubts-browser" | "epubts-node" | "storyteller";
   parserVersion: string;       // package version
-  engine?: "linkedom" | "jsdom"; // epubts-node only
+  domParser?: "linkedom" | "jsdom"; // epubts-node only
   openStatus: "opened" | "open-failed" | "epub2-unsupported";
   openFailure?: { stage: string; category: string; message: string };
 }
@@ -177,7 +177,7 @@ code.
 | Stays from inspect/ | Changes |
 |---|---|
 | Bun toolchain | No baked-in 3-way comparison |
-| Subprocess isolation + jsdom fallback | Parser adapters produce `ParserOutput` (Zod) |
+| Subprocess isolation + jsdom fallback | Parser adapters produce `ParserOutput` (Zod); `domParser` field replaces `engine` |
 | Playwright harness for browser | Generic `compareBook(a, b)` replaces per-field comparison |
 | Atomic report replacement | Corpus module hides dedup logic |
 | Deterministic corpus discovery | `ComparisonWarning` taxonomy replaces inline status strings |
