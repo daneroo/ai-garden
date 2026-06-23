@@ -2,6 +2,13 @@
 
 Date: 2026-06-19
 
+> **Superseded (2026-06-23)** by
+> [`DESIGN-epub-validate-refactor-2026-06-23.md`](DESIGN-epub-validate-refactor-2026-06-23.md).
+> This documents the completed feasibility experiment (Gates 1–5, approved
+> 2026-06-22). The three-parser matrix is not carried forward; the refactor
+> replaces it with a parser-agnostic schema and generic two-parser comparison.
+> Kept as the historical record of why that decision was made.
+
 ## Status
 
 Design reference. Execution status is tracked in

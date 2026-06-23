@@ -1,5 +1,16 @@
 # EPUB Inspect
 
+> **Active work (2026-06-23): schema-first refactor toward an EPUB *validate*
+> tool.** The three-parser feasibility experiment is complete and approved
+> (2026-06-22); see the FINDINGS. The next phase replaces the baked-in 3-way
+> comparison with a parser-agnostic, Zod-validated output schema and a generic
+> two-parser comparator. Start here:
+> - [`DESIGN-epub-validate-refactor-2026-06-23.md`](DESIGN-epub-validate-refactor-2026-06-23.md) — architecture
+> - [`PLAN-epub-validate-refactor-2026-06-23.md`](PLAN-epub-validate-refactor-2026-06-23.md) — tracked gates
+>
+> The run instructions below describe the *current* (pre-refactor) runner and
+> stay valid until the refactor replaces it.
+
 Three-path EPUB inspection experiment covering the complete `test`, `drop`,
 and `space` corpora.
 

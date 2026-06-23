@@ -2,6 +2,11 @@
 
 Date: 2026-06-19
 
+> **Superseded (2026-06-23)** by
+> [`PLAN-epub-validate-refactor-2026-06-23.md`](PLAN-epub-validate-refactor-2026-06-23.md).
+> This experiment is complete and approved (2026-06-22). Kept as the historical
+> execution record; the runner it describes is being refactored.
+
 Design reference:
 [`DESIGN-three-parser-inspect-2026-06-19.md`](DESIGN-three-parser-inspect-2026-06-19.md)
 
