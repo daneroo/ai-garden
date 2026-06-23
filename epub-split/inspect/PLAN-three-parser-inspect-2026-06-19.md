@@ -7,7 +7,7 @@ Design reference:
 
 ## Status
 
-- Overall: `GATE 5 COMPLETE — FINAL DECISION PENDING`
+- Overall: `COMPLETE — APPROVED 2026-06-22`
 - Current gate: `Gate 5`
 - Next action: review Gate 5 findings and make final feasibility decision
 
@@ -36,7 +36,7 @@ Design reference:
 | 5A    | Metadata API inventory and schema        | `APPROVED`          |
 | 5B    | Three-field extraction and comparison    | `APPROVED`          |
 | 5C    | Full-corpus evidence and review          | `COMPLETE`          |
-| Final | Feasibility decision                     | `BLOCKED BY GATE 5` |
+| Final | Feasibility decision                     | `APPROVED 2026-06-22` |
 
 ## Gate 1: Empty Full-Corpus Loop and Reports
 
@@ -504,20 +504,34 @@ feat(inspect): compare three-parser metadata observations
 
 ## Final Feasibility Decision
 
-Status: `BLOCKED BY GATE 5`
+Status: `APPROVED — 2026-06-22`
 
-- [ ] Review Gate 1 through Gate 5 evidence and findings.
-- [ ] Decide whether the runner produces useful, traceable evidence.
-- [ ] Decide whether all three parser paths remain justified.
-- [ ] Decide whether Bun remains the accepted host runtime.
-- [ ] Decide whether to plan manifest and resource-existence observations.
-- [ ] Decide whether to stop or continue the experiment.
-- [ ] Record the decision and its evidence in the design/findings documents.
-- [ ] Commit the approved feasibility conclusion.
+- [x] Review Gate 1 through Gate 5 evidence and findings.
+- [x] Decide whether the runner produces useful, traceable evidence.
+- [x] Decide whether all three parser paths remain justified.
+- [x] Decide whether Bun remains the accepted host runtime.
+- [x] Decide whether to plan manifest and resource-existence observations.
+- [x] Decide whether to stop or continue the experiment.
+- [x] Record the decision and its evidence in the design/findings documents.
+- [x] Commit the approved feasibility conclusion.
 
 Exactly one outcome must be checked:
 
-- [ ] **CONTINUE:** write a separately approved plan for structural gates.
+- [x] **CONTINUE:** write a separately approved plan for structural gates.
 - [ ] **NARROW:** remove one or more paths based on demonstrated limitations.
 - [ ] **STOP:** the experiment does not improve confidence or support the
       alignment objective.
+
+### Rationale
+
+The runner produces useful, traceable, reproducible evidence. Bun is confirmed
+as the host runtime. The gate-by-gate approach proved its value: every real
+finding (LinkeDOM entity truncation, Storyteller EPUB 2 rejection, jsdom
+fallback for hanging books) surfaced from corpus evidence rather than
+assumption.
+
+The three-parser matrix is not scalable as a long-term approach. It served its
+purpose here — establishing a cross-check baseline and discovering concrete
+parser differences — but the next plan will reconsider the parser scope
+significantly. A separately dated plan will define structural gates (manifest,
+spine, TOC, body text) with a revised approach to parser coverage.

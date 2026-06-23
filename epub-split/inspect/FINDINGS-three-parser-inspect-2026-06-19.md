@@ -479,3 +479,38 @@ books with character references.
 The dominant corpus split (71.7% EPUB 2, 28.3% EPUB 3) limits Storyteller
 coverage. Any workflow requiring Storyteller for the full corpus would need
 EPUB 2 → 3 conversion or a different metadata source for EPUB 2 books.
+
+## Conclusion — 2026-06-22
+
+Status: feasibility approved. The experiment is complete. Branch merges to main.
+
+The runner proved its core properties: deterministic, atomic, fully traceable,
+handles synchronous parser hangs without corpus-wide impact, and scales to
+1,301 books across three roots without infrastructure failures.
+
+The three-parser matrix served its purpose. It established a cross-check
+baseline and surfaced concrete, attributable parser differences that would not
+have been visible from a single parser. It is not scalable as a long-term
+approach and will be reconsidered in the next plan.
+
+Key findings that survive into future work:
+
+1. **epub.ts node path is the viable target** — opens all EPUBs on Bun,
+   handles EPUB 2 and 3, no runtime incompatibility. The jsdom fallback
+   resolves the 15 LinkeDOM hanging books.
+
+2. **epub.ts node metadata has an entity-truncation bug** — LinkeDOM splits
+   title text at XML character references (`&`, `'`). This is a known,
+   localised defect; structural extraction (spine, manifest) is unaffected
+   and should be verified separately.
+
+3. **Storyteller is EPUB 3 only** — useful for validating the 28% of the
+   corpus that is already EPUB 3, but cannot be the sole pipeline parser
+   without up-conversion of the EPUB 2 majority.
+
+4. **Bun is the confirmed runtime** — no incompatibilities found across
+   browser bundling (Playwright), node subprocess workers, or dependency
+   management.
+
+The next plan will define structural gates (manifest, spine, TOC, body text)
+with a revised, less exhaustive approach to parser coverage.
