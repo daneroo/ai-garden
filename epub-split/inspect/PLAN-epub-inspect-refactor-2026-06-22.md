@@ -139,26 +139,23 @@ pair selection. It exposes:
 
 ```ts
 interface CorpusEntry {
-  sha256: string;
-  shortSha: string;
-  roots: RootOccurrence[];   // which roots this hash appears in
-  canonicalPath: string;     // one representative path for opening
+  sha256: string;        // authoritative identity; shortSha derived at display time
   size: number;
+  occurrences: DiscoveredBook[];  // all paths, already typed — no new types needed
 }
 
 function buildCorpus(options: {
   roots: RootConfig[];
-  deduplicate: boolean;      // collapse drop+space duplicates by hash
+  deduplicate: boolean;  // collapse same-hash books across roots into one entry
 }): CorpusEntry[]
 ```
 
 When `deduplicate: true`, a book with the same SHA256 in both `drop` and
-`space` appears once. The `roots` array records all occurrences for
-traceability. The comparison run uses the canonical path; the report notes all
-roots.
+`space` appears as one entry with multiple `occurrences`. The runner picks
+which path to open (e.g. first occurrence); the report can show all roots.
 
-The current behaviour (process every occurrence in every root independently)
-remains available via `deduplicate: false`.
+`deduplicate: false` processes every occurrence independently (current
+behaviour).
 
 ## Comparison Pairs
 
