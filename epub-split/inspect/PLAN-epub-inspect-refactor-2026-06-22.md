@@ -23,13 +23,15 @@ epubjs) and lack of schema validation. The refactor recombines:
 - **Infrastructure from inspect/**: Bun, subprocess isolation, jsdom fallback,
   Playwright harness, atomic deterministic reports, corpus discovery + hashing.
 - **Architecture from epub-split/lib/**: parser-agnostic output schema, generic
-  two-parser comparison, `ComparisonWarning` taxonomy.
+  two-parser comparison, element-specific warning types (names informed by the
+  old ComparisonWarning taxonomy, structure is not).
 
 ## Goals
 
 1. A versioned, Zod-validated **parser output schema** that any adapter fills.
-2. A versioned, Zod-validated **comparison output schema** (`ComparisonWarning`
-   taxonomy), generic over any two parser outputs.
+2. A versioned, Zod-validated **comparison output schema** — element-specific
+   typed warnings composable into a higher-level view, generic over any two
+   parser outputs.
 3. A single invocation that runs all configured parsers and comparison pairs.
 4. A corpus module that hides deduplication and subset selection behind a clean
    interface.
@@ -83,47 +85,52 @@ added or changed.
 
 ## Comparison Output Schema
 
+The runner decides whether comparison is possible by inspecting
+`ParserOutput.meta.openStatus` for both inputs **before** invoking the
+comparator. Open failures and `epub2-unsupported` are runner-level concerns;
+they never enter the comparison layer. A comparator only receives two
+successfully-opened outputs.
+
 `compareBook(a: ParserOutput, b: ParserOutput): ComparisonResult`
 
+Each content section owns its own typed warnings. Warnings are not a global
+flat list — they are element-specific and composable. The presentation layer
+projects them onto whatever summary view is needed.
+
 ```ts
-{
+// Sketch — exact types defined gate by gate as content sections are added
+interface ComparisonResult {
   schemaVersion: number;
-  parserA: string;   // from a.meta.parser
-  parserB: string;   // from b.meta.parser
-  openable: boolean; // false if either parser could not open (incl. epub2-unsupported)
-  warnings: ComparisonWarning[];
+  parserA: string;          // carried from meta for reporting only
+  parserB: string;
+  metadata?: MetadataComparison;
+  manifest?: ManifestComparison;
+  spine?: SpineComparison;
+  toc?: TocComparison;
+  // content: deferred
 }
+
+interface SpineComparison {
+  warnings: SpineWarning[];
+}
+type SpineWarning =
+  | { type: "length"; a: number; b: number }
+  | { type: "idref-mismatch"; index: number; a: string; b: string }
+  | { type: "href-mismatch"; index: number; a: string; b: string }
+  | { type: "linear-mismatch"; index: number; a: boolean; b: boolean };
+
+// ManifestComparison, TocComparison, etc. follow the same pattern.
+// Each is defined only when that gate is implemented.
 ```
 
-`ComparisonWarning` taxonomy (evolves from `epub-split/lib/types.ts`):
+The `ComparisonWarning` taxonomy from `epub-split/lib/types.ts` is a useful
+reference for the warning *names* within each element, not a flat global enum
+to replicate. The structure is progressive: Gate 5 defines `MetadataComparison`
+only; later gates add sections without touching existing ones.
 
-```
-open.failure           — one or both parsers failed to open
-open.epub2-unsupported — storyteller epub2 (expected, not an error)
-metadata.field         — specific field differs
-manifest.length        — item count differs
-manifest.missing       — item present in A, absent in B (or vice versa)
-manifest.href          — href differs for same id
-manifest.mediaType     — mediaType differs for same id
-spine.length           — item count differs
-spine.idref            — ordered idref differs
-spine.href             — ordered href differs
-spine.linear           — linearity flag differs
-toc.length             — sibling count differs at a given depth
-toc.href               — entry href differs (same position)
-toc.label              — entry label differs (same position)
-chapter.length         — spine item count extracted differs
-chapter.identity       — id or href mismatch at position
-chapter.load.failure   — one parser failed to load a chapter
-chapter.content.raw    — raw XHTML differs
-chapter.content.canonical — canonical DOM differs
-chapter.content.text   — normalized text differs
-chapter.content.mismatch  — all levels differ
-```
-
-The comparison engine has no knowledge of which parsers produced A and B. The
-`parserA`/`parserB` fields in the result are carried from the meta sections
-for reporting only.
+**Principle: parsers are completely separate from comparators.** A comparator
+receives two `ParserOutput` values and knows nothing about which parser
+produced them beyond the name carried in `meta.parser`.
 
 ## Corpus Module
 
