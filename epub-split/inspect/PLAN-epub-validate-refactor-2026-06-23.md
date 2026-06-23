@@ -1,6 +1,6 @@
-# EPUB Inspect Refactor Plan
+# EPUB Validate Refactor Plan
 
-Date: 2026-06-22
+Date: 2026-06-23
 
 ## Status
 
@@ -20,7 +20,7 @@ schema that any parser fills, and a generic `compareBook(a, b)` that works on
 any two results. It was abandoned because of the wrong toolchain (pnpm/tsx,
 epubjs) and lack of schema validation. The refactor recombines:
 
-- **Infrastructure from inspect/**: Bun, subprocess isolation, jsdom fallback,
+- **Infrastructure from epub-split/inspect/**: Bun, subprocess isolation, jsdom fallback,
   Playwright harness, atomic deterministic reports, corpus discovery + hashing.
 - **Architecture from epub-split/lib/**: parser-agnostic output schema, generic
   two-parser comparison, element-specific warning types (names informed by the
@@ -178,7 +178,7 @@ code.
 
 ## What Changes vs What Stays
 
-| Stays from inspect/ | Changes |
+| Stays from epub-split/inspect/ | Changes |
 |---|---|
 | Bun toolchain | No baked-in 3-way comparison |
 | Subprocess isolation + jsdom fallback | Parser adapters produce `ParserOutput` (Zod); `domParser` field replaces `engine` |
@@ -210,7 +210,7 @@ findings remain attributable.
 ## Open Questions (resolve before Gate 1)
 
 1. **Directory restructure first?** — promote `epub-split/inspect/` to
-   `epub-inspect/` before starting. Low risk without a context move; worth
+   `epub-validate/` before starting. Low risk without a context move; worth
    doing cleanly before new source files are created.
 
 2. **Keep existing reports?** — the current `reports/` reflects the old schema.
