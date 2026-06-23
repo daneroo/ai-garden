@@ -41,11 +41,14 @@ Toolchain and commands that exist now:
 
 Config facts (`src/config.ts`):
 
-- `ROOTS`: `test` → `../test-books` (4 EPUBs, committed in-repo), `drop` →
-  Dropbox EBook folder, `space` → `/Volumes/Space/Reading/audiobooks`. Only
-  `test` is portable; `drop`/`space` exist on Daniel's machine.
+- `ROOTS`: `test` → `../test-books` (4 EPUBs, committed in-repo), `space` →
+  `/Volumes/Space/Reading/audiobooks`, `drop` → Dropbox EBook folder. Only
+  `test` is portable; `space`/`drop` exist on Daniel's machine.
+  **Note:** config.ts currently lists these as test, **drop, space** — the
+  intended scan order is test, **space, drop** (drop, scanned last, absorbs
+  cross-root duplicates). Gate 0A reorders config before capturing the baseline.
 - `PARSER_NAMES = ["epubts-browser", "epubts-node", "storyteller-node"]` —
-  the `storyteller-node` entry is renamed to `storyteller` in Gate 0.
+  the `storyteller-node` entry is renamed to `storyteller` in Gate 0B.
 - `REPORT_SCHEMA_VERSION = 6` (the old three-parser schema).
 - Reports are replaced atomically via `.reports-next` / `.reports-previous`.
 
@@ -70,15 +73,17 @@ Current source files and roles (`src/`):
 ## Division of labor (who runs what)
 
 - **Claude (each gate)**: write code; run TYPECHECK; write/run unit tests
-  (TEST) that exercise adapters against the 4 in-repo `test-books`; commit when
-  green and reviewed. Claude does **not** run the full `drop`/`space` corpus
-  (slow, and not the verification that matters for correctness).
+  (TEST) against **curated fixtures** (see "Fixture matrix"); commit when green
+  and reviewed. Claude does **not** run the full corpus.
 - **Daniel (each gate that touches the runner)**: run the full corpus
   (`bun run inspect`) for DETERMINISM and PARITY, paste the headline numbers.
   This matches existing practice ("I run full corpus").
-- Optional convenience (nice-to-have, Gate 6): a root filter (env var or arg)
-  so Claude can smoke-run on `test` only. Until it exists, Claude relies on
-  unit tests against `test-books`, not the full runner.
+- **Only full-corpus runs are meaningful end-to-end.** The `test` root is all
+  EPUB 3.0 (Gutenberg) — it cannot exercise EPUB 2 / epub2-unsupported, bad-zip
+  failures, entity-truncation, or the LinkeDOM hang. So there is no useful
+  "smoke run" on a corpus root; coverage of those cases comes from curated
+  fixtures (unit tests) and from Daniel's full run. No root-filter feature is
+  planned.
 
 ## Verification primitives
 
@@ -86,15 +91,16 @@ Each gate names the ones it requires. Cite numbers; do not assert.
 
 - **TYPECHECK** — `cd epub-split/inspect && bunx tsc --noEmit` is clean.
 - **TEST** — `bun test` green (available only after Gate 1 creates it).
-- **DETERMINISM** — stage `reports/`, run the full corpus again, `git status`
-  shows no change to `reports/`. (Daniel's full run.)
+- **DETERMINISM** — `git add epub-split/inspect/reports`, run the full corpus
+  again, then `git diff --exit-code -- epub-split/inspect/reports` returns 0
+  (the re-run produced byte-identical output). (Daniel's full run.)
 - **PARITY** — the gate's headline metric matches the baseline captured in
-  Gate 0 (not the last-known snapshot, which the growing corpus will have moved).
+  Gate 0A (not the last-known snapshot, which the growing corpus will have moved).
 
 ## Parity baseline (captured fresh at start, then frozen)
 
 The corpus grows week to week, so absolute counts drift. The binding baseline
-is therefore **captured once at the start of development** (Gate 0) by a final
+is therefore **captured once at the start of development** (Gate 0A) by a final
 run of the *current* (pre-refactor) runner, and **frozen for the duration** —
 PARITY means "matches that captured baseline," not "matches last week's
 snapshot."
@@ -109,7 +115,7 @@ The numbers below are the **last-known snapshot** (Schema 6, `reports/index.md`,
 FINDINGS 2026-06-19) — illustrative, to be re-captured before Gate 1.
 
 Corpus (last-known):
-- 1,301 occurrences: `test` 4, `drop` 708, `space` 589.
+- 1,301 occurrences: `test` 4, `space` 589, `drop` 708.
 - 754 distinct books by SHA-256; 537 SHA groups appear in more than one root.
 
 Open outcomes (by occurrence, /1,301):
@@ -136,7 +142,7 @@ Metadata comparison histogram (title / creator / date):
 | browser-node-differ |     5 |       1 |    0 |
 | unavailable         |     1 |       1 |  132 |
 
-Entity-truncation bug (epubts-node, LinkeDOM) — must still surface in Gate 5:
+Entity-truncation bug (epubts-node, LinkeDOM) — must still surface in Gate 6:
 - "His Majesty's Dragon" → "His Majesty" (splits at `'`)
 - "Legends & Lattes…" → "Legends" (splits at `&`)
 - "Bookshops & Bonedust" → "Bookshops"
@@ -145,13 +151,94 @@ Entity-truncation bug (epubts-node, LinkeDOM) — must still surface in Gate 5:
 
 ## Reports strategy
 
-- Old Schema-6 `reports/` stay frozen as the oracle until Gate 2 produces the
-  equivalent new output, then are removed in the same commit. No two live
-  runners at any point. Git (`dd265529`) is the permanent archive.
-- New output: one `ParserOutput` JSON per (book, parser); one `ComparisonResult`
-  JSON per (book, pair). Layout decided in Gate 2.
+- Gate 0A renames the current Schema-6 `reports/` to `baseline/` (after a fresh
+  deterministic run) and commits it. `baseline/` is the **frozen parity oracle**
+  — never regenerated.
+- The new pipeline writes a fresh `reports/` from Gate 2 onward, so old and new
+  coexist without two live runners (`baseline/` is data, not a runner).
+- `baseline/` is removed once metadata parity is fully reconciled (end of
+  Gate 6); git retains it permanently.
 
-## Naming table (apply in Gate 0)
+## Report layout (fixed now — adapters depend on it)
+
+```
+reports/
+  index.md                            # human summary (corpora table + counts)
+  run.json                            # manifest: versions, roots, inventory
+  parsers/<sha256>/<parser>.json      # one ParserOutput per (content, parser)
+  comparisons/<sha256>/<a>--<b>.json  # one ComparisonResult per (content, pair)
+  details/<sha256>.md                 # per-book detail, only on disagreement
+```
+
+- Keyed by full `sha256` (content-addressed). Identical bytes ⇒ identical parse,
+  so each `parsers/<sha256>/…` is written once regardless of how many roots hold
+  a copy. Occurrence-vs-distinct lives only in `run.json` / `index.md`.
+- `pair` filename is `<parserA>--<parserB>.json`, e.g.
+  `epubts-node--epubts-browser.json`, `epubts-node--storyteller.json`.
+
+`index.md` opens with the corpora-discovery table (per root: found, deduped,
+distinct), then per-parser open-outcome counts, then per-pair metadata
+histograms. **Scan order = config order: test, space, drop**, so a book in both
+`space` and `drop` is distinct in `space`, deduped in `drop`:
+
+```
+| root  | found | deduped | distinct |
+|-------|------:|--------:|---------:|
+| test  |     4 |       0 |        4 |
+| space |   yyy |       0 |      yyy |
+| drop  |   zzz |    ~537 |  zzz-537 |
+| total |     N |       D |      N-D |
+```
+
+`deduped` = files whose `sha256` was already seen earlier in scan order.
+
+**Human-readable reports name parsers explicitly.** `index.md` and
+`details/*.md` never print the schema-internal `a`/`b` / `a-only` / `b-only`;
+they render "epubts-node only", "storyteller only", or
+"epubts-node ≠ epubts-browser". The `a`/`b` form is legal only in the JSON
+schema, where `parserA`/`parserB` name the sides.
+
+**Rows are grouped by root (scan order test, space, drop), then sorted by
+filename** — never by sha or parsed metadata (unreliable: entity truncation,
+nulls). Each book appears once, under the root that first introduced it, so
+later-root groups show only their new content (the deduped duplicates sit under
+their first-seen root). Within a group the root prefix is dropped (the header
+names the root); the filename embeds author-title and is the stable sort key.
+`index.md` links to `details/<sha256>.md` using the filename as the label.
+
+## Schema invariants (Gate 1 must enforce via Zod refinements)
+
+- `schemaVersion` is top-level: `{ schemaVersion, meta, content? }`.
+- `openStatus: "opened"` ⇒ `content` present, `openFailure` absent.
+- `openStatus: "open-failed"` ⇒ `openFailure` present, `content` absent.
+- `openStatus: "epub2-unsupported"` ⇒ `content` absent, `openFailure` absent.
+- `content.metadata` is required when `content` exists; its six fields are
+  required and `string | null` (null = "parser exposed nothing"; no "absent").
+- `domParser` present ⇒ `parser === "epubts-node"` and `openStatus === "opened"`.
+- `parserVersion`: epub.ts paths use `ePub.VERSION`; storyteller uses the
+  installed package version read at runtime. Never hardcoded.
+
+## Fixture matrix (Gate 1 builds this)
+
+Fixtures live in a dedicated `fixtures/` dir loaded **directly by unit tests**,
+not as a corpus root — keeping curated test inputs separate from the real
+corpus. The 4 in-repo `test-books` are **all EPUB 3.0** (Gutenberg: flatland,
+nicomachean-ethics, alice-in-wonderland, tale-of-two-cities), so they cover the
+happy path only and cannot stand in for the cases below. Gate 1 builds the
+matrix (committed, minimized where possible):
+
+| Case | Why | Source |
+|---|---|---|
+| EPUB 3, clean | happy path, all parsers open | reuse a test-book |
+| EPUB 2, clean | storyteller `epub2-unsupported`; epub.ts opens | add one |
+| bad zip | `open-failed` (EOCD-not-found) on all parsers | craft a truncated zip |
+| entity in title (`&`, `'`) | reproduce LinkeDOM truncation in Gate 6 | craft minimal OPF |
+| LinkeDOM hang → jsdom | exercise `domParser: "jsdom"` fallback | minimize a known hanging book if feasible; else corpus-only |
+
+Where a case cannot be safely minimized/committed (notably the LinkeDOM hang),
+note it as corpus-only and verify it through Daniel's full run instead.
+
+## Naming table (apply in Gate 0B)
 
 | Current | New | Role |
 |---|---|---|
@@ -170,7 +257,26 @@ the ambiguous `node` prefix (Node.js vs epubts-node).
 
 ---
 
-## Gate 0 — Doc reorg + rename (no behavior change)
+## Gate 0A — Capture + freeze the parity baseline (Daniel runs)
+
+No source changes. Establishes the numeric oracle on the *current* corpus with
+known-good (pre-refactor) code.
+
+- [ ] Set `ROOTS` order in `config.ts` to **test, space, drop** (currently
+      test, drop, space) so the baseline reflects the intended scan order.
+- [ ] Run the current runner: `bun run inspect`.
+- [ ] DETERMINISM: `git add epub-split/inspect/reports`; `bun run inspect` again;
+      `git diff --exit-code -- epub-split/inspect/reports` returns 0.
+- [ ] `git mv epub-split/inspect/reports epub-split/inspect/baseline`; commit
+      as the frozen oracle.
+- [ ] Record this run's headline numbers (open rates, version split, comparison
+      histogram, distinct-hash + multi-root-group counts) into the "Parity
+      baseline" section above, replacing the last-known snapshot. Frozen from here.
+
+Verifiable outcome: `baseline/` committed; determinism shown; baseline numbers
+recorded in this plan. Commit: "chore(validate): freeze parity baseline".
+
+## Gate 0B — Pure source rename (no behavior change, no report regeneration)
 
 - [x] Branch `feature/epub-validate-refactor` created.
 - [x] `PLAN-…` renamed to `DESIGN-…`; this plan written.
@@ -181,137 +287,176 @@ the ambiguous `node` prefix (Node.js vs epubts-node).
 - [ ] Rename `PARSER_NAMES` entry `storyteller-node` → `storyteller`; update all
       uses (config, types, reports, index, workers). Keep package/runner name
       `epub-inspect` for now — it changes with the deferred directory restructure.
-- [ ] Directory restructure `inspect/` → `epub-validate/`: **deferred** (do not
-      do it in this plan).
-- [ ] **Capture the parity baseline (Daniel runs).** Run the *current*
-      pre-refactor runner once on the full corpus (`bun run inspect`), confirm
-      DETERMINISM (re-run, no diff), and commit the resulting `reports/` as the
-      frozen baseline. Record the headline numbers (open rates, version split,
-      comparison histogram, distinct-hash count) into this plan's baseline
-      section, replacing the last-known snapshot. These numbers are frozen for
-      the rest of the refactor. Do this **before** any source rename touches
-      behavior, so the baseline reflects known-good code on the current corpus.
+- [ ] **Do not run the corpus / do not regenerate reports.** The rename touches
+      the parser-name string that would appear in regenerated reports; since
+      `baseline/` is the frozen numeric oracle (label-independent), we simply do
+      not regenerate. Verify by typecheck + build only.
+- [ ] Directory restructure `inspect/` → `epub-validate/`: **deferred**.
 
-Verifiable outcome: TYPECHECK clean. `bun run build:browser` succeeds. Renames
-change no `reports/` content (pure rename — `git status` shows only source
-renames). Baseline committed and its numbers recorded here. Commit the renames
-separately: "refactor(validate): rename sources, storyteller-node→storyteller".
+Verifiable outcome: TYPECHECK clean; `bun run build:browser` succeeds; `git
+status` shows only source renames (no `baseline/` or `reports/` change). Commit:
+"refactor(validate): rename sources, storyteller-node→storyteller".
 
-## Gate 1 — `ParserOutput` schema (Zod, versioned) + test harness
+## Gate 1 — `ParserOutput` schema + fixtures + tests (no parsing run)
 
 - [ ] Add `zod` dependency. Add `"test": "bun test"` to package.json scripts.
-- [ ] `src/schema.ts`: Zod schema for `meta` (`schemaVersion`, `parser`,
-      `parserVersion`, `domParser?`, `openStatus`
-      ∈ {opened, open-failed, epub2-unsupported}, `openFailure?`).
-- [ ] Zod schema for `content` (v1 = metadata only: title, creator, date,
-      language, publisher, identifier — each `string | null`).
-- [ ] `PARSER_OUTPUT_SCHEMA_VERSION = 1`.
-- [ ] Infer TS types from Zod (`z.infer`) — single source of truth, no
-      hand-written duplicates.
-- [ ] `src/schema.test.ts`: a valid fixture parses; malformed fixtures are
-      rejected; each `openStatus` variant round-trips through parse→serialize.
+- [ ] `src/schema.ts`: Zod schema `{ schemaVersion, meta, content? }` with the
+      invariants from "Schema invariants" above enforced via `.refine`/
+      `.superRefine`. `PARSER_OUTPUT_SCHEMA_VERSION = 1`.
+- [ ] Infer TS types from Zod (`z.infer`) — single source of truth.
+- [ ] Build the fixture matrix (see "Fixture matrix" above): add EPUB 2, bad-zip,
+      and entity-in-title fixtures; document the LinkeDOM-hang case as
+      corpus-only if it cannot be minimized.
+- [ ] `src/schema.test.ts`: valid fixture parses; each invariant violation is
+      rejected (opened-without-content, open-failed-without-openFailure,
+      domParser-on-wrong-parser, etc.); each `openStatus` round-trips.
 
-Verifiable outcome: TYPECHECK + TEST green. A committed sample `ParserOutput`
-JSON fixture. No corpus run.
+Verifiable outcome: TYPECHECK + TEST green. Committed sample `ParserOutput`
+fixtures. No corpus run.
 
-## Gate 2 — epubts-node adapter → `ParserOutput`
+## Gate 2 — Corpus module + report layout + `run.json` writer (no adapters yet)
+
+The corpus module and the content-addressed inventory it feeds are needed here,
+because the report layout (`parsers/<sha256>/…`) and the discovery table both
+depend on them. This is the substantive corpus work; Gate 7 is only the optional
+collapse mode. The `corpus.ts` renamed in Gate 0B already does discovery +
+hashing — formalize it here.
+
+- [ ] `corpus.ts`: discovery + SHA-256 hashing + content-addressed inventory
+      (group occurrences by `sha256`), and the found/deduped/distinct accounting
+      per root in **config scan order (test, space, drop)**. Default behaviour is
+      occurrence-level (`deduplicate: false`).
+- [ ] Implement the report writer for the layout in "Report layout" above:
+      `parsers/<sha256>/…`, `comparisons/<sha256>/…`, `details/…`, `run.json`,
+      `index.md` (incl. corpora-discovery table, parsers named explicitly).
+- [ ] Atomic replacement (reuse the existing `.reports-next` mechanism).
+- [ ] Writer accepts (currently empty) parser/comparison collections so adapters
+      in Gates 3–6 just feed it; parse-once-per-`sha256` reuse lives here.
+- [ ] Unit test: synthetic inventory + `ParserOutput`/`ComparisonResult` values;
+      assert the on-disk tree, discovery table, and `index.md` render
+      deterministically and name parsers explicitly.
+
+Verifiable outcome: TYPECHECK + TEST green. A sample `reports/` tree from
+synthetic inputs, byte-identical across two writes. No corpus run.
+
+### Partial runner state (Gates 3–5)
+
+Adapters land one at a time: Gate 3 = node only, Gate 4 adds browser, Gate 5
+adds storyteller. The runner invokes **only the adapters implemented so far**,
+and `index.md` marks the not-yet-implemented parsers as `not-run` (rather than
+emitting empty/failed `ParserOutput`s). Comparison pairs that need a missing
+parser are simply not produced until both adapters exist (so pair reports first
+appear in Gate 6).
+
+## Gate 3 — epubts-node adapter → `ParserOutput`
 
 - [ ] `epubts-node-worker.ts` emits a Zod-valid `ParserOutput` (metadata only).
 - [ ] `epubts-node.ts` orchestrates workers; jsdom fallback sets `meta.domParser`.
-- [ ] Decide and document the new report layout; write one `ParserOutput` JSON
-      per book.
-- [ ] Summary surfaces open-success rate and jsdom-fallback count.
-- [ ] Unit test: run the adapter over the 4 `test-books`; assert each output is
-      Zod-valid and metadata matches known values.
-- [ ] Remove old Schema-6 `reports/` in this commit (superseded).
+- [ ] Runner writes `parsers/<sha256>/epubts-node.json`; `index.md` shows
+      open-success rate and jsdom-fallback count.
+- [ ] Unit test over `test-books` + fixtures: outputs Zod-valid; metadata matches
+      known values; entity-fixture reproduces the truncation.
 
-Verifiable outcome: TYPECHECK + TEST. Daniel's full run gives DETERMINISM, and
-PARITY against the Gate 0 baseline: epubts-node opens every book with a small
-jsdom-fallback count, 0 failures (last-known: 1,301 / 0 / 15 fallback).
+Verifiable outcome: TYPECHECK + TEST. Daniel's full run: DETERMINISM, and PARITY
+vs baseline: node opens every book, small jsdom-fallback count, 0 failures
+(last-known: 1,301 / 0 / 15 fallback).
 
-## Gate 3 — epubts-browser adapter → `ParserOutput`
+## Gate 4 — epubts-browser adapter → `ParserOutput`
 
 - [ ] `epubts-browser.ts` (+ `browser/entry.ts`) emits a Zod-valid `ParserOutput`.
 - [ ] Same metadata fields as the node adapter.
-- [ ] Unit test on `test-books`.
+- [ ] Unit test on `test-books` + fixtures.
 
-Verifiable outcome: TYPECHECK + TEST. PARITY against the Gate 0 baseline:
-epubts-browser opens every book, 0 failures (last-known: 1,301 / 0).
+Verifiable outcome: TYPECHECK + TEST. Daniel's full run: DETERMINISM, PARITY vs
+baseline: browser opens every book, 0 failures (last-known: 1,301 / 0).
 
-## Gate 4 — storyteller adapter → `ParserOutput`
+## Gate 5 — storyteller adapter → `ParserOutput`
 
 - [ ] `storyteller-worker.ts` / `storyteller.ts` emit a Zod-valid `ParserOutput`.
-- [ ] EPUB 2 archives → `openStatus: "epub2-unsupported"` (not an error).
-- [ ] Unit test on `test-books`.
+- [ ] EPUB 2 archives → `openStatus: "epub2-unsupported"` (no content, no
+      openFailure — per invariants). Genuine failures (package-read, bad-zip)
+      stay `open-failed`.
+- [ ] Unit test on `test-books` (EPUB 3 → opened) + EPUB 2 fixture
+      (→ epub2-unsupported) + bad-zip fixture (→ open-failed).
 
-Verifiable outcome: TYPECHECK + TEST. PARITY against the Gate 0 baseline:
-~28% open (the EPUB 3 share), the rest `epub2-unsupported`, with a small
-residue of genuine `open-failed` (package-read + bad-zip). Last-known: 368
-opened, 933 not-opened, of which 17 package-read + 1 bad-zip were real failures.
+Verifiable outcome: TYPECHECK + TEST. Daniel's full run: DETERMINISM, PARITY vs
+baseline: ~28% opened (EPUB 3 share), rest `epub2-unsupported`, small
+`open-failed` residue (last-known: 368 opened; 17 package-read + 1 bad-zip real).
 
-## Gate 5 — Generic `compareBook` (metadata)
+## Gate 6 — Pairwise `compareBook` + pair reports + parity projection
 
-- [ ] `compare.ts`: `compareBook(a, b): ComparisonResult`, parser-agnostic
-      (knows parser names only via `meta.parser`, carried for reporting).
-- [ ] Zod `ComparisonResult` + `MetadataComparison` with element-specific typed
-      warnings (per design — not a flat enum). Parser-level open outcomes are
-      **not** comparison concerns; the runner skips comparison unless both
-      inputs are `opened`.
-- [ ] Runner produces both pairs: node×browser, node×storyteller.
-- [ ] Unit test: hand-built `ParserOutput` pairs exercise agree / differ /
-      one-side-missing.
+- [ ] `compare.ts`: `compareBook(a, b): ComparisonResult`, parser-agnostic. The
+      runner skips comparison unless both inputs are `opened` (open outcomes are
+      not comparison concerns).
+- [ ] Zod `ComparisonResult` + `MetadataComparison`: per field
+      `{ status: PairFieldStatus, a, b }` (agree/differ/a-only/b-only/both-null).
+      `index.md`/`details` render parser names, not `a`/`b` (see Report layout).
+- [ ] Runner writes both pairs: `epubts-node--epubts-browser.json`,
+      `epubts-node--storyteller.json`. `index.md` shows per-pair, per-field
+      **mismatch** counts (mismatch = differ + a-only + b-only).
+- [ ] Implement the **parity projection** (design "Parity projection"): collapse
+      the `baseline/` 8-way histogram into expected node×browser and
+      node×storyteller **mismatch** counts, and assert the new pairwise counts
+      match over each pair's both-opened population.
+- [ ] Unit test: hand-built pairs exercise all five `PairFieldStatus` values;
+      projection math tested against the recorded baseline numbers.
+- [ ] After parity passes: `git rm -r baseline/` (git retains it).
 
-Verifiable outcome: TYPECHECK + TEST. PARITY against the Gate 0 baseline:
-metadata disagreement counts reproduce the baseline histogram; the
-entity-truncation titles still show as node-side disagreements.
+Verifiable outcome: TYPECHECK + TEST. Daniel's full run: DETERMINISM, and PARITY
+via projection — node×browser mismatch count and the entity-truncation books
+match the baseline; node×storyteller mismatch count matches over the EPUB 3
+share (last-known title mismatch: 9 and 4).
 
-## Gate 6 — Corpus module + single invocation
+## Gate 7 — Dedup collapse mode (optional; corpus basics already in Gate 2)
 
-- [ ] `corpus.ts`: `buildCorpus({ roots, deduplicate }): CorpusEntry[]` where
-      `CorpusEntry = { sha256, size, occurrences: DiscoveredBook[] }`
-      (no `shortSha`, no wrapper types — derive short SHA at display).
-- [ ] Hash-dedup collapses same-content books across roots.
-- [ ] One command runs all parsers + both pairs end to end.
-- [ ] (Optional) root filter so a subset run is possible.
+The corpus module, content-addressed inventory, and found/deduped/distinct
+accounting all landed in Gate 2. This gate adds only the optional collapse mode
+and is deferrable — occurrence parity is already preserved without it.
 
-Verifiable outcome: TYPECHECK + TEST. Daniel's full run: DETERMINISM, and the
-reported distinct-hash and multi-root-group counts reconcile with the Gate 0
-baseline (last-known: 754 distinct, 537 multi-root groups).
+- [ ] Formalize `buildCorpus({ roots, deduplicate }): CorpusEntry[]` with
+      `CorpusEntry = { sha256, size, occurrences: DiscoveredBook[] }` (no
+      `shortSha`, no wrapper types — short SHA derived at display).
+- [ ] `deduplicate: true` collapses the **inventory** to one row per `sha256`;
+      `deduplicate: false` stays the default (occurrence-level, baseline
+      denominator). Neither changes parser/comparison outputs.
 
-## Gate 7 — Expand to manifest + spine
+Verifiable outcome: TYPECHECK + TEST. Daniel's full run: DETERMINISM; the
+corpora table's distinct + multi-root-group counts reconcile (last-known: 754
+distinct, 537 multi-root groups). Occurrence-level totals unchanged from Gate 6.
+
+## Gate 8 — Expand content to manifest + spine
 
 - [ ] Extend `content` schema; bump `PARSER_OUTPUT_SCHEMA_VERSION`.
 - [ ] All three adapters populate manifest + spine.
 - [ ] `compareBook` gains `ManifestComparison`, `SpineComparison`.
 
-Verifiable outcome: TYPECHECK + TEST + DETERMINISM. Metadata PARITY still holds.
+Verifiable outcome: TYPECHECK + TEST + DETERMINISM. Metadata parity still holds.
 New structural findings recorded.
 
-## Gate 8 — Expand to TOC
+## Gate 9 — Expand to TOC
 
 - [ ] `content.toc` (recursive); adapters populate it.
 - [ ] `compareBook` gains `TocComparison`.
 
 Verifiable outcome: TYPECHECK + TEST + DETERMINISM. Earlier-section parity holds.
 
-## Gate 9 — Expand to chapter content
+## Gate 10 — Expand to chapter content
 
 - [ ] Per-spine XHTML extraction in adapters.
 - [ ] Comparison at three levels: raw → canonical DOM → normalized text.
 
 Verifiable outcome: TYPECHECK + TEST + DETERMINISM. Earlier-section parity holds.
 
-## Gate 10 — Consolidate findings (closeout)
+## Gate 11 — Consolidate findings (closeout)
 
 Goal: one coherent findings document, not a pile of per-gate notes.
 
-- [ ] Write `FINDINGS-epub-validate-2026-…md` consolidating: the surviving
+- [ ] Write `FINDINGS-epub-validate-2026-…md` consolidating the surviving
       three-parser findings (entity-truncation, EPUB 2/3 split, Bun runtime,
-      jsdom fallback) **and** every structural finding from Gates 7–9.
-- [ ] Once consolidated, remove `FINDINGS-three-parser-inspect-2026-06-19.md`
-      (its content is absorbed; git retains the original).
+      jsdom fallback) **and** every structural finding from Gates 8–10.
+- [ ] Remove `FINDINGS-three-parser-inspect-2026-06-19.md` (absorbed; git keeps it).
 - [ ] Update README to describe the validate tool as built (not the experiment).
-- [ ] Re-evaluate parser scope (does epubts-browser stay?) with Gate 6–9 evidence.
+- [ ] Re-evaluate parser scope (does epubts-browser stay?) with Gate 6–10 evidence.
 
 Verifiable outcome: a single findings doc; no orphaned FINDINGS files; README
 matches the shipped tool.
