@@ -29,12 +29,12 @@ export const ROOTS: readonly RootConfig[] = [
     path: resolve(INSPECT_DIRECTORY, "..", "test-books"),
   },
   {
-    name: "drop",
-    path: resolve(homedir(), "Library/CloudStorage/Dropbox/A-Reading/EBook"),
-  },
-  {
     name: "space",
     path: "/Volumes/Space/Reading/audiobooks",
+  },
+  {
+    name: "drop",
+    path: resolve(homedir(), "Library/CloudStorage/Dropbox/A-Reading/EBook"),
   },
 ];
 

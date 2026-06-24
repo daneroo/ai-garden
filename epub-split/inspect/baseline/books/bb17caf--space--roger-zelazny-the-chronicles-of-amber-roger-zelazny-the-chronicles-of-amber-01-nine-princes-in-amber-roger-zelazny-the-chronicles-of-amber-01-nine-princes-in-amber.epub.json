@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 6,
+  "book": {
+    "root": "space",
+    "relativePath": "Roger Zelazny - The Chronicles of Amber/Roger Zelazny - The Chronicles of Amber 01 - Nine Princes in Amber/Roger Zelazny - The Chronicles of Amber 01 - Nine Princes in Amber.epub",
+    "size": 238575,
+    "sha256": "bb17caf7d7c30ef9d897cfa55d768550cce649daa109e873c4fbe744b2422cbd",
+    "shortSha": "bb17caf"
+  },
+  "parsers": {
+    "epubts-browser": {
+      "status": "transported",
+      "byteLength": 238575,
+      "sha256": "bb17caf7d7c30ef9d897cfa55d768550cce649daa109e873c4fbe744b2422cbd",
+      "epubtsVersion": "0.3",
+      "open": {
+        "status": "opened",
+        "version": {
+          "status": "skipped"
+        },
+        "metadata": {
+          "title": "Chronicles of Amber 1- Nine Princes in Amber",
+          "creator": "Roger Zelazny",
+          "date": "2011-03-06T05:00:00+00:00"
+        }
+      },
+      "diagnostics": []
+    },
+    "epubts-node": {
+      "status": "node-opened",
+      "version": {
+        "status": "skipped"
+      },
+      "engine": "linkedom",
+      "metadata": {
+        "title": "Chronicles of Amber 1- Nine Princes in Amber",
+        "creator": "Roger Zelazny",
+        "date": "2011-03-06T05:00:00+00:00"
+      }
+    },
+    "storyteller-node": {
+      "status": "storyteller-open-failed",
+      "stage": "storyteller-open",
+      "category": "Error",
+      "message": "This is not a valid EPUB 3 publication. This library only supports EPUB 3, not EPUB 2. Use Epub.upgrade(path) to convert."
+    }
+  },
+  "comparison": {
+    "title": {
+      "status": "browser-node-agree",
+      "browser": "Chronicles of Amber 1- Nine Princes in Amber",
+      "node": "Chronicles of Amber 1- Nine Princes in Amber"
+    },
+    "creator": {
+      "status": "browser-node-agree",
+      "browser": "Roger Zelazny",
+      "node": "Roger Zelazny"
+    },
+    "date": {
+      "status": "browser-node-agree",
+      "browser": "2011-03-06T05:00:00+00:00",
+      "node": "2011-03-06T05:00:00+00:00"
+    }
+  }
+}

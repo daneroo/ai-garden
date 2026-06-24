@@ -111,23 +111,29 @@ What is invariant regardless of corpus size (these must always hold):
 - Roughly 28% EPUB 3 / 72% EPUB 2; storyteller opens only the EPUB 3 share.
 - A jsdom fallback exists for the LinkeDOM synchronous-hang books.
 
-The numbers below are the **last-known snapshot** (Schema 6, `reports/index.md`,
-FINDINGS 2026-06-19) — illustrative, to be re-captured before Gate 1.
+The numbers below are the **FROZEN PARITY BASELINE** — captured 2026-06-23 from a
+fresh, determinism-confirmed run of the pre-refactor (Schema 6) runner with the
+`test, space, drop` scan order, committed in `baseline/`. PARITY in Gates 3–6
+means "matches these numbers," not last week's snapshot. Do not edit.
 
-Corpus (last-known):
-- 1,301 occurrences: `test` 4, `space` 589, `drop` 708.
-- 754 distinct books by SHA-256; 537 SHA groups appear in more than one root.
+Toolchain captured: runner epub-inspect 0.1.0, Bun 1.3.14, Chromium
+149.0.7827.55, epub.ts 0.6.7, Storyteller 0.6.2, Playwright 1.61.0.
 
-Open outcomes (by occurrence, /1,301):
-- epubts-browser: 1,301 opened, 0 failed.
-- epubts-node: 1,301 opened, 0 failed, **15 via jsdom fallback** (9 distinct
-  hanging books: Sourcery, Revelation Space 01, Thud!, Shakespeare Four Great
-  Histories, Rapture of the Nerds, Gwynne Valour, Ken Liu Veiled Throne,
-  Malazan Omnibus, Steve Jobs).
-- storyteller: 368 opened, 933 failed. By distinct book (754): 213 EPUB 3
-  opened, 523 EPUB 2 rejected, 17 "could not read package document", 1 bad zip.
+Corpus (frozen baseline):
+- 1,304 occurrences: `test` 4, `space` 590, `drop` 710.
+- 756 distinct books by SHA-256; 538 SHA groups appear in more than one root.
+- Per-root found/deduped/distinct (scan order test, space, drop):
+  test 4/0/4, space 590/7/583, drop 710/541/169 (deduped = sha already seen
+  earlier in scan order; note `space` itself holds 7 internal duplicates).
 
-Version split (by occurrence): 368 (28.3%) EPUB 3, 933 (71.7%) EPUB 2.
+Open outcomes (by occurrence, /1,304):
+- epubts-browser: 1,304 opened, 0 failed.
+- epubts-node: 1,304 opened, 0 failed, **15 via jsdom fallback** (9 distinct
+  hanging books).
+- storyteller: 368 opened, 936 failed. By distinct book (756): 213 EPUB 3
+  opened, 525 EPUB 2 rejected, 17 "could not read package document", 1 bad zip.
+
+Version split (by occurrence): 368 (28.2%) EPUB 3, 936 (71.8%) EPUB 2.
 
 Metadata comparison histogram (title / creator / date):
 
@@ -138,9 +144,15 @@ Metadata comparison histogram (title / creator / date):
 | storyteller-differs |     0 |       0 |    0 |
 | browser-differs     |     0 |       0 |    0 |
 | all-differ          |     2 |       0 |    0 |
-| browser-node-agree  |   927 |     931 |  801 |
+| browser-node-agree  |   930 |     934 |  804 |
 | browser-node-differ |     5 |       1 |    0 |
 | unavailable         |     1 |       1 |  132 |
+
+Parity projection (for Gate 6) collapses the table above onto the two pairs:
+- node×browser title mismatch = node-differs + browser-differs + all-differ +
+  browser-node-differ = 2 + 0 + 2 + 5 = **9**.
+- node×storyteller title mismatch (EPUB 3 share) = node-differs +
+  storyteller-differs + all-differ = 2 + 0 + 2 = **4**.
 
 Entity-truncation bug (epubts-node, LinkeDOM) — must still surface in Gate 6:
 - "His Majesty's Dragon" → "His Majesty" (splits at `'`)
@@ -288,14 +300,14 @@ the ambiguous `node` prefix (Node.js vs epubts-node).
 No source changes. Establishes the numeric oracle on the *current* corpus with
 known-good (pre-refactor) code.
 
-- [ ] Set `ROOTS` order in `config.ts` to **test, space, drop** (currently
+- [x] Set `ROOTS` order in `config.ts` to **test, space, drop** (currently
       test, drop, space) so the baseline reflects the intended scan order.
-- [ ] Run the current runner: `bun run inspect`.
-- [ ] DETERMINISM: `git add epub-split/inspect/reports`; `bun run inspect` again;
-      `git diff --exit-code -- epub-split/inspect/reports` returns 0.
-- [ ] `git mv epub-split/inspect/reports epub-split/inspect/baseline`; commit
+- [x] Run the current runner: `bun run inspect`.
+- [x] DETERMINISM: `git add epub-split/inspect/reports`; `bun run inspect` again;
+      `git diff --exit-code -- epub-split/inspect/reports` returns 0. (Daniel: exit 0.)
+- [x] `git mv epub-split/inspect/reports epub-split/inspect/baseline`; commit
       as the frozen oracle.
-- [ ] Record this run's headline numbers (open rates, version split, comparison
+- [x] Record this run's headline numbers (open rates, version split, comparison
       histogram, distinct-hash + multi-root-group counts) into the "Parity
       baseline" section above, replacing the last-known snapshot. Frozen from here.
 
@@ -512,3 +524,5 @@ matches the shipped tool.
 ## Progress log
 
 (Append one line per completed gate: date · gate · headline metric · commit.)
+
+- 2026-06-23 · Gate 0A · baseline frozen: 1,304 occ / 756 distinct / 538 multi-root; node×browser title mismatch 9, node×storyteller 4 · chore(validate): freeze parity baseline
