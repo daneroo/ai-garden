@@ -35,6 +35,8 @@ mismatch = differ + a-only + b-only.
 | agree | 756 |
 | differ | 0 |
 
+distinct sha256s / total spine items: 37537 / 37714
+
 ## Not compared
 
 | reason | distinct books |
