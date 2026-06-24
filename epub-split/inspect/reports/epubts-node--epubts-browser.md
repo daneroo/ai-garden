@@ -60,11 +60,15 @@ Labels and tree shape compared; hrefs excluded (parsers use different href basel
 | agree | 754 |
 | differ | 2 |
 
-### TOC href integrity
+### TOC href direct-manifest misses
 
-TOC hrefs (fragment stripped) absent from the parser's own manifest — per-parser self-check.
+Per-parser diagnostic: TOC hrefs (fragment stripped) with no DIRECT match in
+the parser's own manifest. Most misses are valid nav-relative links (the spec
+allows hrefs relative to the nav document) and would match once resolved
+against the nav base — they are NOT broken links. Treat as a rough signal, not
+a validity verdict; precise resolution is deferred (needs nav-base capture).
 
-| parser | books with orphans | total orphaned hrefs |
+| parser | books with misses | direct-manifest misses |
 |---|---:|---:|
 | epubts-node | 85 | 3167 |
 | epubts-browser | 85 | 3167 |
