@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -100,6 +100,188 @@
       {
         "href": "xhtml/018_BM_004.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "xhtml/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/9781541619609.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "discover-page",
+        "href": "xhtml/discover-page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "discover-page_pre",
+        "href": "xhtml/discover-page_pre.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "idGeneratedStyles_0.css",
+        "href": "css/idGeneratedStyles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ji001_praise",
+        "href": "xhtml/001_praise.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji002_Title",
+        "href": "xhtml/002_Title.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji003_Copyright",
+        "href": "xhtml/003_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji004_dedication",
+        "href": "xhtml/004_dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji005_FM_001",
+        "href": "xhtml/005_FM_001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji006_epigraph",
+        "href": "xhtml/006_epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji008_FM_003",
+        "href": "xhtml/008_FM_003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji009_chapter_001",
+        "href": "xhtml/009_chapter_001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji010_chapter_002",
+        "href": "xhtml/010_chapter_002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji011_chapter_003",
+        "href": "xhtml/011_chapter_003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji012_chapter_004",
+        "href": "xhtml/012_chapter_004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji013_chapter_005",
+        "href": "xhtml/013_chapter_005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji014_chapter_006",
+        "href": "xhtml/014_chapter_006.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji015_BM_001",
+        "href": "xhtml/015_BM_001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji016_BM_002",
+        "href": "xhtml/016_BM_002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji017_BM_003",
+        "href": "xhtml/017_BM_003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji018_BM_004",
+        "href": "xhtml/018_BM_004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji019_BM_005",
+        "href": "xhtml/019_BM_005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "jiArt_P120a.jpg",
+        "href": "images/Art_P120a.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiArt_P120b.jpg",
+        "href": "images/Art_P120b.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiArt_P238a.jpg",
+        "href": "images/Art_P238a.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiArt_P238b.jpg",
+        "href": "images/Art_P238b.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiArt_P369.jpg",
+        "href": "images/Art_P369.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiArt_P45.jpg",
+        "href": "images/Art_P45.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiArt_P64.jpg",
+        "href": "images/Art_P64.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiArt_P65.jpg",
+        "href": "images/Art_P65.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiArt_tit.jpg",
+        "href": "images/Art_tit.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jipublisher-logo",
+        "href": "images/publisher-logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "style1",
+        "href": "css/discover-page.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "toc",
+        "href": "xhtml/toc.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

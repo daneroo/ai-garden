@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -180,6 +180,243 @@
       {
         "href": "OEBPS/Text/9780061805752_aboutpublisher.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "page_css",
+        "href": "page_styles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_01",
+        "href": "OEBPS/Text/9780061805752_title.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_02",
+        "href": "OEBPS/Text/9780061805752_contents.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_03",
+        "href": "OEBPS/Text/9780061805752_chapter_01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_04",
+        "href": "OEBPS/Text/9780061805752_chapter_02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_05",
+        "href": "OEBPS/Text/9780061805752_chapter_03.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_06",
+        "href": "OEBPS/Text/9780061805752_chapter_04.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_071",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_029.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0710",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_020.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0711",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_019.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0712",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_018.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0713",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_017.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0714",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_016.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0715",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_015.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0716",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_014.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0717",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_013.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0718",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_012.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0719",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_011.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_072",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_028.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0720",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_010.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0721",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_009.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0722",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_008.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0723",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_007.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0724",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_006.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0725",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_005.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0726",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0727",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_003.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0728",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0729",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_073",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_027.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_0730",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_074",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_026.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_075",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_025.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_076",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_024.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_077",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_023.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_078",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_022.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_079",
+        "href": "OEBPS/Text/9780061805752_chapter_05_split_021.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_08",
+        "href": "OEBPS/Text/9780061805752_aboutauthor.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_09",
+        "href": "OEBPS/Text/9780061805752_review.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_10",
+        "href": "OEBPS/Text/9780061805752_adcard.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_11",
+        "href": "OEBPS/Text/9780061805752_copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_12",
+        "href": "OEBPS/Text/9780061805752_aboutpublisher.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061805752_14",
+        "href": "OEBPS/Images/logo.jpg",
+        "mediaType": "image/jpeg"
       }
     ]
   }

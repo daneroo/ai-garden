@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -27,6 +27,58 @@
       {
         "href": "270175928167006298_5827-h-2.htm.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "coverpage-wrapper",
+        "href": "wrap0000.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "item1",
+        "href": "901854161175070_5827-cover.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "item2",
+        "href": "pgepub.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "item3",
+        "href": "0.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "item4",
+        "href": "1.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "item5",
+        "href": "270175928167006298_5827-h-1.htm.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx2",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "pg-footer",
+        "href": "270175928167006298_5827-h-2.htm.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "pg-header",
+        "href": "270175928167006298_5827-h-0.htm.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

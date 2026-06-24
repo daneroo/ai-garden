@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -111,6 +111,533 @@
       {
         "href": "xhtml/next-reads.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "AvenirNextLTPro-It.otf",
+        "href": "fonts/AvenirNextLTPro-It.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "AvenirNextLTPro-Light.otf",
+        "href": "fonts/AvenirNextLTPro-Light.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "AvenirNextLTPro-LightIt.otf",
+        "href": "fonts/AvenirNextLTPro-LightIt.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "AvenirNextLTPro-Medium.otf",
+        "href": "fonts/AvenirNextLTPro-Medium.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "AvenirNextLTPro-MediumIt.otf",
+        "href": "fonts/AvenirNextLTPro-MediumIt.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "AvenirNextLTPro-Regular.otf",
+        "href": "fonts/AvenirNextLTPro-Regular.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/9780525562009_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "idGeneratedStyles.css",
+        "href": "css/9780525562009_style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "9780525562009_ncx.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "xhtml/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "page_151_2.jpg",
+        "href": "images/page_151_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_151.jpg",
+        "href": "images/page_151.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_212.jpg",
+        "href": "images/page_212.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_226.jpg",
+        "href": "images/page_226.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_228.jpg",
+        "href": "images/page_228.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_230.jpg",
+        "href": "images/page_230.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_232.jpg",
+        "href": "images/page_232.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_235.jpg",
+        "href": "images/page_235.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_238.jpg",
+        "href": "images/page_238.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_v.jpg",
+        "href": "images/9780525562009_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "prh_resets",
+        "href": "css/prh_resets.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "Shift-Bold.otf",
+        "href": "fonts/Shift-Bold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "fonts/Shift-BoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "x01_Cover",
+        "href": "xhtml/01_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x02_Also_by_Steven_Pinker",
+        "href": "xhtml/02_Also_by_Steven_Pinker.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x03_Title_Page",
+        "href": "xhtml/03_Title_Page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x04_Copyright",
+        "href": "xhtml/04_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x05_Dedication",
+        "href": "xhtml/05_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x06_Epigraph",
+        "href": "xhtml/06_Epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x07_Contents",
+        "href": "xhtml/07_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x08_Preface",
+        "href": "xhtml/08_Preface.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x09_1_How_Rational_an_Ani",
+        "href": "xhtml/09_1_How_Rational_an_Ani.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x1_Four_coins.jpg",
+        "href": "images/1_Four_coins.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x10_2_Rationality_and_Irr",
+        "href": "xhtml/10_2_Rationality_and_Irr.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x10_HyperbolicDiscounting.jpg",
+        "href": "images/10_HyperbolicDiscounting.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x11_3_Logic_and_Critical_",
+        "href": "xhtml/11_3_Logic_and_Critical_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x11_REPLACEMENT_Dilbert_good_bad_ideas.jpg",
+        "href": "images/11_REPLACEMENT_Dilbert_good_bad_ideas.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x12_4_Probability_and_Ran",
+        "href": "xhtml/12_4_Probability_and_Ran.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x12_NewYorker_wrong_but.jpg",
+        "href": "images/12_NewYorker_wrong_but.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x13_5_Beliefs_and_Evidenc",
+        "href": "xhtml/13_5_Beliefs_and_Evidenc.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x13_TwoLayernetwork.jpg",
+        "href": "images/13_TwoLayernetwork.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x14_6_Risk_and_Reward_Rat",
+        "href": "xhtml/14_6_Risk_and_Reward_Rat.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x14_REPLACEMENT_Three-layernetwork.jpg",
+        "href": "images/14_REPLACEMENT_Three-layernetwork.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x15_7_Hits_and_False_Alar",
+        "href": "xhtml/15_7_Hits_and_False_Alar.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x15_REPLACEMENT_Dilbertrandomness.jpg",
+        "href": "images/15_REPLACEMENT_Dilbertrandomness.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x16_8_Self_and_Others_Gam",
+        "href": "xhtml/16_8_Self_and_Others_Gam.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x16_Dilbert_odds.jpg",
+        "href": "images/16_Dilbert_odds.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x17_9_Correlation_and_Cau",
+        "href": "xhtml/17_9_Correlation_and_Cau.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x17_SMBC_statistics.jpg",
+        "href": "images/17_SMBC_statistics.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x18_10_What_s_Wrong_with_",
+        "href": "xhtml/18_10_What_s_Wrong_with_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x18_REPLACEMENT_XKCDconditional_risk.jpg",
+        "href": "images/18_REPLACEMENT_XKCDconditional_risk.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x19_11_Why_Rationality_Ma",
+        "href": "xhtml/19_11_Why_Rationality_Ma.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x19_VennAandB.jpg",
+        "href": "images/19_VennAandB.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x2_REPLACEMENT_FourEnvelopes.jpg",
+        "href": "images/2_REPLACEMENT_FourEnvelopes.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x20_Notes",
+        "href": "xhtml/20_Notes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x20_VannAB_and_BA.jpg",
+        "href": "images/20_VannAB_and_BA.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x21_References",
+        "href": "xhtml/21_References.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x21_REPLACEMENT_GreenandBluecabs.jpg",
+        "href": "images/21_REPLACEMENT_GreenandBluecabs.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x22_Index_of_Biases_and_F",
+        "href": "xhtml/22_Index_of_Biases_and_F.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x22_UtilityGraph.jpg",
+        "href": "images/22_UtilityGraph.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x23_Index",
+        "href": "xhtml/23_Index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x23_REPLACEMENT_NewYorker_Howmuchwouldyoupay.jpg",
+        "href": "images/23_REPLACEMENT_NewYorker_Howmuchwouldyoupay.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x24_About_the_Author",
+        "href": "xhtml/24_About_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x24_Decisionweightgraph.jpg",
+        "href": "images/24_Decisionweightgraph.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x25_Subjectiveweightgraphs.jpg",
+        "href": "images/25_Subjectiveweightgraphs.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x26_Histogram.jpg",
+        "href": "images/26_Histogram.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x27_BellCurve.jpg",
+        "href": "images/27_BellCurve.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x28_REPLACEMENT_Signal.jpg",
+        "href": "images/28_REPLACEMENT_Signal.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x29_NoiseandSignal.jpg",
+        "href": "images/29_NoiseandSignal.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x3_Monty_Hall.jpg",
+        "href": "images/3_Monty_Hall.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x30_Questionmarks.jpg",
+        "href": "images/30_Questionmarks.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x31_Cutoff.jpg",
+        "href": "images/31_Cutoff.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x32_NoYesHits.jpg",
+        "href": "images/32_NoYesHits.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x33_NoYesFalseAlarms.jpg",
+        "href": "images/33_NoYesFalseAlarms.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x34_NoYesCorrectRejectionsMisses.jpg",
+        "href": "images/34_NoYesCorrectRejectionsMisses.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x35_FourPossibilities.jpg",
+        "href": "images/35_FourPossibilities.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x36_lowerCriterion.jpg",
+        "href": "images/36_lowerCriterion.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x37_HigherCriterion.jpg",
+        "href": "images/37_HigherCriterion.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x4_VennAB.jpg",
+        "href": "images/4_VennAB.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x40_Sensitivity.jpg",
+        "href": "images/40_Sensitivity.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x42_StatisticalDecisionTheory.jpg",
+        "href": "images/42_StatisticalDecisionTheory.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x43_REPLACEMENT_TypeIandIIErrors.jpg",
+        "href": "images/43_REPLACEMENT_TypeIandIIErrors.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x5_VennMaduro.jpg",
+        "href": "images/5_VennMaduro.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x50_LifesatisfactionGDP.jpg",
+        "href": "images/50_LifesatisfactionGDP.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x51_scatterplot.jpg",
+        "href": "images/51_scatterplot.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x52_REPLACEMENT_Regressionline.jpg",
+        "href": "images/52_REPLACEMENT_Regressionline.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x53_CorrelationCoeffients.jpg",
+        "href": "images/53_CorrelationCoeffients.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x54_REgressionTotheMean.jpg",
+        "href": "images/54_REgressionTotheMean.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x55_FrankErnest_regression_mean.jpg",
+        "href": "images/55_FrankErnest_regression_mean.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x56_REPLACEMENT_Causalnetworks.jpg",
+        "href": "images/56_REPLACEMENT_Causalnetworks.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x57_ChainForkCollider.jpg",
+        "href": "images/57_ChainForkCollider.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x58_REPLACEMENT_MyLittleBrother.jpg",
+        "href": "images/58_REPLACEMENT_MyLittleBrother.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x59_REPLACEMENT_Multipleregression.jpg",
+        "href": "images/59_REPLACEMENT_Multipleregression.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x6_REPLACEMENT_Lottoshading.jpg",
+        "href": "images/6_REPLACEMENT_Lottoshading.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x60_MainEffects.jpg",
+        "href": "images/60_MainEffects.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x61_REPLACEMENT_Interactions.jpg",
+        "href": "images/61_REPLACEMENT_Interactions.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x62_REPLACEMENT_Geneticpredisposition.jpg",
+        "href": "images/62_REPLACEMENT_Geneticpredisposition.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x63_ChessskillPractice.jpg",
+        "href": "images/63_ChessskillPractice.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x64_REPLACEMENT_XKCDcorrelation.jpg",
+        "href": "images/64_REPLACEMENT_XKCDcorrelation.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x65_REPLACEMENT_Peanuts_snow.jpg",
+        "href": "images/65_REPLACEMENT_Peanuts_snow.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x7_REPLACEMENT_lottorods.jpg",
+        "href": "images/7_REPLACEMENT_lottorods.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x8_NewYorker_problemwithdoingthings.jpg",
+        "href": "images/8_NewYorker_problemwithdoingthings.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x9_ExponentialDiscounting.jpg",
+        "href": "images/9_ExponentialDiscounting.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x9780525562009_nav",
+        "href": "9780525562009_nav.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -544,6 +544,708 @@
       {
         "href": "xhtml/133_GlobalBackad.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover.jpg",
+        "href": "image/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CoverImage",
+        "href": "xhtml/001_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "GlobalBackad.jpg",
+        "href": "GlobalBackad.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "HTMLTOC",
+        "href": "xhtml/006_Contents.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "titlePage_fmt.jpeg",
+        "href": "image/titlePage_fmt.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x133_GlobalBackad.html",
+        "href": "xhtml/133_GlobalBackad.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x83005.jpg",
+        "href": "image/83005.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x83015.jpg",
+        "href": "image/83015.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x9780698170_idstyles.css",
+        "href": "css/9780698170_idstyles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "x9780698170704_EPUB",
+        "href": "xhtml/002_Titles_by_William_Gibson.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-1",
+        "href": "xhtml/003_Title_Page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-10",
+        "href": "xhtml/013_6_PATCHERS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-100",
+        "href": "xhtml/103_96_DISANTHROPOMORPHIZED.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-101",
+        "href": "xhtml/104_97_CONVOY.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-102",
+        "href": "xhtml/105_98_BICENTENNIAL.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-103",
+        "href": "xhtml/106_99_AMERICAN_ANTIQUITIES.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-104",
+        "href": "xhtml/107_100_BACK_HERE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-105",
+        "href": "xhtml/108_101_ORDINARY_SAD-ASS_HUMANNESS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-106",
+        "href": "xhtml/109_102_TRANSPLANT.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-107",
+        "href": "xhtml/110_103_SUSHI_BARN.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-108",
+        "href": "xhtml/111_104_THE_RED_MEDICI.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-109",
+        "href": "xhtml/112_105_STATIC_IN_YOUR_BONES.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-11",
+        "href": "xhtml/014_7_SURVEILLANT.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-110",
+        "href": "xhtml/113_106_BUTTHOLEVILLE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-111",
+        "href": "xhtml/114_107_LITTLE_BUDDY.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-112",
+        "href": "xhtml/115_108_COLDIRON_MORNING.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-113",
+        "href": "xhtml/116_109_BLACK_SILK_FROGS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-114",
+        "href": "xhtml/117_110_NOTHING_FANCY.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-115",
+        "href": "xhtml/118_111_ZIL.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-116",
+        "href": "xhtml/119_112_TO_FARRINGDON.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-117",
+        "href": "xhtml/120_113_BOUNCY_CASTLE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-118",
+        "href": "xhtml/121_114_CELEBRATION_OF_LIFE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-119",
+        "href": "xhtml/122_115_DISSOCIATIVE_STATE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-12",
+        "href": "xhtml/015_8_DOUBLE_DICKAGE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-120",
+        "href": "xhtml/123_116_CANNONBALL.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-121",
+        "href": "xhtml/124_117_ITS_GRANITE_FACE_BRISTLING_WITH_IRON.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-122",
+        "href": "xhtml/125_118_BALCONY_MAN.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-123",
+        "href": "xhtml/126_119_SIR_HENRY.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-124",
+        "href": "xhtml/127_120_VESPASIAN_S_CUBE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-125",
+        "href": "xhtml/128_121_NOTTING_HILL.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-126",
+        "href": "xhtml/129_122_COLDIRON_MIRACLES.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-127",
+        "href": "xhtml/130_123_COMPOUND.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-128",
+        "href": "xhtml/131_124_PUTNEY.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-129",
+        "href": "xhtml/132_Acknowledgments_and_Thanks.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-13",
+        "href": "xhtml/016_9_PROTECTIVE_CUSTODY.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-14",
+        "href": "xhtml/017_10_THE_MAENADS_CRUSH.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-15",
+        "href": "xhtml/018_11_TARANTULA.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-16",
+        "href": "xhtml/019_12_THYLACINE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-17",
+        "href": "xhtml/020_13_EASY_ICE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-18",
+        "href": "xhtml/021_14_MOURNING_JET.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-19",
+        "href": "xhtml/022_15_ANYTHING_NICE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-2",
+        "href": "xhtml/004_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-20",
+        "href": "xhtml/023_16_LEGO.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-21",
+        "href": "xhtml/024_17_COTTONWOOD.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-22",
+        "href": "xhtml/025_18_THE_GOD_CLUB.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-23",
+        "href": "xhtml/026_19_AQUAMARINE_DUCT_TAPE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-24",
+        "href": "xhtml/027_20_POLT.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-25",
+        "href": "xhtml/028_21_GRIFTER.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-26",
+        "href": "xhtml/029_22_ARCHAISM.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-27",
+        "href": "xhtml/030_23_CELTIC_KNOT.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-28",
+        "href": "xhtml/031_24_ANATHEMA.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-29",
+        "href": "xhtml/032_25_KYDEX.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-3",
+        "href": "xhtml/005_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-30",
+        "href": "xhtml/033_26_VERY_SENIOR.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-31",
+        "href": "xhtml/034_27_DEAD_OLD_BOYS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-32",
+        "href": "xhtml/035_28_THE_HOUSE_OF_LOVE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-33",
+        "href": "xhtml/036_29_ATRIUM.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-34",
+        "href": "xhtml/037_30_HERM_S.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-35",
+        "href": "xhtml/038_31_FUNNY.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-36",
+        "href": "xhtml/039_32_TIPSTAFF.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-37",
+        "href": "xhtml/040_33_STUPIDITY_TAX.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-38",
+        "href": "xhtml/041_34_HEADLESS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-39",
+        "href": "xhtml/042_35_THE_STUFF_IN_HIS_YARD.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-4",
+        "href": "xhtml/007_Epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-40",
+        "href": "xhtml/043_36_IN_SPITE_OF_EVERYTHING.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-41",
+        "href": "xhtml/044_37_COUNTY.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-42",
+        "href": "xhtml/045_38_STUB_GIRL.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-43",
+        "href": "xhtml/046_39_THE_FAIRY_SHOEMAKERS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-44",
+        "href": "xhtml/047_40_BULLSHIT_ARTIST.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-45",
+        "href": "xhtml/048_41_ZERO.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-46",
+        "href": "xhtml/049_42_BODY_LANGUAGE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-47",
+        "href": "xhtml/050_43_SPLODING.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-48",
+        "href": "xhtml/051_44_PERVERSELY_DIFFICULT.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-49",
+        "href": "xhtml/052_45_UP_THERE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-5",
+        "href": "xhtml/008_1_THE_HAPTICS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-50",
+        "href": "xhtml/053_46_THE_SIGHTS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-51",
+        "href": "xhtml/054_47_POWER_RELATIONSHIPS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-52",
+        "href": "xhtml/055_48_PAVEL.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-53",
+        "href": "xhtml/056_49_THE_SOUNDS_HE_MADE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-54",
+        "href": "xhtml/057_50_WHILE_THE_GETTING_S_GOOD.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-55",
+        "href": "xhtml/058_51_TANGO_HOTEL_SOLDIER_SHIT.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-56",
+        "href": "xhtml/059_52_BOOTS_ON_THE_GROUND.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-57",
+        "href": "xhtml/060_53_SANTA_CLAUS_S_HEADQUARTERS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-58",
+        "href": "xhtml/061_54_IMPOSTOR_SYNDROME.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-59",
+        "href": "xhtml/062_55_COMPLICATED.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-6",
+        "href": "xhtml/009_2_DEATH_COOKIE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-60",
+        "href": "xhtml/063_56_THE_LIGHT_IN_HER_VOICE_MAIL.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-61",
+        "href": "xhtml/064_57_GOOD_CHINA.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-62",
+        "href": "xhtml/065_58_WU.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-63",
+        "href": "xhtml/066_59_ADVENTURE_CAPITALISTS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-64",
+        "href": "xhtml/067_60_BROWNING_IN.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-65",
+        "href": "xhtml/068_61_TIMESICK.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-66",
+        "href": "xhtml/069_62_NOT_EXPECTED.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-67",
+        "href": "xhtml/070_63_THREW_UP.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-68",
+        "href": "xhtml/071_64_STERILE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-69",
+        "href": "xhtml/072_65_BACKDOOR_TO_NOW.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-7",
+        "href": "xhtml/010_3_PUSHING_BUGS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-70",
+        "href": "xhtml/073_66_DROP_BEARS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-71",
+        "href": "xhtml/074_67_BLACK_BEAUTY.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-72",
+        "href": "xhtml/075_68_ANTIBODY.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-73",
+        "href": "xhtml/076_69_HOW_IT_SOUNDS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-74",
+        "href": "xhtml/077_70_ASSET.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-75",
+        "href": "xhtml/078_71_MCMANSION.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-76",
+        "href": "xhtml/079_72_HALFWAY_POSH.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-77",
+        "href": "xhtml/080_73_RED_GREEN_BLUE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-78",
+        "href": "xhtml/081_74_THAT_FIRST_GENTLE_TOUCH.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-79",
+        "href": "xhtml/082_75_PRECURSORS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-8",
+        "href": "xhtml/011_4_SOMETHING_SO_DEEPLY_EARNED.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-80",
+        "href": "xhtml/083_76_EMULATION_APP.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-81",
+        "href": "xhtml/084_77_WHEELIE_BOY.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-82",
+        "href": "xhtml/085_78_FRONTIERLAND.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-83",
+        "href": "xhtml/086_79_THE_JACKPOT.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-84",
+        "href": "xhtml/087_80_THE_CLOVIS_LIMIT.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-85",
+        "href": "xhtml/088_81_ALAMO.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-86",
+        "href": "xhtml/089_82_THE_NASTINESS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-87",
+        "href": "xhtml/090_83_ALL_THE_KINGDOMS_OF_THE_WORLD_IN_A_MOMENT_OF_TIME.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-88",
+        "href": "xhtml/091_84_SOHO_SQUARE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-89",
+        "href": "xhtml/092_85_FUTURE_PEOPLE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-9",
+        "href": "xhtml/012_5_DRAGONFLIES.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-90",
+        "href": "xhtml/093_86_CHATELAINE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-91",
+        "href": "xhtml/094_87_THE_ANTIDOTE_FOR_PARTY_TIME.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-92",
+        "href": "xhtml/095_88_PARLIAMENT_OF_BIRDS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-93",
+        "href": "xhtml/096_89_STROBE.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-94",
+        "href": "xhtml/097_90_METRIC_OF_CAUTION.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-95",
+        "href": "xhtml/098_91_ISOPOD.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-96",
+        "href": "xhtml/099_92_YOU_GUYS.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-97",
+        "href": "xhtml/100_93_MISSION_STATEMENT.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-98",
+        "href": "xhtml/101_94_APOLLINARIS_WATER.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698170704_EPUB-99",
+        "href": "xhtml/102_95_WHOLE_WORLDS_FALLING.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

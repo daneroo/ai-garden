@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -27,6 +27,208 @@
       {
         "href": "text/all_chapter_contents.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "media_resources_publisher-logo_png",
+        "href": "media/resources/publisher-logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "media_resources_title_page_png",
+        "href": "media/resources/title_page.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "nav",
+        "href": "nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "resources_azure-console-vm_png",
+        "href": "resources/azure-console-vm.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_azure-console-vm-deleted_png",
+        "href": "resources/azure-console-vm-deleted.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_azure-console-vm-new-size_png",
+        "href": "resources/azure-console-vm-new-size.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_diag-composite-resource-definitions_png",
+        "href": "resources/diag-composite-resource-definitions.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_diag-composite-resources_png",
+        "href": "resources/diag-composite-resources.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_diag-composite-resources-providers_png",
+        "href": "resources/diag-composite-resources-providers.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_diag-configuration_png",
+        "href": "resources/diag-configuration.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_diag-configuration-package_png",
+        "href": "resources/diag-configuration-package.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_diag-function-patch-transform_png",
+        "href": "resources/diag-function-patch-transform.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_diag-managed-resources_png",
+        "href": "resources/diag-managed-resources.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_diag-managed-resources-drift_png",
+        "href": "resources/diag-managed-resources-drift.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_diag-pipeline_png",
+        "href": "resources/diag-pipeline.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_intro-argocd_png",
+        "href": "resources/intro-argocd.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_marketplace-azure-compute-install_png",
+        "href": "resources/marketplace-azure-compute-install.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_marketplace-compute_png",
+        "href": "resources/marketplace-compute.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_marketplace-console-api_png",
+        "href": "resources/marketplace-console-api.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_marketplace-console-managed-resources_png",
+        "href": "resources/marketplace-console-managed-resources.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_marketplace-functions_png",
+        "href": "resources/marketplace-functions.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_marketplace-functions-patch-and-tranform_png",
+        "href": "resources/marketplace-functions-patch-and-tranform.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_marketplace-manage_png",
+        "href": "resources/marketplace-manage.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_marketplace-providers_png",
+        "href": "resources/marketplace-providers.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_marketplace-repositories_png",
+        "href": "resources/marketplace-repositories.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_marketplace-repositories-dot-sql_png",
+        "href": "resources/marketplace-repositories-dot-sql.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_marketplace-repositories-dot-sql-empty_png",
+        "href": "resources/marketplace-repositories-dot-sql-empty.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "resources_templates-vs-xrs_png",
+        "href": "resources/templates-vs-xrs.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "styles_resources_leanpub_bug_png",
+        "href": "styles/resources/leanpub_bug.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "styles_resources_leanpub_comments_png",
+        "href": "styles/resources/leanpub_comments.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "styles_resources_leanpub_info-circle_png",
+        "href": "styles/resources/leanpub_info-circle.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "styles_resources_leanpub_key_png",
+        "href": "styles/resources/leanpub_key.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "styles_resources_leanpub_pencil_png",
+        "href": "styles/resources/leanpub_pencil.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "styles_resources_leanpub_question-circle_png",
+        "href": "styles/resources/leanpub_question-circle.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "styles_resources_leanpub_warning_png",
+        "href": "styles/resources/leanpub_warning.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "stylesheet1",
+        "href": "styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "text_all_chapter_contents_xhtml",
+        "href": "text/all_chapter_contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "text_cover_xhtml",
+        "href": "text/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "text_verso_page_xhtml",
+        "href": "text/verso_page.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

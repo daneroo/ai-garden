@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -80,6 +80,123 @@
       {
         "href": "OEBPS/guide.htm",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "aft",
+        "href": "OEBPS/aft.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ata",
+        "href": "OEBPS/ata.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c01",
+        "href": "OEBPS/c01.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c02",
+        "href": "OEBPS/c02.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c03",
+        "href": "OEBPS/c03.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c04",
+        "href": "OEBPS/c04.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c05",
+        "href": "OEBPS/c05.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c06",
+        "href": "OEBPS/c06.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c07",
+        "href": "OEBPS/c07.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cop",
+        "href": "OEBPS/cop.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "css",
+        "href": "OEBPS/style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "cvi",
+        "href": "OEBPS/cvi.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ded",
+        "href": "OEBPS/ded.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "guide",
+        "href": "OEBPS/guide.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "img1",
+        "href": "OEBPS/images/common1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img2",
+        "href": "OEBPS/images/v-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img3",
+        "href": "OEBPS/images/v-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "my_cover_image",
+        "href": "OEBPS/images/Cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "9781925693164_epub_ncx_r1.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "note",
+        "href": "OEBPS/note.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "pre",
+        "href": "OEBPS/pre.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "toc",
+        "href": "OEBPS/toc.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "tp",
+        "href": "OEBPS/tp.htm",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

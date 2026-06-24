@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -39,6 +39,103 @@
       {
         "href": "Text/Author.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "Author.xhtml",
+        "href": "Text/Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "autor.jpg",
+        "href": "Images/autor.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CenturyGothic-B.ttf",
+        "href": "Fonts/CenturyGothic-B.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "CenturyGothic-I.ttf",
+        "href": "Fonts/CenturyGothic-I.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "Chapters.jpg",
+        "href": "Images/Chapters.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "cover.jpg",
+        "href": "Images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Cover.xhtml",
+        "href": "Text/Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "DIN-L.otf",
+        "href": "Fonts/DIN-L.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "EPL_logo.png",
+        "href": "Images/EPL_logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "epl.css",
+        "href": "Styles/epl.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ex_libris.png",
+        "href": "Images/ex_libris.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "fuente.png",
+        "href": "Images/fuente.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "info.xhtml",
+        "href": "Text/info.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "style.css",
+        "href": "Styles/style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "Synopsis.xhtml",
+        "href": "Text/Synopsis.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Title.xhtml",
+        "href": "Text/Title.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x01.xhtml",
+        "href": "Text/01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x02.xhtml",
+        "href": "Text/02.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

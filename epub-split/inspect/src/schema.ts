@@ -19,7 +19,7 @@
 // not modelled below.
 import { z } from "zod";
 
-export const PARSER_OUTPUT_SCHEMA_VERSION = 2;
+export const PARSER_OUTPUT_SCHEMA_VERSION = 3;
 
 export const parserNameSchema = z.enum([
   "epubts-browser",
@@ -72,9 +72,20 @@ export const spineItemSchema = z.strictObject({
   linear: z.boolean(),
 });
 
+// id is the OPF manifest item id attribute. href is the content file path
+// relative to the package document. mediaType is null when the parser exposes
+// no value. Items are stored sorted by id for determinism (both parsers read
+// the same OPF, so ids and hrefs are identical across parsers).
+export const manifestItemSchema = z.strictObject({
+  id: z.string(),
+  href: z.string(),
+  mediaType: z.string().nullable(),
+});
+
 export const contentSchema = z.strictObject({
   metadata: metadataSchema,
   spine: z.array(spineItemSchema),
+  manifest: z.array(manifestItemSchema),
 });
 
 export const parserOutputSchema = z
@@ -163,7 +174,7 @@ export type ParserOutput = z.infer<typeof parserOutputSchema>;
 // Like ParserOutput, the sha256 is the on-disk path key
 // (comparisons/<sha256>/<parserA>--<parserB>.json), never a stored field.
 
-export const COMPARISON_RESULT_SCHEMA_VERSION = 2;
+export const COMPARISON_RESULT_SCHEMA_VERSION = 3;
 
 // Five mutually-exclusive per-field outcomes. `a`/`b` are the values from
 // parserA/parserB. Human-readable reports never print a/b — they name the
@@ -199,6 +210,16 @@ export const spineComparisonSchema = z.strictObject({
   onlyInB: z.array(z.string()),
 });
 
+// Manifest comparison: href-set based (unordered). "agree" = identical href
+// sets. "differ" = anything else. onlyInA/onlyInB list asymmetric hrefs.
+export const manifestComparisonSchema = z.strictObject({
+  status: z.enum(["agree", "differ"]),
+  countA: z.number().int().nonnegative(),
+  countB: z.number().int().nonnegative(),
+  onlyInA: z.array(z.string()),
+  onlyInB: z.array(z.string()),
+});
+
 export const comparisonResultSchema = z.strictObject({
   schemaVersion: z.literal(COMPARISON_RESULT_SCHEMA_VERSION),
   // Carried from each meta.parser for reporting only — the comparator itself is
@@ -207,6 +228,7 @@ export const comparisonResultSchema = z.strictObject({
   parserB: parserNameSchema,
   metadata: metadataComparisonSchema,
   spine: spineComparisonSchema,
+  manifest: manifestComparisonSchema,
 });
 
 export type PairFieldStatus = z.infer<typeof pairFieldStatusSchema>;
@@ -214,4 +236,6 @@ export type FieldComparison = z.infer<typeof fieldComparisonSchema>;
 export type MetadataComparison = z.infer<typeof metadataComparisonSchema>;
 export type SpineItem = z.infer<typeof spineItemSchema>;
 export type SpineComparison = z.infer<typeof spineComparisonSchema>;
+export type ManifestItem = z.infer<typeof manifestItemSchema>;
+export type ManifestComparison = z.infer<typeof manifestComparisonSchema>;
 export type ComparisonResult = z.infer<typeof comparisonResultSchema>;

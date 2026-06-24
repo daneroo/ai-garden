@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -68,6 +68,128 @@
       {
         "href": "text00013.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover-image",
+        "href": "Image00006.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id_1",
+        "href": "text00000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_10",
+        "href": "text00009.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_11",
+        "href": "text00010.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_12",
+        "href": "text00011.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_13",
+        "href": "text00012.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_14",
+        "href": "text00013.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_15",
+        "href": "Image00000.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id_16",
+        "href": "Image00001.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id_17",
+        "href": "Image00002.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id_18",
+        "href": "Image00003.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id_19",
+        "href": "Image00004.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id_2",
+        "href": "text00001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_20",
+        "href": "Image00005.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id_22",
+        "href": "Image00008.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id_23",
+        "href": "flow0001.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id_3",
+        "href": "text00002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_4",
+        "href": "text00003.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_5",
+        "href": "text00004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_6",
+        "href": "text00005.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_7",
+        "href": "text00006.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_8",
+        "href": "text00007.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_9",
+        "href": "text00008.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
       }
     ]
   }

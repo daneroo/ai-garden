@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -156,6 +156,248 @@
       {
         "href": "OEBPS/xhtml/copyright.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "abouttheauthor",
+        "href": "OEBPS/xhtml/abouttheauthor.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "acknowledgments",
+        "href": "OEBPS/xhtml/acknowledgments.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "adcard",
+        "href": "OEBPS/xhtml/adcard.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "asterik-hr",
+        "href": "OEBPS/images/asterisks.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "authorsnote",
+        "href": "OEBPS/xhtml/authorsnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter1",
+        "href": "OEBPS/xhtml/chapter1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter10",
+        "href": "OEBPS/xhtml/chapter10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter11",
+        "href": "OEBPS/xhtml/chapter11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter12",
+        "href": "OEBPS/xhtml/chapter12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter13",
+        "href": "OEBPS/xhtml/chapter13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter14",
+        "href": "OEBPS/xhtml/chapter14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter15",
+        "href": "OEBPS/xhtml/chapter15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter16",
+        "href": "OEBPS/xhtml/chapter16.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter17",
+        "href": "OEBPS/xhtml/chapter17.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter2",
+        "href": "OEBPS/xhtml/chapter2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter3",
+        "href": "OEBPS/xhtml/chapter3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter4",
+        "href": "OEBPS/xhtml/chapter4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter5",
+        "href": "OEBPS/xhtml/chapter5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter6",
+        "href": "OEBPS/xhtml/chapter6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter7",
+        "href": "OEBPS/xhtml/chapter7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter8",
+        "href": "OEBPS/xhtml/chapter8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter9",
+        "href": "OEBPS/xhtml/chapter9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "contents",
+        "href": "OEBPS/xhtml/contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "OEBPS/xhtml/copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyrightnotice",
+        "href": "OEBPS/xhtml/copyrightnotice.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "cycle",
+        "href": "OEBPS/xhtml/cycle.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "dedication",
+        "href": "OEBPS/xhtml/dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "encore",
+        "href": "OEBPS/xhtml/encore.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "epigraph",
+        "href": "OEBPS/xhtml/epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "html-cover-page",
+        "href": "OEBPS/xhtml/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "image-0002",
+        "href": "OEBPS/images/NewsletterSignup.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-0003",
+        "href": "OEBPS/images/twitter_logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "image-002",
+        "href": "OEBPS/images/author.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-003",
+        "href": "OEBPS/images/backad.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-004",
+        "href": "OEBPS/images/pgviii.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-005",
+        "href": "OEBPS/images/title.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "intermission",
+        "href": "OEBPS/xhtml/intermission.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "intermission1",
+        "href": "OEBPS/xhtml/intermission1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "mini_toc",
+        "href": "OEBPS/xhtml/mini_toc.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "newsletter",
+        "href": "OEBPS/xhtml/newsletter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "page_css",
+        "href": "page_styles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "prologue",
+        "href": "OEBPS/xhtml/prologue.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "tit",
+        "href": "OEBPS/xhtml/title.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "torad",
+        "href": "OEBPS/xhtml/torad.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

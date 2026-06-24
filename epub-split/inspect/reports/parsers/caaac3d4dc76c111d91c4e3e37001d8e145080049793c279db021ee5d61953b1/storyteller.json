@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -111,6 +111,173 @@
       {
         "href": "XHTML/c24_collec.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "couverture.css",
+        "href": "Style/couverture.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "cover",
+        "href": "Images/pageTitre.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id_c01_cover.xhtml",
+        "href": "XHTML/c01_cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c02_copyright.xhtml",
+        "href": "XHTML/c02_copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c03_part.xhtml",
+        "href": "XHTML/c03_part.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c04_chapter.xhtml",
+        "href": "XHTML/c04_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c05_chapter.xhtml",
+        "href": "XHTML/c05_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c06_chapter.xhtml",
+        "href": "XHTML/c06_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c07_chapter.xhtml",
+        "href": "XHTML/c07_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c08_part.xhtml",
+        "href": "XHTML/c08_part.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c09_chapter.xhtml",
+        "href": "XHTML/c09_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c10_chapter.xhtml",
+        "href": "XHTML/c10_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c11_chapter.xhtml",
+        "href": "XHTML/c11_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c12_chapter.xhtml",
+        "href": "XHTML/c12_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c13_part.xhtml",
+        "href": "XHTML/c13_part.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c14_chapter.xhtml",
+        "href": "XHTML/c14_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c15_chapter.xhtml",
+        "href": "XHTML/c15_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c16_chapter.xhtml",
+        "href": "XHTML/c16_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c17_chapter.xhtml",
+        "href": "XHTML/c17_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c18_part.xhtml",
+        "href": "XHTML/c18_part.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c19_chapter.xhtml",
+        "href": "XHTML/c19_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c20_chapter.xhtml",
+        "href": "XHTML/c20_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c21_chapter.xhtml",
+        "href": "XHTML/c21_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c22_thanks.xhtml",
+        "href": "XHTML/c22_thanks.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c23_append.xhtml",
+        "href": "XHTML/c23_append.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_c24_collec.xhtml",
+        "href": "XHTML/c24_collec.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id_Style_TemplateAlbinMichel.css",
+        "href": "Style/TemplateAlbinMichel.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id_Style_TemplateBookAM.css",
+        "href": "Style/TemplateBookAM.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id_Style_TemplateGeneric.css",
+        "href": "Style/TemplateGeneric.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "nav",
+        "href": "nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "pagetitre",
+        "href": "XHTML/pagetitre.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "pageTitre1",
+        "href": "Images/pageTitre1.jpg",
+        "mediaType": "image/jpeg"
       }
     ]
   }

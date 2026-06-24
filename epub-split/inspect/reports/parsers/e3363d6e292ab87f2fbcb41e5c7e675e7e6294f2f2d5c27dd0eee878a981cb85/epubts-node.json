@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -16,6 +16,18 @@
       {
         "href": "RobertFrostTheRoadNotTaken.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "main",
+        "href": "RobertFrostTheRoadNotTaken.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "toc",
+        "href": "nav.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

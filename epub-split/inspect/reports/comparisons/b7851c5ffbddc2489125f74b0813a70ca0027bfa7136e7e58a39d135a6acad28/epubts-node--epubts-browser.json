@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "parserA": "epubts-node",
   "parserB": "epubts-browser",
   "metadata": {
@@ -23,6 +23,13 @@
     "status": "agree",
     "countA": 35,
     "countB": 35,
+    "onlyInA": [],
+    "onlyInB": []
+  },
+  "manifest": {
+    "status": "agree",
+    "countA": 45,
+    "countB": 45,
     "onlyInA": [],
     "onlyInB": []
   }

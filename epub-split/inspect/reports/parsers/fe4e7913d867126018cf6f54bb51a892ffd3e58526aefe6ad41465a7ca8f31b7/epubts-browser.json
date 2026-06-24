@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -171,6 +171,353 @@
       {
         "href": "Text/Copyright.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "Acknowledgments.html",
+        "href": "Text/Acknowledgments.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "AlsoBy.html",
+        "href": "Text/AlsoBy.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "BirchEmbed.otf",
+        "href": "Fonts/BirchEmbed.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "Copyright.html",
+        "href": "Text/Copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Cover.html",
+        "href": "Text/Cover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover.jpg",
+        "href": "Images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Dedication.html",
+        "href": "Text/Dedication.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Dragonsteel.gif",
+        "href": "Images/Dragonsteel.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "Epilogue.html",
+        "href": "Text/Epilogue.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Mistborn-Secret-History-title.gif",
+        "href": "Images/Mistborn-Secret-History-title.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "part-1.gif",
+        "href": "Images/part-1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "Part-1.html",
+        "href": "Text/Part-1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part-2.gif",
+        "href": "Images/part-2.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "Part-2.html",
+        "href": "Text/Part-2.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part-3.gif",
+        "href": "Images/part-3.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "Part-3.html",
+        "href": "Text/Part-3.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part-4.gif",
+        "href": "Images/part-4.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "Part-4.html",
+        "href": "Text/Part-4.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part-5.gif",
+        "href": "Images/part-5.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "Part-5.html",
+        "href": "Text/Part-5.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part-6.gif",
+        "href": "Images/part-6.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "Part-6.html",
+        "href": "Text/Part-6.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Postscript.html",
+        "href": "Text/Postscript.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Preface.html",
+        "href": "Text/Preface.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "style.css",
+        "href": "Styles/style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "symbol-00.gif",
+        "href": "Images/symbol-00.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-01.gif",
+        "href": "Images/symbol-01.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-02.gif",
+        "href": "Images/symbol-02.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-03.gif",
+        "href": "Images/symbol-03.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-04.gif",
+        "href": "Images/symbol-04.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-05.gif",
+        "href": "Images/symbol-05.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-06.gif",
+        "href": "Images/symbol-06.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-07.gif",
+        "href": "Images/symbol-07.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-08.gif",
+        "href": "Images/symbol-08.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-09.gif",
+        "href": "Images/symbol-09.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-10.gif",
+        "href": "Images/symbol-10.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-11.gif",
+        "href": "Images/symbol-11.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-12.gif",
+        "href": "Images/symbol-12.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-13.gif",
+        "href": "Images/symbol-13.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-14.gif",
+        "href": "Images/symbol-14.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-15.gif",
+        "href": "Images/symbol-15.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "symbol-16.gif",
+        "href": "Images/symbol-16.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "Title.html",
+        "href": "Text/Title.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x1-1.html",
+        "href": "Text/1-1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x1-2.html",
+        "href": "Text/1-2.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x2-1.html",
+        "href": "Text/2-1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x2-2.html",
+        "href": "Text/2-2.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x2-3.html",
+        "href": "Text/2-3.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x2-4.html",
+        "href": "Text/2-4.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x3-1.html",
+        "href": "Text/3-1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x3-2.html",
+        "href": "Text/3-2.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x3-3.html",
+        "href": "Text/3-3.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x4-1.html",
+        "href": "Text/4-1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x4-2.html",
+        "href": "Text/4-2.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x4-3.html",
+        "href": "Text/4-3.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x4-4.html",
+        "href": "Text/4-4.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x5-1.html",
+        "href": "Text/5-1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x5-2.html",
+        "href": "Text/5-2.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x5-3.html",
+        "href": "Text/5-3.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x6-1.html",
+        "href": "Text/6-1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x6-2.html",
+        "href": "Text/6-2.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x6-3.html",
+        "href": "Text/6-3.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x6-4.html",
+        "href": "Text/6-4.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x6-5.html",
+        "href": "Text/6-5.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x6-6.html",
+        "href": "Text/6-6.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x6-7.html",
+        "href": "Text/6-7.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x6-8.html",
+        "href": "Text/6-8.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x6-9.html",
+        "href": "Text/6-9.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -48,6 +48,68 @@
       {
         "href": "Isaac Asimov - I, Robot_split_006.htm",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "Isaac_Asimov_-_I,_Robot1",
+        "href": "Isaac Asimov - I, Robot_split_006.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Isaac_Asimov_-_I,_Robot2",
+        "href": "Isaac Asimov - I, Robot_split_005.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Isaac_Asimov_-_I,_Robot3",
+        "href": "Isaac Asimov - I, Robot_split_004.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Isaac_Asimov_-_I,_Robot4",
+        "href": "Isaac Asimov - I, Robot_split_003.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Isaac_Asimov_-_I,_Robot5",
+        "href": "Isaac Asimov - I, Robot_split_002.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Isaac_Asimov_-_I,_Robot6",
+        "href": "Isaac Asimov - I, Robot_split_001.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Isaac_Asimov_-_I,_Robot7",
+        "href": "Isaac Asimov - I, Robot_split_000.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "jacket",
+        "href": "jacket.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

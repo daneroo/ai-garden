@@ -3,7 +3,7 @@
 // at compile time; the host side validates the shape after transport.
 
 export type EntryOpenOutcome =
-  | { status: "opened"; metadata: { title: string | null; creator: string | null; date: string | null }; spine: { href: string; linear: boolean }[] }
+  | { status: "opened"; metadata: { title: string | null; creator: string | null; date: string | null }; spine: { href: string; linear: boolean }[]; manifest: { id: string; href: string; mediaType: string | null }[] }
   | { status: "open-failed"; category: string; message: string };
 
 export interface BrowserHarnessResult {

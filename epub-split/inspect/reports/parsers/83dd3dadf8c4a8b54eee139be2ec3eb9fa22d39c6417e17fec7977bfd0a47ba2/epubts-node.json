@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -180,6 +180,413 @@
       {
         "href": "xhtml/copy.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "about",
+        "href": "xhtml/about.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "aboutb",
+        "href": "xhtml/aboutb.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "aboutc",
+        "href": "xhtml/aboutc.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ack",
+        "href": "xhtml/ack.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "buylink_9781501119934_cover",
+        "href": "images/buylink_9781501119934_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "buylink_9781501120077_cover",
+        "href": "images/buylink_9781501120077_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "buylink_9781501120114_cover",
+        "href": "images/buylink_9781501120114_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "buylink_9781501120138_cover",
+        "href": "images/buylink_9781501120138_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "buylink_9781501154379_cover",
+        "href": "images/buylink_9781501154379_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "buylink_9781501154409_cover",
+        "href": "images/buylink_9781501154409_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ch01",
+        "href": "xhtml/ch01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch01a",
+        "href": "xhtml/ch01a.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch01b",
+        "href": "xhtml/ch01b.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch02",
+        "href": "xhtml/ch02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch02a",
+        "href": "xhtml/ch02a.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch02b",
+        "href": "xhtml/ch02b.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch03",
+        "href": "xhtml/ch03.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch03a",
+        "href": "xhtml/ch03a.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch03b",
+        "href": "xhtml/ch03b.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch04",
+        "href": "xhtml/ch04.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch04a",
+        "href": "xhtml/ch04a.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch04b",
+        "href": "xhtml/ch04b.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch05",
+        "href": "xhtml/ch05.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch05a",
+        "href": "xhtml/ch05a.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch05b",
+        "href": "xhtml/ch05b.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch05c",
+        "href": "xhtml/ch05c.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch05d",
+        "href": "xhtml/ch05d.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch06",
+        "href": "xhtml/ch06.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch06a",
+        "href": "xhtml/ch06a.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch06b",
+        "href": "xhtml/ch06b.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch07",
+        "href": "xhtml/ch07.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch08",
+        "href": "xhtml/ch08.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch08a",
+        "href": "xhtml/ch08a.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch08b",
+        "href": "xhtml/ch08b.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cont",
+        "href": "xhtml/cont.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copy",
+        "href": "xhtml/copy.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "xhtml/cover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "css",
+        "href": "styles/9781501120091.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "dedication",
+        "href": "xhtml/dedication.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ebookregback",
+        "href": "xhtml/ebookregback.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ebookregfront",
+        "href": "xhtml/ebookregfront.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "epi",
+        "href": "xhtml/epi.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "font1",
+        "href": "fonts/ACaslonPro-Bold.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font10",
+        "href": "fonts/GoudySansStd-Medium.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font11",
+        "href": "fonts/GoudySansStd-Book.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font2",
+        "href": "fonts/ACaslonPro-BoldItalic.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font3",
+        "href": "fonts/ACaslonPro-Italic.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font4",
+        "href": "fonts/ACaslonPro-Regular.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font5",
+        "href": "fonts/ACaslonPro-Semibold.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font6",
+        "href": "fonts/ACaslonPro-SemiboldItalic.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font7",
+        "href": "fonts/FrutigerLTStd-Bold.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font8",
+        "href": "fonts/FrutigerLTStd-BoldItalic.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font9",
+        "href": "fonts/FrutigerLTStd-Roman.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "further",
+        "href": "xhtml/further.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "image10",
+        "href": "images/f0066-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image11",
+        "href": "images/f0068-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image12",
+        "href": "images/f0090-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image13",
+        "href": "images/f0122-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image14",
+        "href": "images/f0124-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image15",
+        "href": "images/f0124-02.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image16",
+        "href": "images/f0125-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image17",
+        "href": "images/f0125-02.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image18",
+        "href": "images/logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image19",
+        "href": "images/title.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image2",
+        "href": "images/author.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image3",
+        "href": "images/f0007-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image4",
+        "href": "images/f0016-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image5",
+        "href": "images/f0024-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image6",
+        "href": "images/f0047-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image7",
+        "href": "images/f0050-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image8",
+        "href": "images/f0051-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image9",
+        "href": "images/f0061-02.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "more",
+        "href": "xhtml/more.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "my-cover-image",
+        "href": "images/9781501120091.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "notes",
+        "href": "xhtml/notes.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "related",
+        "href": "xhtml/related.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "SS_recommendpage",
+        "href": "xhtml/SS_recommendpage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "SS_recommendpage_1",
+        "href": "styles/SS_recommendpage.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "title",
+        "href": "xhtml/title.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "watch",
+        "href": "xhtml/watch.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

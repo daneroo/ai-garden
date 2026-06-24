@@ -520,11 +520,11 @@ Informed by Gate 8A lessons. Manifest is wider (all items including nav, cover,
 CSS, images) and has richer per-item metadata (`media-type`, `href`, optional
 `properties`).
 
-- [ ] `content.manifest` schema; bump `PARSER_OUTPUT_SCHEMA_VERSION`.
-- [ ] All three adapters populate `content.manifest`.
-- [ ] `compareBook` gains manifest comparison.
-- [ ] Pair reports and detail pages render manifest findings.
-- [ ] Unit tests.
+- [x] `content.manifest` schema; bump `PARSER_OUTPUT_SCHEMA_VERSION`.
+- [x] All three adapters populate `content.manifest`.
+- [x] `compareBook` gains manifest comparison.
+- [x] Pair reports and detail pages render manifest findings.
+- [x] Unit tests.
 
 Verifiable outcome: TYPECHECK + TEST + DETERMINISM. Earlier-section parity holds.
 New manifest findings recorded.
@@ -573,3 +573,4 @@ matches the shipped tool.
 - 2026-06-24 · Gate 6 · compare.ts (compareBook, compareField, parity projection); runner wired with PAIRS + comparisons; pair reports + detail pages now live; switched to distinct-book counts (occ=1); baseline/ removed; TEST 69 pass / 1 todo / 0 fail, TYPECHECK clean · 655f73ac
 - 2026-06-24 · Gate 7 · WILL NOT IMPLEMENT — content-addressed model already correct; collapse flag adds no value
 - 2026-06-24 · Gate 8A · spine in ParserOutput (SpineItem { href, linear }); SpineComparison (href-set); pair reports + detail pages; schema v2; TEST 75 pass / 1 todo / 0 fail, TYPECHECK clean; DETERMINISM confirmed; 756/756 agree node×browser, 213/213 agree node×storyteller · 207ce080
+- 2026-06-24 · Gate 8B · manifest in ParserOutput (ManifestItem { id, href, mediaType }); ManifestComparison (href-set, unordered); pair reports + detail pages; schema v3; TEST 81 pass / 1 todo / 0 fail, TYPECHECK clean; DETERMINISM confirmed; 756/756 agree node×browser, 213/213 agree node×storyteller

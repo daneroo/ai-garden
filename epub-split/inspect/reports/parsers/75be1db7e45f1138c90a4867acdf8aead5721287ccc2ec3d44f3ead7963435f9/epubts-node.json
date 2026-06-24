@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -100,6 +100,218 @@
       {
         "href": "022_BM_regular.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "A000_acover",
+        "href": "000_ACover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A002_fm_halftitle",
+        "href": "002_FM_halftitle.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A003_fm_titlepage",
+        "href": "003_FM_titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A004_fm_titleverso",
+        "href": "004_FM_titleverso.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A005_fm_contents",
+        "href": "005_FM_contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A006_fm_acknowledgements",
+        "href": "006_FM_acknowledgements.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A007_fm_glossary",
+        "href": "007_FM_glossary.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A008_fm_other",
+        "href": "008_FM_other.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A009_chapter",
+        "href": "009_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A010_chapter",
+        "href": "010_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A011_chapter",
+        "href": "011_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A012_chapter",
+        "href": "012_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A013_chapter",
+        "href": "013_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A014_chapter",
+        "href": "014_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A015_chapter",
+        "href": "015_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A016_chapter",
+        "href": "016_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A017_chapter",
+        "href": "017_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A018_chapter",
+        "href": "018_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A019_bm_appendixgroup",
+        "href": "019_BM_appendixGroup.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A020_bm_endnotes",
+        "href": "020_BM_endNotes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A021_bm_bibliographygroup",
+        "href": "021_BM_bibliographyGroup.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A022_bm_regular",
+        "href": "022_BM_regular.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image1",
+        "href": "images/actrade-9780190673062-graphic-001.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "image10",
+        "href": "images/actrade-9780190673062-graphic-010.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image11",
+        "href": "images/actrade-9780190673062-graphic-011.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image12",
+        "href": "images/actrade-9780190673062-graphic-012.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image13",
+        "href": "images/actrade-9780190673062-graphic-013.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image14",
+        "href": "images/actrade-9780190673062-graphic-014.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image15",
+        "href": "images/actrade-9780190673062-graphic-015.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image16",
+        "href": "images/line.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "image2",
+        "href": "images/actrade-9780190673062-graphic-002.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "image3",
+        "href": "images/actrade-9780190673062-graphic-003.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image4",
+        "href": "images/actrade-9780190673062-graphic-004.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "image5",
+        "href": "images/actrade-9780190673062-graphic-005.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "image6",
+        "href": "images/actrade-9780190673062-graphic-006.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image7",
+        "href": "images/actrade-9780190673062-graphic-007.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image8",
+        "href": "images/actrade-9780190673062-graphic-008.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image9",
+        "href": "images/actrade-9780190673062-graphic-009.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "OUP_Styles",
+        "href": "OUP_Styles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "toc-nav",
+        "href": "nav.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

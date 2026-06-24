@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -51,6 +51,78 @@
       {
         "href": "010.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "id001",
+        "href": "001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id002",
+        "href": "002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id003",
+        "href": "003.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id004",
+        "href": "004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id005",
+        "href": "005.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id006",
+        "href": "006.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id007",
+        "href": "007.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id008",
+        "href": "008.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id009",
+        "href": "009.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id010",
+        "href": "010.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "img1",
+        "href": "images/img1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img2",
+        "href": "images/img2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "style",
+        "href": "style.css",
+        "mediaType": "text/css"
       }
     ]
   }

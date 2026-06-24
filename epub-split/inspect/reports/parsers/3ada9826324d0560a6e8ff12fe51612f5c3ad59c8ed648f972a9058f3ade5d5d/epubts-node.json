@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -116,6 +116,648 @@
       {
         "href": "xhtml/next-reads.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "ack",
+        "href": "xhtml/Hert_9780593128459_epub3_ack_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "adc",
+        "href": "xhtml/Hert_9780593128459_epub3_adc_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ant",
+        "href": "xhtml/Hert_9780593128459_epub3_ant_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ata",
+        "href": "xhtml/Hert_9780593128459_epub3_ata_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bib",
+        "href": "xhtml/Hert_9780593128459_epub3_bib_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c001",
+        "href": "xhtml/Hert_9780593128459_epub3_c001_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c002",
+        "href": "xhtml/Hert_9780593128459_epub3_c002_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c003",
+        "href": "xhtml/Hert_9780593128459_epub3_c003_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c004",
+        "href": "xhtml/Hert_9780593128459_epub3_c004_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c005",
+        "href": "xhtml/Hert_9780593128459_epub3_c005_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c006",
+        "href": "xhtml/Hert_9780593128459_epub3_c006_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c007",
+        "href": "xhtml/Hert_9780593128459_epub3_c007_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c008",
+        "href": "xhtml/Hert_9780593128459_epub3_c008_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cop",
+        "href": "xhtml/Hert_9780593128459_epub3_cop_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "coverimg",
+        "href": "images/9780593128459_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "cre",
+        "href": "xhtml/Hert_9780593128459_epub3_cre_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "css1",
+        "href": "css/9780593128459_style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "css2",
+        "href": "css/9780593128459_style1.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "cvi",
+        "href": "xhtml/Hert_9780593128459_epub3_cvi_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ded",
+        "href": "xhtml/Hert_9780593128459_epub3_ded_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ef1a",
+        "href": "fonts/SackersGothicStd-Medium.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ef1b",
+        "href": "fonts/SackersGothicStd-Heavy.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "epi",
+        "href": "xhtml/Hert_9780593128459_epub3_epi_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "extra1",
+        "href": "css/prh_resets.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "extra2",
+        "href": "css/rh_static.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ff1",
+        "href": "fonts/FreeMono.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ff10",
+        "href": "fonts/FreeSerifBold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ff11",
+        "href": "fonts/FreeSerifBoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ff12",
+        "href": "fonts/FreeSerifItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ff13",
+        "href": "css/freeFont.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ff2",
+        "href": "fonts/FreeMonoBold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ff3",
+        "href": "fonts/FreeMonoBoldOblique.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ff4",
+        "href": "fonts/FreeMonoOblique.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ff5",
+        "href": "fonts/FreeSans.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ff6",
+        "href": "fonts/FreeSansBold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ff7",
+        "href": "fonts/FreeSansBoldOblique.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ff8",
+        "href": "fonts/FreeSansOblique.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ff9",
+        "href": "fonts/FreeSerif.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "fm-sup",
+        "href": "xhtml/Hert_9780593128459_epub3_fm-sup_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "generatedNavDoc",
+        "href": "9780593128459_nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "idx",
+        "href": "xhtml/Hert_9780593128459_epub3_idx_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "img1",
+        "href": "images/001_HERT_9780123456789_ins_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img10",
+        "href": "images/008_HERT_9780123456789_ins_art_r3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img11",
+        "href": "images/007_HERT_9780123456789_ins_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img12",
+        "href": "images/009_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img13",
+        "href": "images/010_Hert_9780593128442_all_art_r3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img14",
+        "href": "images/011_Hert_9780593128442_all_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img15",
+        "href": "images/012_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img16",
+        "href": "images/Hert_9780593128459_epub3_024_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img17",
+        "href": "images/013_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img18",
+        "href": "images/014_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img19",
+        "href": "images/015_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img2",
+        "href": "images/012_HERT_9780123456789_ins_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img20",
+        "href": "images/017_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img21",
+        "href": "images/016_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img22",
+        "href": "images/Hert_9780593128442_all_3p_r5_6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img23",
+        "href": "images/019_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img24",
+        "href": "images/018_Hert_9780593128442_all_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img25",
+        "href": "images/020_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img26",
+        "href": "images/021_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img27",
+        "href": "images/022_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img28",
+        "href": "images/023_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img29",
+        "href": "images/024_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img3",
+        "href": "images/011_HERT_9780123456789_ins_art_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img30",
+        "href": "images/025_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img31",
+        "href": "images/026_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img32",
+        "href": "images/Hert_9780593128459_epub3_039_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img33",
+        "href": "images/9780593128459_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img34",
+        "href": "images/Hert_9780593128459_epub3_040_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img35",
+        "href": "images/029_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img36",
+        "href": "images/028_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img37",
+        "href": "images/030_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img38",
+        "href": "images/031_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img39",
+        "href": "images/032_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img4",
+        "href": "images/002_HERT_9780123456789_ins_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img40",
+        "href": "images/033_Hert_9780593128442_all_art_r3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img41",
+        "href": "images/034_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img42",
+        "href": "images/035_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img43",
+        "href": "images/036_Hert_9780593128442_all_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img44",
+        "href": "images/002_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img45",
+        "href": "images/037_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img46",
+        "href": "images/038_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img47",
+        "href": "images/039_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img48",
+        "href": "images/040_Hert_9780593128442_all_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img49",
+        "href": "images/041_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img5",
+        "href": "images/003_HERT_9780123456789_ins_art_r3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img50",
+        "href": "images/042_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img51",
+        "href": "images/043_Hert_9780593128442_all_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img52",
+        "href": "images/044_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img53",
+        "href": "images/045_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img54",
+        "href": "images/046_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img55",
+        "href": "images/Hert_9780593128459_epub3_015_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img56",
+        "href": "images/047_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img57",
+        "href": "images/048_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img58",
+        "href": "images/049_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img59",
+        "href": "images/050_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img6",
+        "href": "images/004_HERT_9780123456789_ins_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img60",
+        "href": "images/051_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img61",
+        "href": "images/052_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img62",
+        "href": "images/053_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img63",
+        "href": "images/054_Hert_9780593128442_all_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img64",
+        "href": "images/055_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img65",
+        "href": "images/Hert_9780593128459_epub3_070_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img66",
+        "href": "images/005_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img67",
+        "href": "images/Hert_9780593128459_epub3_069_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img68",
+        "href": "images/056_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img69",
+        "href": "images/057_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img7",
+        "href": "images/006_HERT_9780123456789_ins_art_r3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img70",
+        "href": "images/058_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img71",
+        "href": "images/059_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img72",
+        "href": "images/060_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img73",
+        "href": "images/061_Hert_9780593128442_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img74",
+        "href": "images/062_Hert_9780593128442_all_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img75",
+        "href": "images/006_Hert_9780593128442_all_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img76",
+        "href": "images/007_Hert_9780593128442_all_art_r3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img77",
+        "href": "images/008_Hert_9780593128442_all_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img8",
+        "href": "images/005_HERT_9780123456789_ins_art_r1-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img9",
+        "href": "images/Hert_9780593128459_epub3_009_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "inlinetoc",
+        "href": "xhtml/Hert_9780593128459_epub3_toc_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ins",
+        "href": "xhtml/Hert_9780593128459_epub3_ins_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "xhtml/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nts",
+        "href": "xhtml/Hert_9780593128459_epub3_nts_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "prf",
+        "href": "xhtml/Hert_9780593128459_epub3_prf_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shift-Bold.otf",
+        "href": "fonts/Shift-Bold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "fonts/Shift-BoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "toc",
+        "href": "9780593128459_ncx.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "tp",
+        "href": "xhtml/Hert_9780593128459_epub3_tp_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

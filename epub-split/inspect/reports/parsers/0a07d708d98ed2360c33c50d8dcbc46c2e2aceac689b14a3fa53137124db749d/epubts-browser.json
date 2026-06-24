@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -107,6 +107,178 @@
       {
         "href": "Text/part0022.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "Images/cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "Styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id1",
+        "href": "Images/00001.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id11",
+        "href": "Text/part0001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id12",
+        "href": "Text/part0002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id13",
+        "href": "Text/part0003.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2",
+        "href": "Images/00002.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id3",
+        "href": "Images/00003.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id30",
+        "href": "Text/part0020.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id31",
+        "href": "Text/part0021.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id32",
+        "href": "Text/part0022.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id4",
+        "href": "Images/00004.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id5",
+        "href": "Images/00005.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id6",
+        "href": "Images/00006.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "page_css",
+        "href": "Styles/page_styles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "part0000.html",
+        "href": "Text/part0000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0004.html",
+        "href": "Text/part0004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0005.html",
+        "href": "Text/part0005.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0006.html",
+        "href": "Text/part0006.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0007.html",
+        "href": "Text/part0007.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0008.html",
+        "href": "Text/part0008.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0009.html",
+        "href": "Text/part0009.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0010.html",
+        "href": "Text/part0010.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0011.html",
+        "href": "Text/part0011.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0012.html",
+        "href": "Text/part0012.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0013.html",
+        "href": "Text/part0013.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0014.html",
+        "href": "Text/part0014.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0015.html",
+        "href": "Text/part0015.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0016.html",
+        "href": "Text/part0016.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0017.html",
+        "href": "Text/part0017.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0018.html",
+        "href": "Text/part0018.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0019.html",
+        "href": "Text/part0019.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "Text/titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

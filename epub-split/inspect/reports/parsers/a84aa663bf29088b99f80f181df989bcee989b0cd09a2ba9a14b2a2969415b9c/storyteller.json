@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -139,6 +139,1208 @@
       {
         "href": "xhtml/footnote.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "achapter",
+        "href": "xhtml/achapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "acknowledgments",
+        "href": "xhtml/acknowledgments.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "asterik-hr",
+        "href": "images/asterisks.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "chapter1",
+        "href": "xhtml/chapter1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter2",
+        "href": "xhtml/chapter2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter3",
+        "href": "xhtml/chapter3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter4",
+        "href": "xhtml/chapter4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter5",
+        "href": "xhtml/chapter5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter6",
+        "href": "xhtml/chapter6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter7",
+        "href": "xhtml/chapter7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter8",
+        "href": "xhtml/chapter8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter9",
+        "href": "xhtml/chapter9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "contents",
+        "href": "xhtml/contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "xhtml/copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyrightnotice",
+        "href": "xhtml/copyrightnotice.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/9780374600570.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "dedication",
+        "href": "xhtml/dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "footnote",
+        "href": "xhtml/footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "html-cover-page",
+        "href": "xhtml/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "image-1",
+        "href": "images/1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-10",
+        "href": "images/Fig_3-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-100",
+        "href": "images/pg313-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-101",
+        "href": "images/pg313-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-102",
+        "href": "images/pg313-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-103",
+        "href": "images/pg313-4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-104",
+        "href": "images/pg314-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-105",
+        "href": "images/pg314-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-106",
+        "href": "images/pg314-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-107",
+        "href": "images/pg314-4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-108",
+        "href": "images/pg314-5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-109",
+        "href": "images/pg314-6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-11",
+        "href": "images/Fig_3-4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-110",
+        "href": "images/pg314-7.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-111",
+        "href": "images/pg316-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-112",
+        "href": "images/pg318-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-113",
+        "href": "images/pg318-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-114",
+        "href": "images/pg318-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-115",
+        "href": "images/pg4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-116",
+        "href": "images/pg54.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-117",
+        "href": "images/pg55-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-118",
+        "href": "images/pg72-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-119",
+        "href": "images/pg72-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-12",
+        "href": "images/Fig_4-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-120",
+        "href": "images/pg72-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-121",
+        "href": "images/pg72-4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-122",
+        "href": "images/pg72-5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-123",
+        "href": "images/pg72-6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-124",
+        "href": "images/pg73-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-125",
+        "href": "images/pg95.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-126",
+        "href": "images/pg96-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-127",
+        "href": "images/pg96-10.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-128",
+        "href": "images/pg96-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-129",
+        "href": "images/pg96-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-13",
+        "href": "images/Fig_4-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-130",
+        "href": "images/pg96-5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-131",
+        "href": "images/pg96-6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-132",
+        "href": "images/pg96-7.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-133",
+        "href": "images/pg96-8.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-134",
+        "href": "images/pg96-9.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-135",
+        "href": "images/pg97-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-136",
+        "href": "images/pg97-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-137",
+        "href": "images/pg97-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-138",
+        "href": "images/pg97-4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-139",
+        "href": "images/pg97-5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-14",
+        "href": "images/Fig_4-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-140",
+        "href": "images/pg97-7.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-141",
+        "href": "images/pg98-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-142",
+        "href": "images/pg98-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-143",
+        "href": "images/pg98-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-144",
+        "href": "images/pg99-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-145",
+        "href": "images/Title_Page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-146",
+        "href": "images/301246_510.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-15",
+        "href": "images/Fig_4-4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-16",
+        "href": "images/Fig_4-5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-17",
+        "href": "images/Fig_5-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-18",
+        "href": "images/Fig_5-10.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-19",
+        "href": "images/Fig_5-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-2",
+        "href": "images/6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-20",
+        "href": "images/Fig_5-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-21",
+        "href": "images/Fig_5-4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-22",
+        "href": "images/Fig_5-5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-23",
+        "href": "images/Fig_5-6a.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-24",
+        "href": "images/Fig_5-6b.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-25",
+        "href": "images/Fig_5-7.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-26",
+        "href": "images/Fig_5-8.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-27",
+        "href": "images/Fig_5-9.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-28",
+        "href": "images/Fig_6-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-29",
+        "href": "images/Fig_6-10.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-3",
+        "href": "images/Author.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-30",
+        "href": "images/Fig_6-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-31",
+        "href": "images/Fig_6-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-32",
+        "href": "images/Fig_6-4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-33",
+        "href": "images/Fig_6-5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-34",
+        "href": "images/Fig_6-6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-35",
+        "href": "images/Fig_6-7.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-36",
+        "href": "images/Fig_6-8.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-37",
+        "href": "images/Fig_6-9.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-38",
+        "href": "images/Fig_7-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-39",
+        "href": "images/Fig_7-10.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-4",
+        "href": "images/Fig_1-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-40",
+        "href": "images/Fig_7-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-41",
+        "href": "images/Fig_7-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-42",
+        "href": "images/Fig_7-4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-43",
+        "href": "images/Fig_7-5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-44",
+        "href": "images/Fig_7-6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-45",
+        "href": "images/Fig_7-7.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-46",
+        "href": "images/Fig_7-8.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-47",
+        "href": "images/Fig_7-9.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-48",
+        "href": "images/Fig_9-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-49",
+        "href": "images/Fig_9-10.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-5",
+        "href": "images/Fig_1-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-50",
+        "href": "images/Fig_9-11.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-51",
+        "href": "images/Fig_9-12.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-52",
+        "href": "images/Fig_9-13.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-53",
+        "href": "images/Fig_9-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-54",
+        "href": "images/Fig_9-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-55",
+        "href": "images/Fig_9-4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-56",
+        "href": "images/Fig_9-5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-57",
+        "href": "images/Fig_9-6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-58",
+        "href": "images/Fig_9-7.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-59",
+        "href": "images/Fig_9-8.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-6",
+        "href": "images/Fig_1-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-60",
+        "href": "images/Fig_9-9.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-61",
+        "href": "images/NewsletterSignup.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-62",
+        "href": "images/pg102.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-63",
+        "href": "images/pg103.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-64",
+        "href": "images/pg105.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-65",
+        "href": "images/pg124-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-66",
+        "href": "images/pg124-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-67",
+        "href": "images/pg124-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-68",
+        "href": "images/pg124-4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-69",
+        "href": "images/pg124-5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-7",
+        "href": "images/Fig_2-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-70",
+        "href": "images/pg129.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-71",
+        "href": "images/pg132.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-72",
+        "href": "images/pg134-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-73",
+        "href": "images/pg156-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-74",
+        "href": "images/pg156-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-75",
+        "href": "images/pg158-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-76",
+        "href": "images/pg160-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-77",
+        "href": "images/pg160-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-78",
+        "href": "images/pg164.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-79",
+        "href": "images/pg187.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-8",
+        "href": "images/Fig_3-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-80",
+        "href": "images/pg20-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-81",
+        "href": "images/pg21-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-82",
+        "href": "images/pg21-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-83",
+        "href": "images/pg22-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-84",
+        "href": "images/pg223.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-85",
+        "href": "images/pg262.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-86",
+        "href": "images/pg264.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-87",
+        "href": "images/pg271.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-88",
+        "href": "images/pg277-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-89",
+        "href": "images/pg277-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-9",
+        "href": "images/Fig_3-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-90",
+        "href": "images/pg278-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-91",
+        "href": "images/pg278-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-92",
+        "href": "images/pg279-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-93",
+        "href": "images/pg279-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-94",
+        "href": "images/pg280-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-95",
+        "href": "images/pg280-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-96",
+        "href": "images/pg286-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-97",
+        "href": "images/pg286-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-98",
+        "href": "images/pg311-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-99",
+        "href": "images/pg311-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-svg10",
+        "href": "images/Fig_4-1.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg11",
+        "href": "images/Fig_4-2.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg12",
+        "href": "images/Fig_4-3.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg13",
+        "href": "images/Fig_4-4.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg14",
+        "href": "images/Fig_4-5.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg15",
+        "href": "images/Fig_5-1.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg16",
+        "href": "images/Fig_5-10.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg17",
+        "href": "images/Fig_5-2.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg18",
+        "href": "images/Fig_5-3.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg19",
+        "href": "images/Fig_5-4.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg2",
+        "href": "images/Fig_1-1.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg20",
+        "href": "images/Fig_5-5.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg22",
+        "href": "images/Fig_5-6a.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg23",
+        "href": "images/Fig_5-6b.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg24",
+        "href": "images/Fig_5-7.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg25",
+        "href": "images/Fig_5-8.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg26",
+        "href": "images/Fig_5-9.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg27",
+        "href": "images/Fig_6-1.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg28",
+        "href": "images/Fig_6-10.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg29",
+        "href": "images/Fig_6-2.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg3",
+        "href": "images/Fig_1-2.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg30",
+        "href": "images/Fig_6-3.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg31",
+        "href": "images/Fig_6-4.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg32",
+        "href": "images/Fig_6-5.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg33",
+        "href": "images/Fig_6-6.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg34",
+        "href": "images/Fig_6-7.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg35",
+        "href": "images/Fig_6-8.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg36",
+        "href": "images/Fig_6-9.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg37",
+        "href": "images/Fig_7-1.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg38",
+        "href": "images/Fig_7-10.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg39",
+        "href": "images/Fig_7-2.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg4",
+        "href": "images/Fig_1-3.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg40",
+        "href": "images/Fig_7-3.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg41",
+        "href": "images/Fig_7-4.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg42",
+        "href": "images/Fig_7-5.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg43",
+        "href": "images/Fig_7-6.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg44",
+        "href": "images/Fig_7-7.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg45",
+        "href": "images/Fig_7-8.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg46",
+        "href": "images/Fig_7-9.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg47",
+        "href": "images/Fig_9-1.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg48",
+        "href": "images/Fig_9-10.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg49",
+        "href": "images/Fig_9-11.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg5",
+        "href": "images/Fig_2-1.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg50",
+        "href": "images/Fig_9-12.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg51",
+        "href": "images/Fig_9-13.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg52",
+        "href": "images/Fig_9-2.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg53",
+        "href": "images/Fig_9-3.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg54",
+        "href": "images/Fig_9-4.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg55",
+        "href": "images/Fig_9-5.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg56",
+        "href": "images/Fig_9-6.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg57",
+        "href": "images/Fig_9-7.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg58",
+        "href": "images/Fig_9-8.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg59",
+        "href": "images/Fig_9-9.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg6",
+        "href": "images/Fig_3-1.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg7",
+        "href": "images/Fig_3-2.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg8",
+        "href": "images/Fig_3-3.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "image-svg9",
+        "href": "images/Fig_3-4.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "index",
+        "href": "xhtml/index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "mini_toc",
+        "href": "xhtml/mini_toc.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav",
+        "href": "nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "newsletter",
+        "href": "xhtml/newsletter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "noteaboutauthor",
+        "href": "xhtml/noteaboutauthor.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "notes-ch1",
+        "href": "xhtml/notes-ch1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "notes-ch2",
+        "href": "xhtml/notes-ch2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "notes-ch3",
+        "href": "xhtml/notes-ch3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "notes-ch4",
+        "href": "xhtml/notes-ch4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "notes-ch6",
+        "href": "xhtml/notes-ch6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "notes-ch7",
+        "href": "xhtml/notes-ch7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "notes-ch8",
+        "href": "xhtml/notes-ch8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part1",
+        "href": "xhtml/part1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part2",
+        "href": "xhtml/part2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part3",
+        "href": "xhtml/part3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "tit",
+        "href": "xhtml/title.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "toc",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
       }
     ]
   }

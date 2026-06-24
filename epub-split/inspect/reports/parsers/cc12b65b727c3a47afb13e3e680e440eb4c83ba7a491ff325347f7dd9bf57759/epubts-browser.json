@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -35,6 +35,53 @@
       {
         "href": "part0004.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "leaf-image0000",
+        "href": "images/leaf-image0000.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "leaf0000",
+        "href": "leaf0000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "part0000",
+        "href": "part0000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0001",
+        "href": "part0001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0002",
+        "href": "part0002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0003",
+        "href": "part0003.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0004",
+        "href": "part0004.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

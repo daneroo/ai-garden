@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import { compareBook, projectNodeBrowserMismatches, projectNodeStorytellerMismatches, type BaselineHistogram } from "./compare.ts";
-import type { ParserOutput, SpineItem } from "./schema.ts";
+import type { ManifestItem, ParserOutput, SpineItem } from "./schema.ts";
 
 // ── hand-built ParserOutput helpers ─────────────────────────────────────────
 
@@ -10,12 +10,13 @@ function opened(
   title: string | null,
   creator: string | null,
   date: string | null,
-  spine: { href: string; linear: boolean }[] = []
+  spine: { href: string; linear: boolean }[] = [],
+  manifest: { id: string; href: string; mediaType: string | null }[] = []
 ): ParserOutput {
   return {
-    schemaVersion: 2,
+    schemaVersion: 3,
     meta: { parser, parserVersion: "1.0.0", openStatus: "opened" },
-    content: { metadata: { title, creator, date }, spine },
+    content: { metadata: { title, creator, date }, spine, manifest },
   };
 }
 
@@ -67,7 +68,7 @@ describe("compareBook", () => {
 
   test("throws when either input is not opened", () => {
     const a: ParserOutput = {
-      schemaVersion: 2,
+      schemaVersion: 3,
       meta: { parser: "epubts-node", parserVersion: "1.0.0", openStatus: "open-failed", openFailure: { category: "Error", message: "bad" } },
     };
     const b = opened("epubts-browser", "Title", null, null);
@@ -142,6 +143,61 @@ describe("compareBook — spine", () => {
     const a = opened("epubts-node", null, null, null, [{ href: "ch01.xhtml", linear: true }]);
     const b = opened("epubts-browser", null, null, null, [{ href: "ch01.xhtml", linear: false }]);
     expect(compareBook(a, b).spine.status).toBe("agree");
+  });
+});
+
+// ── compareManifest (via compareBook) ───────────────────────────────────────
+
+function mitem(id: string, href: string): ManifestItem {
+  return { id, href, mediaType: "application/xhtml+xml" };
+}
+
+describe("compareBook — manifest", () => {
+  test("identical manifest sets agree", () => {
+    const manifest = [mitem("ch01", "ch01.xhtml"), mitem("ch02", "ch02.xhtml")];
+    const a = opened("epubts-node", null, null, null, [], manifest);
+    const b = opened("epubts-browser", null, null, null, [], manifest);
+    const result = compareBook(a, b);
+    expect(result.manifest.status).toBe("agree");
+    expect(result.manifest.countA).toBe(2);
+    expect(result.manifest.onlyInA).toEqual([]);
+    expect(result.manifest.onlyInB).toEqual([]);
+  });
+
+  test("empty manifests agree", () => {
+    const a = opened("epubts-node", null, null, null, [], []);
+    const b = opened("epubts-browser", null, null, null, [], []);
+    expect(compareBook(a, b).manifest.status).toBe("agree");
+  });
+
+  test("different order still agrees (set comparison)", () => {
+    const a = opened("epubts-node", null, null, null, [], [mitem("ch01", "ch01.xhtml"), mitem("ch02", "ch02.xhtml")]);
+    const b = opened("epubts-browser", null, null, null, [], [mitem("ch02", "ch02.xhtml"), mitem("ch01", "ch01.xhtml")]);
+    expect(compareBook(a, b).manifest.status).toBe("agree");
+  });
+
+  test("extra item in A: onlyInA populated", () => {
+    const a = opened("epubts-node", null, null, null, [], [mitem("ch01", "ch01.xhtml"), mitem("ch02", "ch02.xhtml")]);
+    const b = opened("epubts-browser", null, null, null, [], [mitem("ch01", "ch01.xhtml")]);
+    const result = compareBook(a, b);
+    expect(result.manifest.status).toBe("differ");
+    expect(result.manifest.onlyInA).toEqual(["ch02.xhtml"]);
+    expect(result.manifest.onlyInB).toEqual([]);
+  });
+
+  test("extra item in B: onlyInB populated", () => {
+    const a = opened("epubts-node", null, null, null, [], [mitem("ch01", "ch01.xhtml")]);
+    const b = opened("epubts-browser", null, null, null, [], [mitem("ch01", "ch01.xhtml"), mitem("ch02", "ch02.xhtml")]);
+    const result = compareBook(a, b);
+    expect(result.manifest.status).toBe("differ");
+    expect(result.manifest.onlyInA).toEqual([]);
+    expect(result.manifest.onlyInB).toEqual(["ch02.xhtml"]);
+  });
+
+  test("mediaType is ignored in comparison", () => {
+    const a = opened("epubts-node", null, null, null, [], [{ id: "ch01", href: "ch01.xhtml", mediaType: "application/xhtml+xml" }]);
+    const b = opened("epubts-browser", null, null, null, [], [{ id: "ch01", href: "ch01.xhtml", mediaType: null }]);
+    expect(compareBook(a, b).manifest.status).toBe("agree");
   });
 });
 

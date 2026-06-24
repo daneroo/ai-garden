@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -147,6 +147,273 @@
       {
         "href": "xhtml/034_next-reads.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover-image",
+        "href": "images/9780593831854_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "DINNextLTPro-Bold.otf",
+        "href": "fonts/DINNextLTPro-Bold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "DINNextLTPro-BoldItalic.otf",
+        "href": "fonts/DINNextLTPro-BoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "DINNextLTPro-Condensed.otf",
+        "href": "fonts/DINNextLTPro-Condensed.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "DINNextLTPro-CondIta.otf",
+        "href": "fonts/DINNextLTPro-CondIta.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "DINNextLTPro-Italic.otf",
+        "href": "fonts/DINNextLTPro-Italic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "DINNextLTPro-Regular.otf",
+        "href": "fonts/DINNextLTPro-Regular.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "EurostileLTPro-Demi.otf",
+        "href": "fonts/EurostileLTPro-Demi.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "EurostileLTPro-DemiOblique.otf",
+        "href": "fonts/EurostileLTPro-DemiOblique.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "EurostileLTPro-Oblique.otf",
+        "href": "fonts/EurostileLTPro-Oblique.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "EurostileLTPro.otf",
+        "href": "fonts/EurostileLTPro.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "idGeneratedStyles.css",
+        "href": "css/9780593831854_style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "9780593831854_ncx.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "xhtml/034_next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "page_v.jpg",
+        "href": "images/9780593831854_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "prh_standard.css",
+        "href": "css/prh_standard.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "Shift-Bold.otf",
+        "href": "fonts/Shift-Bold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "fonts/Shift-BoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "x001_cvi_Cover",
+        "href": "xhtml/001_cvi_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x002_ac_Also_by_Sebastian_Ma",
+        "href": "xhtml/002_ac_Also_by_Sebastian_Ma.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x003_tit_Title_Page",
+        "href": "xhtml/003_tit_Title_Page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x004_crt_Copyright",
+        "href": "xhtml/004_crt_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x005_toc_Contents",
+        "href": "xhtml/005_toc_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x006_ded_Dedication",
+        "href": "xhtml/006_ded_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x007_epi_Epigraph",
+        "href": "xhtml/007_epi_Epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x008_in_Introduction_The_Swe",
+        "href": "xhtml/008_in_Introduction_The_Swe.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x009_c001_Chapter_1_Destiny",
+        "href": "xhtml/009_c001_Chapter_1_Destiny.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x010_c002_Chapter_2_Deep_Philo",
+        "href": "xhtml/010_c002_Chapter_2_Deep_Philo.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x011_c003_Chapter_3_The_Jedi",
+        "href": "xhtml/011_c003_Chapter_3_The_Jedi.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x012_c004_Chapter_4_The_Gang_o",
+        "href": "xhtml/012_c004_Chapter_4_The_Gang_o.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x013_c005_Chapter_5_Founding_D",
+        "href": "xhtml/013_c005_Chapter_5_Founding_D.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x014_c006_Chapter_6_Atari",
+        "href": "xhtml/014_c006_Chapter_6_Atari.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x015_c007_Chapter_7_Thiel_Trou",
+        "href": "xhtml/015_c007_Chapter_7_Thiel_Trou.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x016_c008_Chapter_8_Get_Google",
+        "href": "xhtml/016_c008_Chapter_8_Get_Google.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x017_c009_Chapter_9_Intuition",
+        "href": "xhtml/017_c009_Chapter_9_Intuition.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x018_c010_Chapter_10_Out_of_Ed",
+        "href": "xhtml/018_c010_Chapter_10_Out_of_Ed.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x019_c011_Chapter_11_P0_Plus_P",
+        "href": "xhtml/019_c011_Chapter_11_P0_Plus_P.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x020_c012_Chapter_12_The_Agent",
+        "href": "xhtml/020_c012_Chapter_12_The_Agent.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x021_c013_Chapter_13_On_Langua",
+        "href": "xhtml/021_c013_Chapter_13_On_Langua.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x022_c014_Chapter_14_Project_M",
+        "href": "xhtml/022_c014_Chapter_14_Project_M.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x023_c015_Chapter_15_Fermat_fo",
+        "href": "xhtml/023_c015_Chapter_15_Fermat_fo.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x024_c016_Chapter_16_The_Power",
+        "href": "xhtml/024_c016_Chapter_16_The_Power.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x025_c017_Chapter_17_RaceGPT",
+        "href": "xhtml/025_c017_Chapter_17_RaceGPT.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x026_c018_Chapter_18_We_re_Coo",
+        "href": "xhtml/026_c018_Chapter_18_We_re_Coo.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x027_c019_Chapter_19_Step_by_S",
+        "href": "xhtml/027_c019_Chapter_19_Step_by_S.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x028_c020_Chapter_20_Comeback",
+        "href": "xhtml/028_c020_Chapter_20_Comeback.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x029_c021_Epilogue_Turing_s_Ch",
+        "href": "xhtml/029_c021_Epilogue_Turing_s_Ch.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x030_ack_Acknowledgments",
+        "href": "xhtml/030_ack_Acknowledgments.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x031_end_Notes",
+        "href": "xhtml/031_end_Notes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x032_idx_Index",
+        "href": "xhtml/032_idx_Index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x033_ata_About_the_Author",
+        "href": "xhtml/033_ata_About_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780593831854_nav",
+        "href": "9780593831854_nav.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -83,6 +83,118 @@
       {
         "href": "ch03s03.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "bookcover-generated.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "docbook-css",
+        "href": "docbook-epub.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "html-css",
+        "href": "epubbooks.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "htmltoc",
+        "href": "bk01-toc.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306265636768",
+        "href": "ch03s01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306265919664",
+        "href": "ch02.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306265937920",
+        "href": "ch02s01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306278478576",
+        "href": "ch03s02.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306282343952",
+        "href": "ch02s03.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306299219360",
+        "href": "ch01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306299330272",
+        "href": "pr03.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306299499120",
+        "href": "ch01s02.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306299541280",
+        "href": "pr01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306299588832",
+        "href": "ch01s01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306299647664",
+        "href": "pr02.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306299742832",
+        "href": "index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306299978384",
+        "href": "ch01s03.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306304912768",
+        "href": "ch03s03.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306306947184",
+        "href": "ch02s02.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id-idp140306307188064",
+        "href": "ch03.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
       }
     ]
   }

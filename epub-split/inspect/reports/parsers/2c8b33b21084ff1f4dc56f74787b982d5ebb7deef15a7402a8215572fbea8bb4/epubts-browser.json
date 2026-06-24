@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -115,6 +115,168 @@
       {
         "href": "25_Index.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "Chapter01",
+        "href": "08_Chapter01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter02",
+        "href": "09_Chapter02.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter03",
+        "href": "10_Chapter03.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter04",
+        "href": "11_Chapter04.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter05",
+        "href": "12_Chapter05.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter06",
+        "href": "13_Chapter06.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter07",
+        "href": "14_Chapter07.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter08",
+        "href": "15_Chapter08.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter09",
+        "href": "17_Chapter09.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter10",
+        "href": "18_Chapter10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter11",
+        "href": "19_Chapter11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter12",
+        "href": "20_Chapter12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter13",
+        "href": "21_Chapter13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter14",
+        "href": "22_Chapter14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter15",
+        "href": "23_Chapter15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Contents",
+        "href": "05_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Copyright",
+        "href": "03_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/Cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Ded",
+        "href": "04_Ded.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Halftitle",
+        "href": "01_Halftitle.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "img_p45",
+        "href": "images/img_p45.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Index",
+        "href": "25_Index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Intro",
+        "href": "06_Intro.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "Part01",
+        "href": "07_Part01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Part02",
+        "href": "16_Part02.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "pub",
+        "href": "images/img_pub.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Reading",
+        "href": "24_Reading.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "style",
+        "href": "template.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "Title",
+        "href": "02_Title.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "toc",
+        "href": "Nav.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

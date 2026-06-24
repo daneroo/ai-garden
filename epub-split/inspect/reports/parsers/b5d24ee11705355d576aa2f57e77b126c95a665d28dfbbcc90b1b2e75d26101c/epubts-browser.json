@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -175,6 +175,253 @@
       {
         "href": "Text/Toll_The_Hounds_043_Epilogue.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "style.css",
+        "href": "Styles/style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "Toll_The_Hounds_001_cover.html",
+        "href": "Text/Toll_The_Hounds_001_cover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_003_toc.html",
+        "href": "Text/Toll_The_Hounds_003_toc.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_004_AbouttheAuthor.html",
+        "href": "Text/Toll_The_Hounds_004_AbouttheAuthor.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_005_PraisefortheAuthor.html",
+        "href": "Text/Toll_The_Hounds_005_PraisefortheAuthor.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_006_BytheSameAuthor.html",
+        "href": "Text/Toll_The_Hounds_006_BytheSameAuthor.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_007_TitlePage.html",
+        "href": "Text/Toll_The_Hounds_007_TitlePage.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_008_CopyrightPage.html",
+        "href": "Text/Toll_The_Hounds_008_CopyrightPage.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_01.jpg",
+        "href": "Images/Toll_The_Hounds_01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Toll_The_Hounds_010_Dedication.html",
+        "href": "Text/Toll_The_Hounds_010_Dedication.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_011_Acknowledgements.html",
+        "href": "Text/Toll_The_Hounds_011_Acknowledgements.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_012.html",
+        "href": "Text/Toll_The_Hounds_012.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_013_chapter01.html",
+        "href": "Text/Toll_The_Hounds_013_chapter01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_014_Prologue.html",
+        "href": "Text/Toll_The_Hounds_014_Prologue.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_015_part01.html",
+        "href": "Text/Toll_The_Hounds_015_part01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_016_chapter02.html",
+        "href": "Text/Toll_The_Hounds_016_chapter02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_017_chapter03.html",
+        "href": "Text/Toll_The_Hounds_017_chapter03.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_018_chapter04.html",
+        "href": "Text/Toll_The_Hounds_018_chapter04.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_019_chapter05.html",
+        "href": "Text/Toll_The_Hounds_019_chapter05.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_02.jpg",
+        "href": "Images/Toll_The_Hounds_02.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Toll_The_Hounds_020_chapter06.html",
+        "href": "Text/Toll_The_Hounds_020_chapter06.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_021_chapter07.html",
+        "href": "Text/Toll_The_Hounds_021_chapter07.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_022_part02.html",
+        "href": "Text/Toll_The_Hounds_022_part02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_023_chapter08.html",
+        "href": "Text/Toll_The_Hounds_023_chapter08.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_024_chapter09.html",
+        "href": "Text/Toll_The_Hounds_024_chapter09.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_025_chapter10.html",
+        "href": "Text/Toll_The_Hounds_025_chapter10.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_026_chapter11.html",
+        "href": "Text/Toll_The_Hounds_026_chapter11.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_027_chapter12.html",
+        "href": "Text/Toll_The_Hounds_027_chapter12.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_028_chapter13.html",
+        "href": "Text/Toll_The_Hounds_028_chapter13.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_029_part03.html",
+        "href": "Text/Toll_The_Hounds_029_part03.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_03.jpg",
+        "href": "Images/Toll_The_Hounds_03.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Toll_The_Hounds_030_chapter14.html",
+        "href": "Text/Toll_The_Hounds_030_chapter14.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_031_chapter15.html",
+        "href": "Text/Toll_The_Hounds_031_chapter15.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_032_chapter16.html",
+        "href": "Text/Toll_The_Hounds_032_chapter16.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_033_chapter17.html",
+        "href": "Text/Toll_The_Hounds_033_chapter17.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_034_chapter18.html",
+        "href": "Text/Toll_The_Hounds_034_chapter18.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_035_chapter19.html",
+        "href": "Text/Toll_The_Hounds_035_chapter19.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_036_part04.html",
+        "href": "Text/Toll_The_Hounds_036_part04.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_037_chapter20.html",
+        "href": "Text/Toll_The_Hounds_037_chapter20.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_038_chapter21.html",
+        "href": "Text/Toll_The_Hounds_038_chapter21.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_039_chapter22.html",
+        "href": "Text/Toll_The_Hounds_039_chapter22.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_04.jpg",
+        "href": "Images/Toll_The_Hounds_04.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Toll_The_Hounds_040_chapter23.html",
+        "href": "Text/Toll_The_Hounds_040_chapter23.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_041_chapter24.html",
+        "href": "Text/Toll_The_Hounds_041_chapter24.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_042_chapter25.html",
+        "href": "Text/Toll_The_Hounds_042_chapter25.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_043_Epilogue.html",
+        "href": "Text/Toll_The_Hounds_043_Epilogue.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Toll_The_Hounds_05.jpg",
+        "href": "Images/Toll_The_Hounds_05.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Toll_The_Hounds_F1.jpg",
+        "href": "Images/Toll_The_Hounds_F1.jpg",
+        "mediaType": "image/jpeg"
       }
     ]
   }

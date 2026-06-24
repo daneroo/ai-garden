@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -28,6 +28,48 @@
       {
         "href": "braidingtext-2.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "braidingcover",
+        "href": "cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "braidingtext",
+        "href": "braidingtext.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "braidingtext-1",
+        "href": "braidingtext-1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "braidingtext-2",
+        "href": "braidingtext-2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "image/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "milkweedlogo",
+        "href": "image/milkweedlogo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "NewYork_line.css",
+        "href": "css/ebase_line.css",
+        "mediaType": "text/css"
       }
     ]
   }

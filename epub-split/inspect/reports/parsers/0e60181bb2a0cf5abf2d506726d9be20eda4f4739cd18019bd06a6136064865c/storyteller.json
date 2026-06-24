@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -403,6 +403,558 @@
       {
         "href": "xhtml/next-reads.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover-image",
+        "href": "images/9780756413088_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "DAW_CR_logo.jpg",
+        "href": "images/DAW_CR_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "idGeneratedStyles.css",
+        "href": "css/9780756413088_style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "MicrogrammaPro-BoldExtended.otf",
+        "href": "fonts/MicrogrammaPro-BoldExtended.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "MicrogrammaPro-MdExtended.otf",
+        "href": "fonts/MicrogrammaPro-MdExtended.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ncx",
+        "href": "9780756413088_ncx.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "xhtml/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "page_iii.jpg",
+        "href": "images/9780756413088_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Shift-Bold.otf",
+        "href": "fonts/Shift-Bold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "fonts/Shift-BoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "x01_Cover",
+        "href": "xhtml/01_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x02_Also_by_Christopher_R",
+        "href": "xhtml/02_Also_by_Christopher_R.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x02D10_copy.jpg",
+        "href": "images/02D10_copy.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x03_Title_Page",
+        "href": "xhtml/03_Title_Page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x04_Copyright",
+        "href": "xhtml/04_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x05_Dedication",
+        "href": "xhtml/05_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x06_Contents",
+        "href": "xhtml/06_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x07_Chapter_1_Behold_a_Pa",
+        "href": "xhtml/07_Chapter_1_Behold_a_Pa.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x08_Chapter_2_The_Firstbo",
+        "href": "xhtml/08_Chapter_2_The_Firstbo.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x09_Chapter_3_The_Empire_",
+        "href": "xhtml/09_Chapter_3_The_Empire_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x10_Chapter_4_Children_of",
+        "href": "xhtml/10_Chapter_4_Children_of.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x11_Chapter_5_Tamerlane",
+        "href": "xhtml/11_Chapter_5_Tamerlane.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x12_Chapter_6_Alone",
+        "href": "xhtml/12_Chapter_6_Alone.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x13_Chapter_7_Before_the_",
+        "href": "xhtml/13_Chapter_7_Before_the_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x14_Chapter_8_Dream_Evil",
+        "href": "xhtml/14_Chapter_8_Dream_Evil.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x15_Chapter_9_The_Devil_s",
+        "href": "xhtml/15_Chapter_9_The_Devil_s.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x16_Chapter_10_Pinion_and",
+        "href": "xhtml/16_Chapter_10_Pinion_and.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x17_Chapter_11_Decimation",
+        "href": "xhtml/17_Chapter_11_Decimation.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x18_Chapter_12_Udax",
+        "href": "xhtml/18_Chapter_12_Udax.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x19_Chapter_13_Too_Close_",
+        "href": "xhtml/19_Chapter_13_Too_Close_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x20_Chapter_14_Request_an",
+        "href": "xhtml/20_Chapter_14_Request_an.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x21_Chapter_15_The_Shadow",
+        "href": "xhtml/21_Chapter_15_The_Shadow.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x22_Chapter_16_Other_Devi",
+        "href": "xhtml/22_Chapter_16_Other_Devi.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x23_Chapter_17_Lorian",
+        "href": "xhtml/23_Chapter_17_Lorian.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x24_Chapter_18_Night_Jour",
+        "href": "xhtml/24_Chapter_18_Night_Jour.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x25_Chapter_19_The_Jaws_A",
+        "href": "xhtml/25_Chapter_19_The_Jaws_A.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x26_Chapter_20_The_Aquila",
+        "href": "xhtml/26_Chapter_20_The_Aquila.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x27_Chapter_21_Demon_in_B",
+        "href": "xhtml/27_Chapter_21_Demon_in_B.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x28_Chapter_22_Into_the_M",
+        "href": "xhtml/28_Chapter_22_Into_the_M.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x29_Chapter_23_Kingdoms_o",
+        "href": "xhtml/29_Chapter_23_Kingdoms_o.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x30_Chapter_24_Beyond_the",
+        "href": "xhtml/30_Chapter_24_Beyond_the.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x31_Chapter_25_In_the_Bel",
+        "href": "xhtml/31_Chapter_25_In_the_Bel.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x32_Chapter_26_The_Vayada",
+        "href": "xhtml/32_Chapter_26_The_Vayada.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x33_Chapter_27_The_Battle",
+        "href": "xhtml/33_Chapter_27_The_Battle.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x34_Chapter_28_The_Devil_",
+        "href": "xhtml/34_Chapter_28_The_Devil_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x35_Chapter_29_Far_Beyond",
+        "href": "xhtml/35_Chapter_29_Far_Beyond.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x36_Chapter_30_Selene",
+        "href": "xhtml/36_Chapter_30_Selene.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x37_Chapter_31_The_Cloud_",
+        "href": "xhtml/37_Chapter_31_The_Cloud_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x38_Chapter_32_Lions",
+        "href": "xhtml/38_Chapter_32_Lions.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x39_Chapter_33_There_Are_",
+        "href": "xhtml/39_Chapter_33_There_Are_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x40_Chapter_34_Majesty_Mo",
+        "href": "xhtml/40_Chapter_34_Majesty_Mo.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x41_Chapter_35_Those_Thin",
+        "href": "xhtml/41_Chapter_35_Those_Thin.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x42_Chapter_36_The_First_",
+        "href": "xhtml/42_Chapter_36_The_First_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x43_Chapter_37_Blade_With",
+        "href": "xhtml/43_Chapter_37_Blade_With.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x44_Chapter_38_Valka_Awak",
+        "href": "xhtml/44_Chapter_38_Valka_Awak.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x45_Chapter_39_The_Counci",
+        "href": "xhtml/45_Chapter_39_The_Counci.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x46_Chapter_40_The_Plan",
+        "href": "xhtml/46_Chapter_40_The_Plan.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x47_Chapter_41_The_Good_S",
+        "href": "xhtml/47_Chapter_41_The_Good_S.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x48_Chapter_42_Impossible",
+        "href": "xhtml/48_Chapter_42_Impossible.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x49_Chapter_43_Purgatory",
+        "href": "xhtml/49_Chapter_43_Purgatory.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x50_Chapter_44_Along_Come",
+        "href": "xhtml/50_Chapter_44_Along_Come.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x51_Chapter_45_Visitation",
+        "href": "xhtml/51_Chapter_45_Visitation.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x52_Chapter_46_Shadows_of",
+        "href": "xhtml/52_Chapter_46_Shadows_of.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x53_Chapter_47_Once_a_Myr",
+        "href": "xhtml/53_Chapter_47_Once_a_Myr.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x54_Chapter_48_Halfmortal",
+        "href": "xhtml/54_Chapter_48_Halfmortal.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x55_Chapter_49_Regenerati",
+        "href": "xhtml/55_Chapter_49_Regenerati.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x56_Chapter_50_Evil_Eyes",
+        "href": "xhtml/56_Chapter_50_Evil_Eyes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x57_Chapter_51_The_Mercha",
+        "href": "xhtml/57_Chapter_51_The_Mercha.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x58_Chapter_52_Falling_Of",
+        "href": "xhtml/58_Chapter_52_Falling_Of.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x59_Chapter_53_The_Golden",
+        "href": "xhtml/59_Chapter_53_The_Golden.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x60_Chapter_54_Unlooked-F",
+        "href": "xhtml/60_Chapter_54_Unlooked-F.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x61_Chapter_55_Reunion",
+        "href": "xhtml/61_Chapter_55_Reunion.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x62_Chapter_56_Meeting_of",
+        "href": "xhtml/62_Chapter_56_Meeting_of.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x63_Chapter_57_Gabriel_s_",
+        "href": "xhtml/63_Chapter_57_Gabriel_s_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x64_Chapter_58_Island_in_",
+        "href": "xhtml/64_Chapter_58_Island_in_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x65_Chapter_59_Island_in_",
+        "href": "xhtml/65_Chapter_59_Island_in_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x66_Chapter_60_The_Librar",
+        "href": "xhtml/66_Chapter_60_The_Librar.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x67_Chapter_61_Horizon",
+        "href": "xhtml/67_Chapter_61_Horizon.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x68_Chapter_62_Computer_G",
+        "href": "xhtml/68_Chapter_62_Computer_G.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x69_Chapter_63_Late_Goodb",
+        "href": "xhtml/69_Chapter_63_Late_Goodb.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x70_Chapter_64_The_Last_C",
+        "href": "xhtml/70_Chapter_64_The_Last_C.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x71_Chapter_65_The_Lone_a",
+        "href": "xhtml/71_Chapter_65_The_Lone_a.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x72_Chapter_66_Empire_of_",
+        "href": "xhtml/72_Chapter_66_Empire_of_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x73_Chapter_67_The_Summon",
+        "href": "xhtml/73_Chapter_67_The_Summon.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x74_Chapter_68_Annica",
+        "href": "xhtml/74_Chapter_68_Annica.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x75_Chapter_69_The_Highes",
+        "href": "xhtml/75_Chapter_69_The_Highes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x76_Chapter_70_The_Agony",
+        "href": "xhtml/76_Chapter_70_The_Agony.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x77_Chapter_71_Whispers",
+        "href": "xhtml/77_Chapter_71_Whispers.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x78_Chapter_72_Between_th",
+        "href": "xhtml/78_Chapter_72_Between_th.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x79_Chapter_73_Berenike",
+        "href": "xhtml/79_Chapter_73_Berenike.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x80_Chapter_74_Phylacteri",
+        "href": "xhtml/80_Chapter_74_Phylacteri.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x81_Chapter_75_The_Noise_",
+        "href": "xhtml/81_Chapter_75_The_Noise_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x82_Chapter_76_The_Giant",
+        "href": "xhtml/82_Chapter_76_The_Giant.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x83_Chapter_77_Upon_the_R",
+        "href": "xhtml/83_Chapter_77_Upon_the_R.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x84_Chapter_78_Of_Rats_an",
+        "href": "xhtml/84_Chapter_78_Of_Rats_an.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x85_Chapter_79_The_Dismal",
+        "href": "xhtml/85_Chapter_79_The_Dismal.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x86_Chapter_80_Black_Sun",
+        "href": "xhtml/86_Chapter_80_Black_Sun.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x87_Chapter_81_The_Labyri",
+        "href": "xhtml/87_Chapter_81_The_Labyri.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x88_Chapter_82_The_Depths",
+        "href": "xhtml/88_Chapter_82_The_Depths.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x89_Chapter_83_No_Man_s_L",
+        "href": "xhtml/89_Chapter_83_No_Man_s_L.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x90_Chapter_84_The_Crawle",
+        "href": "xhtml/90_Chapter_84_The_Crawle.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x91_Chapter_85_The_Winged",
+        "href": "xhtml/91_Chapter_85_The_Winged.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x92_Chapter_86_The_Scourg",
+        "href": "xhtml/92_Chapter_86_The_Scourg.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x93_Chapter_87_No_Sword_C",
+        "href": "xhtml/93_Chapter_87_No_Sword_C.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x94_Dramatis_Personae_The",
+        "href": "xhtml/94_Dramatis_Personae_The.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x95_Index_of_Worlds",
+        "href": "xhtml/95_Index_of_Worlds.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x96_Lexicon",
+        "href": "xhtml/96_Lexicon.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x97_About_the_Author",
+        "href": "xhtml/97_About_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413088_nav",
+        "href": "9780756413088_nav.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

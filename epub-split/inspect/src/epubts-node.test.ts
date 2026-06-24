@@ -47,7 +47,7 @@ describe("openNode", () => {
       // buildParserOutput throws if the output is invalid, so any output we get
       // here is already Zod-valid. Spot-check a few schema invariants.
       const output = await openNode(resolve(TEST_BOOKS, "aristotle-nicomachean-ethics.epub"));
-      expect(output.schemaVersion).toBe(2);
+      expect(output.schemaVersion).toBe(3);
       expect(["opened", "open-failed", "epub2-unsupported"]).toContain(output.meta.openStatus);
       if (output.meta.openStatus === "opened") {
         expect(output.content).toBeDefined();

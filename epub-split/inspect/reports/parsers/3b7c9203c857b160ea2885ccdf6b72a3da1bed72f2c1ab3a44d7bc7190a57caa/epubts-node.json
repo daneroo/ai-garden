@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -20,6 +20,38 @@
       {
         "href": "index.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "added",
+        "href": "0001.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id1",
+        "href": "index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

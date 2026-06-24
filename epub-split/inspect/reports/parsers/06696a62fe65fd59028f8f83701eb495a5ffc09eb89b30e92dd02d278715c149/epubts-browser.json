@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -91,6 +91,503 @@
       {
         "href": "xhtml/next-reads.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "ack",
+        "href": "xhtml/ack.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ata",
+        "href": "xhtml/ata.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c01",
+        "href": "xhtml/c01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c02",
+        "href": "xhtml/c02.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c03",
+        "href": "xhtml/c03.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c04",
+        "href": "xhtml/c04.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c05",
+        "href": "xhtml/c05.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c06",
+        "href": "xhtml/c06.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c07",
+        "href": "xhtml/c07.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c08",
+        "href": "xhtml/c08.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c09",
+        "href": "xhtml/c09.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c10",
+        "href": "xhtml/c10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "contents",
+        "href": "xhtml/contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copy",
+        "href": "xhtml/copy.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "xhtml/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/9781984858702_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ded",
+        "href": "xhtml/ded.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f001",
+        "href": "images/001_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f002",
+        "href": "images/002_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f003",
+        "href": "images/003_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f004",
+        "href": "images/004_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f005",
+        "href": "images/005_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f006",
+        "href": "images/006_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f007",
+        "href": "images/008_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f008",
+        "href": "images/009_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f009",
+        "href": "images/010_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f010",
+        "href": "images/012_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f011",
+        "href": "images/015_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f012",
+        "href": "images/016_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f013",
+        "href": "images/017_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f014",
+        "href": "images/018_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f015",
+        "href": "images/019_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f016",
+        "href": "images/020_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f017",
+        "href": "images/021_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f018",
+        "href": "images/022_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f019",
+        "href": "images/023_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f020",
+        "href": "images/024_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f021",
+        "href": "images/025_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f022",
+        "href": "images/026_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f023",
+        "href": "images/027_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f024",
+        "href": "images/028_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f025",
+        "href": "images/029_SMET_9781984858696_lay_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f026",
+        "href": "images/10.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f027",
+        "href": "images/11.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f028",
+        "href": "images/12.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f029",
+        "href": "images/13.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f030",
+        "href": "images/14.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f031",
+        "href": "images/15.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f032",
+        "href": "images/16.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f033",
+        "href": "images/17.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f034",
+        "href": "images/18.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f035",
+        "href": "images/19.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f036",
+        "href": "images/2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f037",
+        "href": "images/20.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f038",
+        "href": "images/21.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f039",
+        "href": "images/22.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f040",
+        "href": "images/3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f041",
+        "href": "images/4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f042",
+        "href": "images/5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f043",
+        "href": "images/6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f044",
+        "href": "images/7.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f045",
+        "href": "images/8.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f046",
+        "href": "images/9.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f048",
+        "href": "images/9781984858702_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f049",
+        "href": "images/ch1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f050",
+        "href": "images/ch10.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f051",
+        "href": "images/ch2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f052",
+        "href": "images/ch3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f053",
+        "href": "images/ch4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f054",
+        "href": "images/ch5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f055",
+        "href": "images/ch6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f056",
+        "href": "images/ch7.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f057",
+        "href": "images/ch8.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f058",
+        "href": "images/ch9.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f059",
+        "href": "images/fn_border.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f060",
+        "href": "images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "GaramondPremrPro-Bd",
+        "href": "fonts/GaramondPremrPro-Bd.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "GaramondPremrPro-BdIt",
+        "href": "fonts/GaramondPremrPro-BdIt.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "GaramondPremrPro-Med",
+        "href": "fonts/GaramondPremrPro-Med.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "GaramondPremrPro-MedIt",
+        "href": "fonts/GaramondPremrPro-MedIt.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "GaramondPremrPro-Smbd",
+        "href": "fonts/GaramondPremrPro-Smbd.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "GaramondPremrPro-SmbdIt",
+        "href": "fonts/GaramondPremrPro-SmbdIt.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "GillSansNova-Bold",
+        "href": "fonts/GillSansNova-Bold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "GillSansNova-BoldItalic",
+        "href": "fonts/GillSansNova-BoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "GillSansNova-Book",
+        "href": "fonts/GillSansNova-Book.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "GillSansNova-BookItalic",
+        "href": "fonts/GillSansNova-BookItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "GillSansNova-SemiBold",
+        "href": "fonts/GillSansNova-SemiBold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "GillSansNova-SemiBoldItalic",
+        "href": "fonts/GillSansNova-SemiBoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "index",
+        "href": "xhtml/index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "9781984858702_ncx.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "next-reads",
+        "href": "xhtml/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "prf",
+        "href": "xhtml/prf.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "prhStyle",
+        "href": "css/prhStyle.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "prhStyle-media-queries",
+        "href": "css/prhStyle-media-queries.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "Shift-BoldItalic",
+        "href": "fonts/Shift-BoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "Shift-Light",
+        "href": "fonts/Shift-Light.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "tp",
+        "href": "xhtml/tp.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781984858702_nav",
+        "href": "9781984858702_nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781984858702_style",
+        "href": "css/9781984858702_style.css",
+        "mediaType": "text/css"
       }
     ]
   }

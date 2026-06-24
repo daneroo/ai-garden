@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -132,6 +132,188 @@
       {
         "href": "Text/appendix001.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "acknowledgements.html",
+        "href": "Text/acknowledgements.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "appendix001.html",
+        "href": "Text/appendix001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "author.jpg",
+        "href": "Images/author.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "capitancebolleta01.html",
+        "href": "Text/capitancebolleta01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta02.html",
+        "href": "Text/capitancebolleta02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta03.html",
+        "href": "Text/capitancebolleta03.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta04.html",
+        "href": "Text/capitancebolleta04.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta05.html",
+        "href": "Text/capitancebolleta05.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta06.html",
+        "href": "Text/capitancebolleta06.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta07.html",
+        "href": "Text/capitancebolleta07.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta08.html",
+        "href": "Text/capitancebolleta08.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta09.html",
+        "href": "Text/capitancebolleta09.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta10.html",
+        "href": "Text/capitancebolleta10.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta11.html",
+        "href": "Text/capitancebolleta11.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta12.html",
+        "href": "Text/capitancebolleta12.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta13.html",
+        "href": "Text/capitancebolleta13.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta14.html",
+        "href": "Text/capitancebolleta14.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta15.html",
+        "href": "Text/capitancebolleta15.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta16.html",
+        "href": "Text/capitancebolleta16.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta17.html",
+        "href": "Text/capitancebolleta17.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta18.html",
+        "href": "Text/capitancebolleta18.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta19.html",
+        "href": "Text/capitancebolleta19.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta20.html",
+        "href": "Text/capitancebolleta20.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta21.html",
+        "href": "Text/capitancebolleta21.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta22.html",
+        "href": "Text/capitancebolleta22.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "capitancebolleta23.html",
+        "href": "Text/capitancebolleta23.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover.jpg",
+        "href": "Images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "cover.xhtml",
+        "href": "Text/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "dedication.html",
+        "href": "Text/dedication.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "EPL_logo.png",
+        "href": "Images/EPL_logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "ex_libris.png",
+        "href": "Images/ex_libris.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "info.xhtml",
+        "href": "Text/info.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "sinopsis.xhtml",
+        "href": "Text/sinopsis.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "style.css",
+        "href": "Styles/style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "titulo.xhtml",
+        "href": "Text/titulo.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

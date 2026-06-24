@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -63,6 +63,123 @@
       {
         "href": "xhtml/copyright.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "abouttheauthor",
+        "href": "xhtml/abouttheauthor.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "acknowledgments",
+        "href": "xhtml/acknowledgments.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "adcard",
+        "href": "xhtml/adcard.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "asterik-hr",
+        "href": "images/asterisks.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "chapter1",
+        "href": "xhtml/chapter1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "contents",
+        "href": "xhtml/contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "xhtml/copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyrightnotice",
+        "href": "xhtml/copyrightnotice.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/9781250821010.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "dedication",
+        "href": "xhtml/dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "html-cover-page",
+        "href": "xhtml/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "image-0002",
+        "href": "images/NewsletterSignup.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-0003",
+        "href": "images/twitter_logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "image-002",
+        "href": "images/backad.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-003",
+        "href": "images/title.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-004",
+        "href": "images/author.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "mini_toc",
+        "href": "xhtml/mini_toc.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav",
+        "href": "nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "newsletter",
+        "href": "xhtml/newsletter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "title",
+        "href": "xhtml/title.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "toc",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "torad",
+        "href": "xhtml/torad.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

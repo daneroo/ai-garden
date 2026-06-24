@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -116,6 +116,188 @@
       {
         "href": "text/part0000_split_024.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id1",
+        "href": "fonts/00001.dat",
+        "mediaType": "chemical/x-mopac-input"
+      },
+      {
+        "id": "id101",
+        "href": "text/part0000_split_024.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1010",
+        "href": "text/part0000_split_015.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1011",
+        "href": "text/part0000_split_014.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1012",
+        "href": "text/part0000_split_013.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1013",
+        "href": "text/part0000_split_012.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1014",
+        "href": "text/part0000_split_011.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1015",
+        "href": "text/part0000_split_010.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1016",
+        "href": "text/part0000_split_009.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1017",
+        "href": "text/part0000_split_008.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1018",
+        "href": "text/part0000_split_007.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1019",
+        "href": "text/part0000_split_006.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id102",
+        "href": "text/part0000_split_023.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1020",
+        "href": "text/part0000_split_005.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1021",
+        "href": "text/part0000_split_004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1022",
+        "href": "text/part0000_split_003.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1023",
+        "href": "text/part0000_split_002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1024",
+        "href": "text/part0000_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1025",
+        "href": "text/part0000_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id103",
+        "href": "text/part0000_split_022.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id104",
+        "href": "text/part0000_split_021.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id105",
+        "href": "text/part0000_split_020.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id106",
+        "href": "text/part0000_split_019.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id107",
+        "href": "text/part0000_split_018.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id108",
+        "href": "text/part0000_split_017.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id109",
+        "href": "text/part0000_split_016.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2",
+        "href": "fonts/00002.dat",
+        "mediaType": "chemical/x-mopac-input"
+      },
+      {
+        "id": "id3",
+        "href": "fonts/00003.dat",
+        "mediaType": "chemical/x-mopac-input"
+      },
+      {
+        "id": "id4",
+        "href": "fonts/00004.dat",
+        "mediaType": "chemical/x-mopac-input"
+      },
+      {
+        "id": "id5",
+        "href": "fonts/00005.dat",
+        "mediaType": "chemical/x-mopac-input"
+      },
+      {
+        "id": "id6",
+        "href": "images/00006.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "page_css",
+        "href": "page_styles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

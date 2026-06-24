@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -88,6 +88,203 @@
       {
         "href": "xhtml/next-reads.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover-image",
+        "href": "images/9780593489871_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "FreeSerif",
+        "href": "fonts/FreeSerif.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "FreeSerifBold",
+        "href": "fonts/FreeSerifBold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "FreeSerifBoldItalic",
+        "href": "fonts/FreeSerifBoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "FreeSerifItalic",
+        "href": "fonts/FreeSerifItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "idGeneratedStyles.css",
+        "href": "css/9780593489871_style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "9780593489871_ncx.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "xhtml/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "page_v.jpg",
+        "href": "images/9780593489871_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "prh_resets",
+        "href": "css/prh_resets.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ScreenTexture2.jpg",
+        "href": "images/ScreenTexture2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Shift-Bold.otf",
+        "href": "fonts/Shift-Bold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "fonts/Shift-BoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "TradeGothicNextLTPro-Bd.otf",
+        "href": "fonts/TradeGothicNextLTPro-Bd.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "TradeGothicNextLTPro-BdIt.otf",
+        "href": "fonts/TradeGothicNextLTPro-BdIt.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "TradeGothicNextLTPro-Hv.otf",
+        "href": "fonts/TradeGothicNextLTPro-Hv.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "TradeGothicNextLTPro-HvIt.otf",
+        "href": "fonts/TradeGothicNextLTPro-HvIt.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "TradeGothicNextLTPro-It.otf",
+        "href": "fonts/TradeGothicNextLTPro-It.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "TradeGothicNextLTPro-Rg.otf",
+        "href": "fonts/TradeGothicNextLTPro-Rg.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "x01_Cover",
+        "href": "xhtml/01_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x02_Also_by_Elliot_Ackerm",
+        "href": "xhtml/02_Also_by_Elliot_Ackerm.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x03_Title_Page",
+        "href": "xhtml/03_Title_Page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x04_Copyright",
+        "href": "xhtml/04_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x05_Epigraph",
+        "href": "xhtml/05_Epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x06_Contents",
+        "href": "xhtml/06_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x07_Prologue_Sentience",
+        "href": "xhtml/07_Prologue_Sentience.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x08_1_Truthers_and_Dreame",
+        "href": "xhtml/08_1_Truthers_and_Dreame.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x09_2_Common_Sense",
+        "href": "xhtml/09_2_Common_Sense.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x10_3_The_Singularity",
+        "href": "xhtml/10_3_The_Singularity.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x11_4_Cat_s_Game",
+        "href": "xhtml/11_4_Cat_s_Game.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x12_5_The_Nightingale_s_S",
+        "href": "xhtml/12_5_The_Nightingale_s_S.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x13_6_The_Two_Rivers",
+        "href": "xhtml/13_6_The_Two_Rivers.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x14_7_The_Ocean",
+        "href": "xhtml/14_7_The_Ocean.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x15_Coda_Dreampolitik",
+        "href": "xhtml/15_Coda_Dreampolitik.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x16_Epigraph",
+        "href": "xhtml/16_Epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x17_Acknowledgments",
+        "href": "xhtml/17_Acknowledgments.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x18_About_the_Author",
+        "href": "xhtml/18_About_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780593489871_nav",
+        "href": "9780593489871_nav.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

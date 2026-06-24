@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -24,6 +24,43 @@
       {
         "href": "toc01.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "chapter-d13e13",
+        "href": "ch01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "ForceMultiplier_FC.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "epub-css",
+        "href": "epub.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "epub.embedded.asset.1",
+        "href": "NotoSansSymbols-Regular.ttf",
+        "mediaType": "font/truetype"
+      },
+      {
+        "id": "toc-d13e423",
+        "href": "toc01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "toc.ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
       }
     ]
   }

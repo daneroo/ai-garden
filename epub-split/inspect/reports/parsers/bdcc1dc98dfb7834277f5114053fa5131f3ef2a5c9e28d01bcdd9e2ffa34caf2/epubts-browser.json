@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -79,6 +79,118 @@
       {
         "href": "footnote.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "alsoby",
+        "href": "alsoby.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "atp",
+        "href": "atp.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "author",
+        "href": "author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "beginreading",
+        "href": "beginreading.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "beginreading1",
+        "href": "beginreading1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "beginreading2",
+        "href": "beginreading2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "beginreading3",
+        "href": "beginreading3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "beginreading4",
+        "href": "beginreading4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "beginreading5",
+        "href": "beginreading5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "contents",
+        "href": "contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copy",
+        "href": "copy.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "coverpage",
+        "href": "sourcery_cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "dedication",
+        "href": "dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f1",
+        "href": "logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "footnote",
+        "href": "footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "ops-fmt-png",
+        "href": "sourcery-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "praise",
+        "href": "praise.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "style",
+        "href": "pdlmsr.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "titlepage",
+        "href": "sourcery.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage1",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -60,6 +60,88 @@
       {
         "href": "9780061807022_aboutpublisher.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover-page",
+        "href": "9780061807022_cover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "text/xml"
+      },
+      {
+        "id": "x_9780061807022_01",
+        "href": "9780061807022_title.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061807022_02",
+        "href": "9780061807022_contents.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061807022_03",
+        "href": "9780061807022_chapter_01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061807022_04",
+        "href": "9780061807022_chapter_01a.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061807022_05",
+        "href": "9780061807022_chapter_01b.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061807022_06",
+        "href": "9780061807022_chapter_01c.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061807022_07",
+        "href": "9780061807022_aboutauthor.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061807022_08",
+        "href": "9780061807022_review.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061807022_09",
+        "href": "9780061807022_adcard.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061807022_10",
+        "href": "9780061807022_copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061807022_11",
+        "href": "9780061807022_aboutpublisher.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061807022_12",
+        "href": "9780061807022.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061807022_13",
+        "href": "logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061807022_14",
+        "href": "pdlmsr.css",
+        "mediaType": "text/css"
       }
     ]
   }

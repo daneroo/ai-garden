@@ -34,7 +34,7 @@ try {
     packaging?: {
       metadata?: { title?: unknown; creator?: unknown; pubdate?: unknown };
       spine?: Array<{ idref: string; linear: string }>;
-      manifest?: Record<string, { href: string }>;
+      manifest?: Record<string, { href: string; type?: string }>;
     };
   }).packaging;
   const metadata = {
@@ -46,7 +46,10 @@ try {
     href: packaging?.manifest?.[item.idref]?.href ?? item.idref,
     linear: item.linear !== "no",
   }));
-  process.stdout.write(JSON.stringify({ ok: true, parserVersion, domParser, metadata, spine }));
+  const manifest = Object.entries(packaging?.manifest ?? {})
+    .map(([id, item]) => ({ id, href: item.href, mediaType: item.type ?? null }))
+    .sort((a, b) => a.id.localeCompare(b.id));
+  process.stdout.write(JSON.stringify({ ok: true, parserVersion, domParser, metadata, spine, manifest }));
   book.destroy();
 } catch (error: unknown) {
   process.stdout.write(

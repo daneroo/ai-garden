@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -71,6 +71,133 @@
       {
         "href": "kaput-13.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover.epub.jpg",
+        "href": "image/cover.epub.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CrimsonText-Bold",
+        "href": "fonts/CrimsonText-Bold.ttf",
+        "mediaType": "application/font-sfnt"
+      },
+      {
+        "id": "CrimsonText-BoldItalic",
+        "href": "fonts/CrimsonText-BoldItalic.ttf",
+        "mediaType": "application/font-sfnt"
+      },
+      {
+        "id": "CrimsonText-Italic",
+        "href": "fonts/CrimsonText-Italic.ttf",
+        "mediaType": "application/font-sfnt"
+      },
+      {
+        "id": "CrimsonText-Regular",
+        "href": "fonts/CrimsonText-Regular.ttf",
+        "mediaType": "application/font-sfnt"
+      },
+      {
+        "id": "idGeneratedStyles.css",
+        "href": "css/idGeneratedStyles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "kaput",
+        "href": "kaput.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "kaput-1",
+        "href": "kaput-1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "kaput-10",
+        "href": "kaput-10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "kaput-11",
+        "href": "kaput-11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "kaput-12",
+        "href": "kaput-12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "kaput-13",
+        "href": "kaput-13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "kaput-2",
+        "href": "kaput-2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "kaput-3",
+        "href": "kaput-3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "kaput-4",
+        "href": "kaput-4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "kaput-5",
+        "href": "kaput-5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "kaput-6",
+        "href": "kaput-6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "kaput-7",
+        "href": "kaput-7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "kaput-8",
+        "href": "kaput-8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "kaput-9",
+        "href": "kaput-9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "logo_notext.png",
+        "href": "image/logo_notext.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "toc",
+        "href": "toc.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x1.jpg",
+        "href": "image/1.jpg",
+        "mediaType": "image/jpeg"
       }
     ]
   }

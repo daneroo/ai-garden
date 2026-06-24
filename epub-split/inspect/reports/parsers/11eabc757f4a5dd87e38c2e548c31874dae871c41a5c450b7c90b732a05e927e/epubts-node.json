@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -164,6 +164,303 @@
       {
         "href": "xhtml/copy.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "about",
+        "href": "xhtml/about.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ack",
+        "href": "xhtml/ack.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch01",
+        "href": "xhtml/ch01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch02",
+        "href": "xhtml/ch02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch03",
+        "href": "xhtml/ch03.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch04",
+        "href": "xhtml/ch04.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch05",
+        "href": "xhtml/ch05.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch06",
+        "href": "xhtml/ch06.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch07",
+        "href": "xhtml/ch07.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch08",
+        "href": "xhtml/ch08.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch09",
+        "href": "xhtml/ch09.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch10",
+        "href": "xhtml/ch10.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch11",
+        "href": "xhtml/ch11.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch12",
+        "href": "xhtml/ch12.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch13",
+        "href": "xhtml/ch13.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch14",
+        "href": "xhtml/ch14.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch15",
+        "href": "xhtml/ch15.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch16",
+        "href": "xhtml/ch16.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch17",
+        "href": "xhtml/ch17.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch18",
+        "href": "xhtml/ch18.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch19",
+        "href": "xhtml/ch19.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cont",
+        "href": "xhtml/cont.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copy",
+        "href": "xhtml/copy.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "xhtml/cover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ded",
+        "href": "xhtml/ded.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ebookregback",
+        "href": "xhtml/ebookregback.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ebookregfront",
+        "href": "xhtml/ebookregfront.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "font1",
+        "href": "fonts/GoudySansStd-Book.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font10",
+        "href": "fonts/WarnockPro-It.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font11",
+        "href": "fonts/WarnockPro-ItCapt.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font12",
+        "href": "fonts/WarnockPro-Regular.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font13",
+        "href": "fonts/WarnockPro-Semibold.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font14",
+        "href": "fonts/WarnockPro-SemiboldIt.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font2",
+        "href": "fonts/GoudySansStd-Medium.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font3",
+        "href": "fonts/HelveticaNeueLTStd-Ex.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font4",
+        "href": "fonts/HelveticaNeueLTStd-MdCn.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font5",
+        "href": "fonts/HelveticaNeueLTStd-MdEx.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font6",
+        "href": "fonts/MinionPro-It.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font7",
+        "href": "fonts/MinionPro-ItDisp.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font8",
+        "href": "fonts/MinionPro-Regular.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font9",
+        "href": "fonts/WarnockPro-Capt.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "image1",
+        "href": "images/author.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image2",
+        "href": "images/f0222-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image3",
+        "href": "images/logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image4",
+        "href": "images/title.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "index",
+        "href": "xhtml/index.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "my-cover-image",
+        "href": "images/9781476777887.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "notes",
+        "href": "xhtml/notes.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part01",
+        "href": "xhtml/part01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part01a",
+        "href": "xhtml/part01a.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part02",
+        "href": "xhtml/part02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part03",
+        "href": "xhtml/part03.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part04",
+        "href": "xhtml/part04.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part05",
+        "href": "xhtml/part05.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part05a",
+        "href": "xhtml/part05a.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "praise",
+        "href": "xhtml/praise.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "stylesheet",
+        "href": "styles/9781476777887.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "title",
+        "href": "xhtml/title.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

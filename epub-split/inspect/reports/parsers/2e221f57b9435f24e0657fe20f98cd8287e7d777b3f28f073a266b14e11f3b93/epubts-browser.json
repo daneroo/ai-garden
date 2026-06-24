@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -55,6 +55,123 @@
       {
         "href": "Text/BackCover.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "Acknowledgment.html",
+        "href": "Text/Acknowledgment.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "BackCover.html",
+        "href": "Text/BackCover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "BackCover.jpg",
+        "href": "Images/BackCover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Cheltenham-Bold.otf",
+        "href": "Fonts/Cheltenham-Bold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "Cheltenham-BoldCond.otf",
+        "href": "Fonts/Cheltenham-BoldCond.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "CityOfIllusions_1.html",
+        "href": "Text/CityOfIllusions_1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "CityOfIllusions_2.html",
+        "href": "Text/CityOfIllusions_2.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Contents.html",
+        "href": "Text/Contents.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Copyright.html",
+        "href": "Text/Copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Cover_ThreeHainishNovels.jpg",
+        "href": "Images/Cover_ThreeHainishNovels.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "PlanetOfExile.html",
+        "href": "Text/PlanetOfExile.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Rocannon_sWorld.html",
+        "href": "Text/Rocannon%27sWorld.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "stylesheet.css",
+        "href": "Styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "Teaser.html",
+        "href": "Text/Teaser.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "teaser.jpg",
+        "href": "Images/teaser.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "TimesTenLTStd-Bold.otf",
+        "href": "Fonts/TimesTenLTStd-Bold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "TimesTenLTStd-BoldItalic.otf",
+        "href": "Fonts/TimesTenLTStd-BoldItalic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "TimesTenLTStd-Italic.otf",
+        "href": "Fonts/TimesTenLTStd-Italic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "TimesTenLTStd-Roman.otf",
+        "href": "Fonts/TimesTenLTStd-Roman.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "TitlePage.html",
+        "href": "Text/TitlePage.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "TitlePage.jpg",
+        "href": "Images/TitlePage.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Ursula_K_Le_Guin_-_Three_Hainish_Novels.html",
+        "href": "Text/Ursula%20K%20Le%20Guin%20-%20Three%20Hainish%20Novels.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

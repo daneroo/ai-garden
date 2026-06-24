@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -132,6 +132,198 @@
       {
         "href": "About_the_Publisher.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "about-the-author",
+        "href": "About_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "about-the-publisher",
+        "href": "About_the_Publisher.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "also-by-the-author",
+        "href": "Also_by_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "burning-land-family-tr-fmt-jpeg",
+        "href": "images/Burning_Land_family_tr_fmt.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "chapter-1",
+        "href": "Chapter_1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter-10",
+        "href": "Chapter_10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter-11",
+        "href": "Chapter_11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter-12",
+        "href": "Chapter_12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter-13",
+        "href": "Chapter_13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter-2",
+        "href": "Chapter_2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter-3",
+        "href": "Chapter_3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter-4",
+        "href": "Chapter_4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter-5",
+        "href": "Chapter_5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter-6",
+        "href": "Chapter_6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter-7",
+        "href": "Chapter_7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter-8",
+        "href": "Chapter_8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter-9",
+        "href": "Chapter_9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "contents",
+        "href": "Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-jpg",
+        "href": "images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "cover-png",
+        "href": "images/cover.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "credits",
+        "href": "Credits.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "css",
+        "href": "template.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "death-of-kings-titlepa-fmt-jpeg",
+        "href": "images/Death_of_Kings_titlepa_fmt.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "dedication",
+        "href": "Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "flag-fmt-jpeg",
+        "href": "images/FLAG_fmt.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "historical-note",
+        "href": "Historical_Note.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "making-of-england-fmt-jpeg",
+        "href": "images/Making_of_England_fmt.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "map",
+        "href": "Map.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "part-four",
+        "href": "Part_Four.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part-one",
+        "href": "Part_One.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part-three",
+        "href": "Part_Three.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part-two",
+        "href": "Part_Two.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "place-names",
+        "href": "Place-Names.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "the-royal-family-of-wessex",
+        "href": "The_Royal_Family_of_Wessex.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "title-page",
+        "href": "Title_Page.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

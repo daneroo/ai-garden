@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -107,6 +107,198 @@
       {
         "href": "copyright.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "ack",
+        "href": "ack.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Act1",
+        "href": "Act1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Act2",
+        "href": "Act2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Act3",
+        "href": "Act3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "alsoby",
+        "href": "alsoby.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch1",
+        "href": "Chapter1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch10",
+        "href": "Chapter10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch11",
+        "href": "Chapter11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch2",
+        "href": "Chapter2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch3",
+        "href": "Chapter3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch4",
+        "href": "Chapter4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch5",
+        "href": "Chapter5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch6",
+        "href": "Chapter6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch7",
+        "href": "Chapter7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch8",
+        "href": "Chapter8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch9",
+        "href": "Chapter9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "coda",
+        "href": "coda.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "contents",
+        "href": "contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover.jpg",
+        "href": "image/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CZ_Tweet_1_big.png",
+        "href": "image/CZ_Tweet_1_big.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "CZ_Tweet_2_big.png",
+        "href": "image/CZ_Tweet_2_big.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "CZ_Tweet_3_big.png",
+        "href": "image/CZ_Tweet_3_big.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "dedication",
+        "href": "dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "epigraph",
+        "href": "epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "GI_title_page_orn_1.png",
+        "href": "image/GI_title_page_orn_1.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "hand.png",
+        "href": "image/hand.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "idGeneratedStyles.css",
+        "href": "css/idGeneratedStyles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "nav",
+        "href": "nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "Norton_CentennialTitlePage_Centered-black.png",
+        "href": "image/Norton_CentennialTitlePage_Centered-black.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "preface",
+        "href": "preface.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "puzzle.png",
+        "href": "image/puzzle.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "title",
+        "href": "title.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x1_CZ_Tweet_Ch_9.png",
+        "href": "image/1_CZ_Tweet_Ch_9.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "x2_C_Ellison_Tweet_Ch_9.png",
+        "href": "image/2_C_Ellison_Tweet_Ch_9.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "x3_Binance_Tweets_Ch_9.png",
+        "href": "image/3_Binance_Tweets_Ch_9.png",
+        "mediaType": "image/png"
       }
     ]
   }

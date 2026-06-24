@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -84,6 +84,368 @@
       {
         "href": "ferg_9781440654022_oeb_ftn_r1.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "ack",
+        "href": "ferg_9781440654022_oeb_ack_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "aft",
+        "href": "ferg_9781440654022_oeb_aft_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bm1",
+        "href": "ferg_9781440654022_oeb_bm1_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c01",
+        "href": "ferg_9781440654022_oeb_c01_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c02",
+        "href": "ferg_9781440654022_oeb_c02_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c03",
+        "href": "ferg_9781440654022_oeb_c03_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c04",
+        "href": "ferg_9781440654022_oeb_c04_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c05",
+        "href": "ferg_9781440654022_oeb_c05_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c06",
+        "href": "ferg_9781440654022_oeb_c06_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cop",
+        "href": "ferg_9781440654022_oeb_cop_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "ferg_9781440654022_oeb_cover_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "coverimagestandard",
+        "href": "ferg_9781440654022_msr_cvi_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_001_r1",
+        "href": "ferg_9781440654022_oeb_001_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_002_r1",
+        "href": "ferg_9781440654022_oeb_002_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_003_r1",
+        "href": "ferg_9781440654022_oeb_003_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_004_r1",
+        "href": "ferg_9781440654022_oeb_004_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_005_r1",
+        "href": "ferg_9781440654022_oeb_005_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_006_r1",
+        "href": "ferg_9781440654022_oeb_006_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_007_r1",
+        "href": "ferg_9781440654022_oeb_007_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_008_r1",
+        "href": "ferg_9781440654022_oeb_008_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_009_r1",
+        "href": "ferg_9781440654022_oeb_009_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_010_r1",
+        "href": "ferg_9781440654022_oeb_010_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_011_r1",
+        "href": "ferg_9781440654022_oeb_011_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_012_r1",
+        "href": "ferg_9781440654022_oeb_012_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_013_r1",
+        "href": "ferg_9781440654022_oeb_013_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_014_r1",
+        "href": "ferg_9781440654022_oeb_014_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_015_r1",
+        "href": "ferg_9781440654022_oeb_015_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_016_r1",
+        "href": "ferg_9781440654022_oeb_016_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_017_r1",
+        "href": "ferg_9781440654022_oeb_017_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_018_r1",
+        "href": "ferg_9781440654022_oeb_018_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_019_r1",
+        "href": "ferg_9781440654022_oeb_019_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_020_r1",
+        "href": "ferg_9781440654022_oeb_020_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_021_r1",
+        "href": "ferg_9781440654022_oeb_021_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_022_r1",
+        "href": "ferg_9781440654022_oeb_022_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_023_r1",
+        "href": "ferg_9781440654022_oeb_023_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_024_r1",
+        "href": "ferg_9781440654022_oeb_024_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_025_r1",
+        "href": "ferg_9781440654022_oeb_025_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_026_r1",
+        "href": "ferg_9781440654022_oeb_026_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_027_r1",
+        "href": "ferg_9781440654022_oeb_027_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_028_r1",
+        "href": "ferg_9781440654022_oeb_028_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_029_r1",
+        "href": "ferg_9781440654022_oeb_029_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_030_r1",
+        "href": "ferg_9781440654022_oeb_030_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_031_r1",
+        "href": "ferg_9781440654022_oeb_031_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_032_r1",
+        "href": "ferg_9781440654022_oeb_032_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_033_r1",
+        "href": "ferg_9781440654022_oeb_033_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_034_r1",
+        "href": "ferg_9781440654022_oeb_034_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_035_r1",
+        "href": "ferg_9781440654022_oeb_035_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_036_r1",
+        "href": "ferg_9781440654022_oeb_036_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_037_r1",
+        "href": "ferg_9781440654022_oeb_037_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_038_r1",
+        "href": "ferg_9781440654022_oeb_038_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_039_r1",
+        "href": "ferg_9781440654022_oeb_039_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_040_r1",
+        "href": "ferg_9781440654022_oeb_040_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_041_r1",
+        "href": "ferg_9781440654022_oeb_041_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_042_r1",
+        "href": "ferg_9781440654022_oeb_042_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_043_r1",
+        "href": "ferg_9781440654022_oeb_043_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_044_r1",
+        "href": "ferg_9781440654022_oeb_044_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_045_r1",
+        "href": "ferg_9781440654022_oeb_045_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_046_r1",
+        "href": "ferg_9781440654022_oeb_046_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_047_r1",
+        "href": "ferg_9781440654022_oeb_047_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "ferg_9781440654022_oeb_048_r1",
+        "href": "ferg_9781440654022_oeb_048_r1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "fm1",
+        "href": "ferg_9781440654022_oeb_fm1_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ftn",
+        "href": "ferg_9781440654022_oeb_ftn_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "in1",
+        "href": "ferg_9781440654022_oeb_in1_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "itr",
+        "href": "ferg_9781440654022_oeb_itr_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "nts",
+        "href": "ferg_9781440654022_oeb_nts_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "PPCthumbnailimage",
+        "href": "ferg_9781440654022_msr_ppl_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "pt",
+        "href": "page-template.xpgt",
+        "mediaType": "application/vnd.adobe-page-template+xml"
+      },
+      {
+        "id": "style",
+        "href": "ferg_9781440654022_oeb_css_r1.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "thumbimagestandard",
+        "href": "ferg_9781440654022_msr_cvt_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "toc",
+        "href": "ferg_9781440654022_oeb_toc_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "tp",
+        "href": "ferg_9781440654022_oeb_tp_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

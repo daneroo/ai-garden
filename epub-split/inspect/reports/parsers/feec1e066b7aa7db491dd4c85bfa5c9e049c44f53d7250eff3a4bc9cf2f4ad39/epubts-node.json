@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -120,6 +120,243 @@
       {
         "href": "OEBPS/aboutthepublisher.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "abouttheauthor",
+        "href": "OEBPS/abouttheauthor.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "aboutthepublisher",
+        "href": "OEBPS/aboutthepublisher.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "anarres",
+        "href": "OEBPS/anarres.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "astudyguidetothedispossessed",
+        "href": "OEBPS/astudyguidetothedispossessed.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter1",
+        "href": "OEBPS/Chapter1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter10",
+        "href": "OEBPS/Chapter10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter11",
+        "href": "OEBPS/Chapter11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter12",
+        "href": "OEBPS/Chapter12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter13",
+        "href": "OEBPS/Chapter13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter2",
+        "href": "OEBPS/Chapter2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter3",
+        "href": "OEBPS/Chapter3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter4",
+        "href": "OEBPS/Chapter4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter5",
+        "href": "OEBPS/Chapter5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter6",
+        "href": "OEBPS/Chapter6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter7",
+        "href": "OEBPS/Chapter7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter8",
+        "href": "OEBPS/Chapter8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter9",
+        "href": "OEBPS/Chapter9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "OEBPS/copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "coverpage",
+        "href": "OEBPS/dispossessedthe_cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "credits",
+        "href": "OEBPS/credits.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "dedication",
+        "href": "OEBPS/dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "dispossessedthe",
+        "href": "OEBPS/dispossessedthe.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f1",
+        "href": "OEBPS/logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f10",
+        "href": "OEBPS/ch7.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f11",
+        "href": "OEBPS/ch8.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f12",
+        "href": "OEBPS/ch9.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f13",
+        "href": "OEBPS/ch10.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f14",
+        "href": "OEBPS/ch11.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f15",
+        "href": "OEBPS/ch12.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f16",
+        "href": "OEBPS/ch13.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f2",
+        "href": "OEBPS/anarres.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f3",
+        "href": "OEBPS/urras.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f4",
+        "href": "OEBPS/ch1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f5",
+        "href": "OEBPS/ch2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f6",
+        "href": "OEBPS/ch3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f7",
+        "href": "OEBPS/ch4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f8",
+        "href": "OEBPS/ch5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9",
+        "href": "OEBPS/ch6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "footnote1",
+        "href": "OEBPS/footnote1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "ops-fmt-png",
+        "href": "OEBPS/MSRCover.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "otherbooksbyursulak.LeGuin",
+        "href": "OEBPS/otherbooksbyursulak.LeGuin.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "OEBPS/title.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage1",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "urras",
+        "href": "OEBPS/urras.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -103,6 +103,163 @@
       {
         "href": "back07.xml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "back01",
+        "href": "back01.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "back02",
+        "href": "back02.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "back03",
+        "href": "back03.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "back04",
+        "href": "back04.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "back05",
+        "href": "back05.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "back06",
+        "href": "back06.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "back07",
+        "href": "back07.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c01",
+        "href": "c01.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c02",
+        "href": "c02.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c03",
+        "href": "c03.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c04",
+        "href": "c04.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c05",
+        "href": "c05.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c06",
+        "href": "c06.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c07",
+        "href": "c07.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c08",
+        "href": "c08.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c09",
+        "href": "c09.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c10",
+        "href": "c10.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "css/hmh.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "fig_WizardOfEarthsea_005_1",
+        "href": "images/WizardOfEarthsea_005_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "fig_WizardOfEarthsea_006_1",
+        "href": "images/WizardOfEarthsea_006_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "fig_WizardOfEarthsea_238_1",
+        "href": "images/WizardOfEarthsea_238_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "fig_WizardOfEarthsea-9",
+        "href": "images/WizardOfEarthsea-9.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "front01",
+        "href": "front01.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "front02",
+        "href": "front02.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "front03",
+        "href": "front03.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "front04",
+        "href": "front04.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "hmh.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "title-image",
+        "href": "images/titlepage.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "toc",
+        "href": "toc.xml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

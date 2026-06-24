@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -179,6 +179,438 @@
       {
         "href": "xhtml/index.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "abouttheauthor",
+        "href": "xhtml/abouttheauthor.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "appendix",
+        "href": "xhtml/appendix.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "appendix-fn",
+        "href": "xhtml/appendix-fn.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter001",
+        "href": "xhtml/chapter001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter001-fn",
+        "href": "xhtml/chapter001-fn.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter002",
+        "href": "xhtml/chapter002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter002-fn",
+        "href": "xhtml/chapter002-fn.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter003",
+        "href": "xhtml/chapter003.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter004",
+        "href": "xhtml/chapter004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter005",
+        "href": "xhtml/chapter005.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter006",
+        "href": "xhtml/chapter006.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter007",
+        "href": "xhtml/chapter007.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter008",
+        "href": "xhtml/chapter008.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter008-fn",
+        "href": "xhtml/chapter008-fn.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter009",
+        "href": "xhtml/chapter009.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter009-fn",
+        "href": "xhtml/chapter009-fn.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter010",
+        "href": "xhtml/chapter010.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter011",
+        "href": "xhtml/chapter011.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter011-fn",
+        "href": "xhtml/chapter011-fn.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter012",
+        "href": "xhtml/chapter012.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter013",
+        "href": "xhtml/chapter013.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter013-fn",
+        "href": "xhtml/chapter013-fn.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter014",
+        "href": "xhtml/chapter014.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter014-fn",
+        "href": "xhtml/chapter014-fn.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter015",
+        "href": "xhtml/chapter015.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter015-fn",
+        "href": "xhtml/chapter015-fn.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter016",
+        "href": "xhtml/chapter016.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter016-fn",
+        "href": "xhtml/chapter016-fn.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter017",
+        "href": "xhtml/chapter017.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter018",
+        "href": "xhtml/chapter018.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter018-fn",
+        "href": "xhtml/chapter018-fn.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter019",
+        "href": "xhtml/chapter019.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter020",
+        "href": "xhtml/chapter020.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "CharisSILB",
+        "href": "fonts/CharisSILB.ttf",
+        "mediaType": "application/application/x-font-ttf"
+      },
+      {
+        "id": "CharisSILBI",
+        "href": "fonts/CharisSILBI.ttf",
+        "mediaType": "application/application/x-font-ttf"
+      },
+      {
+        "id": "CharisSILI",
+        "href": "fonts/CharisSILI.ttf",
+        "mediaType": "application/application/x-font-ttf"
+      },
+      {
+        "id": "CharisSILR",
+        "href": "fonts/CharisSILR.ttf",
+        "mediaType": "application/application/x-font-ttf"
+      },
+      {
+        "id": "contents",
+        "href": "xhtml/contents.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "xhtml/copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "xhtml/cover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "epilogue",
+        "href": "xhtml/epilogue.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "image1",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_002.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image10",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_011.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image11",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_012.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image12",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_013.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image13",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_014.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image15",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_016.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image17",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_018.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image19",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_020.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image2",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_003.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image20",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_021.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image21",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_022.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image22",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_023.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image23",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_024.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image24",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_025.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image25",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_026.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image26",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_027.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image27",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_028.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image28",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_029.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image29",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_030.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image3",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_004.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image30",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_031.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image31",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_032.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image32",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_033.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image33",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_034.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image34",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_035.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image35",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_036.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image36",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_037.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image37",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_038.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image38",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_039.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image4",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_005.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image5",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_006.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image6",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_007.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image7",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_008.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image8",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_009.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image9",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_010.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "index",
+        "href": "xhtml/index.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "map",
+        "href": "page-map.xml",
+        "mediaType": "application/oebps-page-map+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "page-template",
+        "href": "styles/page-template.xpgt",
+        "mediaType": "application/adobe-page-template+xml"
+      },
+      {
+        "id": "preface",
+        "href": "xhtml/preface.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "pub",
+        "href": "images/9780141030883_WhatDoYouCareWhatOtherPeopleTh_IMG_001.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "science",
+        "href": "xhtml/science.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "science-fn",
+        "href": "xhtml/science-fn.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "stylesheet",
+        "href": "styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "title",
+        "href": "xhtml/title.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

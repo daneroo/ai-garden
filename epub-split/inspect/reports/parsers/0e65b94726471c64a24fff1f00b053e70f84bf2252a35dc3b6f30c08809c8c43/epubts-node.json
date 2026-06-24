@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -760,6 +760,998 @@
       {
         "href": "text/part0100.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id10",
+        "href": "text/part0003.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1001",
+        "href": "text/part0050_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1002",
+        "href": "text/part0050_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1011",
+        "href": "text/part0083_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id1012",
+        "href": "text/part0083_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id103",
+        "href": "images/00003.unknown",
+        "mediaType": "application/octet-stream"
+      },
+      {
+        "id": "id104",
+        "href": "images/00002.unknown",
+        "mediaType": "application/octet-stream"
+      },
+      {
+        "id": "id106",
+        "href": "images/00007.unknown",
+        "mediaType": "application/octet-stream"
+      },
+      {
+        "id": "id107",
+        "href": "images/00005.unknown",
+        "mediaType": "application/octet-stream"
+      },
+      {
+        "id": "id108",
+        "href": "images/00004.unknown",
+        "mediaType": "application/octet-stream"
+      },
+      {
+        "id": "id109",
+        "href": "images/00008.unknown",
+        "mediaType": "application/octet-stream"
+      },
+      {
+        "id": "id11",
+        "href": "text/part0026_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id110",
+        "href": "images/00006.unknown",
+        "mediaType": "application/octet-stream"
+      },
+      {
+        "id": "id111",
+        "href": "text/part0072_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id112",
+        "href": "text/part0072_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id121",
+        "href": "text/part0037_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id122",
+        "href": "text/part0037_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id131",
+        "href": "text/part0047_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id132",
+        "href": "text/part0047_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id141",
+        "href": "text/part0078_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id142",
+        "href": "text/part0078_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id151",
+        "href": "text/part0025_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id152",
+        "href": "text/part0025_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id161",
+        "href": "text/part0042_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id162",
+        "href": "text/part0042_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id171",
+        "href": "text/part0017_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id172",
+        "href": "text/part0017_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id18",
+        "href": "text/part0002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id19",
+        "href": "text/part0026_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id191",
+        "href": "text/part0027_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id192",
+        "href": "text/part0027_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id201",
+        "href": "text/part0064_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id202",
+        "href": "text/part0064_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id21",
+        "href": "text/part0082_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id211",
+        "href": "text/part0053_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id212",
+        "href": "text/part0053_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id22",
+        "href": "text/part0096.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id23",
+        "href": "text/part0082_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id231",
+        "href": "text/part0074_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id232",
+        "href": "text/part0074_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id241",
+        "href": "text/part0040_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id242",
+        "href": "text/part0040_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id25",
+        "href": "text/part0004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id26",
+        "href": "text/part0000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id27",
+        "href": "text/part0091.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id281",
+        "href": "text/part0086_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id282",
+        "href": "text/part0086_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id291",
+        "href": "text/part0073_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id292",
+        "href": "text/part0073_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id3",
+        "href": "text/part0094.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id30",
+        "href": "text/part0095.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id311",
+        "href": "text/part0014_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id312",
+        "href": "text/part0014_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id321",
+        "href": "text/part0019_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id322",
+        "href": "text/part0019_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id331",
+        "href": "text/part0054_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id332",
+        "href": "text/part0054_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id341",
+        "href": "text/part0077_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id342",
+        "href": "text/part0077_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id35",
+        "href": "text/part0098.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id361",
+        "href": "text/part0090_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id362",
+        "href": "text/part0090_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id371",
+        "href": "text/part0048_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id372",
+        "href": "text/part0048_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id381",
+        "href": "text/part0084_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id382",
+        "href": "text/part0084_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id391",
+        "href": "text/part0046_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id392",
+        "href": "text/part0046_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id40",
+        "href": "text/part0001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id410",
+        "href": "text/part0021_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id411",
+        "href": "text/part0021_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id412",
+        "href": "text/part0081_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id413",
+        "href": "text/part0081_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id421",
+        "href": "text/part0031_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id422",
+        "href": "text/part0031_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id431",
+        "href": "text/part0075_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id432",
+        "href": "text/part0075_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id441",
+        "href": "text/part0062_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id442",
+        "href": "text/part0062_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id451",
+        "href": "text/part0071_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id452",
+        "href": "text/part0071_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id461",
+        "href": "text/part0044_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id462",
+        "href": "text/part0044_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id471",
+        "href": "text/part0016_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id472",
+        "href": "text/part0016_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id481",
+        "href": "text/part0089_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id482",
+        "href": "text/part0089_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id491",
+        "href": "text/part0057_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id492",
+        "href": "text/part0057_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id501",
+        "href": "text/part0023_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id502",
+        "href": "text/part0023_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id51",
+        "href": "text/part0097.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id52",
+        "href": "text/part0049_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id521",
+        "href": "text/part0060_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id522",
+        "href": "text/part0060_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id531",
+        "href": "text/part0007_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id532",
+        "href": "text/part0007_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id541",
+        "href": "text/part0010_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id542",
+        "href": "text/part0010_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id551",
+        "href": "text/part0006_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id552",
+        "href": "text/part0006_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id561",
+        "href": "text/part0041_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id562",
+        "href": "text/part0041_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id57",
+        "href": "text/part0049_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id571",
+        "href": "text/part0055_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id572",
+        "href": "text/part0055_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id581",
+        "href": "text/part0036_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id582",
+        "href": "text/part0036_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id59",
+        "href": "text/part0100.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id601",
+        "href": "text/part0080_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id602",
+        "href": "text/part0080_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id611",
+        "href": "text/part0070_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id612",
+        "href": "text/part0070_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id62",
+        "href": "text/part0015_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id621",
+        "href": "text/part0079_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id622",
+        "href": "text/part0079_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id63",
+        "href": "text/part0015_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id631",
+        "href": "text/part0088_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id632",
+        "href": "text/part0088_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id641",
+        "href": "text/part0033_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id642",
+        "href": "text/part0033_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id65",
+        "href": "text/part0005.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id66",
+        "href": "text/part0099.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id671",
+        "href": "text/part0024_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id672",
+        "href": "text/part0024_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id681",
+        "href": "text/part0068_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id682",
+        "href": "text/part0068_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id691",
+        "href": "text/part0051_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id692",
+        "href": "text/part0051_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id701",
+        "href": "text/part0029_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id702",
+        "href": "text/part0029_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id711",
+        "href": "text/part0032_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id712",
+        "href": "text/part0032_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id72",
+        "href": "text/part0092.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id73",
+        "href": "text/part0093.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id74",
+        "href": "text/part0058_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id741",
+        "href": "text/part0008_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id742",
+        "href": "text/part0008_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id75",
+        "href": "text/part0058_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id751",
+        "href": "text/part0012_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id752",
+        "href": "text/part0012_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id761",
+        "href": "text/part0065_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id762",
+        "href": "text/part0065_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id771",
+        "href": "text/part0069_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id772",
+        "href": "text/part0069_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id781",
+        "href": "text/part0011_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id782",
+        "href": "text/part0011_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id791",
+        "href": "text/part0038_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id792",
+        "href": "text/part0038_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id801",
+        "href": "text/part0063_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id802",
+        "href": "text/part0063_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id811",
+        "href": "text/part0028_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id812",
+        "href": "text/part0028_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id82",
+        "href": "text/part0035_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id821",
+        "href": "text/part0061_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id822",
+        "href": "text/part0061_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id831",
+        "href": "text/part0059_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id832",
+        "href": "text/part0059_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id84",
+        "href": "text/part0035_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id841",
+        "href": "text/part0039_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id842",
+        "href": "text/part0039_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id851",
+        "href": "text/part0030_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id852",
+        "href": "text/part0030_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id861",
+        "href": "text/part0076_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id862",
+        "href": "text/part0076_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id871",
+        "href": "text/part0013_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id872",
+        "href": "text/part0013_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id881",
+        "href": "text/part0009_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id882",
+        "href": "text/part0009_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id891",
+        "href": "text/part0067_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id892",
+        "href": "text/part0067_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id901",
+        "href": "text/part0034_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id902",
+        "href": "text/part0034_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id910",
+        "href": "text/part0043_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id911",
+        "href": "text/part0043_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id912",
+        "href": "text/part0085_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id913",
+        "href": "text/part0085_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id921",
+        "href": "text/part0020_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id922",
+        "href": "text/part0020_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id931",
+        "href": "text/part0056_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id932",
+        "href": "text/part0056_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id941",
+        "href": "text/part0022_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id942",
+        "href": "text/part0022_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id951",
+        "href": "text/part0018_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id952",
+        "href": "text/part0018_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id961",
+        "href": "text/part0045_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id962",
+        "href": "text/part0045_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id971",
+        "href": "text/part0052_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id972",
+        "href": "text/part0052_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id981",
+        "href": "text/part0087_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id982",
+        "href": "text/part0087_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id991",
+        "href": "text/part0066_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id992",
+        "href": "text/part0066_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "page_css",
+        "href": "page_styles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

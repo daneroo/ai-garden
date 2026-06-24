@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -39,6 +39,58 @@
       {
         "href": "OEBPS/part4.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "part11",
+        "href": "OEBPS/part1_split_001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part12",
+        "href": "OEBPS/part1_split_000.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part2",
+        "href": "OEBPS/part2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part3",
+        "href": "OEBPS/part3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part4",
+        "href": "OEBPS/part4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "title",
+        "href": "OEBPS/title.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -343,6 +343,568 @@
       {
         "href": "xhtml/next-reads.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "AndyPro-Bold.otf",
+        "href": "fonts/AndyPro-Bold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "AndyPro-BoldItalic.otf",
+        "href": "fonts/AndyPro-BoldItalic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "AndyPro-Italic.otf",
+        "href": "fonts/AndyPro-Italic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "AndyPro-Regular.otf",
+        "href": "fonts/AndyPro-Regular.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "cover",
+        "href": "xhtml/01_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/9780698169135_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Figure_1.jpg",
+        "href": "images/Figure_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Figure_10.jpg",
+        "href": "images/Figure_10.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Figure_11.jpg",
+        "href": "images/Figure_11.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Figure_12.jpg",
+        "href": "images/Figure_12.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Figure_13.jpg",
+        "href": "images/Figure_13.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Figure_14.jpg",
+        "href": "images/Figure_14.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Figure_2.jpg",
+        "href": "images/Figure_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Figure_3.jpg",
+        "href": "images/Figure_3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Figure_4.jpg",
+        "href": "images/Figure_4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Figure_5.jpg",
+        "href": "images/Figure_5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Figure_6.jpg",
+        "href": "images/Figure_6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Figure_7.jpg",
+        "href": "images/Figure_7.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Figure_8.jpg",
+        "href": "images/Figure_8.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Figure_9.jpg",
+        "href": "images/Figure_9.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "idGeneratedStyles.css",
+        "href": "css/9780698169135_style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "9780698169135_ncx.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "xhtml/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "page_v.jpg",
+        "href": "images/9780698169135_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "fonts/Shift-BoldItalic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "Shift-Light.otf",
+        "href": "fonts/Shift-Light.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "shutterstock_582084685_2.jpg",
+        "href": "images/shutterstock_582084685_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "shutterstock_582084685_3.jpg",
+        "href": "images/shutterstock_582084685_3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "shutterstock_582084685.jpg",
+        "href": "images/shutterstock_582084685.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "toc",
+        "href": "9780698169135_nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB",
+        "href": "xhtml/02_Also_by_Lee_Smolin.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-1",
+        "href": "xhtml/03_Title_Page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-10",
+        "href": "xhtml/12_Three_How_Quanta_Chan.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-10_fn1",
+        "href": "xhtml/37_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-10_fn2",
+        "href": "xhtml/38_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-11",
+        "href": "xhtml/13_Four_How_Quanta_Share.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-12",
+        "href": "xhtml/14_Five_What_Quantum_Mec.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-13",
+        "href": "xhtml/15_Six_The_Triumph_of_An.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-13_fn1",
+        "href": "xhtml/39_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-13_fn2",
+        "href": "xhtml/40_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-14",
+        "href": "xhtml/16_Part_2_Realism_Reborn.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-15",
+        "href": "xhtml/17_Seven_The_Challenge_o.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-15_fn1",
+        "href": "xhtml/41_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-15_fn2",
+        "href": "xhtml/42_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-15_fn3",
+        "href": "xhtml/43_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-16",
+        "href": "xhtml/18_Eight_Bohm_Realism_Tr.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-16_fn1",
+        "href": "xhtml/44_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-17",
+        "href": "xhtml/19_Nine_Physical_Collaps.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-17_fn1",
+        "href": "xhtml/45_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-18",
+        "href": "xhtml/20_Ten_Magical_Realism.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-18_fn1",
+        "href": "xhtml/46_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-18_fn2",
+        "href": "xhtml/47_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-18_fn3",
+        "href": "xhtml/48_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-18_fn4",
+        "href": "xhtml/49_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-18_fn5",
+        "href": "xhtml/50_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-18_fn6",
+        "href": "xhtml/51_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-19",
+        "href": "xhtml/21_Eleven_Critical_Reali.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-19_fn1",
+        "href": "xhtml/52_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-19_fn2",
+        "href": "xhtml/53_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-19_fn3",
+        "href": "xhtml/54_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-19_fn4",
+        "href": "xhtml/55_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-19_fn5",
+        "href": "xhtml/56_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-19_fn6",
+        "href": "xhtml/57_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-2",
+        "href": "xhtml/04_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-20",
+        "href": "xhtml/22_Part_3_Beyond_the_Qua.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-21",
+        "href": "xhtml/23_Twelve_Alternatives_t.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-21_fn1",
+        "href": "xhtml/58_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-21_fn2",
+        "href": "xhtml/59_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-21_fn3",
+        "href": "xhtml/60_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-21_fn4",
+        "href": "xhtml/61_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-22",
+        "href": "xhtml/24_Thirteen_Lessons.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-22_fn1",
+        "href": "xhtml/62_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-22_fn2",
+        "href": "xhtml/63_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-22_fn3",
+        "href": "xhtml/64_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-23",
+        "href": "xhtml/25_Fourteen_First_Princi.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-23_fn1",
+        "href": "xhtml/65_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-23_fn2",
+        "href": "xhtml/66_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-23_fn3",
+        "href": "xhtml/67_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-23_fn4",
+        "href": "xhtml/68_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-23_fn5",
+        "href": "xhtml/69_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-23_fn6",
+        "href": "xhtml/70_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-23_fn7",
+        "href": "xhtml/71_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-23_fn8",
+        "href": "xhtml/72_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-23_fn9",
+        "href": "xhtml/73_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-24",
+        "href": "xhtml/26_Fifteen_A_Causal_Theo.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-24_fn1",
+        "href": "xhtml/74_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-24_fn2",
+        "href": "xhtml/75_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-24_fn3",
+        "href": "xhtml/76_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-24_fn4",
+        "href": "xhtml/77_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-24_fn5",
+        "href": "xhtml/78_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-24_fn6",
+        "href": "xhtml/79_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-24_fn7",
+        "href": "xhtml/80_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-24_fn8",
+        "href": "xhtml/81_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-25",
+        "href": "xhtml/27_Epilogue_Revolutions_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-26",
+        "href": "xhtml/28_Acknowledgments.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-27",
+        "href": "xhtml/29_Notes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-28",
+        "href": "xhtml/30_Glossary.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-29",
+        "href": "xhtml/31_Further_Reading.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-3",
+        "href": "xhtml/05_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-30",
+        "href": "xhtml/32_Index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-4",
+        "href": "xhtml/06_Epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-5",
+        "href": "xhtml/07_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-6",
+        "href": "xhtml/08_Preface.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-7",
+        "href": "xhtml/09_Part_1_An_Orthodoxy_o.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-8",
+        "href": "xhtml/10_One_Nature_Loves_to_H.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-8_fn1",
+        "href": "xhtml/33_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-9",
+        "href": "xhtml/11_Two_Quanta.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-9_fn1",
+        "href": "xhtml/34_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-9_fn2",
+        "href": "xhtml/35_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780698169135_EPUB-9_fn3",
+        "href": "xhtml/36_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xAbout_the_Author.xhtml",
+        "href": "xhtml/82_About_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

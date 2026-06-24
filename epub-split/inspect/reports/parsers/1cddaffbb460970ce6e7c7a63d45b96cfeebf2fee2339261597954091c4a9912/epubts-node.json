@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -136,6 +136,198 @@
       {
         "href": "xhtml/031_aboutpublisher.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover-image",
+        "href": "images/cover.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "css",
+        "href": "styles/styles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "css1",
+        "href": "styles/additional.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "logo",
+        "href": "images/logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "logo1-image",
+        "href": "images/logo1.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "nav",
+        "href": "xhtml/nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "xhtml_001_xhtml_my-html-cover",
+        "href": "xhtml/001_cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_002_xhtml_title",
+        "href": "xhtml/002_title.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_003_xhtml_copy",
+        "href": "xhtml/003_copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_004_xhtml_dedication",
+        "href": "xhtml/004_dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_005_xhtml_epigraph",
+        "href": "xhtml/005_epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_006_xhtml_contents",
+        "href": "xhtml/006_contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_007_xhtml_prologue",
+        "href": "xhtml/007_prologue.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_008_xhtml_chapter001",
+        "href": "xhtml/008_chapter001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_009_xhtml_chapter002",
+        "href": "xhtml/009_chapter002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_010_xhtml_chapter003",
+        "href": "xhtml/010_chapter003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_011_xhtml_chapter004",
+        "href": "xhtml/011_chapter004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_012_xhtml_chapter005",
+        "href": "xhtml/012_chapter005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_013_xhtml_chapter006",
+        "href": "xhtml/013_chapter006.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_014_xhtml_chapter007",
+        "href": "xhtml/014_chapter007.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_015_xhtml_chapter008",
+        "href": "xhtml/015_chapter008.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_016_xhtml_chapter009",
+        "href": "xhtml/016_chapter009.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_017_xhtml_chapter010",
+        "href": "xhtml/017_chapter010.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_018_xhtml_chapter011",
+        "href": "xhtml/018_chapter011.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_019_xhtml_chapter012",
+        "href": "xhtml/019_chapter012.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_020_xhtml_chapter013",
+        "href": "xhtml/020_chapter013.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_021_xhtml_chapter014",
+        "href": "xhtml/021_chapter014.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_022_xhtml_chapter015",
+        "href": "xhtml/022_chapter015.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_023_xhtml_chapter016",
+        "href": "xhtml/023_chapter016.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_024_xhtml_chapter017",
+        "href": "xhtml/024_chapter017.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_025_xhtml_chapter018",
+        "href": "xhtml/025_chapter018.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_026_xhtml_chapter019",
+        "href": "xhtml/026_chapter019.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_027_xhtml_chapter020",
+        "href": "xhtml/027_chapter020.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_028_xhtml_chapter021",
+        "href": "xhtml/028_chapter021.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_029_xhtml_ack",
+        "href": "xhtml/029_ack.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_030_xhtml_alsoby",
+        "href": "xhtml/030_alsoby.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_031_xhtml_aboutpublisher",
+        "href": "xhtml/031_aboutpublisher.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

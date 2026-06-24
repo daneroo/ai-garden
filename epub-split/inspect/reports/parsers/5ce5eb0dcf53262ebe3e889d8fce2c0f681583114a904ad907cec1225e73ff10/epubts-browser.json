@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -275,6 +275,468 @@
       {
         "href": "Text/066.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "Images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "coverstyle",
+        "href": "Styles/cover.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "custom",
+        "href": "Styles/custom.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id001",
+        "href": "Text/001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id002",
+        "href": "Text/002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id003",
+        "href": "Text/003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id004",
+        "href": "Text/004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id005",
+        "href": "Text/005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id006",
+        "href": "Text/006.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id007",
+        "href": "Text/007.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id008",
+        "href": "Text/008.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id009",
+        "href": "Text/009.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id010",
+        "href": "Text/010.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id011",
+        "href": "Text/011.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id012",
+        "href": "Text/012.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id013",
+        "href": "Text/013.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id014",
+        "href": "Text/014.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id015",
+        "href": "Text/015.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id016",
+        "href": "Text/016.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id017",
+        "href": "Text/017.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id018",
+        "href": "Text/018.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id019",
+        "href": "Text/019.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id020",
+        "href": "Text/020.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id021",
+        "href": "Text/021.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id022",
+        "href": "Text/022.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id023",
+        "href": "Text/023.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id024",
+        "href": "Text/024.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id025",
+        "href": "Text/025.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id026",
+        "href": "Text/026.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id027",
+        "href": "Text/027.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id028",
+        "href": "Text/028.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id029",
+        "href": "Text/029.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id030",
+        "href": "Text/030.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id031",
+        "href": "Text/031.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id032",
+        "href": "Text/032.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id033",
+        "href": "Text/033.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id034",
+        "href": "Text/034.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id035",
+        "href": "Text/035.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id036",
+        "href": "Text/036.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id037",
+        "href": "Text/037.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id038",
+        "href": "Text/038.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id039",
+        "href": "Text/039.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id040",
+        "href": "Text/040.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id041",
+        "href": "Text/041.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id042",
+        "href": "Text/042.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id043",
+        "href": "Text/043.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id044",
+        "href": "Text/044.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id045",
+        "href": "Text/045.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id046",
+        "href": "Text/046.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id047",
+        "href": "Text/047.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id048",
+        "href": "Text/048.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id049",
+        "href": "Text/049.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id050",
+        "href": "Text/050.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id051",
+        "href": "Text/051.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id052",
+        "href": "Text/052.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id053",
+        "href": "Text/053.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id054",
+        "href": "Text/054.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id055",
+        "href": "Text/055.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id056",
+        "href": "Text/056.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id057",
+        "href": "Text/057.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id058",
+        "href": "Text/058.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id059",
+        "href": "Text/059.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id060",
+        "href": "Text/060.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id061",
+        "href": "Text/061.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id062",
+        "href": "Text/062.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id063",
+        "href": "Text/063.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id064",
+        "href": "Text/064.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id065",
+        "href": "Text/065.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id066",
+        "href": "Text/066.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "img1",
+        "href": "Images/img1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img2",
+        "href": "Images/img2.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img3",
+        "href": "Images/img3.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img301",
+        "href": "Images/bookgrail.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img302",
+        "href": "Images/facebook.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img303",
+        "href": "Images/hoz.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img304",
+        "href": "Images/hoz-logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img305",
+        "href": "Images/hoz-logo-bw.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img306",
+        "href": "Images/twitter.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img307",
+        "href": "Images/aria-logo-black.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img308",
+        "href": "Images/aria-logo-white.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img309",
+        "href": "Images/apollo-logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img310",
+        "href": "Images/Anima_A_1000.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img311",
+        "href": "Images/zephyr-logo-512-blue.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img312",
+        "href": "Images/zephyr-logo-1000.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img313",
+        "href": "Images/Anima_A_512.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img314",
+        "href": "Images/instagram.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img315",
+        "href": "Images/aria-logo-bw.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img316",
+        "href": "Images/aries-logo-bw.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "img4",
+        "href": "Images/img4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img5",
+        "href": "Images/img5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "style",
+        "href": "Styles/style.css",
+        "mediaType": "text/css"
       }
     ]
   }

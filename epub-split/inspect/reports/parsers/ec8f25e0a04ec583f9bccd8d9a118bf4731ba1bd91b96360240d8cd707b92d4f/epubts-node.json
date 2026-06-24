@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -536,6 +536,703 @@
       {
         "href": "html/130_cr.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "body001",
+        "href": "html/001_reader.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body002",
+        "href": "html/002_title.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body003",
+        "href": "html/003_dedication.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body004",
+        "href": "html/004_cast.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body005",
+        "href": "html/005_map.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body006",
+        "href": "html/006_epigraph.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body007",
+        "href": "html/007_toc.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body008",
+        "href": "html/008_c1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body009",
+        "href": "html/009_c2.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body010",
+        "href": "html/010_c3.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body011",
+        "href": "html/011_c4.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body012",
+        "href": "html/012_c5.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body013",
+        "href": "html/013_c6.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body014",
+        "href": "html/014_c7.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body015",
+        "href": "html/015_c8.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body016",
+        "href": "html/016_c9.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body017",
+        "href": "html/017_c10.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body018",
+        "href": "html/018_c11.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body019",
+        "href": "html/019_c12.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body020",
+        "href": "html/020_c13.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body021",
+        "href": "html/021_c14.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body022",
+        "href": "html/022_c15.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body023",
+        "href": "html/023_c16.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body024",
+        "href": "html/024_c17.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body025",
+        "href": "html/025_c18.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body026",
+        "href": "html/026_c19.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body027",
+        "href": "html/027_c20.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body028",
+        "href": "html/028_c21.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body029",
+        "href": "html/029_c22.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body030",
+        "href": "html/030_c23.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body031",
+        "href": "html/031_c24.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body032",
+        "href": "html/032_c25.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body033",
+        "href": "html/033_c26.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body034",
+        "href": "html/034_c27.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body035",
+        "href": "html/035_c28.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body036",
+        "href": "html/036_c29.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body037",
+        "href": "html/037_c30.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body038",
+        "href": "html/038_c31.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body039",
+        "href": "html/039_c32.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body040",
+        "href": "html/040_c33.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body041",
+        "href": "html/041_c34.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body042",
+        "href": "html/042_c35.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body043",
+        "href": "html/043_c36.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body044",
+        "href": "html/044_c37.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body045",
+        "href": "html/045_c38.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body046",
+        "href": "html/046_c39.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body047",
+        "href": "html/047_c40.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body048",
+        "href": "html/048_c41.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body049",
+        "href": "html/049_c42.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body050",
+        "href": "html/050_c43.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body051",
+        "href": "html/051_c44.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body052",
+        "href": "html/052_c45.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body053",
+        "href": "html/053_c46.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body054",
+        "href": "html/054_c47.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body055",
+        "href": "html/055_c48.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body056",
+        "href": "html/056_c49.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body057",
+        "href": "html/057_c50.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body058",
+        "href": "html/058_c51.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body059",
+        "href": "html/059_c52.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body060",
+        "href": "html/060_c53.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body061",
+        "href": "html/061_c54.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body062",
+        "href": "html/062_c55.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body063",
+        "href": "html/063_c56.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body064",
+        "href": "html/064_c57.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body065",
+        "href": "html/065_c58.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body066",
+        "href": "html/066_c59.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body067",
+        "href": "html/067_c60.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body068",
+        "href": "html/068_c61.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body069",
+        "href": "html/069_c62.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body070",
+        "href": "html/070_c63.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body071",
+        "href": "html/071_c64.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body072",
+        "href": "html/072_c65.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body073",
+        "href": "html/073_c66.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body074",
+        "href": "html/074_c67.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body075",
+        "href": "html/075_c68.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body076",
+        "href": "html/076_c69.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body077",
+        "href": "html/077_c70.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body078",
+        "href": "html/078_c71.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body079",
+        "href": "html/079_c72.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body080",
+        "href": "html/080_c73.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body081",
+        "href": "html/081_c74.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body082",
+        "href": "html/082_c75.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body083",
+        "href": "html/083_c76.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body084",
+        "href": "html/084_c77.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body085",
+        "href": "html/085_c78.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body086",
+        "href": "html/086_c79.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body087",
+        "href": "html/087_c80.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body088",
+        "href": "html/088_c81.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body089",
+        "href": "html/089_c82.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body090",
+        "href": "html/090_c83.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body091",
+        "href": "html/091_c84.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body092",
+        "href": "html/092_c85.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body093",
+        "href": "html/093_c86.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body094",
+        "href": "html/094_c87.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body095",
+        "href": "html/095_c88.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body096",
+        "href": "html/096_c89.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body097",
+        "href": "html/097_c90.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body098",
+        "href": "html/098_c91.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body099",
+        "href": "html/099_c92.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body100",
+        "href": "html/100_c93.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body101",
+        "href": "html/101_c94.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body102",
+        "href": "html/102_c95.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body103",
+        "href": "html/103_c96.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body104",
+        "href": "html/104_c97.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body105",
+        "href": "html/105_c98.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body106",
+        "href": "html/106_c99.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body107",
+        "href": "html/107_c100.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body108",
+        "href": "html/108_c101.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body109",
+        "href": "html/109_c102.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body110",
+        "href": "html/110_c103.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body111",
+        "href": "html/111_c104.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body112",
+        "href": "html/112_c105.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body113",
+        "href": "html/113_c106.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body114",
+        "href": "html/114_c107.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body115",
+        "href": "html/115_c108.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body116",
+        "href": "html/116_c109.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body117",
+        "href": "html/117_c110.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body118",
+        "href": "html/118_c111.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body119",
+        "href": "html/119_c112.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body120",
+        "href": "html/120_c113.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body121",
+        "href": "html/121_c114.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body122",
+        "href": "html/122_c115.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body123",
+        "href": "html/123_c116.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body124",
+        "href": "html/124_c117.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body125",
+        "href": "html/125_c118.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body126",
+        "href": "html/126_c119.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body127",
+        "href": "html/127_c120.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body128",
+        "href": "html/128_alsoby.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body129",
+        "href": "html/129_ack.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "body130",
+        "href": "html/130_cr.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "html/000_cover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "html/docimages/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img1",
+        "href": "html/docimages/orn.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img2",
+        "href": "html/docimages/map.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img3",
+        "href": "html/docimages/logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img4",
+        "href": "html/docimages/tp.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "page-template",
+        "href": "html/page-template.xpgt",
+        "mediaType": "application/vnd.adobe-page-template+xml"
+      },
+      {
+        "id": "stylesheet",
+        "href": "html/valour.css",
+        "mediaType": "text/css"
       }
     ]
   }

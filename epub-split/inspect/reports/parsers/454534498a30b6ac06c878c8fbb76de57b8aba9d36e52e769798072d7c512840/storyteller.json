@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -99,6 +99,168 @@
       {
         "href": "xhtml/next-reads.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "adc",
+        "href": "xhtml/Nesb_9780593321010_epub3_adc_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ata",
+        "href": "xhtml/Nesb_9780593321010_epub3_ata_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "att",
+        "href": "xhtml/Nesb_9780593321010_epub3_att_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c01",
+        "href": "xhtml/Nesb_9780593321010_epub3_c01_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c02",
+        "href": "xhtml/Nesb_9780593321010_epub3_c02_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c03",
+        "href": "xhtml/Nesb_9780593321010_epub3_c03_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c04",
+        "href": "xhtml/Nesb_9780593321010_epub3_c04_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c05",
+        "href": "xhtml/Nesb_9780593321010_epub3_c05_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c06",
+        "href": "xhtml/Nesb_9780593321010_epub3_c06_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c07",
+        "href": "xhtml/Nesb_9780593321010_epub3_c07_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c08",
+        "href": "xhtml/Nesb_9780593321010_epub3_c08_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c09",
+        "href": "xhtml/Nesb_9780593321010_epub3_c09_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c10",
+        "href": "xhtml/Nesb_9780593321010_epub3_c10_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c11",
+        "href": "xhtml/Nesb_9780593321010_epub3_c11_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c12",
+        "href": "xhtml/Nesb_9780593321010_epub3_c12_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cop",
+        "href": "xhtml/Nesb_9780593321010_epub3_cop_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/9780593321010_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css1",
+        "href": "css/prh_resets.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "css2",
+        "href": "css/rh_static.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "css3",
+        "href": "css/9780593321010_style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "cvi",
+        "href": "xhtml/Nesb_9780593321010_epub3_cvi_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ftp",
+        "href": "images/9780593321010_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "nav",
+        "href": "9780593321010_nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "9780593321010_ncx.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "xhtml/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p01",
+        "href": "xhtml/Nesb_9780593321010_epub3_p01_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p02",
+        "href": "xhtml/Nesb_9780593321010_epub3_p02_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shift-Bold.otf",
+        "href": "fonts/Shift-Bold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "fonts/Shift-BoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "toc",
+        "href": "xhtml/Nesb_9780593321010_epub3_toc_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "tp",
+        "href": "xhtml/Nesb_9780593321010_epub3_tp_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

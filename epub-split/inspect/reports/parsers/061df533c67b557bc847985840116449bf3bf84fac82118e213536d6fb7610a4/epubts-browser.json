@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -107,6 +107,178 @@
       {
         "href": "index.htm",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "f1",
+        "href": "cover.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f10",
+        "href": "chapter_opening.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f11",
+        "href": "chapter_1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f12",
+        "href": "chapter_2.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f13",
+        "href": "chapter_3.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f14",
+        "href": "chapter_4.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f15",
+        "href": "chapter_5.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f16",
+        "href": "chapter_6.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f17",
+        "href": "chapter_7.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f18",
+        "href": "chapter_8.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f19",
+        "href": "chapter_9.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f2",
+        "href": "half_title.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f20",
+        "href": "chapter_10.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f21",
+        "href": "chapter_11.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f22",
+        "href": "chapter_12.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f23",
+        "href": "notes.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f24",
+        "href": "index.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f3",
+        "href": "title_page.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f4",
+        "href": "copyright.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f5",
+        "href": "dedication.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f6",
+        "href": "epigraph.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f7",
+        "href": "contents.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f8",
+        "href": "preface.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f9",
+        "href": "acknowledgments.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "x0",
+        "href": "IDS_style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "x1",
+        "href": "images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x2",
+        "href": "images/title.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x3",
+        "href": "images/page7.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x4",
+        "href": "images/page32.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x5",
+        "href": "images/page73.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x6",
+        "href": "images/page200.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x7",
+        "href": "images/page211.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x8",
+        "href": "images/page241.jpg",
+        "mediaType": "image/jpeg"
       }
     ]
   }

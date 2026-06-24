@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -335,6 +335,508 @@
       {
         "href": "xhtml/copy.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "about",
+        "href": "xhtml/about.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ack",
+        "href": "xhtml/ack.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "also",
+        "href": "xhtml/also.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch01",
+        "href": "xhtml/ch01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch02",
+        "href": "xhtml/ch02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch03",
+        "href": "xhtml/ch03.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch04",
+        "href": "xhtml/ch04.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch05",
+        "href": "xhtml/ch05.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch06",
+        "href": "xhtml/ch06.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch07",
+        "href": "xhtml/ch07.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch08",
+        "href": "xhtml/ch08.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch09",
+        "href": "xhtml/ch09.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch10",
+        "href": "xhtml/ch10.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch11",
+        "href": "xhtml/ch11.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch12",
+        "href": "xhtml/ch12.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch13",
+        "href": "xhtml/ch13.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch14",
+        "href": "xhtml/ch14.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch15",
+        "href": "xhtml/ch15.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch16",
+        "href": "xhtml/ch16.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch17",
+        "href": "xhtml/ch17.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch18",
+        "href": "xhtml/ch18.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch19",
+        "href": "xhtml/ch19.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch20",
+        "href": "xhtml/ch20.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch21",
+        "href": "xhtml/ch21.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch22",
+        "href": "xhtml/ch22.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch23",
+        "href": "xhtml/ch23.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch24",
+        "href": "xhtml/ch24.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch25",
+        "href": "xhtml/ch25.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch26",
+        "href": "xhtml/ch26.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch27",
+        "href": "xhtml/ch27.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch28",
+        "href": "xhtml/ch28.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch29",
+        "href": "xhtml/ch29.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch30",
+        "href": "xhtml/ch30.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch31",
+        "href": "xhtml/ch31.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch32",
+        "href": "xhtml/ch32.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch33",
+        "href": "xhtml/ch33.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch34",
+        "href": "xhtml/ch34.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch35",
+        "href": "xhtml/ch35.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch36",
+        "href": "xhtml/ch36.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch37",
+        "href": "xhtml/ch37.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch38",
+        "href": "xhtml/ch38.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch39",
+        "href": "xhtml/ch39.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch40",
+        "href": "xhtml/ch40.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch41",
+        "href": "xhtml/ch41.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch42",
+        "href": "xhtml/ch42.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch43",
+        "href": "xhtml/ch43.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch44",
+        "href": "xhtml/ch44.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch45",
+        "href": "xhtml/ch45.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch46",
+        "href": "xhtml/ch46.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch47",
+        "href": "xhtml/ch47.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch48",
+        "href": "xhtml/ch48.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch49",
+        "href": "xhtml/ch49.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch50",
+        "href": "xhtml/ch50.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch51",
+        "href": "xhtml/ch51.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch52",
+        "href": "xhtml/ch52.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch53",
+        "href": "xhtml/ch53.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch54",
+        "href": "xhtml/ch54.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch55",
+        "href": "xhtml/ch55.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch56",
+        "href": "xhtml/ch56.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch57",
+        "href": "xhtml/ch57.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch58",
+        "href": "xhtml/ch58.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch59",
+        "href": "xhtml/ch59.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch60",
+        "href": "xhtml/ch60.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch61",
+        "href": "xhtml/ch61.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch62",
+        "href": "xhtml/ch62.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cont",
+        "href": "xhtml/cont.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copy",
+        "href": "xhtml/copy.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "xhtml/cover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "css",
+        "href": "styles/9781481424325.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "dedication",
+        "href": "xhtml/dedication.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ebookregback",
+        "href": "xhtml/ebookregback.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ebookregfront",
+        "href": "xhtml/ebookregfront.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "fm01",
+        "href": "xhtml/fm01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "fm02",
+        "href": "xhtml/fm02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "font1",
+        "href": "fonts/ATSacGotLig.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font2",
+        "href": "fonts/ATSacHeaGot.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font3",
+        "href": "fonts/BioTGBd20.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font4",
+        "href": "fonts/GoudySansStd-Book.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font5",
+        "href": "fonts/GoudySansStd-Medium.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font6",
+        "href": "fonts/PalatinoLTStd-Italic.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font7",
+        "href": "fonts/PalatinoLTStd-Roman.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font8",
+        "href": "fonts/RegistrationGoudySans-Book.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font9",
+        "href": "fonts/RegistrationGoudySans-Medium.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "gloss",
+        "href": "xhtml/gloss.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "image1",
+        "href": "images/common.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image2",
+        "href": "images/comon.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image3",
+        "href": "images/logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image4",
+        "href": "images/map01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image5",
+        "href": "images/map02.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image6",
+        "href": "images/secbreak.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image7",
+        "href": "images/title.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "major",
+        "href": "xhtml/major.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "my-cover-image",
+        "href": "images/9781481424325.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "note",
+        "href": "xhtml/note.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part01",
+        "href": "xhtml/part01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part02",
+        "href": "xhtml/part02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part03",
+        "href": "xhtml/part03.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part04",
+        "href": "xhtml/part04.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "title",
+        "href": "xhtml/title.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -100,6 +100,168 @@
       {
         "href": "backpage.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "append",
+        "href": "append.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "backpage",
+        "href": "backpage.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "biblio",
+        "href": "biblio.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "conclusion",
+        "href": "conclusion.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "cover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "crt",
+        "href": "crt.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "firstprt",
+        "href": "firstprt.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "german_eng",
+        "href": "german_eng.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "htit",
+        "href": "htit.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "img_1",
+        "href": "images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img_2",
+        "href": "images/p-160.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img_3",
+        "href": "images/p-19.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img_4",
+        "href": "images/p-42.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img_5",
+        "href": "images/p-43.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img_6",
+        "href": "images/p-43a.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img_7",
+        "href": "images/ph.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "index",
+        "href": "index.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "intro",
+        "href": "intro.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "noteon",
+        "href": "noteon.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "pref",
+        "href": "pref.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "preface",
+        "href": "preface.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "prole",
+        "href": "prole.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "prolegomena",
+        "href": "prolegomena.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "pt",
+        "href": "page-template.xpgt",
+        "mediaType": "application/vnd.adobe.page-template+xml"
+      },
+      {
+        "id": "secondprt",
+        "href": "secondprt.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "solution",
+        "href": "solution.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "style",
+        "href": "default.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "supplement",
+        "href": "supplement.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "thirdprt",
+        "href": "thirdprt.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "title",
+        "href": "title.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "toc",
+        "href": "toc.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

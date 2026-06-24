@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -80,6 +80,163 @@
       {
         "href": "Text/next-reads.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "BurlingamePro-Bold.otf",
+        "href": "Fonts/BurlingamePro-Bold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "BurlingamePro-BoldItalic.otf",
+        "href": "Fonts/BurlingamePro-BoldItalic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "BurlingamePro-Medium.otf",
+        "href": "Fonts/BurlingamePro-Medium.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "BurlingamePro-MediumItalic.otf",
+        "href": "Fonts/BurlingamePro-MediumItalic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "cover-image",
+        "href": "Images/9781984881267_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "idGeneratedStyles.css",
+        "href": "Styles/9781984881267_style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "Images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "Text/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "page_3.jpg",
+        "href": "Images/page_3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_v.jpg",
+        "href": "Images/9781984881267_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_xi.jpg",
+        "href": "Images/page_xi.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Shift-Bold.otf",
+        "href": "Fonts/Shift-Bold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "Fonts/Shift-BoldItalic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "x01_Cover",
+        "href": "Text/01_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x02_Also_by_Elliot_Ackerm",
+        "href": "Text/02_Also_by_Elliot_Ackerm.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x03_Title_Page",
+        "href": "Text/03_Title_Page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x04_Copyright",
+        "href": "Text/04_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x05_Epigraph",
+        "href": "Text/05_Epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x06_Contents",
+        "href": "Text/06_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x07_1_The_W_n_Rui_Inciden",
+        "href": "Text/07_1_The_W_n_Rui_Inciden.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x08_2_Blackout",
+        "href": "Text/08_2_Blackout.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x09_3_Blinding_the_Elepha",
+        "href": "Text/09_3_Blinding_the_Elepha.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x10_4_Red_Lines",
+        "href": "Text/10_4_Red_Lines.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x11_5_On_Death_Ground",
+        "href": "Text/11_5_On_Death_Ground.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x12_6_The_Tandava",
+        "href": "Text/12_6_The_Tandava.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x13_Coda_The_Horizon",
+        "href": "Text/13_Coda_The_Horizon.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x14_Epigraph",
+        "href": "Text/14_Epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x15_Acknowledgments",
+        "href": "Text/15_Acknowledgments.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x16_About_the_Authors",
+        "href": "Text/16_About_the_Authors.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781984881267_nav",
+        "href": "Text/9781984881267_nav.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -172,6 +172,233 @@
       {
         "href": "Text/s035-Appendix-01.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "chapter_0",
+        "href": "ad_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter_1",
+        "href": "ad_chapter10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter_2",
+        "href": "ad_chapter20.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter_3",
+        "href": "ad_chapter30.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "Text/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "Images/9780316556330_cover_epub.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css-001",
+        "href": "Styles/9780316556330.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "images-001",
+        "href": "Images/circe_hctextf5_3_online.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "images-002",
+        "href": "Images/madeline_miller_online.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "s001",
+        "href": "Text/s001-BookTitlePage-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s002",
+        "href": "Text/s002-InsertedCopyright-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s004",
+        "href": "Text/s004-Chapter-001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s005",
+        "href": "Text/s005-Chapter-002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s006",
+        "href": "Text/s006-Chapter-003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s007",
+        "href": "Text/s007-Chapter-004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s008",
+        "href": "Text/s008-Chapter-005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s009",
+        "href": "Text/s009-Chapter-006.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s010",
+        "href": "Text/s010-Chapter-007.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s011",
+        "href": "Text/s011-Chapter-008.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s012",
+        "href": "Text/s012-Chapter-009.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s013",
+        "href": "Text/s013-Chapter-010.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s014",
+        "href": "Text/s014-Chapter-011.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s015",
+        "href": "Text/s015-Chapter-012.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s016",
+        "href": "Text/s016-Chapter-013.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s017",
+        "href": "Text/s017-Chapter-014.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s018",
+        "href": "Text/s018-Chapter-015.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s019",
+        "href": "Text/s019-Chapter-016.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s020",
+        "href": "Text/s020-Chapter-017.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s021",
+        "href": "Text/s021-Chapter-018.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s022",
+        "href": "Text/s022-Chapter-019.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s023",
+        "href": "Text/s023-Chapter-020.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s024",
+        "href": "Text/s024-Chapter-021.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s025",
+        "href": "Text/s025-Chapter-022.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s026",
+        "href": "Text/s026-Chapter-023.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s027",
+        "href": "Text/s027-Chapter-024.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s028",
+        "href": "Text/s028-Chapter-025.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s029",
+        "href": "Text/s029-Chapter-026.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s030",
+        "href": "Text/s030-Chapter-027.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s031",
+        "href": "Text/s031-Special-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s032",
+        "href": "Text/s032-Acknowledgements-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s033",
+        "href": "Text/s033-AboutTheAuthor-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s034",
+        "href": "Text/s034-FrontSales-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s035",
+        "href": "Text/s035-Appendix-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "toc",
+        "href": "Text/TOC.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

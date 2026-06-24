@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -99,6 +99,333 @@
       {
         "href": "xhtml/footnotes.xhtml",
         "linear": false
+      }
+    ],
+    "manifest": [
+      {
+        "id": "a_PCHI_IMGX",
+        "href": "xhtml/prh_core_assets/images/penguin_logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "about_the_author",
+        "href": "xhtml/about_the_author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "acknowledgements",
+        "href": "xhtml/acknowledgements.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "alogo_brand",
+        "href": "xhtml/prh_core_assets/images/logo_large.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "alogo_small",
+        "href": "xhtml/prh_core_assets/images/logo_small.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "appendix001",
+        "href": "xhtml/appendix001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "brandPage",
+        "href": "xhtml/brand_page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter001",
+        "href": "xhtml/chapter001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter002",
+        "href": "xhtml/chapter002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter003",
+        "href": "xhtml/chapter003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter004",
+        "href": "xhtml/chapter004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter005",
+        "href": "xhtml/chapter005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "xhtml/copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "xhtml/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "styles/basestyles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "css2",
+        "href": "styles/bespoke.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "css3",
+        "href": "styles/mediaquery.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "endpage",
+        "href": "xhtml/follow_penguin.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "footnotes",
+        "href": "xhtml/footnotes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Illus01",
+        "href": "images/Illus01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus02",
+        "href": "images/Illus02.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus03",
+        "href": "images/Illus03.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus04",
+        "href": "images/Illus04.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus05",
+        "href": "images/Illus05.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus06",
+        "href": "images/Illus06.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus07",
+        "href": "images/Illus07.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus08",
+        "href": "images/Illus08.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus09",
+        "href": "images/Illus09.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus10",
+        "href": "images/Illus10.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus11",
+        "href": "images/Illus11.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus12",
+        "href": "images/Illus12.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus13",
+        "href": "images/Illus13.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus14",
+        "href": "images/Illus14.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus15",
+        "href": "images/Illus15.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus16",
+        "href": "images/Illus16.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus17",
+        "href": "images/Illus17.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus18",
+        "href": "images/Illus18.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus19",
+        "href": "images/Illus19.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus20",
+        "href": "images/Illus20.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus21",
+        "href": "images/Illus21.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus22",
+        "href": "images/Illus22.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus23",
+        "href": "images/Illus23.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus24",
+        "href": "images/Illus24.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus25",
+        "href": "images/Illus25.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus26",
+        "href": "images/Illus26.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus27",
+        "href": "images/Illus27.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus28",
+        "href": "images/Illus28.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus29",
+        "href": "images/Illus29.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus30",
+        "href": "images/Illus30.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Illus31",
+        "href": "images/Illus31.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "illustration",
+        "href": "xhtml/illustration.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "index",
+        "href": "xhtml/index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "introduction",
+        "href": "xhtml/introduction.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "list_of_characters",
+        "href": "xhtml/list_of_characters.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "map",
+        "href": "xhtml/map.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav",
+        "href": "xhtml/nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "pgix",
+        "href": "images/pgix.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pgvi",
+        "href": "images/pgvi.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pgx",
+        "href": "images/pgx.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "picture_credits",
+        "href": "xhtml/picture_credits.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "preface001",
+        "href": "xhtml/preface001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "prh_uk_logo",
+        "href": "xhtml/prh_core_assets/images/prh_uk_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "title",
+        "href": "xhtml/title.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

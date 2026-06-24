@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -79,6 +79,133 @@
       {
         "href": "015-aboutthepublisher.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "abouttheauthor",
+        "href": "012-abouttheauthor.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "aboutthepublisher",
+        "href": "015-aboutthepublisher.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "acknowledgments",
+        "href": "011-acknowledgments.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ba1",
+        "href": "images/9780007367740.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ba2",
+        "href": "images/9780007392469.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ba3",
+        "href": "images/9780007405114.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ba4",
+        "href": "images/9780007548682.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "chapter1",
+        "href": "006-chapter1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter2",
+        "href": "007-chapter2.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter3",
+        "href": "008-chapter3.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter4",
+        "href": "009-chapter4.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "014-copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "dedication",
+        "href": "003-dedication.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "epigraph",
+        "href": "004-epigraph.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "img1",
+        "href": "images/logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jacket",
+        "href": "../jacket.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "kr",
+        "href": "keepreading.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "Toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "notes",
+        "href": "010-notes.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "otherbooksby",
+        "href": "013-otherbooksby.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "style",
+        "href": "LD.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "titlepage",
+        "href": "002-titlepage.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage1",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "toca",
+        "href": "005-toc.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

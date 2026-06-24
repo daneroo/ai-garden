@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -107,6 +107,448 @@
       {
         "href": "OEBPS/next-reads-html/next-reads.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "ack",
+        "href": "OEBPS/Reid_9781524798062_epub3_ack_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "adc",
+        "href": "OEBPS/Reid_9781524798062_epub3_adc_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ata",
+        "href": "OEBPS/Reid_9781524798062_epub3_ata_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bm-sup",
+        "href": "OEBPS/Reid_9781524798062_epub3_bm-sup_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cop",
+        "href": "OEBPS/Reid_9781524798062_epub3_cop_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "coverimg",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_001_cvi.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css1",
+        "href": "OEBPS/style/Reid_9781524798062_epub3_css_r1.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "cvi",
+        "href": "OEBPS/Reid_9781524798062_epub3_cvi_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ded",
+        "href": "OEBPS/Reid_9781524798062_epub3_ded_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "epl",
+        "href": "OEBPS/Reid_9781524798062_epub3_epl_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "extra1",
+        "href": "OEBPS/style/prhStyle.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "extra2",
+        "href": "OEBPS/style/prhStyle-media-queries.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "extra3",
+        "href": "OEBPS/images/space.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "generatedNavDoc",
+        "href": "OEBPS/Reid_9781524798062_epub3_nav_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "img1",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_002_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img10",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_019_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img11",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_020_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img12",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_003_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img13",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_021_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img14",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_022_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img15",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_023_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img16",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_024_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img17",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_025_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img18",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_026_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img19",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_027_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img2",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_011_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img20",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_035_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img21",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_036_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img22",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_037_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img23",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_004_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img24",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_028_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img25",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_029_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img26",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_030_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img27",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_031_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img28",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_032_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img29",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_033_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img3",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_012_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img30",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_034_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img31",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_038_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img32",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_039_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img33",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_040_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img34",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_005_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img35",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_041_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img36",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_042_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img37",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_043_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img38",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_044_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img39",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_045_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img4",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_013_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img40",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_046_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img41",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_047_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img42",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_048_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img43",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_049_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img44",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_050_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img45",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_006_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img46",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_051_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img46a",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_046a_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img47",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_052_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img48",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_007_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img49",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_008_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img5",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_014_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img50",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_010_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img51",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_009_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img52",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_001_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img6",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_015_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img7",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_016_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img8",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_017_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img9",
+        "href": "OEBPS/images/Reid_9781524798062_epub3_018_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "inlinetoc",
+        "href": "OEBPS/Reid_9781524798062_epub3_toc_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "next-reads_font_1",
+        "href": "OEBPS/next-reads-html/fonts/Fort-Book.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "next-reads_font_2",
+        "href": "OEBPS/next-reads-html/fonts/Shift-BoldItalic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "next-reads_font_3",
+        "href": "OEBPS/next-reads-html/fonts/Shift-Light.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "next-reads_image_1",
+        "href": "OEBPS/next-reads-html/images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads_template",
+        "href": "OEBPS/next-reads-html/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p001",
+        "href": "OEBPS/Reid_9781524798062_epub3_p001_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p001-sup",
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p001-sup1",
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup1_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p001-sup2",
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup2_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p001-sup3",
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup3_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p001-sup4",
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup4_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p001-sup5",
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup5_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p001-sup6",
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup6_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p001-sup7",
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup7_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p001-sup8",
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup8_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p001-sup9",
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup9_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p002",
+        "href": "OEBPS/Reid_9781524798062_epub3_p002_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p002-sup",
+        "href": "OEBPS/Reid_9781524798062_epub3_p002-sup_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "toc",
+        "href": "Reid_9781524798062_epub3_ncx_r1.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "tp",
+        "href": "OEBPS/Reid_9781524798062_epub3_tp_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

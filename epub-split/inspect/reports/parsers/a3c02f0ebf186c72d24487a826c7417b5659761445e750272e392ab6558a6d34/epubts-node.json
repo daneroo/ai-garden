@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -180,6 +180,403 @@
       {
         "href": "ops/author.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "appa",
+        "href": "ops/appa.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "appb",
+        "href": "ops/appb.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "appc",
+        "href": "ops/appc.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "author",
+        "href": "ops/author.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch1",
+        "href": "ops/ch1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch10",
+        "href": "ops/ch10.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch11",
+        "href": "ops/ch11.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch12",
+        "href": "ops/ch12.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch13",
+        "href": "ops/ch13.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch14",
+        "href": "ops/ch14.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch15",
+        "href": "ops/ch15.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch16",
+        "href": "ops/ch16.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch17",
+        "href": "ops/ch17.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch18",
+        "href": "ops/ch18.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch19",
+        "href": "ops/ch19.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch2",
+        "href": "ops/ch2.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch20",
+        "href": "ops/ch20.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch21",
+        "href": "ops/ch21.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch22",
+        "href": "ops/ch22.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch23",
+        "href": "ops/ch23.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch24",
+        "href": "ops/ch24.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch25",
+        "href": "ops/ch25.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch26",
+        "href": "ops/ch26.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch27",
+        "href": "ops/ch27.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch28",
+        "href": "ops/ch28.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch3",
+        "href": "ops/ch3.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch4",
+        "href": "ops/ch4.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch5",
+        "href": "ops/ch5.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch6",
+        "href": "ops/ch6.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch7",
+        "href": "ops/ch7.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch8",
+        "href": "ops/ch8.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch9",
+        "href": "ops/ch9.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "contents",
+        "href": "ops/contents.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "ops/copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "dedication",
+        "href": "ops/dedication.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "fm",
+        "href": "ops/fm.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "img-e0193-01",
+        "href": "ops/e0193-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-e0193-02",
+        "href": "ops/e0193-02.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-e0193-03",
+        "href": "ops/e0193-03.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-e0194-01",
+        "href": "ops/e0194-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-e0198-01",
+        "href": "ops/e0198-01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f010-1",
+        "href": "ops/f010-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f010-2",
+        "href": "ops/f010-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f011-1",
+        "href": "ops/f011-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f016-1",
+        "href": "ops/f016-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f016-2",
+        "href": "ops/f016-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f016-3",
+        "href": "ops/f016-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f016-4",
+        "href": "ops/f016-4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f017-1",
+        "href": "ops/f017-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f017-2",
+        "href": "ops/f017-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f017-3",
+        "href": "ops/f017-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f017-4",
+        "href": "ops/f017-4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f019-1",
+        "href": "ops/f019-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f019-2",
+        "href": "ops/f019-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f022-1",
+        "href": "ops/f022-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f022-2",
+        "href": "ops/f022-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f022-3",
+        "href": "ops/f022-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f024-1",
+        "href": "ops/f024-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f024-2",
+        "href": "ops/f024-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f03-1",
+        "href": "ops/f03-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f03-2",
+        "href": "ops/f03-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f06-1",
+        "href": "ops/f06-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f06-2",
+        "href": "ops/f06-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f09-1",
+        "href": "ops/f09-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-f0b-1",
+        "href": "ops/f0b-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-t024-1",
+        "href": "ops/t024-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-t05-1",
+        "href": "ops/t05-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-t05-2",
+        "href": "ops/t05-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img-title",
+        "href": "ops/title.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "index",
+        "href": "ops/index.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "intro",
+        "href": "ops/intro.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "page_css",
+        "href": "page_styles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "preface",
+        "href": "ops/preface.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "title",
+        "href": "ops/title.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "u5y3cWXDcHmgQHOaTdDtQd8",
+        "href": "ops/cover.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

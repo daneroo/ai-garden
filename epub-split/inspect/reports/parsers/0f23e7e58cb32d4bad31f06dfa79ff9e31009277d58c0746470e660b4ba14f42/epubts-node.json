@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -84,6 +84,123 @@
       {
         "href": "OPS/feedbooks.xml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "about",
+        "href": "OPS/about.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover1",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "feedbooks",
+        "href": "OPS/feedbooks.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "logo-feedbooks",
+        "href": "OPS/images/logo-feedbooks.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "logo-feedbooks-tiny",
+        "href": "OPS/images/logo-feedbooks-tiny.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "main0",
+        "href": "OPS/main0.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "main1",
+        "href": "OPS/main1.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "main10",
+        "href": "OPS/main10.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "main11",
+        "href": "OPS/main11.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "main12",
+        "href": "OPS/main12.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "main2",
+        "href": "OPS/main2.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "main3",
+        "href": "OPS/main3.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "main4",
+        "href": "OPS/main4.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "main5",
+        "href": "OPS/main5.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "main6",
+        "href": "OPS/main6.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "main7",
+        "href": "OPS/main7.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "main8",
+        "href": "OPS/main8.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "main9",
+        "href": "OPS/main9.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "similar",
+        "href": "OPS/similar.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "OPS/title.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage1",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

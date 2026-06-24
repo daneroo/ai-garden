@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -84,6 +84,138 @@
       {
         "href": "XHTML/PL16.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "couverture.css",
+        "href": "Style/couverture.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "cover",
+        "href": "Images/pageTitre.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id_Style_TemplateAlbinMichel.css",
+        "href": "Style/TemplateAlbinMichel.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id_Style_TemplateBookAM.css",
+        "href": "Style/TemplateBookAM.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id_Style_TemplateGeneric.css",
+        "href": "Style/TemplateGeneric.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ixPL1",
+        "href": "XHTML/PL1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL10",
+        "href": "XHTML/PL10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL11",
+        "href": "XHTML/PL11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL12",
+        "href": "XHTML/PL12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL13",
+        "href": "XHTML/PL13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL14",
+        "href": "XHTML/PL14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL15",
+        "href": "XHTML/PL15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL16",
+        "href": "XHTML/PL16.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL2",
+        "href": "XHTML/PL2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL3",
+        "href": "XHTML/PL3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL4",
+        "href": "XHTML/PL4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL5",
+        "href": "XHTML/PL5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL6",
+        "href": "XHTML/PL6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL7",
+        "href": "XHTML/PL7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL8",
+        "href": "XHTML/PL8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ixPL9",
+        "href": "XHTML/PL9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav",
+        "href": "nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "pagetitre",
+        "href": "XHTML/pagetitre.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "pageTitre1",
+        "href": "Images/pageTitre1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "titlepage",
+        "href": "XHTML/titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

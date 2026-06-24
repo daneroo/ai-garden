@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -108,6 +108,378 @@
       {
         "href": "xhtml/copyright.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "_page_map_",
+        "href": "_page_map_.xml",
+        "mediaType": "application/oebps-page-map+xml"
+      },
+      {
+        "id": "_toc_ncx_",
+        "href": "_toc_ncx_.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "ata",
+        "href": "xhtml/aboutauthor.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bm01",
+        "href": "xhtml/appendix001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bm02",
+        "href": "xhtml/appendix002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "brand",
+        "href": "xhtml/brandPage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c9780141966427_001",
+        "href": "images/9780141966427_001.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_002",
+        "href": "images/9780141966427_002.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_003",
+        "href": "images/9780141966427_003.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_004",
+        "href": "images/9780141966427_004.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_005",
+        "href": "images/9780141966427_005.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_006",
+        "href": "images/9780141966427_006.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_007",
+        "href": "images/9780141966427_007.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_008",
+        "href": "images/9780141966427_008.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_009",
+        "href": "images/9780141966427_009.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_010",
+        "href": "images/9780141966427_010.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_011",
+        "href": "images/9780141966427_011.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_012",
+        "href": "images/9780141966427_012.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_013",
+        "href": "images/9780141966427_013.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_014",
+        "href": "images/9780141966427_014.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_015",
+        "href": "images/9780141966427_015.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_016",
+        "href": "images/9780141966427_016.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_017",
+        "href": "images/9780141966427_017.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_018",
+        "href": "images/9780141966427_018.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_019",
+        "href": "images/9780141966427_019.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_020",
+        "href": "images/9780141966427_020.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_021",
+        "href": "images/9780141966427_021.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_022",
+        "href": "images/9780141966427_022.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_023",
+        "href": "images/9780141966427_023.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_024",
+        "href": "images/9780141966427_024.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_025",
+        "href": "images/9780141966427_025.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_026",
+        "href": "images/9780141966427_026.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_027",
+        "href": "images/9780141966427_027.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_028",
+        "href": "images/9780141966427_028.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_029",
+        "href": "images/9780141966427_029.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_030",
+        "href": "images/9780141966427_030.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_031",
+        "href": "images/9780141966427_031.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_032",
+        "href": "images/9780141966427_032.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_033",
+        "href": "images/9780141966427_033.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_034",
+        "href": "images/9780141966427_034.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_035",
+        "href": "images/9780141966427_035.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_036",
+        "href": "images/9780141966427_036.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_037",
+        "href": "images/9780141966427_037.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_039",
+        "href": "images/9780141966427_039.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_040",
+        "href": "images/9780141966427_040.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_041",
+        "href": "images/9780141966427_041.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_042",
+        "href": "images/9780141966427_042.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_043",
+        "href": "images/9780141966427_043.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_044",
+        "href": "images/9780141966427_044.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_045",
+        "href": "images/9780141966427_045.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "c9780141966427_046",
+        "href": "images/9780141966427_046.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ch01",
+        "href": "xhtml/chapter001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch02",
+        "href": "xhtml/chapter002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch03",
+        "href": "xhtml/chapter003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch04",
+        "href": "xhtml/chapter004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch05",
+        "href": "xhtml/chapter005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch06",
+        "href": "xhtml/chapter006.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch07",
+        "href": "xhtml/chapter007.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch08",
+        "href": "xhtml/chapter008.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch09",
+        "href": "xhtml/chapter009.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch10",
+        "href": "xhtml/chapter010.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch11",
+        "href": "xhtml/chapter011.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "xhtml/copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "xhtml/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ded",
+        "href": "xhtml/dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "end",
+        "href": "xhtml/endpage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "fm01",
+        "href": "xhtml/preface001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "fm02",
+        "href": "xhtml/introduction.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "fm03",
+        "href": "xhtml/preface002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "html-toc",
+        "href": "xhtml/toc.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav",
+        "href": "nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "stylesheet",
+        "href": "styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "title",
+        "href": "xhtml/title.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

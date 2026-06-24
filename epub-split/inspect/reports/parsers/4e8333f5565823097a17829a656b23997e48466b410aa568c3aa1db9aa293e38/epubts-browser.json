@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -99,6 +99,308 @@
       {
         "href": "e9781476787862/xhtml/copyright.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "ack",
+        "href": "e9781476787862/xhtml/ack.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "adcard",
+        "href": "e9781476787862/xhtml/adcard.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "AlegreyaSC-Italic",
+        "href": "e9781476787862/fonts/AlegreyaSC-Italic.ttf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "AlegreyaSC-Regular",
+        "href": "e9781476787862/fonts/AlegreyaSC-Regular.ttf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "appendix01",
+        "href": "e9781476787862/xhtml/appendix01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "appendix02",
+        "href": "e9781476787862/xhtml/appendix02.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "appendix03",
+        "href": "e9781476787862/xhtml/appendix03.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "appendix04",
+        "href": "e9781476787862/xhtml/appendix04.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "appendix05",
+        "href": "e9781476787862/xhtml/appendix05.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "appendix06",
+        "href": "e9781476787862/xhtml/appendix06.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "authorbio",
+        "href": "e9781476787862/xhtml/authorbio.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "buylink_9781476716428_cover",
+        "href": "e9781476787862/images/buylink_9781476716428_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "buylink_9781476716442_cover",
+        "href": "e9781476787862/images/buylink_9781476716442_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "buylink_9781476739960_cover",
+        "href": "e9781476787862/images/buylink_9781476739960_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "buylink_9781476787619_cover",
+        "href": "e9781476787862/images/buylink_9781476787619_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "buylink_9781476787725_cover",
+        "href": "e9781476787862/images/buylink_9781476787725_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "buylink_9781476787831_cover",
+        "href": "e9781476787862/images/buylink_9781476787831_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ch01",
+        "href": "e9781476787862/xhtml/ch01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "e9781476787862/xhtml/copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "e9781476787862/xhtml/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "e9781476787862/images/9781476787862.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "e9781476787862/styles/9781476787862.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "css1",
+        "href": "e9781476787862/styles/SS_global.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "dedication",
+        "href": "e9781476787862/xhtml/dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "EBGaramond-Bold",
+        "href": "e9781476787862/fonts/EBGaramond-Bold.ttf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "EBGaramond-Italic",
+        "href": "e9781476787862/fonts/EBGaramond-Italic.ttf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "EBGaramond-Regular",
+        "href": "e9781476787862/fonts/EBGaramond-Regular.ttf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "endnotes",
+        "href": "e9781476787862/xhtml/endnotes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "facebook",
+        "href": "e9781476787862/images/facebook.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "foreword",
+        "href": "e9781476787862/xhtml/foreword.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "halftitle",
+        "href": "e9781476787862/xhtml/halftitle.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ins01",
+        "href": "e9781476787862/images/ins01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins02",
+        "href": "e9781476787862/images/ins02.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins03",
+        "href": "e9781476787862/images/ins03.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins04",
+        "href": "e9781476787862/images/ins04.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins05",
+        "href": "e9781476787862/images/ins05.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins06",
+        "href": "e9781476787862/images/ins06.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins07",
+        "href": "e9781476787862/images/ins07.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins08",
+        "href": "e9781476787862/images/ins08.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins09",
+        "href": "e9781476787862/images/ins09.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins10",
+        "href": "e9781476787862/images/ins10.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins11",
+        "href": "e9781476787862/images/ins11.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins12",
+        "href": "e9781476787862/images/ins12.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins13",
+        "href": "e9781476787862/images/ins13.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins14",
+        "href": "e9781476787862/images/ins14.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins15",
+        "href": "e9781476787862/images/ins15.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "insert",
+        "href": "e9781476787862/xhtml/insert.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "instagram",
+        "href": "e9781476787862/images/instagram.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "intro",
+        "href": "e9781476787862/xhtml/intro.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "logo",
+        "href": "e9781476787862/images/logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "nav",
+        "href": "e9781476787862/xhtml/nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "SS_recommendpage",
+        "href": "e9781476787862/xhtml/SS_recommendpage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "SS_recommendpage_1",
+        "href": "e9781476787862/styles/SS_recommendpage.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "SS_signup",
+        "href": "e9781476787862/styles/SS_signup.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "SS_US_adult_signup_back",
+        "href": "e9781476787862/xhtml/SS_US_adult_signup_back.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "SS_US_adult_signup_front",
+        "href": "e9781476787862/xhtml/SS_US_adult_signup_front.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "title",
+        "href": "e9781476787862/xhtml/title.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlea",
+        "href": "e9781476787862/images/title.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "twitter",
+        "href": "e9781476787862/images/twitter.jpg",
+        "mediaType": "image/jpeg"
       }
     ]
   }

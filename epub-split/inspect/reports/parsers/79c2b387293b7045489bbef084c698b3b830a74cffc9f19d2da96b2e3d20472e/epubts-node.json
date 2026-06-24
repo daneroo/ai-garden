@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -76,6 +76,123 @@
       {
         "href": "about.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "about",
+        "href": "about.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "annotation",
+        "href": "annotation.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bookcontent1_0",
+        "href": "section1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bookcontent10_0",
+        "href": "section10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bookcontent11_0",
+        "href": "section11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bookcontent12_0",
+        "href": "fb2info.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bookcontent2_0",
+        "href": "section2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bookcontent3_0",
+        "href": "section3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bookcontent4_0",
+        "href": "section4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bookcontent5_0",
+        "href": "section5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bookcontent6_0",
+        "href": "section6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bookcontent7_0",
+        "href": "section7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bookcontent8_0",
+        "href": "section8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bookcontent9_0",
+        "href": "section9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "LiberationSerif-Bold",
+        "href": "fonts/LiberationSerif-Bold.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "LiberationSerif-BoldItalic",
+        "href": "fonts/LiberationSerif-BoldItalic.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "LiberationSerif-Italic",
+        "href": "fonts/LiberationSerif-Italic.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "LiberationSerif-Regular",
+        "href": "fonts/LiberationSerif-Regular.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "mainCSS",
+        "href": "css/main.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "the_telling.jpg",
+        "href": "images/the_telling.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "title",
+        "href": "title.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

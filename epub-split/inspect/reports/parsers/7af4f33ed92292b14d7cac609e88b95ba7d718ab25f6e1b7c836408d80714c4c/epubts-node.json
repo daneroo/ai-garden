@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -92,6 +92,123 @@
       {
         "href": "OEBPS/part18.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "cover1.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css1",
+        "href": "stylesheet1.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "part1",
+        "href": "OEBPS/part1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part10",
+        "href": "OEBPS/part10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part11",
+        "href": "OEBPS/part11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part12",
+        "href": "OEBPS/part12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part13",
+        "href": "OEBPS/part13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part14",
+        "href": "OEBPS/part14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part15",
+        "href": "OEBPS/part15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part16",
+        "href": "OEBPS/part16.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part17",
+        "href": "OEBPS/part17.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part18",
+        "href": "OEBPS/part18.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part2",
+        "href": "OEBPS/part2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part3",
+        "href": "OEBPS/part3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part4",
+        "href": "OEBPS/part4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part5",
+        "href": "OEBPS/part5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part6",
+        "href": "OEBPS/part6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part7",
+        "href": "OEBPS/part7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part8",
+        "href": "OEBPS/part8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part9",
+        "href": "OEBPS/part9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "title",
+        "href": "OEBPS/title.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

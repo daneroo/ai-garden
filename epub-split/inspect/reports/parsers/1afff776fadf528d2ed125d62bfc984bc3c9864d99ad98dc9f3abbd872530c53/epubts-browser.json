@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -211,6 +211,318 @@
       {
         "href": "xhtml/48_Footnote.xhtml",
         "linear": false
+      }
+    ],
+    "manifest": [
+      {
+        "id": "BenguiatStd-BookCondensed.otf",
+        "href": "fonts/BenguiatStd-BookCondensed.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "BenguiatStd-BookCondItal.otf",
+        "href": "fonts/BenguiatStd-BookCondItal.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/9780593511763_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "idGeneratedStyles.css",
+        "href": "css/9780593511763_style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "9780593511763_ncx.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "xhtml/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "page_iii.jpg",
+        "href": "images/9780593511763_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_vi.jpg",
+        "href": "images/page_vi.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "prh_resets",
+        "href": "css/prh_resets.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "Shift-Bold.otf",
+        "href": "fonts/Shift-Bold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "fonts/Shift-BoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "x01_Cover",
+        "href": "xhtml/01_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x02_Also_by_Dan_Jones",
+        "href": "xhtml/02_Also_by_Dan_Jones.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x03_Title_Page",
+        "href": "xhtml/03_Title_Page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x04_Copyright",
+        "href": "xhtml/04_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x05_Contents",
+        "href": "xhtml/05_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x06_Dedication",
+        "href": "xhtml/06_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x07_Map",
+        "href": "xhtml/07_Map.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x08_Epigraph",
+        "href": "xhtml/08_Epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x09_Prologue",
+        "href": "xhtml/09_Prologue.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x10_Text",
+        "href": "xhtml/10_Text.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x11_Part_1_Flemings",
+        "href": "xhtml/11_Part_1_Flemings.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x12_Chapter_1",
+        "href": "xhtml/12_Chapter_1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x13_Chapter_2",
+        "href": "xhtml/13_Chapter_2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x14_Chapter_3",
+        "href": "xhtml/14_Chapter_3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x15_Chapter_4",
+        "href": "xhtml/15_Chapter_4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x16_Chapter_5",
+        "href": "xhtml/16_Chapter_5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x17_Chapter_6",
+        "href": "xhtml/17_Chapter_6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x18_Chapter_7",
+        "href": "xhtml/18_Chapter_7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x19_Part_2_Pirates",
+        "href": "xhtml/19_Part_2_Pirates.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x20_Chapter_8",
+        "href": "xhtml/20_Chapter_8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x21_Chapter_9",
+        "href": "xhtml/21_Chapter_9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x22_Chapter_10",
+        "href": "xhtml/22_Chapter_10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x23_Chapter_11",
+        "href": "xhtml/23_Chapter_11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x24_Chapter_12",
+        "href": "xhtml/24_Chapter_12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x25_Chapter_13",
+        "href": "xhtml/25_Chapter_13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x26_Chapter_14",
+        "href": "xhtml/26_Chapter_14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x27_Chapter_15",
+        "href": "xhtml/27_Chapter_15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x28_Chapter_16",
+        "href": "xhtml/28_Chapter_16.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x29_Chapter_17",
+        "href": "xhtml/29_Chapter_17.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x30_Chapter_18",
+        "href": "xhtml/30_Chapter_18.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x31_Chapter_19",
+        "href": "xhtml/31_Chapter_19.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x32_Part_3_Burghers",
+        "href": "xhtml/32_Part_3_Burghers.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x33_Chapter_20",
+        "href": "xhtml/33_Chapter_20.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x34_Chapter_21",
+        "href": "xhtml/34_Chapter_21.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x35_Chapter_22",
+        "href": "xhtml/35_Chapter_22.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x36_Chapter_23",
+        "href": "xhtml/36_Chapter_23.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x37_Chapter_24",
+        "href": "xhtml/37_Chapter_24.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x38_Chapter_25",
+        "href": "xhtml/38_Chapter_25.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x39_Chapter_26",
+        "href": "xhtml/39_Chapter_26.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x40_Chapter_27",
+        "href": "xhtml/40_Chapter_27.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x41_Chapter_28",
+        "href": "xhtml/41_Chapter_28.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x42_Chapter_29",
+        "href": "xhtml/42_Chapter_29.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x43_Chapter_30",
+        "href": "xhtml/43_Chapter_30.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x44_Epilogue",
+        "href": "xhtml/44_Epilogue.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x45_Historical_Note",
+        "href": "xhtml/45_Historical_Note.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x46_Further_Reading",
+        "href": "xhtml/46_Further_Reading.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x47_Acknowledgements",
+        "href": "xhtml/47_Acknowledgements.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x48_Footnote",
+        "href": "xhtml/48_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x49_About_the_Author",
+        "href": "xhtml/49_About_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780593511763_nav",
+        "href": "9780593511763_nav.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

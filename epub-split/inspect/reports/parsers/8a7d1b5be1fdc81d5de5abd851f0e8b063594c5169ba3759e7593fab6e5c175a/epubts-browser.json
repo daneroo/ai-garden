@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -523,6 +523,818 @@
       {
         "href": "9780061792571_aboutpublisher.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover-page",
+        "href": "9780061792571_cover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "text/xml"
+      },
+      {
+        "id": "pt",
+        "href": "page-template.xpgt",
+        "mediaType": "application/vnd.adobe-page-template+xml"
+      },
+      {
+        "id": "x_9780061792571_01",
+        "href": "9780061792571_other_01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_02",
+        "href": "9780061792571_title.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_03",
+        "href": "9780061792571_alsoby.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_04",
+        "href": "9780061792571_dedication.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_05",
+        "href": "9780061792571_contents.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_06",
+        "href": "9780061792571_acknowledgement.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_07",
+        "href": "9780061792571_epigraph.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_08",
+        "href": "9780061792571_chapter_01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_09",
+        "href": "9780061792571_chapter_02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_10",
+        "href": "9780061792571_chapter_03.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_100",
+        "href": "9780061792571_chapter_93.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_101",
+        "href": "9780061792571_chapter_94.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_102",
+        "href": "9780061792571_chapter_95.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_103",
+        "href": "9780061792571_chapter_96.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_104",
+        "href": "9780061792571_chapter_97.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_105",
+        "href": "9780061792571_chapter_98.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_106",
+        "href": "9780061792571_chapter_99.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_107",
+        "href": "9780061792571_chapter_100.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_108",
+        "href": "9780061792571_chapter_101.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_109",
+        "href": "9780061792571_chapter_102.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_11",
+        "href": "9780061792571_chapter_04.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_110",
+        "href": "9780061792571_chapter_103.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_111",
+        "href": "9780061792571_appendix.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_112",
+        "href": "9780061792571_chapter_104.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_113",
+        "href": "9780061792571_chapter_105.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_114",
+        "href": "9780061792571_chapter_106.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_115",
+        "href": "9780061792571_chapter_107.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_116",
+        "href": "9780061792571_chapter_108.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_117",
+        "href": "9780061792571_chapter_109.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_118",
+        "href": "9780061792571_chapter_110.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_119",
+        "href": "9780061792571_chapter_111.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_12",
+        "href": "9780061792571_chapter_05.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_120",
+        "href": "9780061792571_chapter_112.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_121",
+        "href": "9780061792571_chapter_113.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_121a",
+        "href": "9780061792571_chapter_113a.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_122",
+        "href": "9780061792571_chapter_114.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_123",
+        "href": "9780061792571_aboutauthor.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_124",
+        "href": "9780061792571_copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_125",
+        "href": "9780061792571_chapter_115.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_126",
+        "href": "9780061792571_aboutpublisher.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_13",
+        "href": "9780061792571_chapter_06.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_14",
+        "href": "9780061792571_chapter_07.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_147",
+        "href": "9780061792571.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "x_9780061792571_148",
+        "href": "halftitle.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_149",
+        "href": "logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_15",
+        "href": "9780061792571_chapter_08.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_150",
+        "href": "p11.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_151",
+        "href": "p144a.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_152",
+        "href": "p144b.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_153",
+        "href": "p145a.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_154",
+        "href": "p145b.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_155",
+        "href": "p182a.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_156",
+        "href": "p182b.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_157",
+        "href": "p183.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_158",
+        "href": "p19.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_159",
+        "href": "p408.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_16",
+        "href": "9780061792571_chapter_09.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_160",
+        "href": "p436.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_161",
+        "href": "p437.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_162",
+        "href": "p678a.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_163",
+        "href": "p678b.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_164",
+        "href": "p679a.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_165",
+        "href": "p679b.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_166",
+        "href": "p679c.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_167",
+        "href": "p680.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_168",
+        "href": "p681.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_169",
+        "href": "p778.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_17",
+        "href": "9780061792571_chapter_10.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_170",
+        "href": "p781.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_171",
+        "href": "p840.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_172",
+        "href": "p841a.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_173",
+        "href": "p841b.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_174",
+        "href": "p842.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_175",
+        "href": "p84b.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_176",
+        "href": "p865.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_177",
+        "href": "pdlmsr.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "x_9780061792571_178",
+        "href": "title.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x_9780061792571_18",
+        "href": "9780061792571_chapter_11.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_19",
+        "href": "9780061792571_chapter_12.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_20",
+        "href": "9780061792571_chapter_13.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_21",
+        "href": "9780061792571_chapter_14.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_22",
+        "href": "9780061792571_chapter_15.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_23",
+        "href": "9780061792571_chapter_16.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_24",
+        "href": "9780061792571_chapter_17.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_25",
+        "href": "9780061792571_chapter_18.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_26",
+        "href": "9780061792571_chapter_19.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_27",
+        "href": "9780061792571_chapter_20.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_28",
+        "href": "9780061792571_chapter_21.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_29",
+        "href": "9780061792571_chapter_22.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_30",
+        "href": "9780061792571_chapter_23.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_31",
+        "href": "9780061792571_chapter_24.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_32",
+        "href": "9780061792571_chapter_25.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_33",
+        "href": "9780061792571_chapter_26.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_34",
+        "href": "9780061792571_chapter_27.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_35",
+        "href": "9780061792571_chapter_28.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_36",
+        "href": "9780061792571_chapter_29.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_37",
+        "href": "9780061792571_chapter_30.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_38",
+        "href": "9780061792571_chapter_31.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_39",
+        "href": "9780061792571_chapter_32.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_40",
+        "href": "9780061792571_chapter_33.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_41",
+        "href": "9780061792571_chapter_34.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_42",
+        "href": "9780061792571_chapter_35.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_43",
+        "href": "9780061792571_chapter_36.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_44",
+        "href": "9780061792571_chapter_37.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_45",
+        "href": "9780061792571_chapter_38.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_46",
+        "href": "9780061792571_chapter_39.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_47",
+        "href": "9780061792571_chapter_40.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_48",
+        "href": "9780061792571_chapter_41.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_49",
+        "href": "9780061792571_chapter_42.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_50",
+        "href": "9780061792571_chapter_43.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_51",
+        "href": "9780061792571_chapter_44.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_52",
+        "href": "9780061792571_chapter_45.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_53",
+        "href": "9780061792571_chapter_46.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_54",
+        "href": "9780061792571_chapter_47.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_55",
+        "href": "9780061792571_chapter_48.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_56",
+        "href": "9780061792571_chapter_49.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_57",
+        "href": "9780061792571_chapter_50.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_58",
+        "href": "9780061792571_chapter_51.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_59",
+        "href": "9780061792571_chapter_52.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_60",
+        "href": "9780061792571_chapter_53.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_61",
+        "href": "9780061792571_chapter_54.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_62",
+        "href": "9780061792571_chapter_55.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_63",
+        "href": "9780061792571_chapter_56.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_64",
+        "href": "9780061792571_chapter_57.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_65",
+        "href": "9780061792571_chapter_58.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_66",
+        "href": "9780061792571_chapter_59.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_67",
+        "href": "9780061792571_chapter_60.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_68",
+        "href": "9780061792571_chapter_61.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_69",
+        "href": "9780061792571_chapter_62.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_70",
+        "href": "9780061792571_chapter_63.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_71",
+        "href": "9780061792571_chapter_64.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_72",
+        "href": "9780061792571_chapter_65.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_73",
+        "href": "9780061792571_chapter_66.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_74",
+        "href": "9780061792571_chapter_67.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_75",
+        "href": "9780061792571_chapter_68.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_76",
+        "href": "9780061792571_chapter_69.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_77",
+        "href": "9780061792571_chapter_70.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_78",
+        "href": "9780061792571_chapter_71.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_79",
+        "href": "9780061792571_chapter_72.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_80",
+        "href": "9780061792571_chapter_73.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_81",
+        "href": "9780061792571_chapter_74.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_82",
+        "href": "9780061792571_chapter_75.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_83",
+        "href": "9780061792571_chapter_76.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_84",
+        "href": "9780061792571_chapter_77.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_85",
+        "href": "9780061792571_chapter_78.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_86",
+        "href": "9780061792571_chapter_79.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_87",
+        "href": "9780061792571_chapter_80.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_88",
+        "href": "9780061792571_chapter_81.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_89",
+        "href": "9780061792571_chapter_82.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_90",
+        "href": "9780061792571_chapter_83.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_91",
+        "href": "9780061792571_chapter_84.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_92",
+        "href": "9780061792571_chapter_85.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_93",
+        "href": "9780061792571_chapter_86.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_94",
+        "href": "9780061792571_chapter_87.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_95",
+        "href": "9780061792571_chapter_88.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_96",
+        "href": "9780061792571_chapter_89.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_97",
+        "href": "9780061792571_chapter_90.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_98",
+        "href": "9780061792571_chapter_91.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x_9780061792571_99",
+        "href": "9780061792571_chapter_92.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

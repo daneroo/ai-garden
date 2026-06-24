@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -87,6 +87,193 @@
       {
         "href": "text/About_the_Publisher.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "bookperk-boba-V1.jpg",
+        "href": "images/bookperk-boba-V1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CHAP001_001_9780062906717.jpg",
+        "href": "images/CHAP001_001_9780062906717.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CHAP002_001_9780062906717.jpg",
+        "href": "images/CHAP002_001_9780062906717.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CHAP003_001_9780062906717.jpg",
+        "href": "images/CHAP003_001_9780062906717.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CHAP004_001_9780062906717.jpg",
+        "href": "images/CHAP004_001_9780062906717.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CHAP005_001_9780062906717.jpg",
+        "href": "images/CHAP005_001_9780062906717.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CHAP005_002_9780062906717.jpg",
+        "href": "images/CHAP005_002_9780062906717.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CHAP006_001_9780062906717.jpg",
+        "href": "images/CHAP006_001_9780062906717.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CHAP006_002_9780062906717.jpg",
+        "href": "images/CHAP006_002_9780062906717.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CHAP007_001_9780062906717.jpg",
+        "href": "images/CHAP007_001_9780062906717.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CHAP008_001_9780062906717.jpg",
+        "href": "images/CHAP008_001_9780062906717.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CHAP008_002_9780062906717.jpg",
+        "href": "images/CHAP008_002_9780062906717.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Contents",
+        "href": "text/9780062906731_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "text/9780062906731_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/9780062906731_Cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "9780062906731_toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "Titlepage.jpg",
+        "href": "images/Titlepage.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "toc",
+        "href": "text/nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x1.jpg",
+        "href": "images/1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x9780062906731_Template.css",
+        "href": "styles/9780062906731_template.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "x9780062906731-1",
+        "href": "text/9780062906731_Titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-10",
+        "href": "text/9780062906731_Chapter_6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-11",
+        "href": "text/9780062906731_Chapter_7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-12",
+        "href": "text/9780062906731_Chapter_8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-13",
+        "href": "text/9780062906731_Acknowledgments.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-14",
+        "href": "text/9780062906731_Notes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-15",
+        "href": "text/9780062906731_Index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-16",
+        "href": "text/About_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-17",
+        "href": "text/9780062906731_Bookperk.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-18",
+        "href": "text/9780062906731_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-19",
+        "href": "text/About_the_Publisher.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-2",
+        "href": "text/9780062906731_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-4",
+        "href": "text/9780062906731_Chapter_1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-5",
+        "href": "text/9780062906731_Chapter_2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-6",
+        "href": "text/9780062906731_Chapter_3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-7",
+        "href": "text/9780062906731_Chapter_4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780062906731-8",
+        "href": "text/9780062906731_Chapter_5.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -68,6 +68,153 @@
       {
         "href": "Text/Section_0013.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover.jpg",
+        "href": "Images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css-kobo.css",
+        "href": "../css/kobo.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ding.png",
+        "href": "Images/ding.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "js-kobo.js",
+        "href": "../js/kobo.js",
+        "mediaType": "application/javascript"
+      },
+      {
+        "id": "Leander.ttf",
+        "href": "Fonts/Leander.ttf",
+        "mediaType": "font/ttf"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "SabonLTStd-Bold.otf",
+        "href": "Fonts/SabonLTStd-Bold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "SabonLTStd-BoldItalic.otf",
+        "href": "Fonts/SabonLTStd-BoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "SabonLTStd-Italic.otf",
+        "href": "Fonts/SabonLTStd-Italic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "SabonLTStd-Roman.otf",
+        "href": "Fonts/SabonLTStd-Roman.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "Section_0001.xhtml",
+        "href": "Text/Section_0001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section_0002.xhtml",
+        "href": "Text/Section_0002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section_0003.xhtml",
+        "href": "Text/Section_0003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section_0004.xhtml",
+        "href": "Text/Section_0004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section_0005.xhtml",
+        "href": "Text/Section_0005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section_0006.xhtml",
+        "href": "Text/Section_0006.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section_0007.xhtml",
+        "href": "Text/Section_0007.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section_0008.xhtml",
+        "href": "Text/Section_0008.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section_0009.xhtml",
+        "href": "Text/Section_0009.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section_0010.xhtml",
+        "href": "Text/Section_0010.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section_0011.xhtml",
+        "href": "Text/Section_0011.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section_0012.xhtml",
+        "href": "Text/Section_0012.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section_0013.xhtml",
+        "href": "Text/Section_0013.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section.xhtml",
+        "href": "Text/Section.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "style.css",
+        "href": "Styles/style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "x1.jpg",
+        "href": "Images/1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x2.jpg",
+        "href": "Images/2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x3.jpg",
+        "href": "Images/3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x4.jpg",
+        "href": "Images/4.jpg",
+        "mediaType": "image/jpeg"
       }
     ]
   }

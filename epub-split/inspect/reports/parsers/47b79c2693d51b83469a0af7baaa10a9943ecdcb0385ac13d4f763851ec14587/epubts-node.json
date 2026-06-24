@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -112,6 +112,238 @@
       {
         "href": "xhtml/next-reads.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "ack",
+        "href": "xhtml/Flyv_9780593239520_epub3_ack_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "app",
+        "href": "xhtml/Flyv_9780593239520_epub3_app_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "app1",
+        "href": "xhtml/Flyv_9780593239520_epub3_app1_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ata",
+        "href": "xhtml/Flyv_9780593239520_epub3_ata_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bib",
+        "href": "xhtml/Flyv_9780593239520_epub3_bib_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bm",
+        "href": "xhtml/Flyv_9780593239520_epub3_bm_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c001",
+        "href": "xhtml/Flyv_9780593239520_epub3_c001_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c002",
+        "href": "xhtml/Flyv_9780593239520_epub3_c002_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c003",
+        "href": "xhtml/Flyv_9780593239520_epub3_c003_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c004",
+        "href": "xhtml/Flyv_9780593239520_epub3_c004_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c005",
+        "href": "xhtml/Flyv_9780593239520_epub3_c005_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c006",
+        "href": "xhtml/Flyv_9780593239520_epub3_c006_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c007",
+        "href": "xhtml/Flyv_9780593239520_epub3_c007_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c008",
+        "href": "xhtml/Flyv_9780593239520_epub3_c008_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c009",
+        "href": "xhtml/Flyv_9780593239520_epub3_c009_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cop",
+        "href": "xhtml/Flyv_9780593239520_epub3_cop_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "coverimg",
+        "href": "images/9780593239520_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css1",
+        "href": "css/9780593239520_style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "cvi",
+        "href": "xhtml/Flyv_9780593239520_epub3_cvi_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ded",
+        "href": "xhtml/Flyv_9780593239520_epub3_ded_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ef1a",
+        "href": "fonts/TradeGothicNextLTPro-It.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ef1b",
+        "href": "fonts/TradeGothicNextLTPro-Rg.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ef1c",
+        "href": "fonts/TradeGothicNextLTPro-Bd.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ef1d",
+        "href": "fonts/TradeGothicNextLTPro-BdIt.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ef2a",
+        "href": "fonts/TradeGothicNextLTPro-Cn.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ef2b",
+        "href": "fonts/TradeGothicNextLTPro-CnIt.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ef2c",
+        "href": "fonts/TradeGothicNextLTPro-BdCn.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "ef2d",
+        "href": "fonts/TradeGothicNextLTPro-BdCnIt.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "extra1",
+        "href": "css/prh_resets.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "extra2",
+        "href": "css/rh_static.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "generatedNavDoc",
+        "href": "9780593239520_nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "idx",
+        "href": "xhtml/Flyv_9780593239520_epub3_idx_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "img1",
+        "href": "images/9780593239520_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img2",
+        "href": "images/001_Flyv_9780593239513_all_art_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img3",
+        "href": "images/002_Flyv_9780593239513_all_art_r3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img4",
+        "href": "images/003_Flyv_9780593239513_all_art_r2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "inlinetoc",
+        "href": "xhtml/Flyv_9780593239520_epub3_toc_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "itr",
+        "href": "xhtml/Flyv_9780593239520_epub3_itr_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "xhtml/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nts",
+        "href": "xhtml/Flyv_9780593239520_epub3_nts_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shift-Bold.otf",
+        "href": "fonts/Shift-Bold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "fonts/Shift-BoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "toc",
+        "href": "9780593239520_ncx.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "tp",
+        "href": "xhtml/Flyv_9780593239520_epub3_tp_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "xhtml_RGG_Flyv_9780593239520_epub3_rgg_r1_xhtml",
+        "href": "xhtml/RGG_Flyv_9780593239520_epub3_rgg_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

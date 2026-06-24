@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -51,6 +51,98 @@
       {
         "href": "Text/Conversation.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "BooksBy.xhtml",
+        "href": "Text/BooksBy.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Contents.xhtml",
+        "href": "Text/Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Conversation.xhtml",
+        "href": "Text/Conversation.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Copyright.xhtml",
+        "href": "Text/Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Cover_ParableOfTheSower.jpg",
+        "href": "Images/Cover_ParableOfTheSower.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "LiberationSerif-Bold.ttf",
+        "href": "Fonts/LiberationSerif-Bold.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "LiberationSerif-BoldItalic.ttf",
+        "href": "Fonts/LiberationSerif-BoldItalic.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "LiberationSerif-Italic.ttf",
+        "href": "Fonts/LiberationSerif-Italic.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "LiberationSerif-Regular.ttf",
+        "href": "Fonts/LiberationSerif-RegularMod.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "OctaviaEButler-ParableoftheSower.html",
+        "href": "Text/Octavia E Butler - Parable of the Sower.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Part_1.xhtml",
+        "href": "Text/Part_1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Part_2.xhtml",
+        "href": "Text/Part_2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Part_3.xhtml",
+        "href": "Text/Part_3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Part_4.xhtml",
+        "href": "Text/Part_4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "stylesheet.css",
+        "href": "Styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "TitlePage.jpg",
+        "href": "Images/TitlePage.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "TitlePage.xhtml",
+        "href": "Text/TitlePage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

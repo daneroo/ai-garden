@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -63,6 +63,83 @@
       {
         "href": "text/part12.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "cover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "part1.xhtml",
+        "href": "text/part1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part10.xhtml",
+        "href": "text/part10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part11.xhtml",
+        "href": "text/part11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part12.xhtml",
+        "href": "text/part12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part2.xhtml",
+        "href": "text/part2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part3.xhtml",
+        "href": "text/part3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part4.xhtml",
+        "href": "text/part4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part5.xhtml",
+        "href": "text/part5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part6.xhtml",
+        "href": "text/part6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part7.xhtml",
+        "href": "text/part7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part8.xhtml",
+        "href": "text/part8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part9.xhtml",
+        "href": "text/part9.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -104,6 +104,143 @@
       {
         "href": "OEBPS/Text/Section0020.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "calibre_jacket",
+        "href": "jacket.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "maclean_duart_badge_colorsm.jpg",
+        "href": "OEBPS/Images/maclean_duart_badge_colorsm.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "Section0000.xhtml",
+        "href": "OEBPS/Text/Section0000.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0001.xhtml",
+        "href": "OEBPS/Text/Section0001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0002.xhtml",
+        "href": "OEBPS/Text/Section0002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0003.xhtml",
+        "href": "OEBPS/Text/Section0003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0004.xhtml",
+        "href": "OEBPS/Text/Section0004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0005.xhtml",
+        "href": "OEBPS/Text/Section0005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0006.xhtml",
+        "href": "OEBPS/Text/Section0006.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0007.xhtml",
+        "href": "OEBPS/Text/Section0007.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0008.xhtml",
+        "href": "OEBPS/Text/Section0008.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0009.xhtml",
+        "href": "OEBPS/Text/Section0009.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0010.xhtml",
+        "href": "OEBPS/Text/Section0010.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0011.xhtml",
+        "href": "OEBPS/Text/Section0011.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0012.xhtml",
+        "href": "OEBPS/Text/Section0012.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0013.xhtml",
+        "href": "OEBPS/Text/Section0013.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0014.xhtml",
+        "href": "OEBPS/Text/Section0014.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0015.xhtml",
+        "href": "OEBPS/Text/Section0015.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0016.xhtml",
+        "href": "OEBPS/Text/Section0016.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0017.xhtml",
+        "href": "OEBPS/Text/Section0017.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0018.xhtml",
+        "href": "OEBPS/Text/Section0018.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0019.xhtml",
+        "href": "OEBPS/Text/Section0019.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0020.xhtml",
+        "href": "OEBPS/Text/Section0020.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

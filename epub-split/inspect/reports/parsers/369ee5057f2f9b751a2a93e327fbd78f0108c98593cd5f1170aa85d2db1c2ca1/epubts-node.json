@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -80,6 +80,143 @@
       {
         "href": "leaf0408.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover-image",
+        "href": "images/cover-image.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "intro",
+        "href": "intro.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "leaf-image0004",
+        "href": "images/leaf-image0004.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "leaf-image0005",
+        "href": "images/leaf-image0005.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "leaf-image0006",
+        "href": "images/leaf-image0006.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "leaf-image0007",
+        "href": "images/leaf-image0007.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "leaf-image0008",
+        "href": "images/leaf-image0008.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "leaf-image0011",
+        "href": "images/leaf-image0011.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "leaf-image0408",
+        "href": "images/leaf-image0408.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "leaf0001",
+        "href": "leaf0001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "leaf0004",
+        "href": "leaf0004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "leaf0005",
+        "href": "leaf0005.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "leaf0006",
+        "href": "leaf0006.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "leaf0007",
+        "href": "leaf0007.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "leaf0008",
+        "href": "leaf0008.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "leaf0011",
+        "href": "leaf0011.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "leaf0408",
+        "href": "leaf0408.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "part0000",
+        "href": "part0000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0001",
+        "href": "part0001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0002",
+        "href": "part0002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0003",
+        "href": "part0003.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0004",
+        "href": "part0004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0005",
+        "href": "part0005.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0006",
+        "href": "part0006.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0007",
+        "href": "part0007.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

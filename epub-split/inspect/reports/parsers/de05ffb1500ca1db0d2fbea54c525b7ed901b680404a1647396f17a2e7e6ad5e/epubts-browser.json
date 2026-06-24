@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -47,6 +47,93 @@
       {
         "href": "text/part0005_split_001.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id1",
+        "href": "images/00001.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id10",
+        "href": "text/part0002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id111",
+        "href": "text/part0003_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id112",
+        "href": "text/part0003_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id12",
+        "href": "text/part0004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id131",
+        "href": "text/part0005_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id132",
+        "href": "text/part0005_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2",
+        "href": "images/00002.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id3",
+        "href": "images/00003.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id4",
+        "href": "images/00004.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id8",
+        "href": "text/part0000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id9",
+        "href": "text/part0001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "page_css",
+        "href": "page_styles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

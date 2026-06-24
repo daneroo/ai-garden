@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -83,6 +83,123 @@
       {
         "href": "index_split_016.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "added1",
+        "href": "0002.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "added2",
+        "href": "0001.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id11",
+        "href": "index_split_016.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id110",
+        "href": "index_split_007.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id111",
+        "href": "index_split_006.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id112",
+        "href": "index_split_005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id113",
+        "href": "index_split_004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id114",
+        "href": "index_split_003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id115",
+        "href": "index_split_002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id116",
+        "href": "index_split_001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id117",
+        "href": "index_split_000.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id12",
+        "href": "index_split_015.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id13",
+        "href": "index_split_014.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id14",
+        "href": "index_split_013.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id15",
+        "href": "index_split_012.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id16",
+        "href": "index_split_011.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id17",
+        "href": "index_split_010.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id18",
+        "href": "index_split_009.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id19",
+        "href": "index_split_008.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

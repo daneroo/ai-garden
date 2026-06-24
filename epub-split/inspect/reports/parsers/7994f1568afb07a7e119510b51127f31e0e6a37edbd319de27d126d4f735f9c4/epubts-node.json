@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -40,6 +40,58 @@
       {
         "href": "Text/Cook%2C%20Glen%20-%20Black%20Company%2008%20-%20Water%20Sleeps_split_005.htm",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "Cook,_Glen_-_Black_Company_08_-_Water_Sleeps1",
+        "href": "Text/Cook%2C%20Glen%20-%20Black%20Company%2008%20-%20Water%20Sleeps_split_005.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Cook,_Glen_-_Black_Company_08_-_Water_Sleeps2",
+        "href": "Text/Cook%2C%20Glen%20-%20Black%20Company%2008%20-%20Water%20Sleeps_split_004.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Cook,_Glen_-_Black_Company_08_-_Water_Sleeps3",
+        "href": "Text/Cook%2C%20Glen%20-%20Black%20Company%2008%20-%20Water%20Sleeps_split_003.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Cook,_Glen_-_Black_Company_08_-_Water_Sleeps4",
+        "href": "Text/Cook%2C%20Glen%20-%20Black%20Company%2008%20-%20Water%20Sleeps_split_002.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Cook,_Glen_-_Black_Company_08_-_Water_Sleeps5",
+        "href": "Text/Cook%2C%20Glen%20-%20Black%20Company%2008%20-%20Water%20Sleeps_split_001.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Cook,_Glen_-_Black_Company_08_-_Water_Sleeps6",
+        "href": "Text/Cook%2C%20Glen%20-%20Black%20Company%2008%20-%20Water%20Sleeps_split_000.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "Images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "Styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "Text/titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

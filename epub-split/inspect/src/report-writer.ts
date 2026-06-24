@@ -247,6 +247,8 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
   let neitherOpened = 0;
   let spineAgree = 0;
   let spineDiffer = 0;
+  let manifestAgree = 0;
+  let manifestDiffer = 0;
 
   for (const entry of input.inventory.entries) {
     const aOpened = isOpened(input, entry.sha256, pair.a);
@@ -262,6 +264,8 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
         }
         if (result.spine.status === "agree") spineAgree += 1;
         else spineDiffer += 1;
+        if (result.manifest.status === "agree") manifestAgree += 1;
+        else manifestDiffer += 1;
       }
     } else if (!aOpened && !bOpened) {
       neitherOpened += 1;
@@ -300,6 +304,13 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
     "|---|---:|",
     `| agree | ${spineAgree} |`,
     `| differ | ${spineDiffer} |`,
+    "",
+    "## Manifest comparison",
+    "",
+    "| status | distinct books |",
+    "|---|---:|",
+    `| agree | ${manifestAgree} |`,
+    `| differ | ${manifestDiffer} |`,
     "",
     "## Not compared",
     "",
@@ -340,6 +351,9 @@ function renderPairMismatchList(
       ).filter((value): value is string => value !== null);
       if (result.spine.status === "differ") {
         fields.push(describeSpine(pair, result.spine));
+      }
+      if (result.manifest.status === "differ") {
+        fields.push(describeManifest(pair, result.manifest));
       }
       lines.push(
         `- [${displayName(entry)}](details/${entry.sha256}.md) — ${fields.join("; ")}`
@@ -385,6 +399,9 @@ function renderDetail(input: ReportInput, entry: CorpusEntry): string {
     );
     if (result.spine.status === "differ") {
       lines.push("", `### Spine`, "", describeSpineDetail(pair, result.spine));
+    }
+    if (result.manifest.status === "differ") {
+      lines.push("", `### Manifest`, "", describeManifestDetail(pair, result.manifest));
     }
   }
 
@@ -456,6 +473,7 @@ function activePairs(input: ReportInput): ParserPair[] {
 
 function comparisonHasMismatch(result: ComparisonResult): boolean {
   if (result.spine.status === "differ") return true;
+  if (result.manifest.status === "differ") return true;
   return METADATA_FIELDS.some((field) => {
     const status = result.metadata[field].status;
     return status === "differ" || status === "a-only" || status === "b-only";
@@ -497,6 +515,31 @@ function describeSpineDetail(pair: ParserPair, spine: ComparisonResult["spine"])
   }
   if (spine.onlyInB.length > 0) {
     lines.push("", `Only in ${pair.b}:`, ...spine.onlyInB.map((h) => `- ${h}`));
+  }
+  return lines.join("\n");
+}
+
+// One human-readable clause for a manifest mismatch in the mismatch list.
+function describeManifest(
+  pair: ParserPair,
+  manifest: ComparisonResult["manifest"]
+): string {
+  const parts: string[] = [];
+  if (manifest.onlyInA.length > 0) parts.push(`${manifest.onlyInA.length} only in ${pair.a}`);
+  if (manifest.onlyInB.length > 0) parts.push(`${manifest.onlyInB.length} only in ${pair.b}`);
+  if (parts.length === 0) return `manifest: counts differ (${manifest.countA} vs ${manifest.countB})`;
+  return `manifest: ${parts.join(", ")}`;
+}
+
+// Multi-line manifest diff for detail pages.
+function describeManifestDetail(pair: ParserPair, manifest: ComparisonResult["manifest"]): string {
+  const lines: string[] = [];
+  lines.push(`${pair.a}: ${manifest.countA} items, ${pair.b}: ${manifest.countB} items`);
+  if (manifest.onlyInA.length > 0) {
+    lines.push("", `Only in ${pair.a}:`, ...manifest.onlyInA.map((h) => `- ${h}`));
+  }
+  if (manifest.onlyInB.length > 0) {
+    lines.push("", `Only in ${pair.b}:`, ...manifest.onlyInB.map((h) => `- ${h}`));
   }
   return lines.join("\n");
 }

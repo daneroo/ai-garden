@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -163,6 +163,238 @@
       {
         "href": "Text/Sf-c22.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover.jpg",
+        "href": "Images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "cubierta.xhtml",
+        "href": "Text/cubierta.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "dedicatoria.xhtml",
+        "href": "Text/dedicatoria.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "epi0.xhtml",
+        "href": "Text/epi0.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "epi1.xhtml",
+        "href": "Text/epi1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "epi2.xhtml",
+        "href": "Text/epi2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "EPL_logo.png",
+        "href": "Images/EPL_logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "epl.css",
+        "href": "Styles/epl.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ex_libris.png",
+        "href": "Images/ex_libris.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "info.xhtml",
+        "href": "Text/info.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "interlude1.xhtml",
+        "href": "Text/interlude1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "interlude2.xhtml",
+        "href": "Text/interlude2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "interlude3.xhtml",
+        "href": "Text/interlude3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "interlude4.xhtml",
+        "href": "Text/interlude4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "interlude5.xhtml",
+        "href": "Text/interlude5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "part1.jpg",
+        "href": "Images/part1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "part1.xhtml",
+        "href": "Text/part1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part2.jpg",
+        "href": "Images/part2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "part2.xhtml",
+        "href": "Text/part2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "prologue.xhtml",
+        "href": "Text/prologue.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c01.xhtml",
+        "href": "Text/Sf-c01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c02.xhtml",
+        "href": "Text/Sf-c02.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c03.xhtml",
+        "href": "Text/Sf-c03.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c04.xhtml",
+        "href": "Text/Sf-c04.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c05.xhtml",
+        "href": "Text/Sf-c05.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c06.xhtml",
+        "href": "Text/Sf-c06.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c07.xhtml",
+        "href": "Text/Sf-c07.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c08.xhtml",
+        "href": "Text/Sf-c08.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c09.xhtml",
+        "href": "Text/Sf-c09.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c10.xhtml",
+        "href": "Text/Sf-c10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c11.xhtml",
+        "href": "Text/Sf-c11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c12.xhtml",
+        "href": "Text/Sf-c12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c13.xhtml",
+        "href": "Text/Sf-c13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c14.xhtml",
+        "href": "Text/Sf-c14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c15.xhtml",
+        "href": "Text/Sf-c15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c16.xhtml",
+        "href": "Text/Sf-c16.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c17.xhtml",
+        "href": "Text/Sf-c17.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c18.xhtml",
+        "href": "Text/Sf-c18.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c19.xhtml",
+        "href": "Text/Sf-c19.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c20.xhtml",
+        "href": "Text/Sf-c20.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c21.xhtml",
+        "href": "Text/Sf-c21.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Sf-c22.xhtml",
+        "href": "Text/Sf-c22.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "sinopsis.xhtml",
+        "href": "Text/sinopsis.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "style.css",
+        "href": "Styles/style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "titulo.xhtml",
+        "href": "Text/titulo.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

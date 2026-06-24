@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -67,6 +67,123 @@
       {
         "href": "Text/BackCover.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "BackCover.html",
+        "href": "Text/BackCover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "BackCover.jpg",
+        "href": "Images/BackCover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Chapter_01.html",
+        "href": "Text/Chapter_01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter_02.html",
+        "href": "Text/Chapter_02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter_03.html",
+        "href": "Text/Chapter_03.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter_04.html",
+        "href": "Text/Chapter_04.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter_05.html",
+        "href": "Text/Chapter_05.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter_06.html",
+        "href": "Text/Chapter_06.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter_07.html",
+        "href": "Text/Chapter_07.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Chapter_08.html",
+        "href": "Text/Chapter_08.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Contents.html",
+        "href": "Text/Contents.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Copyright.html",
+        "href": "Text/Copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Cover_TheWordForWorldIsForest.jpg",
+        "href": "Images/Cover_TheWordForWorldIsForest.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Dedication.html",
+        "href": "Text/Dedication.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "stylesheet.css",
+        "href": "Styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "TimesTenLTStd-Bold.otf",
+        "href": "Fonts/TimesTenLTStd-Bold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "TimesTenLTStd-BoldItalic.otf",
+        "href": "Fonts/TimesTenLTStd-BoldItalic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "TimesTenLTStd-Italic.otf",
+        "href": "Fonts/TimesTenLTStd-Italic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "TimesTenLTStd-Roman.otf",
+        "href": "Fonts/TimesTenLTStd-Roman.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "TitlePage.html",
+        "href": "Text/TitlePage.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "TitlePage.jpg",
+        "href": "Images/TitlePage.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Ursula_K_Le_Guin_-_The_Word_for_World_is_Forest.html",
+        "href": "Text/Ursula K Le Guin - The Word for World is Forest.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

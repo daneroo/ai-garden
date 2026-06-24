@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -131,6 +131,173 @@
       {
         "href": "content/Dresden_File-_-_Storm_Front_split_28.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id2.1",
+        "href": "content/Dresden_File-_-_Storm_Front_split_0.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.10",
+        "href": "content/Dresden_File-_-_Storm_Front_split_9.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.11",
+        "href": "content/Dresden_File-_-_Storm_Front_split_10.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.12",
+        "href": "content/Dresden_File-_-_Storm_Front_split_11.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.13",
+        "href": "content/Dresden_File-_-_Storm_Front_split_12.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.14",
+        "href": "content/Dresden_File-_-_Storm_Front_split_13.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.15",
+        "href": "content/Dresden_File-_-_Storm_Front_split_14.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.16",
+        "href": "content/Dresden_File-_-_Storm_Front_split_15.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.17",
+        "href": "content/Dresden_File-_-_Storm_Front_split_16.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.18",
+        "href": "content/Dresden_File-_-_Storm_Front_split_17.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.19",
+        "href": "content/Dresden_File-_-_Storm_Front_split_18.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.2",
+        "href": "content/Dresden_File-_-_Storm_Front_split_1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.20",
+        "href": "content/Dresden_File-_-_Storm_Front_split_19.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.21",
+        "href": "content/Dresden_File-_-_Storm_Front_split_20.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.22",
+        "href": "content/Dresden_File-_-_Storm_Front_split_21.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.23",
+        "href": "content/Dresden_File-_-_Storm_Front_split_22.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.24",
+        "href": "content/Dresden_File-_-_Storm_Front_split_23.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.25",
+        "href": "content/Dresden_File-_-_Storm_Front_split_24.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.26",
+        "href": "content/Dresden_File-_-_Storm_Front_split_25.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.27",
+        "href": "content/Dresden_File-_-_Storm_Front_split_26.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.28",
+        "href": "content/Dresden_File-_-_Storm_Front_split_27.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.29",
+        "href": "content/Dresden_File-_-_Storm_Front_split_28.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.3",
+        "href": "content/Dresden_File-_-_Storm_Front_split_2.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.4",
+        "href": "content/Dresden_File-_-_Storm_Front_split_3.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.5",
+        "href": "content/Dresden_File-_-_Storm_Front_split_4.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.6",
+        "href": "content/Dresden_File-_-_Storm_Front_split_5.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.7",
+        "href": "content/Dresden_File-_-_Storm_Front_split_6.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.8",
+        "href": "content/Dresden_File-_-_Storm_Front_split_7.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id2.9",
+        "href": "content/Dresden_File-_-_Storm_Front_split_8.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

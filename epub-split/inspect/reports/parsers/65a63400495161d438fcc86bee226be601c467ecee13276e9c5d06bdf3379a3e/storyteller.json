@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -179,6 +179,508 @@
       {
         "href": "xhtml/footnotes.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "_page_map_",
+        "href": "_page_map_.xml",
+        "mediaType": "application/oebps-page-map+xml"
+      },
+      {
+        "id": "about_the_author.xhtml",
+        "href": "xhtml/about_the_author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "acknowledgements.xhtml",
+        "href": "xhtml/acknowledgements.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "appendix.xhtml",
+        "href": "xhtml/appendix.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "avantgarde-bold.otf",
+        "href": "xhtml/prh_core_assets/fonts/avantgarde-bold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "avantgarde-regular.otf",
+        "href": "xhtml/prh_core_assets/fonts/avantgarde-regular.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "basestyles.css",
+        "href": "styles/basestyles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "bespoke.css",
+        "href": "styles/bespoke.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "brand_page.xhtml",
+        "href": "xhtml/brand_page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cast_characters.xhtml",
+        "href": "xhtml/cast_characters.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter001_01.xhtml",
+        "href": "xhtml/chapter001_01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter001.xhtml",
+        "href": "xhtml/chapter001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter002_01.xhtml",
+        "href": "xhtml/chapter002_01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter002.xhtml",
+        "href": "xhtml/chapter002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter003_01.xhtml",
+        "href": "xhtml/chapter003_01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter003.xhtml",
+        "href": "xhtml/chapter003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter004_01.xhtml",
+        "href": "xhtml/chapter004_01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter004.xhtml",
+        "href": "xhtml/chapter004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter005_01.xhtml",
+        "href": "xhtml/chapter005_01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter005.xhtml",
+        "href": "xhtml/chapter005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter006_01.xhtml",
+        "href": "xhtml/chapter006_01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter006.xhtml",
+        "href": "xhtml/chapter006.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter007_01.xhtml",
+        "href": "xhtml/chapter007_01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter007.xhtml",
+        "href": "xhtml/chapter007.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter008_01.xhtml",
+        "href": "xhtml/chapter008_01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter008.xhtml",
+        "href": "xhtml/chapter008.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter009_01.xhtml",
+        "href": "xhtml/chapter009_01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter009.xhtml",
+        "href": "xhtml/chapter009.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter010_01.xhtml",
+        "href": "xhtml/chapter010_01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter010.xhtml",
+        "href": "xhtml/chapter010.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter011.xhtml",
+        "href": "xhtml/chapter011.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright.xhtml",
+        "href": "xhtml/copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "cover.xhtml",
+        "href": "xhtml/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "dedication.xhtml",
+        "href": "xhtml/dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "epigraph.xhtml",
+        "href": "xhtml/epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "follow_penguin_logo.png",
+        "href": "xhtml/prh_core_assets/images/follow_penguin_logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "follow_penguin.xhtml",
+        "href": "xhtml/follow_penguin.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "footnotes.xhtml",
+        "href": "xhtml/footnotes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "greek_and_roman.xhtml",
+        "href": "xhtml/greek_and_roman.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "images.xhtml",
+        "href": "xhtml/images.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "index.xhtml",
+        "href": "xhtml/index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ins_01.jpg",
+        "href": "images/ins_01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_02.jpg",
+        "href": "images/ins_02.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_03.jpg",
+        "href": "images/ins_03.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_04.jpg",
+        "href": "images/ins_04.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_05.jpg",
+        "href": "images/ins_05.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_06.jpg",
+        "href": "images/ins_06.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_07.jpg",
+        "href": "images/ins_07.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_08.jpg",
+        "href": "images/ins_08.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_09.jpg",
+        "href": "images/ins_09.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_10.jpg",
+        "href": "images/ins_10.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_11.jpg",
+        "href": "images/ins_11.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_12.jpg",
+        "href": "images/ins_12.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_13.jpg",
+        "href": "images/ins_13.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_14.jpg",
+        "href": "images/ins_14.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_15.jpg",
+        "href": "images/ins_15.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_16.jpg",
+        "href": "images/ins_16.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_17.jpg",
+        "href": "images/ins_17.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_18.jpg",
+        "href": "images/ins_18.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_19.jpg",
+        "href": "images/ins_19.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_20.jpg",
+        "href": "images/ins_20.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_21.jpg",
+        "href": "images/ins_21.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_22.jpg",
+        "href": "images/ins_22.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_23.jpg",
+        "href": "images/ins_23.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_24.jpg",
+        "href": "images/ins_24.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_25.jpg",
+        "href": "images/ins_25.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_26.jpg",
+        "href": "images/ins_26.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_27.jpg",
+        "href": "images/ins_27.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_28.jpg",
+        "href": "images/ins_28.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_29.jpg",
+        "href": "images/ins_29.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_30.jpg",
+        "href": "images/ins_30.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_31.jpg",
+        "href": "images/ins_31.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_32.jpg",
+        "href": "images/ins_32.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_33.jpg",
+        "href": "images/ins_33.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_34.jpg",
+        "href": "images/ins_34.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_35.jpg",
+        "href": "images/ins_35.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_36.jpg",
+        "href": "images/ins_36.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_37.jpg",
+        "href": "images/ins_37.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ins_38.jpg",
+        "href": "images/ins_38.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "introduction.xhtml",
+        "href": "xhtml/introduction.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "list_of_illustrations.xhtml",
+        "href": "xhtml/list_of_illustrations.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "logo_large.png",
+        "href": "xhtml/prh_core_assets/images/logo_large.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "maps.xhtml",
+        "href": "xhtml/maps.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "mediaquery.css",
+        "href": "styles/mediaquery.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "nav.xhtml",
+        "href": "xhtml/nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "p001.png",
+        "href": "images/p001.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "p009.png",
+        "href": "images/p009.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "preface001.xhtml",
+        "href": "xhtml/preface001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "preface002.xhtml",
+        "href": "xhtml/preface002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "prh_uk_logo.jpg",
+        "href": "xhtml/prh_core_assets/images/prh_uk_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "pxi.png",
+        "href": "images/pxi.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pxiii.png",
+        "href": "images/pxiii.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pxv.png",
+        "href": "images/pxv.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pxvii.png",
+        "href": "images/pxvii.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pxxi.png",
+        "href": "images/pxxi.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pxxii.png",
+        "href": "images/pxxii.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "title_page_logo.png",
+        "href": "xhtml/prh_core_assets/images/title_page_logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "title.xhtml",
+        "href": "xhtml/title.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

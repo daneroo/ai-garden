@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -43,6 +43,83 @@
       {
         "href": "Text/vde29.06.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "break.jpg",
+        "href": "Images/break.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "cover-image",
+        "href": "Images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "coverhtml",
+        "href": "Text/cov01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "endmark.svg",
+        "href": "Images/endmark.svg",
+        "mediaType": "image/svg+xml"
+      },
+      {
+        "id": "frontmatter_001.jpg",
+        "href": "Images/frontmatter_001.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "frontmatter_003.jpg",
+        "href": "Images/frontmatter_003.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "vde29.00.xhtml",
+        "href": "Text/vde29.00.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "vde29.01.xhtml",
+        "href": "Text/vde29.01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "vde29.02.xhtml",
+        "href": "Text/vde29.02.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "vde29.03.xhtml",
+        "href": "Text/vde29.03.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "vde29.04.xhtml",
+        "href": "Text/vde29.04.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "vde29.05.xhtml",
+        "href": "Text/vde29.05.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "vde29.06.xhtml",
+        "href": "Text/vde29.06.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "veStyles_Epub.css",
+        "href": "Styles/veStyles_Epub.css",
+        "mediaType": "text/css"
       }
     ]
   }

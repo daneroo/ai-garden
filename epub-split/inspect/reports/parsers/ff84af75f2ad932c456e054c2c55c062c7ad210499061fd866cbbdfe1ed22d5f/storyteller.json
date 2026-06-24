@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -111,6 +111,218 @@
       {
         "href": "xhtml/24_Footnote.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover-image",
+        "href": "images/9780593330500_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "idGeneratedStyles.css",
+        "href": "css/9780593330500_style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "9780593330500_ncx.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "xhtml/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "penguin-logo-for-copyright.jpg",
+        "href": "images/penguin-logo-for-copyright.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "prh_resets",
+        "href": "css/prh_resets.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "RiverheadLogo_CR.jpg",
+        "href": "images/RiverheadLogo_CR.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Shift-Bold.otf",
+        "href": "fonts/Shift-Bold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "fonts/Shift-BoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "title.jpg",
+        "href": "images/9780593330500_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "TradeGothicNextLTPro-Bd.otf",
+        "href": "fonts/TradeGothicNextLTPro-Bd.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "TradeGothicNextLTPro-BdIt.otf",
+        "href": "fonts/TradeGothicNextLTPro-BdIt.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "TradeGothicNextLTPro-It.otf",
+        "href": "fonts/TradeGothicNextLTPro-It.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "TradeGothicNextLTPro-Lt.otf",
+        "href": "fonts/TradeGothicNextLTPro-Lt.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "TradeGothicNextLTPro-LtIt.otf",
+        "href": "fonts/TradeGothicNextLTPro-LtIt.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "TradeGothicNextLTPro-Rg.otf",
+        "href": "fonts/TradeGothicNextLTPro-Rg.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "x01_Cover",
+        "href": "xhtml/01_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x02_Title_Page",
+        "href": "xhtml/02_Title_Page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x03_Copyright",
+        "href": "xhtml/03_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x04_Dedication",
+        "href": "xhtml/04_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x05_Contents",
+        "href": "xhtml/05_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x06_Epigraph",
+        "href": "xhtml/06_Epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x07_Introduction",
+        "href": "xhtml/07_Introduction.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x08_1_Weather_and_Climate",
+        "href": "xhtml/08_1_Weather_and_Climate.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x09_2_Dark_Matter_Dark_En",
+        "href": "xhtml/09_2_Dark_Matter_Dark_En.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x10_3_Galaxies_and_the_Su",
+        "href": "xhtml/10_3_Galaxies_and_the_Su.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x11_4_Black_Holes",
+        "href": "xhtml/11_4_Black_Holes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x12_5_Quantum_Mechanics_a",
+        "href": "xhtml/12_5_Quantum_Mechanics_a.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x13_6_Thinking",
+        "href": "xhtml/13_6_Thinking.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x14_7_Simulations_Science",
+        "href": "xhtml/14_7_Simulations_Science.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x15_Acknowledgments",
+        "href": "xhtml/15_Acknowledgments.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x16_Notes",
+        "href": "xhtml/16_Notes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x17_Index",
+        "href": "xhtml/17_Index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x18_About_the_Author",
+        "href": "xhtml/18_About_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x19_Footnote",
+        "href": "xhtml/19_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x20_Footnote",
+        "href": "xhtml/20_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x21_Footnote",
+        "href": "xhtml/21_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x22_Footnote",
+        "href": "xhtml/22_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x23_Footnote",
+        "href": "xhtml/23_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x24_Footnote",
+        "href": "xhtml/24_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780593330500_nav",
+        "href": "9780593330500_nav.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

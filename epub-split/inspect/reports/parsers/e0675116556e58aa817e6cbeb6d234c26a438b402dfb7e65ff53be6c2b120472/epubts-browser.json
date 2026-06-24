@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -139,6 +139,358 @@
       {
         "href": "xhtml/30_Footnote.xhtml",
         "linear": false
+      }
+    ],
+    "manifest": [
+      {
+        "id": "Art01.jpg",
+        "href": "images/Art01.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Art03.jpg",
+        "href": "images/Art03.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Art05.jpg",
+        "href": "images/Art05.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Art07.jpg",
+        "href": "images/Art07.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Art09.jpg",
+        "href": "images/Art09.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Art10.jpg",
+        "href": "images/Art10.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Art12.jpg",
+        "href": "images/Art12.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Art13.jpg",
+        "href": "images/Art13.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/9780593328903_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "DINNextLTPro-Light.otf",
+        "href": "fonts/DINNextLTPro-Light.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "DINNextLTPro-LightItalic.otf",
+        "href": "fonts/DINNextLTPro-LightItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "DINNextLTPro-Medium.otf",
+        "href": "fonts/DINNextLTPro-Medium.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "DINNextLTPro-MediumItalic.otf",
+        "href": "fonts/DINNextLTPro-MediumItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "FineprintPro-Light.otf",
+        "href": "fonts/FineprintPro-Light.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "FreeSerif",
+        "href": "fonts/FreeSerif.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "FreeSerifItalic",
+        "href": "fonts/FreeSerifItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "idGeneratedStyles.css",
+        "href": "css/9780593328903_style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "9780593328903_ncx.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "NEW_RiverheadLOGO_25.jpg",
+        "href": "images/NEW_RiverheadLOGO_25.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "xhtml/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Ornament.jpg",
+        "href": "images/Ornament.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_1_2.jpg",
+        "href": "images/page_1_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_1.jpg",
+        "href": "images/page_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_206.jpg",
+        "href": "images/page_206.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_3_2.jpg",
+        "href": "images/page_3_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_3.jpg",
+        "href": "images/page_3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_45.jpg",
+        "href": "images/page_45.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_49.jpg",
+        "href": "images/page_49.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_54.jpg",
+        "href": "images/page_54.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_61.jpg",
+        "href": "images/page_61.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_80.jpg",
+        "href": "images/page_80.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_v.jpg",
+        "href": "images/9780593328903_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Penguin_Logo.jpg",
+        "href": "images/Penguin_Logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "prh_resets",
+        "href": "css/prh_resets.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "Shift-Bold.otf",
+        "href": "fonts/Shift-Bold.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "fonts/Shift-BoldItalic.otf",
+        "mediaType": "font/otf"
+      },
+      {
+        "id": "x01_Cover",
+        "href": "xhtml/01_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x02_Also_by_Carlo_Rovelli",
+        "href": "xhtml/02_Also_by_Carlo_Rovelli.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x03_Title_Page",
+        "href": "xhtml/03_Title_Page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x04_Copyright",
+        "href": "xhtml/04_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x05_Dedication",
+        "href": "xhtml/05_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x06_Contents",
+        "href": "xhtml/06_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x07_Looking_into_the_Abys",
+        "href": "xhtml/07_Looking_into_the_Abys.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x08_Part_One",
+        "href": "xhtml/08_Part_One.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x09_I_A_Strangely_Beautif",
+        "href": "xhtml/09_I_A_Strangely_Beautif.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x1.jpg",
+        "href": "images/1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x10_Part_Two",
+        "href": "xhtml/10_Part_Two.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x11_II_A_Curious_Bestiary",
+        "href": "xhtml/11_II_A_Curious_Bestiary.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x12_III_Is_It_Possible_Th",
+        "href": "xhtml/12_III_Is_It_Possible_Th.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x13_IV_The_Web_of_Relatio",
+        "href": "xhtml/13_IV_The_Web_of_Relatio.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x14_Part_Three",
+        "href": "xhtml/14_Part_Three.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x15_V_The_Unambiguous_Des",
+        "href": "xhtml/15_V_The_Unambiguous_Des.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x16_VI_For_Nature_It_Is_a",
+        "href": "xhtml/16_VI_For_Nature_It_Is_a.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x17_VII_But_Is_It_Really_",
+        "href": "xhtml/17_VII_But_Is_It_Really_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x18_Acknowledgments",
+        "href": "xhtml/18_Acknowledgments.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x19_Notes",
+        "href": "xhtml/19_Notes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x20_Illustration_Credits",
+        "href": "xhtml/20_Illustration_Credits.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x21_Index",
+        "href": "xhtml/21_Index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x22_Footnote",
+        "href": "xhtml/22_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x23_Footnote",
+        "href": "xhtml/23_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x24_Footnote",
+        "href": "xhtml/24_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x25_Footnote",
+        "href": "xhtml/25_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x26_Footnote",
+        "href": "xhtml/26_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x27_Footnote",
+        "href": "xhtml/27_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x28_Footnote",
+        "href": "xhtml/28_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x29_Footnote",
+        "href": "xhtml/29_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x30_Footnote",
+        "href": "xhtml/30_Footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x31_About_the_Author",
+        "href": "xhtml/31_About_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780593328903_nav",
+        "href": "9780593328903_nav.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

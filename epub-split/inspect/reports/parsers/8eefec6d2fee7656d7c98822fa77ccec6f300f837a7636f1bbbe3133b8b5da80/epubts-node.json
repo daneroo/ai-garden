@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -152,6 +152,223 @@
       {
         "href": "OEBPS/Text/s033-AdCard-01.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "images-001",
+        "href": "OEBPS/Images/aaa_online.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "images-002",
+        "href": "OEBPS/Images/capa_fallen_soldier_sf_online.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "images-003",
+        "href": "OEBPS/Images/discover_hachette_publisher_logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "images-004",
+        "href": "OEBPS/Images/jon_will_40_sf_online.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "page_css",
+        "href": "page_styles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "s001",
+        "href": "OEBPS/Text/s001-BookTitlePage-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s002",
+        "href": "OEBPS/Text/s002-Copyright-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s004",
+        "href": "OEBPS/Text/s004-Dedication-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s005",
+        "href": "OEBPS/Text/s005-Other-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s006",
+        "href": "OEBPS/Text/s006-Introduction-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s007",
+        "href": "OEBPS/Text/s007-Part-001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s008",
+        "href": "OEBPS/Text/s008-Chapter-001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s009",
+        "href": "OEBPS/Text/s009-Part-002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s010",
+        "href": "OEBPS/Text/s010-Chapter-002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s011",
+        "href": "OEBPS/Text/s011-Part-003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s012",
+        "href": "OEBPS/Text/s012-Chapter-003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s013",
+        "href": "OEBPS/Text/s013-Part-004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s014",
+        "href": "OEBPS/Text/s014-Chapter-004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s015",
+        "href": "OEBPS/Text/s015-Part-005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s016",
+        "href": "OEBPS/Text/s016-Chapter-005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s017",
+        "href": "OEBPS/Text/s017-Part-006.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s018",
+        "href": "OEBPS/Text/s018-Chapter-006.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s019",
+        "href": "OEBPS/Text/s019-Part-007.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s020",
+        "href": "OEBPS/Text/s020-Chapter-007.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s021",
+        "href": "OEBPS/Text/s021-Part-008.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s022",
+        "href": "OEBPS/Text/s022-Chapter-008.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s023",
+        "href": "OEBPS/Text/s023-Part-009.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s024",
+        "href": "OEBPS/Text/s024-Chapter-009.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s025",
+        "href": "OEBPS/Text/s025-Part-010.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s026",
+        "href": "OEBPS/Text/s026-Chapter-010.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s027",
+        "href": "OEBPS/Text/s027-Part-011.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s028",
+        "href": "OEBPS/Text/s028-Chapter-011.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s029",
+        "href": "OEBPS/Text/s029-Part-012.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s030",
+        "href": "OEBPS/Text/s030-Chapter-012.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s031",
+        "href": "OEBPS/Text/s031-Appendix-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s032",
+        "href": "OEBPS/Text/s032-Acknowledgments-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "s033",
+        "href": "OEBPS/Text/s033-AdCard-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "toc",
+        "href": "OEBPS/Text/TOC.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "u3E8kpwNCK9SuUFgHuouDx9",
+        "href": "OEBPS/Text/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

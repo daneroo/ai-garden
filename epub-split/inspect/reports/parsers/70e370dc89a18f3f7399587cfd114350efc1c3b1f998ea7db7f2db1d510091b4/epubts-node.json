@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -92,6 +92,208 @@
       {
         "href": "xhtml/next-reads.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "_page_map_",
+        "href": "_page_map_.xml",
+        "mediaType": "application/oebps-page-map+xml"
+      },
+      {
+        "id": "ack",
+        "href": "xhtml/Chia_9781101947906_epub3_ack_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "adc",
+        "href": "xhtml/Chia_9781101947906_epub3_adc_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ant",
+        "href": "xhtml/Chia_9781101947906_epub3_ant_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ata",
+        "href": "xhtml/Chia_9781101947906_epub3_ata_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c001",
+        "href": "xhtml/Chia_9781101947906_epub3_c001_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c002",
+        "href": "xhtml/Chia_9781101947906_epub3_c002_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c003",
+        "href": "xhtml/Chia_9781101947906_epub3_c003_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c004",
+        "href": "xhtml/Chia_9781101947906_epub3_c004_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c005",
+        "href": "xhtml/Chia_9781101947906_epub3_c005_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c006",
+        "href": "xhtml/Chia_9781101947906_epub3_c006_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c007",
+        "href": "xhtml/Chia_9781101947906_epub3_c007_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c008",
+        "href": "xhtml/Chia_9781101947906_epub3_c008_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c009",
+        "href": "xhtml/Chia_9781101947906_epub3_c009_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cop",
+        "href": "xhtml/Chia_9781101947906_epub3_cop_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "coverimg",
+        "href": "images/9781101947906_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "cre",
+        "href": "xhtml/Chia_9781101947906_epub3_cre_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "css1",
+        "href": "css/9781101947906_style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "cvi",
+        "href": "xhtml/Chia_9781101947906_epub3_cvi_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ded",
+        "href": "xhtml/Chia_9781101947906_epub3_ded_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "extra1",
+        "href": "css/prhStyle.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "extra2",
+        "href": "css/prhStyle-media-queries.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "generatedNavDoc",
+        "href": "9781101947906_nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "img1",
+        "href": "images/9781101947906_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img10",
+        "href": "images/Chia_9781101947906_epub3_009_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img2",
+        "href": "images/Chia_9781101947906_epub3_010_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img3",
+        "href": "images/Chia_9781101947906_epub3_002_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img4",
+        "href": "images/Chia_9781101947906_epub3_003_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img5",
+        "href": "images/Chia_9781101947906_epub3_004_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img6",
+        "href": "images/Chia_9781101947906_epub3_005_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img7",
+        "href": "images/Chia_9781101947906_epub3_006_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img8",
+        "href": "images/Chia_9781101947906_epub3_007_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img9",
+        "href": "images/Chia_9781101947906_epub3_008_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "inlinetoc",
+        "href": "xhtml/Chia_9781101947906_epub3_toc_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "xhtml/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "fonts/Shift-BoldItalic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "Shift-Light.otf",
+        "href": "fonts/Shift-Light.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "toc",
+        "href": "9781101947906_ncx.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "tp",
+        "href": "xhtml/Chia_9781101947906_epub3_tp_r1.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

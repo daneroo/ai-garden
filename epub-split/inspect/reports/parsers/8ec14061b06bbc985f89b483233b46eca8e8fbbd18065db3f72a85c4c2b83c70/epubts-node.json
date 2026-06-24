@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -84,6 +84,178 @@
       {
         "href": "Text/BackCover.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "AboutAuthor.html",
+        "href": "Text/AboutAuthor.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "AJensonPro-Bold.otf",
+        "href": "Fonts/AJensonPro-Bold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "AJensonPro-BoldIt.otf",
+        "href": "Fonts/AJensonPro-BoldIt.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "AJensonPro-It.otf",
+        "href": "Fonts/AJensonPro-It.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "AJensonPro-Regular.otf",
+        "href": "Fonts/AJensonPro-Regular.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "BackCover.html",
+        "href": "Text/BackCover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "BackCover.jpg",
+        "href": "Images/BackCover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Bonus.html",
+        "href": "Text/Bonus.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "BooksBy.html",
+        "href": "Text/BooksBy.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Contents.html",
+        "href": "Text/Contents.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Copyright.html",
+        "href": "Text/Copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Cover_TalesFromEarthsea.jpg",
+        "href": "Images/Cover_TalesFromEarthsea.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Description.html",
+        "href": "Text/Description.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Foreword.html",
+        "href": "Text/Foreword.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "map_1.jpg",
+        "href": "Images/map_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "map_2.jpg",
+        "href": "Images/map_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "MapA.html",
+        "href": "Text/MapA.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "MapB.html",
+        "href": "Text/MapB.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "sep1.gif",
+        "href": "Images/sep1.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "sep2.gif",
+        "href": "Images/sep2.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "sep3.gif",
+        "href": "Images/sep3.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "song.jpg",
+        "href": "Images/song.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Story_01.html",
+        "href": "Text/Story_01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Story_02.html",
+        "href": "Text/Story_02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Story_03.html",
+        "href": "Text/Story_03.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Story_04.html",
+        "href": "Text/Story_04.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Story_05.html",
+        "href": "Text/Story_05.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "stylesheet.css",
+        "href": "Styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "Teaser.html",
+        "href": "Text/Teaser.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "TitlePage.html",
+        "href": "Text/TitlePage.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "TitlePage.jpg",
+        "href": "Images/TitlePage.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Ursula_K_Le_Guin_-_Tales_from_Earthsea.html",
+        "href": "Text/Ursula%20K%20Le%20Guin%20-%20Tales%20from%20Earthsea.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ursula.jpg",
+        "href": "Images/ursula.jpg",
+        "mediaType": "image/jpeg"
       }
     ]
   }

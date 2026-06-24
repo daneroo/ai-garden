@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -92,6 +92,473 @@
       {
         "href": "OEBPS/Holl_9780385530200_epub_cop_r1.htm",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "ack",
+        "href": "OEBPS/Holl_9780385530200_epub_ack_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "adc",
+        "href": "OEBPS/Holl_9780385530200_epub_adc_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bib",
+        "href": "OEBPS/Holl_9780385530200_epub_bib_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bm1",
+        "href": "OEBPS/Holl_9780385530200_epub_bm1_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c01",
+        "href": "OEBPS/Holl_9780385530200_epub_c01_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c02",
+        "href": "OEBPS/Holl_9780385530200_epub_c02_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c03",
+        "href": "OEBPS/Holl_9780385530200_epub_c03_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c04",
+        "href": "OEBPS/Holl_9780385530200_epub_c04_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c05",
+        "href": "OEBPS/Holl_9780385530200_epub_c05_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c06",
+        "href": "OEBPS/Holl_9780385530200_epub_c06_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c07",
+        "href": "OEBPS/Holl_9780385530200_epub_c07_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cop",
+        "href": "OEBPS/Holl_9780385530200_epub_cop_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "css",
+        "href": "OEBPS/Holl_9780385530200_epub_css_r1.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "cvi",
+        "href": "OEBPS/Holl_9780385530200_epub_cvi_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ded",
+        "href": "OEBPS/Holl_9780385530200_epub_ded_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f001",
+        "href": "OEBPS/images/Holl_9780385530200_epub_001_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f002",
+        "href": "OEBPS/images/Holl_9780385530200_epub_002_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f003",
+        "href": "OEBPS/images/Holl_9780385530200_epub_003_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f004",
+        "href": "OEBPS/images/Holl_9780385530200_epub_004_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f005",
+        "href": "OEBPS/images/Holl_9780385530200_epub_005_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f006",
+        "href": "OEBPS/images/Holl_9780385530200_epub_006_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f007",
+        "href": "OEBPS/images/Holl_9780385530200_epub_007_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f008",
+        "href": "OEBPS/images/Holl_9780385530200_epub_008_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f009",
+        "href": "OEBPS/images/Holl_9780385530200_epub_009_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f010",
+        "href": "OEBPS/images/Holl_9780385530200_epub_010_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f011",
+        "href": "OEBPS/images/Holl_9780385530200_epub_011_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f012",
+        "href": "OEBPS/images/Holl_9780385530200_epub_012_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f013",
+        "href": "OEBPS/images/Holl_9780385530200_epub_013_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f014",
+        "href": "OEBPS/images/Holl_9780385530200_epub_014_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f015",
+        "href": "OEBPS/images/Holl_9780385530200_epub_015_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f016",
+        "href": "OEBPS/images/Holl_9780385530200_epub_016_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f017",
+        "href": "OEBPS/images/Holl_9780385530200_epub_017_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f018",
+        "href": "OEBPS/images/Holl_9780385530200_epub_018_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f019",
+        "href": "OEBPS/images/Holl_9780385530200_epub_019_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f020",
+        "href": "OEBPS/images/Holl_9780385530200_epub_020_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f021",
+        "href": "OEBPS/images/Holl_9780385530200_epub_021_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f022",
+        "href": "OEBPS/images/Holl_9780385530200_epub_022_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f023",
+        "href": "OEBPS/images/Holl_9780385530200_epub_023_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f024",
+        "href": "OEBPS/images/Holl_9780385530200_epub_024_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f025",
+        "href": "OEBPS/images/Holl_9780385530200_epub_025_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f026",
+        "href": "OEBPS/images/Holl_9780385530200_epub_026_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f027",
+        "href": "OEBPS/images/Holl_9780385530200_epub_027_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f028",
+        "href": "OEBPS/images/Holl_9780385530200_epub_028_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f029",
+        "href": "OEBPS/images/Holl_9780385530200_epub_029_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f030",
+        "href": "OEBPS/images/Holl_9780385530200_epub_030_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f031",
+        "href": "OEBPS/images/Holl_9780385530200_epub_031_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f032",
+        "href": "OEBPS/images/Holl_9780385530200_epub_032_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f033",
+        "href": "OEBPS/images/Holl_9780385530200_epub_033_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f034",
+        "href": "OEBPS/images/Holl_9780385530200_epub_034_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f035",
+        "href": "OEBPS/images/Holl_9780385530200_epub_035_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f036",
+        "href": "OEBPS/images/Holl_9780385530200_epub_036_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f037",
+        "href": "OEBPS/images/Holl_9780385530200_epub_037_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f038",
+        "href": "OEBPS/images/Holl_9780385530200_epub_038_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f039",
+        "href": "OEBPS/images/Holl_9780385530200_epub_039_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f040",
+        "href": "OEBPS/images/Holl_9780385530200_epub_040_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f041",
+        "href": "OEBPS/images/Holl_9780385530200_epub_041_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f042",
+        "href": "OEBPS/images/Holl_9780385530200_epub_042_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f043",
+        "href": "OEBPS/images/Holl_9780385530200_epub_043_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f044",
+        "href": "OEBPS/images/Holl_9780385530200_epub_044_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f045",
+        "href": "OEBPS/images/Holl_9780385530200_epub_045_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f046",
+        "href": "OEBPS/images/Holl_9780385530200_epub_046_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f047",
+        "href": "OEBPS/images/Holl_9780385530200_epub_047_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f048",
+        "href": "OEBPS/images/Holl_9780385530200_epub_048_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f049",
+        "href": "OEBPS/images/Holl_9780385530200_epub_049_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f050",
+        "href": "OEBPS/images/Holl_9780385530200_epub_050_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f051",
+        "href": "OEBPS/images/Holl_9780385530200_epub_051_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f052",
+        "href": "OEBPS/images/Holl_9780385530200_epub_052_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f053",
+        "href": "OEBPS/images/Holl_9780385530200_epub_053_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f054",
+        "href": "OEBPS/images/Holl_9780385530200_epub_054_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f055",
+        "href": "OEBPS/images/Holl_9780385530200_epub_055_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f056",
+        "href": "OEBPS/images/Holl_9780385530200_epub_056_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f057",
+        "href": "OEBPS/images/Holl_9780385530200_epub_057_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f058",
+        "href": "OEBPS/images/Holl_9780385530200_epub_058_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f059",
+        "href": "OEBPS/images/Holl_9780385530200_epub_059_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f060",
+        "href": "OEBPS/images/Holl_9780385530200_epub_060_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f061",
+        "href": "OEBPS/images/Holl_9780385530200_epub_061_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "fcvi",
+        "href": "OEBPS/images/Holl_9780385530200_epub_cvi_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "fcvt",
+        "href": "OEBPS/images/Holl_9780385530200_epub_cvt_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "fL01",
+        "href": "OEBPS/images/Holl_9780385530200_epub_L01_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "fM01",
+        "href": "OEBPS/images/Holl_9780385530200_epub_M01_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "fm1",
+        "href": "OEBPS/Holl_9780385530200_epub_fm1_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "fm2",
+        "href": "OEBPS/Holl_9780385530200_epub_fm2_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "font1",
+        "href": "OEBPS/fonts/CharisSILB.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "font2",
+        "href": "OEBPS/fonts/CharisSILBI.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "font3",
+        "href": "OEBPS/fonts/CharisSILI.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "font4",
+        "href": "OEBPS/fonts/CharisSILR.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "ftp",
+        "href": "OEBPS/images/Holl_9780385530200_epub_tp_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "Holl_9780385530200_epub_ncx_r1.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "nts",
+        "href": "OEBPS/Holl_9780385530200_epub_nts_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "page",
+        "href": "OEBPS/page-template.xpgt",
+        "mediaType": "application/vnd.adobe-page-template+xml"
+      },
+      {
+        "id": "prf",
+        "href": "OEBPS/Holl_9780385530200_epub_prf_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "toc",
+        "href": "OEBPS/Holl_9780385530200_epub_toc_r1.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "tp",
+        "href": "OEBPS/Holl_9780385530200_epub_tp_r1.htm",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

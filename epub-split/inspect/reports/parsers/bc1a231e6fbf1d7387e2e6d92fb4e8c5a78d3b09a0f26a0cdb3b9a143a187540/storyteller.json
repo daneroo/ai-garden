@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -107,6 +107,163 @@
       {
         "href": "024_BM_regular.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "_page_map_",
+        "href": "_page_map_.xml",
+        "mediaType": "application/oebps-page-map+xml"
+      },
+      {
+        "id": "A000_acover",
+        "href": "000_ACover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A002_fm_halftitle",
+        "href": "002_FM_halftitle.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A003_fm_titlepage",
+        "href": "003_FM_titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A004_fm_titleverso",
+        "href": "004_FM_titleverso.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A005_fm_dedication",
+        "href": "005_FM_dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A006_fm_epigraph",
+        "href": "006_FM_epigraph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A007_fm_contents",
+        "href": "007_FM_contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A008_fm_acknowledgements",
+        "href": "008_FM_acknowledgements.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A009_chapter",
+        "href": "009_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A010_part1",
+        "href": "010_part1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A011_part1_chapter",
+        "href": "011_part1_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A012_part1_chapter",
+        "href": "012_part1_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A013_part1_chapter",
+        "href": "013_part1_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A014_part2",
+        "href": "014_part2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A015_part2_chapter",
+        "href": "015_part2_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A016_part2_chapter",
+        "href": "016_part2_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A017_part2_chapter",
+        "href": "017_part2_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A018_part3",
+        "href": "018_part3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A019_part3_chapter",
+        "href": "019_part3_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A020_part3_chapter",
+        "href": "020_part3_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A021_part3_chapter",
+        "href": "021_part3_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A022_part3_chapter",
+        "href": "022_part3_chapter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A023_bm_endnotes",
+        "href": "023_BM_endNotes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "A024_bm_regular",
+        "href": "024_BM_regular.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image1",
+        "href": "images/actrade-9780198864981-graphic-001.gif.transcoded.b1df985c.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "image2",
+        "href": "images/actrade-9780198864981-graphic-002.gif.transcoded.b1df985c.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "OUP_Styles",
+        "href": "OUP_Styles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "toc-nav",
+        "href": "nav.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

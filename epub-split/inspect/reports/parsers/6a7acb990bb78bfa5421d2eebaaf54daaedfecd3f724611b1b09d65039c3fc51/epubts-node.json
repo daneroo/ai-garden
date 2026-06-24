@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -16,6 +16,18 @@
       {
         "href": "Text/005-chiang.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "x005-chiang.html",
+        "href": "Text/005-chiang.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

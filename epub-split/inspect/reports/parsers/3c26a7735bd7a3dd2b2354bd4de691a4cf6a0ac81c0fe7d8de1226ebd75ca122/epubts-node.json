@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -124,6 +124,313 @@
       {
         "href": "xhtml/footnotes.xhtml",
         "linear": false
+      }
+    ],
+    "manifest": [
+      {
+        "id": "a_PCHI_IMGX",
+        "href": "xhtml/prh_core_assets/images/penguin_logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "about_the_author",
+        "href": "xhtml/about_the_author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "acknowledgments",
+        "href": "xhtml/acknowledgments.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "alogo_brand",
+        "href": "xhtml/prh_core_assets/images/logo_large.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "alogo_small",
+        "href": "xhtml/prh_core_assets/images/logo_small.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "also_by",
+        "href": "xhtml/also_by.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "brandPage",
+        "href": "xhtml/brand_page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter001",
+        "href": "xhtml/chapter001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter002",
+        "href": "xhtml/chapter002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter003",
+        "href": "xhtml/chapter003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter004",
+        "href": "xhtml/chapter004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter005",
+        "href": "xhtml/chapter005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter006",
+        "href": "xhtml/chapter006.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter007",
+        "href": "xhtml/chapter007.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter008",
+        "href": "xhtml/chapter008.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter009",
+        "href": "xhtml/chapter009.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter010",
+        "href": "xhtml/chapter010.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter011",
+        "href": "xhtml/chapter011.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "conclusion",
+        "href": "xhtml/conclusion.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "contents",
+        "href": "xhtml/contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "xhtml/copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "styles/basestyles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "css2",
+        "href": "styles/bespoke.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "css3",
+        "href": "styles/mediaquery.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "dedication",
+        "href": "xhtml/dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "endpage",
+        "href": "xhtml/follow_penguin.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "footnotes",
+        "href": "xhtml/footnotes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "index",
+        "href": "xhtml/index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "introduction",
+        "href": "xhtml/introduction.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "list_of_illustrations",
+        "href": "xhtml/list_of_illustrations.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav",
+        "href": "xhtml/nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "notes",
+        "href": "xhtml/notes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "notes-01",
+        "href": "xhtml/notes-01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "pg027",
+        "href": "images/pg027.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg033",
+        "href": "images/pg033.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "pg039",
+        "href": "images/pg039.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg057",
+        "href": "images/pg057.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg073",
+        "href": "images/pg073.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg092",
+        "href": "images/pg092.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg130",
+        "href": "images/pg130.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg148",
+        "href": "images/pg148.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg166",
+        "href": "images/pg166.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg189",
+        "href": "images/pg189.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg197",
+        "href": "images/pg197.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg220",
+        "href": "images/pg220.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg222",
+        "href": "images/pg222.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "pg257",
+        "href": "images/pg257.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "pg264",
+        "href": "images/pg264.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg278",
+        "href": "images/pg278.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg291",
+        "href": "images/pg291.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg293",
+        "href": "images/pg293.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg297",
+        "href": "images/pg297.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg304",
+        "href": "images/pg304.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg334",
+        "href": "images/pg334.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg348",
+        "href": "images/pg348.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "pg350",
+        "href": "images/pg350.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "prh_uk_logo",
+        "href": "xhtml/prh_core_assets/images/prh_uk_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "title",
+        "href": "xhtml/title.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "xhtml/titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

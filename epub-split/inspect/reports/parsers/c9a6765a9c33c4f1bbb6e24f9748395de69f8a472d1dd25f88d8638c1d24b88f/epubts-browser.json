@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -67,6 +67,108 @@
       {
         "href": "OEBPS/xhtml/cover.xml",
         "linear": false
+      }
+    ],
+    "manifest": [
+      {
+        "id": "adcard",
+        "href": "OEBPS/xhtml/adcard.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter11",
+        "href": "OEBPS/xhtml/chapter1_split_002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter12",
+        "href": "OEBPS/xhtml/chapter1_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter13",
+        "href": "OEBPS/xhtml/chapter1_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter2",
+        "href": "OEBPS/xhtml/chapter2.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter3",
+        "href": "OEBPS/xhtml/chapter3.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "contents",
+        "href": "OEBPS/xhtml/contents.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "OEBPS/xhtml/copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "cover-image",
+        "href": "OEBPS/images/9781429991520.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css1",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "dedication",
+        "href": "OEBPS/xhtml/dedication.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "epigraph",
+        "href": "OEBPS/xhtml/epigraph.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "html-cover-page",
+        "href": "OEBPS/xhtml/cover.xml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "image-001",
+        "href": "OEBPS/images/title.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "pt",
+        "href": "OEBPS/page-template.xpgt",
+        "mediaType": "application/adobe-page-template+xml"
+      },
+      {
+        "id": "thanks",
+        "href": "OEBPS/xhtml/thanks.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "title",
+        "href": "OEBPS/xhtml/title.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

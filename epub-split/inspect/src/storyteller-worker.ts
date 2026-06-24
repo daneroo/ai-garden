@@ -31,7 +31,11 @@ try {
   // exclusively handles).
   const spineItems = await reader.getSpineItems();
   const spine = spineItems.map((item) => ({ href: item.href, linear: true }));
-  process.stdout.write(JSON.stringify({ ok: true, metadata, spine }));
+  const manifestRecord = await reader.getManifest();
+  const manifest = Object.values(manifestRecord)
+    .map((item) => ({ id: item.id, href: item.href, mediaType: item.mediaType ?? null }))
+    .sort((a, b) => a.id.localeCompare(b.id));
+  process.stdout.write(JSON.stringify({ ok: true, metadata, spine, manifest }));
   await reader.discardAndClose();
 } catch (error: unknown) {
   if (error instanceof EpubVersionError) {

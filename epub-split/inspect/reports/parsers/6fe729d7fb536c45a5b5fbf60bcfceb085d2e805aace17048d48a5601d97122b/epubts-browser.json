@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -67,6 +67,103 @@
       {
         "href": "Wyrd_Sisters_split_012.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "images/cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id11",
+        "href": "Wyrd_Sisters_split_012.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id110",
+        "href": "Wyrd_Sisters_split_003.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id111",
+        "href": "Wyrd_Sisters_split_002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id112",
+        "href": "Wyrd_Sisters_split_001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id113",
+        "href": "Wyrd_Sisters_split_000.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id12",
+        "href": "Wyrd_Sisters_split_011.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id13",
+        "href": "Wyrd_Sisters_split_010.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id14",
+        "href": "Wyrd_Sisters_split_009.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id15",
+        "href": "Wyrd_Sisters_split_008.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id16",
+        "href": "Wyrd_Sisters_split_007.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id17",
+        "href": "Wyrd_Sisters_split_006.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id18",
+        "href": "Wyrd_Sisters_split_005.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id19",
+        "href": "Wyrd_Sisters_split_004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id3",
+        "href": "images/00001.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "id4",
+        "href": "images/00002.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

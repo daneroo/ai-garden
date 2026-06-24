@@ -3,6 +3,8 @@ import {
   COMPARISON_RESULT_SCHEMA_VERSION,
   type ComparisonResult,
   type FieldComparison,
+  type ManifestComparison,
+  type ManifestItem,
   type ParserOutput,
   type SpineComparison,
   type SpineItem,
@@ -22,6 +24,7 @@ export function compareBook(a: ParserOutput, b: ParserOutput): ComparisonResult 
       date: compareField(a.content.metadata.date, b.content.metadata.date),
     },
     spine: compareSpine(a.content.spine, b.content.spine),
+    manifest: compareManifest(a.content.manifest, b.content.manifest),
   });
 }
 
@@ -42,6 +45,17 @@ function compareSpine(a: SpineItem[], b: SpineItem[]): SpineComparison {
   const onlyInA = aHrefs.filter((href) => !bSet.has(href));
   const onlyInB = bHrefs.filter((href) => !aSet.has(href));
   const agree = aHrefs.length === bHrefs.length && aHrefs.every((href, i) => href === bHrefs[i]);
+  return { status: agree ? "agree" : "differ", countA: aHrefs.length, countB: bHrefs.length, onlyInA, onlyInB };
+}
+
+function compareManifest(a: ManifestItem[], b: ManifestItem[]): ManifestComparison {
+  const aHrefs = a.map((item) => item.href);
+  const bHrefs = b.map((item) => item.href);
+  const bSet = new Set(bHrefs);
+  const aSet = new Set(aHrefs);
+  const onlyInA = aHrefs.filter((href) => !bSet.has(href));
+  const onlyInB = bHrefs.filter((href) => !aSet.has(href));
+  const agree = aSet.size === bSet.size && aHrefs.every((href) => bSet.has(href));
   return { status: agree ? "agree" : "differ", countA: aHrefs.length, countB: bHrefs.length, onlyInA, onlyInB };
 }
 

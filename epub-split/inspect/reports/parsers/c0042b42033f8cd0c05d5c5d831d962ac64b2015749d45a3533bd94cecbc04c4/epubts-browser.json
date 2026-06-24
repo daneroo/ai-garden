@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -623,6 +623,873 @@
       {
         "href": "text/About_the_Publisher.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "ata",
+        "href": "text/About_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "atp",
+        "href": "text/About_the_Publisher.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1_titlepage",
+        "href": "images/bk1_titlepage.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "bk1c01",
+        "href": "text/9780062372604_Book1_Chapter_1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c02",
+        "href": "text/9780062372604_Book1_Chapter_2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c03",
+        "href": "text/9780062372604_Book1_Chapter_3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c04",
+        "href": "text/9780062372604_Book1_Chapter_4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c05",
+        "href": "text/9780062372604_Book1_Chapter_5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c06",
+        "href": "text/9780062372604_Book1_Chapter_6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c07",
+        "href": "text/9780062372604_Book1_Chapter_7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c08",
+        "href": "text/9780062372604_Book1_Chapter_8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c09",
+        "href": "text/9780062372604_Book1_Chapter_9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c10",
+        "href": "text/9780062372604_Book1_Chapter_10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c11",
+        "href": "text/9780062372604_Book1_Chapter_11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c12",
+        "href": "text/9780062372604_Book1_Chapter_12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c13",
+        "href": "text/9780062372604_Book1_Chapter_13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c14",
+        "href": "text/9780062372604_Book1_Chapter_14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c15",
+        "href": "text/9780062372604_Book1_Chapter_15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c16",
+        "href": "text/9780062372604_Book1_Chapter_16.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1c17",
+        "href": "text/9780062372604_Book1_Chapter_17.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1cop",
+        "href": "text/9780062372604_Book1_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1cover_image",
+        "href": "images/9780062372604_Book1_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "bk1css",
+        "href": "styles/9780062372604_Book1_template.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "bk1cvi",
+        "href": "text/9780062372604_Book1_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1ded",
+        "href": "text/9780062372604_Book1_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1image",
+        "href": "images/bk1_498-1.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "bk1logo2",
+        "href": "images/bk1_L03.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "bk1logo3",
+        "href": "images/bk1_L04.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "bk1prf",
+        "href": "text/9780062372604_Book1_Backmatter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1prf1",
+        "href": "text/9780062372604_Book1_Backmatter1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1prl",
+        "href": "text/9780062372604_Book1_Prologue.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1toc",
+        "href": "text/9780062372604_Book1_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk1tp",
+        "href": "text/9780062372604_Book1_Titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2_titlepage",
+        "href": "images/bk2_titlepage.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "bk2chapter01",
+        "href": "text/9780062372604_Book2_Chapter_1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter02",
+        "href": "text/9780062372604_Book2_Chapter_2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter03",
+        "href": "text/9780062372604_Book2_Chapter_3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter04",
+        "href": "text/9780062372604_Book2_Chapter_4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter05",
+        "href": "text/9780062372604_Book2_Chapter_5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter06",
+        "href": "text/9780062372604_Book2_Chapter_6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter07",
+        "href": "text/9780062372604_Book2_Chapter_7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter08",
+        "href": "text/9780062372604_Book2_Chapter_8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter09",
+        "href": "text/9780062372604_Book2_Chapter_9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter10",
+        "href": "text/9780062372604_Book2_Chapter_10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter11",
+        "href": "text/9780062372604_Book2_Chapter_11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter12",
+        "href": "text/9780062372604_Book2_Chapter_12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter13",
+        "href": "text/9780062372604_Book2_Chapter_13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter14",
+        "href": "text/9780062372604_Book2_Chapter_14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter15",
+        "href": "text/9780062372604_Book2_Chapter_15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter16",
+        "href": "text/9780062372604_Book2_Chapter_16.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter17",
+        "href": "text/9780062372604_Book2_Chapter_17.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter18",
+        "href": "text/9780062372604_Book2_Chapter_18.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter19",
+        "href": "text/9780062372604_Book2_Chapter_19.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2chapter20",
+        "href": "text/9780062372604_Book2_Chapter_20.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2copyrightpage",
+        "href": "text/9780062372604_Book2_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2cover_image",
+        "href": "images/9780062372604_Book2_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "bk2creditpage",
+        "href": "text/9780062372604_Book2_Credits.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2css",
+        "href": "styles/9780062372604_Book2_template.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "bk2cvi",
+        "href": "text/9780062372604_Book2_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm01",
+        "href": "text/9780062372604_Book2_Section_1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm02",
+        "href": "text/9780062372604_Book2_Section_2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm03",
+        "href": "text/9780062372604_Book2_Section_3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm04",
+        "href": "text/9780062372604_Book2_Section_4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm05",
+        "href": "text/9780062372604_Book2_Section_5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm06",
+        "href": "text/9780062372604_Book2_Section_6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm07",
+        "href": "text/9780062372604_Book2_Section_7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm08",
+        "href": "text/9780062372604_Book2_Section_8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm09",
+        "href": "text/9780062372604_Book2_Section_9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm10",
+        "href": "text/9780062372604_Book2_Section_10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm11",
+        "href": "text/9780062372604_Book2_Section_11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm12",
+        "href": "text/9780062372604_Book2_Section_12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm13",
+        "href": "text/9780062372604_Book2_Section_13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm14",
+        "href": "text/9780062372604_Book2_Section_14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm15",
+        "href": "text/9780062372604_Book2_Section_15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm16",
+        "href": "text/9780062372604_Book2_Section_16.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm17",
+        "href": "text/9780062372604_Book2_Section_17.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm18",
+        "href": "text/9780062372604_Book2_Section_18.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm19",
+        "href": "text/9780062372604_Book2_Section_19.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm20",
+        "href": "text/9780062372604_Book2_Section_20.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm21",
+        "href": "text/9780062372604_Book2_Section_21.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm22",
+        "href": "text/9780062372604_Book2_Section_22.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm23",
+        "href": "text/9780062372604_Book2_Section_23.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm24",
+        "href": "text/9780062372604_Book2_Section_24.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2dm25",
+        "href": "text/9780062372604_Book2_Section_25.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2frontmatterpage01",
+        "href": "text/9780062372604_Book2_Frontmatter1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2prologuepage",
+        "href": "text/9780062372604_Book2_Prologue.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2TOC",
+        "href": "text/9780062372604_Book2_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk2tp",
+        "href": "text/9780062372604_Book2_Titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3_titlepage",
+        "href": "images/bk3_titlepage.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "bk3cast-of-characters",
+        "href": "text/9780062372604_Book3_Cast.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-1",
+        "href": "text/9780062372604_Book3_Chapter_1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-10",
+        "href": "text/9780062372604_Book3_Chapter_10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-11",
+        "href": "text/9780062372604_Book3_Chapter_11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-12",
+        "href": "text/9780062372604_Book3_Chapter_12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-13",
+        "href": "text/9780062372604_Book3_Chapter_13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-14",
+        "href": "text/9780062372604_Book3_Chapter_14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-15",
+        "href": "text/9780062372604_Book3_Chapter_15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-2",
+        "href": "text/9780062372604_Book3_Chapter_2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-3",
+        "href": "text/9780062372604_Book3_Chapter_3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-4",
+        "href": "text/9780062372604_Book3_Chapter_4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-5",
+        "href": "text/9780062372604_Book3_Chapter_5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-6",
+        "href": "text/9780062372604_Book3_Chapter_6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-7",
+        "href": "text/9780062372604_Book3_Chapter_7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-8",
+        "href": "text/9780062372604_Book3_Chapter_8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3chapter-9",
+        "href": "text/9780062372604_Book3_Chapter_9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3contents",
+        "href": "text/9780062372604_Book3_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3copyright",
+        "href": "text/9780062372604_Book3_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3cover_image",
+        "href": "images/9780062372604_Book3_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "bk3credits",
+        "href": "text/9780062372604_Book3_Credits.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3css",
+        "href": "styles/9780062372604_Book3_template.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "bk3cvi",
+        "href": "text/9780062372604_Book3_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3dedication",
+        "href": "text/9780062372604_Book3_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3epilogue",
+        "href": "text/9780062372604_Book3_Epilogue.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-1",
+        "href": "text/9780062372604_Book3_Letter_1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-10",
+        "href": "text/9780062372604_Book3_Letter_10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-11",
+        "href": "text/9780062372604_Book3_Letter_11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-12",
+        "href": "text/9780062372604_Book3_Letter_12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-13",
+        "href": "text/9780062372604_Book3_Letter_13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-14",
+        "href": "text/9780062372604_Book3_Letter_14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-15",
+        "href": "text/9780062372604_Book3_Letter_15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-2",
+        "href": "text/9780062372604_Book3_Letter_2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-3",
+        "href": "text/9780062372604_Book3_Letter_3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-4",
+        "href": "text/9780062372604_Book3_Letter_4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-5",
+        "href": "text/9780062372604_Book3_Letter_5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-6",
+        "href": "text/9780062372604_Book3_Letter_6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-7",
+        "href": "text/9780062372604_Book3_Letter_7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-8",
+        "href": "text/9780062372604_Book3_Letter_8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3letter-9",
+        "href": "text/9780062372604_Book3_Letter_9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3prologue",
+        "href": "text/9780062372604_Book3_Prologue.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk3tp",
+        "href": "text/9780062372604_Book3_Titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4_titlepage",
+        "href": "images/bk4_titlepage.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "bk4cast-of-characters",
+        "href": "text/9780062372604_Book4_Cast.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-1",
+        "href": "text/9780062372604_Book4_Chapter_1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-10",
+        "href": "text/9780062372604_Book4_Chapter_10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-11",
+        "href": "text/9780062372604_Book4_Chapter_11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-12",
+        "href": "text/9780062372604_Book4_Chapter_12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-13",
+        "href": "text/9780062372604_Book4_Chapter_13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-14",
+        "href": "text/9780062372604_Book4_Chapter_14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-15",
+        "href": "text/9780062372604_Book4_Chapter_15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-16",
+        "href": "text/9780062372604_Book4_Chapter_16.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-17",
+        "href": "text/9780062372604_Book4_Chapter_17.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-18",
+        "href": "text/9780062372604_Book4_Chapter_18.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-19",
+        "href": "text/9780062372604_Book4_Chapter_19.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-2",
+        "href": "text/9780062372604_Book4_Chapter_2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-20",
+        "href": "text/9780062372604_Book4_Chapter_20.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-21",
+        "href": "text/9780062372604_Book4_Chapter_21.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-22",
+        "href": "text/9780062372604_Book4_Chapter_22.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-3",
+        "href": "text/9780062372604_Book4_Chapter_3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-4",
+        "href": "text/9780062372604_Book4_Chapter_4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-5",
+        "href": "text/9780062372604_Book4_Chapter_5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-6",
+        "href": "text/9780062372604_Book4_Chapter_6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-7",
+        "href": "text/9780062372604_Book4_Chapter_7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-8",
+        "href": "text/9780062372604_Book4_Chapter_8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4chapter-9",
+        "href": "text/9780062372604_Book4_Chapter_9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4clipart-of-13717-fmt-jpeg",
+        "href": "images/bk4_CLIPART_OF_13717_fmt.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "bk4contents",
+        "href": "text/9780062372604_Book4_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4copyright",
+        "href": "text/9780062372604_Book4_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4cover_image",
+        "href": "images/9780062372604_Book4_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "bk4credits",
+        "href": "text/9780062372604_Book4_Credits.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4css",
+        "href": "styles/9780062372604_Book4_template.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "bk4cvi",
+        "href": "text/9780062372604_Book4_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4dedication",
+        "href": "text/9780062372604_Book4_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4epilogue",
+        "href": "text/9780062372604_Book4_Epilogue.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4prologue",
+        "href": "text/9780062372604_Book4_Prologue.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bk4tp",
+        "href": "text/9780062372604_Book4_Titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Book_title",
+        "href": "images/titlepage.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "bookadc",
+        "href": "text/9780062372604_Also_By.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bookcover",
+        "href": "text/9780062372604_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "booktitlepage",
+        "href": "text/9780062372604_Titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "booktoc",
+        "href": "text/9780062372604_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "images/9780062372604_cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "9780062372604_toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "images/book2.jpg",
+        "mediaType": "image/jpeg"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -59,6 +59,128 @@
       {
         "href": "Text/BackCover.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "AboutAuthor.html",
+        "href": "Text/AboutAuthor.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "BackCover.html",
+        "href": "Text/BackCover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "BackCover.jpg",
+        "href": "Images/BackCover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "BooksBy.html",
+        "href": "Text/BooksBy.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapH.gif",
+        "href": "Images/chapH.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "Contents.html",
+        "href": "Text/Contents.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Copyright.html",
+        "href": "Text/Copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Cover_FourWaysToForgiveness.jpg",
+        "href": "Images/Cover_FourWaysToForgiveness.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "Notes.html",
+        "href": "Text/Notes.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "song.jpg",
+        "href": "Images/song.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "StoneSerifStd-Medium.otf",
+        "href": "Fonts/StoneSerifStd-Medium.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "StoneSerifStd-MediumItalic.otf",
+        "href": "Fonts/StoneSerifStd-MediumItalic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "StoneSerifStd-Semibold.otf",
+        "href": "Fonts/StoneSerifStd-Semibold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "StoneSerifStd-SemiboldIt.otf",
+        "href": "Fonts/StoneSerifStd-SemiboldIt.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "Story_01.html",
+        "href": "Text/Story_01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Story_02.html",
+        "href": "Text/Story_02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Story_03.html",
+        "href": "Text/Story_03.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Story_04.html",
+        "href": "Text/Story_04.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "stylesheet.css",
+        "href": "Styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "TitlePage.html",
+        "href": "Text/TitlePage.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "TitlePage.jpg",
+        "href": "Images/TitlePage.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Ursula_K_Le_Guin_-_Four_Ways_to_Forgiveness.html",
+        "href": "Text/Ursula%20K%20Le%20Guin%20-%20Four%20Ways%20to%20Forgiveness.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ursula.jpg",
+        "href": "Images/ursula.jpg",
+        "mediaType": "image/jpeg"
       }
     ]
   }

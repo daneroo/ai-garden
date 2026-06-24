@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -380,6 +380,493 @@
       {
         "href": "aboutthepublisher.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "aboutthepublisher",
+        "href": "aboutthepublisher.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "alsoby",
+        "href": "alsobyterrypratchett.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ata",
+        "href": "abouttheauthor.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter1",
+        "href": "chapter1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter10",
+        "href": "chapter10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter11",
+        "href": "chapter11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter12",
+        "href": "chapter12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter13",
+        "href": "chapter13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter14",
+        "href": "chapter14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter15",
+        "href": "chapter15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter16",
+        "href": "chapter16.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter17",
+        "href": "chapter17.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter18",
+        "href": "chapter18.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter19",
+        "href": "chapter19.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter2",
+        "href": "chapter2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter20",
+        "href": "chapter20.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter21",
+        "href": "chapter21.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter22",
+        "href": "chapter22.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter23",
+        "href": "chapter23.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter24",
+        "href": "chapter24.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter25",
+        "href": "chapter25.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter26",
+        "href": "chapter26.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter27",
+        "href": "chapter27.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter28",
+        "href": "chapter28.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter29",
+        "href": "chapter29.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter3",
+        "href": "chapter3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter30",
+        "href": "chapter30.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter31",
+        "href": "chapter31.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter32",
+        "href": "chapter32.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter33",
+        "href": "chapter33.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter34",
+        "href": "chapter34.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter35",
+        "href": "chapter35.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter36",
+        "href": "chapter36.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter37",
+        "href": "chapter37.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter38",
+        "href": "chapter38.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter39",
+        "href": "chapter39.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter4",
+        "href": "chapter4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter40",
+        "href": "chapter40.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter41",
+        "href": "chapter41.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter42",
+        "href": "chapter42.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter43",
+        "href": "chapter43.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter44",
+        "href": "chapter44.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter45",
+        "href": "chapter45.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter46",
+        "href": "chapter46.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter47",
+        "href": "chapter47.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter48",
+        "href": "chapter48.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter49",
+        "href": "chapter49.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter5",
+        "href": "chapter5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter50",
+        "href": "chapter50.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter51",
+        "href": "chapter51.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter52",
+        "href": "chapter52.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter53",
+        "href": "chapter53.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter54",
+        "href": "chapter54.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter55",
+        "href": "chapter55.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter56",
+        "href": "chapter56.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter57",
+        "href": "chapter57.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter58",
+        "href": "chapter58.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter59",
+        "href": "chapter59.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter6",
+        "href": "chapter6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter60",
+        "href": "chapter60.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter61",
+        "href": "chapter61.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter62",
+        "href": "chapter62.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter63",
+        "href": "chapter63.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter64",
+        "href": "chapter64.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter65",
+        "href": "chapter65.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter66",
+        "href": "chapter66.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter67",
+        "href": "chapter67.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter68",
+        "href": "chapter68.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter69",
+        "href": "chapter69.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter7",
+        "href": "chapter7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter70",
+        "href": "chapter70.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter71",
+        "href": "chapter71.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter72",
+        "href": "chapter72.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter73",
+        "href": "chapter73.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter74",
+        "href": "chapter74.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter75",
+        "href": "chapter75.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter76",
+        "href": "chapter76.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter77",
+        "href": "chapter77.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter78",
+        "href": "chapter78.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter79",
+        "href": "chapter79.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter8",
+        "href": "chapter8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter80",
+        "href": "chapter80.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter81",
+        "href": "chapter81.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter9",
+        "href": "chapter9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "contents",
+        "href": "thud.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "coverpage",
+        "href": "thud_cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "credits",
+        "href": "credits.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "epigraph1",
+        "href": "epigraph1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "epigraph2",
+        "href": "epigraph2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f1",
+        "href": "logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f2",
+        "href": "thumb.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ftn",
+        "href": "footnote.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "text/xml"
+      },
+      {
+        "id": "ops-fmt-png",
+        "href": "MSRCover.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "style",
+        "href": "pdlmsr.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "titlepage",
+        "href": "thud_title.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

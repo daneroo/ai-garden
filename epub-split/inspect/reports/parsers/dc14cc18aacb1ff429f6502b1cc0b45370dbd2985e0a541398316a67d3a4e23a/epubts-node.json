@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -572,6 +572,728 @@
       {
         "href": "Text/Section0139.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "Images/cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "Styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "page_css",
+        "href": "Styles/page_styles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "Section0001.html",
+        "href": "Text/Section0001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0002.html",
+        "href": "Text/Section0002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0003.xhtml",
+        "href": "Text/Section0003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0004.html",
+        "href": "Text/Section0004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0005.html",
+        "href": "Text/Section0005.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0006.html",
+        "href": "Text/Section0006.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0007.html",
+        "href": "Text/Section0007.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0008.html",
+        "href": "Text/Section0008.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0009.html",
+        "href": "Text/Section0009.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0010.html",
+        "href": "Text/Section0010.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0011.html",
+        "href": "Text/Section0011.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0012.html",
+        "href": "Text/Section0012.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0013.html",
+        "href": "Text/Section0013.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0014.html",
+        "href": "Text/Section0014.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0015.html",
+        "href": "Text/Section0015.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0016.html",
+        "href": "Text/Section0016.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0017.html",
+        "href": "Text/Section0017.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0018.html",
+        "href": "Text/Section0018.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0019.html",
+        "href": "Text/Section0019.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0020.html",
+        "href": "Text/Section0020.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0021.html",
+        "href": "Text/Section0021.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0022.html",
+        "href": "Text/Section0022.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0023.html",
+        "href": "Text/Section0023.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0024.html",
+        "href": "Text/Section0024.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0025.html",
+        "href": "Text/Section0025.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0026.html",
+        "href": "Text/Section0026.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0027.html",
+        "href": "Text/Section0027.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0028.html",
+        "href": "Text/Section0028.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0029.html",
+        "href": "Text/Section0029.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0030.html",
+        "href": "Text/Section0030.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0031.html",
+        "href": "Text/Section0031.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0032.html",
+        "href": "Text/Section0032.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0033.html",
+        "href": "Text/Section0033.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0034.html",
+        "href": "Text/Section0034.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0035.html",
+        "href": "Text/Section0035.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0036.html",
+        "href": "Text/Section0036.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0037.html",
+        "href": "Text/Section0037.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0038.html",
+        "href": "Text/Section0038.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0039.html",
+        "href": "Text/Section0039.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0040.html",
+        "href": "Text/Section0040.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0041.html",
+        "href": "Text/Section0041.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0042.html",
+        "href": "Text/Section0042.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0043.html",
+        "href": "Text/Section0043.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0044.html",
+        "href": "Text/Section0044.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0045.html",
+        "href": "Text/Section0045.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0046.html",
+        "href": "Text/Section0046.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0047.html",
+        "href": "Text/Section0047.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0048.html",
+        "href": "Text/Section0048.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0049.html",
+        "href": "Text/Section0049.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0050.html",
+        "href": "Text/Section0050.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0051.html",
+        "href": "Text/Section0051.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0052.html",
+        "href": "Text/Section0052.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0053.html",
+        "href": "Text/Section0053.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0054.html",
+        "href": "Text/Section0054.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0055.html",
+        "href": "Text/Section0055.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0056.html",
+        "href": "Text/Section0056.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0057.html",
+        "href": "Text/Section0057.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0058.html",
+        "href": "Text/Section0058.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0059.html",
+        "href": "Text/Section0059.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0060.html",
+        "href": "Text/Section0060.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0061.html",
+        "href": "Text/Section0061.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0062.html",
+        "href": "Text/Section0062.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0063.html",
+        "href": "Text/Section0063.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0064.html",
+        "href": "Text/Section0064.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0065.html",
+        "href": "Text/Section0065.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0066.html",
+        "href": "Text/Section0066.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0067.html",
+        "href": "Text/Section0067.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0068.html",
+        "href": "Text/Section0068.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0069.html",
+        "href": "Text/Section0069.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0070.html",
+        "href": "Text/Section0070.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0071.html",
+        "href": "Text/Section0071.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0072.html",
+        "href": "Text/Section0072.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0073.html",
+        "href": "Text/Section0073.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0074.html",
+        "href": "Text/Section0074.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0075.html",
+        "href": "Text/Section0075.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0076.html",
+        "href": "Text/Section0076.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0077.html",
+        "href": "Text/Section0077.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0078.html",
+        "href": "Text/Section0078.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0079.html",
+        "href": "Text/Section0079.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0080.html",
+        "href": "Text/Section0080.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0081.html",
+        "href": "Text/Section0081.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0082.html",
+        "href": "Text/Section0082.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0083.html",
+        "href": "Text/Section0083.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0084.html",
+        "href": "Text/Section0084.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0085.html",
+        "href": "Text/Section0085.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0086.html",
+        "href": "Text/Section0086.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0087.html",
+        "href": "Text/Section0087.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0088.html",
+        "href": "Text/Section0088.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0089.html",
+        "href": "Text/Section0089.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0090.html",
+        "href": "Text/Section0090.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0091.html",
+        "href": "Text/Section0091.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0092.html",
+        "href": "Text/Section0092.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0093.html",
+        "href": "Text/Section0093.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0094.html",
+        "href": "Text/Section0094.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0095.html",
+        "href": "Text/Section0095.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0096.html",
+        "href": "Text/Section0096.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0097.html",
+        "href": "Text/Section0097.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0098.html",
+        "href": "Text/Section0098.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0099.html",
+        "href": "Text/Section0099.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0100.html",
+        "href": "Text/Section0100.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0101.html",
+        "href": "Text/Section0101.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0102.html",
+        "href": "Text/Section0102.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0103.html",
+        "href": "Text/Section0103.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0104.html",
+        "href": "Text/Section0104.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0105.html",
+        "href": "Text/Section0105.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0106.html",
+        "href": "Text/Section0106.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0107.html",
+        "href": "Text/Section0107.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0108.html",
+        "href": "Text/Section0108.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0109.html",
+        "href": "Text/Section0109.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0110.html",
+        "href": "Text/Section0110.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0111.html",
+        "href": "Text/Section0111.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0112.html",
+        "href": "Text/Section0112.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0113.html",
+        "href": "Text/Section0113.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0114.html",
+        "href": "Text/Section0114.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0115.html",
+        "href": "Text/Section0115.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0116.html",
+        "href": "Text/Section0116.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0117.html",
+        "href": "Text/Section0117.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0118.html",
+        "href": "Text/Section0118.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0119.html",
+        "href": "Text/Section0119.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0120.html",
+        "href": "Text/Section0120.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0121.html",
+        "href": "Text/Section0121.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0122.html",
+        "href": "Text/Section0122.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0123.html",
+        "href": "Text/Section0123.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0124.html",
+        "href": "Text/Section0124.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0125.html",
+        "href": "Text/Section0125.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0126.html",
+        "href": "Text/Section0126.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0127.html",
+        "href": "Text/Section0127.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0128.html",
+        "href": "Text/Section0128.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0129.html",
+        "href": "Text/Section0129.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0130.html",
+        "href": "Text/Section0130.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0131.html",
+        "href": "Text/Section0131.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0132.html",
+        "href": "Text/Section0132.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0133.html",
+        "href": "Text/Section0133.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0134.html",
+        "href": "Text/Section0134.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0135.html",
+        "href": "Text/Section0135.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0136.html",
+        "href": "Text/Section0136.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0137.html",
+        "href": "Text/Section0137.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0138.html",
+        "href": "Text/Section0138.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Section0139.html",
+        "href": "Text/Section0139.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "Text/titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

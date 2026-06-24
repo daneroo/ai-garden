@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -31,6 +31,48 @@
       {
         "href": "Gene Wolfe - The Shadow of the Torturer_split_003.htm",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "html1",
+        "href": "Gene Wolfe - The Shadow of the Torturer_split_003.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "html2",
+        "href": "Gene Wolfe - The Shadow of the Torturer_split_002.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "html3",
+        "href": "Gene Wolfe - The Shadow of the Torturer_split_001.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "html4",
+        "href": "Gene Wolfe - The Shadow of the Torturer_split_000.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

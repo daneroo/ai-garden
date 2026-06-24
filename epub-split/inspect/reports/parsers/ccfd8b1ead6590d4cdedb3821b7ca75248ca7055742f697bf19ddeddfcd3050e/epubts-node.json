@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -544,6 +544,723 @@
       {
         "href": "Text/autor.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "autor.jpg",
+        "href": "Images/autor.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "autor.xhtml",
+        "href": "Text/autor.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b10c1.xhtml",
+        "href": "Text/b10c1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b10c10.xhtml",
+        "href": "Text/b10c10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b10c11.xhtml",
+        "href": "Text/b10c11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b10c12.xhtml",
+        "href": "Text/b10c12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b10c2.xhtml",
+        "href": "Text/b10c2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b10c3.xhtml",
+        "href": "Text/b10c3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b10c4.xhtml",
+        "href": "Text/b10c4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b10c5.xhtml",
+        "href": "Text/b10c5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b10c6.xhtml",
+        "href": "Text/b10c6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b10c7.xhtml",
+        "href": "Text/b10c7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b10c8.xhtml",
+        "href": "Text/b10c8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b10c9.xhtml",
+        "href": "Text/b10c9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b1c1.xhtml",
+        "href": "Text/b1c1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b1c10.xhtml",
+        "href": "Text/b1c10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b1c2.xhtml",
+        "href": "Text/b1c2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b1c3.xhtml",
+        "href": "Text/b1c3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b1c4.xhtml",
+        "href": "Text/b1c4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b1c5.xhtml",
+        "href": "Text/b1c5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b1c6.xhtml",
+        "href": "Text/b1c6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b1c7.xhtml",
+        "href": "Text/b1c7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b1c8.xhtml",
+        "href": "Text/b1c8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b1c9.xhtml",
+        "href": "Text/b1c9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b2c1.xhtml",
+        "href": "Text/b2c1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b2c2.xhtml",
+        "href": "Text/b2c2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b2c3.xhtml",
+        "href": "Text/b2c3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b2c4.xhtml",
+        "href": "Text/b2c4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b2c5.xhtml",
+        "href": "Text/b2c5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b2c6.xhtml",
+        "href": "Text/b2c6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b2c7.xhtml",
+        "href": "Text/b2c7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b2c8.xhtml",
+        "href": "Text/b2c8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b2c9.xhtml",
+        "href": "Text/b2c9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b3c1.xhtml",
+        "href": "Text/b3c1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b3c10.xhtml",
+        "href": "Text/b3c10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b3c11.xhtml",
+        "href": "Text/b3c11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b3c2.xhtml",
+        "href": "Text/b3c2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b3c3.xhtml",
+        "href": "Text/b3c3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b3c4.xhtml",
+        "href": "Text/b3c4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b3c5.xhtml",
+        "href": "Text/b3c5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b3c6.xhtml",
+        "href": "Text/b3c6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b3c7.xhtml",
+        "href": "Text/b3c7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b3c8.xhtml",
+        "href": "Text/b3c8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b3c9.xhtml",
+        "href": "Text/b3c9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b4c1.xhtml",
+        "href": "Text/b4c1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b4c10.xhtml",
+        "href": "Text/b4c10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b4c11.xhtml",
+        "href": "Text/b4c11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b4c12.xhtml",
+        "href": "Text/b4c12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b4c13.xhtml",
+        "href": "Text/b4c13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b4c2.xhtml",
+        "href": "Text/b4c2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b4c3.xhtml",
+        "href": "Text/b4c3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b4c4.xhtml",
+        "href": "Text/b4c4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b4c5.xhtml",
+        "href": "Text/b4c5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b4c6.xhtml",
+        "href": "Text/b4c6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b4c7.xhtml",
+        "href": "Text/b4c7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b4c8.xhtml",
+        "href": "Text/b4c8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b4c9.xhtml",
+        "href": "Text/b4c9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b5c1.xhtml",
+        "href": "Text/b5c1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b5c10.xhtml",
+        "href": "Text/b5c10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b5c11.xhtml",
+        "href": "Text/b5c11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b5c12.xhtml",
+        "href": "Text/b5c12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b5c13.xhtml",
+        "href": "Text/b5c13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b5c14.xhtml",
+        "href": "Text/b5c14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b5c2.xhtml",
+        "href": "Text/b5c2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b5c3.xhtml",
+        "href": "Text/b5c3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b5c4.xhtml",
+        "href": "Text/b5c4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b5c5.xhtml",
+        "href": "Text/b5c5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b5c6.xhtml",
+        "href": "Text/b5c6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b5c7.xhtml",
+        "href": "Text/b5c7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b5c8.xhtml",
+        "href": "Text/b5c8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b5c9.xhtml",
+        "href": "Text/b5c9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b6c1.xhtml",
+        "href": "Text/b6c1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b6c10.xhtml",
+        "href": "Text/b6c10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b6c2.xhtml",
+        "href": "Text/b6c2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b6c3.xhtml",
+        "href": "Text/b6c3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b6c4.xhtml",
+        "href": "Text/b6c4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b6c5.xhtml",
+        "href": "Text/b6c5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b6c6.xhtml",
+        "href": "Text/b6c6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b6c7.xhtml",
+        "href": "Text/b6c7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b6c8.xhtml",
+        "href": "Text/b6c8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b6c9.xhtml",
+        "href": "Text/b6c9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b7c1.xhtml",
+        "href": "Text/b7c1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b7c10.xhtml",
+        "href": "Text/b7c10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b7c11.xhtml",
+        "href": "Text/b7c11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b7c12.xhtml",
+        "href": "Text/b7c12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b7c2.xhtml",
+        "href": "Text/b7c2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b7c3.xhtml",
+        "href": "Text/b7c3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b7c4.xhtml",
+        "href": "Text/b7c4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b7c5.xhtml",
+        "href": "Text/b7c5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b7c6.xhtml",
+        "href": "Text/b7c6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b7c7.xhtml",
+        "href": "Text/b7c7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b7c8.xhtml",
+        "href": "Text/b7c8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b7c9.xhtml",
+        "href": "Text/b7c9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b7pro.xhtml",
+        "href": "Text/b7pro.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b8c1.xhtml",
+        "href": "Text/b8c1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b8c10.xhtml",
+        "href": "Text/b8c10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b8c11.xhtml",
+        "href": "Text/b8c11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b8c12.xhtml",
+        "href": "Text/b8c12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b8c2.xhtml",
+        "href": "Text/b8c2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b8c3.xhtml",
+        "href": "Text/b8c3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b8c4.xhtml",
+        "href": "Text/b8c4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b8c5.xhtml",
+        "href": "Text/b8c5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b8c6.xhtml",
+        "href": "Text/b8c6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b8c7.xhtml",
+        "href": "Text/b8c7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b8c8.xhtml",
+        "href": "Text/b8c8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b8c9.xhtml",
+        "href": "Text/b8c9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b9c1.xhtml",
+        "href": "Text/b9c1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b9c10.xhtml",
+        "href": "Text/b9c10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b9c11.xhtml",
+        "href": "Text/b9c11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b9c12.xhtml",
+        "href": "Text/b9c12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b9c2.xhtml",
+        "href": "Text/b9c2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b9c3.xhtml",
+        "href": "Text/b9c3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b9c4.xhtml",
+        "href": "Text/b9c4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b9c5.xhtml",
+        "href": "Text/b9c5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b9c6.xhtml",
+        "href": "Text/b9c6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b9c7.xhtml",
+        "href": "Text/b9c7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b9c8.xhtml",
+        "href": "Text/b9c8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "b9c9.xhtml",
+        "href": "Text/b9c9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "book1.xhtml",
+        "href": "Text/book1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "book10.xhtml",
+        "href": "Text/book10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "book2.xhtml",
+        "href": "Text/book2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "book3.xhtml",
+        "href": "Text/book3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "book4.xhtml",
+        "href": "Text/book4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "book5.xhtml",
+        "href": "Text/book5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "book6.xhtml",
+        "href": "Text/book6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "book7.xhtml",
+        "href": "Text/book7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "book8.xhtml",
+        "href": "Text/book8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "book9.xhtml",
+        "href": "Text/book9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cleancover.jpg",
+        "href": "Images/cleancover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "cover.jpg",
+        "href": "Images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "cover2.xhtml",
+        "href": "Text/cover2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cubierta.xhtml",
+        "href": "Text/cubierta.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "dKVdXN1.jpg",
+        "href": "Images/dKVdXN1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "EPL_logo.png",
+        "href": "Images/EPL_logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "ex_libris.png",
+        "href": "Images/ex_libris.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "GenBasI.ttf",
+        "href": "Fonts/GenBasI.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "GenBasR.ttf",
+        "href": "Fonts/GenBasR.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "info.xhtml",
+        "href": "Text/info.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "portadilla.xhtml",
+        "href": "Text/portadilla.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "sinopsis.xhtml",
+        "href": "Text/sinopsis.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "style.css",
+        "href": "Styles/style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "titulo.xhtml",
+        "href": "Text/titulo.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

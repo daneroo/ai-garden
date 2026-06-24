@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -167,6 +167,233 @@
       {
         "href": "About_the_Publisher.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "coverimage",
+        "href": "9780062662569_coverimage.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "d127e2",
+        "href": "9780062662569_tpimage.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "d127e3",
+        "href": "hcus_hcp-epub.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "d83e102",
+        "href": "Chapter_13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e108",
+        "href": "Chapter_14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e113",
+        "href": "Chapter_15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e118",
+        "href": "Chapter_16.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e123",
+        "href": "Chapter_17.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e128",
+        "href": "Chapter_18.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e133",
+        "href": "Chapter_19.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e138",
+        "href": "Chapter_20.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e143",
+        "href": "Part_III.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e148",
+        "href": "Chapter_21.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e153",
+        "href": "Chapter_22.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e158",
+        "href": "Chapter_23.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e166",
+        "href": "Chapter_24.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e171",
+        "href": "Chapter_25.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e176",
+        "href": "Chapter_26.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e181",
+        "href": "Acknowledgments.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e188",
+        "href": "About_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e195",
+        "href": "Book_Perk_Ad.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e207",
+        "href": "Copyright_electronic.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e21",
+        "href": "Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e212",
+        "href": "About_the_Publisher.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e26",
+        "href": "Map.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e31",
+        "href": "Part_I.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e36",
+        "href": "Chapter_1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e41",
+        "href": "Chapter_2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e46",
+        "href": "Chapter_3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e52",
+        "href": "Chapter_4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e57",
+        "href": "Chapter_5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e62",
+        "href": "Chapter_6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e67",
+        "href": "Chapter_7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e72",
+        "href": "Chapter_8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e77",
+        "href": "Chapter_9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e82",
+        "href": "Part_II.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e87",
+        "href": "Chapter_10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e92",
+        "href": "Chapter_11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "d83e97",
+        "href": "Chapter_12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "image-list-item-1",
+        "href": "9780062662569_map1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image-list-item-2",
+        "href": "bookperk-boba-V1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "nav",
+        "href": "nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "title-page",
+        "href": "title_page.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

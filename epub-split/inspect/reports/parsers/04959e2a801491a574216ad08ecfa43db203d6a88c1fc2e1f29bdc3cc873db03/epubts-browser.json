@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -131,6 +131,398 @@
       {
         "href": "xhtml/027_BM_006.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "apublisher-logo.png",
+        "href": "images/publisher-logo.png",
+        "mediaType": "image/png"
+      },
+      {
+        "id": "cover",
+        "href": "xhtml/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/9781541618633.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "discover-page",
+        "href": "xhtml/discover-page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "discover-page_pre",
+        "href": "xhtml/discover-page_pre.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "idGeneratedStyles_0.css",
+        "href": "css/idGeneratedStyles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ji001_ad-card",
+        "href": "xhtml/001_ad-card.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji002_title",
+        "href": "xhtml/002_title.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji003_copyright",
+        "href": "xhtml/003_copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji004_dedication",
+        "href": "xhtml/004_dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji006_Part_001",
+        "href": "xhtml/006_Part_001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji007_FM_002",
+        "href": "xhtml/007_FM_002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji008_Chapter_001",
+        "href": "xhtml/008_Chapter_001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji009_Chapter_002",
+        "href": "xhtml/009_Chapter_002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji010_Part_002",
+        "href": "xhtml/010_Part_002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji011_Chapter_003",
+        "href": "xhtml/011_Chapter_003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji012_Chapter_004",
+        "href": "xhtml/012_Chapter_004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji013_Part_003",
+        "href": "xhtml/013_Part_003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji014_Chapter_005",
+        "href": "xhtml/014_Chapter_005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji015_Chapter_006",
+        "href": "xhtml/015_Chapter_006.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji016_Chapter_007",
+        "href": "xhtml/016_Chapter_007.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji017_Part_004",
+        "href": "xhtml/017_Part_004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji018_Chapter_008",
+        "href": "xhtml/018_Chapter_008.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji019_Chapter_009",
+        "href": "xhtml/019_Chapter_009.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji020_Part_005",
+        "href": "xhtml/020_Part_005.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji021_Chapter_010",
+        "href": "xhtml/021_Chapter_010.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji022_BM_001",
+        "href": "xhtml/022_BM_001.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji023_BM_002",
+        "href": "xhtml/023_BM_002.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji024_BM_003",
+        "href": "xhtml/024_BM_003.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji025_BM_004",
+        "href": "xhtml/025_BM_004.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji027_BM_006",
+        "href": "xhtml/027_BM_006.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ji028_BM_007",
+        "href": "xhtml/028_BM_007.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "jiArt_tit.jpg",
+        "href": "images/Art_tit.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_12_a0-1-1_history-homo-sapiens.jpg",
+        "href": "images/PageNo_12_a0-1-1_history-homo-sapiens.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_122_a0-6-1_rome-population-1.jpg",
+        "href": "images/PageNo_122_a0-6-1_rome-population-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_122_a1-6-2_rome-population-2.jpg",
+        "href": "images/PageNo_122_a1-6-2_rome-population-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_13_a0-1-2_future-mammal.jpg",
+        "href": "images/PageNo_13_a0-1-2_future-mammal.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_135_a0-6-3_price-of-solar.jpg",
+        "href": "images/PageNo_135_a0-6-3_price-of-solar.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_14_a0-1-3_future-earth.jpg",
+        "href": "images/PageNo_14_a0-1-3_future-earth.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_146_a0-7-1_productivity-over-time.jpg",
+        "href": "images/PageNo_146_a0-7-1_productivity-over-time.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_149_a0-7-2_acceleration-vs-extinction.jpg",
+        "href": "images/PageNo_149_a0-7-2_acceleration-vs-extinction.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_15_a0-1-4_stick-figures-past-present.jpg",
+        "href": "images/PageNo_15_a0-1-4_stick-figures-past-present.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_15_a1-1-5_stick-figures-future-full-US-page.jpg",
+        "href": "images/PageNo_15_a1-1-5_stick-figures-future-full-US-page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_154_a0-7-3_fertility-over-time.jpg",
+        "href": "images/PageNo_154_a0-7-3_fertility-over-time.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_154_a1-7-4_fertility-by-gdp.jpg",
+        "href": "images/PageNo_154_a1-7-4_fertility-by-gdp.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_16_a0-1-5_stick-figures-future-full-US-page.jpg",
+        "href": "images/PageNo_16_a0-1-5_stick-figures-future-full-US-page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_17_a0-1-5_stick-figures-future-full-US-page.jpg",
+        "href": "images/PageNo_17_a0-1-5_stick-figures-future-full-US-page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_176_a0-8-1_intuition-of-neutrality.jpg",
+        "href": "images/PageNo_176_a0-8-1_intuition-of-neutrality.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_178_a0-8-2_hell-three.jpg",
+        "href": "images/PageNo_178_a0-8-2_hell-three.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_179_a0-8-3_average-view.jpg",
+        "href": "images/PageNo_179_a0-8-3_average-view.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_18_a0-1-5_stick-figures-future-full-US-page.jpg",
+        "href": "images/PageNo_18_a0-1-5_stick-figures-future-full-US-page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_180_a0-8-4_repugnant-conclusion.jpg",
+        "href": "images/PageNo_180_a0-8-4_repugnant-conclusion.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_181_a0-8-5_dominance-addition.jpg",
+        "href": "images/PageNo_181_a0-8-5_dominance-addition.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_182_a0-8-6_non-anti-egalitarianism.jpg",
+        "href": "images/PageNo_182_a0-8-6_non-anti-egalitarianism.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_182_a1-8-7_B-better-than-A.jpg",
+        "href": "images/PageNo_182_a1-8-7_B-better-than-A.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_183_a0-8-8_C-better-than-B.jpg",
+        "href": "images/PageNo_183_a0-8-8_C-better-than-B.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_184_a0-8-9_mere-addition.jpg",
+        "href": "images/PageNo_184_a0-8-9_mere-addition.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_185_a0-8-10_critical-level-views.jpg",
+        "href": "images/PageNo_185_a0-8-10_critical-level-views.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_186_a0-8-11_sadistic-conclusion.jpg",
+        "href": "images/PageNo_186_a0-8-11_sadistic-conclusion.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_19_a0-1-5_stick-figures-future-full-US-page.jpg",
+        "href": "images/PageNo_19_a0-1-5_stick-figures-future-full-US-page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_202_a0-9-1_gdp-vs-life-satisfaction.jpg",
+        "href": "images/PageNo_202_a0-9-1_gdp-vs-life-satisfaction.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_203_a0-9-2_happiness-vs-income.jpg",
+        "href": "images/PageNo_203_a0-9-2_happiness-vs-income.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_204_a0-9-3_global-income-distribution.jpg",
+        "href": "images/PageNo_204_a0-9-3_global-income-distribution.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_205_a0-9-4_life-expectancy.jpg",
+        "href": "images/PageNo_205_a0-9-4_life-expectancy.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_212_a0-9-5_animals-slaughtered.jpg",
+        "href": "images/PageNo_212_a0-9-5_animals-slaughtered.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_25_a0-1-6_death-rates-electricity.jpg",
+        "href": "images/PageNo_25_a0-1-6_death-rates-electricity.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_26_a0-1-7_world-gdp-history.jpg",
+        "href": "images/PageNo_26_a0-1-7_world-gdp-history.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_30_a0-2-1_megafauna.jpg",
+        "href": "images/PageNo_30_a0-2-1_megafauna.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_335_a0-afterwards_qr-code.jpg",
+        "href": "images/PageNo_335_a0-afterwards_qr-code.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_337_a0-MacAskill.jpg",
+        "href": "images/PageNo_337_a0-MacAskill.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_35_a0-2-2_survival-vs-correction.jpg",
+        "href": "images/PageNo_35_a0-2-2_survival-vs-correction.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_48_a0-3-1_slave-ship.jpg",
+        "href": "images/PageNo_48_a0-3-1_slave-ship.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_57_a0-3-2_fitness-landscape.jpg",
+        "href": "images/PageNo_57_a0-3-2_fitness-landscape.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_61_a0-3-3_female-labour.jpg",
+        "href": "images/PageNo_61_a0-3-3_female-labour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jiPageNo_89_a0-4-1_solar-capacity.jpg",
+        "href": "images/PageNo_89_a0-4-1_solar-capacity.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "style1",
+        "href": "css/discover-page.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "toc",
+        "href": "xhtml/toc.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

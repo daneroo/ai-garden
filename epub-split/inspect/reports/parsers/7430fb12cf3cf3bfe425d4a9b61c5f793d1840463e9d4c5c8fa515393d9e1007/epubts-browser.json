@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -127,6 +127,618 @@
       {
         "href": "OEBPS/xhtml/029_next-reads.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "ack",
+        "href": "OEBPS/xhtml/027_ack_Acknowledgments.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ata",
+        "href": "OEBPS/xhtml/028_ata_About_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c001",
+        "href": "OEBPS/xhtml/008_c001_Chapter_1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c002",
+        "href": "OEBPS/xhtml/009_c002_Chapter_2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c003",
+        "href": "OEBPS/xhtml/010_c003_Chapter_3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c004",
+        "href": "OEBPS/xhtml/011_c004_Chapter_4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c005",
+        "href": "OEBPS/xhtml/013_c005_Chapter_1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c006",
+        "href": "OEBPS/xhtml/014_c006_Chapter_2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c007",
+        "href": "OEBPS/xhtml/015_c007_Chapter_3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c008",
+        "href": "OEBPS/xhtml/016_c008_Chapter_4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c009",
+        "href": "OEBPS/xhtml/017_c009_Chapter_5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c010",
+        "href": "OEBPS/xhtml/018_c010_Chapter_6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c011",
+        "href": "OEBPS/xhtml/020_c011_Chapter_1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c012",
+        "href": "OEBPS/xhtml/021_c012_Chapter_2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c013",
+        "href": "OEBPS/xhtml/022_c013_Chapter_3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c014",
+        "href": "OEBPS/xhtml/023_c014_Chapter_4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c015",
+        "href": "OEBPS/xhtml/024_c015_Chapter_5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c016",
+        "href": "OEBPS/xhtml/025_c016_Chapter_6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "c017",
+        "href": "OEBPS/xhtml/026_c017_Chapter_7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cour.otf",
+        "href": "OEBPS/fonts/cour.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "courbd.otf",
+        "href": "OEBPS/fonts/courbd.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "courbi.otf",
+        "href": "OEBPS/fonts/courbi.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "couri.otf",
+        "href": "OEBPS/fonts/couri.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "cover",
+        "href": "cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "crt",
+        "href": "OEBPS/xhtml/003_crt_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "css",
+        "href": "stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ded",
+        "href": "OEBPS/xhtml/005_ded_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ef1a",
+        "href": "OEBPS/fonts/AmericanTypeITCPro-Med.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ef1b",
+        "href": "OEBPS/fonts/AmericanTypeITCPro-MedIt.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ef1c",
+        "href": "OEBPS/fonts/AmericanTypeITCPro-BdIt.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ef1d",
+        "href": "OEBPS/fonts/AmericanTypeITCPro-Bold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ff1",
+        "href": "OEBPS/fonts/FreeMono.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ff10",
+        "href": "OEBPS/fonts/FreeSerifBold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ff11",
+        "href": "OEBPS/fonts/FreeSerifBoldItalic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ff12",
+        "href": "OEBPS/fonts/FreeSerifItalic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ff2",
+        "href": "OEBPS/fonts/FreeMonoBold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ff3",
+        "href": "OEBPS/fonts/FreeMonoBoldOblique.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ff4",
+        "href": "OEBPS/fonts/FreeMonoOblique.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ff5",
+        "href": "OEBPS/fonts/FreeSans.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ff6",
+        "href": "OEBPS/fonts/FreeSansBold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ff7",
+        "href": "OEBPS/fonts/FreeSansBoldOblique.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ff8",
+        "href": "OEBPS/fonts/FreeSansOblique.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "ff9",
+        "href": "OEBPS/fonts/FreeSerif.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "fm",
+        "href": "OEBPS/xhtml/006_fm_Frontmatter.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "FuturaLTPro-Bold.otf",
+        "href": "OEBPS/fonts/FuturaLTPro-Bold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "FuturaLTPro-BoldOblique.otf",
+        "href": "OEBPS/fonts/FuturaLTPro-BoldOblique.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "FuturaLTPro-Book.otf",
+        "href": "OEBPS/fonts/FuturaLTPro-Book.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "FuturaLTPro-BookOblique.otf",
+        "href": "OEBPS/fonts/FuturaLTPro-BookOblique.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "FuturaLTPro-Medium.otf",
+        "href": "OEBPS/fonts/FuturaLTPro-Medium.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "FuturaLTPro-MediumOblique.otf",
+        "href": "OEBPS/fonts/FuturaLTPro-MediumOblique.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "images_007_p001_art_2_jpg",
+        "href": "OEBPS/images/007_p001_art_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "images_012_p002_art_2_jpg",
+        "href": "OEBPS/images/012_p002_art_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "images_019_p003_art_6_jpg",
+        "href": "OEBPS/images/019_p003_art_6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "images_020_c011_art_4_jpg",
+        "href": "OEBPS/images/020_c011_art_4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "images_024_c015_art_2_jpg",
+        "href": "OEBPS/images/024_c015_art_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "images_029_inl_art_1_jpg",
+        "href": "OEBPS/images/029_inl_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img1",
+        "href": "OEBPS/images/9780593983768_title_page.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img10",
+        "href": "OEBPS/images/013_c005_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img11",
+        "href": "OEBPS/images/014_c006_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img12",
+        "href": "OEBPS/images/007_p001_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img13",
+        "href": "OEBPS/images/014_c006_art_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img14",
+        "href": "OEBPS/images/014_c006_art_3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img15",
+        "href": "OEBPS/images/014_c006_art_4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img16",
+        "href": "OEBPS/images/014_c006_art_5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img17",
+        "href": "OEBPS/images/014_c006_art_6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img18",
+        "href": "OEBPS/images/014_c006_art_7.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img19",
+        "href": "OEBPS/images/015_c007_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img2",
+        "href": "OEBPS/images/010_c003_art_5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img20",
+        "href": "OEBPS/images/015_c007_art_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img21",
+        "href": "OEBPS/images/015_c007_art_3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img22",
+        "href": "OEBPS/images/016_c008_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img23",
+        "href": "OEBPS/images/008_c001_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img24",
+        "href": "OEBPS/images/016_c008_art_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img25",
+        "href": "OEBPS/images/016_c008_art_3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img26",
+        "href": "OEBPS/images/016_c008_art_4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img27",
+        "href": "OEBPS/images/017_c009_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img28",
+        "href": "OEBPS/images/017_c009_art_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img29",
+        "href": "OEBPS/images/018_c010_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img3",
+        "href": "OEBPS/images/011_c004_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img30",
+        "href": "OEBPS/images/019_p003_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img31",
+        "href": "OEBPS/images/019_p003_art_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img32",
+        "href": "OEBPS/images/019_p003_art_3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img33",
+        "href": "OEBPS/images/019_p003_art_4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img34",
+        "href": "OEBPS/images/009_c002_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img35",
+        "href": "OEBPS/images/019_p003_art_5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img36",
+        "href": "OEBPS/images/020_c011_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img37",
+        "href": "OEBPS/images/020_c011_art_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img38",
+        "href": "OEBPS/images/020_c011_art_3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img39",
+        "href": "OEBPS/images/021_c012_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img4",
+        "href": "OEBPS/images/011_c004_art_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img40",
+        "href": "OEBPS/images/022_c013_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img41",
+        "href": "OEBPS/images/023_c014_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img42",
+        "href": "OEBPS/images/024_c015_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img43",
+        "href": "OEBPS/images/025_c016_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img44",
+        "href": "OEBPS/images/026_c017_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img45",
+        "href": "OEBPS/images/009_c002_art_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img46",
+        "href": "OEBPS/images/027_ack_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img47",
+        "href": "OEBPS/images/028_ata_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img48",
+        "href": "OEBPS/images/028_ata_art_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img49",
+        "href": "OEBPS/images/028_ata_art_3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img5",
+        "href": "OEBPS/images/011_c004_art_3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img50",
+        "href": "OEBPS/images/010_c003_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img51",
+        "href": "OEBPS/images/010_c003_art_2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img52",
+        "href": "OEBPS/images/010_c003_art_3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img53",
+        "href": "OEBPS/images/010_c003_art_4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img6",
+        "href": "OEBPS/images/011_c004_art_4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img7",
+        "href": "OEBPS/images/011_c004_art_5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img8",
+        "href": "OEBPS/images/011_c004_art_6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img9",
+        "href": "OEBPS/images/012_p002_art_1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "inlinetoc",
+        "href": "OEBPS/xhtml/004_toc_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "OEBPS/images/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "OEBPS/xhtml/029_next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p001",
+        "href": "OEBPS/xhtml/007_p001_Part_I.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p002",
+        "href": "OEBPS/xhtml/012_p002_Part_II.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p003",
+        "href": "OEBPS/xhtml/019_p003_Part_III.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "page_css",
+        "href": "page_styles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "page_css1",
+        "href": "page_styles1.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "Shift-Bold.otf",
+        "href": "OEBPS/fonts/Shift-Bold.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "OEBPS/fonts/Shift-BoldItalic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "tit",
+        "href": "OEBPS/xhtml/002_tit_Title_Page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

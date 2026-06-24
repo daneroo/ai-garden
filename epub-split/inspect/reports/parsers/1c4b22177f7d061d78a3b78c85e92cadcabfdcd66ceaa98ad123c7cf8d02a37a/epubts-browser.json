@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -379,6 +379,523 @@
       {
         "href": "xhtml/next-reads.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "xhtml/01_Cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover.jpg",
+        "href": "image/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "DAW_logo_.jpg",
+        "href": "image/DAW_logo_.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "EmpireEpigraph-converted.jpg",
+        "href": "image/EmpireEpigraph-converted.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "HTMLtoc",
+        "href": "xhtml/04_Contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "idGeneratedStyles.css",
+        "href": "css/idGeneratedStyles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "next-reads_logo.jpg",
+        "href": "image/next-reads_logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "next-reads.xhtml",
+        "href": "xhtml/next-reads.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "orn.jpg",
+        "href": "image/orn.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "page_iii.jpg",
+        "href": "image/page_iii.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Shift-BoldItalic.otf",
+        "href": "font/Shift-BoldItalic.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "Shift-Light.otf",
+        "href": "font/Shift-Light.otf",
+        "mediaType": "application/vnd.ms-opentype"
+      },
+      {
+        "id": "toc",
+        "href": "navDoc.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x91_About_the_Author.xhtml",
+        "href": "xhtml/91_About_the_Author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB",
+        "href": "xhtml/02_Title_Page.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-1",
+        "href": "xhtml/03_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-10",
+        "href": "xhtml/13_Chapter_6_Truth_Witho.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-11",
+        "href": "xhtml/14_Chapter_7_Meidua.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-12",
+        "href": "xhtml/15_Chapter_8_Gibson.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-13",
+        "href": "xhtml/16_Chapter_9_Bread_and_C.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-14",
+        "href": "xhtml/17_Chapter_10_The_Law_of.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-15",
+        "href": "xhtml/18_Chapter_11_At_What_Co.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-16",
+        "href": "xhtml/19_Chapter_12_The_Ugline.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-17",
+        "href": "xhtml/20_Chapter_13_The_Scourg.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-18",
+        "href": "xhtml/21_Chapter_14_Fear_Is_a_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-19",
+        "href": "xhtml/22_Chapter_15_The_Summer.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-2",
+        "href": "xhtml/05_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-20",
+        "href": "xhtml/23_Chapter_16_Mother.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-21",
+        "href": "xhtml/24_Chapter_17_Valedictor.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-22",
+        "href": "xhtml/25_Chapter_18_Rage_Is_Bl.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-23",
+        "href": "xhtml/26_Chapter_19_The_Edge_o.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-24",
+        "href": "xhtml/27_Chapter_20_Off_the_Ma.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-25",
+        "href": "xhtml/28_Chapter_21_The_Outer_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-26",
+        "href": "xhtml/29_Chapter_22_Marlowe_Al.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-27",
+        "href": "xhtml/30_Chapter_23_Resurrecti.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-28",
+        "href": "xhtml/31_Chapter_24_Those_Mind.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-29",
+        "href": "xhtml/32_Chapter_25_Poverty_an.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-3",
+        "href": "xhtml/06_Acknowledgments.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-30",
+        "href": "xhtml/33_Chapter_26_Cat.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-31",
+        "href": "xhtml/34_Chapter_27_Forsaken.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-32",
+        "href": "xhtml/35_Chapter_28_Wrong.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-33",
+        "href": "xhtml/36_Chapter_29_Less_Wings.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-34",
+        "href": "xhtml/37_Chapter_30_The_Umandh.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-35",
+        "href": "xhtml/38_Chapter_31_Mere_Human.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-36",
+        "href": "xhtml/39_Chapter_32_Stand_Clea.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-37",
+        "href": "xhtml/40_Chapter_33_To_Make_a_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-38",
+        "href": "xhtml/41_Chapter_34_Men_of_Gro.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-39",
+        "href": "xhtml/42_Chapter_35_Proper_Men.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-4",
+        "href": "xhtml/07_Image.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-40",
+        "href": "xhtml/43_Chapter_36_Teach_Them.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-41",
+        "href": "xhtml/44_Chapter_37_Might_Neve.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-42",
+        "href": "xhtml/45_Chapter_38_Blood_Like.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-43",
+        "href": "xhtml/46_Chapter_39_A_Kingdom_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-44",
+        "href": "xhtml/47_Chapter_40_A_Monopoly.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-45",
+        "href": "xhtml/48_Chapter_41_Friends.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-46",
+        "href": "xhtml/49_Chapter_42_Speak_Like.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-47",
+        "href": "xhtml/50_Chapter_43_The_Count_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-48",
+        "href": "xhtml/51_Chapter_44_Ana_s_and_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-49",
+        "href": "xhtml/52_Chapter_45_Lose_the_S.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-5",
+        "href": "xhtml/08_Chapter_1_Hadrian.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-50",
+        "href": "xhtml/53_Chapter_46_The_Doctor.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-51",
+        "href": "xhtml/54_Chapter_47_The_Cage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-52",
+        "href": "xhtml/55_Chapter_48_Triumph.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-53",
+        "href": "xhtml/56_Chapter_49_Brothers_i.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-54",
+        "href": "xhtml/57_Chapter_50_Without_Pr.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-55",
+        "href": "xhtml/58_Chapter_51_Familiar.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-56",
+        "href": "xhtml/59_Chapter_52_Little_Tal.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-57",
+        "href": "xhtml/60_Chapter_53_A_Game_of_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-58",
+        "href": "xhtml/61_Chapter_54_Gaslight.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-59",
+        "href": "xhtml/62_Chapter_55_The_Quiet.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-6",
+        "href": "xhtml/09_Chapter_2_Like_Distan.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-60",
+        "href": "xhtml/63_Chapter_56_Witches_an.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-61",
+        "href": "xhtml/64_Chapter_57_Second.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-62",
+        "href": "xhtml/65_Chapter_58_Barbarians.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-63",
+        "href": "xhtml/66_Chapter_59_On_the_Eve.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-64",
+        "href": "xhtml/67_Chapter_60_The_Sword_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-65",
+        "href": "xhtml/68_Chapter_61_A_Kind_of_.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-66",
+        "href": "xhtml/69_Chapter_62_The_Gilded.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-67",
+        "href": "xhtml/70_Chapter_63_Calagah.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-68",
+        "href": "xhtml/71_Chapter_64_The_Larger.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-69",
+        "href": "xhtml/72_Chapter_65_I_Dare_Not.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-7",
+        "href": "xhtml/10_Chapter_3_Consortium.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-70",
+        "href": "xhtml/73_Chapter_66_The_Satrap.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-71",
+        "href": "xhtml/74_Chapter_67_Lost_Time.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-72",
+        "href": "xhtml/75_Chapter_68_Help.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-73",
+        "href": "xhtml/76_Chapter_69_Of_Monster.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-74",
+        "href": "xhtml/77_Chapter_70_Demon-Tong.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-75",
+        "href": "xhtml/78_Chapter_71_Inquisitio.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-76",
+        "href": "xhtml/79_Chapter_72_Pale_Blood.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-77",
+        "href": "xhtml/80_Chapter_73_Ten_Thousa.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-78",
+        "href": "xhtml/81_Chapter_74_The_Labyri.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-79",
+        "href": "xhtml/82_Chapter_75_Mercy_Is.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-8",
+        "href": "xhtml/11_Chapter_4_The_Devil_a.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-80",
+        "href": "xhtml/83_Chapter_76_Deathbed_C.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-81",
+        "href": "xhtml/84_Chapter_77_A_Rare_Thi.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-82",
+        "href": "xhtml/85_Chapter_78_Quality.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-83",
+        "href": "xhtml/86_Dramatis_Personae.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-84",
+        "href": "xhtml/87_Index_of_Worlds_A_Not.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-85",
+        "href": "xhtml/88_Glossary.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-86",
+        "href": "xhtml/89_Lexicon_A_Note_on_Tra.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-87",
+        "href": "xhtml/90_Glossary.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9780756413026_EPUB-9",
+        "href": "xhtml/12_Chapter_5_Tigers_and_.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

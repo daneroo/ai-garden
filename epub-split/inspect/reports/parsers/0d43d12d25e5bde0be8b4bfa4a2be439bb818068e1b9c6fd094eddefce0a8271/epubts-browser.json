@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -431,6 +431,553 @@
       {
         "href": "Text/Shakespeare_102.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "contents.xhtml",
+        "href": "Text/contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover.jpg",
+        "href": "Images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "frontpage.xhtml",
+        "href": "Text/frontpage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "page_styles.css",
+        "href": "Styles/page_styles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "Shakespeare_01.xhtml",
+        "href": "Text/Shakespeare_01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_02.xhtml",
+        "href": "Text/Shakespeare_02.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_03.xhtml",
+        "href": "Text/Shakespeare_03.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_04.xhtml",
+        "href": "Text/Shakespeare_04.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_05.xhtml",
+        "href": "Text/Shakespeare_05.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_06.xhtml",
+        "href": "Text/Shakespeare_06.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_07.xhtml",
+        "href": "Text/Shakespeare_07.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_08.xhtml",
+        "href": "Text/Shakespeare_08.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_09.xhtml",
+        "href": "Text/Shakespeare_09.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_10.xhtml",
+        "href": "Text/Shakespeare_10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_100.xhtml",
+        "href": "Text/Shakespeare_100.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_101.xhtml",
+        "href": "Text/Shakespeare_101.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_102.xhtml",
+        "href": "Text/Shakespeare_102.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_11.xhtml",
+        "href": "Text/Shakespeare_11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_12.xhtml",
+        "href": "Text/Shakespeare_12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_13.xhtml",
+        "href": "Text/Shakespeare_13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_14.xhtml",
+        "href": "Text/Shakespeare_14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_15.xhtml",
+        "href": "Text/Shakespeare_15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_16.xhtml",
+        "href": "Text/Shakespeare_16.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_17.xhtml",
+        "href": "Text/Shakespeare_17.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_18.xhtml",
+        "href": "Text/Shakespeare_18.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_19.xhtml",
+        "href": "Text/Shakespeare_19.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_20.xhtml",
+        "href": "Text/Shakespeare_20.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_21.xhtml",
+        "href": "Text/Shakespeare_21.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_22.xhtml",
+        "href": "Text/Shakespeare_22.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_23.xhtml",
+        "href": "Text/Shakespeare_23.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_24.xhtml",
+        "href": "Text/Shakespeare_24.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_25.xhtml",
+        "href": "Text/Shakespeare_25.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_26.xhtml",
+        "href": "Text/Shakespeare_26.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_27.xhtml",
+        "href": "Text/Shakespeare_27.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_28.xhtml",
+        "href": "Text/Shakespeare_28.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_29.xhtml",
+        "href": "Text/Shakespeare_29.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_30.xhtml",
+        "href": "Text/Shakespeare_30.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_31.xhtml",
+        "href": "Text/Shakespeare_31.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_32.xhtml",
+        "href": "Text/Shakespeare_32.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_33.xhtml",
+        "href": "Text/Shakespeare_33.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_34.xhtml",
+        "href": "Text/Shakespeare_34.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_35.xhtml",
+        "href": "Text/Shakespeare_35.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_36.xhtml",
+        "href": "Text/Shakespeare_36.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_37.xhtml",
+        "href": "Text/Shakespeare_37.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_38.xhtml",
+        "href": "Text/Shakespeare_38.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_39.xhtml",
+        "href": "Text/Shakespeare_39.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_40.xhtml",
+        "href": "Text/Shakespeare_40.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_41.xhtml",
+        "href": "Text/Shakespeare_41.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_42.xhtml",
+        "href": "Text/Shakespeare_42.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_43.xhtml",
+        "href": "Text/Shakespeare_43.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_44.xhtml",
+        "href": "Text/Shakespeare_44.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_45.xhtml",
+        "href": "Text/Shakespeare_45.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_46.xhtml",
+        "href": "Text/Shakespeare_46.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_47.xhtml",
+        "href": "Text/Shakespeare_47.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_48.xhtml",
+        "href": "Text/Shakespeare_48.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_49.xhtml",
+        "href": "Text/Shakespeare_49.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_50.xhtml",
+        "href": "Text/Shakespeare_50.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_51.xhtml",
+        "href": "Text/Shakespeare_51.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_52.xhtml",
+        "href": "Text/Shakespeare_52.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_53.xhtml",
+        "href": "Text/Shakespeare_53.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_54.xhtml",
+        "href": "Text/Shakespeare_54.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_55.xhtml",
+        "href": "Text/Shakespeare_55.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_56.xhtml",
+        "href": "Text/Shakespeare_56.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_57.xhtml",
+        "href": "Text/Shakespeare_57.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_58.xhtml",
+        "href": "Text/Shakespeare_58.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_59.xhtml",
+        "href": "Text/Shakespeare_59.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_60.xhtml",
+        "href": "Text/Shakespeare_60.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_61.xhtml",
+        "href": "Text/Shakespeare_61.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_62.xhtml",
+        "href": "Text/Shakespeare_62.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_63.xhtml",
+        "href": "Text/Shakespeare_63.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_64.xhtml",
+        "href": "Text/Shakespeare_64.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_65.xhtml",
+        "href": "Text/Shakespeare_65.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_66.xhtml",
+        "href": "Text/Shakespeare_66.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_67.xhtml",
+        "href": "Text/Shakespeare_67.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_68.xhtml",
+        "href": "Text/Shakespeare_68.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_69.xhtml",
+        "href": "Text/Shakespeare_69.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_70.xhtml",
+        "href": "Text/Shakespeare_70.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_71.xhtml",
+        "href": "Text/Shakespeare_71.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_72.xhtml",
+        "href": "Text/Shakespeare_72.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_73.xhtml",
+        "href": "Text/Shakespeare_73.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_74.xhtml",
+        "href": "Text/Shakespeare_74.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_75.xhtml",
+        "href": "Text/Shakespeare_75.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_76.xhtml",
+        "href": "Text/Shakespeare_76.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_77.xhtml",
+        "href": "Text/Shakespeare_77.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_78.xhtml",
+        "href": "Text/Shakespeare_78.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_79.xhtml",
+        "href": "Text/Shakespeare_79.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_80.xhtml",
+        "href": "Text/Shakespeare_80.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_81.xhtml",
+        "href": "Text/Shakespeare_81.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_82.xhtml",
+        "href": "Text/Shakespeare_82.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_83.xhtml",
+        "href": "Text/Shakespeare_83.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_84.xhtml",
+        "href": "Text/Shakespeare_84.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_85.xhtml",
+        "href": "Text/Shakespeare_85.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_86.xhtml",
+        "href": "Text/Shakespeare_86.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_87.xhtml",
+        "href": "Text/Shakespeare_87.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_88.xhtml",
+        "href": "Text/Shakespeare_88.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_89.xhtml",
+        "href": "Text/Shakespeare_89.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_90.xhtml",
+        "href": "Text/Shakespeare_90.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_91.xhtml",
+        "href": "Text/Shakespeare_91.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_92.xhtml",
+        "href": "Text/Shakespeare_92.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_93.xhtml",
+        "href": "Text/Shakespeare_93.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_94.xhtml",
+        "href": "Text/Shakespeare_94.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_95.xhtml",
+        "href": "Text/Shakespeare_95.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_96.xhtml",
+        "href": "Text/Shakespeare_96.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_97.xhtml",
+        "href": "Text/Shakespeare_97.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_98.xhtml",
+        "href": "Text/Shakespeare_98.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Shakespeare_99.xhtml",
+        "href": "Text/Shakespeare_99.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "stylesheet.css",
+        "href": "Styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "titlepage.xhtml",
+        "href": "Text/titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

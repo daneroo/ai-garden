@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -131,6 +131,918 @@
       {
         "href": "xhtml/bibliography.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "aboutauthor",
+        "href": "xhtml/aboutauthor.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "appendix",
+        "href": "xhtml/appendix.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "bibliography",
+        "href": "xhtml/bibliography.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter001",
+        "href": "xhtml/chapter001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter002",
+        "href": "xhtml/chapter002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter003",
+        "href": "xhtml/chapter003.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter004",
+        "href": "xhtml/chapter004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter005",
+        "href": "xhtml/chapter005.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter006",
+        "href": "xhtml/chapter006.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter007",
+        "href": "xhtml/chapter007.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter008",
+        "href": "xhtml/chapter008.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter009",
+        "href": "xhtml/chapter009.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter010",
+        "href": "xhtml/chapter010.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter011",
+        "href": "xhtml/chapter011.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter012",
+        "href": "xhtml/chapter012.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter013",
+        "href": "xhtml/chapter013.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter014",
+        "href": "xhtml/chapter014.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter015",
+        "href": "xhtml/chapter015.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter016",
+        "href": "xhtml/chapter016.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "chapter017",
+        "href": "xhtml/chapter017.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "contents",
+        "href": "xhtml/contents.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copyright",
+        "href": "xhtml/copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "dedication",
+        "href": "xhtml/dedication.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "f9780141927169_001",
+        "href": "images/9780141927169_001.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_002",
+        "href": "images/9780141927169_002.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_003",
+        "href": "images/9780141927169_003.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_004",
+        "href": "images/9780141927169_004.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_005",
+        "href": "images/9780141927169_005.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_006",
+        "href": "images/9780141927169_006.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_007",
+        "href": "images/9780141927169_007.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_008",
+        "href": "images/9780141927169_008.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_009",
+        "href": "images/9780141927169_009.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_010",
+        "href": "images/9780141927169_010.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_011",
+        "href": "images/9780141927169_011.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_012",
+        "href": "images/9780141927169_012.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_013",
+        "href": "images/9780141927169_013.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_014",
+        "href": "images/9780141927169_014.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_015",
+        "href": "images/9780141927169_015.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_016",
+        "href": "images/9780141927169_016.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_017",
+        "href": "images/9780141927169_017.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_018",
+        "href": "images/9780141927169_018.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_019",
+        "href": "images/9780141927169_019.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_020",
+        "href": "images/9780141927169_020.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_021",
+        "href": "images/9780141927169_021.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_022",
+        "href": "images/9780141927169_022.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_023",
+        "href": "images/9780141927169_023.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_024",
+        "href": "images/9780141927169_024.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_025",
+        "href": "images/9780141927169_025.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_026",
+        "href": "images/9780141927169_026.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_027",
+        "href": "images/9780141927169_027.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_028",
+        "href": "images/9780141927169_028.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_029",
+        "href": "images/9780141927169_029.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_030",
+        "href": "images/9780141927169_030.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_031",
+        "href": "images/9780141927169_031.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_032",
+        "href": "images/9780141927169_032.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_033",
+        "href": "images/9780141927169_033.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_034",
+        "href": "images/9780141927169_034.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_035",
+        "href": "images/9780141927169_035.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_036",
+        "href": "images/9780141927169_036.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_037",
+        "href": "images/9780141927169_037.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_038",
+        "href": "images/9780141927169_038.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_039",
+        "href": "images/9780141927169_039.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_040",
+        "href": "images/9780141927169_040.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_041",
+        "href": "images/9780141927169_041.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_042",
+        "href": "images/9780141927169_042.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_043",
+        "href": "images/9780141927169_043.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_044",
+        "href": "images/9780141927169_044.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_045",
+        "href": "images/9780141927169_045.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_046",
+        "href": "images/9780141927169_046.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_047",
+        "href": "images/9780141927169_047.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_048",
+        "href": "images/9780141927169_048.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_049",
+        "href": "images/9780141927169_049.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_050",
+        "href": "images/9780141927169_050.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_051",
+        "href": "images/9780141927169_051.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_052",
+        "href": "images/9780141927169_052.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_053",
+        "href": "images/9780141927169_053.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_054",
+        "href": "images/9780141927169_054.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_055",
+        "href": "images/9780141927169_055.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_056",
+        "href": "images/9780141927169_056.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_057",
+        "href": "images/9780141927169_057.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_058",
+        "href": "images/9780141927169_058.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_059",
+        "href": "images/9780141927169_059.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_060",
+        "href": "images/9780141927169_060.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_061",
+        "href": "images/9780141927169_061.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_062",
+        "href": "images/9780141927169_062.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_063",
+        "href": "images/9780141927169_063.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_064",
+        "href": "images/9780141927169_064.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_065",
+        "href": "images/9780141927169_065.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_066",
+        "href": "images/9780141927169_066.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_067",
+        "href": "images/9780141927169_067.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_068",
+        "href": "images/9780141927169_068.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_069",
+        "href": "images/9780141927169_069.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_070",
+        "href": "images/9780141927169_070.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_071",
+        "href": "images/9780141927169_071.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_072",
+        "href": "images/9780141927169_072.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_073",
+        "href": "images/9780141927169_073.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_074",
+        "href": "images/9780141927169_074.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_075",
+        "href": "images/9780141927169_075.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_076",
+        "href": "images/9780141927169_076.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_077",
+        "href": "images/9780141927169_077.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_078",
+        "href": "images/9780141927169_078.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_079",
+        "href": "images/9780141927169_079.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_080",
+        "href": "images/9780141927169_080.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_081",
+        "href": "images/9780141927169_081.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_082",
+        "href": "images/9780141927169_082.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_083",
+        "href": "images/9780141927169_083.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_084",
+        "href": "images/9780141927169_084.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_085",
+        "href": "images/9780141927169_085.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_086",
+        "href": "images/9780141927169_086.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_087",
+        "href": "images/9780141927169_087.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_088",
+        "href": "images/9780141927169_088.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_089",
+        "href": "images/9780141927169_089.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_090",
+        "href": "images/9780141927169_090.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_091",
+        "href": "images/9780141927169_091.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_092",
+        "href": "images/9780141927169_092.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_093",
+        "href": "images/9780141927169_093.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_094",
+        "href": "images/9780141927169_094.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_095",
+        "href": "images/9780141927169_095.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_096",
+        "href": "images/9780141927169_096.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_097",
+        "href": "images/9780141927169_097.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_098",
+        "href": "images/9780141927169_098.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_099",
+        "href": "images/9780141927169_099.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_100",
+        "href": "images/9780141927169_100.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_101",
+        "href": "images/9780141927169_101.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_102",
+        "href": "images/9780141927169_102.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_103",
+        "href": "images/9780141927169_103.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_104",
+        "href": "images/9780141927169_104.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_105",
+        "href": "images/9780141927169_105.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_106",
+        "href": "images/9780141927169_106.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_107",
+        "href": "images/9780141927169_107.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_108",
+        "href": "images/9780141927169_108.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_109",
+        "href": "images/9780141927169_109.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_110",
+        "href": "images/9780141927169_110.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_111",
+        "href": "images/9780141927169_111.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_112",
+        "href": "images/9780141927169_112.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_113",
+        "href": "images/9780141927169_113.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_114",
+        "href": "images/9780141927169_114.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_115",
+        "href": "images/9780141927169_115.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_116",
+        "href": "images/9780141927169_116.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_117",
+        "href": "images/9780141927169_117.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_118",
+        "href": "images/9780141927169_118.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_119",
+        "href": "images/9780141927169_119.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_120",
+        "href": "images/9780141927169_120.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_121",
+        "href": "images/9780141927169_121.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_122",
+        "href": "images/9780141927169_122.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_123",
+        "href": "images/9780141927169_123.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_124",
+        "href": "images/9780141927169_124.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_125",
+        "href": "images/9780141927169_125.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_126",
+        "href": "images/9780141927169_126.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_127",
+        "href": "images/9780141927169_127.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_128",
+        "href": "images/9780141927169_128.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_129",
+        "href": "images/9780141927169_129.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_130",
+        "href": "images/9780141927169_130.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_131",
+        "href": "images/9780141927169_131.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_132",
+        "href": "images/9780141927169_132.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_133",
+        "href": "images/9780141927169_133.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_134",
+        "href": "images/9780141927169_134.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_135",
+        "href": "images/9780141927169_135.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_136",
+        "href": "images/9780141927169_136.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_137",
+        "href": "images/9780141927169_137.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_138",
+        "href": "images/9780141927169_138.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_139",
+        "href": "images/9780141927169_139.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_140",
+        "href": "images/9780141927169_140.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_141",
+        "href": "images/9780141927169_141.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_142",
+        "href": "images/9780141927169_142.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_143",
+        "href": "images/9780141927169_143.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_144",
+        "href": "images/9780141927169_144.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_145",
+        "href": "images/9780141927169_145.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_146",
+        "href": "images/9780141927169_146.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_147",
+        "href": "images/9780141927169_147.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "f9780141927169_148",
+        "href": "images/9780141927169_148.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "jacket",
+        "href": "../jacket.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "map",
+        "href": "page-map.xml",
+        "mediaType": "application/oebps-page-map+xml"
+      },
+      {
+        "id": "nav",
+        "href": "../nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "notes001",
+        "href": "xhtml/notes001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "notes002",
+        "href": "xhtml/notes002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "preface001",
+        "href": "xhtml/preface001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "preface002",
+        "href": "xhtml/preface002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "stylesheet",
+        "href": "styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "title",
+        "href": "xhtml/title.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "xhtml/titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

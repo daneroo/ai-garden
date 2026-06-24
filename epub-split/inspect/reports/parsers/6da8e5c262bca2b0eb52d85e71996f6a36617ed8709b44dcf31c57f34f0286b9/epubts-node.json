@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -96,6 +96,143 @@
       {
         "href": "Text/020_Endnotes.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "Text/000_Cover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "Images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "Styles/9781510719910.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "id001",
+        "href": "Text/001_Halftitle.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id002",
+        "href": "Text/002_Booktitle.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id003",
+        "href": "Text/003_Copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id004",
+        "href": "Text/004_Contents.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id005",
+        "href": "Text/005_Introduction.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id006",
+        "href": "Text/006_Chapter001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id007",
+        "href": "Text/007_Chapter002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id008",
+        "href": "Text/008_Chapter003.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id009",
+        "href": "Text/009_Chapter004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id010",
+        "href": "Text/010_Chapter005.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id011",
+        "href": "Text/011_Chapter006.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id012",
+        "href": "Text/012_Chapter007.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id013",
+        "href": "Text/013_Chapter008.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id014",
+        "href": "Text/014_Chapter009.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id015",
+        "href": "Text/015_Chapter010.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id016",
+        "href": "Text/016_Chapter011.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id017",
+        "href": "Text/017_Chapter012.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id018",
+        "href": "Text/018_Chapter013.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id019",
+        "href": "Text/019_Bibliography.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "id020",
+        "href": "Text/020_Endnotes.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "image1",
+        "href": "Images/half.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image2",
+        "href": "Images/title.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "pt",
+        "href": "Misc/page-template.xpgt",
+        "mediaType": "application/vnd.adobe-page-template+xml"
       }
     ]
   }

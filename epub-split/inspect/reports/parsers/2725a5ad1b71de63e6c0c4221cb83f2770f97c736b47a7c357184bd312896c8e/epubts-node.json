@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -248,6 +248,363 @@
       {
         "href": "xhtml/copyright.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "about",
+        "href": "xhtml/about.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "acknow",
+        "href": "xhtml/acknow.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "also",
+        "href": "xhtml/also.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "author",
+        "href": "images/author.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ch01",
+        "href": "xhtml/ch01.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch02",
+        "href": "xhtml/ch02.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch03",
+        "href": "xhtml/ch03.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch04",
+        "href": "xhtml/ch04.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch05",
+        "href": "xhtml/ch05.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch06",
+        "href": "xhtml/ch06.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch07",
+        "href": "xhtml/ch07.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch08",
+        "href": "xhtml/ch08.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch09",
+        "href": "xhtml/ch09.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch10",
+        "href": "xhtml/ch10.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch11",
+        "href": "xhtml/ch11.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch12",
+        "href": "xhtml/ch12.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch13",
+        "href": "xhtml/ch13.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch14",
+        "href": "xhtml/ch14.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch15",
+        "href": "xhtml/ch15.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch16",
+        "href": "xhtml/ch16.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch17",
+        "href": "xhtml/ch17.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch18",
+        "href": "xhtml/ch18.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch19",
+        "href": "xhtml/ch19.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch20",
+        "href": "xhtml/ch20.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch21",
+        "href": "xhtml/ch21.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch22",
+        "href": "xhtml/ch22.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch23",
+        "href": "xhtml/ch23.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch24",
+        "href": "xhtml/ch24.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch25",
+        "href": "xhtml/ch25.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch26",
+        "href": "xhtml/ch26.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch27",
+        "href": "xhtml/ch27.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch28",
+        "href": "xhtml/ch28.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch29",
+        "href": "xhtml/ch29.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch30",
+        "href": "xhtml/ch30.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch31",
+        "href": "xhtml/ch31.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch32",
+        "href": "xhtml/ch32.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch33",
+        "href": "xhtml/ch33.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch34",
+        "href": "xhtml/ch34.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch35",
+        "href": "xhtml/ch35.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch36",
+        "href": "xhtml/ch36.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch37",
+        "href": "xhtml/ch37.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch38",
+        "href": "xhtml/ch38.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch39",
+        "href": "xhtml/ch39.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch40",
+        "href": "xhtml/ch40.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch41",
+        "href": "xhtml/ch41.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch42",
+        "href": "xhtml/ch42.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch43",
+        "href": "xhtml/ch43.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch44",
+        "href": "xhtml/ch44.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch45",
+        "href": "xhtml/ch45.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch46",
+        "href": "xhtml/ch46.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch47",
+        "href": "xhtml/ch47.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch48",
+        "href": "xhtml/ch48.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch49",
+        "href": "xhtml/ch49.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch50",
+        "href": "xhtml/ch50.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copy",
+        "href": "images/copy.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "copy1",
+        "href": "images/copy1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "copyright",
+        "href": "xhtml/copyright.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "xhtml/cover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "css",
+        "href": "styles/9781501160783.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "css1",
+        "href": "styles/SS_global.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "css2",
+        "href": "styles/SS_signup.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "dedication",
+        "href": "xhtml/dedication.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "font1",
+        "href": "fonts/AmaticSC-Regular.ttf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font2",
+        "href": "fonts/AGaramondPro-Italic.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "font3",
+        "href": "fonts/AGaramondPro-Regular.otf",
+        "mediaType": "application/x-font-otf"
+      },
+      {
+        "id": "my-cover-image",
+        "href": "images/9781501160783.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "SS_US_teen_signup_back",
+        "href": "xhtml/SS_US_teen_signup_back.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "SS_US_teen_signup_front",
+        "href": "xhtml/SS_US_teen_signup_front.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "title",
+        "href": "xhtml/title.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "title1",
+        "href": "images/title.jpg",
+        "mediaType": "image/jpeg"
       }
     ]
   }

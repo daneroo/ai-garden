@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -14,6 +14,9 @@
     },
     "spine": [
       { "href": "chapter01.xhtml", "linear": true }
+    ],
+    "manifest": [
+      { "id": "ch01", "href": "chapter01.xhtml", "mediaType": "application/xhtml+xml" }
     ]
   }
 }

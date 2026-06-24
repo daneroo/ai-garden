@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -36,6 +36,108 @@
       {
         "href": "Text/part0005.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "OEBPS/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Cover.html",
+        "href": "Text/Cover.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Cover.jpg",
+        "href": "Images/Cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "Styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "part0001.html",
+        "href": "Text/part0001.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0002.html",
+        "href": "Text/part0002.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0003.html",
+        "href": "Text/part0003.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0004",
+        "href": "Text/part0004.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "part0005",
+        "href": "Text/part0005.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "picture-1.jpg",
+        "href": "Images/picture-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "picture-2.jpg",
+        "href": "Images/picture-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "picture-3.jpg",
+        "href": "Images/picture-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "picture-4.jpg",
+        "href": "Images/picture-4.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "picture-5.jpg",
+        "href": "Images/picture-5.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "picture-6.jpg",
+        "href": "Images/picture-6.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Snow_Leopard-1.jpg",
+        "href": "Images/Snow Leopard-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Snow_Leopard-2.jpg",
+        "href": "Images/Snow Leopard-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Snow_Leopard-3.jpg",
+        "href": "Images/Snow Leopard-3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "Snow_Leopard-4.jpg",
+        "href": "Images/Snow Leopard-4.jpg",
+        "mediaType": "image/jpeg"
       }
     ]
   }

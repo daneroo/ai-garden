@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -120,6 +120,178 @@
       {
         "href": "GlobalBackad.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover.jpg",
+        "href": "image/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CoverImage",
+        "href": "CoverImage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "GlobalBackad.html",
+        "href": "GlobalBackad.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "GlobalBackad.jpg",
+        "href": "GlobalBackad.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "titlePage_fmt.jpeg",
+        "href": "image/titlePage_fmt.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x67906.jpg",
+        "href": "image/67906.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x67917.jpg",
+        "href": "image/67917.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "x9781101613_idstyles.css",
+        "href": "css/9781101613_idstyles.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "x9781101613887_EPUB",
+        "href": "9781101613887_EPUB.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-1",
+        "href": "9781101613887_EPUB-1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-10",
+        "href": "9781101613887_EPUB-10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-11",
+        "href": "9781101613887_EPUB-11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-12",
+        "href": "9781101613887_EPUB-12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-13",
+        "href": "9781101613887_EPUB-13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-14",
+        "href": "9781101613887_EPUB-14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-15",
+        "href": "9781101613887_EPUB-15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-16",
+        "href": "9781101613887_EPUB-16.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-17",
+        "href": "9781101613887_EPUB-17.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-18",
+        "href": "9781101613887_EPUB-18.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-19",
+        "href": "9781101613887_EPUB-19.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-2",
+        "href": "9781101613887_EPUB-2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-20",
+        "href": "9781101613887_EPUB-20.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-21",
+        "href": "9781101613887_EPUB-21.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-22",
+        "href": "9781101613887_EPUB-22.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-23",
+        "href": "9781101613887_EPUB-23.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-24",
+        "href": "9781101613887_EPUB-24.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-3",
+        "href": "9781101613887_EPUB-3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-4",
+        "href": "9781101613887_EPUB-4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-5",
+        "href": "9781101613887_EPUB-5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-6",
+        "href": "9781101613887_EPUB-6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-7",
+        "href": "9781101613887_EPUB-7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-8",
+        "href": "9781101613887_EPUB-8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "x9781101613887_EPUB-9",
+        "href": "9781101613887_EPUB-9.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

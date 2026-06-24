@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -68,6 +68,183 @@
       {
         "href": "about-us.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "about-the-author-xhtml",
+        "href": "about-the-author.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "about-us-xhtml",
+        "href": "about-us.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "acknowledgements-xhtml",
+        "href": "acknowledgements.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "acks-jpg",
+        "href": "images/acks.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "alegreya-regular-ttf",
+        "href": "fonts/Alegreya-Regular.ttf",
+        "mediaType": "application/font-sfnt"
+      },
+      {
+        "id": "chaptereight-jpg",
+        "href": "images/chaptereight.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "chapterfive-jpg",
+        "href": "images/chapterfive.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "chapterfour-jpg",
+        "href": "images/chapterfour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "chapterone-jpg",
+        "href": "images/chapterone.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "chapterseven-jpg",
+        "href": "images/chapterseven.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "chaptersix-jpg",
+        "href": "images/chaptersix.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "chapterthree-jpg",
+        "href": "images/chapterthree.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "chaptertwo-jpg",
+        "href": "images/chaptertwo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "copyright-xhtml",
+        "href": "copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Cover",
+        "href": "cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover-image",
+        "href": "images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "dedication-xhtml",
+        "href": "dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "greatvibes-regular-ttf",
+        "href": "fonts/GreatVibes-Regular.ttf",
+        "mediaType": "application/font-sfnt"
+      },
+      {
+        "id": "logo-jpg",
+        "href": "images/logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "media-css",
+        "href": "css/media.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "screen-shot-2022-04-09-at-32120-pm-jpg",
+        "href": "images/screen-shot-2022-04-09-at-32120-pm.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "seperator-jpg",
+        "href": "images/seperator.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "sil-open-font-license-11-txt",
+        "href": "fonts/SIL-Open-Font-License-1.1.txt",
+        "mediaType": "text/plain"
+      },
+      {
+        "id": "style-css",
+        "href": "css/style.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "the-apprentice-xhtml",
+        "href": "the-apprentice.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "the-crime-xhtml",
+        "href": "the-crime.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "the-dealer-xhtml",
+        "href": "the-dealer.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "the-fists-xhtml",
+        "href": "the-fists.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "the-master-xhtml",
+        "href": "the-master.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "the-search-xhtml",
+        "href": "the-search.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "the-theft-xhtml",
+        "href": "the-theft.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "the-ultimatum-xhtml",
+        "href": "the-ultimatum.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "toc",
+        "href": "toc.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "vellum-created-png",
+        "href": "images/vellum-created.png",
+        "mediaType": "image/png"
       }
     ]
   }

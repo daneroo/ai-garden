@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -132,6 +132,173 @@
       {
         "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_028.htm",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "Images/cover.jpeg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "css",
+        "href": "Styles/stylesheet.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)1",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_028.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)10",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_019.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)11",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_018.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)12",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_017.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)13",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_016.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)14",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_015.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)15",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_014.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)16",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_013.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)17",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_012.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)18",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_011.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)19",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_010.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)2",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_027.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)20",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_009.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)21",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_008.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)22",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_007.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)23",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_006.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)24",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_005.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)25",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_004.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)26",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_003.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)27",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_002.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)28",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_001.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)29",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_000.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)3",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_026.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)4",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_025.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)5",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_024.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)6",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_023.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)7",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_022.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)8",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_021.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "Steven_Brust_-_Vlad_Taltos_05_-_Phoenix_v1.1_(BD)9",
+        "href": "Text/Steven%20Brust%20-%20Vlad%20Taltos%2005%20-%20Phoenix%20v1.1%20%28BD%29_split_020.htm",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "titlepage",
+        "href": "Text/titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

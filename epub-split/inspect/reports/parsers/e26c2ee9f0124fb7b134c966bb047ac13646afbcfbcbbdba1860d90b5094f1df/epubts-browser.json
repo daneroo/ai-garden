@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -59,6 +59,108 @@
       {
         "href": "9780575104457_oeb_cpy_r1.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "ch01a",
+        "href": "9780575104457_oeb_c01a_r1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch01b",
+        "href": "9780575104457_oeb_c01b_r1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch01c",
+        "href": "9780575104457_oeb_c01c_r1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch01d",
+        "href": "9780575104457_oeb_c01d_r1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch01e",
+        "href": "9780575104457_oeb_c01e_r1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch01f",
+        "href": "9780575104457_oeb_c01f_r1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "coverimagestandard",
+        "href": "9780575104457_msr_cvi_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "cpy",
+        "href": "9780575104457_oeb_cpy_r1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "css",
+        "href": "9780575104457_oeb_css_r1.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "fm",
+        "href": "9780575104457_oeb_otherbooks_r1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "image1",
+        "href": "9780575104457_oeb_001_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "image2",
+        "href": "9780575104457_oeb_002_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "my-html-cover",
+        "href": "9780575104457_oeb_cover_r1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "PPCthumbnailimage",
+        "href": "9780575104457_msr_ppl_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "pro",
+        "href": "9780575104457_oeb_pro_r1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "pt",
+        "href": "page-template.xpgt",
+        "mediaType": "application/vnd.adobe-page-template+xml"
+      },
+      {
+        "id": "thumbimagestandard",
+        "href": "9780575104457_msr_cvt_r1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "toc",
+        "href": "9780575104457_oeb_toc_r1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "tp",
+        "href": "9780575104457_oeb_tp_r1.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

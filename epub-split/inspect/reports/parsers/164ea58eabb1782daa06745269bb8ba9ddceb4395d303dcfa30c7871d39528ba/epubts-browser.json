@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -175,6 +175,658 @@
       {
         "href": "html/40_Index1.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover",
+        "href": "html/00_cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "css",
+        "href": "css/epub.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "img1",
+        "href": "img/oso-9780190059040-graphic-045.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img10",
+        "href": "img/logo.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img11",
+        "href": "img/oso-9780190059040-graphic-031.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img12",
+        "href": "img/oso-9780190059040-graphic-065.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "img13",
+        "href": "img/oso-9780190059040-graphic-080.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img14",
+        "href": "img/oso-9780190059040-graphic-055.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img15",
+        "href": "img/oso-9780190059040-graphic-056.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img16",
+        "href": "img/oso-9780190059040-graphic-043.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "img17",
+        "href": "img/oso-9780190059040-graphic-009.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img18",
+        "href": "img/oso-9780190059040-graphic-039.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img19",
+        "href": "img/oso-9780190059040-graphic-003-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img2",
+        "href": "img/oso-9780190059040-graphic-047.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img20",
+        "href": "img/oso-9780190059040-graphic-004-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img21",
+        "href": "img/oso-9780190059040-graphic-005-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img22",
+        "href": "img/oso-9780190059040-graphic-006-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img23",
+        "href": "img/oso-9780190059040-graphic-007-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img24",
+        "href": "img/oso-9780190059040-graphic-008-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img25",
+        "href": "img/oso-9780190059040-graphic-010-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img26",
+        "href": "img/oso-9780190059040-graphic-013-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img27",
+        "href": "img/oso-9780190059040-graphic-015-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img28",
+        "href": "img/oso-9780190059040-graphic-016-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img29",
+        "href": "img/oso-9780190059040-graphic-017-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img3",
+        "href": "img/oso-9780190059040-graphic-011.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img30",
+        "href": "img/oso-9780190059040-graphic-018-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img31",
+        "href": "img/oso-9780190059040-graphic-019-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img32",
+        "href": "img/oso-9780190059040-graphic-020-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img33",
+        "href": "img/oso-9780190059040-graphic-021-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img34",
+        "href": "img/oso-9780190059040-graphic-022-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img35",
+        "href": "img/oso-9780190059040-graphic-023-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img36",
+        "href": "img/oso-9780190059040-graphic-024-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img37",
+        "href": "img/oso-9780190059040-graphic-025-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img38",
+        "href": "img/oso-9780190059040-graphic-026-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img39",
+        "href": "img/oso-9780190059040-graphic-027-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img4",
+        "href": "img/oso-9780190059040-graphic-052.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img40",
+        "href": "img/oso-9780190059040-graphic-028-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img41",
+        "href": "img/oso-9780190059040-graphic-029-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img42",
+        "href": "img/oso-9780190059040-graphic-030-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img43",
+        "href": "img/oso-9780190059040-graphic-032-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img44",
+        "href": "img/oso-9780190059040-graphic-033-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img45",
+        "href": "img/oso-9780190059040-graphic-034-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img46",
+        "href": "img/oso-9780190059040-graphic-035-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img47",
+        "href": "img/oso-9780190059040-graphic-036-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img48",
+        "href": "img/oso-9780190059040-graphic-037-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img49",
+        "href": "img/oso-9780190059040-graphic-038-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img5",
+        "href": "img/oso-9780190059040-graphic-012.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img50",
+        "href": "img/oso-9780190059040-graphic-040-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img51",
+        "href": "img/oso-9780190059040-graphic-041-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img52",
+        "href": "img/oso-9780190059040-graphic-044-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img53",
+        "href": "img/oso-9780190059040-graphic-046-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img54",
+        "href": "img/oso-9780190059040-graphic-048-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img55",
+        "href": "img/oso-9780190059040-graphic-049-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img56",
+        "href": "img/oso-9780190059040-graphic-050-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img57",
+        "href": "img/oso-9780190059040-graphic-051-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img58",
+        "href": "img/oso-9780190059040-graphic-053-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img59",
+        "href": "img/oso-9780190059040-graphic-054-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img6",
+        "href": "img/oso-9780190059040-graphic-042.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img60",
+        "href": "img/oso-9780190059040-graphic-058-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img61",
+        "href": "img/oso-9780190059040-graphic-059-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img62",
+        "href": "img/oso-9780190059040-graphic-060-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img63",
+        "href": "img/oso-9780190059040-graphic-061-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img64",
+        "href": "img/oso-9780190059040-graphic-062-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img65",
+        "href": "img/oso-9780190059040-graphic-063-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img66",
+        "href": "img/oso-9780190059040-graphic-066-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img67",
+        "href": "img/oso-9780190059040-graphic-067-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img68",
+        "href": "img/oso-9780190059040-graphic-068-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img69",
+        "href": "img/oso-9780190059040-graphic-069-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img7",
+        "href": "img/oso-9780190059040-graphic-014.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "img70",
+        "href": "img/oso-9780190059040-graphic-070-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img71",
+        "href": "img/oso-9780190059040-graphic-071-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img72",
+        "href": "img/oso-9780190059040-graphic-072-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img73",
+        "href": "img/oso-9780190059040-graphic-073-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img74",
+        "href": "img/oso-9780190059040-graphic-074-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img75",
+        "href": "img/oso-9780190059040-graphic-075-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img76",
+        "href": "img/oso-9780190059040-graphic-076-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img77",
+        "href": "img/oso-9780190059040-graphic-077-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img78",
+        "href": "img/oso-9780190059040-graphic-078-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img79",
+        "href": "img/oso-9780190059040-graphic-079-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img8",
+        "href": "img/oso-9780190059040-graphic-057.gif",
+        "mediaType": "image/gif"
+      },
+      {
+        "id": "img80",
+        "href": "img/oso-9780190059040-graphic-081-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img81",
+        "href": "img/oso-9780190059040-graphic-082-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img82",
+        "href": "img/oso-9780190059040-graphic-083-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img83",
+        "href": "img/oso-9780190059040-graphic-084-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img84",
+        "href": "img/oso-9780190059040-graphic-085-colour.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "img9",
+        "href": "img/oso-9780190059040-graphic-064.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "js-kobo.js",
+        "href": "../js/kobo.js",
+        "mediaType": "application/javascript"
+      },
+      {
+        "id": "my_cover_image",
+        "href": "img/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "nav_1",
+        "href": "html/01_Halftitle.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_10",
+        "href": "html/10_part2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_11",
+        "href": "html/11_chapter4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_12",
+        "href": "html/12_chapter5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_13",
+        "href": "html/13_chapter6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_14",
+        "href": "html/14_part3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_15",
+        "href": "html/15_chapter7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_16",
+        "href": "html/16_chapter8.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_17",
+        "href": "html/17_part4.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_18",
+        "href": "html/18_chapter9.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_19",
+        "href": "html/19_chapter10.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_1a",
+        "href": "nav.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_2",
+        "href": "html/02_Titlepage.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_20",
+        "href": "html/20_chapter11.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_21",
+        "href": "html/21_part5.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_22",
+        "href": "html/22_chapter12.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_23",
+        "href": "html/23_chapter13.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_24",
+        "href": "html/24_chapter14.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_25",
+        "href": "html/25_part6.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_26",
+        "href": "html/26_chapter15.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_27",
+        "href": "html/27_chapter16.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_28",
+        "href": "html/28_chapter17.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_29",
+        "href": "html/29_part7.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_3",
+        "href": "html/03_Copyright.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_30",
+        "href": "html/30_chapter18.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_31",
+        "href": "html/31_chapter19.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_32",
+        "href": "html/32_chapter20.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_33",
+        "href": "html/33_chapter21.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_34",
+        "href": "html/34_Other1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_35",
+        "href": "html/35_Other2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_36",
+        "href": "html/36_Acknowledgements.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_37",
+        "href": "html/37_Abbreviations.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_38",
+        "href": "html/38_Notes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_39",
+        "href": "html/39_bibliography.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_4",
+        "href": "html/04_Dedication.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_40",
+        "href": "html/40_Index1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_5",
+        "href": "html/05_Contents1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_6",
+        "href": "html/06_chapter1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_7",
+        "href": "html/07_part1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_8",
+        "href": "html/08_chapter2.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "nav_9",
+        "href": "html/09_chapter3.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
       }
     ]
   }

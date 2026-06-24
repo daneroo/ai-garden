@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -20,6 +20,33 @@
       {
         "href": "page-1.html",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "cover-image",
+        "href": "images/image_2.gif",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "CSS",
+        "href": "main.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "page-1",
+        "href": "page-1.html",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "title",
+        "href": "cover.html",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }

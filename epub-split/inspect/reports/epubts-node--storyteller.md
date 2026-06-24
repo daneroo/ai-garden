@@ -21,6 +21,13 @@ mismatch = differ + a-only + b-only.
 | agree | 213 |
 | differ | 0 |
 
+## Manifest comparison
+
+| status | distinct books |
+|---|---:|
+| agree | 213 |
+| differ | 0 |
+
 ## Not compared
 
 | reason | distinct books |

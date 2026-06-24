@@ -30,12 +30,15 @@ async function openBook(bytes: ArrayBuffer): Promise<EntryOpenOutcome> {
     const pkg = book.packaging as {
       metadata: { title?: unknown; creator?: unknown; pubdate?: unknown };
       spine?: Array<{ idref: string; linear: string }>;
-      manifest?: Record<string, { href: string }>;
+      manifest?: Record<string, { href: string; type?: string }>;
     };
     const spine = (pkg.spine ?? []).map((item) => ({
       href: pkg.manifest?.[item.idref]?.href ?? item.idref,
       linear: item.linear !== "no",
     }));
+    const manifest = Object.entries(pkg.manifest ?? {})
+      .map(([id, item]) => ({ id, href: item.href, mediaType: item.type ?? null }))
+      .sort((a, b) => a.id.localeCompare(b.id));
     return {
       status: "opened",
       metadata: {
@@ -44,6 +47,7 @@ async function openBook(bytes: ArrayBuffer): Promise<EntryOpenOutcome> {
         date: optionalDate(pkg.metadata.pubdate),
       },
       spine,
+      manifest,
     };
   } catch (error) {
     return {

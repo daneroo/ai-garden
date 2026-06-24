@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -88,6 +88,163 @@
       {
         "href": "Text/byrebecca.xhtml",
         "linear": true
+      }
+    ],
+    "manifest": [
+      {
+        "id": "ack",
+        "href": "Text/ack.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "byrebecca",
+        "href": "Text/byrebecca.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch01",
+        "href": "Text/ch01.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch02",
+        "href": "Text/ch02.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch03",
+        "href": "Text/ch03.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ch04",
+        "href": "Text/ch04.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "contents",
+        "href": "Text/contents.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "copy",
+        "href": "Text/copy.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "cover",
+        "href": "Text/cover.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "coverjpg",
+        "href": "Images/cover.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "fm1",
+        "href": "Text/fm1.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "font1",
+        "href": "Fonts/times.ttf",
+        "mediaType": "application/x-font-ttf"
+      },
+      {
+        "id": "forth",
+        "href": "Text/forth.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "foryeal",
+        "href": "Text/foryeal.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "index",
+        "href": "Text/index.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "introduction",
+        "href": "Text/introduction.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "ncx",
+        "href": "toc.ncx",
+        "mediaType": "application/x-dtbncx+xml"
+      },
+      {
+        "id": "notes",
+        "href": "Text/notes.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "p127-1jpg",
+        "href": "Images/p127-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "p127-2jpg",
+        "href": "Images/p127-2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "p24-1jpg",
+        "href": "Images/p24-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "p255-1jpg",
+        "href": "Images/p255-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "p57-1jpg",
+        "href": "Images/p57-1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "praise",
+        "href": "Text/praise.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "published",
+        "href": "Text/published.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "style",
+        "href": "Styles/template.css",
+        "mediaType": "text/css"
+      },
+      {
+        "id": "sugg",
+        "href": "Text/sugg.xhtml",
+        "mediaType": "application/xhtml+xml"
+      },
+      {
+        "id": "t1jpg",
+        "href": "Images/t1.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "t2jpg",
+        "href": "Images/t2.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "t3jpg",
+        "href": "Images/t3.jpg",
+        "mediaType": "image/jpeg"
+      },
+      {
+        "id": "title",
+        "href": "Text/title.xhtml",
+        "mediaType": "application/xhtml+xml"
       }
     ]
   }
