@@ -2,6 +2,7 @@ import { join } from "node:path";
 
 import { discoverInventory, type CorpusEntry } from "./corpus.ts";
 import { INSPECT_DIRECTORY, REPORTS_DIRECTORY, ROOTS } from "./config.ts";
+import { BrowserTransport } from "./epubts-browser.ts";
 import { openNode } from "./epubts-node.ts";
 import { writeReport, type ReportInput, type RunProvenance } from "./report-writer.ts";
 import type { ParserName, ParserOutput } from "./schema.ts";
@@ -14,12 +15,13 @@ const runnerPkg = JSON.parse(
   await Bun.file(join(INSPECT_DIRECTORY, "package.json")).text()
 ) as { version: string };
 
-const epubtsPkgPath = Bun.resolveSync("@likecoin/epub-ts/package.json", import.meta.dir);
-const epubtsPkg = (await Bun.file(epubtsPkgPath).json()) as { version: string };
+console.error("Launching browser...");
+const transport = await BrowserTransport.launch();
 
 const provenance: RunProvenance = {
   runner: { name: "epub-inspect", version: runnerPkg.version, bun: Bun.version },
-  packages: { epubts: epubtsPkg.version },
+  packages: { epubts: transport.parserVersion, playwright: transport.playwrightVersion },
+  browser: { name: "chromium", version: transport.browserVersion },
 };
 
 console.error("Discovering corpus...");
@@ -41,10 +43,24 @@ for (let i = 0; i < inventory.entries.length; i++) {
 }
 clearProgress();
 
+console.error(`- epubts-browser: ${inventory.entries.length} distinct books`);
+for (let i = 0; i < inventory.entries.length; i++) {
+  const entry = inventory.entries[i];
+  if (!entry) throw new Error(`Missing inventory entry at index ${i}`);
+  writeProgress("browser", i + 1, inventory.entries.length, entry.occurrences[0]?.relativePath ?? "");
+  const output = await transport.open(entryAbsolutePath(entry), entry.sha256, entry.size);
+  const map = parserOutputs.get(entry.sha256) ?? new Map<ParserName, ParserOutput>();
+  map.set("epubts-browser", output);
+  parserOutputs.set(entry.sha256, map);
+}
+clearProgress();
+
+await transport.close();
+
 const input: ReportInput = {
   provenance,
   inventory,
-  ranParsers: ["epubts-node"],
+  ranParsers: ["epubts-node", "epubts-browser"],
   pairs: [],
   parserOutputs,
   comparisons: new Map(),
@@ -73,9 +89,9 @@ function writeProgress(label: string, current: number, total: number, path: stri
   }
   const width = Math.max(20, (process.stderr.columns ?? 100) - 35);
   const name = path.length > width ? `${path.slice(0, Math.max(1, width - 1))}…` : path;
-  process.stderr.write(`\r[2K${label} ${current}/${total} ${name}`);
+  process.stderr.write(`\r[2K${label} ${current}/${total} ${name}`);
 }
 
 function clearProgress(): void {
-  if (process.stderr.isTTY) process.stderr.write("\r[2K");
+  if (process.stderr.isTTY) process.stderr.write("\r[2K");
 }

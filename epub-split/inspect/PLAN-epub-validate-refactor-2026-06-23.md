@@ -424,10 +424,10 @@ vs baseline: node opens every book, small jsdom-fallback count, 0 failures
 
 ## Gate 4 — epubts-browser adapter → `ParserOutput`
 
-- [ ] `browser/entry.ts` returns the minimal raw open-result (no zod in the
+- [x] `browser/entry.ts` returns the minimal raw open-result (no zod in the
       bundle); `epubts-browser.ts` feeds the shared assembler from Gate 3.
-- [ ] Same three metadata fields as the node adapter.
-- [ ] Unit test on `test-books` + fixtures.
+- [x] Same three metadata fields as the node adapter.
+- [x] Unit test on `test-books` + fixtures.
 
 Verifiable outcome: TYPECHECK + TEST. Daniel's full run: DETERMINISM, PARITY vs
 baseline: browser opens every book, 0 failures (last-known: 1,301 / 0).
@@ -543,4 +543,5 @@ matches the shipped tool.
 - 2026-06-23 · Gate 0B · 7 source files renamed, storyteller-node→storyteller; TYPECHECK clean, build:browser ok, no report regeneration · refactor(validate): rename sources, storyteller-node→storyteller
 - 2026-06-23 · Gate 1 · zod@4 ParserOutput schema + 3 EPUB fixtures + 6 sample outputs; TEST 26 pass / 2 todo / 0 fail, TYPECHECK clean, no corpus run · feat(validate): add ParserOutput zod schema, fixtures, and tests
 - 2026-06-23 · Gate 2 · content-addressed corpus inventory + full report-writer (new layout) + ComparisonResult shape; TEST 46 pass / 2 todo, byte-identical reruns, TYPECHECK clean, no corpus run · feat(validate): content-addressed corpus inventory + report writer (Gate 2)
-- 2026-06-24 · Gate 3 · epubts-node adapter (adapter.ts + openNode); runner rewired to content-addressed node-only; entity truncation confirmed "Legends " (trailing space); TEST 51 pass / 1 todo / 0 fail, TYPECHECK clean · (pending commit)
+- 2026-06-24 · Gate 3 · epubts-node adapter (adapter.ts + openNode); runner rewired to content-addressed node-only; entity truncation confirmed "Legends " (trailing space); TEST 51 pass / 1 todo / 0 fail, TYPECHECK clean · cc4f0aa4
+- 2026-06-24 · Gate 4 · epubts-browser adapter; browser/entry.ts simplified (no DeclaredVersion, no Zod); BrowserTransport.open() returns ParserOutput; runner adds browser loop + provenance; ePub.VERSION is "0.3" (2-part); TEST 55 pass / 1 todo / 0 fail, TYPECHECK clean · (pending commit)

@@ -1,24 +1,27 @@
-import { readFile } from "node:fs/promises";
-
 import { chromium, type Browser } from "playwright";
 
+import { buildParserOutput } from "./adapter.ts";
 import { BROWSER_BUNDLE_PATH } from "./config.ts";
-import type {
-  BrowserDiagnostic,
-  BrowserHarnessResult,
-  BrowserRuntime,
-  MetadataFields,
-  BrowserTransportFailure,
-  BrowserTransportSuccess,
-  HashedBook,
-} from "./types.ts";
+import type { ParserOutput } from "./schema.ts";
+import type { BrowserHarnessResult, EntryOpenOutcome } from "./browser/protocol.ts";
+
+const PARSER_VERSION = await (async () => {
+  try {
+    const pkgPath = Bun.resolveSync("@likecoin/epub-ts/package.json", import.meta.dir);
+    return ((await Bun.file(pkgPath).json()) as { version: string }).version;
+  } catch {
+    return "unknown";
+  }
+})();
 
 interface BookServerState {
   path: string | null;
 }
 
 export class BrowserTransport {
-  readonly runtime: BrowserRuntime;
+  readonly parserVersion: string;
+  readonly browserVersion: string;
+  readonly playwrightVersion: string;
   readonly #browser: Browser;
   readonly #origin: string;
   readonly #server: ReturnType<typeof Bun.serve>;
@@ -26,12 +29,15 @@ export class BrowserTransport {
 
   private constructor(
     browser: Browser,
-    runtime: BrowserRuntime,
+    parserVersion: string,
+    playwrightVersion: string,
     server: ReturnType<typeof Bun.serve>,
     serverState: BookServerState
   ) {
     this.#browser = browser;
-    this.runtime = runtime;
+    this.parserVersion = parserVersion;
+    this.browserVersion = browser.version();
+    this.playwrightVersion = playwrightVersion;
     this.#server = server;
     this.#serverState = serverState;
     this.#origin = `http://127.0.0.1:${server.port}`;
@@ -40,12 +46,8 @@ export class BrowserTransport {
   static async launch(): Promise<BrowserTransport> {
     await verifyBrowserBundle();
     const browser = await chromium.launch();
-    const [epubtsPackage, storytellerPackage, playwrightPackage] =
-      await Promise.all([
-        readPackageVersion("@likecoin/epub-ts"),
-        readPackageVersion("@storyteller-platform/epub"),
-        readPackageVersion("playwright"),
-      ]);
+    const playwrightPkgPath = Bun.resolveSync("playwright/package.json", import.meta.dir);
+    const playwrightVersion = ((await Bun.file(playwrightPkgPath).json()) as { version: string }).version;
     const serverState: BookServerState = { path: null };
     const server = Bun.serve({
       hostname: "127.0.0.1",
@@ -69,79 +71,43 @@ export class BrowserTransport {
       },
     });
     server.unref();
-    return new BrowserTransport(
-      browser,
-      {
-        name: "chromium",
-        version: browser.version(),
-        packages: {
-          epubts: epubtsPackage,
-          storyteller: storytellerPackage,
-          playwright: playwrightPackage,
-        },
-      },
-      server,
-      serverState
-    );
+    return new BrowserTransport(browser, PARSER_VERSION, playwrightVersion, server, serverState);
   }
 
-  async inspect(
-    book: HashedBook
-  ): Promise<BrowserTransportSuccess | BrowserTransportFailure> {
-    const diagnostics: BrowserDiagnostic[] = [];
-    this.#serverState.path = book.absolutePath;
+  async open(absolutePath: string, expectedSha256: string, expectedSize: number): Promise<ParserOutput> {
+    this.#serverState.path = absolutePath;
     const context = await this.#browser.newContext();
-
     try {
       const page = await context.newPage();
-      page.on("console", (message) => {
-        diagnostics.push({
-          source: "console",
-          level: message.type(),
-          message: message.text(),
-        });
-      });
-      page.on("pageerror", (error) => {
-        diagnostics.push({
-          source: "page-error",
-          level: "error",
-          message: error.message,
-        });
-      });
       await page.goto(this.#origin);
       await page.addScriptTag({ path: BROWSER_BUNDLE_PATH });
-      const raw: unknown = await page.evaluate(async () =>
-        globalThis.epubInspect.transport("/book.epub")
-      );
+      const raw: unknown = await page.evaluate(async () => globalThis.epubInspect.transport("/book.epub"));
       const result = validateHarnessResult(raw);
 
-      if (result.byteLength !== book.size || result.sha256 !== book.sha256) {
-        return failure(
-          "IntegrityMismatch",
-          `host:length=${book.size},sha256=${book.sha256} browser:length=${result.byteLength},sha256=${result.sha256}`,
-          diagnostics
-        );
-      }
-
-      return {
-        status: "transported",
-        byteLength: result.byteLength,
-        sha256: result.sha256,
-        epubtsVersion: result.epubtsVersion,
-        open: result.open,
-        diagnostics,
-      };
-    } catch (error: unknown) {
-      if (!this.#browser.isConnected()) {
-        throw new Error("Chromium disconnected during the full run", {
-          cause: error,
+      if (result.byteLength !== expectedSize || result.sha256 !== expectedSha256) {
+        return buildParserOutput("epubts-browser", {
+          openStatus: "open-failed",
+          parserVersion: PARSER_VERSION,
+          openFailure: {
+            category: "IntegrityMismatch",
+            message: `expected length=${expectedSize} sha256=${expectedSha256}; got length=${result.byteLength} sha256=${result.sha256}`,
+          },
         });
       }
-      return failure(
-        error instanceof Error ? error.name : "UnknownError",
-        error instanceof Error ? error.message : String(error),
-        diagnostics
-      );
+
+      return toParserOutput(result);
+    } catch (error: unknown) {
+      if (!this.#browser.isConnected()) {
+        throw new Error("Chromium disconnected during open", { cause: error });
+      }
+      return buildParserOutput("epubts-browser", {
+        openStatus: "open-failed",
+        parserVersion: PARSER_VERSION,
+        openFailure: {
+          category: error instanceof Error ? error.name : "UnknownError",
+          message: error instanceof Error ? error.message : String(error),
+        },
+      });
     } finally {
       await context.close().catch(() => undefined);
       this.#serverState.path = null;
@@ -160,6 +126,26 @@ export class BrowserTransport {
       this.#server.stop(true);
     }
   }
+}
+
+function toParserOutput(result: BrowserHarnessResult): ParserOutput {
+  const parserVersion = result.epubtsVersion;
+  const open: EntryOpenOutcome = result.open;
+  if (open.status === "opened") {
+    return buildParserOutput("epubts-browser", {
+      openStatus: "opened",
+      parserVersion,
+      metadata: open.metadata,
+    });
+  }
+  return buildParserOutput("epubts-browser", {
+    openStatus: "open-failed",
+    parserVersion,
+    openFailure: {
+      category: open.category,
+      message: open.message,
+    },
+  });
 }
 
 function validateHarnessResult(value: unknown): BrowserHarnessResult {
@@ -184,17 +170,12 @@ function validateHarnessResult(value: unknown): BrowserHarnessResult {
 }
 
 function isValidOpenOutcome(open: unknown): boolean {
-  if (typeof open !== "object" || open === null || !("status" in open)) {
-    return false;
-  }
+  if (typeof open !== "object" || open === null || !("status" in open)) return false;
   if (open.status === "opened") {
-    return "version" in open && isValidDeclaredVersion(open.version) &&
-      "metadata" in open && isValidMetadata(open.metadata);
+    return "metadata" in open && isValidMetadata(open.metadata);
   }
   if (open.status === "open-failed") {
     return (
-      "stage" in open &&
-      open.stage === "browser-open" &&
       "category" in open &&
       typeof open.category === "string" &&
       "message" in open &&
@@ -204,64 +185,22 @@ function isValidOpenOutcome(open: unknown): boolean {
   return false;
 }
 
-function isValidMetadata(value: unknown): value is MetadataFields {
+function isValidMetadata(value: unknown): boolean {
   if (typeof value !== "object" || value === null) return false;
   if (!("title" in value) || !("creator" in value) || !("date" in value)) return false;
-  return (value.title === null || typeof value.title === "string") &&
+  return (
+    (value.title === null || typeof value.title === "string") &&
     (value.creator === null || typeof value.creator === "string") &&
-    (value.date === null || typeof value.date === "string");
-}
-
-function isValidDeclaredVersion(version: unknown): boolean {
-  if (
-    typeof version !== "object" ||
-    version === null ||
-    !("status" in version)
-  ) {
-    return false;
-  }
-  if (version.status === "exposed") {
-    return "value" in version && typeof version.value === "string";
-  }
-  return version.status === "skipped";
-}
-
-function failure(
-  category: string,
-  message: string,
-  diagnostics: BrowserDiagnostic[]
-): BrowserTransportFailure {
-  return {
-    status: "transport-failed",
-    failure: {
-      stage: "browser-transport",
-      category,
-      message,
-    },
-    diagnostics,
-  };
+    (value.date === null || typeof value.date === "string")
+  );
 }
 
 async function verifyBrowserBundle(): Promise<void> {
-  const bundle = await readFile(BROWSER_BUNDLE_PATH, "utf8");
+  const bundle = await Bun.file(BROWSER_BUNDLE_PATH).text();
   if (/linkedom/i.test(bundle)) {
     throw new Error("Browser bundle unexpectedly contains LinkeDOM");
   }
   if (/require\(["']node:|from ["']node:/.test(bundle)) {
     throw new Error("Browser bundle unexpectedly contains a Node import");
   }
-}
-
-async function readPackageVersion(packageName: string): Promise<string> {
-  const packageJson = new URL(
-    `../node_modules/${packageName}/package.json`,
-    import.meta.url
-  );
-  const parsed = JSON.parse(await readFile(packageJson, "utf8")) as {
-    version?: unknown;
-  };
-  if (typeof parsed.version !== "string") {
-    throw new Error(`Package has no string version: ${packageName}`);
-  }
-  return parsed.version;
 }
