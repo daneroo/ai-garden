@@ -2,7 +2,8 @@
 // Run as a subprocess so the parent can hard-kill a synchronous DOM-parser hang
 // that an in-process timer could never interrupt.
 //
-// argv[2] = epub path. argv[3] = engine ("linkedom" default, or "jsdom").
+// argv[2] = epub path. argv[3] = domParser ("linkedom" default, or "jsdom").
+// argv[4] = parserVersion (passed by the parent; avoids re-resolving the pkg).
 // epub.ts parses through the global DOMParser, installing LinkeDOM's only when
 // one is not already present. Setting globalThis.DOMParser to jsdom's before
 // importing the node build therefore swaps the parser engine without forking
@@ -10,17 +11,17 @@
 import { optional, optionalDate } from "./epubts-utils.ts";
 
 const path = process.argv[2];
-const engine = process.argv[3] === "jsdom" ? "jsdom" : "linkedom";
+const domParser = process.argv[3] === "jsdom" ? "jsdom" : "linkedom";
+const parserVersion = process.argv[4] ?? "unknown";
+
 if (!path) {
-  process.stderr.write("usage: epubts-node-worker <epub-path> [linkedom|jsdom]\n");
+  process.stderr.write("usage: epubts-node-worker <epub-path> [linkedom|jsdom] <parserVersion>\n");
   process.exit(2);
 }
 
-if (engine === "jsdom") {
+if (domParser === "jsdom") {
   const { JSDOM } = await import("jsdom");
-  (globalThis as { DOMParser?: unknown }).DOMParser = new JSDOM(
-    ""
-  ).window.DOMParser;
+  (globalThis as { DOMParser?: unknown }).DOMParser = new JSDOM("").window.DOMParser;
 }
 
 const { Book } = await import("@likecoin/epub-ts/node");
@@ -31,20 +32,15 @@ try {
   await book.opened;
   const packaging = (book as {
     packaging?: {
-      version?: unknown;
       metadata?: { title?: unknown; creator?: unknown; pubdate?: unknown };
     };
   }).packaging;
-  const version =
-    typeof packaging?.version === "string"
-      ? { status: "exposed", value: packaging.version }
-      : { status: "skipped" };
   const metadata = {
     title: optional(packaging?.metadata?.title),
     creator: optional(packaging?.metadata?.creator),
     date: optionalDate(packaging?.metadata?.pubdate),
   };
-  process.stdout.write(JSON.stringify({ ok: true, version, engine, metadata }));
+  process.stdout.write(JSON.stringify({ ok: true, parserVersion, domParser, metadata }));
   book.destroy();
 } catch (error: unknown) {
   process.stdout.write(

@@ -27,8 +27,10 @@ type MetadataField = (typeof METADATA_FIELDS)[number];
 
 export interface RunProvenance {
   runner: { name: string; version: string; bun: string };
-  packages: { epubts: string; storyteller: string; playwright: string };
-  browser: { name: string; version: string };
+  // storyteller and playwright are absent until their adapters land (Gates 4–5).
+  packages: { epubts: string; storyteller?: string; playwright?: string };
+  // Absent until the browser adapter lands in Gate 4.
+  browser?: { name: string; version: string };
 }
 
 export interface ParserPair {
@@ -142,10 +144,10 @@ function renderIndex(input: ReportInput): string {
     `- Run manifest schema: ${RUN_MANIFEST_SCHEMA_VERSION}`,
     `- Runner: ${provenance.runner.name} ${provenance.runner.version}`,
     `- Bun: ${provenance.runner.bun}`,
-    `- Chromium: ${provenance.browser.version}`,
+    `- Chromium: ${provenance.browser?.version ?? "not-run"}`,
     `- epub.ts: ${provenance.packages.epubts}`,
-    `- Storyteller: ${provenance.packages.storyteller}`,
-    `- Playwright: ${provenance.packages.playwright}`,
+    `- Storyteller: ${provenance.packages.storyteller ?? "not-run"}`,
+    `- Playwright: ${provenance.packages.playwright ?? "not-run"}`,
     `- Occurrences: ${occurrences}`,
     `- Distinct content: ${inventory.entries.length}`,
     "",

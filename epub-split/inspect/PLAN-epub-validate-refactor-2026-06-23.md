@@ -406,16 +406,17 @@ appear in Gate 6).
 
 ## Gate 3 — epubts-node adapter → `ParserOutput`
 
-- [ ] Add the shared `buildParserOutput(parser, sha, openResult)` host-side
-      assembler (the one Zod-validation site) — introduced here, reused by
-      Gates 4–5.
-- [ ] `epubts-node-worker.ts` returns the minimal raw open-result (metadata
-      only); jsdom fallback sets `domParser`.
-- [ ] `epubts-node.ts` orchestrates workers and feeds the assembler; runner
-      writes `parsers/<sha256>/epubts-node.json`; `index.md` shows open-success
-      rate and jsdom-fallback count.
-- [ ] Unit test over `test-books` + fixtures: outputs Zod-valid; metadata matches
-      known values; entity-fixture reproduces the truncation.
+- [x] Add the shared `buildParserOutput(parser, rawResult)` host-side assembler
+      (`src/adapter.ts`) — the one Zod-validation site; reused by Gates 4–5.
+- [x] `epubts-node-worker.ts` returns minimal raw result `{ ok, parserVersion,
+      domParser, metadata }` / `{ ok, category, message }`; parserVersion passed
+      as argv[4] by the parent (read once via Bun.resolveSync).
+- [x] `epubts-node.ts` orchestrates workers and feeds the assembler via
+      `openNode(absolutePath)`; runner writes `parsers/<sha256>/epubts-node.json`;
+      `index.md` shows open-success rate (jsdom fallback counted via domParser field).
+- [x] Unit test over `test-books` + fixtures: outputs Zod-valid; metadata matches
+      known values; entity-fixture reproduces the truncation ("Legends " not
+      "Legends & Lattes" — LinkeDOM keeps the space before `&`).
 
 Verifiable outcome: TYPECHECK + TEST. Daniel's full run: DETERMINISM, and PARITY
 vs baseline: node opens every book, small jsdom-fallback count, 0 failures
@@ -541,4 +542,5 @@ matches the shipped tool.
 - 2026-06-23 · Gate 0A · baseline frozen: 1,304 occ / 756 distinct / 538 multi-root; node×browser title mismatch 9, node×storyteller 4 · chore(validate): freeze parity baseline
 - 2026-06-23 · Gate 0B · 7 source files renamed, storyteller-node→storyteller; TYPECHECK clean, build:browser ok, no report regeneration · refactor(validate): rename sources, storyteller-node→storyteller
 - 2026-06-23 · Gate 1 · zod@4 ParserOutput schema + 3 EPUB fixtures + 6 sample outputs; TEST 26 pass / 2 todo / 0 fail, TYPECHECK clean, no corpus run · feat(validate): add ParserOutput zod schema, fixtures, and tests
-- 2026-06-23 · Gate 2 · content-addressed corpus inventory + full report-writer (new layout) + ComparisonResult shape; TEST 46 pass / 2 todo, byte-identical reruns, TYPECHECK clean, no corpus run · (pending commit)
+- 2026-06-23 · Gate 2 · content-addressed corpus inventory + full report-writer (new layout) + ComparisonResult shape; TEST 46 pass / 2 todo, byte-identical reruns, TYPECHECK clean, no corpus run · feat(validate): content-addressed corpus inventory + report writer (Gate 2)
+- 2026-06-24 · Gate 3 · epubts-node adapter (adapter.ts + openNode); runner rewired to content-addressed node-only; entity truncation confirmed "Legends " (trailing space); TEST 51 pass / 1 todo / 0 fail, TYPECHECK clean · (pending commit)

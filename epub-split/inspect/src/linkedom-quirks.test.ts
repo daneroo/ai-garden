@@ -1,29 +1,29 @@
-import { test } from "bun:test";
+import { expect, test } from "bun:test";
+import { resolve } from "node:path";
 
-// Placeholders for two epubts-node / LinkeDOM quirks the refactor must keep
-// surfacing. They are `test.todo` (not executed by default) because the
-// epubts-node adapter does not produce a ParserOutput until Gate 3 — once it
-// does, flip these to real `test`s and assert against the named fixture.
+import { openNode } from "./epubts-node.ts";
 
-// QUIRK 1 — entity truncation (characterizable; fixture exists).
+const FIXTURES = resolve(import.meta.dir, "../test/fixtures");
+
+// QUIRK 1 — entity truncation (Gate 3: now a real test with the adapter live).
 // On the node path, LinkeDOM truncates a metadata value at the first character
-// entity. The committed fixture test/fixtures/entity-ampersand-in-title.epub has
+// entity. The committed fixture has:
 //   <dc:title>Legends &amp; Lattes</dc:title>
-// Expected once the Gate 3 adapter lands:
-//   - epubts-node  title === "Legends"            (truncated at the '&')
-//   - epubts-browser / storyteller title === "Legends & Lattes"  (intact)
-// This is exactly the parity-baseline entity-truncation finding reproduced as a
-// minimized unit test (His Majesty's Dragon, Legends & Lattes, Bookshops &
-// Bonedust, …), and Gate 6's comparator must report it as a node-vs-browser
-// mismatch rather than normalize it away.
-test.todo(
-  "epubts-node truncates 'Legends & Lattes' to 'Legends' on entity-ampersand-in-title.epub (Gate 3)",
-  () => {
-    throw new Error("pending: epubts-node adapter produces ParserOutput in Gate 3");
-  }
+// LinkeDOM sees "Legends " (space included) and stops at the "&" — the rest is dropped.
+// epubts-browser and storyteller keep "Legends & Lattes" intact.
+// Gate 6's comparator must report this as a node-vs-browser mismatch rather
+// than normalize it away (compareField is exact-lexical ===).
+test(
+  "epubts-node truncates 'Legends & Lattes' to 'Legends' on entity-ampersand-in-title.epub",
+  async () => {
+    const output = await openNode(resolve(FIXTURES, "entity-ampersand-in-title.epub"));
+    expect(output.meta.openStatus).toBe("opened");
+    expect(output.content?.metadata.title).toBe("Legends ");
+  },
+  30_000
 );
 
-// QUIRK 2 — synchronous LinkeDOM hang (NOT yet characterized).
+// QUIRK 2 — synchronous LinkeDOM hang (NOT yet characterized into a fixture).
 // A few real books drive LinkeDOM's parser into a synchronous busy loop that
 // never returns; the adapter recovers by re-opening in a jsdom subprocess
 // (domParser: "jsdom"). The trigger lives deep in epub.ts's parse of specific

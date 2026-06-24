@@ -1,104 +1,81 @@
-import { assignReportNames, discoverBooks, hashBook } from "./corpus.ts";
-import { BrowserTransport } from "./epubts-browser.ts";
-import { ROOTS } from "./config.ts";
-import { inspectNode } from "./epubts-node.ts";
-import { generateReports, reportPathForDisplay } from "./reports.ts";
-import { inspectStoryteller } from "./storyteller.ts";
-import type { HashedBook, RootInventory } from "./types.ts";
+import { join } from "node:path";
+
+import { discoverInventory, type CorpusEntry } from "./corpus.ts";
+import { INSPECT_DIRECTORY, REPORTS_DIRECTORY, ROOTS } from "./config.ts";
+import { openNode } from "./epubts-node.ts";
+import { writeReport, type ReportInput, type RunProvenance } from "./report-writer.ts";
+import type { ParserName, ParserOutput } from "./schema.ts";
 
 if (process.argv.length > 2) {
   throw new Error("epub-inspect takes no arguments; every run processes all roots");
 }
 
-const books: HashedBook[] = [];
-const rootInventory: RootInventory[] = [];
+const runnerPkg = JSON.parse(
+  await Bun.file(join(INSPECT_DIRECTORY, "package.json")).text()
+) as { version: string };
 
-for (const root of ROOTS) {
-  const discovered = await discoverBooks(root);
-  rootInventory.push({ name: root.name, count: discovered.length });
-  console.error(`- Inspecting ${root.name}: ${discovered.length} books`);
+const epubtsPkgPath = Bun.resolveSync("@likecoin/epub-ts/package.json", import.meta.dir);
+const epubtsPkg = (await Bun.file(epubtsPkgPath).json()) as { version: string };
 
-  for (let index = 0; index < discovered.length; index++) {
-    const book = discovered[index];
-    if (!book) throw new Error(`Missing discovered book at index ${index}`);
-    writeProgress(root.name, index + 1, discovered.length, book.relativePath);
-    books.push(await hashBook(book));
-  }
-  clearProgress();
-}
+const provenance: RunProvenance = {
+  runner: { name: "epub-inspect", version: runnerPkg.version, bun: Bun.version },
+  packages: { epubts: epubtsPkg.version },
+};
 
-assignReportNames(books);
+console.error("Discovering corpus...");
+const inventory = await discoverInventory(ROOTS);
+const totalOcc = inventory.roots.reduce((sum, r) => sum + r.found, 0);
+console.error(`  ${totalOcc} occurrences, ${inventory.entries.length} distinct books`);
 
-const browser = await BrowserTransport.launch();
-const browserRuntime = browser.runtime;
-try {
-  console.error(`- Browser transport: ${books.length} books`);
-  for (let index = 0; index < books.length; index++) {
-    const book = books[index];
-    if (!book) throw new Error(`Missing hashed book at index ${index}`);
-    writeProgress("browser", index + 1, books.length, book.relativePath);
-    book.parserAttempts["epubts-browser"] = await browser.inspect(book);
-  }
-  clearProgress();
-} finally {
-  await browser.close();
-}
+const parserOutputs = new Map<string, Map<ParserName, ParserOutput>>();
 
-// The node phase runs only after the browser, its localhost server, and all
-// Playwright handles are fully torn down, keeping the LinkeDOM parser isolated
-// from the browser runtime.
-console.error(`- Node epub.ts: ${books.length} books`);
-for (let index = 0; index < books.length; index++) {
-  const book = books[index];
-  if (!book) throw new Error(`Missing hashed book at index ${index}`);
-  writeProgress("node", index + 1, books.length, book.relativePath);
-  book.parserAttempts["epubts-node"] = await inspectNode(book);
+console.error(`- epubts-node: ${inventory.entries.length} distinct books`);
+for (let i = 0; i < inventory.entries.length; i++) {
+  const entry = inventory.entries[i];
+  if (!entry) throw new Error(`Missing inventory entry at index ${i}`);
+  writeProgress("node", i + 1, inventory.entries.length, entry.occurrences[0]?.relativePath ?? "");
+  const output = await openNode(entryAbsolutePath(entry));
+  const map = parserOutputs.get(entry.sha256) ?? new Map<ParserName, ParserOutput>();
+  map.set("epubts-node", output);
+  parserOutputs.set(entry.sha256, map);
 }
 clearProgress();
 
-// Storyteller runs last, in its own hard-killable subprocess per book, for the
-// same reason as the node path: a synchronous parser hang must not freeze the run.
-console.error(`- Storyteller: ${books.length} books`);
-for (let index = 0; index < books.length; index++) {
-  const book = books[index];
-  if (!book) throw new Error(`Missing hashed book at index ${index}`);
-  writeProgress("storyteller", index + 1, books.length, book.relativePath);
-  book.parserAttempts["storyteller"] = await inspectStoryteller(book);
-}
-clearProgress();
+const input: ReportInput = {
+  provenance,
+  inventory,
+  ranParsers: ["epubts-node"],
+  pairs: [],
+  parserOutputs,
+  comparisons: new Map(),
+};
 
-await generateReports(books, rootInventory, browserRuntime);
+console.error("Writing reports...");
+await writeReport(REPORTS_DIRECTORY, input);
+console.log(`Wrote ${inventory.entries.length} books → ${REPORTS_DIRECTORY}`);
 
-console.log(`Inspected ${books.length} EPUB files.`);
-for (const root of rootInventory) {
-  console.log(`- ${root.name}: ${root.count}`);
-}
-console.log(`Reports: ${reportPathForDisplay()}`);
-
-// Force a clean exit: a parser that left a pending promise or timer must not
-// keep the process alive after reports are written.
 process.exit(0);
 
-function writeProgress(
-  root: string,
-  current: number,
-  total: number,
-  relativePath: string
-): void {
+function entryAbsolutePath(entry: CorpusEntry): string {
+  const occ = entry.occurrences[0];
+  if (!occ) throw new Error(`Entry ${entry.sha256} has no occurrences`);
+  const root = ROOTS.find((r) => r.name === occ.root);
+  if (!root) throw new Error(`Root not found: ${occ.root}`);
+  return join(root.path, occ.relativePath);
+}
+
+function writeProgress(label: string, current: number, total: number, path: string): void {
   if (!process.stderr.isTTY) {
     if (current === 1 || current === total || current % 100 === 0) {
-      console.error(`  ${root}: ${current}/${total}`);
+      console.error(`  ${label}: ${current}/${total}`);
     }
     return;
   }
   const width = Math.max(20, (process.stderr.columns ?? 100) - 35);
-  const name =
-    relativePath.length > width
-      ? `${relativePath.slice(0, Math.max(1, width - 1))}…`
-      : relativePath;
-  process.stderr.write(`\r\u001b[2K${root} ${current}/${total} ${name}`);
+  const name = path.length > width ? `${path.slice(0, Math.max(1, width - 1))}…` : path;
+  process.stderr.write(`\r[2K${label} ${current}/${total} ${name}`);
 }
 
 function clearProgress(): void {
-  if (process.stderr.isTTY) process.stderr.write("\r\u001b[2K");
+  if (process.stderr.isTTY) process.stderr.write("\r[2K");
 }
