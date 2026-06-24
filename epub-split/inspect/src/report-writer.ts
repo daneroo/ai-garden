@@ -249,6 +249,8 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
   let spineDiffer = 0;
   let manifestAgree = 0;
   let manifestDiffer = 0;
+  let spineHashAgree = 0;
+  let spineHashDiffer = 0;
 
   for (const entry of input.inventory.entries) {
     const aOpened = isOpened(input, entry.sha256, pair.a);
@@ -266,6 +268,8 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
         else spineDiffer += 1;
         if (result.manifest.status === "agree") manifestAgree += 1;
         else manifestDiffer += 1;
+        if (result.spineHashes.status === "agree") spineHashAgree += 1;
+        else spineHashDiffer += 1;
       }
     } else if (!aOpened && !bOpened) {
       neitherOpened += 1;
@@ -312,6 +316,13 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
     `| agree | ${manifestAgree} |`,
     `| differ | ${manifestDiffer} |`,
     "",
+    "## Spine content hashes",
+    "",
+    "| status | distinct books |",
+    "|---|---:|",
+    `| agree | ${spineHashAgree} |`,
+    `| differ | ${spineHashDiffer} |`,
+    "",
     "## Not compared",
     "",
     "| reason | distinct books |",
@@ -354,6 +365,9 @@ function renderPairMismatchList(
       }
       if (result.manifest.status === "differ") {
         fields.push(describeManifest(pair, result.manifest));
+      }
+      if (result.spineHashes.status === "differ") {
+        fields.push(describeSpineHashes(result.spineHashes));
       }
       lines.push(
         `- [${displayName(entry)}](details/${entry.sha256}.md) — ${fields.join("; ")}`
@@ -402,6 +416,9 @@ function renderDetail(input: ReportInput, entry: CorpusEntry): string {
     }
     if (result.manifest.status === "differ") {
       lines.push("", `### Manifest`, "", describeManifestDetail(pair, result.manifest));
+    }
+    if (result.spineHashes.status === "differ") {
+      lines.push("", `### Spine content hashes`, "", describeSpineHashesDetail(result.spineHashes));
     }
   }
 
@@ -474,6 +491,7 @@ function activePairs(input: ReportInput): ParserPair[] {
 function comparisonHasMismatch(result: ComparisonResult): boolean {
   if (result.spine.status === "differ") return true;
   if (result.manifest.status === "differ") return true;
+  if (result.spineHashes.status === "differ") return true;
   return METADATA_FIELDS.some((field) => {
     const status = result.metadata[field].status;
     return status === "differ" || status === "a-only" || status === "b-only";
@@ -542,6 +560,22 @@ function describeManifestDetail(pair: ParserPair, manifest: ComparisonResult["ma
     lines.push("", `Only in ${pair.b}:`, ...manifest.onlyInB.map((h) => `- ${h}`));
   }
   return lines.join("\n");
+}
+
+// One human-readable clause for a spine-hash mismatch in the mismatch list.
+function describeSpineHashes(hashes: ComparisonResult["spineHashes"]): string {
+  const total = hashes.matchCount + hashes.mismatchCount + hashes.nullCount;
+  if (hashes.nullCount > 0) {
+    return `spine-content: ${hashes.nullCount} item(s) unreadable of ${total}`;
+  }
+  return `spine-content: ${hashes.mismatchCount} hash mismatch(es) of ${total} items`;
+}
+
+function describeSpineHashesDetail(hashes: ComparisonResult["spineHashes"]): string {
+  const total = hashes.matchCount + hashes.mismatchCount + hashes.nullCount;
+  return [
+    `${total} spine items: ${hashes.matchCount} match, ${hashes.mismatchCount} mismatch, ${hashes.nullCount} unreadable`,
+  ].join("\n");
 }
 
 // One human-readable clause for a single field's outcome, naming the parsers

@@ -7,6 +7,8 @@ import {
   type ManifestItem,
   type ParserOutput,
   type SpineComparison,
+  type SpineHashComparison,
+  type SpineHashItem,
   type SpineItem,
 } from "./schema.ts";
 
@@ -25,6 +27,7 @@ export function compareBook(a: ParserOutput, b: ParserOutput): ComparisonResult 
     },
     spine: compareSpine(a.content.spine, b.content.spine),
     manifest: compareManifest(a.content.manifest, b.content.manifest),
+    spineHashes: compareSpineHashes(a.content.spineHashes, b.content.spineHashes),
   });
 }
 
@@ -46,6 +49,26 @@ function compareSpine(a: SpineItem[], b: SpineItem[]): SpineComparison {
   const onlyInB = bHrefs.filter((href) => !aSet.has(href));
   const agree = aHrefs.length === bHrefs.length && aHrefs.every((href, i) => href === bHrefs[i]);
   return { status: agree ? "agree" : "differ", countA: aHrefs.length, countB: bHrefs.length, onlyInA, onlyInB };
+}
+
+function compareSpineHashes(a: SpineHashItem[], b: SpineHashItem[]): SpineHashComparison {
+  const len = Math.max(a.length, b.length);
+  let matchCount = 0;
+  let mismatchCount = 0;
+  let nullCount = 0;
+  for (let i = 0; i < len; i++) {
+    const aHash = a[i]?.sha256 ?? null;
+    const bHash = b[i]?.sha256 ?? null;
+    if (aHash === null || bHash === null) {
+      nullCount += 1;
+    } else if (aHash === bHash) {
+      matchCount += 1;
+    } else {
+      mismatchCount += 1;
+    }
+  }
+  const agree = mismatchCount === 0 && nullCount === 0 && a.length === b.length;
+  return { status: agree ? "agree" : "differ", matchCount, mismatchCount, nullCount };
 }
 
 function compareManifest(a: ManifestItem[], b: ManifestItem[]): ManifestComparison {

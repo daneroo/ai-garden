@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import { compareBook, projectNodeBrowserMismatches, projectNodeStorytellerMismatches, type BaselineHistogram } from "./compare.ts";
-import type { ManifestItem, ParserOutput, SpineItem } from "./schema.ts";
+import type { ManifestItem, ParserOutput, SpineHashItem, SpineItem } from "./schema.ts";
 
 // ── hand-built ParserOutput helpers ─────────────────────────────────────────
 
@@ -11,12 +11,13 @@ function opened(
   creator: string | null,
   date: string | null,
   spine: { href: string; linear: boolean }[] = [],
-  manifest: { id: string; href: string; mediaType: string | null }[] = []
+  manifest: { id: string; href: string; mediaType: string | null }[] = [],
+  spineHashes: { href: string; sha256: string | null }[] = []
 ): ParserOutput {
   return {
-    schemaVersion: 3,
+    schemaVersion: 4,
     meta: { parser, parserVersion: "1.0.0", openStatus: "opened" },
-    content: { metadata: { title, creator, date }, spine, manifest },
+    content: { metadata: { title, creator, date }, spine, manifest, spineHashes },
   };
 }
 
@@ -68,7 +69,7 @@ describe("compareBook", () => {
 
   test("throws when either input is not opened", () => {
     const a: ParserOutput = {
-      schemaVersion: 3,
+      schemaVersion: 4,
       meta: { parser: "epubts-node", parserVersion: "1.0.0", openStatus: "open-failed", openFailure: { category: "Error", message: "bad" } },
     };
     const b = opened("epubts-browser", "Title", null, null);
@@ -198,6 +199,57 @@ describe("compareBook — manifest", () => {
     const a = opened("epubts-node", null, null, null, [], [{ id: "ch01", href: "ch01.xhtml", mediaType: "application/xhtml+xml" }]);
     const b = opened("epubts-browser", null, null, null, [], [{ id: "ch01", href: "ch01.xhtml", mediaType: null }]);
     expect(compareBook(a, b).manifest.status).toBe("agree");
+  });
+});
+
+// ── compareSpineHashes (via compareBook) ────────────────────────────────────
+
+function hash(href: string, sha256: string | null): SpineHashItem {
+  return { href, sha256 };
+}
+
+describe("compareBook — spineHashes", () => {
+  test("identical hashes agree", () => {
+    const hashes = [hash("ch01.xhtml", "aaa"), hash("ch02.xhtml", "bbb")];
+    const a = opened("epubts-node", null, null, null, [], [], hashes);
+    const b = opened("epubts-browser", null, null, null, [], [], hashes);
+    const result = compareBook(a, b);
+    expect(result.spineHashes.status).toBe("agree");
+    expect(result.spineHashes.matchCount).toBe(2);
+    expect(result.spineHashes.mismatchCount).toBe(0);
+    expect(result.spineHashes.nullCount).toBe(0);
+  });
+
+  test("empty spine hashes agree", () => {
+    const a = opened("epubts-node", null, null, null, [], [], []);
+    const b = opened("epubts-browser", null, null, null, [], [], []);
+    expect(compareBook(a, b).spineHashes.status).toBe("agree");
+  });
+
+  test("hash mismatch: differ with mismatchCount", () => {
+    const a = opened("epubts-node", null, null, null, [], [], [hash("ch01.xhtml", "aaa")]);
+    const b = opened("epubts-browser", null, null, null, [], [], [hash("ch01.xhtml", "bbb")]);
+    const result = compareBook(a, b);
+    expect(result.spineHashes.status).toBe("differ");
+    expect(result.spineHashes.mismatchCount).toBe(1);
+    expect(result.spineHashes.matchCount).toBe(0);
+  });
+
+  test("null sha256 counts as nullCount and triggers differ", () => {
+    const a = opened("epubts-node", null, null, null, [], [], [hash("ch01.xhtml", null)]);
+    const b = opened("epubts-browser", null, null, null, [], [], [hash("ch01.xhtml", "aaa")]);
+    const result = compareBook(a, b);
+    expect(result.spineHashes.status).toBe("differ");
+    expect(result.spineHashes.nullCount).toBe(1);
+    expect(result.spineHashes.mismatchCount).toBe(0);
+  });
+
+  test("length mismatch triggers differ", () => {
+    const a = opened("epubts-node", null, null, null, [], [], [hash("ch01.xhtml", "aaa"), hash("ch02.xhtml", "bbb")]);
+    const b = opened("epubts-browser", null, null, null, [], [], [hash("ch01.xhtml", "aaa")]);
+    const result = compareBook(a, b);
+    expect(result.spineHashes.status).toBe("differ");
+    expect(result.spineHashes.nullCount).toBe(1);
   });
 });
 

@@ -138,6 +138,7 @@ function toParserOutput(result: BrowserHarnessResult): ParserOutput {
       metadata: open.metadata,
       spine: open.spine,
       manifest: open.manifest,
+      spineHashes: open.spineHashes,
     });
   }
   return buildParserOutput("epubts-browser", {
@@ -177,7 +178,8 @@ function isValidOpenOutcome(open: unknown): boolean {
     return (
       "metadata" in open && isValidMetadata(open.metadata) &&
       "spine" in open && isValidSpine(open.spine) &&
-      "manifest" in open && isValidManifest(open.manifest)
+      "manifest" in open && isValidManifest(open.manifest) &&
+      "spineHashes" in open && isValidSpineHashes(open.spineHashes)
     );
   }
   if (open.status === "open-failed") {
@@ -209,6 +211,17 @@ function isValidSpine(value: unknown): boolean {
       item !== null &&
       typeof item.href === "string" &&
       typeof item.linear === "boolean"
+  );
+}
+
+function isValidSpineHashes(value: unknown): boolean {
+  if (!Array.isArray(value)) return false;
+  return value.every(
+    (item) =>
+      typeof item === "object" &&
+      item !== null &&
+      typeof item.href === "string" &&
+      (item.sha256 === null || typeof item.sha256 === "string")
   );
 }
 

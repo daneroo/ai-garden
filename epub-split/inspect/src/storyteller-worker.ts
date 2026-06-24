@@ -1,3 +1,5 @@
+import { createHash } from "node:crypto";
+
 import { Epub, EpubVersionError, MemoryAdapter } from "@storyteller-platform/epub";
 
 import { optionalDate } from "./epubts-utils.ts";
@@ -35,7 +37,18 @@ try {
   const manifest = Object.values(manifestRecord)
     .map((item) => ({ id: item.id, href: item.href, mediaType: item.mediaType ?? null }))
     .sort((a, b) => a.id.localeCompare(b.id));
-  process.stdout.write(JSON.stringify({ ok: true, metadata, spine, manifest }));
+  const spineHashes = await Promise.all(
+    spineItems.map(async (item) => {
+      try {
+        const content = await reader.readItemContents(item.id, "utf-8");
+        const sha256 = createHash("sha256").update(content).digest("hex");
+        return { href: item.href, sha256 };
+      } catch {
+        return { href: item.href, sha256: null };
+      }
+    })
+  );
+  process.stdout.write(JSON.stringify({ ok: true, metadata, spine, manifest, spineHashes }));
   await reader.discardAndClose();
 } catch (error: unknown) {
   if (error instanceof EpubVersionError) {

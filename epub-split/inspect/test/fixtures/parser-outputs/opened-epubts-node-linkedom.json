@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -19,6 +19,10 @@
     "manifest": [
       { "id": "item1", "href": "wrap0000.html", "mediaType": "application/xhtml+xml" },
       { "id": "item2", "href": "wrap0001.html", "mediaType": "application/xhtml+xml" }
+    ],
+    "spineHashes": [
+      { "href": "wrap0000.html", "sha256": "abc123" },
+      { "href": "wrap0001.html", "sha256": "def456" }
     ]
   }
 }

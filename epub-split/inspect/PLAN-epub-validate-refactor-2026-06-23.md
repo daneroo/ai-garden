@@ -531,6 +531,8 @@ New manifest findings recorded.
 
 ## Gate 9 — Expand to TOC
 
+**Deferred — executing Gate 10A/10B first (content before TOC; gate numbers kept for reference).**
+
 - [ ] `content.toc` (recursive); adapters populate it.
 - [ ] `compareBook` gains `TocComparison`.
 
@@ -538,10 +540,37 @@ Verifiable outcome: TYPECHECK + TEST + DETERMINISM. Earlier-section parity holds
 
 ## Gate 10 — Expand to chapter content
 
-- [ ] Per-spine XHTML extraction in adapters.
-- [ ] Comparison at three levels: raw → canonical DOM → normalized text.
+Executing before Gate 9. Split into two sub-gates so we can evaluate results between them.
 
-Verifiable outcome: TYPECHECK + TEST + DETERMINISM. Earlier-section parity holds.
+### Gate 10A — Raw content sha256 per spine item
+
+For each spine item, read the raw XHTML bytes from the epub zip and compute a
+sha256 fingerprint. Since all parsers read the same zip, raw sha256s are expected
+to agree — this confirms content extraction consistency and seeds the plumbing for
+10B.
+
+- epub-ts (node + browser): `book.archive.getText("/" + book.path.directory + href)` — the archive url format is `"/" + zipPath`; getText strips the leading "/" via substr(1) to find the zip entry.
+- storyteller: `reader.readItemContents(id, "utf-8")` — clean public API.
+- Schema: `content.spineHashes: { href: string; sha256: string | null }[]`, null on read failure. Parallel to content.spine in order.
+- Comparison: `SpineHashComparison { status, matchCount, mismatchCount }` — ordered, position by position.
+
+- [x] Schema v4: `spineHashItemSchema`, `spineHashComparisonSchema`, extend `contentSchema` and `comparisonResultSchema`.
+- [x] All three adapters populate `content.spineHashes`.
+- [x] `compareBook` gains `spineHashes` comparison.
+- [x] Pair reports and detail pages render findings.
+- [x] Unit tests.
+
+Verifiable outcome: TYPECHECK + TEST + DETERMINISM. Raw sha256s expected to all agree.
+
+### Gate 10B — Text content comparison
+
+Extract text content from parsed XHTML (strip tags, normalize whitespace) and
+compare. This is where parser-level divergence (entity handling, etc.) may appear.
+Design after 10A corpus results.
+
+- [ ] Design after seeing 10A results.
+
+Verifiable outcome: TYPECHECK + TEST + DETERMINISM.
 
 ## Gate 11 — Consolidate findings (closeout)
 
@@ -574,3 +603,4 @@ matches the shipped tool.
 - 2026-06-24 · Gate 7 · WILL NOT IMPLEMENT — content-addressed model already correct; collapse flag adds no value
 - 2026-06-24 · Gate 8A · spine in ParserOutput (SpineItem { href, linear }); SpineComparison (ordered sequence — same hrefs, same positions to agree; onlyInA/onlyInB are set-based asymmetry); pair reports + detail pages; schema v2; TEST 75 pass / 1 todo / 0 fail, TYPECHECK clean; DETERMINISM confirmed; 756/756 agree node×browser, 213/213 agree node×storyteller · 207ce080
 - 2026-06-24 · Gate 8B · manifest in ParserOutput (ManifestItem { id, href, mediaType }); ManifestComparison (unordered set — same href-set regardless of id sort order to agree); pair reports + detail pages; schema v3; TEST 81 pass / 1 todo / 0 fail, TYPECHECK clean; DETERMINISM confirmed; 756/756 agree node×browser, 213/213 agree node×storyteller · 3ac52479
+- 2026-06-24 · Gate 10A · spineHashes in ParserOutput ({ href, sha256|null }); SpineHashComparison (ordered, position-by-position; matchCount/mismatchCount/nullCount); pair reports + detail pages; schema v4; TEST 87 pass / 1 todo / 0 fail, TYPECHECK clean · PENDING DANIEL DETERMINISM

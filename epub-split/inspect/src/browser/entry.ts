@@ -27,11 +27,16 @@ async function openBook(bytes: ArrayBuffer): Promise<EntryOpenOutcome> {
   const book = ePub(bytes, { replacements: "none" });
   try {
     await book.opened;
-    const pkg = book.packaging as {
-      metadata: { title?: unknown; creator?: unknown; pubdate?: unknown };
-      spine?: Array<{ idref: string; linear: string }>;
-      manifest?: Record<string, { href: string; type?: string }>;
+    const bookAny = book as {
+      packaging: {
+        metadata: { title?: unknown; creator?: unknown; pubdate?: unknown };
+        spine?: Array<{ idref: string; linear: string }>;
+        manifest?: Record<string, { href: string; type?: string }>;
+      };
+      archive?: { getText(url: string): Promise<string> | undefined };
+      path?: { directory: string };
     };
+    const pkg = bookAny.packaging;
     const spine = (pkg.spine ?? []).map((item) => ({
       href: pkg.manifest?.[item.idref]?.href ?? item.idref,
       linear: item.linear !== "no",
@@ -39,6 +44,15 @@ async function openBook(bytes: ArrayBuffer): Promise<EntryOpenOutcome> {
     const manifest = Object.entries(pkg.manifest ?? {})
       .map(([id, item]) => ({ id, href: item.href, mediaType: item.type ?? null }))
       .sort((a, b) => a.id.localeCompare(b.id));
+    const pathDir = bookAny.path?.directory ?? "";
+    const spineHashes = await Promise.all(
+      spine.map(async (item) => {
+        const archiveUrl = "/" + pathDir + item.href;
+        const content = await bookAny.archive?.getText(archiveUrl);
+        const sha256 = content != null ? await sha256Hex(content) : null;
+        return { href: item.href, sha256 };
+      })
+    );
     return {
       status: "opened",
       metadata: {
@@ -48,6 +62,7 @@ async function openBook(bytes: ArrayBuffer): Promise<EntryOpenOutcome> {
       },
       spine,
       manifest,
+      spineHashes,
     };
   } catch (error) {
     return {
@@ -66,4 +81,9 @@ async function openBook(bytes: ArrayBuffer): Promise<EntryOpenOutcome> {
 
 function toHex(bytes: ArrayBuffer): string {
   return Array.from(new Uint8Array(bytes), (b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function sha256Hex(text: string): Promise<string> {
+  const bytes = new TextEncoder().encode(text);
+  return toHex(await crypto.subtle.digest("SHA-256", bytes));
 }

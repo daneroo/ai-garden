@@ -42,6 +42,7 @@ interface WorkerSuccess {
   };
   spine: { href: string; linear: boolean }[];
   manifest: { id: string; href: string; mediaType: string | null }[];
+  spineHashes: { href: string; sha256: string | null }[];
 }
 interface WorkerFailure {
   ok: false;
@@ -101,6 +102,7 @@ function toParserOutput(result: WorkerResult): ParserOutput {
       metadata: result.metadata,
       spine: result.spine,
       manifest: result.manifest,
+      spineHashes: result.spineHashes,
     });
   }
   return buildParserOutput("epubts-node", {

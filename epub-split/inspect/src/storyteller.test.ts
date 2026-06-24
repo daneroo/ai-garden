@@ -45,7 +45,7 @@ describe("openStoryteller", () => {
     "output satisfies ParserOutput schema invariants (Zod-validated by buildParserOutput)",
     async () => {
       const output = await openStoryteller(resolve(TEST_BOOKS, "aristotle-nicomachean-ethics.epub"));
-      expect(output.schemaVersion).toBe(3);
+      expect(output.schemaVersion).toBe(4);
       expect(["opened", "open-failed", "epub2-unsupported"]).toContain(output.meta.openStatus);
       if (output.meta.openStatus === "opened") {
         expect(output.content).toBeDefined();

@@ -8,6 +8,8 @@
 // one is not already present. Setting globalThis.DOMParser to jsdom's before
 // importing the node build therefore swaps the parser engine without forking
 // epub.ts. LinkeDOM hangs on a few books; jsdom opens them.
+import { createHash } from "node:crypto";
+
 import { optional, optionalDate } from "./epubts-utils.ts";
 
 const path = process.argv[2];
@@ -30,13 +32,16 @@ try {
   const bytes = await Bun.file(path).arrayBuffer();
   const book = new Book(bytes, { replacements: "none" });
   await book.opened;
-  const packaging = (book as {
+  const bookAny = book as {
     packaging?: {
       metadata?: { title?: unknown; creator?: unknown; pubdate?: unknown };
       spine?: Array<{ idref: string; linear: string }>;
       manifest?: Record<string, { href: string; type?: string }>;
     };
-  }).packaging;
+    archive?: { getText(url: string): Promise<string> | undefined };
+    path?: { directory: string };
+  };
+  const packaging = bookAny.packaging;
   const metadata = {
     title: optional(packaging?.metadata?.title),
     creator: optional(packaging?.metadata?.creator),
@@ -49,7 +54,20 @@ try {
   const manifest = Object.entries(packaging?.manifest ?? {})
     .map(([id, item]) => ({ id, href: item.href, mediaType: item.type ?? null }))
     .sort((a, b) => a.id.localeCompare(b.id));
-  process.stdout.write(JSON.stringify({ ok: true, parserVersion, domParser, metadata, spine, manifest }));
+  // "/" + pathDir + href produces the archive URL; archive.getText strips the
+  // leading "/" via substr(1) to get the zip entry path.
+  const pathDir = bookAny.path?.directory ?? "";
+  const spineHashes = await Promise.all(
+    spine.map(async (item) => {
+      const archiveUrl = "/" + pathDir + item.href;
+      const content = await bookAny.archive?.getText(archiveUrl);
+      const sha256 = content != null
+        ? createHash("sha256").update(content).digest("hex")
+        : null;
+      return { href: item.href, sha256 };
+    })
+  );
+  process.stdout.write(JSON.stringify({ ok: true, parserVersion, domParser, metadata, spine, manifest, spineHashes }));
   book.destroy();
 } catch (error: unknown) {
   process.stdout.write(
