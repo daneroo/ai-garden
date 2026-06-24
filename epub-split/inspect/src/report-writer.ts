@@ -7,6 +7,7 @@ import {
   type ComparisonResult,
   type ParserName,
   type ParserOutput,
+  type TocItem,
 } from "./schema.ts";
 import type { RootName } from "./types.ts";
 
@@ -253,6 +254,10 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
   let spineHashDiffer = 0;
   let tocAgree = 0;
   let tocDiffer = 0;
+  let aOrphanBooks = 0;
+  let bOrphanBooks = 0;
+  let aOrphanTotal = 0;
+  let bOrphanTotal = 0;
   let totalSpinePositions = 0;
   let totalPerBookDistinctShas = 0;
   let totalUnreadablePositions = 0;
@@ -280,7 +285,11 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
         else spineHashDiffer += 1;
         if (result.toc.status === "agree") tocAgree += 1;
         else tocDiffer += 1;
-        const aHashes = input.parserOutputs.get(entry.sha256)?.get(pair.a)?.content?.spineHashes ?? [];
+        const aOutput = input.parserOutputs.get(entry.sha256)?.get(pair.a);
+        const bOutput = input.parserOutputs.get(entry.sha256)?.get(pair.b);
+        if (aOutput) { const o = tocOrphans(aOutput); if (o.length > 0) { aOrphanBooks += 1; aOrphanTotal += o.length; } }
+        if (bOutput) { const o = tocOrphans(bOutput); if (o.length > 0) { bOrphanBooks += 1; bOrphanTotal += o.length; } }
+        const aHashes = aOutput?.content?.spineHashes ?? [];
         const title = input.parserOutputs.get(entry.sha256)?.get(pair.a)?.content?.metadata.title ?? null;
         totalSpinePositions += aHashes.length;
         totalPerBookDistinctShas += new Set(aHashes.map((h) => h.sha256)).size;
@@ -357,10 +366,21 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
     "",
     "## TOC comparison",
     "",
+    "Labels and tree shape compared; hrefs excluded (parsers use different href baselines).",
+    "",
     "| status | distinct books |",
     "|---|---:|",
     `| agree | ${tocAgree} |`,
     `| differ | ${tocDiffer} |`,
+    "",
+    "### TOC href integrity",
+    "",
+    "TOC hrefs (fragment stripped) absent from the parser's own manifest — per-parser self-check.",
+    "",
+    "| parser | books with orphans | total orphaned hrefs |",
+    "|---|---:|---:|",
+    `| ${pair.a} | ${aOrphanBooks} | ${aOrphanTotal} |`,
+    `| ${pair.b} | ${bOrphanBooks} | ${bOrphanTotal} |`,
     "",
     "## Not compared",
     "",
@@ -462,12 +482,52 @@ function renderDetail(input: ReportInput, entry: CorpusEntry): string {
     if (result.spineHashes.status === "differ") {
       lines.push("", `### Spine content hashes`, "", describeSpineHashesDetail(result.spineHashes));
     }
-    if (result.toc.status === "differ") {
-      lines.push("", `### TOC`, "", "TOC sha256 differs between parsers.");
+    {
+      const aOut = input.parserOutputs.get(entry.sha256)?.get(pair.a);
+      const bOut = input.parserOutputs.get(entry.sha256)?.get(pair.b);
+      const aOrphans = aOut ? tocOrphans(aOut) : [];
+      const bOrphans = bOut ? tocOrphans(bOut) : [];
+      if (result.toc.status === "differ" || aOrphans.length > 0 || bOrphans.length > 0) {
+        lines.push("", `### TOC`, "");
+        if (result.toc.status === "differ") lines.push("Label tree: differ.", "");
+        if (aOrphans.length > 0) {
+          lines.push(`Orphaned hrefs in ${pair.a} (not in manifest):`, ...aOrphans.map((h) => `- ${h}`), "");
+        }
+        if (bOrphans.length > 0) {
+          lines.push(`Orphaned hrefs in ${pair.b} (not in manifest):`, ...bOrphans.map((h) => `- ${h}`), "");
+        }
+      }
     }
   }
 
   return `${lines.join("\n")}\n`;
+}
+
+// ── TOC href integrity ────────────────────────────────────────────────────────
+
+// Collect TOC hrefs (fragment stripped, deduplicated) that are absent from the
+// parser's own manifest href set. Each parser uses its own href baseline, so
+// this is a per-parser self-consistency check, not a cross-parser comparison.
+function tocOrphans(output: ParserOutput): string[] {
+  const content = output.content;
+  if (!content) return [];
+  const manifestHrefs = new Set(content.manifest.map((m) => m.href));
+  const seen = new Set<string>();
+  const orphans: string[] = [];
+  function walk(items: TocItem[]): void {
+    for (const item of items) {
+      if (item.href !== null) {
+        const bare = item.href.split("#")[0];
+        if (bare && !manifestHrefs.has(bare) && !seen.has(bare)) {
+          seen.add(bare);
+          orphans.push(bare);
+        }
+      }
+      walk(item.subitems);
+    }
+  }
+  walk(content.toc);
+  return orphans;
 }
 
 // ── helpers ─────────────────────────────────────────────────────────────────

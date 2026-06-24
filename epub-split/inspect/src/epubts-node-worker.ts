@@ -51,7 +51,7 @@ try {
     };
     archive?: { getText(url: string): Promise<string> | undefined };
     path?: { directory: string; resolve(href: string): string };
-    navigation?: { toc: Array<{ label: string; href: string; subitems?: unknown[] }> };
+    navigation?: { toc: RawNavItem[] };
   };
   const packaging = bookAny.packaging;
   const metadata = {

@@ -57,10 +57,7 @@ try {
       }
     })
   );
-  // resolveToRoot normalises all hrefs to epub-root-relative paths. Without it,
-  // books whose nav document sits in a subdirectory (e.g. Text/nav.xhtml) get
-  // absolute temp-dir paths for TOC entries — non-deterministic across runs.
-  const tocNav = await reader.getTableOfContents({ resolveToRoot: true });
+  const tocNav = await reader.getTableOfContents();
   const toc = normalizeToc(tocNav?.children ?? []);
   process.stdout.write(JSON.stringify({ ok: true, metadata, spine, manifest, spineHashes, toc }));
   await reader.discardAndClose();

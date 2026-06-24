@@ -563,21 +563,31 @@ Fix not implemented — one book, requires post-processing TOC hrefs against the
 manifest set. Detection approach if needed: strip fragment, check href against
 `content.manifest` hrefs; any miss indicates a non-canonical path.
 
-**epub-ts vs storyteller: systematic href format difference.**
+**epub-ts vs storyteller: systematic href format difference — resolved.**
 
-epub-ts returns TOC hrefs relative to the nav document (e.g. `xhtml/title.xhtml#tit`);
-storyteller with `resolveToRoot: true` returns epub-root-relative hrefs
-(e.g. `OEBPS/xhtml/title.xhtml#tit`). This produces 186/213 "differ" for
-node×storyteller — not a content disagreement, but a parser representation
-difference in href baseline.
+Before `resolveToRoot: true` was added, both parsers returned hrefs relative to
+the nav document and agreed on 209/213 books. `resolveToRoot: true` prepends the
+OPF directory (`OEBPS/`) to every href, which epub-ts does not do — this caused
+186/213 "differ" at the cost of 0 real content disagreements.
 
-The 27 books that agree are books whose nav sits at the epub root (no `OEBPS/`
-subdirectory to prepend).
+**Resolution:** reverted `resolveToRoot`. Comparison changed to labels + tree
+shape only (hrefs excluded). Rationale: hrefs use parser-specific baselines that
+are fundamentally incompatible; label hierarchy is the semantically meaningful
+content for validation purposes. The 4 books whose nav sits in a subdirectory
+revert to non-deterministic hrefs in `content.toc`, but this no longer affects
+comparison results (labels are stable) and is surfaced by the TOC href integrity
+audit below.
 
-Consequence: TOC href comparison between epub-ts and storyteller is not meaningful
-in its current form. Options: (a) compare labels + tree shape only, drop hrefs
-from equality; (b) normalize hrefs to a common baseline using the OPF directory.
-Deferred — to be resolved before Gate 9 is considered complete.
+**TOC href integrity audit — new per-parser report item.**
+
+For each parser independently, TOC hrefs (fragment stripped) are checked against
+that parser's own manifest. Orphaned hrefs (not found in manifest) are counted
+per-pair in the pair report and listed per-book on detail pages. This surfaces:
+- The 4 storyteller books whose nav hrefs resolve to absolute temp-dir paths
+  (they will appear as orphans on every run, non-deterministic path but stable
+  label comparison).
+- The Beartown Trilogy (cross-directory nav hrefs escape the epub package).
+- Any EPUB with genuinely broken navigation links.
 
 ## Gate 10 — Expand to chapter content
 

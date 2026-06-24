@@ -75,13 +75,14 @@ function compareSpineHashes(a: SpineHashItem[], b: SpineHashItem[]): SpineHashCo
   return { status: agree ? "agree" : "differ", matchCount, mismatchCount };
 }
 
-// Normalize labels for comparison only — raw labels are preserved in ParserOutput.
-// CRLF→LF + trim removes XML-formatting whitespace differences that are not
-// semantically meaningful (e.g. node returns "\r\nCover\r\n", browser returns "\nCover\n").
+// Normalize TOC for comparison: labels (CRLF→LF + trim) + tree shape only.
+// Hrefs are intentionally excluded — epub-ts and storyteller use different href
+// baselines (nav-doc-relative vs epub-root-relative), so comparing hrefs would
+// always differ. Href validity is checked independently as a per-parser integrity
+// audit (TOC hrefs vs manifest) surfaced in the report.
 function normalizeTocForComparison(items: TocItem[]): unknown {
   return items.map((item) => ({
     label: item.label.replace(/\r\n/g, "\n").trim(),
-    href: item.href,
     subitems: normalizeTocForComparison(item.subitems),
   }));
 }
