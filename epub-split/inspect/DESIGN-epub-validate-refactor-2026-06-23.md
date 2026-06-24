@@ -59,9 +59,17 @@ interface Meta {
   parserVersion: string;       // see invariants for the exact source per parser
   domParser?: "linkedom" | "jsdom"; // epubts-node only, only when opened
   openStatus: "opened" | "open-failed" | "epub2-unsupported";
-  openFailure?: { stage: string; category: string; message: string };
+  openFailure?: { category: string; message: string };
 }
 ```
+
+There is no `stage` field. The browser path has two phases (transport, then
+open), but a transport failure means *we* could not deliver bytes to the parser
+— it is a harness/infrastructure failure, not the parser's verdict on the book,
+so it aborts the run (loudly) rather than being recorded as a per-book
+`open-failed`. `openStatus` is therefore a pure parser verdict, and `openFailure`
+carries only the parser's own error name and message (which may hint at
+transport trouble if it ever surfaces).
 
 `epub2-unsupported` is a first-class status for Storyteller (not an error —
 expected behavior for EPUB 2 books). This lets the runner reason about it
@@ -69,13 +77,18 @@ cleanly without special-casing parser names.
 
 ### Content (pure book data — parser-agnostic)
 
-`content` is **present iff `openStatus === "opened"`**. Within v1 content, the
-`metadata` object is **required**, and its scalar fields are **required and
-nullable** (`string | null`). `null` means "this parser exposed no value";
-there is no "field absent" state at v1, which keeps "parser did not expose"
-distinct from "schema does not yet model it". Later content sections
-(manifest/spine/toc/chapters) are added as optional top-level keys in later
-schema versions — absence then means "not modelled by this schema version yet".
+`content` is **present iff `openStatus === "opened"`**. v1 content is **three
+metadata fields only** — `title`, `creator`, `date` — each **required and
+nullable** (`string | null`). `null` means "this parser exposed no value"; there
+is no "field absent" state at v1, which keeps "parser did not expose" distinct
+from "schema does not yet model it".
+
+The other Dublin Core fields (language, publisher, identifier, …) are
+deliberately **out of v1**: they proved too unreliable across parsers to be
+worth comparing, and that unreliability is itself a finding. Later content
+sections (manifest/spine/toc/chapters) are added as optional top-level keys in
+later schema versions — absence then means "not modelled by this schema version
+yet".
 
 ```ts
 interface Content {
@@ -83,9 +96,6 @@ interface Content {
     title: string | null;
     creator: string | null;
     date: string | null;
-    language: string | null;
-    publisher: string | null;
-    identifier: string | null;
   };
   manifest?: ManifestItem[];   // added in a later schema version
   spine?: SpineItem[];
@@ -108,6 +118,31 @@ interface Content {
 
 Zod validates the whole object. Schema version increments whenever a field is
 added or changed.
+
+### Assembly and the schema firewall
+
+The three adapters run in different runtimes (in-page browser IIFE; node and
+storyteller subprocesses), so each returns only a **minimal raw open-result**
+— `{ openStatus, metadata | null, parserVersion, openFailure? }` — in whatever
+shape is natural for it (the in-page bundle stays tiny and validation-free).
+A single shared host-side `buildParserOutput(parser, sha, openResult)` is the
+**one place** that assembles the full object (adds parser name, sha,
+schemaVersion) and Zod-validates it. Adapters are not contorted to fit a common
+shape beyond that minimal contract.
+
+This boundary is the **firewall**: every parser-specific mess (the LinkeDOM
+hang, jsdom fallback, subprocess kills, raw-vs-decoded entities) stays sealed
+behind `ParserOutput`. Everything downstream — comparison, reporting — only ever
+sees clean, validated data and never knows how it was produced.
+
+### Determinism: no wall-clock provenance
+
+Provenance lives in two places — `parserVersion` in each `meta` (the output is
+self-describing) and a full block in `run.json` (runner version, `Bun.version`,
+Chromium version, package set, roots, inventory). Neither may contain a
+timestamp, hostname, or any run-instant value, or the byte-identical-rerun
+invariant breaks. (This is different from the `shortSha` anti-pattern: a version
+is genuine provenance, not a value derivable from a sibling field.)
 
 ## Comparison Output Schema
 
@@ -150,11 +185,29 @@ type PairFieldStatus =
   | "both-null";   // neither present
 ```
 
-`MetadataComparison` is `{ title, creator, date, language, publisher,
-identifier }`, each a record carrying `{ status, a, b }` where `a`/`b` are the
-values from `parserA`/`parserB`. Per-pair histograms count these statuses per
-field. (`a`/`b` are schema-internal; human-readable reports name the parsers
-explicitly — see "Human-readable rendering".)
+`MetadataComparison` is `{ title, creator, date }` (the v1 fields), each a
+record carrying `{ status, a, b }` where `a`/`b` are the values from
+`parserA`/`parserB`. Per-pair histograms count these statuses per field.
+(`a`/`b` are schema-internal; human-readable reports name the parsers explicitly
+— see "Human-readable rendering".)
+
+### Equality is exact-lexical; cleanup belongs to the adapter
+
+`compareField` does a dumb exact `===` on the two values. It **never** massages
+values to force agreement — no entity decoding, no whitespace collapsing, no
+case folding. This is deliberate: storyteller returns raw entities
+(`Centaur&#x2019;s`) where epub.ts decodes them (`Centaur's`), and that
+raw-vs-decoded gap is a genuine, attributable interoperability fact the tool
+exists to surface; normalizing it away would hide it (and would break parity,
+which was computed lexically).
+
+The only value cleanup that happens is *per-parser, at extraction time, in the
+adapter* — e.g. epub.ts's `0101-01-01T00:00:00+00:00` zero-date becomes `null`
+in the `ParserOutput` because that is what the value *means* for that parser.
+The comparator sees only the cleaned-but-not-cross-normalized values. Semantic
+equality (decode-then-compare) is explicitly a *later* layer, added when we
+actually use the parser; v1 does the minimum so we can see exactly what each
+parser yields.
 
 ### Parity projection (validation only)
 
@@ -238,12 +291,27 @@ Defined up front (adapters need it before they can write):
 
 ```
 reports/
-  index.md                          # human summary (see below)
-  run.json                          # manifest: runner/pkg versions, roots, inventory
-  parsers/<sha256>/<parser>.json    # one ParserOutput per (content, parser)
+  index.md                           # top-level overview only (see below)
+  <parserA>--<parserB>.md            # one human report PER PAIR
+  run.json                           # manifest: runner/pkg versions, roots, inventory
+  parsers/<sha256>/<parser>.json     # one ParserOutput per (content, parser)
   comparisons/<sha256>/<a>--<b>.json # one ComparisonResult per (content, pair)
-  details/<sha256>.md               # per-book detail, only when a disagreement exists
+  details/<sha256>.md                # per-book detail, only when a mismatch exists
 ```
+
+The human report is split:
+
+- **`index.md`** — top-level only: the corpora-discovery table, per-parser
+  open-outcome counts, the genuine-`open-failed` list, and links out to each
+  pair report. It does not contain comparison histograms.
+- **`<parserA>--<parserB>.md`** (e.g. `epubts-node--epubts-browser.md`,
+  `epubts-node--storyteller.md`) — one per pair: that pair's both-opened
+  denominator, per-field mismatch histogram, not-compared-by-reason breakdown,
+  and the grouped-by-root / filename-sorted list of *that pair's* mismatches,
+  each linking to its `details/<sha256>.md`.
+- **`details/<sha256>.md`** — per-book, written only when at least one pair has
+  a field mismatch (differ / a-only / b-only); shows each parser's actual value
+  side by side. `epub2-unsupported` and plain open-failures never trigger one.
 
 `baseline/` (frozen Gate 0 oracle) sits beside `reports/` with the same layout
 as the *old* Schema-6 tree; it is never regenerated.
@@ -349,12 +417,21 @@ Schema/type-only gates (1, 2) verify by typecheck + unit tests. Gates that
 touch the runner (3+) run the full corpus for determinism + parity. Scope
 expands one content section at a time so findings remain attributable.
 
+**Gates 8–10 are intentionally high-level here.** The structural comparison
+taxonomies (manifest/spine/toc/chapter warnings) are designed when that work
+starts, not now — the detailed plan is revisited as soon as Gate 8 begins.
+
 ## Design-level Open Questions
 
 These are architecture decisions still open; sequencing/tracking is in the plan.
 
 1. **Directory restructure timing** — promote `epub-split/inspect/` to
-   `epub-validate/`. Deferred (not done in this plan); see plan Gate 0B.
+   **`epub-validate/`** (confirmed name). Deferred (not done in this plan); see
+   plan Gate 0B. `epub-validate` is the first of a planned *family* of
+   validators (mp4 parsing, etc.) in a future monorepo, where parsers and
+   interfaces may split into sub-libraries — which is exactly why the schema
+   firewall, decoupled comparator, and per-artifact schema versions are chosen
+   now. The monorepo is not being built yet; we just avoid foreclosing it.
 
 2. **Parser scope long-term** — does epubts-browser stay, or graduate to
    "sanity-check only" and eventually drop? Decision deferred until the
