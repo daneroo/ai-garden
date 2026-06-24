@@ -19,14 +19,6 @@ export const BROWSER_BUNDLE_PATH = resolve(
   "dist/epubts-browser.js"
 );
 export const REPORTS_DIRECTORY = resolve(VALIDATE_DIRECTORY, "reports");
-export const TEMP_REPORTS_DIRECTORY = resolve(
-  VALIDATE_DIRECTORY,
-  ".reports-next"
-);
-export const BACKUP_REPORTS_DIRECTORY = resolve(
-  VALIDATE_DIRECTORY,
-  ".reports-previous"
-);
 
 export const ROOTS: readonly RootConfig[] = [
   {
@@ -43,10 +35,3 @@ export const ROOTS: readonly RootConfig[] = [
   },
 ];
 
-export const PARSER_NAMES = [
-  "epubts-browser",
-  "epubts-node",
-  "storyteller",
-] as const;
-
-export const REPORT_SCHEMA_VERSION = 6;

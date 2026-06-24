@@ -21,7 +21,7 @@ import type { RootName } from "./config.ts";
 // scan order, books by filename, entries by sha256), so two writes of the same
 // input are byte-identical.
 
-export const RUN_MANIFEST_SCHEMA_VERSION = 1;
+const RUN_MANIFEST_SCHEMA_VERSION = 1;
 
 const METADATA_FIELDS = ["title", "creator", "date"] as const;
 type MetadataField = (typeof METADATA_FIELDS)[number];

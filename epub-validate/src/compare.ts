@@ -113,7 +113,7 @@ function compareManifest(a: ManifestItem[], b: ManifestItem[]): ManifestComparis
 //
 // Once parity is confirmed, `baseline/` is removed (git retains history).
 
-export interface BaselineField {
+interface BaselineField {
   "all-agree": number;
   "node-differs": number;
   "storyteller-differs": number;

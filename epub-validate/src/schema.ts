@@ -27,7 +27,7 @@ export const parserNameSchema = z.enum([
   "storyteller",
 ]);
 
-export const openStatusSchema = z.enum([
+const openStatusSchema = z.enum([
   "opened",
   "open-failed",
   "epub2-unsupported",
@@ -35,17 +35,17 @@ export const openStatusSchema = z.enum([
 
 // Which DOM parser opened the book on the node path. epub.ts uses LinkeDOM by
 // default; a few books hang it, so those fall back to jsdom (recorded here).
-export const domParserSchema = z.enum(["linkedom", "jsdom"]);
+const domParserSchema = z.enum(["linkedom", "jsdom"]);
 
 // Only the parser's own error name + message. There is deliberately no `stage`:
 // transport/infra failures abort the run loudly, they are not per-book verdicts.
 // strictObject() makes a stray `stage` (or any extra key) a validation error.
-export const openFailureSchema = z.strictObject({
+const openFailureSchema = z.strictObject({
   category: z.string(),
   message: z.string(),
 });
 
-export const metaSchema = z.strictObject({
+const metaSchema = z.strictObject({
   parser: parserNameSchema,
   // Read from the library at runtime (epub.ts: ePub.VERSION; storyteller: the
   // installed package version). Never hardcoded; min(1) rejects an empty value.
@@ -58,7 +58,7 @@ export const metaSchema = z.strictObject({
 // Three metadata fields, each required and nullable. `null` means "this parser
 // exposed no value". language/publisher/identifier are out of scope — too
 // unreliable across parsers to compare.
-export const metadataSchema = z.strictObject({
+const metadataSchema = z.strictObject({
   title: z.string().nullable(),
   creator: z.string().nullable(),
   date: z.string().nullable(),
@@ -67,7 +67,7 @@ export const metadataSchema = z.strictObject({
 // href is the OPF manifest href, relative to the package document, as-is —
 // both parsers read the same OPF so no normalisation is needed. linear is
 // captured for future use; comparisons use href-set only for now.
-export const spineItemSchema = z.strictObject({
+const spineItemSchema = z.strictObject({
   href: z.string(),
   linear: z.boolean(),
 });
@@ -76,7 +76,7 @@ export const spineItemSchema = z.strictObject({
 // relative to the package document. mediaType is null when the parser exposes
 // no value. Items are stored sorted by id for determinism (both parsers read
 // the same OPF, so ids and hrefs are identical across parsers).
-export const manifestItemSchema = z.strictObject({
+const manifestItemSchema = z.strictObject({
   id: z.string(),
   href: z.string(),
   mediaType: z.string().nullable(),
@@ -87,7 +87,7 @@ export const manifestItemSchema = z.strictObject({
 // be read (extraction failure recorded, not a hard error). Using a sentinel
 // rather than null means two parsers that both fail the same item will "agree"
 // on the sentinel value. Ordered parallel to content.spine.
-export const spineHashItemSchema = z.strictObject({
+const spineHashItemSchema = z.strictObject({
   href: z.string(),
   sha256: z.string(),
 });
@@ -100,7 +100,7 @@ export interface TocItem {
   href: string | null;
   subitems: TocItem[];
 }
-export const tocItemSchema: z.ZodType<TocItem> = z.lazy(() =>
+const tocItemSchema: z.ZodType<TocItem> = z.lazy(() =>
   z.strictObject({
     label: z.string(),
     href: z.string().nullable(),
@@ -108,7 +108,7 @@ export const tocItemSchema: z.ZodType<TocItem> = z.lazy(() =>
   })
 );
 
-export const contentSchema = z.strictObject({
+const contentSchema = z.strictObject({
   metadata: metadataSchema,
   spine: z.array(spineItemSchema),
   manifest: z.array(manifestItemSchema),
@@ -181,12 +181,6 @@ export const parserOutputSchema = z
   );
 
 export type ParserName = z.infer<typeof parserNameSchema>;
-export type OpenStatus = z.infer<typeof openStatusSchema>;
-export type DomParser = z.infer<typeof domParserSchema>;
-export type OpenFailure = z.infer<typeof openFailureSchema>;
-export type Meta = z.infer<typeof metaSchema>;
-export type Metadata = z.infer<typeof metadataSchema>;
-export type Content = z.infer<typeof contentSchema>;
 export type ParserOutput = z.infer<typeof parserOutputSchema>;
 
 // ── Comparison output ───────────────────────────────────────────────────────
@@ -207,7 +201,7 @@ export const COMPARISON_RESULT_SCHEMA_VERSION = 6;
 // Five mutually-exclusive per-field outcomes. `a`/`b` are the values from
 // parserA/parserB. Human-readable reports never print a/b — they name the
 // parsers explicitly (see the report writer); the a/b form is schema-internal.
-export const pairFieldStatusSchema = z.enum([
+const pairFieldStatusSchema = z.enum([
   "agree", // both present, equal
   "differ", // both present, unequal
   "a-only", // a present, b null
@@ -215,13 +209,13 @@ export const pairFieldStatusSchema = z.enum([
   "both-null", // neither present
 ]);
 
-export const fieldComparisonSchema = z.strictObject({
+const fieldComparisonSchema = z.strictObject({
   status: pairFieldStatusSchema,
   a: z.string().nullable(),
   b: z.string().nullable(),
 });
 
-export const metadataComparisonSchema = z.strictObject({
+const metadataComparisonSchema = z.strictObject({
   title: fieldComparisonSchema,
   creator: fieldComparisonSchema,
   date: fieldComparisonSchema,
@@ -230,7 +224,7 @@ export const metadataComparisonSchema = z.strictObject({
 // Spine comparison: href-set based. "agree" = identical ordered sequence.
 // "differ" = anything else. onlyInA/onlyInB list the asymmetric hrefs; both
 // empty with status "differ" means same set but different order.
-export const spineComparisonSchema = z.strictObject({
+const spineComparisonSchema = z.strictObject({
   status: z.enum(["agree", "differ"]),
   countA: z.number().int().nonnegative(),
   countB: z.number().int().nonnegative(),
@@ -240,7 +234,7 @@ export const spineComparisonSchema = z.strictObject({
 
 // Manifest comparison: href-set based (unordered). "agree" = identical href
 // sets. "differ" = anything else. onlyInA/onlyInB list asymmetric hrefs.
-export const manifestComparisonSchema = z.strictObject({
+const manifestComparisonSchema = z.strictObject({
   status: z.enum(["agree", "differ"]),
   countA: z.number().int().nonnegative(),
   countB: z.number().int().nonnegative(),
@@ -252,7 +246,7 @@ export const manifestComparisonSchema = z.strictObject({
 // match AND counts are equal. The sentinel "<unreadable>" is treated as a
 // regular value — two parsers that both fail the same item agree on it.
 // matchCount + mismatchCount = max(countA, countB).
-export const spineHashComparisonSchema = z.strictObject({
+const spineHashComparisonSchema = z.strictObject({
   status: z.enum(["agree", "differ"]),
   matchCount: z.number().int().nonnegative(),
   mismatchCount: z.number().int().nonnegative(),
@@ -260,7 +254,7 @@ export const spineHashComparisonSchema = z.strictObject({
 
 // TOC comparison: sha256 of JSON.stringify of the normalized tree. "agree" =
 // both parsers produced the same normalized TOC structure.
-export const tocComparisonSchema = z.strictObject({
+const tocComparisonSchema = z.strictObject({
   status: z.enum(["agree", "differ"]),
 });
 
@@ -277,9 +271,7 @@ export const comparisonResultSchema = z.strictObject({
   toc: tocComparisonSchema,
 });
 
-export type PairFieldStatus = z.infer<typeof pairFieldStatusSchema>;
 export type FieldComparison = z.infer<typeof fieldComparisonSchema>;
-export type MetadataComparison = z.infer<typeof metadataComparisonSchema>;
 export type SpineItem = z.infer<typeof spineItemSchema>;
 export type SpineComparison = z.infer<typeof spineComparisonSchema>;
 export type ManifestItem = z.infer<typeof manifestItemSchema>;
