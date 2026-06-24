@@ -13,13 +13,16 @@ import { buildParserOutput } from "./adapter.ts";
 import type { ParserOutput } from "./schema.ts";
 
 const WORKER = `${import.meta.dir}/epubts-node-worker.ts`;
-const OPEN_TIMEOUT_MS = Number(process.env["NODE_OPEN_TIMEOUT_MS"]) || 10_000;
+const OPEN_TIMEOUT_MS = Number(process.env["NODE_OPEN_TIMEOUT_MS"]) || 5_000;
 
 // Read the epub.ts library version once at module load; passed to workers as an
 // arg so each subprocess does not repeat the resolution.
 const PARSER_VERSION = await (async () => {
   try {
-    const pkgPath = Bun.resolveSync("@likecoin/epub-ts/package.json", import.meta.dir);
+    const pkgPath = Bun.resolveSync(
+      "@likecoin/epub-ts/package.json",
+      import.meta.dir,
+    );
     return ((await Bun.file(pkgPath).json()) as { version: string }).version;
   } catch {
     return "unknown";
@@ -32,7 +35,11 @@ interface WorkerSuccess {
   ok: true;
   parserVersion: string;
   domParser: DomParser;
-  metadata: { title: string | null; creator: string | null; date: string | null };
+  metadata: {
+    title: string | null;
+    creator: string | null;
+    date: string | null;
+  };
 }
 interface WorkerFailure {
   ok: false;
@@ -43,9 +50,16 @@ type WorkerResult = WorkerSuccess | WorkerFailure;
 
 async function runWorker(
   absolutePath: string,
-  domParser: DomParser
+  domParser: DomParser,
 ): Promise<{ timedOut: boolean; output: string }> {
-  const proc = Bun.spawn(["bun", "run", WORKER, absolutePath, domParser, PARSER_VERSION], {
+  const proc = Bun.spawn([
+    "bun",
+    "run",
+    WORKER,
+    absolutePath,
+    domParser,
+    PARSER_VERSION,
+  ], {
     stdout: "pipe",
     stderr: "ignore",
   });
@@ -68,7 +82,11 @@ function parseWorkerOutput(output: string): WorkerResult {
   try {
     return JSON.parse(output) as WorkerResult;
   } catch {
-    return { ok: false, category: "WorkerError", message: "worker produced no parsable result" };
+    return {
+      ok: false,
+      category: "WorkerError",
+      message: "worker produced no parsable result",
+    };
   }
 }
 
@@ -90,7 +108,9 @@ function toParserOutput(result: WorkerResult): ParserOutput {
 
 export async function openNode(absolutePath: string): Promise<ParserOutput> {
   const linkedomRun = await runWorker(absolutePath, "linkedom");
-  if (!linkedomRun.timedOut) return toParserOutput(parseWorkerOutput(linkedomRun.output));
+  if (!linkedomRun.timedOut) {
+    return toParserOutput(parseWorkerOutput(linkedomRun.output));
+  }
 
   // LinkeDOM hung — retry once with jsdom, which opens every book LinkeDOM hangs on.
   const jsdomRun = await runWorker(absolutePath, "jsdom");
@@ -98,7 +118,11 @@ export async function openNode(absolutePath: string): Promise<ParserOutput> {
     return buildParserOutput("epubts-node", {
       openStatus: "open-failed",
       parserVersion: PARSER_VERSION,
-      openFailure: { category: "Timeout", message: `linkedom and jsdom fallback both exceeded ${OPEN_TIMEOUT_MS}ms` },
+      openFailure: {
+        category: "Timeout",
+        message:
+          `linkedom and jsdom fallback both exceeded ${OPEN_TIMEOUT_MS}ms`,
+      },
     });
   }
   const result = parseWorkerOutput(jsdomRun.output);
@@ -106,6 +130,9 @@ export async function openNode(absolutePath: string): Promise<ParserOutput> {
   return buildParserOutput("epubts-node", {
     openStatus: "open-failed",
     parserVersion: PARSER_VERSION,
-    openFailure: { category: result.category, message: `linkedom timed out; jsdom fallback failed: ${result.message}` },
+    openFailure: {
+      category: result.category,
+      message: `linkedom timed out; jsdom fallback failed: ${result.message}`,
+    },
   });
 }

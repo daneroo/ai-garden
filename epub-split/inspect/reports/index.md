@@ -5,7 +5,7 @@
 - Bun: 1.3.14
 - Chromium: 149.0.7827.55
 - epub.ts: 0.6.7
-- Storyteller: not-run
+- Storyteller: 0.6.2
 - Playwright: 1.61.0
 - Occurrences: 1304
 - Distinct content: 756
@@ -29,13 +29,32 @@ Occurrence-weighted (denominator 1304).
 |---|---:|---:|---:|---:|
 | epubts-browser | 1304 | 0 | 0 | 0 |
 | epubts-node | 1304 | 0 | 0 | 15 |
-| storyteller | not-run | not-run | not-run | not-run |
+| storyteller | 368 | 36 | 900 | 0 |
 
 ## Open failures
 
 Genuine open failures only; epub2-unsupported is expected and excluded.
 
-None.
+### space
+
+- Alastair Reynolds - Revelation Space/Alastair Reynolds - Revelation Space 01 - Revelation Space/Alastair Reynolds - Revelation Space 01 - Revelation Space.epub — storyteller (Error)
+- Alastair Reynolds - Revelation Space/Alastair Reynolds - Revelation Space 03 - Redemption Ark/Alastair Reynolds - Revelation Space 03 - Redemption Ark.epub — storyteller (Error)
+- Alastair Reynolds - Revelation Space/Alastair Reynolds - Revelation Space 06 - Diamond Dogs Turquoise Days/Alastair Reynolds - Revelation Space 06 - Diamond Dogs Turquoise Days.epub — storyteller (Error)
+- Brent Weeks - The LightBringer Saga/Brent Weeks - The Lightbringer Saga 02 - The Blinding Knife/Brent Weeks - The Lightbringer Saga 02 - The Blinding Knife.epub — storyteller (Error)
+- Brent Weeks - The LightBringer Saga/Brent Weeks - The Lightbringer Saga 03 - The Broken Eye/Brent Weeks - The Lightbringer Saga 03 - The Broken Eye.epub — storyteller (Error)
+- Craig Alanson - Expeditionary Force/Craig Alanson - Expeditionary Force 06 - Mavericks/Craig Alanson - Expeditionary Force 06 - Mavericks.epub — storyteller (Error)
+- Glen Cook - Black Company/Glen Cook - Black Company 03 - The White Rose/Glen Cook - Black Company 03 - The White Rose.epub — storyteller (Error)
+- Madeline Miller - Circe/Madeline Miller - Circe.epub — storyteller (Error)
+- Maurice Druon - The Accursed Kings/Maurice Druon - The Accursed Kings 01 - The Iron King/Maurice Druon - The Accursed Kings 01 - The Iron King.epub — storyteller (Error)
+- Maurice Druon - The Accursed Kings/Maurice Druon - The Accursed Kings 02 - The Strangled Queen/Maurice Druon - The Accursed Kings 02 - The Strangled Queen.epub — storyteller (Error)
+- Maurice Druon - The Accursed Kings/Maurice Druon - The Accursed Kings 03 - The Poisoned Crown/Maurice Druon - The Accursed Kings 03 - The Poisoned Crown.epub — storyteller (Error)
+- Maurice Druon - The Accursed Kings/Maurice Druon - The Accursed Kings 04 - The Royal Succession/Maurice Druon - The Accursed Kings 04 - The Royal Succession.epub — storyteller (Error)
+- Maurice Druon - The Accursed Kings/Maurice Druon - The Accursed Kings 05 - The She-Wolf/Maurice Druon - The Accursed Kings 05 - The She Wolf.epub — storyteller (Error)
+- Maurice Druon - The Accursed Kings/Maurice Druon - The Accursed Kings 06 - The Lily and the Lion/Maurice Druon - The Accursed Kings 06 - The Lily and the Lion.epub — storyteller (Error)
+- Maurice Druon - The Accursed Kings/Maurice Druon - The Accursed Kings 07 - The King Without a Kingdom/Maurice Druon - The Accursed Kings 07 - The King Without a Kingdom.epub — storyteller (Error)
+- Ramez Naam - Nexus/Ramez Naam - Nexus 01 - Nexus/Ramez Naam - Nexus 01 - Nexus.epub — storyteller (Error)
+- Terry Pratchett - Discworld/Terry Pratchett - Discworld 05 - Sourcery/Terry Pratchett - Discworld 05 - Sourcery.epub — storyteller (Error)
+- Terry Pratchett - Discworld/Terry Pratchett - Discworld 34 - Thud!/Terry Pratchett - Discworld 34 - Thud!.epub — storyteller (Error)
 
 ## Comparison pairs
 

@@ -1,31 +1,37 @@
-import type {
-  DeclaredVersion,
-  HashedBook,
-  MetadataFields,
-  StorytellerOpenOutcome,
-} from "./types.ts";
+import { buildParserOutput } from "./adapter.ts";
+import type { ParserOutput } from "./schema.ts";
 
-// Storyteller (@storyteller-platform/epub) is opened in a dedicated subprocess
-// the parent can hard-kill, matching the epubts-node path: a synchronous hang in
-// any parser must not be able to freeze the whole run. A true hang spins
-// forever, so a generous deadline catches it deterministically while leaving
-// every legitimate open far from the bound.
 const WORKER = `${import.meta.dir}/storyteller-worker.ts`;
-const OPEN_TIMEOUT_MS =
-  Number(process.env["STORYTELLER_OPEN_TIMEOUT_MS"]) || 10_000;
+const OPEN_TIMEOUT_MS = Number(process.env["STORYTELLER_OPEN_TIMEOUT_MS"]) ||
+  5_000;
+
+export const STORYTELLER_VERSION = await (async () => {
+  try {
+    const pkgPath = Bun.resolveSync(
+      "@storyteller-platform/epub/package.json",
+      import.meta.dir,
+    );
+    return ((await Bun.file(pkgPath).json()) as { version: string }).version;
+  } catch {
+    return "unknown";
+  }
+})();
 
 interface WorkerResult {
-  ok?: boolean;
-  version?: DeclaredVersion;
-  metadata?: MetadataFields;
+  ok: true | false | "epub2-unsupported";
+  metadata?: {
+    title: string | null;
+    creator: string | null;
+    date: string | null;
+  };
   category?: string;
   message?: string;
 }
 
-export async function inspectStoryteller(
-  book: HashedBook
-): Promise<StorytellerOpenOutcome> {
-  const proc = Bun.spawn(["bun", "run", WORKER, book.absolutePath], {
+export async function openStoryteller(
+  absolutePath: string,
+): Promise<ParserOutput> {
+  const proc = Bun.spawn(["bun", "run", WORKER, absolutePath], {
     stdout: "pipe",
     stderr: "ignore",
   });
@@ -44,37 +50,55 @@ export async function inspectStoryteller(
   }
 
   if (timedOut) {
-    return {
-      status: "storyteller-open-failed",
-      stage: "storyteller-open",
-      category: "Timeout",
-      message: `open did not settle within ${OPEN_TIMEOUT_MS}ms`,
-    };
+    return buildParserOutput("storyteller", {
+      openStatus: "open-failed",
+      parserVersion: STORYTELLER_VERSION,
+      openFailure: {
+        category: "Timeout",
+        message: `open did not settle within ${OPEN_TIMEOUT_MS}ms`,
+      },
+    });
   }
 
   let parsed: WorkerResult;
   try {
     parsed = JSON.parse(output) as WorkerResult;
   } catch {
-    return {
-      status: "storyteller-open-failed",
-      stage: "storyteller-open",
-      category: "WorkerError",
-      message: "storyteller open worker produced no parsable result",
-    };
+    return buildParserOutput("storyteller", {
+      openStatus: "open-failed",
+      parserVersion: STORYTELLER_VERSION,
+      openFailure: {
+        category: "WorkerError",
+        message: "storyteller worker produced no parsable result",
+      },
+    });
   }
 
-  if (parsed.ok === true && parsed.version && parsed.metadata) {
-    return { status: "storyteller-opened", version: parsed.version, metadata: parsed.metadata };
+  if (parsed.ok === "epub2-unsupported") {
+    return buildParserOutput("storyteller", {
+      openStatus: "epub2-unsupported",
+      parserVersion: STORYTELLER_VERSION,
+    });
   }
-  return {
-    status: "storyteller-open-failed",
-    stage: "storyteller-open",
-    category: typeof parsed.category === "string"
-      ? parsed.category
-      : "UnknownError",
-    message: typeof parsed.message === "string"
-      ? parsed.message
-      : "storyteller open failed",
-  };
+
+  if (parsed.ok === true && parsed.metadata) {
+    return buildParserOutput("storyteller", {
+      openStatus: "opened",
+      parserVersion: STORYTELLER_VERSION,
+      metadata: parsed.metadata,
+    });
+  }
+
+  return buildParserOutput("storyteller", {
+    openStatus: "open-failed",
+    parserVersion: STORYTELLER_VERSION,
+    openFailure: {
+      category: typeof parsed.category === "string"
+        ? parsed.category
+        : "UnknownError",
+      message: typeof parsed.message === "string"
+        ? parsed.message
+        : "storyteller open failed",
+    },
+  });
 }

@@ -7,7 +7,9 @@ import { BrowserTransport } from "./epubts-browser.ts";
 const FIXTURES = resolve(import.meta.dir, "../test/fixtures");
 const TEST_BOOKS = resolve(import.meta.dir, "../../test-books");
 
-async function bookInfo(absolutePath: string): Promise<{ sha256: string; size: number }> {
+async function bookInfo(
+  absolutePath: string,
+): Promise<{ sha256: string; size: number }> {
   const bytes = await Bun.file(absolutePath).arrayBuffer();
   const sha256 = createHash("sha256").update(Buffer.from(bytes)).digest("hex");
   return { sha256, size: bytes.byteLength };
@@ -22,7 +24,7 @@ describe("BrowserTransport.open", () => {
 
   afterAll(async () => {
     await transport.close();
-  }, 15_000);
+  }, 5_000);
 
   test(
     "opens a committed EPUB 3 test book",
@@ -35,7 +37,7 @@ describe("BrowserTransport.open", () => {
       expect(output.meta.parserVersion).toMatch(/^\d+\.\d+/);
       expect(output.content?.metadata.title).not.toBeNull();
     },
-    60_000
+    60_000,
   );
 
   test(
@@ -47,7 +49,7 @@ describe("BrowserTransport.open", () => {
       expect(output.meta.openStatus).toBe("opened");
       expect(output.content?.metadata.title).toBe("Epub Two Minimal");
     },
-    60_000
+    60_000,
   );
 
   test(
@@ -60,7 +62,7 @@ describe("BrowserTransport.open", () => {
       expect(output.meta.openFailure).toBeDefined();
       expect(output.content).toBeUndefined();
     },
-    60_000
+    60_000,
   );
 
   test(
@@ -70,13 +72,15 @@ describe("BrowserTransport.open", () => {
       const { sha256, size } = await bookInfo(path);
       const output = await transport.open(path, sha256, size);
       expect(output.schemaVersion).toBe(1);
-      expect(["opened", "open-failed", "epub2-unsupported"]).toContain(output.meta.openStatus);
+      expect(["opened", "open-failed", "epub2-unsupported"]).toContain(
+        output.meta.openStatus,
+      );
       if (output.meta.openStatus === "opened") {
         expect(output.content).toBeDefined();
         expect(output.meta.openFailure).toBeUndefined();
         expect(output.meta.domParser).toBeUndefined();
       }
     },
-    60_000
+    60_000,
   );
 });

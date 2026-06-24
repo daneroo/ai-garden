@@ -434,11 +434,11 @@ baseline: browser opens every book, 0 failures (last-known: 1,301 / 0).
 
 ## Gate 5 — storyteller adapter → `ParserOutput`
 
-- [ ] `storyteller-worker.ts` / `storyteller.ts` emit a Zod-valid `ParserOutput`.
-- [ ] EPUB 2 archives → `openStatus: "epub2-unsupported"` (no content, no
+- [x] `storyteller-worker.ts` / `storyteller.ts` emit a Zod-valid `ParserOutput`.
+- [x] EPUB 2 archives → `openStatus: "epub2-unsupported"` (no content, no
       openFailure — per invariants). Genuine failures (package-read, bad-zip)
       stay `open-failed`.
-- [ ] Unit test on `test-books` (EPUB 3 → opened) + EPUB 2 fixture
+- [x] Unit test on `test-books` (EPUB 3 → opened) + EPUB 2 fixture
       (→ epub2-unsupported) + bad-zip fixture (→ open-failed).
 
 Verifiable outcome: TYPECHECK + TEST. Daniel's full run: DETERMINISM, PARITY vs
@@ -544,4 +544,5 @@ matches the shipped tool.
 - 2026-06-23 · Gate 1 · zod@4 ParserOutput schema + 3 EPUB fixtures + 6 sample outputs; TEST 26 pass / 2 todo / 0 fail, TYPECHECK clean, no corpus run · feat(validate): add ParserOutput zod schema, fixtures, and tests
 - 2026-06-23 · Gate 2 · content-addressed corpus inventory + full report-writer (new layout) + ComparisonResult shape; TEST 46 pass / 2 todo, byte-identical reruns, TYPECHECK clean, no corpus run · feat(validate): content-addressed corpus inventory + report writer (Gate 2)
 - 2026-06-24 · Gate 3 · epubts-node adapter (adapter.ts + openNode); runner rewired to content-addressed node-only; entity truncation confirmed "Legends " (trailing space); TEST 51 pass / 1 todo / 0 fail, TYPECHECK clean · cc4f0aa4
-- 2026-06-24 · Gate 4 · epubts-browser adapter; browser/entry.ts simplified (no DeclaredVersion, no Zod); BrowserTransport.open() returns ParserOutput; runner adds browser loop + provenance; ePub.VERSION is "0.3" (2-part); TEST 55 pass / 1 todo / 0 fail, TYPECHECK clean · (pending commit)
+- 2026-06-24 · Gate 4 · epubts-browser adapter; browser/entry.ts simplified (no DeclaredVersion, no Zod); BrowserTransport.open() returns ParserOutput; runner adds browser loop + provenance; ePub.VERSION is "0.3" (2-part); TEST 55 pass / 1 todo / 0 fail, TYPECHECK clean · df6b1190
+- 2026-06-24 · Gate 5 · storyteller adapter; worker emits epub2-unsupported on EpubVersionError; openStoryteller() returns ParserOutput; runner adds storyteller loop + complete provenance; TEST 59 pass / 1 todo / 0 fail, TYPECHECK clean · (pending commit)

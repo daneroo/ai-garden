@@ -9,18 +9,23 @@ import {
   convertEpubjsSpine,
   convertEpubjsToc,
 } from "./epubjs-shared.ts";
-import type { Chapters, Metadata, ParserResult, ParseOptions } from "./types.ts";
+import type {
+  Chapters,
+  Metadata,
+  ParseOptions,
+  ParserResult,
+} from "./types.ts";
 
-const PARSE_TIMEOUT_MS = 10_000;
+const PARSE_TIMEOUT_MS = 5_000;
 
 export async function parse(
   bookPath: string,
-  _opts: ParseOptions = {}
+  _opts: ParseOptions = {},
 ): Promise<ParserResult> {
   const data = await readFile(bookPath);
   const arrayBuffer = data.buffer.slice(
     data.byteOffset,
-    data.byteOffset + data.byteLength
+    data.byteOffset + data.byteLength,
   ) as ArrayBuffer;
   const warnings: string[] = [];
   let book = new Book({ replacements: "none" });
@@ -37,7 +42,7 @@ export async function parse(
       const normalized = await normalizeLegacyOpfPrefixes(arrayBuffer);
       await withTimeout(book.open(normalized), bookPath);
       warnings.push(
-        "Normalized legacy opf: element prefixes for epub-ts/linkedom compatibility"
+        "Normalized legacy opf: element prefixes for epub-ts/linkedom compatibility",
       );
     }
     await withTimeout(book.loaded.manifest, bookPath);
@@ -48,7 +53,7 @@ export async function parse(
     const metadata = await extractMetadataTextContent(book, bookPath);
     if (JSON.stringify(metadata) !== JSON.stringify(stockMetadata)) {
       warnings.push(
-        "Reconstructed metadata from full element textContent for epub-ts/linkedom compatibility"
+        "Reconstructed metadata from full element textContent for epub-ts/linkedom compatibility",
       );
     }
     const chapters = await extractChapters(book, bookPath);
@@ -68,7 +73,10 @@ export async function parse(
   }
 }
 
-async function extractChapters(book: Book, bookPath: string): Promise<Chapters> {
+async function extractChapters(
+  book: Book,
+  bookPath: string,
+): Promise<Chapters> {
   const chapters: Chapters = [];
 
   for (const section of book.spine.spineItems) {
@@ -103,11 +111,11 @@ async function extractChapters(book: Book, bookPath: string): Promise<Chapters> 
 async function extractRenderedChapter(
   book: Book,
   section: Book["spine"]["spineItems"][number],
-  bookPath: string
+  bookPath: string,
 ): Promise<{ xhtml: string; contents: Element | undefined }> {
   const xhtml = await withTimeout(
     section.render(book.load.bind(book)),
-    bookPath
+    bookPath,
   );
   return { xhtml, contents: section.contents };
 }
@@ -115,17 +123,17 @@ async function extractRenderedChapter(
 async function extractExtensionlessChapter(
   book: Book,
   sectionUrl: string | undefined,
-  bookPath: string
+  bookPath: string,
 ): Promise<{ xhtml: string; contents: Element }> {
   if (!book.archive) throw new Error("EPUB archive is unavailable");
   if (!sectionUrl) throw new Error("Spine section has no resource URL");
   const xhtml = (await withTimeout(
     book.archive.request(sectionUrl, "text") as Promise<string>,
-    bookPath
+    bookPath,
   )) as string;
   const document = new DOMParser().parseFromString(
     xhtml,
-    "application/xhtml+xml"
+    "application/xhtml+xml",
   );
   return { xhtml, contents: document.documentElement };
 }
@@ -151,7 +159,7 @@ function canonicalizeNode(node: Node | undefined): string {
 
 async function extractMetadataTextContent(
   book: Book,
-  bookPath: string
+  bookPath: string,
 ): Promise<Metadata> {
   const packagePath = book.container?.packagePath;
   if (!packagePath || !book.archive) {
@@ -160,7 +168,7 @@ async function extractMetadataTextContent(
 
   const document = (await withTimeout(
     book.archive.request(`/${packagePath}`) as Promise<Document>,
-    bookPath
+    bookPath,
   )) as Document;
   const metadataElement = firstElement(document, "metadata");
   const spineElement = firstElement(document, "spine");
@@ -168,10 +176,10 @@ async function extractMetadataTextContent(
   const dcText = (name: string): string => {
     const namespaced = metadataElement.getElementsByTagNameNS(
       "http://purl.org/dc/elements/1.1/",
-      name
+      name,
     );
-    const element =
-      namespaced[0] ?? metadataElement.getElementsByTagName(`dc:${name}`)[0];
+    const element = namespaced[0] ??
+      metadataElement.getElementsByTagName(`dc:${name}`)[0];
     return element?.textContent ?? "";
   };
   const propertyText = (property: string): string => {
@@ -211,13 +219,13 @@ function firstElement(document: Document, name: string): Element {
 }
 
 async function normalizeLegacyOpfPrefixes(
-  arrayBuffer: ArrayBuffer
+  arrayBuffer: ArrayBuffer,
 ): Promise<ArrayBuffer> {
   const archive = new Archive();
   try {
     const zip = await archive.open(arrayBuffer);
     const opfFiles = Object.values(zip.files).filter(
-      (file) => !file.dir && file.name.toLowerCase().endsWith(".opf")
+      (file) => !file.dir && file.name.toLowerCase().endsWith(".opf"),
     );
     let changed = false;
     for (const file of opfFiles) {
@@ -230,7 +238,7 @@ async function normalizeLegacyOpfPrefixes(
     }
     if (!changed) {
       throw new Error(
-        "No Metadata Found and no legacy opf: element prefixes were present"
+        "No Metadata Found and no legacy opf: element prefixes were present",
       );
     }
     return await zip.generateAsync({ type: "arraybuffer" });
@@ -239,15 +247,23 @@ async function normalizeLegacyOpfPrefixes(
   }
 }
 
-async function withTimeout<T>(promise: Promise<T>, bookPath: string): Promise<T> {
+async function withTimeout<T>(
+  promise: Promise<T>,
+  bookPath: string,
+): Promise<T> {
   let timer: ReturnType<typeof setTimeout> | undefined;
   try {
     return await Promise.race([
       promise,
       new Promise<never>((_, reject) => {
         timer = setTimeout(
-          () => reject(new Error(`epubts parse timed out after ${PARSE_TIMEOUT_MS}ms: ${bookPath}`)),
-          PARSE_TIMEOUT_MS
+          () =>
+            reject(
+              new Error(
+                `epubts parse timed out after ${PARSE_TIMEOUT_MS}ms: ${bookPath}`,
+              ),
+            ),
+          PARSE_TIMEOUT_MS,
         );
       }),
     ]);
