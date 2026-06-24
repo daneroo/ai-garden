@@ -9,7 +9,7 @@ import {
   type ParserOutput,
   type TocItem,
 } from "./schema.ts";
-import type { RootName } from "./types.ts";
+import type { RootName } from "./config.ts";
 
 // The report writer owns the on-disk layout. It is complete in Gate 2 so the
 // adapters (Gates 3–5) and the comparator (Gate 6) only feed it data — they

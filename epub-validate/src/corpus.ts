@@ -2,12 +2,21 @@ import { createHash } from "node:crypto";
 import { opendir, readFile, stat } from "node:fs/promises";
 import { join, relative, sep } from "node:path";
 
-import type {
-  DiscoveredBook,
-  HashedBook,
-  RootConfig,
-  RootName,
-} from "./types.ts";
+import type { RootConfig, RootName } from "./config.ts";
+
+export interface DiscoveredBook {
+  root: RootName;
+  rootPath: string;
+  absolutePath: string;
+  relativePath: string;
+}
+
+export interface HashedBook extends DiscoveredBook {
+  size: number;
+  sha256: string;
+  shortSha: string;
+  reportFilename: string;
+}
 
 export async function discoverBooks(root: RootConfig): Promise<DiscoveredBook[]> {
   const rootStat = await stat(root.path).catch(() => undefined);
@@ -50,7 +59,6 @@ export async function hashBook(book: DiscoveredBook): Promise<HashedBook> {
     sha256: createHash("sha256").update(bytes).digest("hex"),
     shortSha: "",
     reportFilename: "",
-    parserAttempts: {},
   };
 }
 

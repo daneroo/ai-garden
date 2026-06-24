@@ -2,7 +2,12 @@ import { homedir } from "node:os";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import type { RootConfig } from "./types.ts";
+export type RootName = "test" | "drop" | "space";
+
+export interface RootConfig {
+  name: RootName;
+  path: string;
+}
 
 export const VALIDATE_DIRECTORY = resolve(
   dirname(fileURLToPath(import.meta.url)),

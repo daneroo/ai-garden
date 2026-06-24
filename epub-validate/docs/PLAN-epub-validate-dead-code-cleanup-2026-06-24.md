@@ -124,28 +124,42 @@ Commit:
 
 ## Gate 2 — Split Active Root Types From Legacy Inspect Types
 
-Status: `PENDING`
+Status: `COMMITTED` (pending Daniel's `bun run validate`)
 
 Known candidate:
 
 - `src/types.ts`
 
-Current live surface appears to be:
+Audit findings:
 
-- `RootName`
-- `RootConfig`
-- possibly corpus discovery/hash types if still used by `src/corpus.ts`
+- Live imports: `RootName`, `RootConfig`, `DiscoveredBook`, `HashedBook`.
+- `RootName` and `RootConfig` moved to `src/config.ts` (that module already
+  owns the `ROOTS` constant and `PARSER_NAMES`).
+- `DiscoveredBook` and `HashedBook` moved inline to `src/corpus.ts` (they
+  have no other importers). `parserAttempts` removed from `HashedBook` — it
+  was always initialized to `{}` and never read.
+- All other symbols (`ParserPathAttempt` and its union, `BookObservation`,
+  `BookInventoryEntry`, `RunReport`, `BrowserHarnessResult`, `BrowserRuntime`,
+  `FieldComparison`, `MetadataComparison`, `ParserName` duplicate, etc.) had
+  zero live imports and were deleted with the file.
+
+Dead code spotted for Gate 3:
+
+- `assignReportNames` in `src/corpus.ts` is exported but has no importers.
+- `hashBook` is exported but only called internally in `discoverInventory`.
+  Its `shortSha`/`reportFilename` fields in `HashedBook` are still initialized
+  to `""` but are only written by `assignReportNames` (dead) and never read.
 
 Tasks:
 
-- [ ] Audit every exported symbol in `src/types.ts`.
-- [ ] Move live shared root/corpus types to a narrow module, likely
+- [x] Audit every exported symbol in `src/types.ts`.
+- [x] Move live shared root/corpus types to a narrow module, likely
       `src/corpus-types.ts` or directly into `src/corpus.ts` / `src/config.ts`
       if that fits existing ownership better.
-- [ ] Update imports in `src/config.ts`, `src/corpus.ts`,
+- [x] Update imports in `src/config.ts`, `src/corpus.ts`,
       `src/corpus.test.ts`, and `src/report-writer.ts`.
-- [ ] Delete legacy inspect-era types once no live imports remain.
-- [ ] Delete `src/types.ts` if nothing meaningful remains.
+- [x] Delete legacy inspect-era types once no live imports remain.
+- [x] Delete `src/types.ts` if nothing meaningful remains.
 
 Verification:
 
@@ -163,8 +177,21 @@ Commit:
 
 Status: `PENDING`
 
+Known candidates from Gate 2 audit:
+
+- `assignReportNames` in `src/corpus.ts` — exported, zero importers.
+- `hashBook` in `src/corpus.ts` — exported, only called internally; if
+  `assignReportNames` goes away, `shortSha` and `reportFilename` in
+  `HashedBook` become fully dead too, and `HashedBook` can be simplified or
+  inlined.
+
 Tasks:
 
+- [ ] Confirm `assignReportNames` has no live importers, then delete it.
+- [ ] Once `assignReportNames` is gone, remove `shortSha` and `reportFilename`
+      from `HashedBook` and the corresponding initializations in `hashBook`.
+- [ ] Evaluate whether `hashBook`/`HashedBook` should remain exported or be
+      made internal to `corpus.ts`.
 - [ ] Search for exports with no imports after Gates 1-2.
 - [ ] Search for old inspect-era names: `epub-inspect`, `BookObservation`,
       `ParserPathAttempt`, `RunReport`, `shortSha`, `reportFilename`,

@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import { buildInventory, type HashedOccurrence } from "./corpus.ts";
-import type { RootName } from "./types.ts";
+import type { RootName } from "./config.ts";
 
 const ROOT_ORDER: RootName[] = ["test", "space", "drop"];
 
