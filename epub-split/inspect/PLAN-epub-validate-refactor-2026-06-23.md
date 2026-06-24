@@ -320,16 +320,18 @@ recorded in this plan. Commit: "chore(validate): freeze parity baseline".
 - [x] `PLAN-…` renamed to `DESIGN-…`; this plan written.
 - [x] Superseded headers added to the two three-parser docs.
 - [x] README banner points to the refactor docs.
-- [ ] `git mv` each source file per the naming table.
-- [ ] Update every import specifier and subprocess-spawn path to the new names.
-- [ ] Rename `PARSER_NAMES` entry `storyteller-node` → `storyteller`; update all
+- [x] `git mv` each source file per the naming table.
+- [x] Update every import specifier and subprocess-spawn path to the new names.
+- [x] Rename `PARSER_NAMES` entry `storyteller-node` → `storyteller`; update all
       uses (config, types, reports, index, workers). Keep package/runner name
       `epub-inspect` for now — it changes with the deferred directory restructure.
-- [ ] **Do not run the corpus / do not regenerate reports.** The rename touches
+      (`stage: "browser-transport"` left untouched — a runtime stage value in the
+      old schema, not a filename; the new schema drops `stage` in Gate 1.)
+- [x] **Do not run the corpus / do not regenerate reports.** The rename touches
       the parser-name string that would appear in regenerated reports; since
       `baseline/` is the frozen numeric oracle (label-independent), we simply do
       not regenerate. Verify by typecheck + build only.
-- [ ] Directory restructure `inspect/` → `epub-validate/`: **deferred**.
+- [ ] Directory restructure `inspect/` → `epub-validate/`: **deferred** (not done).
 
 Verifiable outcome: TYPECHECK clean; `bun run build:browser` succeeds; `git
 status` shows only source renames (no `baseline/` or `reports/` change). Commit:
@@ -526,3 +528,4 @@ matches the shipped tool.
 (Append one line per completed gate: date · gate · headline metric · commit.)
 
 - 2026-06-23 · Gate 0A · baseline frozen: 1,304 occ / 756 distinct / 538 multi-root; node×browser title mismatch 9, node×storyteller 4 · chore(validate): freeze parity baseline
+- 2026-06-23 · Gate 0B · 7 source files renamed, storyteller-node→storyteller; TYPECHECK clean, build:browser ok, no report regeneration · refactor(validate): rename sources, storyteller-node→storyteller

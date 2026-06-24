@@ -10,7 +10,7 @@ import type {
 // any parser must not be able to freeze the whole run. A true hang spins
 // forever, so a generous deadline catches it deterministically while leaving
 // every legitimate open far from the bound.
-const WORKER = `${import.meta.dir}/storyteller-open-one.ts`;
+const WORKER = `${import.meta.dir}/storyteller-worker.ts`;
 const OPEN_TIMEOUT_MS =
   Number(process.env["STORYTELLER_OPEN_TIMEOUT_MS"]) || 10_000;
 

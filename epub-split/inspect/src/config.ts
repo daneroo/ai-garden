@@ -41,7 +41,7 @@ export const ROOTS: readonly RootConfig[] = [
 export const PARSER_NAMES = [
   "epubts-browser",
   "epubts-node",
-  "storyteller-node",
+  "storyteller",
 ] as const;
 
 export const REPORT_SCHEMA_VERSION = 6;

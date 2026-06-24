@@ -17,7 +17,7 @@ import type {
 // On a LinkeDOM timeout the book is retried once in a fresh subprocess with jsdom
 // injected as the parser (Gate 4C: jsdom opens every book LinkeDOM hangs on). The
 // engine that succeeded is recorded so the fallback is visible in the report.
-const WORKER = `${import.meta.dir}/node-open-one.ts`;
+const WORKER = `${import.meta.dir}/epubts-node-worker.ts`;
 const OPEN_TIMEOUT_MS = Number(process.env["NODE_OPEN_TIMEOUT_MS"]) || 10_000;
 
 interface WorkerResult {

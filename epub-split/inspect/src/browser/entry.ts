@@ -1,6 +1,6 @@
 import ePub from "@likecoin/epub-ts";
 
-import { optional, optionalDate } from "../metadata-utils.ts";
+import { optional, optionalDate } from "../epubts-utils.ts";
 import type { BrowserOpenOutcome, DeclaredVersion, MetadataFields } from "../types.ts";
 import type { BrowserHarness } from "./protocol.ts";
 

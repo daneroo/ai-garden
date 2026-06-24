@@ -1,6 +1,6 @@
 import { Epub, MemoryAdapter } from "@storyteller-platform/epub";
 
-import { optionalDate } from "./metadata-utils.ts";
+import { optionalDate } from "./epubts-utils.ts";
 
 // Worker: open exactly one EPUB via the Storyteller path and emit a single JSON
 // line. Run as a subprocess so the parent can hard-kill any synchronous hang,
@@ -9,7 +9,7 @@ import { optionalDate } from "./metadata-utils.ts";
 // EPUB 2 archive surfaces as an EpubVersionError open failure.
 const path = process.argv[2];
 if (!path) {
-  process.stderr.write("usage: storyteller-open-one <epub-path>\n");
+  process.stderr.write("usage: storyteller-worker <epub-path>\n");
   process.exit(2);
 }
 

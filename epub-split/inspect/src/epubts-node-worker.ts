@@ -7,12 +7,12 @@
 // one is not already present. Setting globalThis.DOMParser to jsdom's before
 // importing the node build therefore swaps the parser engine without forking
 // epub.ts. LinkeDOM hangs on a few books; jsdom opens them.
-import { optional, optionalDate } from "./metadata-utils.ts";
+import { optional, optionalDate } from "./epubts-utils.ts";
 
 const path = process.argv[2];
 const engine = process.argv[3] === "jsdom" ? "jsdom" : "linkedom";
 if (!path) {
-  process.stderr.write("usage: node-open-one <epub-path> [linkedom|jsdom]\n");
+  process.stderr.write("usage: epubts-node-worker <epub-path> [linkedom|jsdom]\n");
   process.exit(2);
 }
 

@@ -1,9 +1,9 @@
-import { assignReportNames, discoverBooks, hashBook } from "./books.ts";
-import { BrowserTransport } from "./browser-transport.ts";
+import { assignReportNames, discoverBooks, hashBook } from "./corpus.ts";
+import { BrowserTransport } from "./epubts-browser.ts";
 import { ROOTS } from "./config.ts";
-import { inspectNode } from "./node-parser.ts";
+import { inspectNode } from "./epubts-node.ts";
 import { generateReports, reportPathForDisplay } from "./reports.ts";
-import { inspectStoryteller } from "./storyteller-parser.ts";
+import { inspectStoryteller } from "./storyteller.ts";
 import type { HashedBook, RootInventory } from "./types.ts";
 
 if (process.argv.length > 2) {
@@ -63,7 +63,7 @@ for (let index = 0; index < books.length; index++) {
   const book = books[index];
   if (!book) throw new Error(`Missing hashed book at index ${index}`);
   writeProgress("storyteller", index + 1, books.length, book.relativePath);
-  book.parserAttempts["storyteller-node"] = await inspectStoryteller(book);
+  book.parserAttempts["storyteller"] = await inspectStoryteller(book);
 }
 clearProgress();
 

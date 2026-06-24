@@ -92,7 +92,7 @@ export interface NodeOpenFailure {
 
 export type NodeOpenOutcome = NodeOpenSuccess | NodeOpenFailure;
 
-// storyteller-node path (@storyteller-platform/epub, in-memory read-only). Like
+// storyteller path (@storyteller-platform/epub, in-memory read-only). Like
 // the node path, there is no browser transport, so the attempt is the open
 // outcome directly. Storyteller validates EPUB 3 and exposes the declared
 // version, so EPUB 2 archives surface as an open failure.

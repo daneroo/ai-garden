@@ -110,8 +110,8 @@ function createBookObservation(book: HashedBook): BookObservation {
     "epubts-browser":
       book.parserAttempts["epubts-browser"] ?? notImplemented(),
     "epubts-node": book.parserAttempts["epubts-node"] ?? notImplemented(),
-    "storyteller-node":
-      book.parserAttempts["storyteller-node"] ?? notImplemented(),
+    "storyteller":
+      book.parserAttempts["storyteller"] ?? notImplemented(),
   };
   return {
     schemaVersion: REPORT_SCHEMA_VERSION,
@@ -126,7 +126,7 @@ function createBookObservation(book: HashedBook): BookObservation {
     comparison: compareMetadata(
       metadataFor(parsers["epubts-browser"]),
       metadataFor(parsers["epubts-node"]),
-      metadataFor(parsers["storyteller-node"])
+      metadataFor(parsers["storyteller"])
     ),
   };
 }
@@ -300,7 +300,7 @@ async function validateReports(run: RunReport): Promise<void> {
       throw new Error(`Missing node engine: ${book.report}`);
     }
     if (nodeAttempt.status === "node-opened") validateMetadata(nodeAttempt.metadata, book.report);
-    const storytellerAttempt = parsed.parsers["storyteller-node"];
+    const storytellerAttempt = parsed.parsers["storyteller"];
     if (
       storytellerAttempt.status !== "storyteller-opened" &&
       storytellerAttempt.status !== "storyteller-open-failed"
@@ -474,7 +474,7 @@ function countStoryteller(
   status: StorytellerOpenOutcome["status"]
 ): number {
   return run.books.filter(
-    (book) => book.parserStates["storyteller-node"] === status
+    (book) => book.parserStates["storyteller"] === status
   ).length;
 }
 
@@ -496,7 +496,7 @@ function detailPath(
 ): string | null {
   const attempt = observation.parsers["epubts-browser"];
   const node = observation.parsers["epubts-node"];
-  const storyteller = observation.parsers["storyteller-node"];
+  const storyteller = observation.parsers["storyteller"];
   const browserOpenFailed =
     attempt.status === "transported" && attempt.open.status === "open-failed";
   const nodeFallback =
@@ -591,7 +591,7 @@ function renderDetail(observation: BookObservation): string {
     );
   }
 
-  const storyteller = observation.parsers["storyteller-node"];
+  const storyteller = observation.parsers["storyteller"];
   lines.push(`- Storyteller: ${storyteller.status}`);
   if (storyteller.status === "storyteller-opened") {
     lines.push(
