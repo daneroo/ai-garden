@@ -124,7 +124,7 @@ Commit:
 
 ## Gate 2 — Split Active Root Types From Legacy Inspect Types
 
-Status: `COMMITTED` (pending Daniel's `bun run validate`)
+Status: `COMPLETED`
 
 Known candidate:
 
@@ -175,33 +175,49 @@ Commit:
 
 ## Gate 3 — Search For Additional Dead Code
 
-Status: `PENDING`
+Status: `COMPLETED`
 
-Known candidates from Gate 2 audit:
+Known candidates from Gate 2 audit (confirmed and resolved):
 
-- `assignReportNames` in `src/corpus.ts` — exported, zero importers.
-- `hashBook` in `src/corpus.ts` — exported, only called internally; if
-  `assignReportNames` goes away, `shortSha` and `reportFilename` in
-  `HashedBook` become fully dead too, and `HashedBook` can be simplified or
-  inlined.
+- `assignReportNames` — deleted (zero importers; `normalizeReportPath` deleted
+  with it).
+- `HashedBook` — simplified: `shortSha` and `reportFilename` removed; type
+  made private; inlined as `DiscoveredBook & { size; sha256 }` in `hashBook`.
+- `discoverBooks`, `hashBook`, `DiscoveredBook`, `CorpusOccurrence`,
+  `RootDiscovery` — all made private (no external importers).
+
+Additional dead exports found via `bunx knip` and resolved:
+
+- `config.ts`: deleted `PARSER_NAMES` (only used by deleted `types.ts`),
+  `TEMP_REPORTS_DIRECTORY`, `BACKUP_REPORTS_DIRECTORY`, `REPORT_SCHEMA_VERSION`.
+- `schema.ts`: unexported 17 intermediate zod schemas (building blocks only
+  used within the file); deleted 8 dead type aliases (`OpenStatus`, `DomParser`,
+  `OpenFailure`, `Meta`, `Metadata`, `Content`, `PairFieldStatus`,
+  `MetadataComparison`).
+- `report-writer.ts`: made `RUN_MANIFEST_SCHEMA_VERSION` private.
+- `compare.ts`: made `BaselineField` private.
+- `epubts-utils.ts`: made `EPUBTS_ZERO_DATE` private.
+- Added `knip.json` to declare runtime entry points (`browser/entry.ts`,
+  `epubts-node-worker.ts`, `storyteller-worker.ts`) so future knip runs are
+  clean.
 
 Tasks:
 
-- [ ] Confirm `assignReportNames` has no live importers, then delete it.
-- [ ] Once `assignReportNames` is gone, remove `shortSha` and `reportFilename`
+- [x] Confirm `assignReportNames` has no live importers, then delete it.
+- [x] Once `assignReportNames` is gone, remove `shortSha` and `reportFilename`
       from `HashedBook` and the corresponding initializations in `hashBook`.
-- [ ] Evaluate whether `hashBook`/`HashedBook` should remain exported or be
+- [x] Evaluate whether `hashBook`/`HashedBook` should remain exported or be
       made internal to `corpus.ts`.
-- [ ] Search for exports with no imports after Gates 1-2.
-- [ ] Search for old inspect-era names: `epub-inspect`, `BookObservation`,
+- [x] Search for exports with no imports after Gates 1-2.
+- [x] Search for old inspect-era names: `epub-inspect`, `BookObservation`,
       `ParserPathAttempt`, `RunReport`, `shortSha`, `reportFilename`,
       `node-opened`, `storyteller-opened`, `browser-node-differ`.
-- [ ] Classify each hit as one of:
+- [x] Classify each hit as one of:
       - active code
       - historical docs/archive
       - generated report fixture / intentional evidence
       - dead code candidate
-- [ ] Add any dead code candidates to this plan as new gates before editing.
+- [x] Add any dead code candidates to this plan as new gates before editing.
 
 Verification:
 
@@ -213,20 +229,18 @@ git diff --exit-code -- reports
 
 Commit:
 
-- If no code changes: no commit.
-- If docs inventory changes only: `docs(validate): record dead-code audit`.
-- If more code is removed: use a focused `refactor(validate): ...` commit.
+- `refactor(validate): dead-code audit and cleanup`
 
 ## Gate 4 — Final Invariance Check
 
-Status: `PENDING`
+Status: `COMPLETED`
 
 Tasks:
 
-- [ ] Run full CI.
-- [ ] Run full validation.
-- [ ] Confirm generated reports are unchanged.
-- [ ] Inspect non-report generated diffs, especially `dist/epubts-browser.js`,
+- [x] Run full CI.
+- [x] Run full validation.
+- [x] Confirm generated reports are unchanged.
+- [x] Inspect non-report generated diffs, especially `dist/epubts-browser.js`,
       before deciding whether to keep or revert them.
 
 Verification:
@@ -239,8 +253,7 @@ git diff --exit-code -- reports
 
 Commit:
 
-- Only commit final cleanup adjustments if Gate 4 reveals necessary changes.
-- Otherwise, no final code commit is needed beyond the previous gate commits.
+- No additional commit needed — Gate 3 covered all changes.
 
 ## Initial Dead-Code Inventory
 
