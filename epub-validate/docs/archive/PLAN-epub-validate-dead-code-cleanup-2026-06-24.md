@@ -2,7 +2,7 @@
 
 Date: 2026-06-24
 Branch: `codex/epub-validate-dead-code-cleanup`
-Status: `PLANNING`
+Status: `COMPLETED`
 
 ## Goal
 
@@ -264,3 +264,21 @@ Known from initial search:
   identifies the runner as `epub-inspect`.
 - `src/types.ts` is mixed. `RootName` and `RootConfig` are live. Many later
   exports appear tied to `src/reports.ts` and the old three-parser report model.
+
+## Progress Log
+
+### Gate 3 — tooling note
+
+`bunx knip` (v6.20.0) was used to find unused exports, files, and
+dependencies. It caught significantly more dead surface than manual `rg`
+searches alone — 25 unused exports and 4 dead exported types beyond what the
+initial audit identified. For future cleanup passes, run:
+
+```bash
+bunx knip
+```
+
+A `knip.json` was added to the project declaring the three runtime entry points
+that `knip` cannot discover via static imports (`src/browser/entry.ts`,
+`src/epubts-node-worker.ts`, `src/storyteller-worker.ts`). Without it, knip
+reports those files and their dependencies as false positives.
