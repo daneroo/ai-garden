@@ -339,20 +339,24 @@ status` shows only source renames (no `baseline/` or `reports/` change). Commit:
 
 ## Gate 1 — `ParserOutput` schema + fixtures + tests (no parsing run)
 
-- [ ] Add `zod` dependency. Add `"test": "bun test"` to package.json scripts.
-- [ ] `src/schema.ts`: Zod schema `{ schemaVersion, meta, content? }` with the
-      invariants from "Schema invariants" above enforced via `.refine`/
-      `.superRefine`. `PARSER_OUTPUT_SCHEMA_VERSION = 1`.
-- [ ] Infer TS types from Zod (`z.infer`) — single source of truth.
-- [ ] Build the fixture matrix in `test/fixtures/` (see "Fixture matrix"): named
-      EPUB 2, bad-zip, and entity-in-title fixtures; LinkeDOM-hang stays
-      corpus-only.
-- [ ] `src/schema.test.ts`: valid fixture parses; each invariant violation is
-      rejected (opened-without-content, open-failed-without-openFailure,
-      `openFailure`-with-`stage`, domParser-on-wrong-parser, etc.); each
-      `openStatus` round-trips.
-- [ ] Placeholder/xfail test documenting the LinkeDOM entity truncation against
-      the entity fixture, with a TODO to characterize the hang condition.
+- [x] Add `zod` dependency (zod@4.4.3). Add `"test": "bun test"` to package.json.
+- [x] `src/schema.ts`: Zod schema `{ schemaVersion, meta, content? }` with the
+      invariants enforced via chained `.refine` (zod v4 keeps the object type, so
+      inference stays clean) plus `z.strictObject` to reject stray keys
+      (`stage`, wall-clock leaks). `PARSER_OUTPUT_SCHEMA_VERSION = 1`.
+- [x] Infer TS types from Zod (`z.infer`) — single source of truth.
+- [x] Build the fixture matrix in `test/fixtures/` (committed generator
+      `build-fixtures.sh` + binaries): `epub2-minimal.epub`,
+      `entity-ampersand-in-title.epub`, `malformed-truncated-zip.epub`;
+      LinkeDOM-hang stays corpus-only.
+- [x] `src/schema.test.ts`: 6 committed sample `ParserOutput`s validate +
+      round-trip; 19 invariant-violation cases rejected (opened-without-content,
+      open-failed-without-openFailure, `openFailure`-with-`stage`,
+      domParser-on-wrong-parser, extra-key leaks, etc.); all-null metadata
+      accepted.
+- [x] `src/linkedom-quirks.test.ts`: two `test.todo` placeholders — the entity
+      truncation (against the fixture) and the LinkeDOM hang, each with a TODO to
+      characterize/flip in Gate 3.
 
 Verifiable outcome: TYPECHECK + TEST green. Committed sample `ParserOutput`
 fixtures + `test/fixtures/` inputs. No corpus run.
@@ -529,3 +533,4 @@ matches the shipped tool.
 
 - 2026-06-23 · Gate 0A · baseline frozen: 1,304 occ / 756 distinct / 538 multi-root; node×browser title mismatch 9, node×storyteller 4 · chore(validate): freeze parity baseline
 - 2026-06-23 · Gate 0B · 7 source files renamed, storyteller-node→storyteller; TYPECHECK clean, build:browser ok, no report regeneration · refactor(validate): rename sources, storyteller-node→storyteller
+- 2026-06-23 · Gate 1 · zod@4 ParserOutput schema + 3 EPUB fixtures + 6 sample outputs; TEST 26 pass / 2 todo / 0 fail, TYPECHECK clean, no corpus run · feat(validate): add ParserOutput zod schema, fixtures, and tests
