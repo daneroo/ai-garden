@@ -10,42 +10,20 @@ the schema-first refactor (Gates 6–10). The original
 
 ---
 
-## TODO / Open items
+## Open Items Moved
 
-- [ ] **Defer text-content extraction (Gate 10B).** Raw spine bytes are already
-      proven byte-identical across all parsers (Finding 7), so the only thing
-      10B could add is DOM-interpretation divergence (entity decoding,
-      whitespace). Not worth it yet — revisit only if a downstream alignment
-      need appears.
-- [ ] **Validate TOC → content through the parser itself.** Resolve each TOC
-      href against its nav-document base and confirm it lands on a real spine /
-      manifest target. This would (a) replace the coarse "direct-manifest-miss"
-      diagnostic with a real validity check, and (b) resolve the cross-parser
-      TOC href-baseline ambiguity (Finding 4) by comparing *resolved targets*
-      instead of raw hrefs. Needs the nav-document base path captured in
-      `ParserOutput`.
-- [ ] **Maintain the problematic-books list** (below) as a living inventory of
-      EPUBs that are candidates for fixing the *book*, not our code.
-- [ ] **Investigate the 18 Storyteller "could not read the package document"
-      failures.** These are not EPUB 2 (those are reported separately as
-      `epub2-unsupported`). Both epub.ts paths open them, so this is Storyteller
-      package-parse strictness, not corruption. Characterise the exact OPF
-      construct Storyteller rejects.
-- [ ] **Investigate the epubts-node jsdom fallback (9 books); consider forcing
-      jsdom always.** LinkeDOM infinite-loops on these; jsdom opens them. If
-      jsdom opens the whole corpus with no regressions, dropping the
-      LinkeDOM-first / jsdom-on-timeout hybrid for a single jsdom path would
-      remove the timeout machinery entirely. Verify jsdom parity on the books
-      LinkeDOM currently handles before switching.
-- [ ] **Static HTML report.** Replace the file-tree output with a
-      self-contained HTML view for easier browsing. Defer if the project
-      migrates to prosodio first.
-- [ ] **Markdown lint.** Enforce consistent formatting via `markdownlint` in
-      CI and VSCode so forks stay aligned; needs a shared config.
-- [ ] **Move loose config values** (worker timeouts, concurrency limits, etc.)
-      into `src/config.ts` so they are visible and tunable in one place.
-- [ ] **Migrate to prosodio monorepo.** Coordinate with whisper, match, align,
-      and demo UI; will require planning across multiple tools.
+The live TODO list moved to `README.md` on 2026-06-24. No items were dropped;
+the README carries the nine open items that previously lived here:
+
+- Defer text-content extraction (Gate 10B).
+- Validate TOC → content through the parser itself.
+- Maintain the problematic-books inventory.
+- Investigate the 18 Storyteller "could not read the package document" failures.
+- Investigate the epubts-node jsdom fallback (9 books).
+- Static HTML report.
+- Markdown lint.
+- Move loose config values into `src/config.ts`.
+- Migrate to `prosodio` monorepo.
 
 ---
 
@@ -161,7 +139,7 @@ reported (TOC href with no exact manifest match), but **most misses are valid
 nav-relative links**, not broken ones — e.g. TOC href `001_cover.xhtml` vs
 manifest `xhtml/001_cover.xhtml` is the same file. ~3167 such "misses" across 85
 books per epub.ts path are almost all valid nav-relative links. Proper
-validation (resolve against nav base, then match) is the second TODO item.
+validation (resolve against nav base, then match) is tracked in the README TODO.
 
 ## Finding 5 — Storyteller is EPUB 3 only, and stricter than epub.ts on EPUB 3
 
@@ -191,7 +169,7 @@ all 9. The fallback books:
 
 Root cause is LinkeDOM-specific (jsdom and standalone LinkeDOM parses of the
 container/OPF both complete instantly; the loop lives deeper in epub.ts's
-packaging parse under LinkeDOM). See the fifth TODO item re: forcing jsdom
+packaging parse under LinkeDOM). See the README TODO item re: forcing jsdom
 always.
 
 ## Finding 7 — Spine content is byte-identical across parsers
@@ -216,7 +194,7 @@ unprefixed selectors fail on these; the earlier epub-split adapter worked around
 it by stripping the `opf:` prefix from a copy of the OPF before parsing. The
 current corpus shows 0 open failures for epubts-node, so this is either fixed
 upstream in `@likecoin/epub-ts` or not represented in our books. Watch for it if
-the corpus expands. Source: `docs/archive/FINDINGS-epub-ts-2026-06-14.md`.
+the corpus expands. Source: `archive/FINDINGS-epub-ts-2026-06-14.md`.
 
 ## Finding 9 — `Section.render()` is not a clean content-extraction boundary
 
@@ -228,7 +206,7 @@ and the hook runner swallows the resulting exception (logged as
 as a stable extraction boundary for Gate 10B or any future content validator.
 The right path is to read spine resources directly from the archive, classify by
 manifest media type + content sniffing, and parse independently of epub.ts hooks.
-Source: `docs/archive/FINDINGS-epub-ts-2026-06-14.md`.
+Source: `archive/FINDINGS-epub-ts-2026-06-14.md`.
 
 ---
 

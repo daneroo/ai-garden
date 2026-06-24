@@ -6,8 +6,9 @@ Zod-validated `ParserOutput` (metadata, spine, manifest, per-item content
 SHA-256, TOC tree), and produces a deterministic pairwise comparison report.
 
 **Read first:**
-[`FINDINGS-epub-validate-2026-06-24.md`](FINDINGS-epub-validate-2026-06-24.md)
-— consolidated findings, problematic-books inventory, and the live TODO.
+[`FINDINGS-epub-validate-2026-06-24.md`](docs/FINDINGS-epub-validate-2026-06-24.md)
+— consolidated findings and problematic-books inventory that inform the TODO
+list below. Remove this notice once those TODOs no longer need that context.
 
 ## TODO
 
@@ -16,7 +17,7 @@ SHA-256, TOC tree), and produces a deterministic pairwise comparison report.
 - [ ] Validate TOC → content through the parser itself (resolve nav hrefs
       against manifest/spine) — would resolve the TOC href-baseline ambiguity.
 - [ ] Maintain the problematic-books inventory (candidates for fixing the EPUB
-      rather than our code) — see FINDINGS.
+      rather than our code) — see `docs/FINDINGS-epub-validate-2026-06-24.md`.
 - [ ] Investigate the 18 Storyteller "could not read the package document"
       failures (not EPUB 2; both epub.ts paths open them).
 - [ ] Investigate the epubts-node jsdom fallback (9 books) — consider forcing
@@ -90,7 +91,8 @@ The three-way comparison is really **two pairs with different purposes**:
   bypass LinkeDOM and serve as a trusted reference, confirming our Node/Bun-only
   parsing is equivalent. It is a verification tool, not part of the target
   pipeline. (It has already earned its keep — it caught the node-path metadata
-  entity-truncation bug and the Thud! TOC failure; see FINDINGS.)
+  entity-truncation bug and the Thud! TOC failure; see
+  `docs/FINDINGS-epub-validate-2026-06-24.md`.)
 
 - **epub.ts node vs storyteller (@storyteller-platform/epub)** — Storyteller has
   a full alignment solution we may want to interoperate with. The goal is to
@@ -100,16 +102,7 @@ The three-way comparison is really **two pairs with different purposes**:
 
 ### Documents
 
-- [DESIGN-epub-validate-refactor-2026-06-23.md](DESIGN-epub-validate-refactor-2026-06-23.md)
-  and [PLAN-epub-validate-refactor-2026-06-23.md](PLAN-epub-validate-refactor-2026-06-23.md)
-  — the schema-first architecture and tracked gates.
-- [DESIGN-epub-indexing.md](docs/DESIGN-epub-indexing.md) — unimplemented design
-  for the downstream use case: audio-synced word highlighting (CFI vs
-  char-offset addressing, CSS Custom Highlight API, 3-layer validation strategy).
-- Historical (three-parser feasibility experiment, 2026-06-19 → 06-22, now
-  superseded; archived in `docs/archive/`):
-  [DESIGN](docs/archive/DESIGN-three-parser-inspect-2026-06-19.md),
-  [PLAN](docs/archive/PLAN-three-parser-inspect-2026-06-19.md).
-- Historical (epub.js vs epub.ts comparison, 2026-06-14; archived):
-  [FINDINGS](docs/archive/FINDINGS-epub-ts-2026-06-14.md),
-  [PLAN](docs/archive/PLAN-epub-ts-2026-06-14.md).
+`docs/` holds active plans and designs. `docs/archive/` holds completed or
+superseded plans, designs, and findings. Keep the live TODO in this README; move
+supporting evidence or historical context into docs as it ages out of active
+work.

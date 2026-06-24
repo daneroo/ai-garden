@@ -711,7 +711,7 @@ Verifiable outcome: TYPECHECK + TEST + DETERMINISM.
 
 Goal: one coherent findings document, not a pile of per-gate notes.
 
-- [x] Write `FINDINGS-epub-validate-2026-06-24.md` consolidating the surviving
+- [x] Write `../FINDINGS-epub-validate-2026-06-24.md` consolidating the surviving
       three-parser findings (entity-truncation, EPUB 2/3 split, Bun runtime,
       jsdom fallback) **and** every structural finding from Gates 8–10.
 - [x] Remove `FINDINGS-three-parser-inspect-2026-06-19.md` (absorbed; git keeps it).
