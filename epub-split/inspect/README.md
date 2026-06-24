@@ -1,18 +1,29 @@
-# EPUB Inspect
+# EPUB Validate
 
-> **Active work (2026-06-23): schema-first refactor toward an EPUB *validate*
-> tool.** The three-parser feasibility experiment is complete and approved
-> (2026-06-22); see the FINDINGS. The next phase replaces the baked-in 3-way
-> comparison with a parser-agnostic, Zod-validated output schema and a generic
-> two-parser comparator. Start here:
-> - [`DESIGN-epub-validate-refactor-2026-06-23.md`](DESIGN-epub-validate-refactor-2026-06-23.md) — architecture
-> - [`PLAN-epub-validate-refactor-2026-06-23.md`](PLAN-epub-validate-refactor-2026-06-23.md) — tracked gates
->
-> The run instructions below describe the *current* (pre-refactor) runner and
-> stay valid until the refactor replaces it.
+A parser-agnostic EPUB validation harness: it opens every book in the `test`,
+`space`, and `drop` corpora with three independent parsers, captures a
+Zod-validated `ParserOutput` (metadata, spine, manifest, per-item content
+SHA-256, TOC tree), and produces a deterministic pairwise comparison report.
 
-Three-path EPUB inspection experiment covering the complete `test`, `drop`,
-and `space` corpora.
+Start here:
+- [`FINDINGS-epub-validate-2026-06-24.md`](FINDINGS-epub-validate-2026-06-24.md) — **consolidated findings + open TODO** (read this first)
+- [`DESIGN-epub-validate-refactor-2026-06-23.md`](DESIGN-epub-validate-refactor-2026-06-23.md) — architecture
+- [`PLAN-epub-validate-refactor-2026-06-23.md`](PLAN-epub-validate-refactor-2026-06-23.md) — tracked gates
+
+## TODO
+
+- [ ] Defer text-content extraction (Gate 10B) — raw spine bytes already agree
+      across all parsers; only revisit if a downstream need appears.
+- [ ] Validate TOC → content through the parser itself (resolve nav hrefs
+      against manifest/spine) — would resolve the TOC href-baseline ambiguity.
+- [ ] Maintain the problematic-books inventory (candidates for fixing the EPUB
+      rather than our code) — see FINDINGS.
+- [ ] Investigate the 18 Storyteller "could not read the package document"
+      failures (not EPUB 2; both epub.ts paths open them).
+- [ ] Investigate the epubts-node jsdom fallback (9 books) — consider forcing
+      jsdom always and dropping the LinkeDOM-first hybrid.
+- [ ] Directory move: `epub-split/inspect/` → `epub-validate/` (+ rename
+      package, settle test-books location). Planned separately.
 
 ## Context
 
@@ -79,9 +90,14 @@ bun run build:browser
 
 See:
 
-- [DESIGN-three-parser-inspect-2026-06-19.md](DESIGN-three-parser-inspect-2026-06-19.md)
-  for the architecture, evidence model, and feasibility-gate rationale.
-- [PLAN-three-parser-inspect-2026-06-19.md](PLAN-three-parser-inspect-2026-06-19.md)
-  for implementation, evidence, review, and approval status.
-- [FINDINGS-three-parser-inspect-2026-06-19.md](FINDINGS-three-parser-inspect-2026-06-19.md)
-  for evidence and conclusions recorded at each gate.
+- [FINDINGS-epub-validate-2026-06-24.md](FINDINGS-epub-validate-2026-06-24.md)
+  for the consolidated findings, problematic-books inventory, and open TODO.
+- [DESIGN-epub-validate-refactor-2026-06-23.md](DESIGN-epub-validate-refactor-2026-06-23.md)
+  and [PLAN-epub-validate-refactor-2026-06-23.md](PLAN-epub-validate-refactor-2026-06-23.md)
+  for the schema-first architecture and tracked gates.
+
+Historical (the three-parser feasibility experiment, 2026-06-19 → 06-22, now
+superseded; git retains the detail):
+
+- [DESIGN-three-parser-inspect-2026-06-19.md](DESIGN-three-parser-inspect-2026-06-19.md),
+  [PLAN-three-parser-inspect-2026-06-19.md](PLAN-three-parser-inspect-2026-06-19.md).

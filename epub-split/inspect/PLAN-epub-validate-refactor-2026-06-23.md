@@ -700,7 +700,10 @@ The within-book repeats are fully accounted for (see table above). No anomaly.
   whitespace normalisation) that raw bytes cannot reveal.
 - Skip 10B entirely if Gate 11 findings suffice.
 
-- [ ] Decide whether to implement 10B or proceed to Gate 11.
+- [x] Decide whether to implement 10B or proceed to Gate 11. **Decision: defer
+      10B.** Raw spine bytes already agree byte-for-byte across all parsers
+      (Gate 10A / Finding 7), so 10B could only surface DOM-interpretation
+      divergence — not worth it now. Carried as a TODO; proceeded to Gate 11.
 
 Verifiable outcome: TYPECHECK + TEST + DETERMINISM.
 
@@ -708,12 +711,19 @@ Verifiable outcome: TYPECHECK + TEST + DETERMINISM.
 
 Goal: one coherent findings document, not a pile of per-gate notes.
 
-- [ ] Write `FINDINGS-epub-validate-2026-…md` consolidating the surviving
+- [x] Write `FINDINGS-epub-validate-2026-06-24.md` consolidating the surviving
       three-parser findings (entity-truncation, EPUB 2/3 split, Bun runtime,
       jsdom fallback) **and** every structural finding from Gates 8–10.
-- [ ] Remove `FINDINGS-three-parser-inspect-2026-06-19.md` (absorbed; git keeps it).
-- [ ] Update README to describe the validate tool as built (not the experiment).
-- [ ] Re-evaluate parser scope (does epubts-browser stay?) with Gate 6–10 evidence.
+- [x] Remove `FINDINGS-three-parser-inspect-2026-06-19.md` (absorbed; git keeps it).
+- [x] Update README to describe the validate tool as built (not the experiment);
+      TODO section added (README + top of FINDINGS).
+- [x] Re-evaluate parser scope: **all three stay.** epubts-node = target;
+      epubts-browser = trusted reference (keeps catching node defects);
+      storyteller = scoped EPUB 3 validator. (Daniel: epubts-browser definitely stays.)
+
+Open TODO carried in FINDINGS + README: defer 10B, TOC→content validation,
+problematic-books inventory upkeep, investigate 18 storyteller package-parse
+failures, investigate/force jsdom fallback. Directory move planned separately.
 
 Verifiable outcome: a single findings doc; no orphaned FINDINGS files; README
 matches the shipped tool.
