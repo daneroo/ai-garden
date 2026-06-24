@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -425,6 +425,376 @@
       {
         "href": "xhtml/24_Footnote.xhtml",
         "sha256": "1434f141842d0ed3168ad0d69ea9dea1720f65fe1bc6e8ee828c504ca307b4df"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "OEBPS/xhtml/01_Cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "OEBPS/xhtml/02_Title_Page.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "OEBPS/xhtml/03_Copyright.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "OEBPS/xhtml/04_Dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "OEBPS/xhtml/05_Contents.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Epigraph",
+        "href": "OEBPS/xhtml/06_Epigraph.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introduction",
+        "href": "OEBPS/xhtml/07_Introduction.xhtml",
+        "subitems": [
+          {
+            "label": "The Craft of Simulations",
+            "href": "OEBPS/xhtml/07_Introduction.xhtml#_idParaDest-7",
+            "subitems": []
+          },
+          {
+            "label": "The Cosmic Laboratory",
+            "href": "OEBPS/xhtml/07_Introduction.xhtml#_idParaDest-8",
+            "subitems": []
+          },
+          {
+            "label": "The Universe in a Box",
+            "href": "OEBPS/xhtml/07_Introduction.xhtml#_idParaDest-9",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "1. Weather and Climate",
+        "href": "OEBPS/xhtml/08_1_Weather_and_Climate.xhtml",
+        "subitems": [
+          {
+            "label": "Beginnings",
+            "href": "OEBPS/xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-12",
+            "subitems": []
+          },
+          {
+            "label": "Laws of Nature",
+            "href": "OEBPS/xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-13",
+            "subitems": []
+          },
+          {
+            "label": "Solving Equations",
+            "href": "OEBPS/xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-14",
+            "subitems": []
+          },
+          {
+            "label": "Simulations Without Computers",
+            "href": "OEBPS/xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-15",
+            "subitems": []
+          },
+          {
+            "label": "Computers and Code",
+            "href": "OEBPS/xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-16",
+            "subitems": []
+          },
+          {
+            "label": "Resolution and Revolution",
+            "href": "OEBPS/xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-17",
+            "subitems": []
+          },
+          {
+            "label": "Climate Chaos",
+            "href": "OEBPS/xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-18",
+            "subitems": []
+          },
+          {
+            "label": "Earth and the Cosmos",
+            "href": "OEBPS/xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-19",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "2. Dark Matter, Dark Energy, and the Cosmic Web",
+        "href": "OEBPS/xhtml/09_2_Dark_Matter_Dark_En.xhtml",
+        "subitems": [
+          {
+            "label": "Inventing Nature",
+            "href": "OEBPS/xhtml/09_2_Dark_Matter_Dark_En.xhtml#_idParaDest-22",
+            "subitems": []
+          },
+          {
+            "label": "Ingredients for a Galaxy",
+            "href": "OEBPS/xhtml/09_2_Dark_Matter_Dark_En.xhtml#_idParaDest-23",
+            "subitems": []
+          },
+          {
+            "label": "Kicks and Drifts",
+            "href": "OEBPS/xhtml/09_2_Dark_Matter_Dark_En.xhtml#_idParaDest-24",
+            "subitems": []
+          },
+          {
+            "label": "Simulating the Unknown",
+            "href": "OEBPS/xhtml/09_2_Dark_Matter_Dark_En.xhtml#_idParaDest-25",
+            "subitems": []
+          },
+          {
+            "label": "Cold Dark Matter",
+            "href": "OEBPS/xhtml/09_2_Dark_Matter_Dark_En.xhtml#_idParaDest-26",
+            "subitems": []
+          },
+          {
+            "label": "Dark Energy",
+            "href": "OEBPS/xhtml/09_2_Dark_Matter_Dark_En.xhtml#_idParaDest-27",
+            "subitems": []
+          },
+          {
+            "label": "Darkness Visible",
+            "href": "OEBPS/xhtml/09_2_Dark_Matter_Dark_En.xhtml#_idParaDest-28",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "3. Galaxies and the Sub-grid",
+        "href": "OEBPS/xhtml/10_3_Galaxies_and_the_Su.xhtml",
+        "subitems": [
+          {
+            "label": "Tinsley’s Galaxies",
+            "href": "OEBPS/xhtml/10_3_Galaxies_and_the_Su.xhtml#_idParaDest-31",
+            "subitems": []
+          },
+          {
+            "label": "Galaxies and Dark Matter",
+            "href": "OEBPS/xhtml/10_3_Galaxies_and_the_Su.xhtml#_idParaDest-32",
+            "subitems": []
+          },
+          {
+            "label": "The Hubble Deep Field",
+            "href": "OEBPS/xhtml/10_3_Galaxies_and_the_Su.xhtml#_idParaDest-33",
+            "subitems": []
+          },
+          {
+            "label": "Grids and Smarticles",
+            "href": "OEBPS/xhtml/10_3_Galaxies_and_the_Su.xhtml#_idParaDest-34",
+            "subitems": []
+          },
+          {
+            "label": "The Inescapable Sub-grid",
+            "href": "OEBPS/xhtml/10_3_Galaxies_and_the_Su.xhtml#_idParaDest-35",
+            "subitems": []
+          },
+          {
+            "label": "Learning from Simulations",
+            "href": "OEBPS/xhtml/10_3_Galaxies_and_the_Su.xhtml#_idParaDest-36",
+            "subitems": []
+          },
+          {
+            "label": "The Mystery of Diversity",
+            "href": "OEBPS/xhtml/10_3_Galaxies_and_the_Su.xhtml#_idParaDest-37",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "4. Black Holes",
+        "href": "OEBPS/xhtml/11_4_Black_Holes.xhtml",
+        "subitems": [
+          {
+            "label": "Collapsing Stars",
+            "href": "OEBPS/xhtml/11_4_Black_Holes.xhtml#_idParaDest-40",
+            "subitems": []
+          },
+          {
+            "label": "Black-Hole Simulations",
+            "href": "OEBPS/xhtml/11_4_Black_Holes.xhtml#_idParaDest-41",
+            "subitems": []
+          },
+          {
+            "label": "Waves and Wormholes",
+            "href": "OEBPS/xhtml/11_4_Black_Holes.xhtml#_idParaDest-42",
+            "subitems": []
+          },
+          {
+            "label": "Energy",
+            "href": "OEBPS/xhtml/11_4_Black_Holes.xhtml#_idParaDest-43",
+            "subitems": []
+          },
+          {
+            "label": "Black Holes in Galaxies",
+            "href": "OEBPS/xhtml/11_4_Black_Holes.xhtml#_idParaDest-44",
+            "subitems": []
+          },
+          {
+            "label": "The Future",
+            "href": "OEBPS/xhtml/11_4_Black_Holes.xhtml#_idParaDest-45",
+            "subitems": []
+          },
+          {
+            "label": "The Other Singularity",
+            "href": "OEBPS/xhtml/11_4_Black_Holes.xhtml#_idParaDest-46",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "5. Quantum Mechanics and Cosmic Origins",
+        "href": "OEBPS/xhtml/12_5_Quantum_Mechanics_a.xhtml",
+        "subitems": [
+          {
+            "label": "Uncertainty",
+            "href": "OEBPS/xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-49",
+            "subitems": []
+          },
+          {
+            "label": "Simulations of Materials",
+            "href": "OEBPS/xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-50",
+            "subitems": []
+          },
+          {
+            "label": "The Promise of Quantum Computers",
+            "href": "OEBPS/xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-51",
+            "subitems": []
+          },
+          {
+            "label": "Quantum Realities",
+            "href": "OEBPS/xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-52",
+            "subitems": []
+          },
+          {
+            "label": "Quantum Cosmology",
+            "href": "OEBPS/xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-53",
+            "subitems": []
+          },
+          {
+            "label": "Inflation",
+            "href": "OEBPS/xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-54",
+            "subitems": []
+          },
+          {
+            "label": "Experiments with Simulations",
+            "href": "OEBPS/xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-55",
+            "subitems": []
+          },
+          {
+            "label": "Did Inflation Really Happen?",
+            "href": "OEBPS/xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-56",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "6. Thinking",
+        "href": "OEBPS/xhtml/13_6_Thinking.xhtml",
+        "subitems": [
+          {
+            "label": "Life on Mars",
+            "href": "OEBPS/xhtml/13_6_Thinking.xhtml#_idParaDest-59",
+            "subitems": []
+          },
+          {
+            "label": "Bayesian Logic and Spinning Universes",
+            "href": "OEBPS/xhtml/13_6_Thinking.xhtml#_idParaDest-60",
+            "subitems": []
+          },
+          {
+            "label": "Redshift",
+            "href": "OEBPS/xhtml/13_6_Thinking.xhtml#_idParaDest-61",
+            "subitems": []
+          },
+          {
+            "label": "Known and Unknown Unknowns",
+            "href": "OEBPS/xhtml/13_6_Thinking.xhtml#_idParaDest-62",
+            "subitems": []
+          },
+          {
+            "label": "Neurons",
+            "href": "OEBPS/xhtml/13_6_Thinking.xhtml#_idParaDest-63",
+            "subitems": []
+          },
+          {
+            "label": "Machine Learning",
+            "href": "OEBPS/xhtml/13_6_Thinking.xhtml#_idParaDest-64",
+            "subitems": []
+          },
+          {
+            "label": "Astronomy, Science, and Beyond",
+            "href": "OEBPS/xhtml/13_6_Thinking.xhtml#_idParaDest-65",
+            "subitems": []
+          },
+          {
+            "label": "The Weakness of Data",
+            "href": "OEBPS/xhtml/13_6_Thinking.xhtml#_idParaDest-66",
+            "subitems": []
+          },
+          {
+            "label": "Robot Physicists",
+            "href": "OEBPS/xhtml/13_6_Thinking.xhtml#_idParaDest-67",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "7. Simulations, Science, and Reality",
+        "href": "OEBPS/xhtml/14_7_Simulations_Science.xhtml",
+        "subitems": [
+          {
+            "label": "The Resolution of Reality",
+            "href": "OEBPS/xhtml/14_7_Simulations_Science.xhtml#_idParaDest-70",
+            "subitems": []
+          },
+          {
+            "label": "Does Reality Have a Sub-grid?",
+            "href": "OEBPS/xhtml/14_7_Simulations_Science.xhtml#_idParaDest-71",
+            "subitems": []
+          },
+          {
+            "label": "Simulations as Calculations",
+            "href": "OEBPS/xhtml/14_7_Simulations_Science.xhtml#_idParaDest-72",
+            "subitems": []
+          },
+          {
+            "label": "Simulations as Experiments",
+            "href": "OEBPS/xhtml/14_7_Simulations_Science.xhtml#_idParaDest-73",
+            "subitems": []
+          },
+          {
+            "label": "Simulations as Science",
+            "href": "OEBPS/xhtml/14_7_Simulations_Science.xhtml#_idParaDest-74",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "OEBPS/xhtml/15_Acknowledgments.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "OEBPS/xhtml/16_Notes.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "OEBPS/xhtml/17_Index.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "OEBPS/xhtml/18_About_the_Author.xhtml",
+        "subitems": []
       }
     ]
   }

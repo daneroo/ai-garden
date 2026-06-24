@@ -531,12 +531,53 @@ New manifest findings recorded.
 
 ## Gate 9 — Expand to TOC
 
-**Deferred — executing Gate 10A/10B first (content before TOC; gate numbers kept for reference).**
-
-- [ ] `content.toc` (recursive); adapters populate it.
-- [ ] `compareBook` gains `TocComparison`.
+- [x] `content.toc: TocItem[]` (recursive); all three adapters populate it.
+- [x] `compareBook` gains `TocComparison { status }`.
+- [x] Schema: ParserOutput v5, ComparisonResult v6.
+- [x] Label normalization (CRLF→LF, trim) applied at comparison time in `compare.ts` only — raw labels preserved in `ParserOutput`.
+- [x] Storyteller: `getTableOfContents({ resolveToRoot: true })` normalises hrefs to epub-root-relative paths.
 
 Verifiable outcome: TYPECHECK + TEST + DETERMINISM. Earlier-section parity holds.
+
+#### Gate 9 corpus findings
+
+**Storyteller TOC href canonicalisation — one residual case.**
+
+`resolveToRoot: true` fixes non-deterministic temp-dir paths for books whose nav
+document sits in a subdirectory (e.g. `Text/nav.xhtml`). One book remains
+non-canonical after the fix:
+
+> **The Beartown Trilogy** — nav at `e9781668010983/xhtml/nav.xhtml` contains
+> `../../e9781501160783/xhtml/book1_ch01.xhtml` links that cross subfolder
+> boundaries. Storyteller's `resolveToRoot` resolves these against the epub's
+> filesystem extraction path, producing OS-absolute paths
+> (`var/folders/.../e9781501160783/xhtml/book1_ch01.xhtml`) rather than the
+> correct epub-root-relative form (`e9781501160783/xhtml/book1_ch01.xhtml`).
+
+Root cause: the EPUB spans two numbered content directories (`e9781668010983/` and
+`e9781501160783/`); relative hrefs in the nav escape the nav's own directory via
+`../..`. All other corpus books keep their nav hrefs within their own subtree,
+so `resolveToRoot` works correctly for them.
+
+Fix not implemented — one book, requires post-processing TOC hrefs against the
+manifest set. Detection approach if needed: strip fragment, check href against
+`content.manifest` hrefs; any miss indicates a non-canonical path.
+
+**epub-ts vs storyteller: systematic href format difference.**
+
+epub-ts returns TOC hrefs relative to the nav document (e.g. `xhtml/title.xhtml#tit`);
+storyteller with `resolveToRoot: true` returns epub-root-relative hrefs
+(e.g. `OEBPS/xhtml/title.xhtml#tit`). This produces 186/213 "differ" for
+node×storyteller — not a content disagreement, but a parser representation
+difference in href baseline.
+
+The 27 books that agree are books whose nav sits at the epub root (no `OEBPS/`
+subdirectory to prepend).
+
+Consequence: TOC href comparison between epub-ts and storyteller is not meaningful
+in its current form. Options: (a) compare labels + tree shape only, drop hrefs
+from equality; (b) normalize hrefs to a common baseline using the OPF directory.
+Deferred — to be resolved before Gate 9 is considered complete.
 
 ## Gate 10 — Expand to chapter content
 

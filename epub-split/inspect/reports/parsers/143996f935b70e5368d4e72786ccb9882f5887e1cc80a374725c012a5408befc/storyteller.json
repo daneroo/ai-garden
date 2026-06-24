@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -2142,6 +2142,551 @@
       {
         "href": "OEBPS/cop.xhtml",
         "sha256": "6f28370725cd3b5e1646ac17e9e6d68fd7851d95adaffc8a3914575165d49819"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "OEBPS/cvi.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "OEBPS/tp.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright Notice",
+        "href": "OEBPS/notice.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "OEBPS/ded.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Prelude to the Stormlight Archive",
+        "href": "OEBPS/pre.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Book One: The Way of Kings",
+        "href": "OEBPS/book-one.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Prologue: To Kill",
+        "href": "OEBPS/pro.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Part One: Above Silence",
+        "href": "OEBPS/p01.xhtml",
+        "subitems": [
+          {
+            "label": "1: STORMBLESSED",
+            "href": "OEBPS/c01.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "2: HONOR IS DEAD",
+            "href": "OEBPS/c02.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "3: CITY OF BELLS",
+            "href": "OEBPS/c03.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "4: THE SHATTERED PLAINS",
+            "href": "OEBPS/c04.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "5: HERETIC",
+            "href": "OEBPS/c05.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "6: BRIDGE FOUR",
+            "href": "OEBPS/c06.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "7: ANYTHING REASONABLE",
+            "href": "OEBPS/c07.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "8: NEARER THE FLAME",
+            "href": "OEBPS/c08.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "9: DAMNATION",
+            "href": "OEBPS/c09.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "10: STORIES OF SURGEONS",
+            "href": "OEBPS/c10.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "11: DROPLETS",
+            "href": "OEBPS/c11.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Interludes",
+        "href": "OEBPS/p01a.xhtml",
+        "subitems": [
+          {
+            "label": "1-1: ISHIKK",
+            "href": "OEBPS/p01a_c01.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "1-2: NAN BALAT",
+            "href": "OEBPS/p01a_c02.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "1-3: THE GLORY OF IGNORANCE",
+            "href": "OEBPS/p01a_c03.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Two: The Illuminating Storms",
+        "href": "OEBPS/p02.xhtml",
+        "subitems": [
+          {
+            "label": "12: UNITY",
+            "href": "OEBPS/c12.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "13: TEN HEARTBEATS",
+            "href": "OEBPS/c13.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "14: PAYDAY",
+            "href": "OEBPS/c14.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "15: THE DECOY",
+            "href": "OEBPS/c15.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "16: COCOONS",
+            "href": "OEBPS/c16.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "17: A BLOODY, RED SUNSET",
+            "href": "OEBPS/c17.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "18: HIGHPRINCE OF WAR",
+            "href": "OEBPS/c18.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "19: STARFALLS",
+            "href": "OEBPS/c19.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "20: SCARLET",
+            "href": "OEBPS/c20.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "21: WHY MEN LIE",
+            "href": "OEBPS/c21.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "22: EYES, HANDS, OR SPHERES?",
+            "href": "OEBPS/c22.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "23: MANY USES",
+            "href": "OEBPS/c23.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "24: THE GALLERY OF MAPS",
+            "href": "OEBPS/c24.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "25: THE BUTCHER",
+            "href": "OEBPS/c25.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "26: STILLNESS",
+            "href": "OEBPS/c26.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "27: CHASM DUTY",
+            "href": "OEBPS/c27.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "28: DECISION",
+            "href": "OEBPS/c28.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Interludes",
+        "href": "OEBPS/p02a.xhtml",
+        "subitems": [
+          {
+            "label": "1-4: RYSN",
+            "href": "OEBPS/p02a_c04.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "1-5: AXIES THE COLLECTOR",
+            "href": "OEBPS/p02a_c05.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "1-6: A WORK OF ART",
+            "href": "OEBPS/p02a_c06.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Three: Dying",
+        "href": "OEBPS/p03.xhtml",
+        "subitems": [
+          {
+            "label": "29: ERRORGANCE",
+            "href": "OEBPS/c29.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "30: DARKNESS UNSEEN",
+            "href": "OEBPS/c30.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "31: BENEATH THE SKIN",
+            "href": "OEBPS/c31.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "32: SIDE CARRY",
+            "href": "OEBPS/c32.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "33: CYMATICS",
+            "href": "OEBPS/c33.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "34: STORMWALL",
+            "href": "OEBPS/c34.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "35: A LIGHT BY WHICH TO SEE",
+            "href": "OEBPS/c35.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "36: THE LESSON",
+            "href": "OEBPS/c36.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "37: SIDES",
+            "href": "OEBPS/c37.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "38: ENVISAGER",
+            "href": "OEBPS/c38.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "39: BURNED INTO HER",
+            "href": "OEBPS/c39.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "40: EYES OF RED AND BLUE",
+            "href": "OEBPS/c40.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "41: OF ALDS AND MILP",
+            "href": "OEBPS/c41.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "42: BEGGARS AND BARMAIDS",
+            "href": "OEBPS/c42.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "43: THE WRETCH",
+            "href": "OEBPS/c43.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "44: THE WEEPING",
+            "href": "OEBPS/c44.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "45: SHADESMAR",
+            "href": "OEBPS/c45.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "46: CHILD OF TANAVAST",
+            "href": "OEBPS/c46.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "47: STORMBLESSINGS",
+            "href": "OEBPS/c47.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "48: STRAWBERRY",
+            "href": "OEBPS/c48.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "49: TO CARE",
+            "href": "OEBPS/c49.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "50: BACKBREAKER POWDER",
+            "href": "OEBPS/c50.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "51: SAS NAHN",
+            "href": "OEBPS/c51.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Interludes",
+        "href": "OEBPS/p03a.xhtml",
+        "subitems": [
+          {
+            "label": "1-7: BAXIL",
+            "href": "OEBPS/p03a_c07.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "1-8: GERANID",
+            "href": "OEBPS/p03a_c08.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "1-9: DEATH WEARS WHITE",
+            "href": "OEBPS/p03a_c09.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Four: Storm’s Illumination",
+        "href": "OEBPS/p04.xhtml",
+        "subitems": [
+          {
+            "label": "52: A HIGHWAY TO THE SUN",
+            "href": "OEBPS/c52.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "53: DUNNY",
+            "href": "OEBPS/c53.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "54: GIBLETISH",
+            "href": "OEBPS/c54.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "55: AN EMERALD BROAM",
+            "href": "OEBPS/c55.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "56: THAT STORMING BOOK",
+            "href": "OEBPS/c56.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "57: WANDERSAIL",
+            "href": "OEBPS/c57.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "58: THE JOURNEY",
+            "href": "OEBPS/c58.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "59: AN HONOR",
+            "href": "OEBPS/c59.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "60: THAT WHICH WE CANNOT HAVE",
+            "href": "OEBPS/c60.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "61: RIGHT FOR WRONG",
+            "href": "OEBPS/c61.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "62: THREE GLYPHS",
+            "href": "OEBPS/c62.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "63: FEAR",
+            "href": "OEBPS/c63.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "64: A MAN OF EXTREMES",
+            "href": "OEBPS/c64.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "65: THE TOWER",
+            "href": "OEBPS/c65.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "66: CODES",
+            "href": "OEBPS/c66.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "67: WORDS",
+            "href": "OEBPS/c67.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "68: ESHONAI",
+            "href": "OEBPS/c68.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "69: JUSTICE",
+            "href": "OEBPS/c69.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Five: The Silence Above",
+        "href": "OEBPS/p05.xhtml",
+        "subitems": [
+          {
+            "label": "70: SEA OF GLASS",
+            "href": "OEBPS/c70.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "71: RECORDED IN BLOOD",
+            "href": "OEBPS/c71.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "72: VERISTITALIAN",
+            "href": "OEBPS/c72.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "73: TRUST",
+            "href": "OEBPS/c73.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "74: GHOSTBLOOD",
+            "href": "OEBPS/c74.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "75: IN THE TOP ROOM",
+            "href": "OEBPS/c75.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Epilogue: Of Most Worth",
+        "href": "OEBPS/epi.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Endnote",
+        "href": "OEBPS/end-note.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Ars Arcanum",
+        "href": "OEBPS/ars.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Tor Books by Brandon Sanderson",
+        "href": "OEBPS/Tor_Books_by_Brandon_Sanderson.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "OEBPS/ata.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Newsletter Sign-up",
+        "href": "OEBPS/newsletter.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "OEBPS/toc.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "OEBPS/cop.xhtml",
+        "subitems": []
       }
     ]
   }

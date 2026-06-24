@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -133,6 +133,13 @@
       {
         "href": "index_split_002.xhtml",
         "sha256": "4ea3b0e07156c7d257807bcf80aa11e4ac81103e9d50733c9ab74797424b41f7"
+      }
+    ],
+    "toc": [
+      {
+        "label": "\n        Start\n      ",
+        "href": "titlepage.xhtml",
+        "subitems": []
       }
     ]
   }

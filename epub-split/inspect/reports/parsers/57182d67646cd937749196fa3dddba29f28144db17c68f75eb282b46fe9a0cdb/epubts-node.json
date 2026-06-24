@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -1053,6 +1053,135 @@
       {
         "href": "xhtml/022_BM_003.xhtml",
         "sha256": "97e739dc7e85ec189dc063845137c1e9f587554f4728e9c69feb9fdc2e4e13e3"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "002_title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "003_copyright.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "004_dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dramatis Personae",
+        "href": "006_FM_002.xhtml#toc_6",
+        "subitems": []
+      },
+      {
+        "label": "Timeline",
+        "href": "007_FM_003.xhtml#toc_7",
+        "subitems": []
+      },
+      {
+        "label": "Preface",
+        "href": "008_FM_004.xhtml#toc_8",
+        "subitems": []
+      },
+      {
+        "label": "Epigraph",
+        "href": "009_epigraph.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Map",
+        "href": "010_FM_005.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "PART ONE: WAR",
+        "href": "011_part_001.xhtml#toc_11",
+        "subitems": [
+          {
+            "label": "I. The Sad and Infernal Gods",
+            "href": "012_chapter_001.xhtml#toc_12",
+            "subitems": []
+          },
+          {
+            "label": "II. Four Emperors",
+            "href": "013_chapter_002.xhtml#toc_13",
+            "subitems": []
+          },
+          {
+            "label": "III. A World at War",
+            "href": "014_chapter_003.xhtml#toc_14",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "PART TWO: PEACE",
+        "href": "015_part_002.xhtml#toc_15",
+        "subitems": [
+          {
+            "label": "IV. Sleeping Giants",
+            "href": "016_chapter_004.xhtml#toc_16",
+            "subitems": []
+          },
+          {
+            "label": "V. The Universal Spider",
+            "href": "017_chapter_005.xhtml#toc_17",
+            "subitems": []
+          },
+          {
+            "label": "VI. The Best of Emperors",
+            "href": "018_chapter_006.xhtml#toc_18",
+            "subitems": []
+          },
+          {
+            "label": "VII. I Build This Garden for Us",
+            "href": "019_chapter_007.xhtml#toc_19",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Photos",
+        "href": "appendix001.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgements",
+        "href": "020_BM_001.xhtml#toc_20",
+        "subitems": []
+      },
+      {
+        "label": "Discover More",
+        "href": "discover-page.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "023_BM_004.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Also by Tom Holland",
+        "href": "001_ad-card.xhtml#toc_1",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "021_BM_002.xhtml#toc_21",
+        "subitems": []
+      },
+      {
+        "label": "Bibliography",
+        "href": "022_BM_003.xhtml#toc_22",
+        "subitems": []
       }
     ]
   }

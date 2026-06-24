@@ -12,12 +12,13 @@ function opened(
   date: string | null,
   spine: { href: string; linear: boolean }[] = [],
   manifest: { id: string; href: string; mediaType: string | null }[] = [],
-  spineHashes: { href: string; sha256: string }[] = []
+  spineHashes: { href: string; sha256: string }[] = [],
+  toc: { label: string; href: string | null; subitems: never[] }[] = []
 ): ParserOutput {
   return {
-    schemaVersion: 4,
+    schemaVersion: 5,
     meta: { parser, parserVersion: "1.0.0", openStatus: "opened" },
-    content: { metadata: { title, creator, date }, spine, manifest, spineHashes },
+    content: { metadata: { title, creator, date }, spine, manifest, spineHashes, toc },
   };
 }
 
@@ -69,7 +70,7 @@ describe("compareBook", () => {
 
   test("throws when either input is not opened", () => {
     const a: ParserOutput = {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "epubts-node", parserVersion: "1.0.0", openStatus: "open-failed", openFailure: { category: "Error", message: "bad" } },
     };
     const b = opened("epubts-browser", "Title", null, null);

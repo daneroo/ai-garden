@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -2183,6 +2183,134 @@
       {
         "href": "xhtml/footnotes.xhtml",
         "sha256": "472cd10e5bdc8486888a748679e40896d372585d93ed7b27446ee11ac02e06d6"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Title Page",
+        "href": "xhtml/title.xhtml#tit",
+        "subitems": []
+      },
+      {
+        "label": "Copyright Notice",
+        "href": "xhtml/copyrightnotice.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "xhtml/dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "xhtml/acknowledgments.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Preface",
+        "href": "xhtml/preface.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "The Selish System",
+        "href": "xhtml/part1.xhtml#pt1",
+        "subitems": [
+          {
+            "label": "The Emperor’s Soul",
+            "href": "xhtml/part2.xhtml#pt2",
+            "subitems": []
+          },
+          {
+            "label": "The Hope of Elantris",
+            "href": "xhtml/part3.xhtml#pt3",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "The Scadrian System",
+        "href": "xhtml/part4.xhtml#pt4",
+        "subitems": [
+          {
+            "label": "The Eleventh Metal",
+            "href": "xhtml/part5.xhtml#pt5",
+            "subitems": []
+          },
+          {
+            "label": "Allomancer Jak and the Pits of Eltania, Episodes Twenty-Eight Through Thirty",
+            "href": "xhtml/part6.xhtml#pt6",
+            "subitems": []
+          },
+          {
+            "label": "Mistborn: Secret History",
+            "href": "xhtml/part7.xhtml#pt7",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "The Taldain System",
+        "href": "xhtml/part12a.xhtml#pt12a",
+        "subitems": [
+          {
+            "label": "White Sand",
+            "href": "xhtml/part12b.xhtml#pt12b",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "The Threnodite System",
+        "href": "xhtml/part13.xhtml#pt13",
+        "subitems": [
+          {
+            "label": "Shadows for Silence in the Forests of Hell",
+            "href": "xhtml/part14.xhtml#pt14",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "The Drominad System",
+        "href": "xhtml/part15.xhtml#pt15",
+        "subitems": [
+          {
+            "label": "Sixth of the Dusk",
+            "href": "xhtml/part16.xhtml#pt16",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "The Rosharan System",
+        "href": "xhtml/part17.xhtml#pt17",
+        "subitems": [
+          {
+            "label": "Edgedancer",
+            "href": "xhtml/part18.xhtml#pt18",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "By Brandon Sanderson",
+        "href": "xhtml/adcard.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "xhtml/abouttheauthor.xhtml#ata",
+        "subitems": []
+      },
+      {
+        "label": "Newsletter Sign-up",
+        "href": "xhtml/newsletter.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "xhtml/copyright.xhtml",
+        "subitems": []
       }
     ]
   }

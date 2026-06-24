@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -241,6 +241,73 @@
       {
         "href": "xhtml/footnotes1.html",
         "sha256": "325362bf3fcee2d4c16ae9aca70ecffb01f8158ed4c821eecbfb82b37476944b"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "xhtml/cover.xml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "xhtml/title.html",
+        "subitems": []
+      },
+      {
+        "label": "Copyright Notice",
+        "href": "xhtml/copyrightnotice.html",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "xhtml/dedication.html",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "xhtml/acknowledgments.html",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "xhtml/contents.html",
+        "subitems": []
+      },
+      {
+        "label": "Jury Service",
+        "href": "xhtml/chapter1.html",
+        "subitems": []
+      },
+      {
+        "label": "Appeals Court",
+        "href": "xhtml/chapter2.html",
+        "subitems": []
+      },
+      {
+        "label": "Parole Board",
+        "href": "xhtml/chapter3.html",
+        "subitems": []
+      },
+      {
+        "label": "Epilogue: Verdict",
+        "href": "xhtml/epilogue.html",
+        "subitems": []
+      },
+      {
+        "label": "Also by Cory Doctorow and Charles Stross from Tom Doherty Associates",
+        "href": "xhtml/adcard.html",
+        "subitems": []
+      },
+      {
+        "label": "About the Authors",
+        "href": "xhtml/abouttheauthor.html",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "xhtml/copyright.html",
+        "subitems": []
       }
     ]
   }

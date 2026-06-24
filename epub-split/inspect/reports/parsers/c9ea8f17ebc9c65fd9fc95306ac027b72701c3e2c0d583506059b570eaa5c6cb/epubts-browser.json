@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -722,6 +722,217 @@
       {
         "href": "xhtml/copyright.xhtml",
         "sha256": "5927c0039236c7230d36d20750f0512604676e2f0bde16edc5de8c26300cdae2"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "about_the_author.xhtml#sec-ata",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "title.xhtml#sec-titlepage001",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Epigraph",
+        "href": "epigraph.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "List of Illustrations",
+        "href": "list_of_illustrations.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Maps",
+        "href": "maps.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Family Trees",
+        "href": "family_tree.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Author’s Note",
+        "href": "a_note.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introduction",
+        "href": "introduction.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "PART ONE: WAR",
+        "href": "part001.xhtml",
+        "subitems": [
+          {
+            "label": "1. 1367–1377: by my sceptre’s awe",
+            "href": "chapter001.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "2. 1377–1381: measure our confines",
+            "href": "chapter002.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "3. 1381–1384: be rul’d by me",
+            "href": "chapter003.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "4. 1384–1386: the blood is hot",
+            "href": "chapter004.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "5. 1386–1387: am I not king?",
+            "href": "chapter005.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "6. 1387–1389: come I appellant",
+            "href": "chapter006.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "PART TWO: PEACE",
+        "href": "part002.xhtml",
+        "subitems": [
+          {
+            "label": "7. 1389–1393: this little world",
+            "href": "chapter007.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "8. 1391–1394: to be a make-peace",
+            "href": "chapter008.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "9. 1394–1395: an immortal title",
+            "href": "chapter009.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "10. 1395–1396: conclude and be agreed",
+            "href": "chapter010.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "PART THREE: VENGEANCE",
+        "href": "part003.xhtml",
+        "subitems": [
+          {
+            "label": "11. 1396–1397: on ancient malice",
+            "href": "chapter011.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "12. 1397–1398: to stand upon my kingdom",
+            "href": "chapter012.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "13. 1398–1399: the hollow crown",
+            "href": "chapter013.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "14. 1399–1400: mine empty chair",
+            "href": "chapter014.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "PART FOUR: GRACE",
+        "href": "part004.xhtml",
+        "subitems": [
+          {
+            "label": "15. 1400–1403: so shaken as we are",
+            "href": "chapter015.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "16. 1403–1406: meteors of a troubled heaven",
+            "href": "chapter016.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "17. 1406–1410: will fortune never come with both hands full",
+            "href": "chapter017.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "18. 1410–1413: sorrows of the blood",
+            "href": "chapter018.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "19. 1413–1415: the balance and the sword",
+            "href": "chapter019.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Epilogue",
+        "href": "epilogue.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Images",
+        "href": "images.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgements",
+        "href": "acknowledgements.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Directory of the Main Players in the Royal and Noble Families of England and France",
+        "href": "appendix.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "notes.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Bibliography",
+        "href": "bibliography.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "index.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "copyright.xhtml",
+        "subitems": []
       }
     ]
   }

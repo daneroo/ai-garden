@@ -1,8 +1,17 @@
 import { createHash } from "node:crypto";
-
-import { Epub, EpubVersionError, MemoryAdapter } from "@storyteller-platform/epub";
+import { Epub, EpubVersionError, MemoryAdapter, type NavigationItem } from "@storyteller-platform/epub";
 
 import { optionalDate } from "./epubts-utils.ts";
+
+type NormalizedTocItem = { label: string; href: string | null; subitems: NormalizedTocItem[] };
+
+function normalizeToc(items: NavigationItem[]): NormalizedTocItem[] {
+  return items.map((item) => ({
+    label: item.title,
+    href: item.href ?? null,
+    subitems: normalizeToc(item.children ?? []),
+  }));
+}
 
 // Worker: open exactly one EPUB via the Storyteller path and emit a single JSON
 // line. Run as a subprocess so the parent can hard-kill any synchronous hang.
@@ -48,7 +57,12 @@ try {
       }
     })
   );
-  process.stdout.write(JSON.stringify({ ok: true, metadata, spine, manifest, spineHashes }));
+  // resolveToRoot normalises all hrefs to epub-root-relative paths. Without it,
+  // books whose nav document sits in a subdirectory (e.g. Text/nav.xhtml) get
+  // absolute temp-dir paths for TOC entries — non-deterministic across runs.
+  const tocNav = await reader.getTableOfContents({ resolveToRoot: true });
+  const toc = normalizeToc(tocNav?.children ?? []);
+  process.stdout.write(JSON.stringify({ ok: true, metadata, spine, manifest, spineHashes, toc }));
   await reader.discardAndClose();
 } catch (error: unknown) {
   if (error instanceof EpubVersionError) {

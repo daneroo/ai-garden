@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -1072,6 +1072,802 @@
       {
         "href": "Text/10.htm",
         "sha256": "beac9d0489ef9ff254bbb7e3d052995451c6108ea6d0e1b5689d98e75fab64ce"
+      }
+    ],
+    "toc": [
+      {
+        "label": "\n        Copyright 2021 Manning Publications\n      ",
+        "href": "Text/copyright.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "\n        welcome\n      ",
+        "href": "Text/WL.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "\n        brief contents\n      ",
+        "href": "Text/toc.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "\n        1 Why Jamstack?\n      ",
+        "href": "Text/01.htm",
+        "subitems": [
+          {
+            "label": "\n          1.1 What is the Jamstack?\n        ",
+            "href": "Text/01.htm#sigil_toc_id_1",
+            "subitems": []
+          },
+          {
+            "label": "\n          1.2 A Brief History of Jamstack\n        ",
+            "href": "Text/01.htm#sigil_toc_id_2",
+            "subitems": [
+              {
+                "label": "\n            1.2.1 The Rise of Static Site Generators\n          ",
+                "href": "Text/01.htm#sigil_toc_id_3",
+                "subitems": []
+              },
+              {
+                "label": "\n            1.2.2 From Static Sites to JAMstack\n          ",
+                "href": "Text/01.htm#sigil_toc_id_4",
+                "subitems": []
+              },
+              {
+                "label": "\n            1.2.3 From JAMstack to Jamstack\n          ",
+                "href": "Text/01.htm#sigil_toc_id_5",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          1.3 The Benefits of Jamstack Architecture\n        ",
+            "href": "Text/01.htm#sigil_toc_id_6",
+            "subitems": [
+              {
+                "label": "\n            1.3.1 Performance\n          ",
+                "href": "Text/01.htm#sigil_toc_id_7",
+                "subitems": []
+              },
+              {
+                "label": "\n            1.3.2 Security\n          ",
+                "href": "Text/01.htm#sigil_toc_id_8",
+                "subitems": []
+              },
+              {
+                "label": "\n            1.3.3 Cost\n          ",
+                "href": "Text/01.htm#sigil_toc_id_9",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          1.4 When Jamstack May Not Be the Right Choice\n        ",
+            "href": "Text/01.htm#sigil_toc_id_10",
+            "subitems": []
+          },
+          {
+            "label": "\n          1.5 Popular Sites Built with the Jamstack\n        ",
+            "href": "Text/01.htm#sigil_toc_id_11",
+            "subitems": []
+          },
+          {
+            "label": "\n          1.6 What You’ll Learn\n        ",
+            "href": "Text/01.htm#sigil_toc_id_12",
+            "subitems": []
+          },
+          {
+            "label": "\n          1.7 Summary\n        ",
+            "href": "Text/01.htm#sigil_toc_id_13",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "\n        2 Building a Basic Jamstack Site\n      ",
+        "href": "Text/02.htm",
+        "subitems": [
+          {
+            "label": "\n          2.1 Working with Eleventy\n        ",
+            "href": "Text/02.htm#sigil_toc_id_14",
+            "subitems": [
+              {
+                "label": "\n            2.1.1 Creating Your First Eleventy Site\n          ",
+                "href": "Text/02.htm#sigil_toc_id_15",
+                "subitems": []
+              },
+              {
+                "label": "\n            2.1.2 Working with Template Languages\n          ",
+                "href": "Text/02.htm#sigil_toc_id_16",
+                "subitems": []
+              },
+              {
+                "label": "\n            2.1.3 Adding Layouts and Includes\n          ",
+                "href": "Text/02.htm#sigil_toc_id_17",
+                "subitems": []
+              },
+              {
+                "label": "\n            2.1.4 Using Collections in Your Eleventy Site\n          ",
+                "href": "Text/02.htm#sigil_toc_id_18",
+                "subitems": []
+              },
+              {
+                "label": "\n            2.1.5 Working with Data\n          ",
+                "href": "Text/02.htm#sigil_toc_id_19",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          2.2 Let's Build Camden Grounds\n        ",
+            "href": "Text/02.htm#sigil_toc_id_20",
+            "subitems": []
+          },
+          {
+            "label": "\n          2.3 Going Further with Eleventy\n        ",
+            "href": "Text/02.htm#sigil_toc_id_21",
+            "subitems": []
+          },
+          {
+            "label": "\n          2.4 Summary\n        ",
+            "href": "Text/02.htm#sigil_toc_id_22",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "\n        3 Building a Blog\n      ",
+        "href": "Text/03.htm",
+        "subitems": [
+          {
+            "label": "\n          3.1 Blogging with Jekyll\n        ",
+            "href": "Text/03.htm#sigil_toc_id_23",
+            "subitems": []
+          },
+          {
+            "label": "\n          3.2 Your First Jekyll Site\n        ",
+            "href": "Text/03.htm#sigil_toc_id_24",
+            "subitems": []
+          },
+          {
+            "label": "\n          3.3 Writing a Jekyll Post\n        ",
+            "href": "Text/03.htm#sigil_toc_id_25",
+            "subitems": [
+              {
+                "label": "\n            3.3.1 A Liquid Refresher\n          ",
+                "href": "Text/03.htm#sigil_toc_id_26",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          3.4 Working with Layouts and Includes\n        ",
+            "href": "Text/03.htm#sigil_toc_id_27",
+            "subitems": [
+              {
+                "label": "\n            3.4.1 Layout Inheritance\n          ",
+                "href": "Text/03.htm#sigil_toc_id_28",
+                "subitems": []
+              },
+              {
+                "label": "\n            3.4.2 Using Includes\n          ",
+                "href": "Text/03.htm#sigil_toc_id_29",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          3.5 Creating Additional Files\n        ",
+            "href": "Text/03.htm#sigil_toc_id_30",
+            "subitems": []
+          },
+          {
+            "label": "\n          3.6 Working with Data\n        ",
+            "href": "Text/03.htm#sigil_toc_id_31",
+            "subitems": []
+          },
+          {
+            "label": "\n          3.7 Configuring Your Jekyll Blog\n        ",
+            "href": "Text/03.htm#sigil_toc_id_32",
+            "subitems": []
+          },
+          {
+            "label": "\n          3.8 Generating Your Site\n        ",
+            "href": "Text/03.htm#sigil_toc_id_33",
+            "subitems": []
+          },
+          {
+            "label": "\n          3.9 Building a Jekyll Blog\n        ",
+            "href": "Text/03.htm#sigil_toc_id_34",
+            "subitems": []
+          },
+          {
+            "label": "\n          3.10 Going Further with Jekyll\n        ",
+            "href": "Text/03.htm#sigil_toc_id_35",
+            "subitems": []
+          },
+          {
+            "label": "\n          3.11 Summary\n        ",
+            "href": "Text/03.htm#sigil_toc_id_36",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "\n        4 Building a Documentation Site\n      ",
+        "href": "Text/04.htm",
+        "subitems": [
+          {
+            "label": "\n          4.1 Requirements of a Documentation Site\n        ",
+            "href": "Text/04.htm#sigil_toc_id_37",
+            "subitems": [
+              {
+                "label": "\n            4.1.1 The Example Site Requirements\n          ",
+                "href": "Text/04.htm#sigil_toc_id_38",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          4.2 Choosing the Right Tools\n        ",
+            "href": "Text/04.htm#sigil_toc_id_39",
+            "subitems": [
+              {
+                "label": "\n            4.2.1 What is a headless CMS?\n          ",
+                "href": "Text/04.htm#sigil_toc_id_40",
+                "subitems": []
+              },
+              {
+                "label": "\n            4.2.2 Headless CMS Options\n          ",
+                "href": "Text/04.htm#sigil_toc_id_41",
+                "subitems": []
+              },
+              {
+                "label": "\n            4.2.3 Why Netlify CMS?\n          ",
+                "href": "Text/04.htm#sigil_toc_id_42",
+                "subitems": []
+              },
+              {
+                "label": "\n            4.2.4 Static Site Generator Options\n          ",
+                "href": "Text/04.htm#sigil_toc_id_43",
+                "subitems": []
+              },
+              {
+                "label": "\n            4.2.5 Why Hugo?\n          ",
+                "href": "Text/04.htm#sigil_toc_id_44",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          4.3 Building the Example Site\n        ",
+            "href": "Text/04.htm#sigil_toc_id_45",
+            "subitems": [
+              {
+                "label": "\n            4.3.1 Installing Hugo\n          ",
+                "href": "Text/04.htm#sigil_toc_id_46",
+                "subitems": []
+              },
+              {
+                "label": "\n            4.3.2 Creating a New Hugo Site\n          ",
+                "href": "Text/04.htm#sigil_toc_id_47",
+                "subitems": []
+              },
+              {
+                "label": "\n            4.3.3 Setting up the hugo-book theme\n          ",
+                "href": "Text/04.htm#sigil_toc_id_48",
+                "subitems": []
+              },
+              {
+                "label": "\n            4.3.4 Installing Netlify CMS\n          ",
+                "href": "Text/04.htm#sigil_toc_id_49",
+                "subitems": []
+              },
+              {
+                "label": "\n            4.3.5 Modeling Content in Netlify CMS\n          ",
+                "href": "Text/04.htm#sigil_toc_id_50",
+                "subitems": []
+              },
+              {
+                "label": "\n            4.3.6 Deploying to Netlify\n          ",
+                "href": "Text/04.htm#sigil_toc_id_51",
+                "subitems": []
+              },
+              {
+                "label": "\n            4.3.7 Configuring GitHub for Authentication\n          ",
+                "href": "Text/04.htm#sigil_toc_id_52",
+                "subitems": []
+              },
+              {
+                "label": "\n            4.3.8 Configuring Netlify for Authentication\n          ",
+                "href": "Text/04.htm#sigil_toc_id_53",
+                "subitems": []
+              },
+              {
+                "label": "\n            4.3.9 Editing Content as an Admin\n          ",
+                "href": "Text/04.htm#sigil_toc_id_54",
+                "subitems": []
+              },
+              {
+                "label": "\n            4.3.10 The Open Authoring Workflow\n          ",
+                "href": "Text/04.htm#sigil_toc_id_55",
+                "subitems": []
+              },
+              {
+                "label": "\n            4.3.11 Simplifying the Open Authoring Workflow\n          ",
+                "href": "Text/04.htm#sigil_toc_id_56",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          4.4 What’s Next\n        ",
+            "href": "Text/04.htm#sigil_toc_id_57",
+            "subitems": []
+          },
+          {
+            "label": "\n          4.5 Summary\n        ",
+            "href": "Text/04.htm#sigil_toc_id_58",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "\n        5 Building an Ecommerce Site\n      ",
+        "href": "Text/05.htm",
+        "subitems": [
+          {
+            "label": "\n          5.1 Requirements of an Ecommerce Site\n        ",
+            "href": "Text/05.htm#sigil_toc_id_59",
+            "subitems": [
+              {
+                "label": "\n            5.1.1 The Example Site Requirements\n          ",
+                "href": "Text/05.htm#sigil_toc_id_60",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          5.2 Choosing the Right Tools\n        ",
+            "href": "Text/05.htm#sigil_toc_id_61",
+            "subitems": [
+              {
+                "label": "\n            5.2.1 What Is Headless Ecommerce?\n          ",
+                "href": "Text/05.htm#sigil_toc_id_62",
+                "subitems": []
+              },
+              {
+                "label": "\n            5.2.2 Headless Ecommerce Options\n          ",
+                "href": "Text/05.htm#sigil_toc_id_63",
+                "subitems": []
+              },
+              {
+                "label": "\n            5.2.3 Why Commerce.js?\n          ",
+                "href": "Text/05.htm#sigil_toc_id_64",
+                "subitems": []
+              },
+              {
+                "label": "\n            5.2.4 Static Site Generator Options\n          ",
+                "href": "Text/05.htm#sigil_toc_id_65",
+                "subitems": []
+              },
+              {
+                "label": "\n            5.2.5 Why Next.js?\n          ",
+                "href": "Text/05.htm#sigil_toc_id_66",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          5.3 Getting Set Up to Build the Example Ecommerce Site\n        ",
+            "href": "Text/05.htm#sigil_toc_id_67",
+            "subitems": [
+              {
+                "label": "\n            5.3.1 Setting Up Next.js\n          ",
+                "href": "Text/05.htm#sigil_toc_id_68",
+                "subitems": []
+              },
+              {
+                "label": "\n            5.3.2 Setting Up Commerce.js\n          ",
+                "href": "Text/05.htm#sigil_toc_id_69",
+                "subitems": []
+              },
+              {
+                "label": "\n            5.3.3 Setting Next.js Environment Variables\n          ",
+                "href": "Text/05.htm#sigil_toc_id_70",
+                "subitems": []
+              },
+              {
+                "label": "\n            5.3.4 Loading the Commerce.js SDK\n          ",
+                "href": "Text/05.htm#sigil_toc_id_71",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          5.4 Building the Jam Store Ecommerce Site\n        ",
+            "href": "Text/05.htm#sigil_toc_id_72",
+            "subitems": [
+              {
+                "label": "\n            5.4.1 Creating the Product Listing Component\n          ",
+                "href": "Text/05.htm#sigil_toc_id_73",
+                "subitems": []
+              },
+              {
+                "label": "\n            5.4.2 Building the Product Listing\n          ",
+                "href": "Text/05.htm#sigil_toc_id_74",
+                "subitems": []
+              },
+              {
+                "label": "\n            5.4.3 Building the Product Detail Page\n          ",
+                "href": "Text/05.htm#sigil_toc_id_75",
+                "subitems": []
+              },
+              {
+                "label": "\n            5.4.4 Enabling the Add to Cart Functionality\n          ",
+                "href": "Text/05.htm#sigil_toc_id_76",
+                "subitems": []
+              },
+              {
+                "label": "\n            5.4.5 Building the Shopping Cart\n          ",
+                "href": "Text/05.htm#sigil_toc_id_77",
+                "subitems": []
+              },
+              {
+                "label": "\n            5.4.6 Adding Markdown Content\n          ",
+                "href": "Text/05.htm#sigil_toc_id_78",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          5.5 What’s Next\n        ",
+            "href": "Text/05.htm#sigil_toc_id_79",
+            "subitems": []
+          },
+          {
+            "label": "\n          5.6 Summary\n        ",
+            "href": "Text/05.htm#sigil_toc_id_80",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "\n        6 Deployment\n      ",
+        "href": "Text/06.htm",
+        "subitems": [
+          {
+            "label": "\n          6.1 Web Servers - the tried and true way\n        ",
+            "href": "Text/06.htm#sigil_toc_id_81",
+            "subitems": []
+          },
+          {
+            "label": "\n          6.2 Cloud File Storage Providers\n        ",
+            "href": "Text/06.htm#sigil_toc_id_82",
+            "subitems": [
+              {
+                "label": "\n            6.2.1 Amazon S3\n          ",
+                "href": "Text/06.htm#sigil_toc_id_83",
+                "subitems": []
+              },
+              {
+                "label": "\n            6.2.2 Other Cloud File Storage Hosting Options\n          ",
+                "href": "Text/06.htm#sigil_toc_id_84",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          6.3 Azure Static Web Apps\n        ",
+            "href": "Text/06.htm#sigil_toc_id_85",
+            "subitems": []
+          },
+          {
+            "label": "\n          6.4 Deploying with Vercel\n        ",
+            "href": "Text/06.htm#sigil_toc_id_86",
+            "subitems": []
+          },
+          {
+            "label": "\n          6.5 Deploying with Netlify\n        ",
+            "href": "Text/06.htm#sigil_toc_id_87",
+            "subitems": []
+          },
+          {
+            "label": "\n          6.6 Summary\n        ",
+            "href": "Text/06.htm#sigil_toc_id_88",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "\n        7 Adding Dynamic Elements\n      ",
+        "href": "Text/07.htm",
+        "subitems": [
+          {
+            "label": "\n          7.1 Forms, Forms, and More Forms\n        ",
+            "href": "Text/07.htm#sigil_toc_id_89",
+            "subitems": [
+              {
+                "label": "\n            7.1.1 Using Google Forms\n          ",
+                "href": "Text/07.htm#sigil_toc_id_90",
+                "subitems": []
+              },
+              {
+                "label": "\n            7.1.2 Integrating Formcake\n          ",
+                "href": "Text/07.htm#sigil_toc_id_91",
+                "subitems": []
+              },
+              {
+                "label": "\n            7.1.3 Other Options\n          ",
+                "href": "Text/07.htm#sigil_toc_id_92",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          7.2 Adding Search\n        ",
+            "href": "Text/07.htm#sigil_toc_id_93",
+            "subitems": [
+              {
+                "label": "\n            7.2.1 Searching with Lunr\n          ",
+                "href": "Text/07.htm#sigil_toc_id_94",
+                "subitems": []
+              },
+              {
+                "label": "\n            7.2.2 Other Options\n          ",
+                "href": "Text/07.htm#sigil_toc_id_95",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          7.3 Other Dynamic Options\n        ",
+            "href": "Text/07.htm#sigil_toc_id_96",
+            "subitems": []
+          },
+          {
+            "label": "\n          7.4 Summary\n        ",
+            "href": "Text/07.htm#sigil_toc_id_97",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "\n        8 Working with Serverless\n      ",
+        "href": "Text/08.htm",
+        "subitems": [
+          {
+            "label": "\n          8.1 What is Serverless?\n        ",
+            "href": "Text/08.htm#sigil_toc_id_98",
+            "subitems": []
+          },
+          {
+            "label": "\n          8.2 Building Serverless Functions with Netlify\n        ",
+            "href": "Text/08.htm#sigil_toc_id_99",
+            "subitems": [
+              {
+                "label": "\n            8.2.1 Adding Serverless to Camden Grounds\n          ",
+                "href": "Text/08.htm#sigil_toc_id_100",
+                "subitems": []
+              },
+              {
+                "label": "\n            8.2.2 More on Netlify Functions\n          ",
+                "href": "Text/08.htm#sigil_toc_id_101",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          8.3 Building Serverless Functions with Vercel\n        ",
+            "href": "Text/08.htm#sigil_toc_id_102",
+            "subitems": [
+              {
+                "label": "\n            8.3.1 Your First Vercel Serverless Function\n          ",
+                "href": "Text/08.htm#sigil_toc_id_103",
+                "subitems": []
+              },
+              {
+                "label": "\n            8.3.2 Vercel Functions with Dynamic Path support\n          ",
+                "href": "Text/08.htm#sigil_toc_id_104",
+                "subitems": []
+              },
+              {
+                "label": "\n            8.3.3 Adding Serverless to Camden Grounds (Again)\n          ",
+                "href": "Text/08.htm#sigil_toc_id_105",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          8.4 Summary\n        ",
+            "href": "Text/08.htm#sigil_toc_id_106",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "\n        9 Adding a Content Management System\n      ",
+        "href": "Text/09.htm",
+        "subitems": [
+          {
+            "label": "\n          9.1 Types of Headless CMS\n        ",
+            "href": "Text/09.htm#sigil_toc_id_107",
+            "subitems": [
+              {
+                "label": "\n            9.1.1 Pros and Cons of a Git-based Headless CMS\n          ",
+                "href": "Text/09.htm#sigil_toc_id_108",
+                "subitems": []
+              },
+              {
+                "label": "\n            9.1.2 Pros and Cons of a API-based Headless CMS\n          ",
+                "href": "Text/09.htm#sigil_toc_id_109",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          9.2 Exploring Popular Headless CMS\n        ",
+            "href": "Text/09.htm#sigil_toc_id_110",
+            "subitems": [
+              {
+                "label": "\n            9.2.1 Contentful\n          ",
+                "href": "Text/09.htm#sigil_toc_id_111",
+                "subitems": []
+              },
+              {
+                "label": "\n            9.2.2 Sanity\n          ",
+                "href": "Text/09.htm#sigil_toc_id_112",
+                "subitems": []
+              },
+              {
+                "label": "\n            9.2.3 Define a Content Model Using Sanity\n          ",
+                "href": "Text/09.htm#sigil_toc_id_113",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          9.3 Using WordPress\n        ",
+            "href": "Text/09.htm#sigil_toc_id_114",
+            "subitems": [
+              {
+                "label": "\n            9.3.1 Installing WordPress Locally with Local\n          ",
+                "href": "Text/09.htm#sigil_toc_id_115",
+                "subitems": []
+              },
+              {
+                "label": "\n            9.3.2 Installing the Gatsby Plugins\n          ",
+                "href": "Text/09.htm#sigil_toc_id_116",
+                "subitems": []
+              },
+              {
+                "label": "\n            9.3.3 Setting Up Gatsby\n          ",
+                "href": "Text/09.htm#sigil_toc_id_117",
+                "subitems": []
+              },
+              {
+                "label": "\n            9.3.4 Exploring Gatsby’s Data Layer\n          ",
+                "href": "Text/09.htm#sigil_toc_id_118",
+                "subitems": []
+              },
+              {
+                "label": "\n            9.3.5 Consuming WordPress Content in Gatsby\n          ",
+                "href": "Text/09.htm#sigil_toc_id_119",
+                "subitems": []
+              },
+              {
+                "label": "\n            9.3.6 Next Steps Using WordPress as a Headless CMS\n          ",
+                "href": "Text/09.htm#sigil_toc_id_120",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          9.4 Connecting a CMS Using a Site Builder\n        ",
+            "href": "Text/09.htm#sigil_toc_id_121",
+            "subitems": [
+              {
+                "label": "\n            9.4.1 WeWeb\n          ",
+                "href": "Text/09.htm#sigil_toc_id_122",
+                "subitems": []
+              },
+              {
+                "label": "\n            9.4.2 Strattic\n          ",
+                "href": "Text/09.htm#sigil_toc_id_123",
+                "subitems": []
+              },
+              {
+                "label": "\n            9.4.3 Stackbit\n          ",
+                "href": "Text/09.htm#sigil_toc_id_124",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          9.5 What’s Next\n        ",
+            "href": "Text/09.htm#sigil_toc_id_125",
+            "subitems": []
+          },
+          {
+            "label": "\n          9.6 Summary\n        ",
+            "href": "Text/09.htm#sigil_toc_id_126",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "\n        10 Migrating to the Jamstack\n      ",
+        "href": "Text/10.htm",
+        "subitems": [
+          {
+            "label": "\n          10.1 What Kind of Site Are You Migrating?\n        ",
+            "href": "Text/10.htm#sigil_toc_id_127",
+            "subitems": [
+              {
+                "label": "\n            10.1.1 Content-heavy Site\n          ",
+                "href": "Text/10.htm#sigil_toc_id_128",
+                "subitems": []
+              },
+              {
+                "label": "\n            10.1.2 Web Application\n          ",
+                "href": "Text/10.htm#sigil_toc_id_129",
+                "subitems": []
+              },
+              {
+                "label": "\n            10.1.3 Large Site\n          ",
+                "href": "Text/10.htm#sigil_toc_id_130",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          10.2 What Functionality Do You Need to Migrate?\n        ",
+            "href": "Text/10.htm#sigil_toc_id_131",
+            "subitems": [
+              {
+                "label": "\n            10.2.1 Popular Third-Party Jamstack Services\n          ",
+                "href": "Text/10.htm#sigil_toc_id_132",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          10.3 Making the Move\n        ",
+            "href": "Text/10.htm#sigil_toc_id_133",
+            "subitems": [
+              {
+                "label": "\n            10.3.1 Don’t Move Everything at Once\n          ",
+                "href": "Text/10.htm#sigil_toc_id_134",
+                "subitems": []
+              },
+              {
+                "label": "\n            10.3.2 Pick a Headless CMS Up Front\n          ",
+                "href": "Text/10.htm#sigil_toc_id_135",
+                "subitems": []
+              },
+              {
+                "label": "\n            10.3.3 Consider Building Templates from Scratch Rather than Porting\n          ",
+                "href": "Text/10.htm#sigil_toc_id_136",
+                "subitems": []
+              },
+              {
+                "label": "\n            10.3.4 Keep as Much as Possible\n          ",
+                "href": "Text/10.htm#sigil_toc_id_137",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "\n          10.4 What’s Next\n        ",
+            "href": "Text/10.htm#sigil_toc_id_138",
+            "subitems": []
+          },
+          {
+            "label": "\n          10.5 Summary\n        ",
+            "href": "Text/10.htm#sigil_toc_id_139",
+            "subitems": []
+          }
+        ]
       }
     ]
   }

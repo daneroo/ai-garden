@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -261,6 +261,58 @@
       {
         "href": "footnote.xhtml",
         "sha256": "aa3e307ceea2b61a28e459ed4941d6e0f60feaaab55f5a542bb7a07b89b72f93"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "sourcery_cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "sourcery.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "contents.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Begin Reading",
+        "href": "beginreading.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "author.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Praise",
+        "href": "praise.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Other Books by Terry Pratchett",
+        "href": "alsoby.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "copy.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Publisher",
+        "href": "atp.xhtml",
+        "subitems": []
       }
     ]
   }

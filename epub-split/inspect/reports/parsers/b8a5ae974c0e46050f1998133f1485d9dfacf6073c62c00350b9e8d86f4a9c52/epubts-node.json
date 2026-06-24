@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -232,6 +232,144 @@
       {
         "href": "Text/BackCover.html",
         "sha256": "a53dd15f5686ed4b331abb677a5323547adaf2d8bf21d0b5a7d3185c215ae6ce"
+      }
+    ],
+    "toc": [
+      {
+        "label": "\r\n        About the Author\r\n      ",
+        "href": "Text/AboutAuthor.html",
+        "subitems": []
+      },
+      {
+        "label": "\r\n        also by Ursula K. Le Guin\r\n      ",
+        "href": "Text/BooksBy.html",
+        "subitems": []
+      },
+      {
+        "label": "\r\n        Copyright\r\n      ",
+        "href": "Text/Copyright.html",
+        "subitems": []
+      },
+      {
+        "label": "\r\n        Contents\r\n      ",
+        "href": "Text/Contents.html",
+        "subitems": []
+      },
+      {
+        "label": "\r\n        Betrayals\r\n      ",
+        "href": "Text/Story_01.html",
+        "subitems": []
+      },
+      {
+        "label": "\r\n        Forgiveness Day\r\n      ",
+        "href": "Text/Story_02.html",
+        "subitems": []
+      },
+      {
+        "label": "\r\n        A Man of the People\r\n      ",
+        "href": "Text/Story_03.html",
+        "subitems": [
+          {
+            "label": "\r\n          Stse\r\n        ",
+            "href": "Text/Story_03.html#s03a",
+            "subitems": []
+          },
+          {
+            "label": "\r\n          Kathhad and Ve\r\n        ",
+            "href": "Text/Story_03.html#s03b",
+            "subitems": []
+          },
+          {
+            "label": "\r\n          Yeowe\r\n        ",
+            "href": "Text/Story_03.html#s03c",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "\r\n        A Woman’s Liberation\r\n      ",
+        "href": "Text/Story_04.html",
+        "subitems": [
+          {
+            "label": "\r\n          1. Shomeke\r\n        ",
+            "href": "Text/Story_04.html#s04a",
+            "subitems": []
+          },
+          {
+            "label": "\r\n          2. Zeskra\r\n        ",
+            "href": "Text/Story_04.html#s04b",
+            "subitems": []
+          },
+          {
+            "label": "\r\n          3. The City\r\n        ",
+            "href": "Text/Story_04.html#s04c",
+            "subitems": []
+          },
+          {
+            "label": "\r\n          4. Yeowe\r\n        ",
+            "href": "Text/Story_04.html#s04d",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "\r\n        Notes on Werel and Yeowe\r\n      ",
+        "href": "Text/Notes.html",
+        "subitems": [
+          {
+            "label": "\r\n          1. Pronunciation of Names and Words\r\n        ",
+            "href": "Text/Notes.html#app1",
+            "subitems": []
+          },
+          {
+            "label": "\r\n          2. The Planets Werel and Yeowe\r\n        ",
+            "href": "Text/Notes.html#app2",
+            "subitems": [
+              {
+                "label": "\r\n            Werel\r\n          ",
+                "href": "Text/Notes.html#app2a",
+                "subitems": [
+                  {
+                    "label": "\r\n              Natural History\r\n            ",
+                    "href": "Text/Notes.html#app2a1",
+                    "subitems": []
+                  },
+                  {
+                    "label": "\r\n              Social Classes under Slavery\r\n            ",
+                    "href": "Text/Notes.html#app2a2",
+                    "subitems": []
+                  }
+                ]
+              },
+              {
+                "label": "\r\n            Yeowe\r\n          ",
+                "href": "Text/Notes.html#app2b",
+                "subitems": [
+                  {
+                    "label": "\r\n              Natural History\r\n            ",
+                    "href": "Text/Notes.html#app2b1",
+                    "subitems": []
+                  },
+                  {
+                    "label": "\r\n              The Colony: The Settlement\r\n            ",
+                    "href": "Text/Notes.html#app2b2",
+                    "subitems": []
+                  },
+                  {
+                    "label": "\r\n              Population and Slavery\r\n            ",
+                    "href": "Text/Notes.html#app2b3",
+                    "subitems": []
+                  },
+                  {
+                    "label": "\r\n              The Uprising and the Liberation\r\n            ",
+                    "href": "Text/Notes.html#app2b4",
+                    "subitems": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       }
     ]
   }

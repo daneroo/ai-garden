@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -1093,6 +1093,136 @@
       {
         "href": "xhtml/copy.html",
         "sha256": "18d39651c4cf1d2081ca565f02e1869be9c265e8968f762e04539459b789b024"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "xhtml/cover.html",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "xhtml/dedication.html",
+        "subitems": []
+      },
+      {
+        "label": "Introduction: A Grandmother’s Prayer",
+        "href": "xhtml/introduction.html",
+        "subitems": []
+      },
+      {
+        "label": "Part I: What We Know (The Past)",
+        "href": "xhtml/part01.html",
+        "subitems": [
+          {
+            "label": "Chapter 1. ‘Viva Primordium’",
+            "href": "xhtml/ch01.html",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 2. The Demented Pianist",
+            "href": "xhtml/ch02.html",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 3. The Blind Epidemic",
+            "href": "xhtml/ch03.html",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part II: What We’re Learning (The Present)",
+        "href": "xhtml/part02.html",
+        "subitems": [
+          {
+            "label": "Chapter 4. Longevity Now",
+            "href": "xhtml/ch04.html",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 5. A Better Pill to Swallow",
+            "href": "xhtml/ch05.html",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 6. Big Steps Ahead",
+            "href": "xhtml/ch06.html",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 7. The Age of Innovation",
+            "href": "xhtml/ch07.html",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part III: Where We’re Going (The Future)",
+        "href": "xhtml/part03.html",
+        "subitems": [
+          {
+            "label": "Chapter 8. The Shape of Things to Come",
+            "href": "xhtml/ch08.html",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 9. A Path Forward",
+            "href": "xhtml/ch09.html",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Conclusion",
+        "href": "xhtml/conclusion.html",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "xhtml/ack.html",
+        "subitems": []
+      },
+      {
+        "label": "Sinclair Disclosure",
+        "href": "xhtml/bm01.html",
+        "subitems": []
+      },
+      {
+        "label": "The Scale of Things",
+        "href": "xhtml/bm02.html",
+        "subitems": []
+      },
+      {
+        "label": "Cast of Characters",
+        "href": "xhtml/bm03.html",
+        "subitems": []
+      },
+      {
+        "label": "Glossary",
+        "href": "xhtml/glossary.html",
+        "subitems": []
+      },
+      {
+        "label": "About the Authors",
+        "href": "xhtml/author.html",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "xhtml/notes.html",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "xhtml/index.html",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "xhtml/copy.html",
+        "subitems": []
       }
     ]
   }

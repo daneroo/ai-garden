@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -865,6 +865,79 @@
       {
         "href": "backmatter.html",
         "sha256": "9f315f39083680ba56e217aabd672528b1531e416e237b1bfb3df365d106318f"
+      }
+    ],
+    "toc": [
+      {
+        "label": "\n        Foreword\n      ",
+        "href": "foreword.html",
+        "subitems": []
+      },
+      {
+        "label": "\n        Part 1: Why Mobile First?\n      ",
+        "href": "part1.html",
+        "subitems": []
+      },
+      {
+        "label": "\n        Part 2: How to go Mobile\n      ",
+        "href": "part2.html",
+        "subitems": [
+          {
+            "label": "\n          Chapter 4: Organization\n        ",
+            "href": "chapter4.html",
+            "subitems": []
+          },
+          {
+            "label": "\n          Chapter 5: Actions\n        ",
+            "href": "chapter5.html",
+            "subitems": []
+          },
+          {
+            "label": "\n          Chapter 6: Inputs\n        ",
+            "href": "chapter6.html",
+            "subitems": []
+          },
+          {
+            "label": "\n          Chapter 7: Layout\n        ",
+            "href": "chapter7.html",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "\n        Conclusion\n      ",
+        "href": "conclusion.html",
+        "subitems": []
+      },
+      {
+        "label": "\n        Acknowledgements\n      ",
+        "href": "conclusion.html#ack",
+        "subitems": []
+      },
+      {
+        "label": "\n        Resources\n      ",
+        "href": "resources.html",
+        "subitems": []
+      },
+      {
+        "label": "\n        References\n      ",
+        "href": "references.html",
+        "subitems": []
+      },
+      {
+        "label": "\n        Index\n      ",
+        "href": "book-index.html",
+        "subitems": []
+      },
+      {
+        "label": "\n        About A Book Apart\n      ",
+        "href": "backmatter.html#about-a-book-apart",
+        "subitems": []
+      },
+      {
+        "label": "\n        About the Author\n      ",
+        "href": "backmatter.html#about-the-author",
+        "subitems": []
       }
     ]
   }

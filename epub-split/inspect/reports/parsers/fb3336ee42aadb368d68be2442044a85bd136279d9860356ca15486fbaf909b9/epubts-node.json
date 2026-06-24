@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -223,6 +223,58 @@
       {
         "href": "copyright.xhtml",
         "sha256": "3dd2f7098af7e05a2fa6882d82c0e197afb6eb6e41cef6bed69d3feb36beb15c"
+      }
+    ],
+    "toc": [
+      {
+        "label": "COVER",
+        "href": "OEBPS/cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "EPIGRAPH",
+        "href": "OEBPS/epigraph.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "CHAPTER ONE",
+        "href": "OEBPS/chapter001.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "CHAPTER TWO",
+        "href": "OEBPS/chapter002.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "CHAPTER THREE",
+        "href": "OEBPS/chapter003.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "CHAPTER FOUR",
+        "href": "OEBPS/chapter004.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "CHAPTER FIVE",
+        "href": "OEBPS/chapter005.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "CHAPTER SIX",
+        "href": "OEBPS/chapter006.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "CHAPTER SEVEN",
+        "href": "OEBPS/chapter007.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "MEET THE AUTHOR",
+        "href": "OEBPS/personblurb.xhtml",
+        "subitems": []
       }
     ]
   }

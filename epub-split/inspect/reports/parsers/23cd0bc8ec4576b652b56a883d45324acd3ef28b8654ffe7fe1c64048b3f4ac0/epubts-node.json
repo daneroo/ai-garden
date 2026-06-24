@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -233,6 +233,63 @@
       {
         "href": "copyright.html",
         "sha256": "e5bd6ae9f6acf35a84e39fd91dcab80b0b39404faaf75038d05522f856a25cf8"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "cover.html",
+        "subitems": []
+      },
+      {
+        "label": "About the Book",
+        "href": "about_book.html",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "contents.html",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "title.html",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "dedication.html",
+        "subitems": []
+      },
+      {
+        "label": "Snuff",
+        "href": "chapter_001.html",
+        "subitems": []
+      },
+      {
+        "label": "Footnotes",
+        "href": "footnotes.html",
+        "subitems": []
+      },
+      {
+        "label": "Epilogue",
+        "href": "epilogue.html",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "about_author.html",
+        "subitems": []
+      },
+      {
+        "label": "Also by Terry Pratchett",
+        "href": "also_by.html",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "copyright.html",
+        "subitems": []
       }
     ]
   }

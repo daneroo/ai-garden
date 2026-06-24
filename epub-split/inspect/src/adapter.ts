@@ -18,6 +18,7 @@ export type RawOpenResult =
       spine: { href: string; linear: boolean }[];
       manifest: { id: string; href: string; mediaType: string | null }[];
       spineHashes: { href: string; sha256: string }[];
+      toc: { label: string; href: string | null; subitems: unknown[] }[];
     }
   | { openStatus: "open-failed"; parserVersion: string; openFailure: { category: string; message: string } }
   | { openStatus: "epub2-unsupported"; parserVersion: string };
@@ -32,7 +33,7 @@ export function buildParserOutput(parser: ParserName, raw: RawOpenResult): Parse
         openStatus: "opened",
         ...(raw.domParser !== undefined ? { domParser: raw.domParser } : {}),
       },
-      content: { metadata: raw.metadata, spine: raw.spine, manifest: raw.manifest, spineHashes: raw.spineHashes },
+      content: { metadata: raw.metadata, spine: raw.spine, manifest: raw.manifest, spineHashes: raw.spineHashes, toc: raw.toc },
     });
   }
   if (raw.openStatus === "open-failed") {

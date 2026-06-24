@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -425,6 +425,376 @@
       {
         "href": "xhtml/24_Footnote.xhtml",
         "sha256": "1434f141842d0ed3168ad0d69ea9dea1720f65fe1bc6e8ee828c504ca307b4df"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "xhtml/01_Cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "xhtml/02_Title_Page.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "xhtml/03_Copyright.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "xhtml/04_Dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "xhtml/05_Contents.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Epigraph",
+        "href": "xhtml/06_Epigraph.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introduction",
+        "href": "xhtml/07_Introduction.xhtml",
+        "subitems": [
+          {
+            "label": "The Craft of Simulations",
+            "href": "xhtml/07_Introduction.xhtml#_idParaDest-7",
+            "subitems": []
+          },
+          {
+            "label": "The Cosmic Laboratory",
+            "href": "xhtml/07_Introduction.xhtml#_idParaDest-8",
+            "subitems": []
+          },
+          {
+            "label": "The Universe in a Box",
+            "href": "xhtml/07_Introduction.xhtml#_idParaDest-9",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "1. Weather and Climate",
+        "href": "xhtml/08_1_Weather_and_Climate.xhtml",
+        "subitems": [
+          {
+            "label": "Beginnings",
+            "href": "xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-12",
+            "subitems": []
+          },
+          {
+            "label": "Laws of Nature",
+            "href": "xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-13",
+            "subitems": []
+          },
+          {
+            "label": "Solving Equations",
+            "href": "xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-14",
+            "subitems": []
+          },
+          {
+            "label": "Simulations Without Computers",
+            "href": "xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-15",
+            "subitems": []
+          },
+          {
+            "label": "Computers and Code",
+            "href": "xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-16",
+            "subitems": []
+          },
+          {
+            "label": "Resolution and Revolution",
+            "href": "xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-17",
+            "subitems": []
+          },
+          {
+            "label": "Climate Chaos",
+            "href": "xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-18",
+            "subitems": []
+          },
+          {
+            "label": "Earth and the Cosmos",
+            "href": "xhtml/08_1_Weather_and_Climate.xhtml#_idParaDest-19",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "2. Dark Matter, Dark Energy, and the Cosmic Web",
+        "href": "xhtml/09_2_Dark_Matter_Dark_En.xhtml",
+        "subitems": [
+          {
+            "label": "Inventing Nature",
+            "href": "xhtml/09_2_Dark_Matter_Dark_En.xhtml#_idParaDest-22",
+            "subitems": []
+          },
+          {
+            "label": "Ingredients for a Galaxy",
+            "href": "xhtml/09_2_Dark_Matter_Dark_En.xhtml#_idParaDest-23",
+            "subitems": []
+          },
+          {
+            "label": "Kicks and Drifts",
+            "href": "xhtml/09_2_Dark_Matter_Dark_En.xhtml#_idParaDest-24",
+            "subitems": []
+          },
+          {
+            "label": "Simulating the Unknown",
+            "href": "xhtml/09_2_Dark_Matter_Dark_En.xhtml#_idParaDest-25",
+            "subitems": []
+          },
+          {
+            "label": "Cold Dark Matter",
+            "href": "xhtml/09_2_Dark_Matter_Dark_En.xhtml#_idParaDest-26",
+            "subitems": []
+          },
+          {
+            "label": "Dark Energy",
+            "href": "xhtml/09_2_Dark_Matter_Dark_En.xhtml#_idParaDest-27",
+            "subitems": []
+          },
+          {
+            "label": "Darkness Visible",
+            "href": "xhtml/09_2_Dark_Matter_Dark_En.xhtml#_idParaDest-28",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "3. Galaxies and the Sub-grid",
+        "href": "xhtml/10_3_Galaxies_and_the_Su.xhtml",
+        "subitems": [
+          {
+            "label": "Tinsley’s Galaxies",
+            "href": "xhtml/10_3_Galaxies_and_the_Su.xhtml#_idParaDest-31",
+            "subitems": []
+          },
+          {
+            "label": "Galaxies and Dark Matter",
+            "href": "xhtml/10_3_Galaxies_and_the_Su.xhtml#_idParaDest-32",
+            "subitems": []
+          },
+          {
+            "label": "The Hubble Deep Field",
+            "href": "xhtml/10_3_Galaxies_and_the_Su.xhtml#_idParaDest-33",
+            "subitems": []
+          },
+          {
+            "label": "Grids and Smarticles",
+            "href": "xhtml/10_3_Galaxies_and_the_Su.xhtml#_idParaDest-34",
+            "subitems": []
+          },
+          {
+            "label": "The Inescapable Sub-grid",
+            "href": "xhtml/10_3_Galaxies_and_the_Su.xhtml#_idParaDest-35",
+            "subitems": []
+          },
+          {
+            "label": "Learning from Simulations",
+            "href": "xhtml/10_3_Galaxies_and_the_Su.xhtml#_idParaDest-36",
+            "subitems": []
+          },
+          {
+            "label": "The Mystery of Diversity",
+            "href": "xhtml/10_3_Galaxies_and_the_Su.xhtml#_idParaDest-37",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "4. Black Holes",
+        "href": "xhtml/11_4_Black_Holes.xhtml",
+        "subitems": [
+          {
+            "label": "Collapsing Stars",
+            "href": "xhtml/11_4_Black_Holes.xhtml#_idParaDest-40",
+            "subitems": []
+          },
+          {
+            "label": "Black-Hole Simulations",
+            "href": "xhtml/11_4_Black_Holes.xhtml#_idParaDest-41",
+            "subitems": []
+          },
+          {
+            "label": "Waves and Wormholes",
+            "href": "xhtml/11_4_Black_Holes.xhtml#_idParaDest-42",
+            "subitems": []
+          },
+          {
+            "label": "Energy",
+            "href": "xhtml/11_4_Black_Holes.xhtml#_idParaDest-43",
+            "subitems": []
+          },
+          {
+            "label": "Black Holes in Galaxies",
+            "href": "xhtml/11_4_Black_Holes.xhtml#_idParaDest-44",
+            "subitems": []
+          },
+          {
+            "label": "The Future",
+            "href": "xhtml/11_4_Black_Holes.xhtml#_idParaDest-45",
+            "subitems": []
+          },
+          {
+            "label": "The Other Singularity",
+            "href": "xhtml/11_4_Black_Holes.xhtml#_idParaDest-46",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "5. Quantum Mechanics and Cosmic Origins",
+        "href": "xhtml/12_5_Quantum_Mechanics_a.xhtml",
+        "subitems": [
+          {
+            "label": "Uncertainty",
+            "href": "xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-49",
+            "subitems": []
+          },
+          {
+            "label": "Simulations of Materials",
+            "href": "xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-50",
+            "subitems": []
+          },
+          {
+            "label": "The Promise of Quantum Computers",
+            "href": "xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-51",
+            "subitems": []
+          },
+          {
+            "label": "Quantum Realities",
+            "href": "xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-52",
+            "subitems": []
+          },
+          {
+            "label": "Quantum Cosmology",
+            "href": "xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-53",
+            "subitems": []
+          },
+          {
+            "label": "Inflation",
+            "href": "xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-54",
+            "subitems": []
+          },
+          {
+            "label": "Experiments with Simulations",
+            "href": "xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-55",
+            "subitems": []
+          },
+          {
+            "label": "Did Inflation Really Happen?",
+            "href": "xhtml/12_5_Quantum_Mechanics_a.xhtml#_idParaDest-56",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "6. Thinking",
+        "href": "xhtml/13_6_Thinking.xhtml",
+        "subitems": [
+          {
+            "label": "Life on Mars",
+            "href": "xhtml/13_6_Thinking.xhtml#_idParaDest-59",
+            "subitems": []
+          },
+          {
+            "label": "Bayesian Logic and Spinning Universes",
+            "href": "xhtml/13_6_Thinking.xhtml#_idParaDest-60",
+            "subitems": []
+          },
+          {
+            "label": "Redshift",
+            "href": "xhtml/13_6_Thinking.xhtml#_idParaDest-61",
+            "subitems": []
+          },
+          {
+            "label": "Known and Unknown Unknowns",
+            "href": "xhtml/13_6_Thinking.xhtml#_idParaDest-62",
+            "subitems": []
+          },
+          {
+            "label": "Neurons",
+            "href": "xhtml/13_6_Thinking.xhtml#_idParaDest-63",
+            "subitems": []
+          },
+          {
+            "label": "Machine Learning",
+            "href": "xhtml/13_6_Thinking.xhtml#_idParaDest-64",
+            "subitems": []
+          },
+          {
+            "label": "Astronomy, Science, and Beyond",
+            "href": "xhtml/13_6_Thinking.xhtml#_idParaDest-65",
+            "subitems": []
+          },
+          {
+            "label": "The Weakness of Data",
+            "href": "xhtml/13_6_Thinking.xhtml#_idParaDest-66",
+            "subitems": []
+          },
+          {
+            "label": "Robot Physicists",
+            "href": "xhtml/13_6_Thinking.xhtml#_idParaDest-67",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "7. Simulations, Science, and Reality",
+        "href": "xhtml/14_7_Simulations_Science.xhtml",
+        "subitems": [
+          {
+            "label": "The Resolution of Reality",
+            "href": "xhtml/14_7_Simulations_Science.xhtml#_idParaDest-70",
+            "subitems": []
+          },
+          {
+            "label": "Does Reality Have a Sub-grid?",
+            "href": "xhtml/14_7_Simulations_Science.xhtml#_idParaDest-71",
+            "subitems": []
+          },
+          {
+            "label": "Simulations as Calculations",
+            "href": "xhtml/14_7_Simulations_Science.xhtml#_idParaDest-72",
+            "subitems": []
+          },
+          {
+            "label": "Simulations as Experiments",
+            "href": "xhtml/14_7_Simulations_Science.xhtml#_idParaDest-73",
+            "subitems": []
+          },
+          {
+            "label": "Simulations as Science",
+            "href": "xhtml/14_7_Simulations_Science.xhtml#_idParaDest-74",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "xhtml/15_Acknowledgments.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "xhtml/16_Notes.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "xhtml/17_Index.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "xhtml/18_About_the_Author.xhtml",
+        "subitems": []
       }
     ]
   }

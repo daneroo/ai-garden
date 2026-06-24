@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -628,6 +628,131 @@
       {
         "href": "e9781982167400/xhtml/copyright.xhtml",
         "sha256": "9c53c55ed9897d80ae7b90947df9fd474fcd7452f3814f26a10e7df27d788bf5"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introduction: The Promise of a Second Brain",
+        "href": "intro.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Part One: The Foundation: Understanding What’s Possible",
+        "href": "part01.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 1: Where It All Started",
+            "href": "ch01.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 2: What Is a Second Brain?",
+            "href": "ch02.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 3: How a Second Brain Works",
+            "href": "ch03.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Two: The Method: The Four Steps of CODE",
+        "href": "part02.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 4: Capture—Keep What Resonates",
+            "href": "ch04.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 5: Organize—Save for Actionability",
+            "href": "ch05.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 6: Distill—Find the Essence",
+            "href": "ch06.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 7: Express—Show Your Work",
+            "href": "ch07.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Three: The Shift: Making Things Happen",
+        "href": "part03.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 8: The Art of Creative Execution",
+            "href": "ch08.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 9: The Essential Habits of Digital Organizers",
+            "href": "ch09.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 10: The Path of Self-Expression",
+            "href": "ch10.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Bonus Chapter: How to Create a Tagging System That Works",
+        "href": "bm01.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Additional Resources and Guidelines",
+        "href": "bm02.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "ack.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "authorbio.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "endnotes.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "index.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "copyright.xhtml",
+        "subitems": []
       }
     ]
   }

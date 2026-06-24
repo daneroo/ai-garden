@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -385,6 +385,395 @@
       {
         "href": "xhtml/index.html",
         "sha256": "d10dfa0662a9a36988f23632576a2c93d27b3557fca8293e9a55ae4b841eb657"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "xhtml/cover.html",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "xhtml/title.html",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "xhtml/copyright.html",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "xhtml/contents.html",
+        "subitems": []
+      },
+      {
+        "label": "Summary",
+        "href": "xhtml/summary.html",
+        "subitems": []
+      },
+      {
+        "label": "1. Ecorithms",
+        "href": "xhtml/chapter1.html",
+        "subitems": []
+      },
+      {
+        "label": "2. Prediction and Adaptation",
+        "href": "xhtml/chapter2.html",
+        "subitems": []
+      },
+      {
+        "label": "3. The Computable: Not everything that can be defined can be computed.",
+        "href": "xhtml/chapter3.html",
+        "subitems": [
+          {
+            "label": "3.1 The Turing Paradigm",
+            "href": "xhtml/chapter3.html#ch3-1",
+            "subitems": []
+          },
+          {
+            "label": "3.2 Robust Computational Models",
+            "href": "xhtml/chapter3.html#ch3-2",
+            "subitems": []
+          },
+          {
+            "label": "3.3 The Character of Computational Laws",
+            "href": "xhtml/chapter3.html#ch3-3",
+            "subitems": []
+          },
+          {
+            "label": "3.4 Polynomial Time Computation",
+            "href": "xhtml/chapter3.html#ch3-4",
+            "subitems": []
+          },
+          {
+            "label": "3.5 Possible Ultimate Limitations",
+            "href": "xhtml/chapter3.html#ch3-5",
+            "subitems": []
+          },
+          {
+            "label": "3.6 Simple Algorithms with Complicated Behavior",
+            "href": "xhtml/chapter3.html#ch3-6",
+            "subitems": []
+          },
+          {
+            "label": "3.7 The Perceptron Algorithm",
+            "href": "xhtml/chapter3.html#ch3-7",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "4. Mechanistic Explanations of Nature: What might we look for?",
+        "href": "xhtml/chapter4.html",
+        "subitems": []
+      },
+      {
+        "label": "5. The Learnable: How can one draw general lessons from particular experiences?",
+        "href": "xhtml/chapter5.html",
+        "subitems": [
+          {
+            "label": "5.1 Cognition",
+            "href": "xhtml/chapter5.html#ch5-1",
+            "subitems": []
+          },
+          {
+            "label": "5.2 The Problem of Induction",
+            "href": "xhtml/chapter5.html#ch5-2",
+            "subitems": []
+          },
+          {
+            "label": "5.3 Induction in an Urn",
+            "href": "xhtml/chapter5.html#ch5-3",
+            "subitems": []
+          },
+          {
+            "label": "5.4 Error Control",
+            "href": "xhtml/chapter5.html#ch5-4",
+            "subitems": []
+          },
+          {
+            "label": "5.5 Toward PAC Learnability",
+            "href": "xhtml/chapter5.html#ch5-5",
+            "subitems": []
+          },
+          {
+            "label": "5.6 PAC Learnability",
+            "href": "xhtml/chapter5.html#ch5-6",
+            "subitems": []
+          },
+          {
+            "label": "5.7 Occam: When to Trust a Hypothesis",
+            "href": "xhtml/chapter5.html#ch5-7",
+            "subitems": []
+          },
+          {
+            "label": "5.8 Are There Limits to Learnability?",
+            "href": "xhtml/chapter5.html#ch5-8",
+            "subitems": []
+          },
+          {
+            "label": "5.9 Teaching and Learning",
+            "href": "xhtml/chapter5.html#ch5-9",
+            "subitems": []
+          },
+          {
+            "label": "5.10 Learnable Target Pursuit",
+            "href": "xhtml/chapter5.html#ch5-10",
+            "subitems": []
+          },
+          {
+            "label": "5.11 PAC Learning as a Basis of Cognition",
+            "href": "xhtml/chapter5.html#ch5-11",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "6. The Evolvable: How can complex mechanisms evolve from simpler ones?",
+        "href": "xhtml/chapter6.html",
+        "subitems": [
+          {
+            "label": "6.1 Is There a Gap?",
+            "href": "xhtml/chapter6.html#ch6-1",
+            "subitems": []
+          },
+          {
+            "label": "6.2 How Can the Gap Be Filled?",
+            "href": "xhtml/chapter6.html#ch6-2",
+            "subitems": []
+          },
+          {
+            "label": "6.3 Does Evolution Have a Target?",
+            "href": "xhtml/chapter6.html#ch6-3",
+            "subitems": []
+          },
+          {
+            "label": "6.4 Evolvable Target Pursuit",
+            "href": "xhtml/chapter6.html#ch6-4",
+            "subitems": []
+          },
+          {
+            "label": "6.5 Evolution Versus Learning",
+            "href": "xhtml/chapter6.html#ch6-5",
+            "subitems": []
+          },
+          {
+            "label": "6.6 Evolution as a Form of Learning",
+            "href": "xhtml/chapter6.html#ch6-6",
+            "subitems": []
+          },
+          {
+            "label": "6.7 Definition of Evolvability",
+            "href": "xhtml/chapter6.html#ch6-7",
+            "subitems": []
+          },
+          {
+            "label": "6.8 Extent and Limits",
+            "href": "xhtml/chapter6.html#ch6-8",
+            "subitems": []
+          },
+          {
+            "label": "6.9 Real-Valued Evolution",
+            "href": "xhtml/chapter6.html#ch6-9",
+            "subitems": []
+          },
+          {
+            "label": "6.10 Why Is This Theory So Different?",
+            "href": "xhtml/chapter6.html#ch6-10",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "7. The Deducible: How can one reason with imprecise concepts?",
+        "href": "xhtml/chapter7.html",
+        "subitems": [
+          {
+            "label": "7.1 Reasoning",
+            "href": "xhtml/chapter7.html#ch7-1",
+            "subitems": []
+          },
+          {
+            "label": "7.2 The Need for Reasoning Even with the Theoryless",
+            "href": "xhtml/chapter7.html#ch7-2",
+            "subitems": []
+          },
+          {
+            "label": "7.3 The Challenge of Complexity",
+            "href": "xhtml/chapter7.html#ch7-3",
+            "subitems": []
+          },
+          {
+            "label": "7.4 The Challenge of Brittleness",
+            "href": "xhtml/chapter7.html#ch7-4",
+            "subitems": []
+          },
+          {
+            "label": "7.5 The Challenge of Semantics",
+            "href": "xhtml/chapter7.html#ch7-5",
+            "subitems": []
+          },
+          {
+            "label": "7.6 The Challenge of Grounding",
+            "href": "xhtml/chapter7.html#ch7-6",
+            "subitems": []
+          },
+          {
+            "label": "7.7 The Mind’s Eye: A Pinhole to the World",
+            "href": "xhtml/chapter7.html#ch7-7",
+            "subitems": []
+          },
+          {
+            "label": "7.8 Robust Logic: Reasoning in an Unknowable World",
+            "href": "xhtml/chapter7.html#ch7-8",
+            "subitems": []
+          },
+          {
+            "label": "7.9 Thinking",
+            "href": "xhtml/chapter7.html#ch7-9",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "8. Humans as Ecorithms",
+        "href": "xhtml/chapter8.html",
+        "subitems": [
+          {
+            "label": "8.1 Introduction",
+            "href": "xhtml/chapter8.html#ch8-1",
+            "subitems": []
+          },
+          {
+            "label": "8.2 Nature Versus Nurture",
+            "href": "xhtml/chapter8.html#ch8-2",
+            "subitems": []
+          },
+          {
+            "label": "8.3 Naïveté",
+            "href": "xhtml/chapter8.html#ch8-3",
+            "subitems": []
+          },
+          {
+            "label": "8.4 Prejudice and Rush to Judgment",
+            "href": "xhtml/chapter8.html#ch8-4",
+            "subitems": []
+          },
+          {
+            "label": "8.5 Personalized Truth",
+            "href": "xhtml/chapter8.html#ch8-5",
+            "subitems": []
+          },
+          {
+            "label": "8.6 Personal Feelings",
+            "href": "xhtml/chapter8.html#ch8-6",
+            "subitems": []
+          },
+          {
+            "label": "8.7 Delusions of Reason",
+            "href": "xhtml/chapter8.html#ch8-7",
+            "subitems": []
+          },
+          {
+            "label": "8.8 Machine-Aided Humans",
+            "href": "xhtml/chapter8.html#ch8-8",
+            "subitems": []
+          },
+          {
+            "label": "8.9 Is There Something More?",
+            "href": "xhtml/chapter8.html#ch8-9",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "9. Machines as Ecorithms: Why is artificial intelligence difficult to achieve?",
+        "href": "xhtml/chapter9.html",
+        "subitems": [
+          {
+            "label": "9.1 Introduction",
+            "href": "xhtml/chapter9.html#ch9-1",
+            "subitems": []
+          },
+          {
+            "label": "9.2 Machine Learning",
+            "href": "xhtml/chapter9.html#ch9-2",
+            "subitems": []
+          },
+          {
+            "label": "9.3 Artificial Intelligence—Where Is the Difficulty?",
+            "href": "xhtml/chapter9.html#ch9-3",
+            "subitems": []
+          },
+          {
+            "label": "9.4 The Artificial in Artificial Intelligence",
+            "href": "xhtml/chapter9.html#ch9-4",
+            "subitems": []
+          },
+          {
+            "label": "9.5 Unsupervised Learning",
+            "href": "xhtml/chapter9.html#ch9-5",
+            "subitems": []
+          },
+          {
+            "label": "9.6 Artificial Intelligence—Where Next?",
+            "href": "xhtml/chapter9.html#ch9-6",
+            "subitems": []
+          },
+          {
+            "label": "9.7 Need We Fear Artificial Intelligence?",
+            "href": "xhtml/chapter9.html#ch9-7",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "10. Questions",
+        "href": "xhtml/chapter10.html",
+        "subitems": [
+          {
+            "label": "10.1 Science",
+            "href": "xhtml/chapter10.html#ch10-1",
+            "subitems": []
+          },
+          {
+            "label": "10.2 A More Strongly Ecorithmic Future",
+            "href": "xhtml/chapter10.html#ch10-2",
+            "subitems": []
+          },
+          {
+            "label": "10.3 How to Act?",
+            "href": "xhtml/chapter10.html#ch10-3",
+            "subitems": []
+          },
+          {
+            "label": "10.4 Mysteries",
+            "href": "xhtml/chapter10.html#ch10-4",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Notes",
+        "href": "xhtml/notes.html",
+        "subitems": []
+      },
+      {
+        "label": "Glossary",
+        "href": "xhtml/glossary.html",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "xhtml/acknowledgments.html",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "xhtml/index.html",
+        "subitems": []
       }
     ]
   }

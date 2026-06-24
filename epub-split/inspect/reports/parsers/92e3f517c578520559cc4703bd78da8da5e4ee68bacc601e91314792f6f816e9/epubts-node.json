@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -282,6 +282,83 @@
       {
         "href": "text/03_Copyright.xhtml",
         "sha256": "b4f9de199824b0ef184b2dd5627ed565399f1248926b14c238b985ebf3004a17"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "text/00_Cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title",
+        "href": "text/02_Title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "text/05_Contents.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introduction",
+        "href": "text/06_Introduction.xhtml#intro",
+        "subitems": []
+      },
+      {
+        "label": "Chapter 1: Engineers vs. Lawyers",
+        "href": "text/08_Chapter01.xhtml#ch1",
+        "subitems": []
+      },
+      {
+        "label": "Chapter 2: Building Big",
+        "href": "text/09_Chapter02.xhtml#ch2",
+        "subitems": []
+      },
+      {
+        "label": "Chapter 3: Tech Power",
+        "href": "text/10_Chapter03.xhtml#ch3",
+        "subitems": []
+      },
+      {
+        "label": "Chapter 4: One Child",
+        "href": "text/11_Chapter04.xhtml#ch4",
+        "subitems": []
+      },
+      {
+        "label": "Chapter 5: Zero-Covid",
+        "href": "text/12_Chapter05.xhtml#ch5",
+        "subitems": []
+      },
+      {
+        "label": "Chapter 6: Fortress China",
+        "href": "text/13_Chapter06.xhtml#ch6",
+        "subitems": []
+      },
+      {
+        "label": "Chapter 7: Learning to Love Engineers",
+        "href": "text/14_Chapter07.xhtml#ch7",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "text/15_Acknowledgments.xhtml#ack",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "text/16_Notes.xhtml#note",
+        "subitems": []
+      },
+      {
+        "label": "Suggestions for Further Reading",
+        "href": "text/17_Further_Reading.xhtml#bib",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "text/03_Copyright.xhtml",
+        "subitems": []
       }
     ]
   }

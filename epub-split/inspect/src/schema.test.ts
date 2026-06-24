@@ -42,14 +42,14 @@ const INVALID_CASES: ReadonlyArray<readonly [string, unknown]> = [
   [
     "opened without content",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "epubts-node", parserVersion: "0.6.7", domParser: "linkedom", openStatus: "opened" },
     },
   ],
   [
     "opened carrying openFailure",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: {
         parser: "epubts-node",
         parserVersion: "0.6.7",
@@ -57,41 +57,41 @@ const INVALID_CASES: ReadonlyArray<readonly [string, unknown]> = [
         openStatus: "opened",
         openFailure: { category: "X", message: "Y" },
       },
-      content: { metadata: { title: "T", creator: "C", date: null }, spine: [], manifest: [], spineHashes: [] },
+      content: { metadata: { title: "T", creator: "C", date: null }, spine: [], manifest: [], spineHashes: [], toc: [] },
     },
   ],
   [
     "open-failed without openFailure",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "storyteller", parserVersion: "0.6.2", openStatus: "open-failed" },
     },
   ],
   [
     "open-failed carrying content",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: {
         parser: "storyteller",
         parserVersion: "0.6.2",
         openStatus: "open-failed",
         openFailure: { category: "X", message: "Y" },
       },
-      content: { metadata: { title: "T", creator: "C", date: null }, spine: [], manifest: [], spineHashes: [] },
+      content: { metadata: { title: "T", creator: "C", date: null }, spine: [], manifest: [], spineHashes: [], toc: [] },
     },
   ],
   [
     "epub2-unsupported carrying content",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "storyteller", parserVersion: "0.6.2", openStatus: "epub2-unsupported" },
-      content: { metadata: { title: "T", creator: "C", date: null }, spine: [], manifest: [], spineHashes: [] },
+      content: { metadata: { title: "T", creator: "C", date: null }, spine: [], manifest: [], spineHashes: [], toc: [] },
     },
   ],
   [
     "epub2-unsupported carrying openFailure",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: {
         parser: "storyteller",
         parserVersion: "0.6.2",
@@ -103,23 +103,23 @@ const INVALID_CASES: ReadonlyArray<readonly [string, unknown]> = [
   [
     "domParser on epubts-browser",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "epubts-browser", parserVersion: "0.6.7", domParser: "linkedom", openStatus: "opened" },
-      content: { metadata: { title: "T", creator: "C", date: null }, spine: [], manifest: [], spineHashes: [] },
+      content: { metadata: { title: "T", creator: "C", date: null }, spine: [], manifest: [], spineHashes: [], toc: [] },
     },
   ],
   [
     "domParser on storyteller",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "storyteller", parserVersion: "0.6.2", domParser: "jsdom", openStatus: "opened" },
-      content: { metadata: { title: "T", creator: "C", date: null }, spine: [], manifest: [], spineHashes: [] },
+      content: { metadata: { title: "T", creator: "C", date: null }, spine: [], manifest: [], spineHashes: [], toc: [] },
     },
   ],
   [
     "domParser when not opened",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: {
         parser: "epubts-node",
         parserVersion: "0.6.7",
@@ -132,7 +132,7 @@ const INVALID_CASES: ReadonlyArray<readonly [string, unknown]> = [
   [
     "openFailure carrying a stage key",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: {
         parser: "storyteller",
         parserVersion: "0.6.2",
@@ -144,7 +144,7 @@ const INVALID_CASES: ReadonlyArray<readonly [string, unknown]> = [
   [
     "extra top-level key (wall-clock leak)",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "storyteller", parserVersion: "0.6.2", openStatus: "epub2-unsupported" },
       generatedAt: "2026-06-23T22:00:00Z",
     },
@@ -152,60 +152,60 @@ const INVALID_CASES: ReadonlyArray<readonly [string, unknown]> = [
   [
     "extra meta key (hostname leak)",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "storyteller", parserVersion: "0.6.2", openStatus: "epub2-unsupported", hostname: "galois" },
     },
   ],
   [
     "extra metadata field (out-of-v1)",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "epubts-node", parserVersion: "0.6.7", domParser: "linkedom", openStatus: "opened" },
-      content: { metadata: { title: "T", creator: "C", date: null, language: "en" }, spine: [], manifest: [], spineHashes: [] },
+      content: { metadata: { title: "T", creator: "C", date: null, language: "en" }, spine: [], manifest: [], spineHashes: [], toc: [] },
     },
   ],
   [
     "metadata missing the date field",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "epubts-node", parserVersion: "0.6.7", domParser: "linkedom", openStatus: "opened" },
-      content: { metadata: { title: "T", creator: "C" }, spine: [], manifest: [], spineHashes: [] },
+      content: { metadata: { title: "T", creator: "C" }, spine: [], manifest: [], spineHashes: [], toc: [] },
     },
   ],
   [
     "empty parserVersion",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "storyteller", parserVersion: "", openStatus: "epub2-unsupported" },
     },
   ],
   [
     "unknown parser name",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "epubjs", parserVersion: "0.3.0", openStatus: "epub2-unsupported" },
     },
   ],
   [
     "unknown openStatus",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "storyteller", parserVersion: "0.6.2", openStatus: "skipped" },
     },
   ],
   [
     "wrong schemaVersion",
     {
-      schemaVersion: 5,
+      schemaVersion: 4,
       meta: { parser: "storyteller", parserVersion: "0.6.2", openStatus: "epub2-unsupported" },
     },
   ],
   [
     "metadata field of wrong type",
     {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "epubts-node", parserVersion: "0.6.7", domParser: "linkedom", openStatus: "opened" },
-      content: { metadata: { title: 42, creator: "C", date: null }, spine: [], manifest: [], spineHashes: [] },
+      content: { metadata: { title: 42, creator: "C", date: null }, spine: [], manifest: [], spineHashes: [], toc: [] },
     },
   ],
 ];
@@ -221,9 +221,9 @@ describe("parserOutputSchema — invariant violations are rejected", () => {
 describe("parserOutputSchema — accepted edge cases", () => {
   test("all three metadata fields may be null; empty spine is valid", () => {
     const value = {
-      schemaVersion: 4,
+      schemaVersion: 5,
       meta: { parser: "epubts-browser", parserVersion: "0.6.7", openStatus: "opened" },
-      content: { metadata: { title: null, creator: null, date: null }, spine: [], manifest: [], spineHashes: [] },
+      content: { metadata: { title: null, creator: null, date: null }, spine: [], manifest: [], spineHashes: [], toc: [] },
     };
     expect(parserOutputSchema.safeParse(value).success).toBe(true);
   });

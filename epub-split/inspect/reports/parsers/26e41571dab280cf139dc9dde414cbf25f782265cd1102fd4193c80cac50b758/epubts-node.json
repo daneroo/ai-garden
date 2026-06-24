@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -398,6 +398,131 @@
       {
         "href": "copyright.xhtml",
         "sha256": "6b7e598daa965b8a173dbb5c55939cd41adb10a743f7806fa342ff291ce6e5e9"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title",
+        "href": "title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Epigraph",
+        "href": "epigraph.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "contents.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Preface",
+        "href": "preface.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Act I",
+        "href": "Act1.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 1: Yup",
+            "href": "Chapter1.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 2: The Santa Claus Problem",
+            "href": "Chapter2.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 3: Meta Games",
+            "href": "Chapter3.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 4: The March of Progress",
+            "href": "Chapter4.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Act II",
+        "href": "Act2.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 5: How to Think About Bob",
+            "href": "Chapter5.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 6: Artificial Love",
+            "href": "Chapter6.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 7: The Org Chart",
+            "href": "Chapter7.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Act III",
+        "href": "Act3.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 8: The Dragon's Hoard",
+            "href": "Chapter8.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 9: The Vanishing",
+            "href": "Chapter9.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 10: Manfred",
+            "href": "Chapter10.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 11: Truth Serum",
+            "href": "Chapter10.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Coda",
+        "href": "coda.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "ack.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Also by Michael Lewis",
+        "href": "alsoby.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "copyright.xhtml",
+        "subitems": []
       }
     ]
   }

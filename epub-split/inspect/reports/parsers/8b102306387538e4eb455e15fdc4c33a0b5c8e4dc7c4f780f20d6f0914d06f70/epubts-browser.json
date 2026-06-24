@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -825,6 +825,221 @@
       {
         "href": "xhtml/copyright.xhtml",
         "sha256": "0ae7701f0d864ebbfd45abf533d7cc043fed41a964bcbd34ac09333122d521ad"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Title Page",
+        "href": "xhtml/title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright Notice",
+        "href": "xhtml/copyrightnotice.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "xhtml/dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "xhtml/acknowledgments.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Map of Elendel Basin",
+        "href": "xhtml/map1.xhtml#map1",
+        "subitems": []
+      },
+      {
+        "label": "Map of City of Elendel",
+        "href": "xhtml/map1.xhtml#map2",
+        "subitems": []
+      },
+      {
+        "label": "Prologue",
+        "href": "xhtml/prologue.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Part One",
+        "href": "xhtml/part1.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 1",
+            "href": "xhtml/chapter1.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 2",
+            "href": "xhtml/chapter2.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 3",
+            "href": "xhtml/chapter3.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 4",
+            "href": "xhtml/chapter4.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Two",
+        "href": "xhtml/part2.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 5",
+            "href": "xhtml/chapter5.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 6",
+            "href": "xhtml/chapter6.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 7",
+            "href": "xhtml/chapter7.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 8",
+            "href": "xhtml/chapter8.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 9",
+            "href": "xhtml/chapter9.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 10",
+            "href": "xhtml/chapter10.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 11",
+            "href": "xhtml/chapter11.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 12",
+            "href": "xhtml/chapter12.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 13",
+            "href": "xhtml/chapter13.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 14",
+            "href": "xhtml/chapter14.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 15",
+            "href": "xhtml/chapter15.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 16",
+            "href": "xhtml/chapter16.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 17",
+            "href": "xhtml/chapter17.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 18",
+            "href": "xhtml/chapter18.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 19",
+            "href": "xhtml/chapter19.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 20",
+            "href": "xhtml/chapter20.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 21",
+            "href": "xhtml/chapter21.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Three",
+        "href": "xhtml/part3.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 22",
+            "href": "xhtml/chapter22.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 23",
+            "href": "xhtml/chapter23.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 24",
+            "href": "xhtml/chapter24.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 25",
+            "href": "xhtml/chapter25.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 26",
+            "href": "xhtml/chapter26.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Epilogue",
+        "href": "xhtml/epilogue.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Ars Arcanum",
+        "href": "xhtml/backmatter.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "xhtml/abouttheauthor.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Tor Books by Brandon Sanderson",
+        "href": "xhtml/adcard.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Newsletter Sign-up",
+        "href": "xhtml/newsletter.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "xhtml/copyright.xhtml",
+        "subitems": []
       }
     ]
   }

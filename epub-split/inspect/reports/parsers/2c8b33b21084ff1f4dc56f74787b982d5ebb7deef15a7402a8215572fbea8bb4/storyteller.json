@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -383,6 +383,140 @@
       {
         "href": "25_Index.xhtml",
         "sha256": "44753fbac0876300b9e20142647c145c875382b7f0d89d312eaef82b0b874c44"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover Page",
+        "href": "OEBPS/Cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Halftitle Page",
+        "href": "OEBPS/01_Halftitle.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "OEBPS/02_Title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright Page",
+        "href": "OEBPS/03_Copyright.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "OEBPS/04_Ded.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "OEBPS/05_Contents.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introduction",
+        "href": "OEBPS/06_Intro.xhtml#fm1",
+        "subitems": []
+      },
+      {
+        "label": "Part I: Seize the Means of Computation",
+        "href": "OEBPS/07_Part01.xhtml#pt1",
+        "subitems": [
+          {
+            "label": "1. How Big Tech Got Big",
+            "href": "OEBPS/08_Chapter01.xhtml#ch1",
+            "subitems": []
+          },
+          {
+            "label": "2. Network Effects vs. Switching Costs",
+            "href": "OEBPS/09_Chapter02.xhtml#ch2",
+            "subitems": []
+          },
+          {
+            "label": "3. Copyright Wars, Cybercrime, Terrorism, Human Trafficking and Other Gifts to Big Tech",
+            "href": "OEBPS/10_Chapter03.xhtml#ch3",
+            "subitems": []
+          },
+          {
+            "label": "4. Interop: From Computer Science to the Real World",
+            "href": "OEBPS/11_Chapter04.xhtml#ch4",
+            "subitems": []
+          },
+          {
+            "label": "5. Standards and Mandates: What’s Behind the Shield of Boringness?",
+            "href": "OEBPS/12_Chapter05.xhtml#ch5",
+            "subitems": []
+          },
+          {
+            "label": "6. Adversarial Interop: Guerrilla Warfare and Reverse Engineering",
+            "href": "OEBPS/13_Chapter06.xhtml#ch6",
+            "subitems": []
+          },
+          {
+            "label": "7. Jam Tomorrow: Life after We Seize the Means of Computation",
+            "href": "OEBPS/14_Chapter07.xhtml#ch7",
+            "subitems": []
+          },
+          {
+            "label": "8. Jam Today: How We’ll Get There",
+            "href": "OEBPS/15_Chapter08.xhtml#ch8",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part II: What About",
+        "href": "OEBPS/16_Part02.xhtml#pt2",
+        "subitems": [
+          {
+            "label": "9. What about Privacy?",
+            "href": "OEBPS/17_Chapter09.xhtml#ch9",
+            "subitems": []
+          },
+          {
+            "label": "10. What about Harassment?",
+            "href": "OEBPS/18_Chapter10.xhtml#ch10",
+            "subitems": []
+          },
+          {
+            "label": "11. What about Algorithmic Radicalization?",
+            "href": "OEBPS/19_Chapter11.xhtml#ch11",
+            "subitems": []
+          },
+          {
+            "label": "12. What about Child Sexual Abuse Material, Nonconsensual Pornography and Terrorist Materials?",
+            "href": "OEBPS/20_Chapter12.xhtml#ch12",
+            "subitems": []
+          },
+          {
+            "label": "13. What about Warranties?",
+            "href": "OEBPS/21_Chapter13.xhtml#ch13",
+            "subitems": []
+          },
+          {
+            "label": "14. What about Poor Countries?",
+            "href": "OEBPS/22_Chapter14.xhtml#ch14",
+            "subitems": []
+          },
+          {
+            "label": "15. What about Blockchain?",
+            "href": "OEBPS/23_Chapter15.xhtml#ch15",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Further Reading, Listening and Viewing",
+        "href": "OEBPS/24_Reading.xhtml#bm1",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "OEBPS/25_Index.xhtml#bm2",
+        "subitems": []
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -722,6 +722,217 @@
       {
         "href": "xhtml/copyright.xhtml",
         "sha256": "5927c0039236c7230d36d20750f0512604676e2f0bde16edc5de8c26300cdae2"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "EPUB/cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "EPUB/about_the_author.xhtml#sec-ata",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "EPUB/title.xhtml#sec-titlepage001",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "EPUB/dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Epigraph",
+        "href": "EPUB/epigraph.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "List of Illustrations",
+        "href": "EPUB/list_of_illustrations.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Maps",
+        "href": "EPUB/maps.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Family Trees",
+        "href": "EPUB/family_tree.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Author’s Note",
+        "href": "EPUB/a_note.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introduction",
+        "href": "EPUB/introduction.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "PART ONE: WAR",
+        "href": "EPUB/part001.xhtml",
+        "subitems": [
+          {
+            "label": "1. 1367–1377: by my sceptre’s awe",
+            "href": "EPUB/chapter001.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "2. 1377–1381: measure our confines",
+            "href": "EPUB/chapter002.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "3. 1381–1384: be rul’d by me",
+            "href": "EPUB/chapter003.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "4. 1384–1386: the blood is hot",
+            "href": "EPUB/chapter004.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "5. 1386–1387: am I not king?",
+            "href": "EPUB/chapter005.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "6. 1387–1389: come I appellant",
+            "href": "EPUB/chapter006.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "PART TWO: PEACE",
+        "href": "EPUB/part002.xhtml",
+        "subitems": [
+          {
+            "label": "7. 1389–1393: this little world",
+            "href": "EPUB/chapter007.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "8. 1391–1394: to be a make-peace",
+            "href": "EPUB/chapter008.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "9. 1394–1395: an immortal title",
+            "href": "EPUB/chapter009.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "10. 1395–1396: conclude and be agreed",
+            "href": "EPUB/chapter010.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "PART THREE: VENGEANCE",
+        "href": "EPUB/part003.xhtml",
+        "subitems": [
+          {
+            "label": "11. 1396–1397: on ancient malice",
+            "href": "EPUB/chapter011.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "12. 1397–1398: to stand upon my kingdom",
+            "href": "EPUB/chapter012.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "13. 1398–1399: the hollow crown",
+            "href": "EPUB/chapter013.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "14. 1399–1400: mine empty chair",
+            "href": "EPUB/chapter014.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "PART FOUR: GRACE",
+        "href": "EPUB/part004.xhtml",
+        "subitems": [
+          {
+            "label": "15. 1400–1403: so shaken as we are",
+            "href": "EPUB/chapter015.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "16. 1403–1406: meteors of a troubled heaven",
+            "href": "EPUB/chapter016.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "17. 1406–1410: will fortune never come with both hands full",
+            "href": "EPUB/chapter017.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "18. 1410–1413: sorrows of the blood",
+            "href": "EPUB/chapter018.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "19. 1413–1415: the balance and the sword",
+            "href": "EPUB/chapter019.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Epilogue",
+        "href": "EPUB/epilogue.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Images",
+        "href": "EPUB/images.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgements",
+        "href": "EPUB/acknowledgements.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Directory of the Main Players in the Royal and Noble Families of England and France",
+        "href": "EPUB/appendix.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "EPUB/notes.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Bibliography",
+        "href": "EPUB/bibliography.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "EPUB/index.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "EPUB/copyright.xhtml",
+        "subitems": []
       }
     ]
   }

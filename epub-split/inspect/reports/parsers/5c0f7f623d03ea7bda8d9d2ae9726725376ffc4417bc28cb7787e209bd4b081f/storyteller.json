@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -420,6 +420,561 @@
       {
         "href": "xhtml/25_index.xhtml",
         "sha256": "e096e60394e19becb6145d2cb7d3adac7c6e3d6fb5c97c16688b79d551c678c2"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "OEBPS/xhtml/01_cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "OEBPS/xhtml/03_title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "OEBPS/xhtml/04_copyright.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "OEBPS/xhtml/05_dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "OEBPS/xhtml/06_cont.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Preface",
+        "href": "OEBPS/xhtml/07_preface.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "1. The Civilization Enabler",
+        "href": "OEBPS/xhtml/09_ch1.xhtml",
+        "subitems": [
+          {
+            "label": "Cleverness Is Not Enough",
+            "href": "OEBPS/xhtml/09_ch1.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "The Civilization Enabler",
+            "href": "OEBPS/xhtml/09_ch1.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Knowledge Accumulation",
+            "href": "OEBPS/xhtml/09_ch1.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "A Computational Approach",
+            "href": "OEBPS/xhtml/09_ch1.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Why Computation?",
+            "href": "OEBPS/xhtml/09_ch1.xhtml#sec5",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "2. Where We Come From",
+        "href": "OEBPS/xhtml/10_ch2.xhtml",
+        "subitems": [
+          {
+            "label": "Darwin’s Challenge",
+            "href": "OEBPS/xhtml/10_ch2.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "The Brain",
+            "href": "OEBPS/xhtml/10_ch2.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "The Difficulty of Invention",
+            "href": "OEBPS/xhtml/10_ch2.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Distinguishers, but Not Civilization Enablers",
+            "href": "OEBPS/xhtml/10_ch2.xhtml#sec4",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "3. Where We Have Got To",
+        "href": "OEBPS/xhtml/11_ch3.xhtml",
+        "subitems": [
+          {
+            "label": "Pervasiveness of Education",
+            "href": "OEBPS/xhtml/11_ch3.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "Education in the Large",
+            "href": "OEBPS/xhtml/11_ch3.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Educability Is Different from IQ",
+            "href": "OEBPS/xhtml/11_ch3.xhtml#sec3",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "4. Some Foundation Stones",
+        "href": "OEBPS/xhtml/12_ch4.xhtml",
+        "subitems": [
+          {
+            "label": "Acquiring and Applying Belief Systems",
+            "href": "OEBPS/xhtml/12_ch4.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "Learning from Examples",
+            "href": "OEBPS/xhtml/12_ch4.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Generalization",
+            "href": "OEBPS/xhtml/12_ch4.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Large Memory",
+            "href": "OEBPS/xhtml/12_ch4.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Symbolic Names",
+            "href": "OEBPS/xhtml/12_ch4.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "Teaching",
+            "href": "OEBPS/xhtml/12_ch4.xhtml#sec6",
+            "subitems": []
+          },
+          {
+            "label": "Chaining",
+            "href": "OEBPS/xhtml/12_ch4.xhtml#sec7",
+            "subitems": []
+          },
+          {
+            "label": "A Mind’s Eye",
+            "href": "OEBPS/xhtml/12_ch4.xhtml#sec8",
+            "subitems": []
+          },
+          {
+            "label": "The Rest of Cognition",
+            "href": "OEBPS/xhtml/12_ch4.xhtml#sec9",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "5. Computation for Describing Natural Phenomena",
+        "href": "OEBPS/xhtml/13_ch5.xhtml",
+        "subitems": [
+          {
+            "label": "Turing Computation",
+            "href": "OEBPS/xhtml/13_ch5.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "Probably Approximately Correct Learning",
+            "href": "OEBPS/xhtml/13_ch5.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Robust Models of Computation",
+            "href": "OEBPS/xhtml/13_ch5.xhtml#sec3",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "6. Integrative Learning",
+        "href": "OEBPS/xhtml/14_ch6.xhtml",
+        "subitems": [
+          {
+            "label": "Putting Experiences Together",
+            "href": "OEBPS/xhtml/14_ch6.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "Augmenting Learning with Reasoning",
+            "href": "OEBPS/xhtml/14_ch6.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Robust Logic",
+            "href": "OEBPS/xhtml/14_ch6.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Knowledge as Rules",
+            "href": "OEBPS/xhtml/14_ch6.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Tolerance of Inconsistency",
+            "href": "OEBPS/xhtml/14_ch6.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "Rules as Learned Classifiers",
+            "href": "OEBPS/xhtml/14_ch6.xhtml#sec6",
+            "subitems": []
+          },
+          {
+            "label": "The Power of Learning",
+            "href": "OEBPS/xhtml/14_ch6.xhtml#sec7",
+            "subitems": []
+          },
+          {
+            "label": "Chaining with Equivalences",
+            "href": "OEBPS/xhtml/14_ch6.xhtml#sec8",
+            "subitems": []
+          },
+          {
+            "label": "Teaching by Example",
+            "href": "OEBPS/xhtml/14_ch6.xhtml#sec9",
+            "subitems": []
+          },
+          {
+            "label": "Innate and Acquired Attributes",
+            "href": "OEBPS/xhtml/14_ch6.xhtml#sec10",
+            "subitems": []
+          },
+          {
+            "label": "Imagination and Novelty",
+            "href": "OEBPS/xhtml/14_ch6.xhtml#sec11",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "7. What Integrative Learning Does",
+        "href": "OEBPS/xhtml/15_ch7.xhtml",
+        "subitems": [
+          {
+            "label": "Compounding Knowledge",
+            "href": "OEBPS/xhtml/15_ch7.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "Soundness of Chaining",
+            "href": "OEBPS/xhtml/15_ch7.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "World without Reason?",
+            "href": "OEBPS/xhtml/15_ch7.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Modularity and Partial Information",
+            "href": "OEBPS/xhtml/15_ch7.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Was Pavlov’s Dog Right?",
+            "href": "OEBPS/xhtml/15_ch7.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "Exploiting Modularity",
+            "href": "OEBPS/xhtml/15_ch7.xhtml#sec6",
+            "subitems": []
+          },
+          {
+            "label": "The Patchwork Tapestry",
+            "href": "OEBPS/xhtml/15_ch7.xhtml#sec7",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "8. The Capability of Being Educable",
+        "href": "OEBPS/xhtml/16_ch8.xhtml",
+        "subitems": [
+          {
+            "label": "The Crux",
+            "href": "OEBPS/xhtml/16_ch8.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "An Educable Learning System",
+            "href": "OEBPS/xhtml/16_ch8.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "More on Symbolic Names",
+            "href": "OEBPS/xhtml/16_ch8.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Rules Acquired by Instruction",
+            "href": "OEBPS/xhtml/16_ch8.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Scene Management",
+            "href": "OEBPS/xhtml/16_ch8.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "Belief Choice",
+            "href": "OEBPS/xhtml/16_ch8.xhtml#sec6",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "9. Educability as a Model of Computation",
+        "href": "OEBPS/xhtml/17_ch9.xhtml",
+        "subitems": [
+          {
+            "label": "Evolutionary Plausibility",
+            "href": "OEBPS/xhtml/17_ch9.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "The Model Is Explanatory",
+            "href": "OEBPS/xhtml/17_ch9.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Teaching to Reason",
+            "href": "OEBPS/xhtml/17_ch9.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Measures of Cognition",
+            "href": "OEBPS/xhtml/17_ch9.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Universality",
+            "href": "OEBPS/xhtml/17_ch9.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "The Educability Model Has Robustness",
+            "href": "OEBPS/xhtml/17_ch9.xhtml#sec6",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "10. Promoting Educability",
+        "href": "OEBPS/xhtml/18_ch10.xhtml",
+        "subitems": [
+          {
+            "label": "Educability as an Individual Capacity",
+            "href": "OEBPS/xhtml/18_ch10.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "Educability of a Population",
+            "href": "OEBPS/xhtml/18_ch10.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Measuring Educability",
+            "href": "OEBPS/xhtml/18_ch10.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Long-Term Retention",
+            "href": "OEBPS/xhtml/18_ch10.xhtml#sec4",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "11. Artificial Educability",
+        "href": "OEBPS/xhtml/19_ch11.xhtml",
+        "subitems": [
+          {
+            "label": "Fear of Technology",
+            "href": "OEBPS/xhtml/19_ch11.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "The Imitation Game",
+            "href": "OEBPS/xhtml/19_ch11.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Beyond the Imitation Game",
+            "href": "OEBPS/xhtml/19_ch11.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "AI",
+            "href": "OEBPS/xhtml/19_ch11.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Large Language Models",
+            "href": "OEBPS/xhtml/19_ch11.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "Beyond Efficient Generalization",
+            "href": "OEBPS/xhtml/19_ch11.xhtml#sec6",
+            "subitems": []
+          },
+          {
+            "label": "Integrative Learning Technology",
+            "href": "OEBPS/xhtml/19_ch11.xhtml#sec7",
+            "subitems": []
+          },
+          {
+            "label": "Educable Technology",
+            "href": "OEBPS/xhtml/19_ch11.xhtml#sec8",
+            "subitems": []
+          },
+          {
+            "label": "Natural versus Artificial",
+            "href": "OEBPS/xhtml/19_ch11.xhtml#sec9",
+            "subitems": []
+          },
+          {
+            "label": "The Challenge of Teaching Materials",
+            "href": "OEBPS/xhtml/19_ch11.xhtml#sec10",
+            "subitems": []
+          },
+          {
+            "label": "No Technological Singularity",
+            "href": "OEBPS/xhtml/19_ch11.xhtml#sec11",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "12. Education: Some Questions",
+        "href": "OEBPS/xhtml/20_ch12.xhtml",
+        "subitems": [
+          {
+            "label": "Education as a Right",
+            "href": "OEBPS/xhtml/20_ch12.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "The Study of Education",
+            "href": "OEBPS/xhtml/20_ch12.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "A Different Vantage Point",
+            "href": "OEBPS/xhtml/20_ch12.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "In the Classroom",
+            "href": "OEBPS/xhtml/20_ch12.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Teaching Materials",
+            "href": "OEBPS/xhtml/20_ch12.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "Education and Propaganda",
+            "href": "OEBPS/xhtml/20_ch12.xhtml#sec6",
+            "subitems": []
+          },
+          {
+            "label": "Propaganda Safety",
+            "href": "OEBPS/xhtml/20_ch12.xhtml#sec7",
+            "subitems": []
+          },
+          {
+            "label": "Saturation",
+            "href": "OEBPS/xhtml/20_ch12.xhtml#sec8",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "13. A Species Adrift",
+        "href": "OEBPS/xhtml/21_ch13.xhtml",
+        "subitems": [
+          {
+            "label": "Human Sacrifice",
+            "href": "OEBPS/xhtml/21_ch13.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "At Sea",
+            "href": "OEBPS/xhtml/21_ch13.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "The Case of Isaac Newton",
+            "href": "OEBPS/xhtml/21_ch13.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Belief Systems: Good and Bad",
+            "href": "OEBPS/xhtml/21_ch13.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Science as a Belief System",
+            "href": "OEBPS/xhtml/21_ch13.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "The Scientific Revolution",
+            "href": "OEBPS/xhtml/21_ch13.xhtml#sec6",
+            "subitems": []
+          },
+          {
+            "label": "Equality",
+            "href": "OEBPS/xhtml/21_ch13.xhtml#sec7",
+            "subitems": []
+          },
+          {
+            "label": "Worldviews",
+            "href": "OEBPS/xhtml/21_ch13.xhtml#sec8",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "OEBPS/xhtml/22_acknowledgments.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Summary of Terminology",
+        "href": "OEBPS/xhtml/23_summary.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "OEBPS/xhtml/24_notes.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "OEBPS/xhtml/25_index.xhtml",
+        "subitems": []
       }
     ]
   }

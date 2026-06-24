@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -381,6 +381,132 @@
       {
         "href": "XHTML/c24_collec.xhtml",
         "sha256": "445a6205f51f1d38d9ae21ac44af63974729efc02226662bcba7da24b8c4d253"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Couverture",
+        "href": "XHTML/c01_cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "XHTML/c02_copyright.xhtml#epub-anchor_start-reading",
+        "subitems": []
+      },
+      {
+        "label": "Première partie. L’aurore aux doigts de rose",
+        "href": "XHTML/c03_part.xhtml",
+        "subitems": [
+          {
+            "label": "1",
+            "href": "XHTML/c04_chapter.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Intermezzo",
+            "href": "XHTML/c05_chapter.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "2",
+            "href": "XHTML/c06_chapter.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Intermezzo",
+            "href": "XHTML/c07_chapter.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Deuxième partie. Le soleil d’Olympie",
+        "href": "XHTML/c08_part.xhtml",
+        "subitems": [
+          {
+            "label": "1",
+            "href": "XHTML/c09_chapter.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Intermezzo",
+            "href": "XHTML/c10_chapter.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "2",
+            "href": "XHTML/c11_chapter.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Intermezzo",
+            "href": "XHTML/c12_chapter.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Troisième partie. Le temps des éclipses",
+        "href": "XHTML/c13_part.xhtml",
+        "subitems": [
+          {
+            "label": "1",
+            "href": "XHTML/c14_chapter.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Intermezzo",
+            "href": "XHTML/c15_chapter.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "2",
+            "href": "XHTML/c16_chapter.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Intermezzo",
+            "href": "XHTML/c17_chapter.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Quatrième partie. L’éclat ambigu de la raison",
+        "href": "XHTML/c18_part.xhtml",
+        "subitems": [
+          {
+            "label": "1",
+            "href": "XHTML/c19_chapter.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Intermezzo",
+            "href": "XHTML/c20_chapter.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "2",
+            "href": "XHTML/c21_chapter.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "REMERCIEMENTS",
+        "href": "XHTML/c22_thanks.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "NOTE DE L’ÉDITEUR",
+        "href": "XHTML/c23_append.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Du même auteur",
+        "href": "XHTML/c24_collec.xhtml",
+        "subitems": []
       }
     ]
   }

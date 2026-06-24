@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -235,6 +235,53 @@
       {
         "href": "xhtml/copyright.xhtml",
         "sha256": "776fe04426e287f0d18b41ff86d752c1027661cfac68adbfed42905943734654"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Title Page",
+        "href": "xhtml/title.xhtml#tit",
+        "subitems": []
+      },
+      {
+        "label": "Copyright Notice",
+        "href": "xhtml/copyrightnotice.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "xhtml/dedication.xhtml#ded",
+        "subitems": []
+      },
+      {
+        "label": "Begin Reading",
+        "href": "xhtml/chapter1.xhtml#ch1",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "xhtml/acknowledgments.xhtml#ack",
+        "subitems": []
+      },
+      {
+        "label": "Within the Chronicles of Osreth",
+        "href": "xhtml/adcard.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "xhtml/abouttheauthor.xhtml#ata",
+        "subitems": []
+      },
+      {
+        "label": "Newsletter Sign-up",
+        "href": "xhtml/newsletter.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "xhtml/copyright.xhtml#cpy",
+        "subitems": []
       }
     ]
   }

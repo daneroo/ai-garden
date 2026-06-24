@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -516,6 +516,98 @@
       {
         "href": "xhtml/footnotes.xhtml",
         "sha256": "f0cfa9e746252e828bd7cf40872527656f76c3a8e2c5a39ba40fc6d2d3d21b59"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "EPUB/cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "EPUB/title.xhtml#sec-titlepage001",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "EPUB/about_the_author.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Map",
+        "href": "EPUB/map.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Family Tree",
+        "href": "EPUB/preface001.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Picture Credits",
+        "href": "EPUB/picture_credits.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introductory Note",
+        "href": "EPUB/introduction.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "It Fell from Heaven",
+        "href": "EPUB/chapter001.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Salvation and Destruction",
+        "href": "EPUB/chapter002.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Ilium",
+        "href": "EPUB/chapter003.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Beware of Greeks …",
+        "href": "EPUB/chapter004.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "The End",
+        "href": "EPUB/chapter005.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Picture Section",
+        "href": "EPUB/illustration.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Appendix",
+        "href": "EPUB/appendix001.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "List of Characters",
+        "href": "EPUB/list_of_characters.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgements",
+        "href": "EPUB/acknowledgements.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "EPUB/index.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "EPUB/copyright.xhtml",
+        "subitems": []
       }
     ]
   }

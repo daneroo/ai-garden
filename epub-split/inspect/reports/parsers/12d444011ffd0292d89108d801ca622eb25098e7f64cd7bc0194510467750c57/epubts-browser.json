@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -2130,6 +2130,104 @@
       {
         "href": "xhtml/copyright.html",
         "sha256": "3525194eda99a90f8859914deba4b5a8daa3ec0b709c13eec97e19d6ad05b131"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "xhtml/cover.html#Cover",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "xhtml/title.html",
+        "subitems": []
+      },
+      {
+        "label": "Dedication Page",
+        "href": "xhtml/dedication.html",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "xhtml/contents.html",
+        "subitems": []
+      },
+      {
+        "label": "Introduction",
+        "href": "xhtml/introduction.html#int",
+        "subitems": []
+      },
+      {
+        "label": "One Conservation",
+        "href": "xhtml/chapter_01.html#ch1",
+        "subitems": []
+      },
+      {
+        "label": "Two Change",
+        "href": "xhtml/chapter_02.html#ch2",
+        "subitems": []
+      },
+      {
+        "label": "Three Dynamics",
+        "href": "xhtml/chapter_03.html#ch3",
+        "subitems": []
+      },
+      {
+        "label": "Four Space",
+        "href": "xhtml/chapter_04.html#ch4",
+        "subitems": []
+      },
+      {
+        "label": "Five Time",
+        "href": "xhtml/chapter_05.html#ch5",
+        "subitems": []
+      },
+      {
+        "label": "Six Spacetime",
+        "href": "xhtml/chapter_06.html#ch6",
+        "subitems": []
+      },
+      {
+        "label": "Seven Geometry",
+        "href": "xhtml/chapter_07.html#ch7",
+        "subitems": []
+      },
+      {
+        "label": "Eight Gravity",
+        "href": "xhtml/chapter_08.html#ch8",
+        "subitems": []
+      },
+      {
+        "label": "Nine Black Holes",
+        "href": "xhtml/chapter_09.html#ch9",
+        "subitems": []
+      },
+      {
+        "label": "Appendices",
+        "href": "xhtml/appendix_a.html#app",
+        "subitems": [
+          {
+            "label": "Appendix A: Functions, Derivatives, and Integrals",
+            "href": "xhtml/appendix_a.html#appA",
+            "subitems": []
+          },
+          {
+            "label": "Appendix B: Connections and Curvature",
+            "href": "xhtml/appendix_b.html#appB",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Index",
+        "href": "xhtml/index.html#ind",
+        "subitems": []
+      },
+      {
+        "label": "Copyright Page",
+        "href": "xhtml/copyright.html",
+        "subitems": []
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -247,6 +247,193 @@
       {
         "href": "text/all_chapter_contents.xhtml",
         "sha256": "3f86fd5d93897dc4b63d8675465e99ed6b6ecb95c6a58eb81f8888fa7e9b59c4"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Introduction",
+        "href": "EPUB/text/all_chapter_contents.xhtml#introduction",
+        "subitems": [
+          {
+            "label": "Chapter Setup",
+            "href": "EPUB/text/all_chapter_contents.xhtml#chapter-setup",
+            "subitems": []
+          },
+          {
+            "label": "A Glimpse Into the Future",
+            "href": "EPUB/text/all_chapter_contents.xhtml#a-glimpse-into-the-future",
+            "subitems": []
+          },
+          {
+            "label": "Destroy Everything",
+            "href": "EPUB/text/all_chapter_contents.xhtml#destroy-everything",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Providers and Managed Resources",
+        "href": "EPUB/text/all_chapter_contents.xhtml#providers-and-managed-resources",
+        "subitems": [
+          {
+            "label": "Chapter Setup",
+            "href": "EPUB/text/all_chapter_contents.xhtml#chapter-setup-1",
+            "subitems": []
+          },
+          {
+            "label": "Crossplane Providers",
+            "href": "EPUB/text/all_chapter_contents.xhtml#crossplane-providers",
+            "subitems": []
+          },
+          {
+            "label": "Create Managed Resources",
+            "href": "EPUB/text/all_chapter_contents.xhtml#create-managed-resources",
+            "subitems": []
+          },
+          {
+            "label": "Continuous Drift-Detection and Reconciliation",
+            "href": "EPUB/text/all_chapter_contents.xhtml#continuous-drift-detection-and-reconciliation",
+            "subitems": []
+          },
+          {
+            "label": "Update Managed Resources",
+            "href": "EPUB/text/all_chapter_contents.xhtml#update-managed-resources",
+            "subitems": []
+          },
+          {
+            "label": "Delete Managed Resources",
+            "href": "EPUB/text/all_chapter_contents.xhtml#delete-managed-resources",
+            "subitems": []
+          },
+          {
+            "label": "Destroy Everything",
+            "href": "EPUB/text/all_chapter_contents.xhtml#destroy-everything-1",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Compositions",
+        "href": "EPUB/text/all_chapter_contents.xhtml#compositions",
+        "subitems": [
+          {
+            "label": "Chapter Setup",
+            "href": "EPUB/text/all_chapter_contents.xhtml#chapter-setup-2",
+            "subitems": []
+          },
+          {
+            "label": "Composite Resource Definitions",
+            "href": "EPUB/text/all_chapter_contents.xhtml#composite-resource-definitions",
+            "subitems": []
+          },
+          {
+            "label": "Defining Compositions",
+            "href": "EPUB/text/all_chapter_contents.xhtml#defining-compositions",
+            "subitems": []
+          },
+          {
+            "label": "Resource References and Selectors",
+            "href": "EPUB/text/all_chapter_contents.xhtml#resource-references-and-selectors",
+            "subitems": []
+          },
+          {
+            "label": "Patching",
+            "href": "EPUB/text/all_chapter_contents.xhtml#patching",
+            "subitems": []
+          },
+          {
+            "label": "Managing Connection Secrets",
+            "href": "EPUB/text/all_chapter_contents.xhtml#managing-connection-secrets",
+            "subitems": []
+          },
+          {
+            "label": "Combining Providers in Compositions",
+            "href": "EPUB/text/all_chapter_contents.xhtml#combining-providers-in-compositions",
+            "subitems": []
+          },
+          {
+            "label": "Defining Composite Claims",
+            "href": "EPUB/text/all_chapter_contents.xhtml#defining-composite-claims",
+            "subitems": []
+          },
+          {
+            "label": "Destroy Everything",
+            "href": "EPUB/text/all_chapter_contents.xhtml#destroy-everything-2",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Configuration Packages",
+        "href": "EPUB/text/all_chapter_contents.xhtml#configuration-packages",
+        "subitems": [
+          {
+            "label": "Chapter Setup",
+            "href": "EPUB/text/all_chapter_contents.xhtml#chapter-setup-3",
+            "subitems": []
+          },
+          {
+            "label": "Building Configuration Packages",
+            "href": "EPUB/text/all_chapter_contents.xhtml#building-configuration-packages",
+            "subitems": []
+          },
+          {
+            "label": "Installing Configuration Packages",
+            "href": "EPUB/text/all_chapter_contents.xhtml#installing-configuration-packages",
+            "subitems": []
+          },
+          {
+            "label": "Destroy Everything",
+            "href": "EPUB/text/all_chapter_contents.xhtml#destroy-everything-3",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Composition Functions",
+        "href": "EPUB/text/all_chapter_contents.xhtml#composition-functions",
+        "subitems": [
+          {
+            "label": "Chapter Setup",
+            "href": "EPUB/text/all_chapter_contents.xhtml#chapter-setup-4",
+            "subitems": []
+          },
+          {
+            "label": "What’s Missing?",
+            "href": "EPUB/text/all_chapter_contents.xhtml#whats-missing",
+            "subitems": []
+          },
+          {
+            "label": "Patch and Transform Function",
+            "href": "EPUB/text/all_chapter_contents.xhtml#patch-and-transform-function",
+            "subitems": []
+          },
+          {
+            "label": "Go Templating Function",
+            "href": "EPUB/text/all_chapter_contents.xhtml#go-templating-function",
+            "subitems": []
+          },
+          {
+            "label": "Auto-Ready Function",
+            "href": "EPUB/text/all_chapter_contents.xhtml#auto-ready-function",
+            "subitems": []
+          },
+          {
+            "label": "Building and Pushing Configuration Package",
+            "href": "EPUB/text/all_chapter_contents.xhtml#building-and-pushing-configuration-package",
+            "subitems": []
+          },
+          {
+            "label": "Destroy Everything",
+            "href": "EPUB/text/all_chapter_contents.xhtml#destroy-everything-4",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "The End?",
+        "href": "EPUB/text/all_chapter_contents.xhtml#the-end",
+        "subitems": []
       }
     ]
   }

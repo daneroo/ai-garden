@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -229,6 +229,53 @@
       {
         "href": "xhtml/copyright.xhtml",
         "sha256": "dbcc9d1cf6c66e766b74be0abf7e0a423e9469b9b9999f2213e2350a20220d5b"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Title Page",
+        "href": "OEBPS/xhtml/title.xhtml#tit",
+        "subitems": []
+      },
+      {
+        "label": "Copyright Notice",
+        "href": "OEBPS/xhtml/copyrightnotice.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "OEBPS/xhtml/dedication.xhtml#ded",
+        "subitems": []
+      },
+      {
+        "label": "Begin Reading",
+        "href": "OEBPS/xhtml/chapter1.xhtml#ch1",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "OEBPS/xhtml/acknowledgments.xhtml#ack",
+        "subitems": []
+      },
+      {
+        "label": "By Katherine Addison",
+        "href": "OEBPS/xhtml/adcard.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "OEBPS/xhtml/abouttheauthor.xhtml#ata",
+        "subitems": []
+      },
+      {
+        "label": "Newsletter Sign-up",
+        "href": "OEBPS/xhtml/newsletter.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "OEBPS/xhtml/copyright.xhtml#crt",
+        "subitems": []
       }
     ]
   }

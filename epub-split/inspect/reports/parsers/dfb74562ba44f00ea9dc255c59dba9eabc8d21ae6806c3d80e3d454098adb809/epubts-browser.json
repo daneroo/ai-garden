@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -475,6 +475,33 @@
       {
         "href": "xhtml/copy.html",
         "sha256": "021676a6519edc0194ee63525b28d2b251209160e2413b7dd26065848538fe97"
+      }
+    ],
+    "toc": [
+      {
+        "label": "\nCover\n",
+        "href": "xhtml/cover.html",
+        "subitems": []
+      },
+      {
+        "label": "\nLetter from Fredrik Backman\n",
+        "href": "xhtml/fm01.html",
+        "subitems": []
+      },
+      {
+        "label": "\nAnd Every Morning the Way Home Gets Longer and Longer\n",
+        "href": "xhtml/ch01.html",
+        "subitems": []
+      },
+      {
+        "label": "\nAbout the Author\n",
+        "href": "xhtml/about.html",
+        "subitems": []
+      },
+      {
+        "label": "\nCopyright\n",
+        "href": "xhtml/copy.html",
+        "subitems": []
       }
     ]
   }

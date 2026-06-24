@@ -28,6 +28,17 @@ if (domParser === "jsdom") {
 
 const { Book } = await import("@likecoin/epub-ts/node");
 
+type RawNavItem = { label: string; href?: string; subitems?: RawNavItem[] };
+type NormalizedTocItem = { label: string; href: string | null; subitems: NormalizedTocItem[] };
+
+function normalizeToc(items: RawNavItem[]): NormalizedTocItem[] {
+  return items.map((item) => ({
+    label: item.label,
+    href: item.href ?? null,
+    subitems: normalizeToc(item.subitems ?? []),
+  }));
+}
+
 try {
   const bytes = await Bun.file(path).arrayBuffer();
   const book = new Book(bytes, { replacements: "none" });
@@ -40,6 +51,7 @@ try {
     };
     archive?: { getText(url: string): Promise<string> | undefined };
     path?: { directory: string; resolve(href: string): string };
+    navigation?: { toc: Array<{ label: string; href: string; subitems?: unknown[] }> };
   };
   const packaging = bookAny.packaging;
   const metadata = {
@@ -69,7 +81,8 @@ try {
       return { href: item.href, sha256 };
     })
   );
-  process.stdout.write(JSON.stringify({ ok: true, parserVersion, domParser, metadata, spine, manifest, spineHashes }));
+  const toc = normalizeToc(bookAny.navigation?.toc ?? []);
+  process.stdout.write(JSON.stringify({ ok: true, parserVersion, domParser, metadata, spine, manifest, spineHashes, toc }));
   book.destroy();
 } catch (error: unknown) {
   process.stdout.write(

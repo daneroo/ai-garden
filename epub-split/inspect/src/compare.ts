@@ -10,6 +10,8 @@ import {
   type SpineHashComparison,
   type SpineHashItem,
   type SpineItem,
+  type TocComparison,
+  type TocItem,
 } from "./schema.ts";
 
 export function compareBook(a: ParserOutput, b: ParserOutput): ComparisonResult {
@@ -28,6 +30,7 @@ export function compareBook(a: ParserOutput, b: ParserOutput): ComparisonResult 
     spine: compareSpine(a.content.spine, b.content.spine),
     manifest: compareManifest(a.content.manifest, b.content.manifest),
     spineHashes: compareSpineHashes(a.content.spineHashes, b.content.spineHashes),
+    toc: compareToc(a.content.toc, b.content.toc),
   });
 }
 
@@ -70,6 +73,22 @@ function compareSpineHashes(a: SpineHashItem[], b: SpineHashItem[]): SpineHashCo
   }
   const agree = mismatchCount === 0 && a.length === b.length;
   return { status: agree ? "agree" : "differ", matchCount, mismatchCount };
+}
+
+// Normalize labels for comparison only — raw labels are preserved in ParserOutput.
+// CRLF→LF + trim removes XML-formatting whitespace differences that are not
+// semantically meaningful (e.g. node returns "\r\nCover\r\n", browser returns "\nCover\n").
+function normalizeTocForComparison(items: TocItem[]): unknown {
+  return items.map((item) => ({
+    label: item.label.replace(/\r\n/g, "\n").trim(),
+    href: item.href,
+    subitems: normalizeTocForComparison(item.subitems),
+  }));
+}
+
+function compareToc(a: TocItem[], b: TocItem[]): TocComparison {
+  const agree = JSON.stringify(normalizeTocForComparison(a)) === JSON.stringify(normalizeTocForComparison(b));
+  return { status: agree ? "agree" : "differ" };
 }
 
 function compareManifest(a: ManifestItem[], b: ManifestItem[]): ManifestComparison {

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -882,6 +882,220 @@
       {
         "href": "Text/32_Copyright.xhtml",
         "sha256": "23def01a8660efa16dbfbeba909a5988211c35a3b227d60aa4e343c56f634f2d"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "Text/00_Cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title",
+        "href": "Text/02_Title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "Text/04_Contents.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introduction Adventures in technophilosophy",
+        "href": "Text/06_Intro.xhtml#cnt_1",
+        "subitems": []
+      },
+      {
+        "label": "Part 1 Virtual Worlds",
+        "href": "Text/11_Part1.xhtml#cnt_2",
+        "subitems": [
+          {
+            "label": "Chapter 1 Is this the real life?",
+            "href": "Text/12_Chapter01.xhtml#cnt_3",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 2 What is the simulation hypothesis?",
+            "href": "Text/12_Chapter02.xhtml#cnt_4",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part 2 Knowledge",
+        "href": "Text/12_Chapter02_Part2.xhtml#cnt_5",
+        "subitems": [
+          {
+            "label": "Chapter 3 Do we know things?",
+            "href": "Text/12_Chapter03.xhtml#cnt_6",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 4 Can we prove there is an external world?",
+            "href": "Text/12_Chapter04.xhtml#cnt_7",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 5 Is it likely that we’re in a simulation?",
+            "href": "Text/12_Chapter05.xhtml#cnt_8",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part 3 Reality",
+        "href": "Text/12_Chapter05_Part3.xhtml#cnt_9",
+        "subitems": [
+          {
+            "label": "Chapter 6 What is reality?",
+            "href": "Text/12_Chapter06.xhtml#cnt_10",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 7 Is God a hacker in the next universe up?",
+            "href": "Text/12_Chapter07.xhtml#cnt_11",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 8 Is the universe made of information?",
+            "href": "Text/12_Chapter08.xhtml#cnt_12",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 9 Did simulation create its from bits?",
+            "href": "Text/12_Chapter09.xhtml#cnt_13",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part 4 Real Virtual Reality",
+        "href": "Text/12_Chapter09_Part4.xhtml#cnt_14",
+        "subitems": [
+          {
+            "label": "Chapter 10 Do virtual reality headsets create reality?",
+            "href": "Text/12_Chapter10.xhtml#cnt_15",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 11 Are virtual reality devices illusion machines?",
+            "href": "Text/12_Chapter11.xhtml#cnt_16",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 12 Does augmented reality lead to alternative facts?",
+            "href": "Text/12_Chapter12.xhtml#cnt_17",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 13 Can we avoid being deceived by deepfakes?",
+            "href": "Text/12_Chapter13.xhtml#cnt_18",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part 5 Mind",
+        "href": "Text/12_Chapter13_Part5.xhtml#cnt_19",
+        "subitems": [
+          {
+            "label": "Chapter 14 How do mind and body interact in a virtual world?",
+            "href": "Text/12_Chapter14.xhtml#cnt_20",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 15 Can there be consciousness in a digital world?",
+            "href": "Text/12_Chapter15.xhtml#cnt_21",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 16 Does augmented reality extend the mind?",
+            "href": "Text/12_Chapter16.xhtml#cnt_22",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part 6 Value",
+        "href": "Text/12_Chapter16_Part6.xhtml#cnt_23",
+        "subitems": [
+          {
+            "label": "Chapter 17 Can you lead a good life in a virtual world?",
+            "href": "Text/12_Chapter17.xhtml#cnt_24",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 18 Do simulated lives matter?",
+            "href": "Text/12_Chapter18.xhtml#cnt_25",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 19 How should we build a virtual society?",
+            "href": "Text/12_Chapter19.xhtml#cnt_26",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part 7 Foundations",
+        "href": "Text/12_Chapter19_Part7.xhtml#cnt_27",
+        "subitems": [
+          {
+            "label": "Chapter 20 What do our words mean in virtual worlds?",
+            "href": "Text/12_Chapter20.xhtml#cnt_28",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 21 Do dust clouds run computer programs?",
+            "href": "Text/12_Chapter21.xhtml#cnt_29",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 22 Is reality a mathematical structure?",
+            "href": "Text/12_Chapter22.xhtml#cnt_30",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 23 Have we fallen from the Garden of Eden?",
+            "href": "Text/12_Chapter23.xhtml#cnt_31",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 24 Are we Boltzmann brains in a dream world?",
+            "href": "Text/12_Chapter24.xhtml#cnt_32",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "Text/24_Ack.xhtml#cnt_33",
+        "subitems": []
+      },
+      {
+        "label": "Glossary",
+        "href": "Text/25_Glossary.xhtml#cnt_34",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "Text/27_Note.xhtml#cnt_35",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "Text/31_Index.xhtml#cnt_36",
+        "subitems": []
+      },
+      {
+        "label": "Also by David J. Chalmers",
+        "href": "Text/01_Also.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "Text/32_Copyright.xhtml",
+        "subitems": []
       }
     ]
   }

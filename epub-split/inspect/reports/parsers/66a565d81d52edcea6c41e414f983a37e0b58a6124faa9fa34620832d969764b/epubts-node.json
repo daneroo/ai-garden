@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -376,6 +376,126 @@
       {
         "href": "copy.xhtml",
         "sha256": "e2ebe621152a7f976eebf3315d0f7ef81be4210337fdb456efa52a31daa82273"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title",
+        "href": "title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "toc.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introduction: The Missing Americans",
+        "href": "int.xhtml#int_1",
+        "subitems": []
+      },
+      {
+        "label": "Part I",
+        "href": "part1.xhtml#pt_1",
+        "subitems": [
+          {
+            "label": "Prologue The Looking Glass",
+            "href": "pro.xhtml#pr_1",
+            "subitems": []
+          },
+          {
+            "label": "One Dragon",
+            "href": "ch1.xhtml#ch_1",
+            "subitems": []
+          },
+          {
+            "label": "Two The Making of a Public-Health Officer",
+            "href": "ch2.xhtml#ch_2",
+            "subitems": []
+          },
+          {
+            "label": "Three The Pandemic Thinker",
+            "href": "ch3.xhtml#ch_3",
+            "subitems": []
+          },
+          {
+            "label": "Four Stopping the Unstoppable",
+            "href": "ch4.xhtml#ch_4",
+            "subitems": []
+          },
+          {
+            "label": "Five Clairvoyance",
+            "href": "ch5.xhtml#ch_5",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part II",
+        "href": "part2.xhtml#pt_2",
+        "subitems": [
+          {
+            "label": "Six The Red Phone",
+            "href": "ch6.xhtml#ch_6",
+            "subitems": []
+          },
+          {
+            "label": "Seven The Redneck Epidemiologist",
+            "href": "ch7.xhtml#ch_7",
+            "subitems": []
+          },
+          {
+            "label": "Eight In Mann Gulch",
+            "href": "ch8.xhtml#ch_8",
+            "subitems": []
+          },
+          {
+            "label": "Nine The L6",
+            "href": "ch9.xhtml#ch_9",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part III",
+        "href": "part3.xhtml#pt_3",
+        "subitems": [
+          {
+            "label": "Ten Plastic Flowers",
+            "href": "ch10.xhtml#ch_10",
+            "subitems": []
+          },
+          {
+            "label": "Eleven Plastic Flowers",
+            "href": "ch11.xhtml#ch_11",
+            "subitems": []
+          },
+          {
+            "label": "Epilogue The Sin of Omission",
+            "href": "epi1.xhtml#epi_1",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "ack.xhtml#ack_1",
+        "subitems": []
+      },
+      {
+        "label": "Also by Michael Lewis",
+        "href": "also.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "copy.xhtml",
+        "subitems": []
       }
     ]
   }

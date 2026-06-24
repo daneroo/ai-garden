@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -290,6 +290,95 @@
       {
         "href": "XHTML/PL16.xhtml",
         "sha256": "794f2675644dddc93ace905868262a371c147a24843e83310343b980c6649e00"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Couverture",
+        "href": "XHTML/titlepage.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "XHTML/PL1.xhtml#epub-anchor_start-reading",
+        "subitems": []
+      },
+      {
+        "label": "Note de l’éditeur",
+        "href": "XHTML/PL2.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "PARADIS PERDUS",
+        "href": "XHTML/PL3.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Prologue",
+        "href": "XHTML/PL4.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Première partie. Le lac",
+        "href": "XHTML/PL5.xhtml",
+        "subitems": [
+          {
+            "label": "1",
+            "href": "XHTML/PL6.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "2",
+            "href": "XHTML/PL7.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "3",
+            "href": "XHTML/PL8.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "4",
+            "href": "XHTML/PL9.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Deuxième partie. Le déluge",
+        "href": "XHTML/PL10.xhtml",
+        "subitems": [
+          {
+            "label": "Prologue",
+            "href": "XHTML/PL11.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "1",
+            "href": "XHTML/PL12.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "2",
+            "href": "XHTML/PL13.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "3",
+            "href": "XHTML/PL14.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Épilogue",
+        "href": "XHTML/PL15.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "DU MÊME AUTEUR",
+        "href": "XHTML/PL16.xhtml",
+        "subitems": []
       }
     ]
   }

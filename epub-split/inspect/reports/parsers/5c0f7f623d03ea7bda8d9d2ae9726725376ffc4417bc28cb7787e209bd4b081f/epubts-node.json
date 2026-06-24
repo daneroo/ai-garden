@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -421,6 +421,561 @@
       {
         "href": "xhtml/25_index.xhtml",
         "sha256": "e096e60394e19becb6145d2cb7d3adac7c6e3d6fb5c97c16688b79d551c678c2"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "xhtml/01_cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "xhtml/03_title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "xhtml/04_copyright.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "xhtml/05_dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "xhtml/06_cont.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Preface",
+        "href": "xhtml/07_preface.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "1. The Civilization Enabler",
+        "href": "xhtml/09_ch1.xhtml",
+        "subitems": [
+          {
+            "label": "Cleverness Is Not Enough",
+            "href": "xhtml/09_ch1.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "The Civilization Enabler",
+            "href": "xhtml/09_ch1.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Knowledge Accumulation",
+            "href": "xhtml/09_ch1.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "A Computational Approach",
+            "href": "xhtml/09_ch1.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Why Computation?",
+            "href": "xhtml/09_ch1.xhtml#sec5",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "2. Where We Come From",
+        "href": "xhtml/10_ch2.xhtml",
+        "subitems": [
+          {
+            "label": "Darwin’s Challenge",
+            "href": "xhtml/10_ch2.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "The Brain",
+            "href": "xhtml/10_ch2.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "The Difficulty of Invention",
+            "href": "xhtml/10_ch2.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Distinguishers, but Not Civilization Enablers",
+            "href": "xhtml/10_ch2.xhtml#sec4",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "3. Where We Have Got To",
+        "href": "xhtml/11_ch3.xhtml",
+        "subitems": [
+          {
+            "label": "Pervasiveness of Education",
+            "href": "xhtml/11_ch3.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "Education in the Large",
+            "href": "xhtml/11_ch3.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Educability Is Different from IQ",
+            "href": "xhtml/11_ch3.xhtml#sec3",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "4. Some Foundation Stones",
+        "href": "xhtml/12_ch4.xhtml",
+        "subitems": [
+          {
+            "label": "Acquiring and Applying Belief Systems",
+            "href": "xhtml/12_ch4.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "Learning from Examples",
+            "href": "xhtml/12_ch4.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Generalization",
+            "href": "xhtml/12_ch4.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Large Memory",
+            "href": "xhtml/12_ch4.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Symbolic Names",
+            "href": "xhtml/12_ch4.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "Teaching",
+            "href": "xhtml/12_ch4.xhtml#sec6",
+            "subitems": []
+          },
+          {
+            "label": "Chaining",
+            "href": "xhtml/12_ch4.xhtml#sec7",
+            "subitems": []
+          },
+          {
+            "label": "A Mind’s Eye",
+            "href": "xhtml/12_ch4.xhtml#sec8",
+            "subitems": []
+          },
+          {
+            "label": "The Rest of Cognition",
+            "href": "xhtml/12_ch4.xhtml#sec9",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "5. Computation for Describing Natural Phenomena",
+        "href": "xhtml/13_ch5.xhtml",
+        "subitems": [
+          {
+            "label": "Turing Computation",
+            "href": "xhtml/13_ch5.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "Probably Approximately Correct Learning",
+            "href": "xhtml/13_ch5.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Robust Models of Computation",
+            "href": "xhtml/13_ch5.xhtml#sec3",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "6. Integrative Learning",
+        "href": "xhtml/14_ch6.xhtml",
+        "subitems": [
+          {
+            "label": "Putting Experiences Together",
+            "href": "xhtml/14_ch6.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "Augmenting Learning with Reasoning",
+            "href": "xhtml/14_ch6.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Robust Logic",
+            "href": "xhtml/14_ch6.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Knowledge as Rules",
+            "href": "xhtml/14_ch6.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Tolerance of Inconsistency",
+            "href": "xhtml/14_ch6.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "Rules as Learned Classifiers",
+            "href": "xhtml/14_ch6.xhtml#sec6",
+            "subitems": []
+          },
+          {
+            "label": "The Power of Learning",
+            "href": "xhtml/14_ch6.xhtml#sec7",
+            "subitems": []
+          },
+          {
+            "label": "Chaining with Equivalences",
+            "href": "xhtml/14_ch6.xhtml#sec8",
+            "subitems": []
+          },
+          {
+            "label": "Teaching by Example",
+            "href": "xhtml/14_ch6.xhtml#sec9",
+            "subitems": []
+          },
+          {
+            "label": "Innate and Acquired Attributes",
+            "href": "xhtml/14_ch6.xhtml#sec10",
+            "subitems": []
+          },
+          {
+            "label": "Imagination and Novelty",
+            "href": "xhtml/14_ch6.xhtml#sec11",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "7. What Integrative Learning Does",
+        "href": "xhtml/15_ch7.xhtml",
+        "subitems": [
+          {
+            "label": "Compounding Knowledge",
+            "href": "xhtml/15_ch7.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "Soundness of Chaining",
+            "href": "xhtml/15_ch7.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "World without Reason?",
+            "href": "xhtml/15_ch7.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Modularity and Partial Information",
+            "href": "xhtml/15_ch7.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Was Pavlov’s Dog Right?",
+            "href": "xhtml/15_ch7.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "Exploiting Modularity",
+            "href": "xhtml/15_ch7.xhtml#sec6",
+            "subitems": []
+          },
+          {
+            "label": "The Patchwork Tapestry",
+            "href": "xhtml/15_ch7.xhtml#sec7",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "8. The Capability of Being Educable",
+        "href": "xhtml/16_ch8.xhtml",
+        "subitems": [
+          {
+            "label": "The Crux",
+            "href": "xhtml/16_ch8.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "An Educable Learning System",
+            "href": "xhtml/16_ch8.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "More on Symbolic Names",
+            "href": "xhtml/16_ch8.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Rules Acquired by Instruction",
+            "href": "xhtml/16_ch8.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Scene Management",
+            "href": "xhtml/16_ch8.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "Belief Choice",
+            "href": "xhtml/16_ch8.xhtml#sec6",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "9. Educability as a Model of Computation",
+        "href": "xhtml/17_ch9.xhtml",
+        "subitems": [
+          {
+            "label": "Evolutionary Plausibility",
+            "href": "xhtml/17_ch9.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "The Model Is Explanatory",
+            "href": "xhtml/17_ch9.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Teaching to Reason",
+            "href": "xhtml/17_ch9.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Measures of Cognition",
+            "href": "xhtml/17_ch9.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Universality",
+            "href": "xhtml/17_ch9.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "The Educability Model Has Robustness",
+            "href": "xhtml/17_ch9.xhtml#sec6",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "10. Promoting Educability",
+        "href": "xhtml/18_ch10.xhtml",
+        "subitems": [
+          {
+            "label": "Educability as an Individual Capacity",
+            "href": "xhtml/18_ch10.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "Educability of a Population",
+            "href": "xhtml/18_ch10.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Measuring Educability",
+            "href": "xhtml/18_ch10.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Long-Term Retention",
+            "href": "xhtml/18_ch10.xhtml#sec4",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "11. Artificial Educability",
+        "href": "xhtml/19_ch11.xhtml",
+        "subitems": [
+          {
+            "label": "Fear of Technology",
+            "href": "xhtml/19_ch11.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "The Imitation Game",
+            "href": "xhtml/19_ch11.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "Beyond the Imitation Game",
+            "href": "xhtml/19_ch11.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "AI",
+            "href": "xhtml/19_ch11.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Large Language Models",
+            "href": "xhtml/19_ch11.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "Beyond Efficient Generalization",
+            "href": "xhtml/19_ch11.xhtml#sec6",
+            "subitems": []
+          },
+          {
+            "label": "Integrative Learning Technology",
+            "href": "xhtml/19_ch11.xhtml#sec7",
+            "subitems": []
+          },
+          {
+            "label": "Educable Technology",
+            "href": "xhtml/19_ch11.xhtml#sec8",
+            "subitems": []
+          },
+          {
+            "label": "Natural versus Artificial",
+            "href": "xhtml/19_ch11.xhtml#sec9",
+            "subitems": []
+          },
+          {
+            "label": "The Challenge of Teaching Materials",
+            "href": "xhtml/19_ch11.xhtml#sec10",
+            "subitems": []
+          },
+          {
+            "label": "No Technological Singularity",
+            "href": "xhtml/19_ch11.xhtml#sec11",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "12. Education: Some Questions",
+        "href": "xhtml/20_ch12.xhtml",
+        "subitems": [
+          {
+            "label": "Education as a Right",
+            "href": "xhtml/20_ch12.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "The Study of Education",
+            "href": "xhtml/20_ch12.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "A Different Vantage Point",
+            "href": "xhtml/20_ch12.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "In the Classroom",
+            "href": "xhtml/20_ch12.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Teaching Materials",
+            "href": "xhtml/20_ch12.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "Education and Propaganda",
+            "href": "xhtml/20_ch12.xhtml#sec6",
+            "subitems": []
+          },
+          {
+            "label": "Propaganda Safety",
+            "href": "xhtml/20_ch12.xhtml#sec7",
+            "subitems": []
+          },
+          {
+            "label": "Saturation",
+            "href": "xhtml/20_ch12.xhtml#sec8",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "13. A Species Adrift",
+        "href": "xhtml/21_ch13.xhtml",
+        "subitems": [
+          {
+            "label": "Human Sacrifice",
+            "href": "xhtml/21_ch13.xhtml#sec1",
+            "subitems": []
+          },
+          {
+            "label": "At Sea",
+            "href": "xhtml/21_ch13.xhtml#sec2",
+            "subitems": []
+          },
+          {
+            "label": "The Case of Isaac Newton",
+            "href": "xhtml/21_ch13.xhtml#sec3",
+            "subitems": []
+          },
+          {
+            "label": "Belief Systems: Good and Bad",
+            "href": "xhtml/21_ch13.xhtml#sec4",
+            "subitems": []
+          },
+          {
+            "label": "Science as a Belief System",
+            "href": "xhtml/21_ch13.xhtml#sec5",
+            "subitems": []
+          },
+          {
+            "label": "The Scientific Revolution",
+            "href": "xhtml/21_ch13.xhtml#sec6",
+            "subitems": []
+          },
+          {
+            "label": "Equality",
+            "href": "xhtml/21_ch13.xhtml#sec7",
+            "subitems": []
+          },
+          {
+            "label": "Worldviews",
+            "href": "xhtml/21_ch13.xhtml#sec8",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "xhtml/22_acknowledgments.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Summary of Terminology",
+        "href": "xhtml/23_summary.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "xhtml/24_notes.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "xhtml/25_index.xhtml",
+        "subitems": []
       }
     ]
   }

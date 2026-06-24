@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -167,6 +167,33 @@
       {
         "href": "Text/Author.xhtml",
         "sha256": "6f145a0fc2bfc2e71750f37194b91fbf6005484880802fadf27bd654b03976e4"
+      }
+    ],
+    "toc": [
+      {
+        "label": "\r\n        Cover\r\n      ",
+        "href": "Text/Cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "\r\n        The Last Question\r\n      ",
+        "href": "Text/Title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "\r\n        Author’s Note\r\n      ",
+        "href": "Text/01.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "\r\n        “The Last Question” by Isaac Asimov\r\n      ",
+        "href": "Text/02.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "\r\n        About the Author\r\n      ",
+        "href": "Text/Author.xhtml",
+        "subitems": []
       }
     ]
   }

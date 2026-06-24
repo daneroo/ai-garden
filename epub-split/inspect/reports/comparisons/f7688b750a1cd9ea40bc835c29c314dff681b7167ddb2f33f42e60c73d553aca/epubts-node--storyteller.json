@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "parserA": "epubts-node",
   "parserB": "storyteller",
   "metadata": {
@@ -37,5 +37,8 @@
     "status": "agree",
     "matchCount": 26,
     "mismatchCount": 0
+  },
+  "toc": {
+    "status": "agree"
   }
 }

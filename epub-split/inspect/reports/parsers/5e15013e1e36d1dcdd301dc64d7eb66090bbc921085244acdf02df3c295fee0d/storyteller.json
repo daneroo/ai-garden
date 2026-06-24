@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -383,6 +383,136 @@
       {
         "href": "xhtml/index.xhtml",
         "sha256": "ee8e7f38293f2cd6655bef1ef0f60f364c399b36854896c613426b5b1bef2ffc"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Title Page",
+        "href": "OEBPS/xhtml/title_page.xhtml#tit",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "OEBPS/xhtml/copyright.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "OEBPS/xhtml/dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "OEBPS/xhtml/contents.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introduction",
+        "href": "OEBPS/xhtml/introduction.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Part One: Espionage",
+        "href": "OEBPS/xhtml/part_1.xhtml#pt1",
+        "subitems": [
+          {
+            "label": "1. Exploiting Home-Field Advantage",
+            "href": "OEBPS/xhtml/chapter_1.xhtml#ch1",
+            "subitems": []
+          },
+          {
+            "label": "2. Defeating Encryption",
+            "href": "OEBPS/xhtml/chapter_2.xhtml#ch2",
+            "subitems": []
+          },
+          {
+            "label": "3. Building a Backdoor",
+            "href": "OEBPS/xhtml/chapter_3.xhtml#ch3",
+            "subitems": []
+          },
+          {
+            "label": "4. Strategic Espionage",
+            "href": "OEBPS/xhtml/chapter_4.xhtml#ch4",
+            "subitems": []
+          },
+          {
+            "label": "5. Counterintelligence",
+            "href": "OEBPS/xhtml/chapter_5.xhtml#ch5",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Two: Attack",
+        "href": "OEBPS/xhtml/part_2.xhtml#pt2",
+        "subitems": [
+          {
+            "label": "6. Strategic Sabotage",
+            "href": "OEBPS/xhtml/chapter_6.xhtml#ch6",
+            "subitems": []
+          },
+          {
+            "label": "7. Targeted Disruption",
+            "href": "OEBPS/xhtml/chapter_7.xhtml#ch7",
+            "subitems": []
+          },
+          {
+            "label": "8. Coercion",
+            "href": "OEBPS/xhtml/chapter_8.xhtml#ch8",
+            "subitems": []
+          },
+          {
+            "label": "9. Testing and Demonstration",
+            "href": "OEBPS/xhtml/chapter_9.xhtml#ch9",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Three: Destabilization",
+        "href": "OEBPS/xhtml/part_3.xhtml#pt3",
+        "subitems": [
+          {
+            "label": "10. Election Interference",
+            "href": "OEBPS/xhtml/chapter_10.xhtml#ch10",
+            "subitems": []
+          },
+          {
+            "label": "11. Exposure",
+            "href": "OEBPS/xhtml/chapter_11.xhtml#ch11",
+            "subitems": []
+          },
+          {
+            "label": "12. Theft, Ransom, and Manipulation",
+            "href": "OEBPS/xhtml/chapter_12.xhtml#ch12",
+            "subitems": []
+          },
+          {
+            "label": "13. Widespread Disruption",
+            "href": "OEBPS/xhtml/chapter_13.xhtml#ch13",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Conclusion",
+        "href": "OEBPS/xhtml/conclusion.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "OEBPS/xhtml/notes.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "OEBPS/xhtml/acknowledgments.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "OEBPS/xhtml/index.xhtml",
+        "subitems": []
       }
     ]
   }

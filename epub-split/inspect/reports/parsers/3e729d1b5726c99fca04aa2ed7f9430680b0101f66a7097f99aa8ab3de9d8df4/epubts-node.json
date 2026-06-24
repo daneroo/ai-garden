@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -606,6 +606,115 @@
       {
         "href": "xhtml/plates.xhtml",
         "sha256": "f093fdf98b5c94abc841ddc9d8cbf6415980e007ae91926caa4a336a58961a05"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Title",
+        "href": "title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "copyright.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "contents.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgements",
+        "href": "fm02.xhtml#fm2",
+        "subitems": []
+      },
+      {
+        "label": "List of Maps",
+        "href": "fm03.xhtml#fm3",
+        "subitems": []
+      },
+      {
+        "label": "Preface",
+        "href": "fm04.xhtml#fm4",
+        "subitems": []
+      },
+      {
+        "label": "Part One: War",
+        "href": "part01.xhtml#pt1",
+        "subitems": [
+          {
+            "label": "I. The Sad and Infernal Gods",
+            "href": "chapter01.xhtml#ch1",
+            "subitems": []
+          },
+          {
+            "label": "II. Four Emperors",
+            "href": "chapter02.xhtml#ch2",
+            "subitems": []
+          },
+          {
+            "label": "III. A World at War",
+            "href": "chapter03.xhtml#ch3",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Two: Peace",
+        "href": "part02.xhtml#pt2",
+        "subitems": [
+          {
+            "label": "IV. Sleeping Giants",
+            "href": "chapter04.xhtml#ch4",
+            "subitems": []
+          },
+          {
+            "label": "V. The Universal Spider",
+            "href": "chapter05.xhtml#ch5",
+            "subitems": []
+          },
+          {
+            "label": "VI. The Best of Emperors",
+            "href": "chapter06.xhtml#ch6",
+            "subitems": []
+          },
+          {
+            "label": "VII. I Build this Garden for us",
+            "href": "chapter07.xhtml#ch7",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Timeline",
+        "href": "bm01.xhtml#bm1",
+        "subitems": []
+      },
+      {
+        "label": "Dramatis Personae",
+        "href": "bm02.xhtml#bm2",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "bm03.xhtml#bm3",
+        "subitems": []
+      },
+      {
+        "label": "Bibliography",
+        "href": "bm04.xhtml#bm4",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "bm05.xhtml#bm5",
+        "subitems": []
+      },
+      {
+        "label": "Picuture Section",
+        "href": "plates.xhtml",
+        "subitems": []
       }
     ]
   }

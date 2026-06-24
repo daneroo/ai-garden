@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -521,6 +521,166 @@
       {
         "href": "xhtml/copyright.xhtml",
         "sha256": "0d08c2c9dc567c01e70ccc0d9f046a79abe935b0e12742874ff926bead14517f"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Title Page",
+        "href": "xhtml/title.xhtml#tit",
+        "subitems": []
+      },
+      {
+        "label": "Copyright Notice",
+        "href": "xhtml/copyrightnotice.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "xhtml/dedication.xhtml#ded",
+        "subitems": []
+      },
+      {
+        "label": "Part One. There’s No Crime in Avalon",
+        "href": "xhtml/part1.xhtml#pt1",
+        "subitems": [
+          {
+            "label": "Chapter 1",
+            "href": "xhtml/chapter1.xhtml#ch1",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 2",
+            "href": "xhtml/chapter2.xhtml#ch2",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 3",
+            "href": "xhtml/chapter3.xhtml#ch3",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 4",
+            "href": "xhtml/chapter4.xhtml#ch4",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 5",
+            "href": "xhtml/chapter5.xhtml#ch5",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 6",
+            "href": "xhtml/chapter6.xhtml#ch6",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Two. Three Strikes",
+        "href": "xhtml/part2.xhtml#pt2",
+        "subitems": [
+          {
+            "label": "Chapter 7",
+            "href": "xhtml/chapter7.xhtml#ch7",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 8",
+            "href": "xhtml/chapter8.xhtml#ch8",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 9",
+            "href": "xhtml/chapter9.xhtml#ch9",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 10",
+            "href": "xhtml/chapter10.xhtml#ch10",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 11",
+            "href": "xhtml/chapter11.xhtml#ch11",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 12",
+            "href": "xhtml/chapter12.xhtml#ch12",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 13",
+            "href": "xhtml/chapter13.xhtml#ch13",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Three. Ex Libris",
+        "href": "xhtml/part3.xhtml#pt3",
+        "subitems": [
+          {
+            "label": "Chapter 14",
+            "href": "xhtml/chapter14.xhtml#ch14",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 15",
+            "href": "xhtml/chapter15.xhtml#ch15",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 16",
+            "href": "xhtml/chapter16.xhtml#ch16",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 17",
+            "href": "xhtml/chapter17.xhtml#ch17",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 18",
+            "href": "xhtml/chapter18.xhtml#ch18",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 19",
+            "href": "xhtml/chapter19.xhtml#ch19",
+            "subitems": []
+          },
+          {
+            "label": "Epilogue. Priorities",
+            "href": "xhtml/chapter20.xhtml#ch20",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "xhtml/acknowledgments.xhtml#ack",
+        "subitems": []
+      },
+      {
+        "label": "Also by Cory Doctorow",
+        "href": "xhtml/adcard.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "xhtml/abouttheauthor.xhtml#abouttheauthor",
+        "subitems": []
+      },
+      {
+        "label": "Newsletter Sign-up",
+        "href": "xhtml/newsletter.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "xhtml/copyright.xhtml#cpy",
+        "subitems": []
       }
     ]
   }

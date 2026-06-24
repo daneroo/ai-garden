@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -74,6 +74,13 @@
       {
         "href": "toc01.xhtml",
         "sha256": "3e2c9a466b087f8aa5e614c313b97a0eb139bcefbd06b0d30840a282bd60d408"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Text",
+        "href": "ch01.xhtml#sectidkvma1",
+        "subitems": []
       }
     ]
   }

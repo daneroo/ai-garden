@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -578,6 +578,124 @@
       {
         "href": "xhtml/copyright.xhtml",
         "sha256": "24f1f3283aff1481e840aad5ce836fd40d75a1375d7c0faf18c25d3c60791b8d"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "xhtml/cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "xhtml/title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "xhtml/aboutauthor.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "xhtml/dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Praise for The Blind Watchmaker",
+        "href": "xhtml/preface001.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introduction to the 2006 Edition",
+        "href": "xhtml/introduction.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Preface",
+        "href": "xhtml/preface002.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "The Blind Watchmaker",
+        "href": "xhtml/chapter001.xhtml",
+        "subitems": [
+          {
+            "label": "CHAPTER 1: Explaining the Very Improbable",
+            "href": "xhtml/chapter001.xhtml#tbw00000166",
+            "subitems": []
+          },
+          {
+            "label": "CHAPTER 2: Good Design",
+            "href": "xhtml/chapter002.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "CHAPTER 3: Accumulating Small Change",
+            "href": "xhtml/chapter003.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "CHAPTER 4: Making Tracks Through Animal Space",
+            "href": "xhtml/chapter004.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "CHAPTER 5: The Power and The archives",
+            "href": "xhtml/chapter005.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "CHAPTER 6: Origins and Miracles",
+            "href": "xhtml/chapter006.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "CHAPTER 7: Constructive Evolution",
+            "href": "xhtml/chapter007.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "CHAPTER 8: Explosions and Spirals",
+            "href": "xhtml/chapter008.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "CHAPTER 9: Puncturing Punctuationism",
+            "href": "xhtml/chapter009.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "CHAPTER 10: The One True Tree of Life",
+            "href": "xhtml/chapter010.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "CHAPTER 11: Doomed Rivals",
+            "href": "xhtml/chapter011.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Appendix (1991)",
+        "href": "xhtml/appendix002.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Bibliography",
+        "href": "xhtml/appendix001.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Follow Penguin",
+        "href": "xhtml/endpage.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright Page",
+        "href": "xhtml/copyright.xhtml",
+        "subitems": []
       }
     ]
   }

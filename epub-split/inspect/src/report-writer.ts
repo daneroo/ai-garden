@@ -251,6 +251,8 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
   let manifestDiffer = 0;
   let spineHashAgree = 0;
   let spineHashDiffer = 0;
+  let tocAgree = 0;
+  let tocDiffer = 0;
   let totalSpinePositions = 0;
   let totalPerBookDistinctShas = 0;
   let totalUnreadablePositions = 0;
@@ -276,6 +278,8 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
         else manifestDiffer += 1;
         if (result.spineHashes.status === "agree") spineHashAgree += 1;
         else spineHashDiffer += 1;
+        if (result.toc.status === "agree") tocAgree += 1;
+        else tocDiffer += 1;
         const aHashes = input.parserOutputs.get(entry.sha256)?.get(pair.a)?.content?.spineHashes ?? [];
         const title = input.parserOutputs.get(entry.sha256)?.get(pair.a)?.content?.metadata.title ?? null;
         totalSpinePositions += aHashes.length;
@@ -351,6 +355,13 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
     `per-book distinct spine-content sha256s / total spine positions (from ${pair.a}): ${totalPerBookDistinctShas} / ${totalSpinePositions}`,
     ...renderExtraPositions(totalSpinePositions, totalPerBookDistinctShas, totalUnreadablePositions, unreadableBooks, totalWithinBookExtraPositions, withinBookRepeats),
     "",
+    "## TOC comparison",
+    "",
+    "| status | distinct books |",
+    "|---|---:|",
+    `| agree | ${tocAgree} |`,
+    `| differ | ${tocDiffer} |`,
+    "",
     "## Not compared",
     "",
     "| reason | distinct books |",
@@ -396,6 +407,9 @@ function renderPairMismatchList(
       }
       if (result.spineHashes.status === "differ") {
         fields.push(describeSpineHashes(result.spineHashes));
+      }
+      if (result.toc.status === "differ") {
+        fields.push("toc: differ");
       }
       lines.push(
         `- [${displayName(entry)}](details/${entry.sha256}.md) — ${fields.join("; ")}`
@@ -447,6 +461,9 @@ function renderDetail(input: ReportInput, entry: CorpusEntry): string {
     }
     if (result.spineHashes.status === "differ") {
       lines.push("", `### Spine content hashes`, "", describeSpineHashesDetail(result.spineHashes));
+    }
+    if (result.toc.status === "differ") {
+      lines.push("", `### TOC`, "", "TOC sha256 differs between parsers.");
     }
   }
 
@@ -520,6 +537,7 @@ function comparisonHasMismatch(result: ComparisonResult): boolean {
   if (result.spine.status === "differ") return true;
   if (result.manifest.status === "differ") return true;
   if (result.spineHashes.status === "differ") return true;
+  if (result.toc.status === "differ") return true;
   return METADATA_FIELDS.some((field) => {
     const status = result.metadata[field].status;
     return status === "differ" || status === "a-only" || status === "b-only";

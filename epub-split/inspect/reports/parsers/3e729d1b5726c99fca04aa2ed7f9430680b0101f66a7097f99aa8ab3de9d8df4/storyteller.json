@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -605,6 +605,115 @@
       {
         "href": "xhtml/plates.xhtml",
         "sha256": "f093fdf98b5c94abc841ddc9d8cbf6415980e007ae91926caa4a336a58961a05"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Title",
+        "href": "OEBPS/title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "OEBPS/copyright.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "OEBPS/contents.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgements",
+        "href": "OEBPS/fm02.xhtml#fm2",
+        "subitems": []
+      },
+      {
+        "label": "List of Maps",
+        "href": "OEBPS/fm03.xhtml#fm3",
+        "subitems": []
+      },
+      {
+        "label": "Preface",
+        "href": "OEBPS/fm04.xhtml#fm4",
+        "subitems": []
+      },
+      {
+        "label": "Part One: War",
+        "href": "OEBPS/part01.xhtml#pt1",
+        "subitems": [
+          {
+            "label": "I. The Sad and Infernal Gods",
+            "href": "OEBPS/chapter01.xhtml#ch1",
+            "subitems": []
+          },
+          {
+            "label": "II. Four Emperors",
+            "href": "OEBPS/chapter02.xhtml#ch2",
+            "subitems": []
+          },
+          {
+            "label": "III. A World at War",
+            "href": "OEBPS/chapter03.xhtml#ch3",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Two: Peace",
+        "href": "OEBPS/part02.xhtml#pt2",
+        "subitems": [
+          {
+            "label": "IV. Sleeping Giants",
+            "href": "OEBPS/chapter04.xhtml#ch4",
+            "subitems": []
+          },
+          {
+            "label": "V. The Universal Spider",
+            "href": "OEBPS/chapter05.xhtml#ch5",
+            "subitems": []
+          },
+          {
+            "label": "VI. The Best of Emperors",
+            "href": "OEBPS/chapter06.xhtml#ch6",
+            "subitems": []
+          },
+          {
+            "label": "VII. I Build this Garden for us",
+            "href": "OEBPS/chapter07.xhtml#ch7",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Timeline",
+        "href": "OEBPS/bm01.xhtml#bm1",
+        "subitems": []
+      },
+      {
+        "label": "Dramatis Personae",
+        "href": "OEBPS/bm02.xhtml#bm2",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "OEBPS/bm03.xhtml#bm3",
+        "subitems": []
+      },
+      {
+        "label": "Bibliography",
+        "href": "OEBPS/bm04.xhtml#bm4",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "OEBPS/bm05.xhtml#bm5",
+        "subitems": []
+      },
+      {
+        "label": "Picuture Section",
+        "href": "OEBPS/plates.xhtml",
+        "subitems": []
       }
     ]
   }

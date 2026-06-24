@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -3283,6 +3283,912 @@
       {
         "href": "xhtml/copyright.xhtml",
         "sha256": "cf71522d9434b8f6f523ec3d70852c8750f653b0f5a5f30923cf4afe4f70225b"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Title Page",
+        "href": "OEBPS/xhtml/title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright Notice",
+        "href": "OEBPS/xhtml/copyrightnotice.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "OEBPS/xhtml/dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Preface and Acknowledgments",
+        "href": "OEBPS/xhtml/preface.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Map of Roshar",
+        "href": "OEBPS/xhtml/ill1.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Prologue: To Weep",
+        "href": "OEBPS/xhtml/prologue.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Part One: United",
+        "href": "OEBPS/xhtml/part1.xhtml",
+        "subitems": [
+          {
+            "label": "Map of the Oathgate Locations",
+            "href": "OEBPS/xhtml/part1.xhtml#ill2",
+            "subitems": []
+          },
+          {
+            "label": "1. Broken and Divided",
+            "href": "OEBPS/xhtml/chapter1.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "2. One Problem Solved",
+            "href": "OEBPS/xhtml/chapter2.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "3. Momentum",
+            "href": "OEBPS/xhtml/chapter3.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "4. Oaths",
+            "href": "OEBPS/xhtml/chapter4.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Map of Alethkar",
+            "href": "OEBPS/xhtml/ill3.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "5. Hearthstone",
+            "href": "OEBPS/xhtml/chapter5.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "6. Four Lifetimes",
+            "href": "OEBPS/xhtml/chapter6.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "7. A Watcher at the Rim",
+            "href": "OEBPS/xhtml/chapter7.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Shallan’s Sketchbook: The Tower",
+            "href": "OEBPS/xhtml/ill4.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "8. A Powerful Lie",
+            "href": "OEBPS/xhtml/chapter8.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "9. The Threads of a Screw",
+            "href": "OEBPS/xhtml/chapter9.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "10. Distractions",
+            "href": "OEBPS/xhtml/chapter10.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "11. The Rift",
+            "href": "OEBPS/xhtml/chapter11.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "12. Negotiations",
+            "href": "OEBPS/xhtml/chapter12.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "13. Chaperone",
+            "href": "OEBPS/xhtml/chapter13.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "14. Squires Can’t Capture",
+            "href": "OEBPS/xhtml/chapter14.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Shallan’s Sketchbook: Corridor",
+            "href": "OEBPS/xhtml/ill5.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "15. Brightness Radiant",
+            "href": "OEBPS/xhtml/chapter15.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "16. Wrapped Three Times",
+            "href": "OEBPS/xhtml/chapter16.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "17. Trapped in Shadows",
+            "href": "OEBPS/xhtml/chapter17.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "18. Double Vision",
+            "href": "OEBPS/xhtml/chapter18.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "19. The Subtle Art of Diplomacy",
+            "href": "OEBPS/xhtml/chapter19.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "20. Cords to Bind",
+            "href": "OEBPS/xhtml/chapter20.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "21. Set Up to Fail",
+            "href": "OEBPS/xhtml/chapter21.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "22. The Darkness Within",
+            "href": "OEBPS/xhtml/chapter22.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "23. Storming Strange",
+            "href": "OEBPS/xhtml/chapter23.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "24. Men of Blood and Sorrow",
+            "href": "OEBPS/xhtml/chapter24.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Shallan’s Sketchbook: Horses",
+            "href": "OEBPS/xhtml/ill6.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "25. The Girl Who Looked Up",
+            "href": "OEBPS/xhtml/chapter25.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "26. Blackthorn Unleashed",
+            "href": "OEBPS/xhtml/chapter26.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Shallan’s Sketchbook: Spren in the Wall",
+            "href": "OEBPS/xhtml/ill7.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "27. Playing Pretend",
+            "href": "OEBPS/xhtml/chapter27.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "28. Another Option",
+            "href": "OEBPS/xhtml/chapter28.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "29. No Backing Down",
+            "href": "OEBPS/xhtml/chapter29.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "30. Mother of Lies",
+            "href": "OEBPS/xhtml/chapter30.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "31. Demands of the Storm",
+            "href": "OEBPS/xhtml/chapter31.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "32. Company",
+            "href": "OEBPS/xhtml/chapter32.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Interludes",
+        "href": "OEBPS/xhtml/int_part1.xhtml",
+        "subitems": [
+          {
+            "label": "I-1. Puuli",
+            "href": "OEBPS/xhtml/int1.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "I-2. Ellista",
+            "href": "OEBPS/xhtml/int2.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "I-3. The Rhythm of the Lost",
+            "href": "OEBPS/xhtml/int3.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Two: New Beginnings Sing",
+        "href": "OEBPS/xhtml/part2.xhtml",
+        "subitems": [
+          {
+            "label": "Shallan’s Sketchbook: Urithiru",
+            "href": "OEBPS/xhtml/part2.xhtml#ill8",
+            "subitems": []
+          },
+          {
+            "label": "33. A Lecture",
+            "href": "OEBPS/xhtml/chapter33.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "34. Resistance",
+            "href": "OEBPS/xhtml/chapter34.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "35. First into the Sky",
+            "href": "OEBPS/xhtml/chapter35.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "36. Hero",
+            "href": "OEBPS/xhtml/chapter36.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "37. The Last Time We March",
+            "href": "OEBPS/xhtml/chapter37.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "38. Broken People",
+            "href": "OEBPS/xhtml/chapter38.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Folio: The Vorin Havah",
+            "href": "OEBPS/xhtml/ill9.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "39. Notes",
+            "href": "OEBPS/xhtml/chapter39.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "40. Questions, Peeks, and Inferences",
+            "href": "OEBPS/xhtml/chapter40.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "41. On the Ground Looking Up",
+            "href": "OEBPS/xhtml/chapter41.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "42. Consequences",
+            "href": "OEBPS/xhtml/chapter42.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "43. Spearman",
+            "href": "OEBPS/xhtml/chapter43.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Navani’s Notebook: Ship Designs",
+            "href": "OEBPS/xhtml/ill10.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "44. The Bright Side",
+            "href": "OEBPS/xhtml/chapter44.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "45. A Revelation",
+            "href": "OEBPS/xhtml/chapter45.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "46. When the Dream Dies",
+            "href": "OEBPS/xhtml/chapter46.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "47. So Much Is Lost",
+            "href": "OEBPS/xhtml/chapter47.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "48. Rhythm of Work",
+            "href": "OEBPS/xhtml/chapter48.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "49. Born unto Light",
+            "href": "OEBPS/xhtml/chapter49.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "50. Shash Thirty-Seven",
+            "href": "OEBPS/xhtml/chapter50.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "51. Full Circle",
+            "href": "OEBPS/xhtml/chapter51.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "52. After His Father",
+            "href": "OEBPS/xhtml/chapter52.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Alethi Glyphs Page 1",
+            "href": "OEBPS/xhtml/ill11.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "53. Such a Twisted Cut",
+            "href": "OEBPS/xhtml/chapter53.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "54. An Ancient Singer’s Name",
+            "href": "OEBPS/xhtml/chapter54.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "55. Alone Together",
+            "href": "OEBPS/xhtml/chapter55.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "56. Always with You",
+            "href": "OEBPS/xhtml/chapter56.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "57. Passion",
+            "href": "OEBPS/xhtml/chapter57.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Interludes",
+        "href": "OEBPS/xhtml/int_part2.xhtml",
+        "subitems": [
+          {
+            "label": "I-4. Kaza",
+            "href": "OEBPS/xhtml/int4.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "I-5. Taravangian",
+            "href": "OEBPS/xhtml/int5.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "I-6. This One Is Mine",
+            "href": "OEBPS/xhtml/int6.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Three: Defying Truth, Love Truth",
+        "href": "OEBPS/xhtml/part3.xhtml",
+        "subitems": [
+          {
+            "label": "Folio: Contemporary Thaylen Female Fashion",
+            "href": "OEBPS/xhtml/part3.xhtml#ill12",
+            "subitems": []
+          },
+          {
+            "label": "58. Burdens",
+            "href": "OEBPS/xhtml/chapter58.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "59. Bondsmith",
+            "href": "OEBPS/xhtml/chapter59.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "60. Winds and Oaths",
+            "href": "OEBPS/xhtml/chapter60.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Map of Kholinar",
+            "href": "OEBPS/xhtml/ill13.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "61. Nightmare Made Manifest",
+            "href": "OEBPS/xhtml/chapter61.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "62. Research",
+            "href": "OEBPS/xhtml/chapter62.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "63. Within the Mirror",
+            "href": "OEBPS/xhtml/chapter63.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "64. Binder of Gods",
+            "href": "OEBPS/xhtml/chapter64.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "65. Verdict",
+            "href": "OEBPS/xhtml/chapter65.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "66. Strategist",
+            "href": "OEBPS/xhtml/chapter66.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Shallan’s Sketchbook: Kholinar Spren",
+            "href": "OEBPS/xhtml/ill14.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "67. Mishim",
+            "href": "OEBPS/xhtml/chapter67.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "68. Aim for the Sun",
+            "href": "OEBPS/xhtml/chapter68.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "69. Free Meal, No Strings",
+            "href": "OEBPS/xhtml/chapter69.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "70. Highmarshal Azure",
+            "href": "OEBPS/xhtml/chapter70.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "71. A Sign of Humanity",
+            "href": "OEBPS/xhtml/chapter71.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "72. Rockfall",
+            "href": "OEBPS/xhtml/chapter72.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "73. Telling Which Stories",
+            "href": "OEBPS/xhtml/chapter73.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "74. Swiftspren",
+            "href": "OEBPS/xhtml/chapter74.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "75. Only Red",
+            "href": "OEBPS/xhtml/chapter75.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "76. An Animal",
+            "href": "OEBPS/xhtml/chapter76.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Page from Mythica: The Taker of Secrets",
+            "href": "OEBPS/xhtml/ill15.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "77. Stormshelter",
+            "href": "OEBPS/xhtml/chapter77.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "78. The Revel",
+            "href": "OEBPS/xhtml/chapter78.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "79. Echoes of Thunder",
+            "href": "OEBPS/xhtml/chapter79.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "80. Oblivious",
+            "href": "OEBPS/xhtml/chapter80.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "81. Ithi and Her Sister",
+            "href": "OEBPS/xhtml/chapter81.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "82. The Girl Who Stood Up",
+            "href": "OEBPS/xhtml/chapter82.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "83. Crimson to Break",
+            "href": "OEBPS/xhtml/chapter83.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "84. The One You Can Save",
+            "href": "OEBPS/xhtml/chapter84.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "85. Grieve Later",
+            "href": "OEBPS/xhtml/chapter85.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "86. That Others May Stand",
+            "href": "OEBPS/xhtml/chapter86.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "87. This Place",
+            "href": "OEBPS/xhtml/chapter87.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Interludes",
+        "href": "OEBPS/xhtml/int_part3.xhtml",
+        "subitems": [
+          {
+            "label": "I-7. Envoy",
+            "href": "OEBPS/xhtml/int7.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "I-8. Mem",
+            "href": "OEBPS/xhtml/int8.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "I-9. True Labor Begins",
+            "href": "OEBPS/xhtml/int9.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "I-10. Sheler",
+            "href": "OEBPS/xhtml/int10.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "I-11. Her Reward",
+            "href": "OEBPS/xhtml/int11.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Four: Defy! Sing Beginnings!",
+        "href": "OEBPS/xhtml/part4.xhtml",
+        "subitems": [
+          {
+            "label": "88. Voices",
+            "href": "OEBPS/xhtml/chapter88.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "A Portion of the Sea of Lost Lights",
+            "href": "OEBPS/xhtml/ill16.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "89. Damnation",
+            "href": "OEBPS/xhtml/chapter89.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "90. Reborn",
+            "href": "OEBPS/xhtml/chapter90.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "91. Why He Froze",
+            "href": "OEBPS/xhtml/chapter91.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "92. Water Warm as Blood",
+            "href": "OEBPS/xhtml/chapter92.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "93. Kata",
+            "href": "OEBPS/xhtml/chapter93.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Rosharan Wines",
+            "href": "OEBPS/xhtml/ill17.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "94. A Small Bottle",
+            "href": "OEBPS/xhtml/chapter94.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "95. Inescapable Void",
+            "href": "OEBPS/xhtml/chapter95.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "96. Pieces of a Fabrial",
+            "href": "OEBPS/xhtml/chapter96.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "97. Riino",
+            "href": "OEBPS/xhtml/chapter97.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "98. Loopholes",
+            "href": "OEBPS/xhtml/chapter98.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Shallan’s Sketchbook: Mandras",
+            "href": "OEBPS/xhtml/ill18.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "99. Reachers",
+            "href": "OEBPS/xhtml/chapter99.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "100. An Old Friend",
+            "href": "OEBPS/xhtml/chapter100.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "101. Deadeye",
+            "href": "OEBPS/xhtml/chapter101.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "102. Celebrant",
+            "href": "OEBPS/xhtml/chapter102.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "103. Hypocrite",
+            "href": "OEBPS/xhtml/chapter103.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Navani’s Notebook: Vambrace",
+            "href": "OEBPS/xhtml/ill19.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "104. Strength",
+            "href": "OEBPS/xhtml/chapter104.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "105. Spirit, Mind, and Body",
+            "href": "OEBPS/xhtml/chapter105.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "106. Law Is Light",
+            "href": "OEBPS/xhtml/chapter106.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "107. The First Step",
+            "href": "OEBPS/xhtml/chapter107.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Shallan’s Sketchbook: Shadesmar Spren",
+            "href": "OEBPS/xhtml/ill20.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "108. Honor’s Path",
+            "href": "OEBPS/xhtml/chapter108.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "109. Neshua Kadal",
+            "href": "OEBPS/xhtml/chapter109.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "110. A Million Stars",
+            "href": "OEBPS/xhtml/chapter110.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "111. Eila Stele",
+            "href": "OEBPS/xhtml/chapter111.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "112. For the Living",
+            "href": "OEBPS/xhtml/chapter112.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "113. The Thing Men Do Best",
+            "href": "OEBPS/xhtml/chapter113.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Interludes",
+        "href": "OEBPS/xhtml/int_part4.xhtml",
+        "subitems": [
+          {
+            "label": "I-12. Rhythm of Withdrawal",
+            "href": "OEBPS/xhtml/int12.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "I-13. Rysn",
+            "href": "OEBPS/xhtml/int13.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "I-14. Teft",
+            "href": "OEBPS/xhtml/int14.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Five: New Unity",
+        "href": "OEBPS/xhtml/part5.xhtml",
+        "subitems": [
+          {
+            "label": "114. The Cost",
+            "href": "OEBPS/xhtml/chapter114.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "115. The Wrong Passion",
+            "href": "OEBPS/xhtml/chapter115.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Shallan’s Sketchbook: Oathgate Spren",
+            "href": "OEBPS/xhtml/ill21.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "116. Alone",
+            "href": "OEBPS/xhtml/chapter116.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "117. Champion with Nine Shadows",
+            "href": "OEBPS/xhtml/chapter117.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "118. The Weight of It All",
+            "href": "OEBPS/xhtml/chapter118.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "119. Unity",
+            "href": "OEBPS/xhtml/chapter119.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Map of Thaylen City",
+            "href": "OEBPS/xhtml/ill22.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "120. The Spear That Would Not Break",
+            "href": "OEBPS/xhtml/chapter120.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "121. Ideals",
+            "href": "OEBPS/xhtml/chapter121.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "122. A Debt Repaid",
+            "href": "OEBPS/xhtml/chapter122.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Epilogue: Great Art",
+        "href": "OEBPS/xhtml/epilogue.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Endnote",
+        "href": "OEBPS/xhtml/back.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Ars Arcanum",
+        "href": "OEBPS/xhtml/backmatter.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Books by Brandon Sanderson",
+        "href": "OEBPS/xhtml/adcard.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "OEBPS/xhtml/abouttheauthor.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Newsletter Sign-up",
+        "href": "OEBPS/xhtml/newsletter.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "OEBPS/xhtml/copyright.xhtml",
+        "subitems": []
       }
     ]
   }

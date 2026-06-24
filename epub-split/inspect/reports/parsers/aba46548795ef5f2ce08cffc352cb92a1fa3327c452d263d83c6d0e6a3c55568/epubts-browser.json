@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -486,6 +486,416 @@
       {
         "href": "eula.xhtml",
         "sha256": "69e7a9d5cb408483fd0994eefdc0801783268dbb3ec62223f070ccfb725f15bc"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introduction",
+        "href": "f06.xhtml",
+        "subitems": [
+          {
+            "label": "The Coming Quantum Day of Reckoning",
+            "href": "f06.xhtml#head-2-63",
+            "subitems": []
+          },
+          {
+            "label": "Who This Book Is For",
+            "href": "f06.xhtml#head-2-64",
+            "subitems": []
+          },
+          {
+            "label": "What Is Covered in This Book?",
+            "href": "f06.xhtml#head-2-65",
+            "subitems": []
+          },
+          {
+            "label": "How to Contact Wiley or the Author",
+            "href": "f06.xhtml#head-2-66",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "I: Quantum Computing Primer",
+        "href": "p01.xhtml",
+        "subitems": [
+          {
+            "label": "1 Introduction to Quantum Mechanics",
+            "href": "c01.xhtml",
+            "subitems": [
+              {
+                "label": "What Is Quantum Mechanics?",
+                "href": "c01.xhtml#head-2-15",
+                "subitems": []
+              },
+              {
+                "label": "The Basic Properties of Quantum Mechanics",
+                "href": "c01.xhtml#head-2-16",
+                "subitems": []
+              },
+              {
+                "label": "Quantum Examples in Our World Today",
+                "href": "c01.xhtml#head-2-17",
+                "subitems": []
+              },
+              {
+                "label": "For Additional Information",
+                "href": "c01.xhtml#head-2-18",
+                "subitems": []
+              },
+              {
+                "label": "Summary",
+                "href": "c01.xhtml#head-2-19",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "2 Introduction to Quantum Computers",
+            "href": "c02.xhtml",
+            "subitems": [
+              {
+                "label": "How Are Quantum Computers Different?",
+                "href": "c02.xhtml#head-2-20",
+                "subitems": []
+              },
+              {
+                "label": "Types of Quantum Computers",
+                "href": "c02.xhtml#head-2-23",
+                "subitems": []
+              },
+              {
+                "label": "Components of a Quantum Computer",
+                "href": "c02.xhtml#head-2-24",
+                "subitems": []
+              },
+              {
+                "label": "Quantum National Guidance",
+                "href": "c02.xhtml#head-2-25",
+                "subitems": []
+              },
+              {
+                "label": "Other Quantum Information Science Besides Computers",
+                "href": "c02.xhtml#head-2-26",
+                "subitems": []
+              },
+              {
+                "label": "For More Information",
+                "href": "c02.xhtml#head-2-27",
+                "subitems": []
+              },
+              {
+                "label": "Summary",
+                "href": "c02.xhtml#head-2-28",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "3 How Can Quantum Computing Break Today's Cryptography?",
+            "href": "c03.xhtml",
+            "subitems": [
+              {
+                "label": "Cryptography Basics",
+                "href": "c03.xhtml#head-2-29",
+                "subitems": []
+              },
+              {
+                "label": "How Quantum Computers Can Break Cryptography",
+                "href": "c03.xhtml#head-2-30",
+                "subitems": []
+              },
+              {
+                "label": "Summary",
+                "href": "c03.xhtml#head-2-31",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "4 When Will the Quantum Crypto Break Happen?",
+            "href": "c04.xhtml",
+            "subitems": [
+              {
+                "label": "It Was Always “10 Years from Now”",
+                "href": "c04.xhtml#head-2-32",
+                "subitems": []
+              },
+              {
+                "label": "Quantum Crypto Break Factors",
+                "href": "c04.xhtml#head-2-33",
+                "subitems": []
+              },
+              {
+                "label": "When the Quantum Cyber Break Will Happen",
+                "href": "c04.xhtml#head-2-34",
+                "subitems": []
+              },
+              {
+                "label": "Breakout Scenarios",
+                "href": "c04.xhtml#head-2-35",
+                "subitems": []
+              },
+              {
+                "label": "Summary",
+                "href": "c04.xhtml#head-2-36",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "5 What Will a Post-Quantum World Look Like?",
+            "href": "c05.xhtml",
+            "subitems": [
+              {
+                "label": "Broken Applications",
+                "href": "c05.xhtml#head-2-37",
+                "subitems": []
+              },
+              {
+                "label": "Quantum Computing",
+                "href": "c05.xhtml#head-2-38",
+                "subitems": []
+              },
+              {
+                "label": "Quantum Cryptography Will Be Used",
+                "href": "c05.xhtml#head-2-39",
+                "subitems": []
+              },
+              {
+                "label": "Quantum Networking Arrives",
+                "href": "c05.xhtml#head-2-40",
+                "subitems": []
+              },
+              {
+                "label": "Quantum Applications",
+                "href": "c05.xhtml#head-2-41",
+                "subitems": []
+              },
+              {
+                "label": "Summary",
+                "href": "c05.xhtml#head-2-42",
+                "subitems": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "II: Preparing for the Quantum Break",
+        "href": "p02.xhtml",
+        "subitems": [
+          {
+            "label": "6 Quantum-Resistant Cryptography",
+            "href": "c06.xhtml",
+            "subitems": [
+              {
+                "label": "NIST Post-Quantum Contest",
+                "href": "c06.xhtml#head-2-43",
+                "subitems": []
+              },
+              {
+                "label": "Types of Post-Quantum Algorithms",
+                "href": "c06.xhtml#head-2-45",
+                "subitems": []
+              },
+              {
+                "label": "Quantum-Resistant Asymmetric Encryption Ciphers",
+                "href": "c06.xhtml#head-2-46",
+                "subitems": []
+              },
+              {
+                "label": "Quantum-Resistant Digital Signatures",
+                "href": "c06.xhtml#head-2-47",
+                "subitems": []
+              },
+              {
+                "label": "Caution Advised",
+                "href": "c06.xhtml#head-2-48",
+                "subitems": []
+              },
+              {
+                "label": "For Additional Information",
+                "href": "c06.xhtml#head-2-49",
+                "subitems": []
+              },
+              {
+                "label": "Summary",
+                "href": "c06.xhtml#head-2-50",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "7 Quantum Cryptography",
+            "href": "c07.xhtml",
+            "subitems": [
+              {
+                "label": "Quantum RNGs",
+                "href": "c07.xhtml#head-2-51",
+                "subitems": []
+              },
+              {
+                "label": "Quantum Hashes and Signatures",
+                "href": "c07.xhtml#head-2-52",
+                "subitems": []
+              },
+              {
+                "label": "Quantum Encryption Ciphers",
+                "href": "c07.xhtml#head-2-53",
+                "subitems": []
+              },
+              {
+                "label": "Summary",
+                "href": "c07.xhtml#head-2-54",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "8 Quantum Networking",
+            "href": "c08.xhtml",
+            "subitems": [
+              {
+                "label": "Quantum Network Components",
+                "href": "c08.xhtml#head-2-55",
+                "subitems": []
+              },
+              {
+                "label": "Quantum Network Applications",
+                "href": "c08.xhtml#head-2-56",
+                "subitems": []
+              },
+              {
+                "label": "Other Quantum Networks",
+                "href": "c08.xhtml#head-2-57",
+                "subitems": []
+              },
+              {
+                "label": "For More Information",
+                "href": "c08.xhtml#head-2-58",
+                "subitems": []
+              },
+              {
+                "label": "Summary",
+                "href": "c08.xhtml#head-2-59",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "9 Preparing Now",
+            "href": "c09.xhtml",
+            "subitems": [
+              {
+                "label": "Four Major Post-Quantum Mitigation Phases",
+                "href": "c09.xhtml#head-2-60",
+                "subitems": []
+              },
+              {
+                "label": "The Six Major Post-Quantum Mitigation Project Steps",
+                "href": "c09.xhtml#head-2-61",
+                "subitems": []
+              },
+              {
+                "label": "Summary",
+                "href": "c09.xhtml#head-2-62",
+                "subitems": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Appendix: Additional Quantum Resources",
+        "href": "b01.xhtml",
+        "subitems": [
+          {
+            "label": "Books",
+            "href": "b01.xhtml#head-2-1",
+            "subitems": []
+          },
+          {
+            "label": "Videos",
+            "href": "b01.xhtml#head-2-2",
+            "subitems": []
+          },
+          {
+            "label": "Online Courses",
+            "href": "b01.xhtml#head-2-3",
+            "subitems": []
+          },
+          {
+            "label": "Websites",
+            "href": "b01.xhtml#head-2-4",
+            "subitems": []
+          },
+          {
+            "label": "Blogs",
+            "href": "b01.xhtml#head-2-5",
+            "subitems": []
+          },
+          {
+            "label": "Podcast",
+            "href": "b01.xhtml#head-2-6",
+            "subitems": []
+          },
+          {
+            "label": "Quantum Magazines/Newsletters",
+            "href": "b01.xhtml#head-2-7",
+            "subitems": []
+          },
+          {
+            "label": "Quantum Mailing Lists",
+            "href": "b01.xhtml#head-2-8",
+            "subitems": []
+          },
+          {
+            "label": "Miscellaneous Quantum Articles",
+            "href": "b01.xhtml#head-2-9",
+            "subitems": []
+          },
+          {
+            "label": "Quantum Vendors",
+            "href": "b01.xhtml#head-2-10",
+            "subitems": []
+          },
+          {
+            "label": "Twitter",
+            "href": "b01.xhtml#head-2-11",
+            "subitems": []
+          },
+          {
+            "label": "Software-Related",
+            "href": "b01.xhtml#head-2-12",
+            "subitems": []
+          },
+          {
+            "label": "Miscellaneous Quantum Consortiums",
+            "href": "b01.xhtml#head-2-13",
+            "subitems": []
+          },
+          {
+            "label": "Government-Sponsored Programs and Nonprofits",
+            "href": "b01.xhtml#head-2-14",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Index",
+        "href": "b02.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "End User License Agreement",
+        "href": "eula.xhtml",
+        "subitems": []
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -278,6 +278,45 @@
       {
         "href": "OEBPS/text/content019.xhtml",
         "sha256": "e027a3e90f79edf3384a20c2746a71eadb5aedf3cfef1e208c73b7501ea7f87a"
+      }
+    ],
+    "toc": [
+      {
+        "label": "\n        The Winter King\n      ",
+        "href": "OEBPS/text/content002.xhtml",
+        "subitems": [
+          {
+            "label": "\n          PART ONE\n        ",
+            "href": "OEBPS/text/content004.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "\n          PART TWO\n        ",
+            "href": "OEBPS/text/content008.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "\n          PART THREE\n        ",
+            "href": "OEBPS/text/content011.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "\n          PART FOUR\n        ",
+            "href": "OEBPS/text/content014.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "\n          PART FIVE\n        ",
+            "href": "OEBPS/text/content017.xhtml",
+            "subitems": [
+              {
+                "label": "\n            Author's Note\n          ",
+                "href": "OEBPS/text/content019.xhtml",
+                "subitems": []
+              }
+            ]
+          }
+        ]
       }
     ]
   }

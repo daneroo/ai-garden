@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -517,6 +517,98 @@
       {
         "href": "xhtml/footnotes.xhtml",
         "sha256": "f0cfa9e746252e828bd7cf40872527656f76c3a8e2c5a39ba40fc6d2d3d21b59"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "title.xhtml#sec-titlepage001",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "about_the_author.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Map",
+        "href": "map.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Family Tree",
+        "href": "preface001.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Picture Credits",
+        "href": "picture_credits.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introductory Note",
+        "href": "introduction.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "It Fell from Heaven",
+        "href": "chapter001.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Salvation and Destruction",
+        "href": "chapter002.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Ilium",
+        "href": "chapter003.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Beware of Greeks …",
+        "href": "chapter004.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "The End",
+        "href": "chapter005.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Picture Section",
+        "href": "illustration.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Appendix",
+        "href": "appendix001.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "List of Characters",
+        "href": "list_of_characters.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgements",
+        "href": "acknowledgements.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "index.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "copyright.xhtml",
+        "subitems": []
       }
     ]
   }

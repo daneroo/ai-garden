@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -19,6 +19,7 @@
       { "id": "item1", "href": "wrap0000.html", "mediaType": "application/xhtml+xml" },
       { "id": "item2", "href": "wrap0001.html", "mediaType": "application/xhtml+xml" }
     ],
+    "toc": [],
     "spineHashes": [
       { "href": "wrap0000.html", "sha256": "abc123" },
       { "href": "wrap0001.html", "sha256": "def456" }

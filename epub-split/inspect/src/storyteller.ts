@@ -27,6 +27,7 @@ interface WorkerResult {
   spine?: { href: string; linear: boolean }[];
   manifest?: { id: string; href: string; mediaType: string | null }[];
   spineHashes?: { href: string; sha256: string }[];
+  toc?: { label: string; href: string | null; subitems: unknown[] }[];
   category?: string;
   message?: string;
 }
@@ -92,6 +93,7 @@ export async function openStoryteller(
       spine: parsed.spine ?? [],
       manifest: parsed.manifest ?? [],
       spineHashes: parsed.spineHashes ?? [],
+      toc: parsed.toc ?? [],
     });
   }
 

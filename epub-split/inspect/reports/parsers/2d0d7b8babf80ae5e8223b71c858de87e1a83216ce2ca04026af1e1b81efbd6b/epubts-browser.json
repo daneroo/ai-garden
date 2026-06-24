@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -229,6 +229,63 @@
       {
         "href": "xhtml/notes.xhtml",
         "sha256": "6e82c568613bb2b29d1d240310ccee6407ae6645667b071623472d5741c161ca"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "xhtml/cover.xhtml#cover",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "xhtml/title.xhtml#tit",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "xhtml/copyright.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "xhtml/contents.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introduction",
+        "href": "xhtml/introduction.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Betrayals",
+        "href": "xhtml/chapter1.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Forgiveness Day",
+        "href": "xhtml/chapter2.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "A Man of the People",
+        "href": "xhtml/chapter3.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "A Woman’s Liberation",
+        "href": "xhtml/chapter4.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Old Music and the Slave Women",
+        "href": "xhtml/chapter5.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Notes on Werel and Yeowe",
+        "href": "xhtml/notes.xhtml",
+        "subitems": []
       }
     ]
   }

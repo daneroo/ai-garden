@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -513,6 +513,172 @@
       {
         "href": "xhtml/copyright.xhtml",
         "sha256": "f6502483739b8fe0acdc75e0e34749f9d22dcabbd32d6c09b09ae97141a67d51"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Title Page",
+        "href": "xhtml/title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright Notice",
+        "href": "xhtml/copyrightnotice.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "xhtml/dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Epigraph",
+        "href": "xhtml/epigraph.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Introduction",
+        "href": "xhtml/introduction.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Before",
+        "href": "xhtml/part1.xhtml#pt1",
+        "subitems": [
+          {
+            "label": "How We Got Here",
+            "href": "xhtml/chapter1.xhtml#ch1",
+            "subitems": []
+          },
+          {
+            "label": "Against Inevitabilism",
+            "href": "xhtml/chapter2.xhtml#ch2",
+            "subitems": []
+          },
+          {
+            "label": "Really Weird Math",
+            "href": "xhtml/chapter3.xhtml#ch3",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Bubble",
+        "href": "xhtml/part2.xhtml#pt2",
+        "subitems": [
+          {
+            "label": "The Funny Math Gets Dangerous",
+            "href": "xhtml/chapter4.xhtml#ch4",
+            "subitems": []
+          },
+          {
+            "label": "AI “Art”",
+            "href": "xhtml/chapter5.xhtml#ch5",
+            "subitems": []
+          },
+          {
+            "label": "AI Has a Labor Issue (Not a Copyright Issue)",
+            "href": "xhtml/chapter6.xhtml#ch6",
+            "subitems": []
+          },
+          {
+            "label": "What Should Creative Workers Do About AI?",
+            "href": "xhtml/chapter7.xhtml#ch7",
+            "subitems": []
+          },
+          {
+            "label": "Actual, Existing AI",
+            "href": "xhtml/chapter8.xhtml#ch8",
+            "subitems": []
+          },
+          {
+            "label": "Absent Indians and Gujarati People Typing",
+            "href": "xhtml/chapter9.xhtml#ch9",
+            "subitems": []
+          },
+          {
+            "label": "Agentic AI and Other Absurdities",
+            "href": "xhtml/chapter10.xhtml#ch10",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "After",
+        "href": "xhtml/part3.xhtml#pt3",
+        "subitems": [
+          {
+            "label": "Bubbles and Productive Residues",
+            "href": "xhtml/chapter11.xhtml#ch11",
+            "subitems": []
+          },
+          {
+            "label": "AI After the Bubble",
+            "href": "xhtml/chapter12.xhtml#ch12",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Notes",
+        "href": "xhtml/notes-ch1.xhtml",
+        "subitems": [
+          {
+            "label": "Notes 1",
+            "href": "xhtml/notes-ch1.xhtml#not",
+            "subitems": []
+          },
+          {
+            "label": "Notes 3",
+            "href": "xhtml/notes-ch3.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Notes 5",
+            "href": "xhtml/notes-ch5.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Notes 6",
+            "href": "xhtml/notes-ch6.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Notes 8",
+            "href": "xhtml/notes-ch8.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Notes 9",
+            "href": "xhtml/notes-ch9.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "xhtml/acknowledgments.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Also by Cory Doctorow",
+        "href": "xhtml/adcard.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "A Note About the Author",
+        "href": "xhtml/abouttheauthor.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Newsletter Sign-up",
+        "href": "xhtml/newsletter.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "xhtml/copyright.xhtml",
+        "subitems": []
       }
     ]
   }

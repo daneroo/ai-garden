@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -682,6 +682,239 @@
       {
         "href": "xhtml/footnotes.xhtml",
         "sha256": "0889045fda3e4f5fc63cbc7b44baa2e36acaa06f8ee43db75efbafd8930be902"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "about_the_author.xhtml#sec-ata",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "title.xhtml#sec-titlepage001",
+        "subitems": []
+      },
+      {
+        "label": "Epigraph",
+        "href": "epigraph.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Preface",
+        "href": "preface.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "I. THE PAST",
+        "href": "part001.xhtml",
+        "subitems": [
+          {
+            "label": "1. Introduction: The Landscape of Memory",
+            "href": "chapter001.xhtml",
+            "subitems": [
+              {
+                "label": "Memory: The Hexi Corridor",
+                "href": "chapter001.xhtml#ch1mem",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "2. The Ditch",
+            "href": "chapter002.xhtml",
+            "subitems": [
+              {
+                "label": "Memory: Facing Walls",
+                "href": "chapter002.xhtml#ch2mem",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "3. The Sacrifice",
+            "href": "chapter003.xhtml",
+            "subitems": [
+              {
+                "label": "Memory: Bamboo Slips",
+                "href": "chapter003.xhtml#ch3mem",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "4. Spark",
+            "href": "chapter004.xhtml",
+            "subitems": [
+              {
+                "label": "Memory: Etchings",
+                "href": "chapter004.xhtml#ch4mem",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "5. History as Weapon",
+            "href": "chapter005.xhtml",
+            "subitems": [
+              {
+                "label": "Memory: How the Red Sun Rose",
+                "href": "chapter005.xhtml#ch5mem",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "6. History as Myth",
+            "href": "chapter006.xhtml",
+            "subitems": [
+              {
+                "label": "Memory: National Museum of China",
+                "href": "chapter006.xhtml#ch6mem",
+                "subitems": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "II. THE PRESENT",
+        "href": "part002.xhtml",
+        "subitems": [
+          {
+            "label": "7. The Limits of Amnesia",
+            "href": "chapter007.xhtml",
+            "subitems": [
+              {
+                "label": "Memory: A Landlord’s Mansion",
+                "href": "chapter007.xhtml#ch7mem",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "8. The Lost City",
+            "href": "chapter008.xhtml",
+            "subitems": [
+              {
+                "label": "Memory: Snow’s Visit",
+                "href": "chapter008.xhtml#ch8mem",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "9. The Gateway",
+            "href": "chapter009.xhtml",
+            "subitems": [
+              {
+                "label": "Memory: Bloodlines",
+                "href": "chapter009.xhtml#ch9mem",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "10. Remembrance",
+            "href": "chapter010.xhtml",
+            "subitems": [
+              {
+                "label": "Memory: Tie Liu’s Cafe",
+                "href": "chapter010.xhtml#ch10mem",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "11. Lay Down Your Butcher’s Knife",
+            "href": "chapter011.xhtml",
+            "subitems": [
+              {
+                "label": "Memory: Videoing China’s Villages",
+                "href": "chapter011.xhtml#ch11mem",
+                "subitems": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "III. THE FUTURE",
+        "href": "part003.xhtml",
+        "subitems": [
+          {
+            "label": "12. Virus",
+            "href": "chapter012.xhtml",
+            "subitems": [
+              {
+                "label": "Memory: Soft Burial",
+                "href": "chapter012.xhtml#ch12mem",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "13. Empire",
+            "href": "chapter013.xhtml",
+            "subitems": [
+              {
+                "label": "Memory: The Lost Warehouses",
+                "href": "chapter013.xhtml#ch13mem",
+                "subitems": []
+              }
+            ]
+          },
+          {
+            "label": "14. The Land of Hermits",
+            "href": "chapter014.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "15. Conclusion: Learning to Walk Underground",
+            "href": "chapter015.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Appendix: Exploring China’s Underground History",
+        "href": "appendix001.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "acknowledgments.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "notes.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Bibliography",
+        "href": "bibliography.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Illustration Credits",
+        "href": "illustration_credits.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Index",
+        "href": "index.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "copyright.xhtml",
+        "subitems": []
       }
     ]
   }

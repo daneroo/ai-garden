@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -616,6 +616,208 @@
       {
         "href": "xhtml/copyright.xhtml",
         "sha256": "56f8aa76ccb472dc899f027842d5c918a9b80573164738faccd1f674c4e449e4"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "EPUB/cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "EPUB/title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "EPUB/about_the_author.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "EPUB/dedication.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Epigraph",
+        "href": "EPUB/epigraph.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Part One: The Departure from Earth",
+        "href": "EPUB/part001.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 1",
+            "href": "EPUB/chapter001.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 2",
+            "href": "EPUB/chapter002.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 3",
+            "href": "EPUB/chapter003.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 4",
+            "href": "EPUB/chapter004.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Two: Where is Earth?",
+        "href": "EPUB/part002.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 5",
+            "href": "EPUB/chapter005.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 6",
+            "href": "EPUB/chapter006.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 7",
+            "href": "EPUB/chapter007.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 8",
+            "href": "EPUB/chapter008.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 9",
+            "href": "EPUB/chapter009.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 10",
+            "href": "EPUB/chapter010.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 11",
+            "href": "EPUB/chapter011.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 12",
+            "href": "EPUB/chapter012.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 13",
+            "href": "EPUB/chapter013.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 14",
+            "href": "EPUB/chapter014.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 15",
+            "href": "EPUB/chapter015.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 16",
+            "href": "EPUB/chapter016.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 17",
+            "href": "EPUB/chapter017.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Three: When is Earth?",
+        "href": "EPUB/part003.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 18",
+            "href": "EPUB/chapter018.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 19",
+            "href": "EPUB/chapter019.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 20",
+            "href": "EPUB/chapter020.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 21",
+            "href": "EPUB/chapter021.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Four: Which is Earth?",
+        "href": "EPUB/part004.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 22",
+            "href": "EPUB/chapter022.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 23",
+            "href": "EPUB/chapter023.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 24",
+            "href": "EPUB/chapter024.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 25",
+            "href": "EPUB/chapter025.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 26",
+            "href": "EPUB/chapter026.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 27",
+            "href": "EPUB/chapter027.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part Five: The Return to Earth",
+        "href": "EPUB/part005.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 28",
+            "href": "EPUB/chapter028.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Copyright",
+        "href": "EPUB/copyright.xhtml",
+        "subitems": []
       }
     ]
   }

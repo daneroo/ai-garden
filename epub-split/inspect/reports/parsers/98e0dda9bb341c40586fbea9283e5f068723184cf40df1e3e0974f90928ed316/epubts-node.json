@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -277,6 +277,83 @@
       {
         "href": "015-aboutthepublisher.html",
         "sha256": "8e0e3d9f922d9b274ad2097b7022bd4df1e1475e8ea12c6427e33d5b13e15c00"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Title Page",
+        "href": "002-titlepage.html",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "014-copyright.html",
+        "subitems": []
+      },
+      {
+        "label": "Dedication",
+        "href": "003-dedication.html",
+        "subitems": []
+      },
+      {
+        "label": "Epigraph",
+        "href": "004-epigraph.html",
+        "subitems": []
+      },
+      {
+        "label": "Table of Contents",
+        "href": "005-toc.html",
+        "subitems": []
+      },
+      {
+        "label": "FALL",
+        "href": "006-chapter1.html",
+        "subitems": []
+      },
+      {
+        "label": "WINTER",
+        "href": "007-chapter2.html",
+        "subitems": []
+      },
+      {
+        "label": "SPRING",
+        "href": "008-chapter3.html",
+        "subitems": []
+      },
+      {
+        "label": "SUMMER",
+        "href": "009-chapter4.html",
+        "subitems": []
+      },
+      {
+        "label": "Keep Reading",
+        "href": "keepreading.html",
+        "subitems": []
+      },
+      {
+        "label": "Notes",
+        "href": "010-notes.html",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgments",
+        "href": "011-acknowledgments.html",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "012-abouttheauthor.html",
+        "subitems": []
+      },
+      {
+        "label": "Also by Anthony Doerr",
+        "href": "013-otherbooksby.html",
+        "subitems": []
+      },
+      {
+        "label": "About the Publisher",
+        "href": "015-aboutthepublisher.html",
+        "subitems": []
       }
     ]
   }

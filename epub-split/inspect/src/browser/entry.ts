@@ -1,4 +1,4 @@
-import ePub from "@likecoin/epub-ts";
+import ePub, { type NavItem } from "@likecoin/epub-ts";
 
 import { optional, optionalDate } from "../epubts-utils.ts";
 import type { BrowserHarness, EntryOpenOutcome } from "./protocol.ts";
@@ -62,6 +62,7 @@ async function openBook(bytes: ArrayBuffer): Promise<EntryOpenOutcome> {
       spine,
       manifest,
       spineHashes,
+      toc: normalizeToc(book.navigation?.toc ?? []),
     };
   } catch (error) {
     return {
@@ -76,6 +77,16 @@ async function openBook(bytes: ArrayBuffer): Promise<EntryOpenOutcome> {
       // Teardown is best-effort; a destroy failure must not mask the outcome.
     }
   }
+}
+
+type NormalizedTocItem = { label: string; href: string | null; subitems: NormalizedTocItem[] };
+
+function normalizeToc(items: NavItem[]): NormalizedTocItem[] {
+  return items.map((item) => ({
+    label: item.label,
+    href: item.href ?? null,
+    subitems: normalizeToc(item.subitems ?? []),
+  }));
 }
 
 function toHex(bytes: ArrayBuffer): string {

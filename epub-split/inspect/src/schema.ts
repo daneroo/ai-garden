@@ -19,7 +19,7 @@
 // not modelled below.
 import { z } from "zod";
 
-export const PARSER_OUTPUT_SCHEMA_VERSION = 4;
+export const PARSER_OUTPUT_SCHEMA_VERSION = 5;
 
 export const parserNameSchema = z.enum([
   "epubts-browser",
@@ -92,11 +92,28 @@ export const spineHashItemSchema = z.strictObject({
   sha256: z.string(),
 });
 
+// Recursive TOC item. label is the display text; href is the link target
+// (null when the parser exposes no href for a container entry). subitems is
+// the nested children, empty for leaf nodes.
+export interface TocItem {
+  label: string;
+  href: string | null;
+  subitems: TocItem[];
+}
+export const tocItemSchema: z.ZodType<TocItem> = z.lazy(() =>
+  z.strictObject({
+    label: z.string(),
+    href: z.string().nullable(),
+    subitems: z.array(tocItemSchema),
+  })
+);
+
 export const contentSchema = z.strictObject({
   metadata: metadataSchema,
   spine: z.array(spineItemSchema),
   manifest: z.array(manifestItemSchema),
   spineHashes: z.array(spineHashItemSchema),
+  toc: z.array(tocItemSchema),
 });
 
 export const parserOutputSchema = z
@@ -185,7 +202,7 @@ export type ParserOutput = z.infer<typeof parserOutputSchema>;
 // Like ParserOutput, the sha256 is the on-disk path key
 // (comparisons/<sha256>/<parserA>--<parserB>.json), never a stored field.
 
-export const COMPARISON_RESULT_SCHEMA_VERSION = 5;
+export const COMPARISON_RESULT_SCHEMA_VERSION = 6;
 
 // Five mutually-exclusive per-field outcomes. `a`/`b` are the values from
 // parserA/parserB. Human-readable reports never print a/b — they name the
@@ -241,6 +258,12 @@ export const spineHashComparisonSchema = z.strictObject({
   mismatchCount: z.number().int().nonnegative(),
 });
 
+// TOC comparison: sha256 of JSON.stringify of the normalized tree. "agree" =
+// both parsers produced the same normalized TOC structure.
+export const tocComparisonSchema = z.strictObject({
+  status: z.enum(["agree", "differ"]),
+});
+
 export const comparisonResultSchema = z.strictObject({
   schemaVersion: z.literal(COMPARISON_RESULT_SCHEMA_VERSION),
   // Carried from each meta.parser for reporting only — the comparator itself is
@@ -251,6 +274,7 @@ export const comparisonResultSchema = z.strictObject({
   spine: spineComparisonSchema,
   manifest: manifestComparisonSchema,
   spineHashes: spineHashComparisonSchema,
+  toc: tocComparisonSchema,
 });
 
 export type PairFieldStatus = z.infer<typeof pairFieldStatusSchema>;
@@ -262,4 +286,5 @@ export type ManifestItem = z.infer<typeof manifestItemSchema>;
 export type ManifestComparison = z.infer<typeof manifestComparisonSchema>;
 export type SpineHashItem = z.infer<typeof spineHashItemSchema>;
 export type SpineHashComparison = z.infer<typeof spineHashComparisonSchema>;
+export type TocComparison = z.infer<typeof tocComparisonSchema>;
 export type ComparisonResult = z.infer<typeof comparisonResultSchema>;

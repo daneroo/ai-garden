@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -269,6 +269,86 @@
       {
         "href": "ch03s03.xhtml",
         "sha256": "15ec5ba13f954b7b605e9f76194cde84da424e8c16712bf2fb15fc7fd200bc3e"
+      }
+    ],
+    "toc": [
+      {
+        "label": "License",
+        "href": "pr01.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Acknowledgements",
+        "href": "pr02.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Publication History",
+        "href": "pr03.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Part 1: Slow Takeoff",
+        "href": "ch01.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 1",
+            "href": "ch01s01.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 2",
+            "href": "ch01s02.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 3",
+            "href": "ch01s03.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part 2: Point of Inflexion",
+        "href": "ch02.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 4",
+            "href": "ch02s01.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 5",
+            "href": "ch02s02.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 6",
+            "href": "ch02s03.xhtml",
+            "subitems": []
+          }
+        ]
+      },
+      {
+        "label": "Part 3: Singularity",
+        "href": "ch03.xhtml",
+        "subitems": [
+          {
+            "label": "Chapter 7",
+            "href": "ch03s01.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 8",
+            "href": "ch03s02.xhtml",
+            "subitems": []
+          },
+          {
+            "label": "Chapter 9",
+            "href": "ch03s03.xhtml",
+            "subitems": []
+          }
+        ]
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -957,6 +957,88 @@
       {
         "href": "xhtml/047_copyright.xhtml",
         "sha256": "d1c3193f63e7cd4bb2fa7c86be17aa2dd9ca371f31bd21efdc3960a978c13f0e"
+      }
+    ],
+    "toc": [
+      {
+        "label": "Cover",
+        "href": "001_cover.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Title Page",
+        "href": "002_title.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Contents",
+        "href": "003_contents.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "A Guide to the Guide",
+        "href": "004_chapter001.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "The Hitchhiker’s Guide to the Galaxy",
+        "href": "005_chapter002.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "The Restaurant at the End of the Universe",
+        "href": "010_chapter007.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Life, the Universe and Everything",
+        "href": "016_chapter013.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "So Long, and Thanks for All the Fish",
+        "href": "021_chapter018.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Mostly Harmless",
+        "href": "027_chapter024.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Young Zaphod Plays It Safe",
+        "href": "035_chapter032.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "The Most Gratuitous Use of the Word ‘Belgium’ in a Serious Screenplay: an Undeleted Scene",
+        "href": "036_chapter033.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Expanded material from the Douglas Adams archives",
+        "href": "039_chapter036.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Footnotes",
+        "href": "044_footnotes.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "About the Author",
+        "href": "045_about_author.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "By the same Author",
+        "href": "046_alsoby.xhtml",
+        "subitems": []
+      },
+      {
+        "label": "Copyright",
+        "href": "047_copyright.xhtml",
+        "subitems": []
       }
     ]
   }
