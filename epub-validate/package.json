@@ -1,11 +1,11 @@
 {
-  "name": "epub-inspect",
+  "name": "epub-validate",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "build:browser": "bun build src/browser/entry.ts --target=browser --format=iife --outfile=dist/epubts-browser.js",
-    "inspect": "bun run build:browser && bun run src/index.ts",
+    "validate": "bun run build:browser && bun run src/index.ts",
     "postinstall": "playwright install chromium",
     "test": "bun test",
     "typecheck": "tsc --noEmit",

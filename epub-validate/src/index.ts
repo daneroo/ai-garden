@@ -1,7 +1,7 @@
 import { join } from "node:path";
 
 import { discoverInventory, type CorpusEntry } from "./corpus.ts";
-import { INSPECT_DIRECTORY, REPORTS_DIRECTORY, ROOTS } from "./config.ts";
+import { VALIDATE_DIRECTORY, REPORTS_DIRECTORY, ROOTS } from "./config.ts";
 import { compareBook } from "./compare.ts";
 import { BrowserTransport } from "./epubts-browser.ts";
 import { openNode } from "./epubts-node.ts";
@@ -10,18 +10,18 @@ import { writeReport, pairKey, type ParserPair, type ReportInput, type RunProven
 import type { ComparisonResult, ParserName, ParserOutput } from "./schema.ts";
 
 if (process.argv.length > 2) {
-  throw new Error("epub-inspect takes no arguments; every run processes all roots");
+  throw new Error("epub-validate takes no arguments; every run processes all roots");
 }
 
 const runnerPkg = JSON.parse(
-  await Bun.file(join(INSPECT_DIRECTORY, "package.json")).text()
+  await Bun.file(join(VALIDATE_DIRECTORY, "package.json")).text()
 ) as { version: string };
 
 console.error("Launching browser...");
 const transport = await BrowserTransport.launch();
 
 const provenance: RunProvenance = {
-  runner: { name: "epub-inspect", version: runnerPkg.version, bun: Bun.version },
+  runner: { name: "epub-validate", version: runnerPkg.version, bun: Bun.version },
   packages: {
     epubts: transport.parserVersion,
     storyteller: STORYTELLER_VERSION,

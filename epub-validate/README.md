@@ -21,8 +21,6 @@ SHA-256, TOC tree), and produces a deterministic pairwise comparison report.
       failures (not EPUB 2; both epub.ts paths open them).
 - [ ] Investigate the epubts-node jsdom fallback (9 books) — consider forcing
       jsdom always and dropping the LinkeDOM-first hybrid.
-- [ ] Directory move: `epub-split/inspect/` → `epub-validate/` (+ rename
-      package, settle test-books location). Planned separately.
 - [ ] Static HTML report — replace file-tree output with a self-contained HTML
       view; defer if migrating to prosodio first.
 - [ ] Markdown lint — enforce consistent formatting via `markdownlint` (CI +
@@ -36,11 +34,11 @@ SHA-256, TOC tree), and produces a deterministic pairwise comparison report.
 
 ```bash
 bun install        # deps + Chromium (via postinstall)
-bun run inspect     # full corpus run: build browser bundle, then inspect
+bun run validate    # full corpus run: build browser bundle, then validate
 bun run ci          # typecheck + test (run before committing)
 ```
 
-`bun run inspect` processes every configured root and parser path and replaces
+`bun run validate` processes every configured root and parser path and replaces
 the current reports only after successful completion (atomic swap). The corpus
 roots are defined in [`src/config.ts`](src/config.ts) (`test` → `../test-books`,
 `space` → a mounted volume, `drop` → a Dropbox path).
@@ -75,7 +73,7 @@ It bundles `src/browser/entry.ts` — which imports `@likecoin/epub-ts` (the
 browser build), never `@likecoin/epub-ts/node` — into a single self-contained
 IIFE. The bundle exposes one narrow function, `globalThis.epubInspect.transport`,
 that the host calls inside the page. The output `dist/epubts-browser.js` is
-generated (git-ignored) and rebuilt on every `inspect` run, so it never goes
+generated (git-ignored) and rebuilt on every `validate` run, so it never goes
 stale. Before launching, `verifyBrowserBundle` asserts the bundle contains no
 LinkeDOM and no `node:` imports — the guarantee that this path is genuinely
 browser-side.
@@ -106,6 +104,6 @@ The three-way comparison is really **two pairs with different purposes**:
   and [PLAN-epub-validate-refactor-2026-06-23.md](PLAN-epub-validate-refactor-2026-06-23.md)
   — the schema-first architecture and tracked gates.
 - Historical (three-parser feasibility experiment, 2026-06-19 → 06-22, now
-  superseded; git retains the detail):
-  [DESIGN](DESIGN-three-parser-inspect-2026-06-19.md),
-  [PLAN](PLAN-three-parser-inspect-2026-06-19.md).
+  superseded; archived in `docs/archive/`):
+  [DESIGN](docs/archive/DESIGN-three-parser-inspect-2026-06-19.md),
+  [PLAN](docs/archive/PLAN-three-parser-inspect-2026-06-19.md).
