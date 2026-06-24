@@ -8,7 +8,8 @@
     "inspect": "bun run build:browser && bun run src/index.ts",
     "postinstall": "playwright install chromium",
     "test": "bun test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "ci": "bun run typecheck && bun run test"
   },
   "devDependencies": {
     "@types/bun": "^1.3.14",
