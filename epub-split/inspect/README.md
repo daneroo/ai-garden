@@ -23,6 +23,14 @@ SHA-256, TOC tree), and produces a deterministic pairwise comparison report.
       jsdom always and dropping the LinkeDOM-first hybrid.
 - [ ] Directory move: `epub-split/inspect/` → `epub-validate/` (+ rename
       package, settle test-books location). Planned separately.
+- [ ] Static HTML report — replace file-tree output with a self-contained HTML
+      view; defer if migrating to prosodio first.
+- [ ] Markdown lint — enforce consistent formatting via `markdownlint` (CI +
+      VSCode + fork-safe); align config so IDE and CI agree.
+- [ ] Move loose config values (timeouts, concurrency limits, etc.) into
+      `src/config.ts`.
+- [ ] Migrate to `prosodio` monorepo — coordinate with whisper, match, align,
+      and demo UI work; will touch many other things.
 
 ## Operations
 

@@ -37,6 +37,15 @@ the schema-first refactor (Gates 6–10). The original
       LinkeDOM-first / jsdom-on-timeout hybrid for a single jsdom path would
       remove the timeout machinery entirely. Verify jsdom parity on the books
       LinkeDOM currently handles before switching.
+- [ ] **Static HTML report.** Replace the file-tree output with a
+      self-contained HTML view for easier browsing. Defer if the project
+      migrates to prosodio first.
+- [ ] **Markdown lint.** Enforce consistent formatting via `markdownlint` in
+      CI and VSCode so forks stay aligned; needs a shared config.
+- [ ] **Move loose config values** (worker timeouts, concurrency limits, etc.)
+      into `src/config.ts` so they are visible and tunable in one place.
+- [ ] **Migrate to prosodio monorepo.** Coordinate with whisper, match, align,
+      and demo UI; will require planning across multiple tools.
 
 ---
 
