@@ -20,7 +20,7 @@ gate should be small enough to review independently and commit independently.
 
 ## Termination Criteria
 
-The cleanup is complete only when both checks pass:
+The cleanup is complete only when both checks pass after the final gate:
 
 - `bun run ci`
 - `bun run validate` recreates the existing `reports/` tree with no report diff
@@ -45,7 +45,13 @@ before deciding whether it is expected generated output or an unintended change.
 - Before deleting a file or type, prove it has no live imports with `rg`.
 - If a symbol is partly live, split the live part into a narrow module before
   deleting the dead part.
-- Commit at the end of each completed gate after its verification passes.
+- Every commit requires the full gate verification below: `bun run ci`,
+  Daniel-run `bun run validate`, and `git diff --exit-code -- reports`. Do not
+  commit a gate on CI alone.
+- Daniel runs `bun run validate`, not Codex. Codex may run `bun run ci` and
+  inspect the post-validate diffs.
+- Commit at the end of each completed gate only after its full verification
+  passes.
 - If discovery finds a non-obvious candidate, add it to this plan before
   deleting it.
 - Keep active planning and findings documents in `docs/`. Move superseded
@@ -53,7 +59,7 @@ before deciding whether it is expected generated output or an unintended change.
 
 ## Gate 0 — Docs Convention, Baseline, And Inventory
 
-Status: `IN PROGRESS`
+Status: `COMPLETED`
 
 Tasks:
 
@@ -72,7 +78,14 @@ Tasks:
 
 Verification:
 
-- `git status --short --branch` shows only intentional docs changes.
+```bash
+bun run ci
+# Daniel runs: bun run validate
+git diff --exit-code -- reports
+```
+
+`git status --short --branch` should show only intentional docs changes plus any
+expected non-report generated files, which must be inspected before commit.
 
 Commit:
 
@@ -92,12 +105,17 @@ Tasks:
 - [x] Delete `src/reports.ts`.
 - [x] Remove or update stale references in docs only if they describe current
       state incorrectly. Avoid rewriting historical archive docs unless needed.
-- [x] Run focused verification.
+- [x] Run `bun run ci`.
+- [x] Daniel runs `bun run validate`.
+- [x] Confirm `git diff --exit-code -- reports`.
+- [x] Inspect any non-report generated diffs.
 
 Verification:
 
 ```bash
 bun run ci
+# Daniel runs: bun run validate
+git diff --exit-code -- reports
 ```
 
 Commit:
@@ -133,6 +151,8 @@ Verification:
 
 ```bash
 bun run ci
+# Daniel runs: bun run validate
+git diff --exit-code -- reports
 ```
 
 Commit:
@@ -160,6 +180,8 @@ Verification:
 
 ```bash
 bun run ci
+# Daniel runs: bun run validate
+git diff --exit-code -- reports
 ```
 
 Commit:
@@ -184,7 +206,7 @@ Verification:
 
 ```bash
 bun run ci
-bun run validate
+# Daniel runs: bun run validate
 git diff --exit-code -- reports
 ```
 
