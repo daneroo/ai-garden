@@ -35,7 +35,21 @@ mismatch = differ + a-only + b-only.
 | agree | 756 |
 | differ | 0 |
 
-distinct sha256s / total spine items: 37537 / 37714
+per-book distinct spine-content sha256s / total spine positions (from epubts-node): 37537 / 37714
+
+within-book extra positions: 177
+= 146 repeated "<unreadable>" sentinel positions
++ 31 readable repeated-content positions
+cross-book identical pages are not counted here.
+
+unreadable spine positions: 147 across 1 book(s)
+- Les Rois Maudits - L'intégrale (ccabb1879c87746a…): 147 positions share 1 sha256 ("<unreadable>") → 146 extra positions
+
+within-book readable repeats: 31 extra positions across 4 book(s)
+- Circe (0295fa5dc63f325b…): 4 positions share 1 readable sha256 → 3 extra positions
+- The Murder of Roger Ackroyd (6d339de9584556e6…): 27 positions share 1 readable sha256 → 26 extra positions
+- Wonderful Life: The Burgess Shale and the Nature of History (d86061d5178d463a…): 2 positions share 1 readable sha256 → 1 extra positions
+- Apex (dc14cc18aacb1ff4…): 2 positions share 1 readable sha256 → 1 extra positions
 
 ## Not compared
 

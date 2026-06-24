@@ -56,9 +56,13 @@ function compareSpineHashes(a: SpineHashItem[], b: SpineHashItem[]): SpineHashCo
   let matchCount = 0;
   let mismatchCount = 0;
   for (let i = 0; i < len; i++) {
-    const aHash = a[i]?.sha256 ?? "<unreadable>";
-    const bHash = b[i]?.sha256 ?? "<unreadable>";
-    if (aHash === bHash) {
+    // A missing position (one side shorter) is never a match. Only coalescing the
+    // sentinel would conflate "no item here" with "item present but unreadable" — two
+    // books that both genuinely fail the same item agree, but a missing position must
+    // not. undefined !== any string, so the guard keeps the two cases distinct.
+    const aHash = a[i]?.sha256;
+    const bHash = b[i]?.sha256;
+    if (aHash !== undefined && aHash === bHash) {
       matchCount += 1;
     } else {
       mismatchCount += 1;

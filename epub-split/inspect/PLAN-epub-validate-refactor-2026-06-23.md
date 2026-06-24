@@ -549,18 +549,80 @@ sha256 fingerprint. Since all parsers read the same zip, raw sha256s are expecte
 to agree — this confirms content extraction consistency and seeds the plumbing for
 10B.
 
-- epub-ts (node + browser): `book.archive.getText("/" + book.path.directory + href)` — the archive url format is `"/" + zipPath`; getText strips the leading "/" via substr(1) to find the zip entry.
+- epub-ts (node + browser): `book.path.resolve(href)` — epub-ts's own path resolver
+  always produces an absolute `"/"`-prefixed result (anchors to "/" when no absolute
+  segment found); `archive.getText(url)` strips the leading "/" via `substr(1)` to
+  get the zip entry path. **Do not** use manual `"/" + book.path.directory + href` —
+  root-OPF epubs have `directory = "/"`, producing double-slash `"//href"` which
+  resolves to the wrong entry.
 - storyteller: `reader.readItemContents(id, "utf-8")` — clean public API.
-- Schema: `content.spineHashes: { href: string; sha256: string | null }[]`, null on read failure. Parallel to content.spine in order.
-- Comparison: `SpineHashComparison { status, matchCount, mismatchCount }` — ordered, position by position.
+- Schema: `content.spineHashes: { href: string; sha256: string }[]`. Read failures
+  use the sentinel `"<unreadable>"` rather than null — two parsers that both fail the
+  same item agree on the sentinel value rather than differing. Parallel to
+  content.spine in order. ComparisonResult schema v5 (nullCount removed).
+- Comparison: `SpineHashComparison { status, matchCount, mismatchCount }` — ordered,
+  position by position. Sentinel treated as a regular value.
 
-- [x] Schema v4: `spineHashItemSchema`, `spineHashComparisonSchema`, extend `contentSchema` and `comparisonResultSchema`.
+- [x] Schema v4 (ParserOutput), v5 (ComparisonResult): `spineHashItemSchema`,
+      `spineHashComparisonSchema`, extend `contentSchema` and `comparisonResultSchema`.
 - [x] All three adapters populate `content.spineHashes`.
 - [x] `compareBook` gains `spineHashes` comparison.
-- [x] Pair reports and detail pages render findings.
+- [x] Pair reports: spine hash agree/differ table + `distinct sha256s / total spine
+      items` ratio + unreadable count and affected book list.
+- [x] Detail pages render findings.
 - [x] Unit tests.
 
 Verifiable outcome: TYPECHECK + TEST + DETERMINISM. Raw sha256s expected to all agree.
+
+#### Gate 10A corpus findings
+
+**node × browser (756 books): 756/756 agree. 37537 distinct / 37714 total spine items.**
+
+**Why isn't distinct == total?**
+
+For each book, we count how many *unique* sha256 values appear across its spine items
+(`new Set(spineHashes).size`), then sum that across all books. Distinct equals total only
+if every spine position in every book has byte-unique content. When two positions in the
+*same* book contain byte-identical files — same bytes, same sha256 — they contribute 2 to
+total but only 1 to distinct. The gap (37714 − 37537 = 177) is the total count of such
+within-book duplicate positions across the corpus.
+
+Crucially: a sha256 that appears in 17 different books contributes 0 to the gap. Each book
+sees it as one spine item → 1 distinct, 1 total for that book. The gap is *not* a global
+deduplication count; it measures within-book repetition only.
+
+**Complete accounting of the 177 gap:**
+
+**Cause 1 — unreadable sentinel (146 gap)**
+*Les Rois Maudits — L'intégrale* (`ccabb1879c87746a…`): epub-ts opens this EPUB2 book but
+cannot resolve any of its 147 spine items from the zip. Every item returns the sentinel
+`"<unreadable>"`. Within that book: 147 items, 1 distinct value → gap 146. Both node and
+browser agree on the sentinel → comparison status "agree".
+
+**Cause 2 — within-book structural repeats (31 gap)**
+Four books have spine positions with byte-identical readable content:
+
+| Book | sha prefix | n positions | share | gap |
+|---|---|---|---|---|
+| *Circe* | `0295fa5d…` | 4 | 1 sha (`ad_chapter*.xhtml` — publisher ad repeated per-part) | 3 |
+| *The Murder of Roger Ackroyd* | `6d339de9…` | 27 | 1 sha (`OEBPS/part2_split_000.xhtml` … `part28_split_000.xhtml` — split-epub part-boundary template, identical across all 27 chapter splits) | 26 |
+| *Wonderful Life: The Burgess Shale…* | `d86061d5…` | 2 | 1 sha (`text/part0000.html` + `text/part0005.html`) | 1 |
+| *Apex* | `dc14cc18…` | 2 | 1 sha (`Text/Section0018.html` + `Text/Section0065.html`) | 1 |
+
+146 + 3 + 26 + 1 + 1 = **177** ✓. No unexplained remainder. Content is real.
+
+**This gap is node × browser specific — it does not appear in node × storyteller.**
+Storyteller processes only 213 books (EPUB3 subset); none of the five books above are in
+that subset (the EPUB2 book gets `epub2-unsupported`, the four with structural repeats are
+not among the 213 storyteller opened). Node × storyteller shows 10601/10601 — gap 0.
+The gap is a property of which books land in each pair's overlap, not a parser disagreement.
+
+In the **node × browser** pair, *Les Rois Maudits* is the only book with unreadable
+positions: node and browser both fail all 147 items, so they agree on the `"<unreadable>"`
+sentinel (status agree, not differ). Storyteller never opened that EPUB2 book, so it does
+not appear in the node × storyteller pair at all.
+
+**node × storyteller (213 books): 213/213 agree. 10601/10601 — gap 0, all unique.**
 
 ### Gate 10B — Text content comparison
 
@@ -568,13 +630,10 @@ Extract text content from parsed XHTML (strip tags, normalize whitespace) and
 compare. This is where parser-level divergence (entity handling, etc.) may appear.
 Design after 10A corpus results.
 
-10A findings: all raw sha256s agree across parsers — same zip bytes read identically.
-The 177 non-distinct sha256s in node×browser (37537/37714) are legitimate duplicate
-content (same short page appearing at multiple spine positions), not a failure mode.
-Storyteller subset is perfectly distinct (10601/10601).
+10A verdict: all raw sha256s agree — same zip bytes read identically by all parsers.
+The within-book repeats are fully accounted for (see table above). No anomaly.
 
 10B options to consider:
-- Investigate the 177 repeats: which books, which spine positions share a hash?
 - Parser-specific text extraction: each parser strips tags its own way → compare
   resulting text sha256. Would catch DOM interpretation differences (entity handling,
   whitespace normalisation) that raw bytes cannot reveal.
@@ -615,4 +674,4 @@ matches the shipped tool.
 - 2026-06-24 · Gate 7 · WILL NOT IMPLEMENT — content-addressed model already correct; collapse flag adds no value
 - 2026-06-24 · Gate 8A · spine in ParserOutput (SpineItem { href, linear }); SpineComparison (ordered sequence — same hrefs, same positions to agree; onlyInA/onlyInB are set-based asymmetry); pair reports + detail pages; schema v2; TEST 75 pass / 1 todo / 0 fail, TYPECHECK clean; DETERMINISM confirmed; 756/756 agree node×browser, 213/213 agree node×storyteller · 207ce080
 - 2026-06-24 · Gate 8B · manifest in ParserOutput (ManifestItem { id, href, mediaType }); ManifestComparison (unordered set — same href-set regardless of id sort order to agree); pair reports + detail pages; schema v3; TEST 81 pass / 1 todo / 0 fail, TYPECHECK clean; DETERMINISM confirmed; 756/756 agree node×browser, 213/213 agree node×storyteller · 3ac52479
-- 2026-06-24 · Gate 10A · spineHashes in ParserOutput ({ href, sha256 string — "<unreadable>" sentinel on failure }); SpineHashComparison (ordered, position-by-position; matchCount/mismatchCount — no nullCount, sentinel treated as value); pair reports + detail pages + distinct sha256 / total spine items ratio; ParserOutput schema v4, ComparisonResult schema v5; path fix: use book.path.resolve(href) not manual dir concat (root-OPF epubs had directory="/" causing double-slash); TEST 87 pass / 1 todo / 0 fail, TYPECHECK clean; DETERMINISM confirmed; 756/756 agree node×browser (37537/37714 distinct — 177 legitimate repeats), 213/213 agree node×storyteller (10601/10601 distinct — all unique)
+- 2026-06-24 · Gate 10A · spineHashes in ParserOutput ({ href, sha256 string — "<unreadable>" sentinel on failure }); SpineHashComparison (ordered, position-by-position; matchCount/mismatchCount — no nullCount, sentinel treated as value); pair reports: per-book distinct spine-content sha256s / total spine positions ratio + within-book extra positions breakdown (sentinel + readable repeats, with titles and position counts) + unreadable book list; fix compare.ts: missing spine position must not match any hash including "<unreadable>" (was coalescing undefined → sentinel); ParserOutput schema v4, ComparisonResult schema v5; path fix: use book.path.resolve(href) not manual dir concat; TEST 88 pass / 1 todo / 0 fail, TYPECHECK clean; DETERMINISM confirmed; node×browser 756/756 agree (37537/37714 — 177 within-book extra positions fully accounted: 146 sentinel from Les Rois Maudits + 31 readable repeats in 4 books); node×storyteller 213/213 agree (10601/10601 — 0 extra positions)

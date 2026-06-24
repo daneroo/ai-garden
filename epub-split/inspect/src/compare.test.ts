@@ -259,6 +259,17 @@ describe("compareBook — spineHashes", () => {
     expect(result.spineHashes.status).toBe("differ");
     expect(result.spineHashes.mismatchCount).toBe(1);
   });
+
+  test("missing position is not a match even against a real <unreadable> sentinel", () => {
+    // The shorter side has no position 2; the longer side has a genuine <unreadable>
+    // there. "no item" must not be conflated with "item present but unreadable".
+    const a = opened("epubts-node", null, null, null, [], [], [hash("ch01.xhtml", "aaa")]);
+    const b = opened("epubts-browser", null, null, null, [], [], [hash("ch01.xhtml", "aaa"), hash("ch02.xhtml", "<unreadable>")]);
+    const result = compareBook(a, b);
+    expect(result.spineHashes.status).toBe("differ");
+    expect(result.spineHashes.matchCount).toBe(1);
+    expect(result.spineHashes.mismatchCount).toBe(1);
+  });
 });
 
 // ── parity projection ────────────────────────────────────────────────────────

@@ -251,8 +251,12 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
   let manifestDiffer = 0;
   let spineHashAgree = 0;
   let spineHashDiffer = 0;
-  let totalSpineItems = 0;
-  let totalDistinctHashes = 0;
+  let totalSpinePositions = 0;
+  let totalPerBookDistinctShas = 0;
+  let totalUnreadablePositions = 0;
+  const unreadableBooks: Array<{ sha256: string; title: string | null; positions: number }> = [];
+  let totalWithinBookExtraPositions = 0;
+  const withinBookRepeats: Array<{ sha256: string; title: string | null; totalPositions: number; distinctShas: number; extraPositions: number }> = [];
 
   for (const entry of input.inventory.entries) {
     const aOpened = isOpened(input, entry.sha256, pair.a);
@@ -273,8 +277,24 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
         if (result.spineHashes.status === "agree") spineHashAgree += 1;
         else spineHashDiffer += 1;
         const aHashes = input.parserOutputs.get(entry.sha256)?.get(pair.a)?.content?.spineHashes ?? [];
-        totalSpineItems += aHashes.length;
-        totalDistinctHashes += new Set(aHashes.map((h) => h.sha256)).size;
+        const title = input.parserOutputs.get(entry.sha256)?.get(pair.a)?.content?.metadata.title ?? null;
+        totalSpinePositions += aHashes.length;
+        totalPerBookDistinctShas += new Set(aHashes.map((h) => h.sha256)).size;
+        const unreadablePositions = aHashes.filter((h) => h.sha256 === "<unreadable>").length;
+        if (unreadablePositions > 0) {
+          totalUnreadablePositions += unreadablePositions;
+          unreadableBooks.push({ sha256: entry.sha256, title, positions: unreadablePositions });
+        }
+        const readableHashes = aHashes.filter((h) => h.sha256 !== "<unreadable>");
+        const hashFreq = new Map<string, number>();
+        for (const h of readableHashes) hashFreq.set(h.sha256, (hashFreq.get(h.sha256) ?? 0) + 1);
+        const repeatedGroups = [...hashFreq.entries()].filter(([, c]) => c > 1);
+        if (repeatedGroups.length > 0) {
+          const totalPositions = repeatedGroups.reduce((s, [, c]) => s + c, 0);
+          const extraPositions = repeatedGroups.reduce((s, [, c]) => s + (c - 1), 0);
+          totalWithinBookExtraPositions += extraPositions;
+          withinBookRepeats.push({ sha256: entry.sha256, title, totalPositions, distinctShas: repeatedGroups.length, extraPositions });
+        }
       }
     } else if (!aOpened && !bOpened) {
       neitherOpened += 1;
@@ -328,7 +348,8 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
     `| agree | ${spineHashAgree} |`,
     `| differ | ${spineHashDiffer} |`,
     "",
-    `distinct sha256s / total spine items: ${totalDistinctHashes} / ${totalSpineItems}`,
+    `per-book distinct spine-content sha256s / total spine positions (from ${pair.a}): ${totalPerBookDistinctShas} / ${totalSpinePositions}`,
+    ...renderExtraPositions(totalSpinePositions, totalPerBookDistinctShas, totalUnreadablePositions, unreadableBooks, totalWithinBookExtraPositions, withinBookRepeats),
     "",
     "## Not compared",
     "",
@@ -567,6 +588,54 @@ function describeManifestDetail(pair: ParserPair, manifest: ComparisonResult["ma
     lines.push("", `Only in ${pair.b}:`, ...manifest.onlyInB.map((h) => `- ${h}`));
   }
   return lines.join("\n");
+}
+
+// Extra-position breakdown for the "Spine content hashes" section of a pair report.
+//
+// "Extra positions" = total spine positions − per-book distinct sha256s. This counts
+// how many spine positions are byte-identical copies of another position *in the same book*.
+// Cross-book identical pages are not included — each book counts them as 1 distinct / 1
+// total regardless of how many other books share that sha256.
+// Two causes account for all extra positions:
+//   - Unreadable sentinel: N positions all fail extraction → all get "<unreadable>" →
+//     1 distinct, N−1 extra positions within that book.
+//   - Within-book readable repeats: spine positions with byte-identical readable content.
+function renderExtraPositions(
+  totalSpinePositions: number,
+  totalPerBookDistinctShas: number,
+  totalUnreadablePositions: number,
+  unreadableBooks: Array<{ sha256: string; title: string | null; positions: number }>,
+  totalWithinBookExtraPositions: number,
+  withinBookRepeats: Array<{ sha256: string; title: string | null; totalPositions: number; distinctShas: number; extraPositions: number }>,
+): string[] {
+  const totalExtraPositions = totalSpinePositions - totalPerBookDistinctShas;
+  if (totalExtraPositions === 0) return [];
+  const sentinelExtraPositions = totalUnreadablePositions - unreadableBooks.length;
+  const lines: string[] = [
+    "",
+    `within-book extra positions: ${totalExtraPositions}`,
+    `= ${sentinelExtraPositions} repeated "<unreadable>" sentinel positions`,
+    `+ ${totalWithinBookExtraPositions} readable repeated-content positions`,
+    "cross-book identical pages are not counted here.",
+    "",
+    `unreadable spine positions: ${totalUnreadablePositions} across ${unreadableBooks.length} book(s)`,
+    ...unreadableBooks.map((b) => {
+      const label = b.title ? `${b.title} (${b.sha256.slice(0, 16)}…)` : `${b.sha256.slice(0, 16)}…`;
+      return `- ${label}: ${b.positions} positions share 1 sha256 ("<unreadable>") → ${b.positions - 1} extra positions`;
+    }),
+  ];
+  if (totalWithinBookExtraPositions > 0) {
+    lines.push(
+      "",
+      `within-book readable repeats: ${totalWithinBookExtraPositions} extra positions across ${withinBookRepeats.length} book(s)`,
+      ...withinBookRepeats.map((b) => {
+        const label = b.title ? `${b.title} (${b.sha256.slice(0, 16)}…)` : `${b.sha256.slice(0, 16)}…`;
+        const shaWord = b.distinctShas === 1 ? "readable sha256" : "readable sha256s";
+        return `- ${label}: ${b.totalPositions} positions share ${b.distinctShas} ${shaWord} → ${b.extraPositions} extra positions`;
+      }),
+    );
+  }
+  return lines;
 }
 
 // One human-readable clause for a spine-hash mismatch in the mismatch list.
