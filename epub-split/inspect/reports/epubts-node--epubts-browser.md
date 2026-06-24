@@ -1,0 +1,37 @@
+# epubts-node vs epubts-browser
+
+- parserA: epubts-node
+- parserB: epubts-browser
+- both-opened (occurrence-weighted): 1304
+
+## Per-field outcomes
+
+mismatch = differ + a-only + b-only.
+
+| field | agree | differ | a-only | b-only | both-null | mismatch |
+|---|---:|---:|---:|---:|---:|---:|
+| title | 1294 | 9 | 0 | 0 | 1 | 9 |
+| creator | 1302 | 1 | 0 | 0 | 1 | 1 |
+| date | 1096 | 0 | 0 | 0 | 208 | 0 |
+
+## Not compared
+
+| reason | occurrences |
+|---|---:|
+| epubts-node not opened | 0 |
+| epubts-browser not opened | 0 |
+| neither opened | 0 |
+
+## Mismatches
+
+### space
+
+- [Cory Doctorow - Reverse Centaurs Guide To Life After AI/Cory Doctorow - Reverse Centaurs Guide To Life After AI.epub](details/bcb9a94e6205a4ddda56120009abff08cf5c9a49ad0ae00467439c03229a9710.md) — title: epubts-node ≠ epubts-browser
+- [Naomi Novik - Temeraire/Naomi Novik - Temeraire 01 - His Majestys Dragon/Naomi Novik - Temeraire 01 - His Majestys Dragon.epub](details/f5ba6d57e7b1f97bb624dc93bd75eedf5ace39950cb30de304c8ac98f37fd3c1.md) — title: epubts-node ≠ epubts-browser
+- [Travis Baldree - Legends & Lattes/Travis Baldree - Legends & Lattes 1 - Legends & Lattes/Travis Baldree - Legends & Lattes 1 - Legends & Lattes.epub](details/b5575577b723da6f1223382c3e744ff0592d7006ee9c0e4d6c00558496476a1f.md) — title: epubts-node ≠ epubts-browser
+- [Travis Baldree - Legends & Lattes/Travis Baldree - Legends & Lattes 2 - Bookshops & Bonedust/Travis Baldree - Legends & Lattes 2 - Bookshops & Bonedust.epub](details/84b753d6894ffcf1b6f6f0d7c63cfdfa7ec605c030f16286a77030fdb20323e9.md) — title: epubts-node ≠ epubts-browser
+
+### drop
+
+- [Homer - The Iliad - t. Robert Fagles.epub](details/9f53fad364f25ad21f5503667ef525008bc49cf55351abf64a85b3538055ebd3.md) — creator: epubts-node ≠ epubts-browser
+- [Leigh Phillips - Austerity Ecology & the Collapse-Porn Addicts.epub](details/00c4aa14f4b31c4a6f81ae9c4ab812a73a717d641a896c582e5e6efb72e981eb.md) — title: epubts-node ≠ epubts-browser

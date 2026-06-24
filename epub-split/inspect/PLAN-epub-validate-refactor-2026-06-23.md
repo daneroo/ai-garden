@@ -477,22 +477,12 @@ via projection — node×browser mismatch count and the entity-truncation books
 match the baseline; node×storyteller mismatch count matches over the EPUB 3
 share (last-known title mismatch: 9 and 4).
 
-## Gate 7 — Dedup collapse mode (optional; corpus basics already in Gate 2)
+## Gate 7 — Dedup collapse mode (WILL NOT IMPLEMENT)
 
-The corpus module, content-addressed inventory, and found/deduped/distinct
-accounting all landed in Gate 2. This gate adds only the optional collapse mode
-and is deferrable — occurrence parity is already preserved without it.
-
-- [ ] Formalize `buildCorpus({ roots, deduplicate }): CorpusEntry[]` with
-      `CorpusEntry = { sha256, size, occurrences: DiscoveredBook[] }` (no
-      `shortSha`, no wrapper types — short SHA derived at display).
-- [ ] `deduplicate: true` collapses the **inventory** to one row per `sha256`;
-      `deduplicate: false` stays the default (occurrence-level, baseline
-      denominator). Neither changes parser/comparison outputs.
-
-Verifiable outcome: TYPECHECK + TEST. Daniel's full run: DETERMINISM; the
-corpora table's distinct + multi-root-group counts reconcile (last-known: 754
-distinct, 537 multi-root groups). Occurrence-level totals unchanged from Gate 6.
+The content-addressed model already gives one CorpusEntry per sha256 with all
+occurrences attached. A separate collapse flag adds UI polish with no downstream
+value — the discovery table already shows found/deduped/distinct correctly.
+Dropped 2026-06-24.
 
 ## Gate 8 — Expand content to manifest + spine
 
@@ -548,4 +538,5 @@ matches the shipped tool.
 - 2026-06-24 · Gate 3 · epubts-node adapter (adapter.ts + openNode); runner rewired to content-addressed node-only; entity truncation confirmed "Legends " (trailing space); TEST 51 pass / 1 todo / 0 fail, TYPECHECK clean · cc4f0aa4
 - 2026-06-24 · Gate 4 · epubts-browser adapter; browser/entry.ts simplified (no DeclaredVersion, no Zod); BrowserTransport.open() returns ParserOutput; runner adds browser loop + provenance; ePub.VERSION is "0.3" (2-part); TEST 55 pass / 1 todo / 0 fail, TYPECHECK clean · df6b1190
 - 2026-06-24 · Gate 5 · storyteller adapter; worker emits epub2-unsupported on EpubVersionError; openStoryteller() returns ParserOutput; runner adds storyteller loop + complete provenance; TEST 59 pass / 1 todo / 0 fail, TYPECHECK clean · 097dbd72
-- 2026-06-24 · Gate 6 · compare.ts (compareBook, compareField, parity projection); runner wired with PAIRS + comparisons; pair reports + detail pages now live; switched to distinct-book counts (occ=1); baseline/ removed; TEST 69 pass / 1 todo / 0 fail, TYPECHECK clean · (pending commit)
+- 2026-06-24 · Gate 6 · compare.ts (compareBook, compareField, parity projection); runner wired with PAIRS + comparisons; pair reports + detail pages now live; switched to distinct-book counts (occ=1); baseline/ removed; TEST 69 pass / 1 todo / 0 fail, TYPECHECK clean · 655f73ac
+- 2026-06-24 · Gate 7 · WILL NOT IMPLEMENT — content-addressed model already correct; collapse flag adds no value

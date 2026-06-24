@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "parserA": "epubts-node",
+  "parserB": "epubts-browser",
+  "metadata": {
+    "title": {
+      "status": "agree",
+      "a": "The Iliad",
+      "b": "The Iliad"
+    },
+    "creator": {
+      "status": "differ",
+      "a": "Robert Homer ",
+      "b": "Robert Homer & Fagles"
+    },
+    "date": {
+      "status": "both-null",
+      "a": null,
+      "b": null
+    }
+  }
+}

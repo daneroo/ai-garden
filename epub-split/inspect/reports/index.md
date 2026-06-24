@@ -58,4 +58,5 @@ Genuine open failures only; epub2-unsupported is expected and excluded.
 
 ## Comparison pairs
 
-None (fewer than two parsers run).
+- [epubts-node vs epubts-browser](epubts-node--epubts-browser.md)
+- [epubts-node vs storyteller](epubts-node--storyteller.md)

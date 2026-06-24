@@ -22,7 +22,16 @@
     ],
     "notRun": []
   },
-  "pairs": [],
+  "pairs": [
+    {
+      "a": "epubts-node",
+      "b": "epubts-browser"
+    },
+    {
+      "a": "epubts-node",
+      "b": "storyteller"
+    }
+  ],
   "roots": [
     {
       "name": "test",
