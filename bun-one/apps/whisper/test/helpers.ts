@@ -5,6 +5,7 @@
 import { join } from "node:path";
 import { existsSync } from "node:fs";
 import { rm } from "node:fs/promises";
+import { execSync } from "node:child_process";
 
 // Common paths
 export const PACKAGE_ROOT = join(import.meta.dir, "..");
@@ -58,5 +59,18 @@ export async function resetOutputDir(dir: string) {
 export async function cleanupOutputDir(dir: string) {
   if (existsSync(dir)) {
     await rm(dir, { recursive: true });
+  }
+}
+
+/**
+ * Warm up whisper-cli to ensure Metal shaders are compiled.
+ * This prevents tests from timing out on their first run.
+ */
+export function warmupWhisperCli() {
+  try {
+    // Run --help which is fast but still triggers ggml_metal_library_init
+    execSync("whisper-cli --help", { stdio: "ignore" });
+  } catch {
+    // Ignore errors if whisper-cli is missing; tests will fail properly later
   }
 }

@@ -23,6 +23,7 @@ import {
   PACKAGE_ROOT,
   resetOutputDir,
   TEST_WORK_DIR_ROOT,
+  warmupWhisperCli,
 } from "./helpers.ts";
 
 const TEST_OUTPUT_DIR = join(PACKAGE_ROOT, "data/output/smoke-test");
@@ -31,8 +32,9 @@ const workDirCleanup = createWorkDirCleanup();
 
 describe("smoke: whisper pipeline", () => {
   beforeAll(async () => {
+    warmupWhisperCli();
     await resetOutputDir(TEST_OUTPUT_DIR);
-  });
+  }, 30000);
 
   afterAll(async () => {
     await cleanupOutputDir(TEST_OUTPUT_DIR);
