@@ -80,7 +80,7 @@ Commit:
 
 ## Gate 1 — Remove Legacy Report Writer
 
-Status: `PENDING`
+Status: `COMPLETED`
 
 Known candidate:
 
@@ -88,11 +88,11 @@ Known candidate:
 
 Tasks:
 
-- [ ] Confirm no live import path reaches `src/reports.ts`.
-- [ ] Delete `src/reports.ts`.
-- [ ] Remove or update stale references in docs only if they describe current
+- [x] Confirm no live import path reaches `src/reports.ts`.
+- [x] Delete `src/reports.ts`.
+- [x] Remove or update stale references in docs only if they describe current
       state incorrectly. Avoid rewriting historical archive docs unless needed.
-- [ ] Run focused verification.
+- [x] Run focused verification.
 
 Verification:
 
