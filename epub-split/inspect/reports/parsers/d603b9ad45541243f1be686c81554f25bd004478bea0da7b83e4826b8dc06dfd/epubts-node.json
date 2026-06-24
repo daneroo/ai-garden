@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -110,6 +110,44 @@
         "id": "titlepage",
         "href": "Text/titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "Text/titlepage.xhtml",
+        "sha256": "ff1deebc5e6939488e92bf8f8478552017cfdf706667690d13149100edad76f1"
+      },
+      {
+        "href": "Text/Athyra_split_000.html",
+        "sha256": "caab75ec2b8ad70fba6021368c405cc1bb549bcb5b6b5d61ca62fdf202300342"
+      },
+      {
+        "href": "Text/Athyra_split_001.html",
+        "sha256": "0b9c4b6b135b3cf9f5ca7ff53fb2f36646efddf2c9d7930626711c774e23402e"
+      },
+      {
+        "href": "Text/Athyra_split_002.html",
+        "sha256": "19cef7d47e43bdf261155c40d021e46eb2deef1cf4df72b25b19979e31625bde"
+      },
+      {
+        "href": "Text/Athyra_split_003.html",
+        "sha256": "3cf09a06093fbfd5bad20e83e4f67e54145f9542fae17b272d764dc804e9aa79"
+      },
+      {
+        "href": "Text/Athyra_split_004.html",
+        "sha256": "d49e4ffabcc6d082bc1d8381e84af1ea91bb20823a536ed572ebecd2f2e35de8"
+      },
+      {
+        "href": "Text/Athyra_split_005.html",
+        "sha256": "c2fafe90436f86f0959896977029284fed91388eb995e1614ed952667e5f169d"
+      },
+      {
+        "href": "Text/Athyra_split_006.html",
+        "sha256": "fd169cea3b30fb03e26280b0af152c8ca1276ec68c752314a7b60739ca57c616"
+      },
+      {
+        "href": "Text/Athyra_split_007.html",
+        "sha256": "e54dee129a393356adea66c85d61f5a8da629e1dbc54fd74b96464dbdc762c7d"
       }
     ]
   }

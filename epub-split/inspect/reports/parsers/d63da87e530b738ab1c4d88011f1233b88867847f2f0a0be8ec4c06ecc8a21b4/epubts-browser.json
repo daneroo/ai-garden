@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -82,6 +82,32 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "5ef202753d3b7e6c82279dea67b53b88844eff12b2fef965a7ef6b9e8b86f2e5"
+      },
+      {
+        "href": "Norwegian_Wood_split_000.html",
+        "sha256": "c3f679a93a3b8491e89c8d324e97dc634b46219f5bbe0a1ca7d99344916f807a"
+      },
+      {
+        "href": "Norwegian_Wood_split_001.html",
+        "sha256": "60b80a54d2a16822d41d5c5c70d762bccd132c4a1fb0bc5736a181194ef9ac31"
+      },
+      {
+        "href": "Norwegian_Wood_split_002.html",
+        "sha256": "57e540d9976a3f1cfb728859ab7571780e9b78a4a9d253ec8abf8833a2dde974"
+      },
+      {
+        "href": "Norwegian_Wood_split_003.html",
+        "sha256": "d1af2ea56fbb2f4cb98ca642df788c9920fa35495162874272c135a2963939c9"
+      },
+      {
+        "href": "Norwegian_Wood_split_004.html",
+        "sha256": "72c5d573fae548c5f43dec58d14e359fca1ef56c7a7db29e43aa9e0f29db70cf"
       }
     ]
   }

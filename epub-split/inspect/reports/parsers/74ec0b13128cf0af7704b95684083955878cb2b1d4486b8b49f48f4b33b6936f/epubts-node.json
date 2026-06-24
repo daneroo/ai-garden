@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -388,6 +388,112 @@
         "id": "toc",
         "href": "toc.ncx",
         "mediaType": "application/x-dtbncx+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "01_cover.xhtml",
+        "sha256": "311a25891116d9e55d6cf7a24978faf5f95f8e886a59057190efe615f1dd50c4"
+      },
+      {
+        "href": "02_advertisement-title.xhtml",
+        "sha256": "5112d06f332047643d1eca1f812ce06f2a97c2a809ec0b41fb9f694bf84d44a6"
+      },
+      {
+        "href": "03_title.xhtml",
+        "sha256": "d588a454b923c3ba871a90164b4b6fa6e3decb6cfb807414000db475718fa28b"
+      },
+      {
+        "href": "04_copyright-title.xhtml",
+        "sha256": "abf907b97a184c7cf56e38ede4df8652bda51363c80e65f97e553d083d2f223c"
+      },
+      {
+        "href": "05_dedication-title.xhtml",
+        "sha256": "fc339720723e89f9984d274e2840ea6f753f56374dfc908df1600db8ad09c028"
+      },
+      {
+        "href": "06_toc-title.xhtml",
+        "sha256": "b95029a6d5490f0fd252cdd9799009280805744e71dd126f1f5340a891204a93"
+      },
+      {
+        "href": "07_author-title.xhtml",
+        "sha256": "bf097bc2b2deb9df24436348d41f94fc510377730b97c747d509ae9d1583d791"
+      },
+      {
+        "href": "08_ack-title.xhtml",
+        "sha256": "0c242172d10c63d90e03fb37e37ac581829aafb836d4fa498c8588eefbacca20"
+      },
+      {
+        "href": "09_introduction-title.xhtml",
+        "sha256": "d945a42d02eac3528abbfac0dc8a9e53ec6301ca9b71ac8461d6067138dfafe3"
+      },
+      {
+        "href": "10_chapter-title-1.xhtml",
+        "sha256": "3dc3b8dd0fdc034e2f0bb4d34c9aeef05eda7552f69f4b5305605521781e62ed"
+      },
+      {
+        "href": "11_chapter-title-2.xhtml",
+        "sha256": "3a8595a40c09940c9791cc407286142fb0f27e7f3c3fb9d7d150f459679a4ab8"
+      },
+      {
+        "href": "12_chapter-title-3.xhtml",
+        "sha256": "036cfbcff5f117a68c8d489d41af0c427bbfe56833a462a546e7f107a2569ab1"
+      },
+      {
+        "href": "13_chapter-title-4.xhtml",
+        "sha256": "0ed60825a77880a006b6410d7d74a9e3dd8c5518ffafa08d770e3888564b5113"
+      },
+      {
+        "href": "14_chapter-title-5.xhtml",
+        "sha256": "11551b325d6baf9cf365ce64d39edd3f084d3d875e3922b7b42daa429909865a"
+      },
+      {
+        "href": "15_chapter-title-6.xhtml",
+        "sha256": "d0e22211f6e7542e13141b07eb6f8066e93f7e9e35d138bd35bd374027d5755a"
+      },
+      {
+        "href": "16_chapter-title-7.xhtml",
+        "sha256": "273e0f0b7bf6d1f6f6d9920b3e04f4477c4663d7f424059916e6fcd970104239"
+      },
+      {
+        "href": "17_chapter-title-8.xhtml",
+        "sha256": "d4d6b12d33dd75cb2b0b3726a9a2936103d1924e3a8cd8400c67217c6f476598"
+      },
+      {
+        "href": "18_chapter-title-9.xhtml",
+        "sha256": "d1f5cfc20e142ecb967e6390b1b6717aff4e988b8b61cd8c64a4f3508284a6eb"
+      },
+      {
+        "href": "19_chapter-title-10.xhtml",
+        "sha256": "122474ece7b0f8436328fb1fc5c10d0fce1152e20f35c9e5d8fb25d2939d1e06"
+      },
+      {
+        "href": "20_chapter-title-11.xhtml",
+        "sha256": "c4a779a33377f1ce5cb3e14f0f6adf1ea22e837485729a79787db269a539f41e"
+      },
+      {
+        "href": "21_chapter-title-12.xhtml",
+        "sha256": "5464b49d893ceca3b5bdfe31d7e4055e288ab4c40931579af7852b338ac0f7bd"
+      },
+      {
+        "href": "22_endnote-title.xhtml",
+        "sha256": "2877e35517670ba28eca3c055f2abc6d1427132bead1cc8c6511c232e4e9b6e6"
+      },
+      {
+        "href": "23_bibiliography-title.xhtml",
+        "sha256": "b1975cf76e1e2a293555c30b40a254390f7ee6f732890a89a400877aff6c6b64"
+      },
+      {
+        "href": "24_index-title.xhtml",
+        "sha256": "f7cbe8aac6e0eb744d321246b06b20606075412d5420c116f5b0912d389f7aef"
+      },
+      {
+        "href": "25_credits-title.xhtml",
+        "sha256": "404b2a0dd0051d0548a05b6eb8d8a5856139ef0fe95bf04998b066b4ff7c8bfa"
+      },
+      {
+        "href": "26_ack-title.xhtml",
+        "sha256": "a23067e073d4bf1197ce0235a2f845a88fc572be9348fd6c64a85be6d4f81079"
       }
     ]
   }

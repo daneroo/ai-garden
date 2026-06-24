@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -431,6 +431,100 @@
         "id": "tp",
         "href": "OEBPS/Sack_9780345805881_epub_tp_r1.htm",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_cvi_r1.htm",
+        "sha256": "9edd50b9bbffd48f1025b0619dcb40a63388734236fecea6d3a1a6d8c69bda53"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_tp_r1.htm",
+        "sha256": "1dc681dfb362cbc69c42b4f96886a4dbf5088f614f5873721156f87b8eb2bfbb"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_cop_r1.htm",
+        "sha256": "a914491c5fa5b4e898de12cd6e23c6fc2fc066bdc5265f021690acec5d02dc9c"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_ded_r1.htm",
+        "sha256": "3b514f195c60ec50d77e0e2f90086dfd49d9387da1a7f82f5996f6f804b2ff26"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_fm2_r1.htm",
+        "sha256": "cc7922b7805b650d16d72a2838f27a81021767e372769be212baede89cd709e5"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_toc_r1.htm",
+        "sha256": "bc6dcbcdee9aca6f5d6f21cc3bcd540d8b877e847d2a35e5e3ed04b414df7164"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_ack_r1.htm",
+        "sha256": "68a99f5eb6d422e943fcb8a1ad29ab556b169309763adf02b3564980f9887cd8"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_prf_r1.htm",
+        "sha256": "8e3a8adc34731e2dddb7d8442ec71530d28593ae112db92fb4ce2cea01cf4824"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_c01_r1.htm",
+        "sha256": "b0de0fcaad0831294d14bd77b625964d78adf6dab4e37c7cdb273ee0ed32adde"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_c02_r1.htm",
+        "sha256": "c7c5552b4e2293a698b0043139d780288f230509058c9873c41a0b9ce2f8cd1b"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_c03_r1.htm",
+        "sha256": "445e24428ecd819a7184c4f5a438f9d253d35a893b1ec420858a2f62a7a1da5a"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_c04_r1.htm",
+        "sha256": "59db01aa02fef02a025a852d266d1ad24b87c846fc1bb2558cc4b1d1d464142a"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_c05_r1.htm",
+        "sha256": "59cd3fdc16254eb12040587c74801a831194ea60bf9351f55667d324b714b191"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_c06_r1.htm",
+        "sha256": "1bca7e96100bbca52bc7ca4f0ef59603f33c5dc9abc6083df4f7aa10026f58c9"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_c07_r1.htm",
+        "sha256": "cb1a996c47e34451445ab38f8ca4f7fb824b45d05d8aae60ca745a9a001788ae"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_bib_r1.htm",
+        "sha256": "1ddbf92225c7393bb2d01c129af2ca33ff6e4ae616c21a7d451b0182488f0e41"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_ref_r1.htm",
+        "sha256": "004dc10f950375fc26da3bec7ecba41d771126961cfd2f52eda9e87bf246e5ab"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_ind_r1.htm",
+        "sha256": "d66b426496f4df25c95adc07745beffabb3e231b19f2b81339a66cce17b47b0e"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_bm1_r1.htm",
+        "sha256": "307d9ccebc4143fc437a9c9a750ed3f5db4f5680da0e44108b0c170bc1001fe4"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_bm2_r1.htm",
+        "sha256": "79835723823373cf87deef823a9994489805fa39d6c6d204ef656f48a95f9f0d"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_epi_r1.htm",
+        "sha256": "c956a6a331454e767b4d55fe9cdbe038caacf734a5bda3030b49c46a51418494"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_ata_r1.htm",
+        "sha256": "4fe7dc210987da8c7d992db67440108b6e85658a06937c01e612e5060cf4b968"
+      },
+      {
+        "href": "OEBPS/Sack_9780345805881_epub_adc_r1.htm",
+        "sha256": "b63457e8688fc788b498a0c16a61ccb915a9a790be67bc891e681831d3b42070"
       }
     ]
   }

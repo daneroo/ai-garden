@@ -221,7 +221,7 @@ function isValidSpineHashes(value: unknown): boolean {
       typeof item === "object" &&
       item !== null &&
       typeof item.href === "string" &&
-      (item.sha256 === null || typeof item.sha256 === "string")
+      typeof item.sha256 === "string"
   );
 }
 

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -324,6 +324,128 @@
         "id": "title-page",
         "href": "Title_Page.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "Cover.xhtml",
+        "sha256": "f1e99aacf7c40e643eeb0cbdf6980a4bef372076384165de61fbd2752ff3b3fe"
+      },
+      {
+        "href": "Title_Page.xhtml",
+        "sha256": "9766db7080f2fdb6b245f0d90d8e3843ae70c3876fcf46729d1ed81cfd866702"
+      },
+      {
+        "href": "Dedication.xhtml",
+        "sha256": "8adc9d9136c11510d9bf8d80e480943e15bd27f05870d48fb075fb9000b29953"
+      },
+      {
+        "href": "Contents.xhtml",
+        "sha256": "af2710e3c8b3f87f9a05488bab75dd26063326d0a20f5539d5da7a71785e2c4f"
+      },
+      {
+        "href": "Map.xhtml",
+        "sha256": "edcd4c7ae0ce7e07cf2f1a5843b64bf164da66e380b9eb69b5a2619ffec60626"
+      },
+      {
+        "href": "Place-Names.xhtml",
+        "sha256": "5f962ac5886cf0ac1cc83e678ece4a1ab7e9465419de7d3f39b60de4d91d3ae8"
+      },
+      {
+        "href": "The_Royal_Family_of_Wessex.xhtml",
+        "sha256": "29cef79984633fd6f048840ef2382309bd7eb07f37b7f1c335f716544c088265"
+      },
+      {
+        "href": "Part_One.xhtml",
+        "sha256": "8f9df007e0abbdbb0456efc1cefacbbda9d9299eb8f73f10367b04a1c8edbb73"
+      },
+      {
+        "href": "Chapter_1.xhtml",
+        "sha256": "448cd6090e32d332b7337efa34a73d532dad8488c76269391f7b8f42ef2d105b"
+      },
+      {
+        "href": "Chapter_2.xhtml",
+        "sha256": "b33effcb632438fc5e3bdef81a3b02a470d5101cf6921d86b7896f19ad7c6a28"
+      },
+      {
+        "href": "Chapter_3.xhtml",
+        "sha256": "ed9757e3ce1c9669c0d24c0ce70a978efb8a4242a5054cb22158f9320af6d90f"
+      },
+      {
+        "href": "Chapter_4.xhtml",
+        "sha256": "36d0fd19f10021f03e9dd5534630174acab9b5d6b0cf42a9ad19ae0dfd9f6266"
+      },
+      {
+        "href": "Chapter_5.xhtml",
+        "sha256": "56557d1e5c2c83038352b0e44a53c58cec2ddf73da11513a6ead22d311a66d73"
+      },
+      {
+        "href": "Part_Two.xhtml",
+        "sha256": "1212a692bbcc06e6ac4a8d0de966b249c5e521a1c9641c20e8f72e534ac01b88"
+      },
+      {
+        "href": "Chapter_6.xhtml",
+        "sha256": "3592da9d56d75bacb63fdb18f79c1ae10917fd7b00cf1c1a31d6cf4947beac66"
+      },
+      {
+        "href": "Chapter_7.xhtml",
+        "sha256": "f3fc3287bc1da188890be4d202edc91126e5a7879e6dd73f0af035e46217212e"
+      },
+      {
+        "href": "Chapter_8.xhtml",
+        "sha256": "7d5bcee8d32cfb5068cba1f8503a1f89cebf7cbb7809e898697f0f89b1c71488"
+      },
+      {
+        "href": "Part_Three.xhtml",
+        "sha256": "cf729f2a3f719e064c468755120c3435d69c6d95fb00ab3aa7f7f89a13768c07"
+      },
+      {
+        "href": "Chapter_9.xhtml",
+        "sha256": "5dd546464fad8e3904be4ebb631cc10739f166abf978fff485fc7ba119821ec7"
+      },
+      {
+        "href": "Chapter_10.xhtml",
+        "sha256": "d48bbea4ba0bac416e7f340b3b1a27017e47b9464f2d3cd2c852c4ef431cb2de"
+      },
+      {
+        "href": "Part_Four.xhtml",
+        "sha256": "bb97ba80884bc4f44106eb353d03a4584c77dfe2830a2800e03fb78ab64b1ff0"
+      },
+      {
+        "href": "Chapter_11.xhtml",
+        "sha256": "4921091c9289822c933a1d8ddf0b0d9f6c42150b00d8fa827bb07bfe0a1d5c8f"
+      },
+      {
+        "href": "Chapter_12.xhtml",
+        "sha256": "55a3e1a261bcefc090d18d517bbb260ceae77bd5c4c7126abf45081aeffbfa9f"
+      },
+      {
+        "href": "Chapter_13.xhtml",
+        "sha256": "023b071d1317cb255f994dfe136cc47535a4fa94853a76d8b30d9a74d0f59624"
+      },
+      {
+        "href": "Historical_Note.xhtml",
+        "sha256": "c38dcdff20ffca58fa86a7f565f9c2e3b7b444308a52f377877d933a0b41c7b3"
+      },
+      {
+        "href": "About_the_Author.xhtml",
+        "sha256": "412900f8489e4f6d7b74f3c85d4df6e5cc83070e82dc839cbb047b607daed180"
+      },
+      {
+        "href": "Also_by_the_Author.xhtml",
+        "sha256": "283498dbb836e916a7057a9a32832319175cdb3d7526280a6b8b6c8d3794880e"
+      },
+      {
+        "href": "Credits.xhtml",
+        "sha256": "14dbec86ad4d385ef83fd97122cec360ba9c2861551bc2aa75d671821dbc856b"
+      },
+      {
+        "href": "Copyright.xhtml",
+        "sha256": "df7ea5f29cf4e95d6119ecadb71caae707740abfeabab66fcfe38762483c5a72"
+      },
+      {
+        "href": "About_the_Publisher.xhtml",
+        "sha256": "62613a33d55bade7be515ccd3ff266b4acacaafe02dcced780eb2726d8422ab6"
       }
     ]
   }

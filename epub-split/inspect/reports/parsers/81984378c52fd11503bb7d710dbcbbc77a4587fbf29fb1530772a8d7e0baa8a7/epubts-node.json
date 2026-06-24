@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -1693,6 +1693,132 @@
         "id": "toc",
         "href": "Contents.html",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "Cover.html",
+        "sha256": "641f93a1d5b04d0e98874be21ac373d6965b1ac1ade50bddabd47b64a7acf3ae"
+      },
+      {
+        "href": "Halftitle.html",
+        "sha256": "6ed4f5a5ec53428a0a956fd693d5e0d21969a8efc2e0de9ee71b2f621ca12781"
+      },
+      {
+        "href": "Title.html",
+        "sha256": "167e8c56bf57b60108fc1e7e9fce29b6cabcdf03fd041885d7986ac443f743f1"
+      },
+      {
+        "href": "Copyright.html",
+        "sha256": "a474433f1316d0cb1d85e8697b82e9f61a8ffebeac263391f1d703e7d33190cc"
+      },
+      {
+        "href": "Dedication.html",
+        "sha256": "932287aa4be1b42e14ef6bf93502d5412260273473d275954a13fbf29acad9d3"
+      },
+      {
+        "href": "Contents.html",
+        "sha256": "5b3a6fe5b7754ca6144f034ad97fcc1968d9f74790b1f5a59549d768e71c33b4"
+      },
+      {
+        "href": "Preface.html",
+        "sha256": "d88fe39a3d81a9aa9a45aa73d6e50fee1c6c3cab04b4352b6995d4b9ca918072"
+      },
+      {
+        "href": "Reader.html",
+        "sha256": "27dfe9d667d788e15bd34b56d2a26d0cb424efb2a1fdda8e62e1eec3bf6988e9"
+      },
+      {
+        "href": "Chapter001.html",
+        "sha256": "348399973191c7c5c86f6131c03c261e7d313ccf81ca26dde8fea138604e55e0"
+      },
+      {
+        "href": "Chapter002.html",
+        "sha256": "96b30145542438105cc5e9614c4e4a9dc6d54ca9fcc9e4ab8168f86ebd03293b"
+      },
+      {
+        "href": "Chapter003.html",
+        "sha256": "8eed7cf70a7097c041eba2be97dc1b0c57f8d966c38cc0b0b0002fbed6424f6c"
+      },
+      {
+        "href": "Chapter004.html",
+        "sha256": "a8f976db4250b5623ca801dee2066892785a08d36026845a139c3ddffe0273ae"
+      },
+      {
+        "href": "Chapter005.html",
+        "sha256": "180b8fcd4bca72905651afa266fa62ff0732529d85cfaf0ae48663bc932073b7"
+      },
+      {
+        "href": "Chapter006.html",
+        "sha256": "775e0b144ccdab13e675e487c4cae1efa0e21547f1b5e63f6e50839b4992845d"
+      },
+      {
+        "href": "Chapter007.html",
+        "sha256": "ee0bd0732900c91c66d44577b4b1dbe0137cdfca8a54c5bedd2a855c1414d564"
+      },
+      {
+        "href": "Chapter008.html",
+        "sha256": "9c1d9a38f4f92c4ff4f282053126736c5738496044067bfdcfcd662f31bb8c76"
+      },
+      {
+        "href": "Chapter009.html",
+        "sha256": "6d0d13b8bfa10d5dd04eca2067af249717aa624c8b2c8d22dde2a629fbed7e09"
+      },
+      {
+        "href": "Chapter010.html",
+        "sha256": "d3a6f81c6257a2d50fad60ac5030b9793aa4f1645106477fef42c82d0fb58e41"
+      },
+      {
+        "href": "Chapter011.html",
+        "sha256": "a9f3f584f51120f9d32716b03646ba86b16092323377704519f05421b23390fb"
+      },
+      {
+        "href": "Chapter012.html",
+        "sha256": "4bc004bd1c11c383c1e87b1afa908c0cf21d5273b619802882754366c641c9d3"
+      },
+      {
+        "href": "Chapter013.html",
+        "sha256": "bde841410b53a293d609a9fb0c26c0a87c56d11cbe6d5987ecc914c2c2f93460"
+      },
+      {
+        "href": "Chapter014.html",
+        "sha256": "fab9e4d7aedee825f734277163284cf8e2a1eacc16097345a5dd7f67b619a139"
+      },
+      {
+        "href": "Chapter015.html",
+        "sha256": "7a63aed413e456ecb4d7e2c2381fa81024cfca4b56717a7e051b923458025939"
+      },
+      {
+        "href": "Chapter016.html",
+        "sha256": "45bda97b7ccf98e5bc292722c3bfdc53316421f78a2815f177a627ee2cb1dfad"
+      },
+      {
+        "href": "Chapter017.html",
+        "sha256": "ce270ea0e78a854c871e8f707953f05ac742bd0aeb9fb1fd34e36164dc0d14d2"
+      },
+      {
+        "href": "Chapter018.html",
+        "sha256": "12b20d49927543b8ea817d5db70820aa0e70864f6442f7506a880c1a097923db"
+      },
+      {
+        "href": "Epilogue.html",
+        "sha256": "c22f2ab11e258a84ff4020ab8f5452e3cad9417363e484d1de80dc41a13e1569"
+      },
+      {
+        "href": "Acknowledgments.html",
+        "sha256": "927dbc9429bc5e6bcb46edc8cef90d47d8f85a4698d255c83373f66c6841562a"
+      },
+      {
+        "href": "Notes.html",
+        "sha256": "e151ecd7b091d32aafe2084388039b5cc0e0dfccabda416d71a8ce2204cb5150"
+      },
+      {
+        "href": "Glossary.html",
+        "sha256": "5289654badc7995b6d2ba5702acce60272fd863954d5d923b51195f2b85d429f"
+      },
+      {
+        "href": "Index.html",
+        "sha256": "699546b7016f8380524a18c24b9c556c220487192a96a2ce3c79f04b59943fd1"
       }
     ]
   }

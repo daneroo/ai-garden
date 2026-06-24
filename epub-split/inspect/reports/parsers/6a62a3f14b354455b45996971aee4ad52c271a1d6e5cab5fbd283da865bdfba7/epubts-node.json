@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -884,6 +884,308 @@
         "id": "tp",
         "href": "OEBPS/9780765311771_epub_tp_r1.htm",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "OEBPS/9780765311771_epub_cvi_r1.xml",
+        "sha256": "33496262012bf161dd7ca24f34fa1686f206b092fb39040710b7b8926067060a"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_tp_r1.htm",
+        "sha256": "6a74f9d5879a78dd503af65be09fb3e8f96ab4c14eab850a515918a963a7704a"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_toc_r1.htm",
+        "sha256": "15c56f1b52517f67bcef227dff5a30b9eec0da9ca0acc6aeecf6f97d5bfa9a61"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_cop_r1.htm",
+        "sha256": "fd761a379796a2fad05b2dbe9f94d1600ee1341d573d52ce9f58d1c71617a854"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_ded_r1.htm",
+        "sha256": "8c00afb5c846c3a16b15fd8af712cc46491c5e7f522ef9f3448bb5ab94af2407"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_ack_r1.htm",
+        "sha256": "125ec158859409425b00e6b94087aa77868ab019ba5c2a31cdd8a27f69002b98"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_col1_r1.htm",
+        "sha256": "d941d199935796dc74c4d08aaf8a0fc8eafd316804c9d938a8a4c6fb55d25a2f"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_p01_r1.htm",
+        "sha256": "3d249040cd3d8da60012fe401c956ad0e47a7c654c5b989012ac0376f7124bf7"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c01_r1.htm",
+        "sha256": "b3e71d644f597c84ce6a6f3634f677259aa2b3a361c6eb596de453f7d5737907"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c02_r1.htm",
+        "sha256": "1047ad0bccc30cba059a5ba7a086e3eeb68c43dcb032d5835cea8628132d1305"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c03_r1.htm",
+        "sha256": "103fabe01d4a23f0a8c7e02c8c7b8cd1842bd231c1004e515990eeda03f5eeca"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c04_r1.htm",
+        "sha256": "84f8ca396e85e0bd8ad867a4988db4fa420831abbe1a904556a5a4f7598fd8d2"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c05_r1.htm",
+        "sha256": "c06c0e7df0f41cab1049b033adce95b241a16e709e76e31b5bd5217430abeb69"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c06_r1.htm",
+        "sha256": "b5e9196ca038e97d6a6bafae5645e7760700df6e76cf9f9f2aa9bc91c26109a3"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c07_r1.htm",
+        "sha256": "8e62831c737522bdf47fd1b43ffcaa809070fad49fa1fcd3b58e8d2222d7ea0a"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c08_r1.htm",
+        "sha256": "51e11d21b8b022db985d89307f83852bbe900334de1bcd6c5d9dfd6d3ae76ede"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c09_r1.htm",
+        "sha256": "fa0952a393be0680ebcdec0b175753c8fc721e66484bdcdd864171c437cd7211"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c10_r1.htm",
+        "sha256": "a86137795fade24b562a08aa97060b0ffdb6f083b984f772b9e8bae2ffaecb83"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c11_r1.htm",
+        "sha256": "974c2907ade1362d652e82ab0d6c4f9164268b4ebe2d6eadb657cdb6b09fd370"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c12_r1.htm",
+        "sha256": "ce53dca4efbd0acbb3b109ba4d40a245612be3c6655bf80c9d9fbfb90fb641ac"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c13_r1.htm",
+        "sha256": "a57d8c64144003c778d5d584f12c7c532d65a2a1e60c35553a5e00e1211df396"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c14_r1.htm",
+        "sha256": "8c546cee03c72ebaf9b6e2944c00d243e47370031e2fe1eb4cff52410952bb9a"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c15_r1.htm",
+        "sha256": "5ed09e4af981f28baf023490503b17e0aae4a36f5180ae56e5b92a5f6146083b"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c16_r1.htm",
+        "sha256": "7f50f670b28bf4eb2b9809ca53decce3dad15e665f02360b44dbda9ce81b76bb"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c17_r1.htm",
+        "sha256": "8a8254ad6d3260dc9f4ed7c29f1976a26692f4ffd41455fc4688d9ce555f2348"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c18_r1.htm",
+        "sha256": "9ba86b9c7ffd49f95c5ed642b2975a52e6a95512881f290bcfe650cc9f831d42"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c19_r1.htm",
+        "sha256": "7d12d357088421a03ec20e6cffba191ada7508f1d62e9c3f327a9206586d6e5a"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c20_r1.htm",
+        "sha256": "52a116f00423055ffa05963fbb7cbcd6e028eeb7d84f8574d2dd90630cc8a672"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c21_r1.htm",
+        "sha256": "f31dc56ccaadc434a28659f2ba670c8ab6e43c52c3d2031e2a7fd28283485257"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c22_r1.htm",
+        "sha256": "85c94fe96a0918e5cf98a1a32887b55c497544a3c1e0dc4b0db545dbfae2b0d3"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c23_r1.htm",
+        "sha256": "233ca0c1a1423ad885d671223fae16948749b2981a375e18f75fa8f249e802ea"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c24_r1.htm",
+        "sha256": "ef694878cae6add826e85977eacf9efb54a2de6f04a85c7c9d25c8e9a55eff69"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c25_r1.htm",
+        "sha256": "802ee40a929305c166a4f6c356851f92c17c421d089b81ba775d52e8a88c9f51"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c26_r1.htm",
+        "sha256": "273aeb2ca419be00f90608c546547da5fe1197a01fd0d26fd0472e8aca2b5a7d"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c27_r1.htm",
+        "sha256": "c5473f263035a8bbc069a0de4a0f1fc86ef1f39c8d066e69563e1beccc0474b8"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_p02_r1.htm",
+        "sha256": "fa2897489731a244c7d4bcaf7302d677927a7f3caede4b8b882f8040d263da03"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c28_r1.htm",
+        "sha256": "3031c0a085c23b5174d0c18d7d956d8667c963591e3f4fa10726d972fea94f37"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c29_r1.htm",
+        "sha256": "29e70dea481b686b8165708f27a262f7e6c2c64707aae55ec27e10ef8a5a4600"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c30_r1.htm",
+        "sha256": "dd45c7b9a0bea51264de8e731d96d0afabe08b2edca597053044435147df70c3"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c31_r1.htm",
+        "sha256": "7290bcc0f018a2e614c98c6807b4d6621226c1d97dad5ba437596416abf134bd"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c32_r1.htm",
+        "sha256": "d36122f2b2cc8661abc8bb8cc4d981161a652e41d709cfc217846db8d386d62f"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c33_r1.htm",
+        "sha256": "a8a54298ede577f64601e18ad99cd2c25e2bab900e24aee8a1337bf22bfc9477"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c34_r1.htm",
+        "sha256": "75e094cf1a6f978f686635642cda091e77f534b49a3ecb7a7797026b4aa633b2"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c35_r1.htm",
+        "sha256": "c47df8b5cfd6bdb467bafad8ec7bff1dd145214825ab53b734ff3219c94b5533"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c36_r1.htm",
+        "sha256": "1edd42417e4f3c40ce9fca8ca6dcb20318a8219df6372907433352f9f2ee0ba6"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c37_r1.htm",
+        "sha256": "d49ba56e097cedd8e00577b12f91facfc3882208c49ca9225b77bb419a2b6a2a"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c38_r1.htm",
+        "sha256": "31e02e79c6b773921470b66d3fda07dd130c515b33ece8fb2a4b7c6446b3bbf3"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c39_r1.htm",
+        "sha256": "a5b0eec0128db7ae0c56fc5097add5fc47cd44283fa7613368858021a6aef191"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c40_r1.htm",
+        "sha256": "741dda720820ef50573a0e7fb816f0805b50d75cee0cc658ad673da16ed101c7"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c41_r1.htm",
+        "sha256": "c3a410b8030c909c672471057a45b7b1eb5e92779c64844e4e50ba556b362852"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c42_r1.htm",
+        "sha256": "eb78ed5faba2de0d73b06dd90aa5bfe0349c38d6136c4836a0aa1e5492a843a6"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c43_r1.htm",
+        "sha256": "8728b8d01fcac05b87eafecf03c2603e3bf658dce884af716dd3184c0124ace6"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c44_r1.htm",
+        "sha256": "189955f3e6d4f6a4f48d2ec1a96a209e563b6e2a8cc1a481afa697a8151f04f4"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c45_r1.htm",
+        "sha256": "d425feeb54ad8a44aac0ce09cb0d5064bc50318ec194433b051493892f1f32c4"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c46_r1.htm",
+        "sha256": "fb564c6dd13f3c4cc71ad7fddf53c39f17ba05719334147d4e43eb37b1d3e45e"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c47_r1.htm",
+        "sha256": "b7f75ec5aa09fd39462fa83ec6b9f32c3cd759b8b3193d9ca89cc347483059c2"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c48_r1.htm",
+        "sha256": "b158b249c1127001a087edef324d1acf3a922c8b19a924ff36f05e35c80ed772"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c49_r1.htm",
+        "sha256": "ad1672c01c2ba6bfdb8a7a16511aab79f3ab13b397554f6819b6215b229117bd"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c50_r1.htm",
+        "sha256": "3b100bc5b41779e93c8ad55482a0dcf289a63b6eec1c596434e5864202a5feb5"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c51_r1.htm",
+        "sha256": "e556746473c64c46925d1a2f8fb1ecf5fdb8fa5278e485c71c0ca3793d4f00a5"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c52_r1.htm",
+        "sha256": "22d0b084cc0ee68cf139d884db9304ef24986bdafb6cc641b93708ae8148e276"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c53_r1.htm",
+        "sha256": "fb77adcc9b0352f2b54e73001775b954cba448ad525b5a780b4dc85b3070237b"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c54_r1.htm",
+        "sha256": "40cc2087e93b82fa6fed43447d8455aa04b16f823d48088fd32fd132d919e43d"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_p03_r1.htm",
+        "sha256": "59e968a12bfa4865275519977f41aa50243e8b1f3b509070731827fd52ca76a6"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c55_r1.htm",
+        "sha256": "2ca5051516889a03d158f241d1f93c01b935415b6f01152c2a0fc45f0d614bd5"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c56_r1.htm",
+        "sha256": "f5b459287c84b198ba50789aafef7d7efdd9108d12a051ebb45f8179d026577d"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c57_r1.htm",
+        "sha256": "f5131333059115a3509c2e2d16d725f22a962369184f41c150a400a0074a3d3f"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c58_r1.htm",
+        "sha256": "5dae163fed39f8deb7b7cf5b539a9b970c8994f882979a0c4de956352fac5e3e"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c59_r1.htm",
+        "sha256": "9db7672224130ff0de54949894d14c837be9de8adc0f969502077b6c46ee7031"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c60_r1.htm",
+        "sha256": "69f06413ea3436258cfce3d8e1f6c23e48b93fbeaadf62a6bafab76e826fbf60"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c61_r1.htm",
+        "sha256": "7407b478a5ecb56d2e9d46caf21cbdf6c55135eeaeab0c303c0a919ce4235df8"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c62_r1.htm",
+        "sha256": "37f5a92820be46bdf9313a9050ec315d443006a8afd1d6edbbffa8bc4148900f"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_c63_r1.htm",
+        "sha256": "85532e0e12fe3d9ec59052fcc7667feb4ff1c6f0fa92f458d17d4a54162c07fc"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_epl_r1.htm",
+        "sha256": "cba4397b2f58567709fe2c0db0091b3f37d1807fe9ecda702f76d676b81bd38d"
+      },
+      {
+        "href": "OEBPS/9780765311771_epub_gls_r1.htm",
+        "sha256": "2116f84d31ecc929762829b91d2b7c9134bc0cef03ae8163cf6b5adb26447059"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -639,6 +639,108 @@
         "id": "x9780525562009_nav",
         "href": "9780525562009_nav.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "xhtml/01_Cover.xhtml",
+        "sha256": "52d3dac4d923feafa4ae816b4668927d0218bdaba495cf3619b2f7a432dcf6b9"
+      },
+      {
+        "href": "xhtml/02_Also_by_Steven_Pinker.xhtml",
+        "sha256": "17cc7000008ddcffc0f8ffc9d0096f79d2a953580c7bc8d8358b25eacbbdfcc8"
+      },
+      {
+        "href": "xhtml/03_Title_Page.xhtml",
+        "sha256": "04389e515a9bd26ee21fdd3ff402566c90e8f2d7584816961387e78ff3bf2f7a"
+      },
+      {
+        "href": "xhtml/04_Copyright.xhtml",
+        "sha256": "b60c1b5dbcadffd9b91b14d6b480c42892aad942cf182cefba058ff4b3518c5b"
+      },
+      {
+        "href": "xhtml/05_Dedication.xhtml",
+        "sha256": "83e5a9002d6204c33f5a254ba417a360920dad88452d50d20d821e0bb589f0af"
+      },
+      {
+        "href": "xhtml/06_Epigraph.xhtml",
+        "sha256": "0a9a4d376410250eae23bf848e978ba4fb5e9204bea6b484077634da4fe91956"
+      },
+      {
+        "href": "xhtml/07_Contents.xhtml",
+        "sha256": "ba593aa99fc2d3617ef2ac4807ea0ab95109ed97483814d0e6e8e69bdcb4aec5"
+      },
+      {
+        "href": "xhtml/08_Preface.xhtml",
+        "sha256": "02de633c382f2119e52516b3f0b364fd360d91d22b56147bbb7c2196a7ff1c5b"
+      },
+      {
+        "href": "xhtml/09_1_How_Rational_an_Ani.xhtml",
+        "sha256": "0abe868c2b71256d501fe28886e8f782e8969e5b3ee0e840efe961d617bccd2b"
+      },
+      {
+        "href": "xhtml/10_2_Rationality_and_Irr.xhtml",
+        "sha256": "6d3e835da592db0f84e655d954919a4b0b33878366bf918d7b05ac8ec36c09e8"
+      },
+      {
+        "href": "xhtml/11_3_Logic_and_Critical_.xhtml",
+        "sha256": "3cc60dd858302bef2e890528c213069beaf38d3ca1d29a8e5f7b18535dd15166"
+      },
+      {
+        "href": "xhtml/12_4_Probability_and_Ran.xhtml",
+        "sha256": "56cece8ec7d7ca13f7662517ae8c97d20dc85110d0a40dd55633a95f09842bb0"
+      },
+      {
+        "href": "xhtml/13_5_Beliefs_and_Evidenc.xhtml",
+        "sha256": "56320b084f6ebbd1d1af9a0bdf78b0c265ea4c9dcb5c33190ef420fedf403f7a"
+      },
+      {
+        "href": "xhtml/14_6_Risk_and_Reward_Rat.xhtml",
+        "sha256": "9547bf3691b070a66339517bbceb58d003036fdb3fd20a6a5de6ac5089b64eaf"
+      },
+      {
+        "href": "xhtml/15_7_Hits_and_False_Alar.xhtml",
+        "sha256": "a226933a0b45c4f7a4fb99bd1cd55a29317cd837771bdc296f7ed5889ec86a9b"
+      },
+      {
+        "href": "xhtml/16_8_Self_and_Others_Gam.xhtml",
+        "sha256": "bc914513961d18063b5b959e224c93112d7e43e060c3447865fcf421b7ccf567"
+      },
+      {
+        "href": "xhtml/17_9_Correlation_and_Cau.xhtml",
+        "sha256": "2a63dc49f57a479b26dc300ed61a37ccdb0403bc2b5c95eb27c63aa6ed37981a"
+      },
+      {
+        "href": "xhtml/18_10_What_s_Wrong_with_.xhtml",
+        "sha256": "4e4455388049a18e1eeeed13507b27017e5033acde2bd4d560b8a6511524d4b3"
+      },
+      {
+        "href": "xhtml/19_11_Why_Rationality_Ma.xhtml",
+        "sha256": "091f208f2639a0ab20b10b0b6c6e502bca3492178a831ff30b0ba82c27a61df8"
+      },
+      {
+        "href": "xhtml/20_Notes.xhtml",
+        "sha256": "c067155047fb4250f2c8e5ea325e42f67413942c49f556a9d84b298528598124"
+      },
+      {
+        "href": "xhtml/21_References.xhtml",
+        "sha256": "7ebbc06359a36067d73bfb9aab4ca023741daa1e9de6f166316d4f0693a5cd8c"
+      },
+      {
+        "href": "xhtml/22_Index_of_Biases_and_F.xhtml",
+        "sha256": "97849c9797517b8771035a0cd7e7fa36b65a3ee3313f04f9746e26825ee36f9e"
+      },
+      {
+        "href": "xhtml/23_Index.xhtml",
+        "sha256": "155807472525a62cf8d041a420b5b3743741f6d6dd909e56ac9548ad16bfe0d1"
+      },
+      {
+        "href": "xhtml/24_About_the_Author.xhtml",
+        "sha256": "170393797ececccb73a6fdca4d13a30b34b86c5a2974301da7552d17ab24e1dd"
+      },
+      {
+        "href": "xhtml/next-reads.xhtml",
+        "sha256": "ffb92cff37d38b34bf51bea60ce5830807e8010e7b5ae90e3969763850d452f7"
       }
     ]
   }

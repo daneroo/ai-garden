@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -165,6 +165,64 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "e8dcdc0042ee378492f3db51250706943d6cd2bc6ebef7c7a5b6965dd48f7c53"
+      },
+      {
+        "href": "text/part0000.html",
+        "sha256": "8b3ae458aa24055bb7adc509381e6d62e05079bb286ea1a1fe4572620b7410fd"
+      },
+      {
+        "href": "text/part0001.html",
+        "sha256": "bf85c4b62cbfba211a65aec0fd090d5836356c74ce7a403f5cf3ca4ecea24d9f"
+      },
+      {
+        "href": "text/part0002.html",
+        "sha256": "a7b85f570508a7fabebbbc79a9d38eec097807c2dd1ad90ca378ddd91b3a1e9f"
+      },
+      {
+        "href": "text/part0003.html",
+        "sha256": "da7107c78f2838e3cd1a6f91bd80304d41d6fb24c7decbd491dc65553d336481"
+      },
+      {
+        "href": "text/part0004.html",
+        "sha256": "b2a6bf5de733616b965c3a8f766f325cde2a1414f355082dc5ab7434b09e3f68"
+      },
+      {
+        "href": "text/part0005.html",
+        "sha256": "f81171ed3de2f76734940f58a4196b4d603e98340d981e01005df8c94bc1110d"
+      },
+      {
+        "href": "text/part0006.html",
+        "sha256": "20c0407f34546eb559d74353e28bfb22af585feee66647ad96c57f09afc901d9"
+      },
+      {
+        "href": "text/part0007.html",
+        "sha256": "122bca1311d26bcebd1d62e846ae289784d861f06ffe4729e4bec73f74e7575b"
+      },
+      {
+        "href": "text/part0008.html",
+        "sha256": "ddfb5baa7f0a32d0d48b9f413d79a731d54556a34855f97c6e9f1ed086ecd965"
+      },
+      {
+        "href": "text/part0009.html",
+        "sha256": "ef04f970435069a4b85384b5054fa13f841ec4389dea7335dd39f5baf338e10f"
+      },
+      {
+        "href": "text/part0010.html",
+        "sha256": "90ce39ace657da52dc801f88696c801cd4089827303483838ddc0685e78ef506"
+      },
+      {
+        "href": "text/part0011.html",
+        "sha256": "9fd0ff67d5078b1bcccb9b0fc9d02011fbc4a632537b45ca832cc4ac2ff30d0c"
+      },
+      {
+        "href": "text/part0012.html",
+        "sha256": "4a5e84ea7225f51e02fc38b094bcd289257447322e7f287e1622eb22ffcf470e"
       }
     ]
   }

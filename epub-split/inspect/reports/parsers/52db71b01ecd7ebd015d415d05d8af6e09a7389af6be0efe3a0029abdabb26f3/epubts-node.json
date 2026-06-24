@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -125,6 +125,24 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "2f9e2ad470d932ddb8779b2760c7703208de086a64398cbb61e89d86d7c7df73"
+      },
+      {
+        "href": "index_split_000.xhtml",
+        "sha256": "54840dde6ba10101e116e4526a6778ceb65b78f029dc8ffeff48e4e42e76d6f7"
+      },
+      {
+        "href": "index_split_001.xhtml",
+        "sha256": "8ec77f11387434b001d1c7989c0425db08a5f2f5f01cea686bfeb2ab81eff175"
+      },
+      {
+        "href": "index_split_002.xhtml",
+        "sha256": "5098751dba79df68982c101599ed68eca5fd7f333d8ae685528f5d56f058806d"
       }
     ]
   }

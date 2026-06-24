@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -176,6 +176,60 @@
         "id": "torad",
         "href": "xhtml/torad.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "xhtml/cover.xhtml",
+        "sha256": "4ffe2c605c9253073ceefcb6630f869431202e5096dbd6b5089ad122542857fc"
+      },
+      {
+        "href": "xhtml/title.xhtml",
+        "sha256": "58684fc06abdefd091fa760841c52a47d86aad42034bee61e4ba8c57ba60dcc5"
+      },
+      {
+        "href": "xhtml/mini_toc.xhtml",
+        "sha256": "3a818ae0781123cfcdf8e0ff3d6e67752251a4f10e47be2d4f8c42e1473ebe45"
+      },
+      {
+        "href": "xhtml/copyrightnotice.xhtml",
+        "sha256": "084ab8c3c2b4b6551d9e05aa184580a9cc359e1988f6aa2d09793dc0712dd6df"
+      },
+      {
+        "href": "xhtml/dedication.xhtml",
+        "sha256": "d4193db360343afc0e209192baae1aba6862fbe984086198859eb4c130c6b8cc"
+      },
+      {
+        "href": "xhtml/chapter1.xhtml",
+        "sha256": "fdf37e6fb117d47485f22f614f725414acb0b9c9173cd588a223287d7d25d557"
+      },
+      {
+        "href": "xhtml/acknowledgments.xhtml",
+        "sha256": "b4ed6a8b2aed2f2dbf986baf8d2ff66d0df3a6ef704a66b0cf8bc6785dc63848"
+      },
+      {
+        "href": "xhtml/adcard.xhtml",
+        "sha256": "be3089c49cc2159b0efb79f7b7aa8ccbbcd76ddc7d62b0e7846a2c700cadbe64"
+      },
+      {
+        "href": "xhtml/abouttheauthor.xhtml",
+        "sha256": "437cb04ed1df4e23bed4c7746e228caeac84385ebc99844d25bad4b995084496"
+      },
+      {
+        "href": "xhtml/newsletter.xhtml",
+        "sha256": "56819cf10a5df5d8c5b35b8fedb829d87e244fd4b39959cbfbe43b84452d925e"
+      },
+      {
+        "href": "xhtml/torad.xhtml",
+        "sha256": "65a12dbd6e3ab00fdee1722fc4ea7d6006ab482dc49fc73634147eea200b09e4"
+      },
+      {
+        "href": "xhtml/contents.xhtml",
+        "sha256": "d3e82d96a0536b024228b07497a3de6357e8b40fe6d26b7cb271ba7a1c4fbd43"
+      },
+      {
+        "href": "xhtml/copyright.xhtml",
+        "sha256": "0bd39bb90df3e6723f801cf38e1ebe48be383a0de691b90edaeb6afb19f0dbf6"
       }
     ]
   }

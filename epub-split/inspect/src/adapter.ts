@@ -17,7 +17,7 @@ export type RawOpenResult =
       metadata: { title: string | null; creator: string | null; date: string | null };
       spine: { href: string; linear: boolean }[];
       manifest: { id: string; href: string; mediaType: string | null }[];
-      spineHashes: { href: string; sha256: string | null }[];
+      spineHashes: { href: string; sha256: string }[];
     }
   | { openStatus: "open-failed"; parserVersion: string; openFailure: { category: string; message: string } }
   | { openStatus: "epub2-unsupported"; parserVersion: string };

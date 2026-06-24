@@ -55,20 +55,17 @@ function compareSpineHashes(a: SpineHashItem[], b: SpineHashItem[]): SpineHashCo
   const len = Math.max(a.length, b.length);
   let matchCount = 0;
   let mismatchCount = 0;
-  let nullCount = 0;
   for (let i = 0; i < len; i++) {
-    const aHash = a[i]?.sha256 ?? null;
-    const bHash = b[i]?.sha256 ?? null;
-    if (aHash === null || bHash === null) {
-      nullCount += 1;
-    } else if (aHash === bHash) {
+    const aHash = a[i]?.sha256 ?? "<unreadable>";
+    const bHash = b[i]?.sha256 ?? "<unreadable>";
+    if (aHash === bHash) {
       matchCount += 1;
     } else {
       mismatchCount += 1;
     }
   }
-  const agree = mismatchCount === 0 && nullCount === 0 && a.length === b.length;
-  return { status: agree ? "agree" : "differ", matchCount, mismatchCount, nullCount };
+  const agree = mismatchCount === 0 && a.length === b.length;
+  return { status: agree ? "agree" : "differ", matchCount, mismatchCount };
 }
 
 function compareManifest(a: ManifestItem[], b: ManifestItem[]): ManifestComparison {

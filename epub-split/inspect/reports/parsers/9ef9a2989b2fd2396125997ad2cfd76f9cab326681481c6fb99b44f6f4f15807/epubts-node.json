@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -1015,6 +1015,64 @@
         "id": "x10.htm",
         "href": "Text/10.htm",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "Text/titlepage.xhtml",
+        "sha256": "aacebcdfbfa07523c4e7a50e7e53da8aded90c364f3c9751f0d3bf6b2fd83872"
+      },
+      {
+        "href": "Text/copyright.xhtml",
+        "sha256": "6578e1e8ad2a4defa42b5550e01a67b70623f83ae5eb4dc2a069b8c89fc0148f"
+      },
+      {
+        "href": "Text/WL.xhtml",
+        "sha256": "aa87eddbed2a8e9e7bec2a072f128e3f385d6800a8af4f855db4cf89f6e319ca"
+      },
+      {
+        "href": "Text/toc.xhtml",
+        "sha256": "9d02d53203081ea2118c5b9b595025dabb4e082690d1cf924749a8aa185c078d"
+      },
+      {
+        "href": "Text/01.htm",
+        "sha256": "35f97e1c3099b5bec1c32cea2f02914515da485262ebe58752d455dbd1d5adc4"
+      },
+      {
+        "href": "Text/02.htm",
+        "sha256": "47117776fb8658434c1ac6b70d85d710d86b702bf361bf4b2d99a07dc5b2327c"
+      },
+      {
+        "href": "Text/03.htm",
+        "sha256": "d6165f2541ca4d984951c25d6bfbf6d1ae9078c4dd460e0a834e998a176bc510"
+      },
+      {
+        "href": "Text/04.htm",
+        "sha256": "af83dd3f2e13432322692812a3f9f253aa1c52fe09a2b88a4a1b72fb60dd5f8f"
+      },
+      {
+        "href": "Text/05.htm",
+        "sha256": "58827ccd3c8f151be01d94aa24e8565e0cf56f1c7640e4789329aab4f5caee4f"
+      },
+      {
+        "href": "Text/06.htm",
+        "sha256": "8a146d229966de937c1c6957bcba98f548a5c33e33ba4bcd215acf51a55c9a94"
+      },
+      {
+        "href": "Text/07.htm",
+        "sha256": "09aaf76128beada5b9e4ff41d5420f1bffe9ffa140d8140d9ab65aa7e8ede6fe"
+      },
+      {
+        "href": "Text/08.htm",
+        "sha256": "dcfc456bf7222fb6979cffff1a2e3af6651337a91d779d96a01f41a0cb05d645"
+      },
+      {
+        "href": "Text/09.htm",
+        "sha256": "d1b333faabfddbe42adf665be566aabda8a0794e8e23a4b6b890e8bc6bd508de"
+      },
+      {
+        "href": "Text/10.htm",
+        "sha256": "beac9d0489ef9ff254bbb7e3d052995451c6108ea6d0e1b5689d98e75fab64ce"
       }
     ]
   }

@@ -28,6 +28,13 @@ mismatch = differ + a-only + b-only.
 | agree | 756 |
 | differ | 0 |
 
+## Spine content hashes
+
+| status | distinct books |
+|---|---:|
+| agree | 756 |
+| differ | 0 |
+
 ## Not compared
 
 | reason | distinct books |

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -523,6 +523,112 @@
         "id": "twitter",
         "href": "e9781982167400/images/twitter.jpg",
         "mediaType": "image/jpeg"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "e9781982167400/xhtml/cover.xhtml",
+        "sha256": "0e4b9dcdb06cbe6a566b83be27b85931c4acfcbd28ce4272ccf24df16f779942"
+      },
+      {
+        "href": "e9781982167400/xhtml/SS_US_adult_signup_front.xhtml",
+        "sha256": "b6a8483730304622d3165ed14dbecea2cbc0efb56d03a9edf11dcb572a95be41"
+      },
+      {
+        "href": "e9781982167400/xhtml/title.xhtml",
+        "sha256": "c79ec00a56f39c90fcf4fabda6478a4122bac087bd77706b6b8b34cb571c0553"
+      },
+      {
+        "href": "e9781982167400/xhtml/dedication.xhtml",
+        "sha256": "ae14a3d13284f59be4bf0f8627fac7e5b1d04fab8305c8790c2ebd0d309b8eed"
+      },
+      {
+        "href": "e9781982167400/xhtml/intro.xhtml",
+        "sha256": "7b367f28edb4bdb5729d0d35ba02ddf91ad633b903e6b659d589a83854e67a05"
+      },
+      {
+        "href": "e9781982167400/xhtml/part01.xhtml",
+        "sha256": "c23004c56b87371c11fc0d3af1fa968eff398fb4c4ecea320d0729235c0abdf2"
+      },
+      {
+        "href": "e9781982167400/xhtml/ch01.xhtml",
+        "sha256": "67259ca9bdc2a62d9d02c999c007d9fc07645d8f7d90cafb4e4ded96c64513e9"
+      },
+      {
+        "href": "e9781982167400/xhtml/ch02.xhtml",
+        "sha256": "47fe33b221e0b9ec996106e1d9262dd0b8be259bc5b7d2e047c2dcbb8df800a8"
+      },
+      {
+        "href": "e9781982167400/xhtml/ch03.xhtml",
+        "sha256": "f68785ea2181ab010a752671a322614d54f1320d3acd0bd4666df4277031c74d"
+      },
+      {
+        "href": "e9781982167400/xhtml/part02.xhtml",
+        "sha256": "ce54f734a810eea37cc85557e3d0c8724be7f4026bc8fdd5fe5bfcceeec97a02"
+      },
+      {
+        "href": "e9781982167400/xhtml/ch04.xhtml",
+        "sha256": "6f335bdcaeabe8297c7a0a2edb7f6d522d545894deaa2420292799cdfa1a01a7"
+      },
+      {
+        "href": "e9781982167400/xhtml/ch05.xhtml",
+        "sha256": "cc296e7d585bde3b349ca9e0251d7c0b375db906ca6a4d92efe35d21a50eb530"
+      },
+      {
+        "href": "e9781982167400/xhtml/ch06.xhtml",
+        "sha256": "3b9ef29607f5d7d4e586515419d2e1026d1a8ad0eb6c23437e8f59286813a09d"
+      },
+      {
+        "href": "e9781982167400/xhtml/ch07.xhtml",
+        "sha256": "cfcbae3da9058860f19b366913d40f711acd4b7510ed6966f4984f77f2b62f55"
+      },
+      {
+        "href": "e9781982167400/xhtml/part03.xhtml",
+        "sha256": "8cdff9f056d6a4ed206f9fdc7092dbeb1dcb299f29d7adb975e26bb2bd733d81"
+      },
+      {
+        "href": "e9781982167400/xhtml/ch08.xhtml",
+        "sha256": "36e3f01e64f526d8e0ff0b8f515befe66a9676ed72378c51a4233d7e41f8f4d0"
+      },
+      {
+        "href": "e9781982167400/xhtml/ch09.xhtml",
+        "sha256": "fcbb67449f32ed21d32e7fbce390fedbcfb6f1ab07aae05244cede26334a82e2"
+      },
+      {
+        "href": "e9781982167400/xhtml/ch10.xhtml",
+        "sha256": "158580fb1b9d893af0c04d9dd7a4c72eb33e43b20ee44778dae5146bb03ac432"
+      },
+      {
+        "href": "e9781982167400/xhtml/bm01.xhtml",
+        "sha256": "9d481dbdaaf376b84f379081f55ebfa7cb7eaeec5d73a7e18b50d158cf09e65b"
+      },
+      {
+        "href": "e9781982167400/xhtml/bm02.xhtml",
+        "sha256": "82decef75a6c151a57fbddf6a29d043e121966ef441ce712acee12b079ce8832"
+      },
+      {
+        "href": "e9781982167400/xhtml/ack.xhtml",
+        "sha256": "63cb0ef9fb244ddbca3f64abcff7039f4f16a3a28fb0ec9854489343242e734e"
+      },
+      {
+        "href": "e9781982167400/xhtml/authorbio.xhtml",
+        "sha256": "78e0a50987397b31cdc12237b443f896bf5e84958f0e6cf6c0800f97a0693232"
+      },
+      {
+        "href": "e9781982167400/xhtml/SS_US_adult_signup_back.xhtml",
+        "sha256": "6497c9dd14a816f673a09c711cda1d870c2ef5d32c99115ec1beaa60bac1a4aa"
+      },
+      {
+        "href": "e9781982167400/xhtml/endnotes.xhtml",
+        "sha256": "ff16fecb340b722f823b7a846f98b4a93519622bf3ce0bcdd81b48257cc945b2"
+      },
+      {
+        "href": "e9781982167400/xhtml/index.xhtml",
+        "sha256": "f4bde6d2feff891c47597f5988071d4fe39fbc692960a53287e2751973fcb813"
+      },
+      {
+        "href": "e9781982167400/xhtml/copyright.xhtml",
+        "sha256": "9c53c55ed9897d80ae7b90947df9fd474fcd7452f3814f26a10e7df27d788bf5"
       }
     ]
   }

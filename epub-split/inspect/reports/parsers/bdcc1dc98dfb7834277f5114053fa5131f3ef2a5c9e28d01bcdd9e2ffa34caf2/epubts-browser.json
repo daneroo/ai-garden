@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -191,6 +191,76 @@
         "id": "titlepage1",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "c50164a764d7d02ee64c1228c99812abd45944018840564a51bb674133f99053"
+      },
+      {
+        "href": "sourcery_cover.xhtml",
+        "sha256": "bb2b85e700d22ef5b5ea73e0c58cb1f5c76da3a563d44d2cca337c4e8e559691"
+      },
+      {
+        "href": "sourcery.xhtml",
+        "sha256": "03b7fa65caa428c60204614b39974a40c0ccc198c539ea84caf450f8d90f23a3"
+      },
+      {
+        "href": "dedication.xhtml",
+        "sha256": "540f7f2936fe018250c9595772e55cbf24f1acda7464206aaf47e0307acffd9b"
+      },
+      {
+        "href": "contents.xhtml",
+        "sha256": "1ff688ecbf8d92a924ef3359c192b7038b2beeee74aaf494749cb3de6c8634db"
+      },
+      {
+        "href": "beginreading.xhtml",
+        "sha256": "86adb05f876f17e793ca6e9a8da95c923a0aabe05cbb069ecbb855908687a3c5"
+      },
+      {
+        "href": "beginreading1.xhtml",
+        "sha256": "31b44f8aef483d193a5d18ac8c6581db8a9d5d9eb87a838832a4cb799bc76fc9"
+      },
+      {
+        "href": "beginreading2.xhtml",
+        "sha256": "043e525f34723fec6c3305a66273ad25c27fb5899de3f3e49be75832ce654a58"
+      },
+      {
+        "href": "beginreading3.xhtml",
+        "sha256": "9cefd18323b00fcbce3c93392c773ef5e0335bc06ca762da0ddc4f974ffc4d9c"
+      },
+      {
+        "href": "beginreading4.xhtml",
+        "sha256": "84f6ef9f9afb313616b8192b915a36b208ee4b482246e3d189dfb3b487fc9619"
+      },
+      {
+        "href": "beginreading5.xhtml",
+        "sha256": "e2b6c4f24939db4ed6e760b0baf4f9fb6df323c3010c8f0337ab35eb50cef742"
+      },
+      {
+        "href": "author.xhtml",
+        "sha256": "cca5c39212a07a8f1ea2523ea943814e1f9085f657603b33c30d963cf92e3137"
+      },
+      {
+        "href": "praise.xhtml",
+        "sha256": "6c82d3737bbb5cccd984654afa465d36cea3bc07a41f5fe8e0b6f219307500bc"
+      },
+      {
+        "href": "alsoby.xhtml",
+        "sha256": "27b544bd65cadc8d0ae098f3cbaf04e433aced095e974998524f04931486a433"
+      },
+      {
+        "href": "copy.xhtml",
+        "sha256": "ca98f8d3f22297c4256e1644dfec38c1d94ed6e4a782c2477dcf7008131fee18"
+      },
+      {
+        "href": "atp.xhtml",
+        "sha256": "b29baee4e5915c8c0c3f42692c2641c7e60b3b477036623f3d09459a3be95315"
+      },
+      {
+        "href": "footnote.xhtml",
+        "sha256": "aa3e307ceea2b61a28e459ed4941d6e0f60feaaab55f5a542bb7a07b89b72f93"
       }
     ]
   }

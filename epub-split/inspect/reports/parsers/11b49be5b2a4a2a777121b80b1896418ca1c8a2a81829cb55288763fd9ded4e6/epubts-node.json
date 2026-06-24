@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -79,6 +79,28 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "dc3ffda40479529a213d50df975ffbdc7790230358af45fc89d3b5507195a406"
+      },
+      {
+        "href": "The_crystal_cave_Merlin_1__split_000.html",
+        "sha256": "5548616dc6eb87e4ed99c72f4c11f8d4a2bf531f28942275606b5053dc119716"
+      },
+      {
+        "href": "The_crystal_cave_Merlin_1__split_001.html",
+        "sha256": "413137b06b657b2fbd5b0116cef6dfc954d0ee9113360607dba19815c20e9623"
+      },
+      {
+        "href": "The_crystal_cave_Merlin_1__split_002.html",
+        "sha256": "fa2bb718c785132a597329bbbee22b6408c8ec12de6cbf03f7415c75ddcfc91c"
+      },
+      {
+        "href": "The_crystal_cave_Merlin_1__split_003.html",
+        "sha256": "17fc1cd88b86783e970394a99e200093cb1821c659cce134a50c38e744e7afb6"
       }
     ]
   }

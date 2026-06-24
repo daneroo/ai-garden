@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -69,6 +69,24 @@
         "id": "NewYork_line.css",
         "href": "css/ebase_line.css",
         "mediaType": "text/css"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "cover.xhtml",
+        "sha256": "43b3af74743f1c498e6bb5c760766876ffb5be777cbbaf22ed74a158b0cddd24"
+      },
+      {
+        "href": "braidingtext.xhtml",
+        "sha256": "9790e2ce5651b17d70070cce6f346be77c6ed4deb5992d6ca934d807db0a33a9"
+      },
+      {
+        "href": "braidingtext-1.xhtml",
+        "sha256": "c667ff9dc87d259856eb4a44d3a6e9ab94b5bbac616223233625042affaa2e8b"
+      },
+      {
+        "href": "braidingtext-2.xhtml",
+        "sha256": "f6b6128c4667624fe4b3a2c32d2ece2c215d8f6d626420ea83f4a79bef79d332"
       }
     ]
   }

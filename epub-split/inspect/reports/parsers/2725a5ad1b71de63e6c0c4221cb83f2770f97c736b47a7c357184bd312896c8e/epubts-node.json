@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -605,6 +605,244 @@
         "id": "title1",
         "href": "images/title.jpg",
         "mediaType": "image/jpeg"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "xhtml/cover.html",
+        "sha256": "81acb66e5bcb0dff5cfc8be478ee4a24daee266172f4f2d9c73e08379db77a83"
+      },
+      {
+        "href": "xhtml/SS_US_teen_signup_front.html",
+        "sha256": "746ce527001595a62b29ed1b225740eacd137317a8d26039735368411faf0cb3"
+      },
+      {
+        "href": "xhtml/title.html",
+        "sha256": "ecdeec3d5be03ae573491c729de1d69720946b2732c964877b196fda5a50c0c6"
+      },
+      {
+        "href": "xhtml/dedication.html",
+        "sha256": "3e93c562cc4b6610638cbc6290e170fbbb35355712a50226913fcdbb7c27f368"
+      },
+      {
+        "href": "xhtml/ch01.html",
+        "sha256": "e0dd0a6a3c7f2360e954e6e8c8b20d54475ab1cd87e90712a082cab41aefcf4d"
+      },
+      {
+        "href": "xhtml/ch02.html",
+        "sha256": "70c6aa24259a7c4bfde0524680e850c42e3df94a010502abfcaa3db2648508be"
+      },
+      {
+        "href": "xhtml/ch03.html",
+        "sha256": "e0c60ccabd4185d90cfc450e612c7cfa8469f395a619b2d810e1315fb2685138"
+      },
+      {
+        "href": "xhtml/ch04.html",
+        "sha256": "6fd212a62491cc394d38d811430399eafc986d5e4ac4f9b31d9b597f09f77b88"
+      },
+      {
+        "href": "xhtml/ch05.html",
+        "sha256": "d77dd7dd647af008bc0d8e450c8539aabd98de7165a7a136f8778b38c7beda42"
+      },
+      {
+        "href": "xhtml/ch06.html",
+        "sha256": "dcf090aba56a4b681b224ae0f883e247665ec0abd9f519279506639b1ab8a5dc"
+      },
+      {
+        "href": "xhtml/ch07.html",
+        "sha256": "6d35f935237891f294097838a62abd4f047a39601ba4313fefaa1413148ade53"
+      },
+      {
+        "href": "xhtml/ch08.html",
+        "sha256": "e04bbd777a61846a0f173ec4e8b8a93fd9e6fd71abf878db8894d861366dce3b"
+      },
+      {
+        "href": "xhtml/ch09.html",
+        "sha256": "126d7894adef130fcacba13dde9ec908e91b9aadbdb7036114b3a7d4fedfc49c"
+      },
+      {
+        "href": "xhtml/ch10.html",
+        "sha256": "63682bcca9cca0c299847669e223beaa7e6a9522d9a6b288bc8a6728959429f9"
+      },
+      {
+        "href": "xhtml/ch11.html",
+        "sha256": "d1c672bcc1b0208829ac466f4fb34df367da92a10b86c67b86e49eaa605e871e"
+      },
+      {
+        "href": "xhtml/ch12.html",
+        "sha256": "d544ad6545515f259b8a7d457e8feda46c21c503f3d13e71d994278f0cbd367d"
+      },
+      {
+        "href": "xhtml/ch13.html",
+        "sha256": "c3db4e8df46d6ae176103a210ea99556b42fe61405dcf8df4317ee15d69d7b10"
+      },
+      {
+        "href": "xhtml/ch14.html",
+        "sha256": "6184a4c73edc1776d63159cb00e3fd14f433cb865487ebf08f5c80c394960e41"
+      },
+      {
+        "href": "xhtml/ch15.html",
+        "sha256": "c0db585ce0aa4781f8f40657bc05ac0130507bbe1345d7b00e51505a25a142e9"
+      },
+      {
+        "href": "xhtml/ch16.html",
+        "sha256": "5b8848d8ee355a6e9a0dce9a7bda068e96a2f0ff70ef0c1191a33ca380faedae"
+      },
+      {
+        "href": "xhtml/ch17.html",
+        "sha256": "064eeefc2cfa34a72afe7db6f9a0855c378943110c347931ba320f0978170d87"
+      },
+      {
+        "href": "xhtml/ch18.html",
+        "sha256": "aabb6f99e7c982b1b85b351cbb725d296d447ea814a16db2f02e19327a2e8b5a"
+      },
+      {
+        "href": "xhtml/ch19.html",
+        "sha256": "e2e0c5af9b4cdaca94b314b2fe9e6995310e268ffb5da872ec9f5a4397efd2a1"
+      },
+      {
+        "href": "xhtml/ch20.html",
+        "sha256": "4ab7b3691a402a42e3bbcbe93b51480ddb212dff963f16c78e0a9e70d63698ad"
+      },
+      {
+        "href": "xhtml/ch21.html",
+        "sha256": "0d7b70e98bb7b6c28d7ee12ca0e7be4787046aaf016acb6e741af1129e2d06c6"
+      },
+      {
+        "href": "xhtml/ch22.html",
+        "sha256": "36d6a61ec399918392bb5e96e789a0f7febab167d02d1d406ad43b9fbbd23b25"
+      },
+      {
+        "href": "xhtml/ch23.html",
+        "sha256": "70848efcab1c5899aa803c2b1e9b841206b5b99578f1b501e391aeda8045a1c7"
+      },
+      {
+        "href": "xhtml/ch24.html",
+        "sha256": "1cda525d77499eac6b2a9575373ca51f132bf13af1f9009e17a7f776ed1bc0ae"
+      },
+      {
+        "href": "xhtml/ch25.html",
+        "sha256": "48fe6eb3e3d2e582099727c75a400b68696dd8b95e6d294b73af074f125cfa83"
+      },
+      {
+        "href": "xhtml/ch26.html",
+        "sha256": "28580303ed95ab2539f5b55716ab842497f852b06685f7fe5d0c3a8f037a46a5"
+      },
+      {
+        "href": "xhtml/ch27.html",
+        "sha256": "6d47389fd389b185bd11313927d6cbd6ef4319657603f1952075eb4cb20f7d40"
+      },
+      {
+        "href": "xhtml/ch28.html",
+        "sha256": "fb9163a4e45952dff3cc910add2bb59ce6566ea9a64be7132ce83f52c1f38f9a"
+      },
+      {
+        "href": "xhtml/ch29.html",
+        "sha256": "2af03ac4b4c2554e218a79f19a3c2a73e2bbbb64832abc0520518a60691b4f0e"
+      },
+      {
+        "href": "xhtml/ch30.html",
+        "sha256": "1e85af7c86cf8b8ba7fa79bf470c2280879d7fa71be5c16c2afb57f2f656199e"
+      },
+      {
+        "href": "xhtml/ch31.html",
+        "sha256": "5562cf4197435ff98f42cb291e4c921f58ae2860adaa20646c4d3c904043db30"
+      },
+      {
+        "href": "xhtml/ch32.html",
+        "sha256": "ee9964af975265e1b1cdba1717317a6d2fcde6223df0d17a063215cbcd46a475"
+      },
+      {
+        "href": "xhtml/ch33.html",
+        "sha256": "38bec5128288fc96c85c556ed6d85e317400624c16687dfeee7abc67786056fe"
+      },
+      {
+        "href": "xhtml/ch34.html",
+        "sha256": "3e4bfa146b2ad97c9e3ed57939cd87ed313b88283875c660ab5c7ca4e30ecbf9"
+      },
+      {
+        "href": "xhtml/ch35.html",
+        "sha256": "6cc67c3335d36a6abfce15cfee49b00239d7a4d3081db633240ffe7b3ebc39a0"
+      },
+      {
+        "href": "xhtml/ch36.html",
+        "sha256": "73b4261ba55e0342f1447e1768402ad7ec983d2b0e0ccca36a6ee08d7bef6d7e"
+      },
+      {
+        "href": "xhtml/ch37.html",
+        "sha256": "3fa243745ffe2f09c8cc6f49bae87a4b7abe929b92cd6b80ed77005723e73abb"
+      },
+      {
+        "href": "xhtml/ch38.html",
+        "sha256": "a483112fd62ce1e6809540fc85b98ad9a9b5b3bfd7883b15895a4f4f882882b2"
+      },
+      {
+        "href": "xhtml/ch39.html",
+        "sha256": "a315ccac5c221093c514d4fdf7f71b73a1a1bf7d873aa9482eb113123b05bfca"
+      },
+      {
+        "href": "xhtml/ch40.html",
+        "sha256": "669f64421582bcbd25ec8f0f11e64cb63f6b781e5dd443f301156be981f5ee1a"
+      },
+      {
+        "href": "xhtml/ch41.html",
+        "sha256": "32144025871fcfff80f54cbe8654fb493d84a4721f680e1367d334e0f798da26"
+      },
+      {
+        "href": "xhtml/ch42.html",
+        "sha256": "08deb749d1e51a52430fe880078b898c023c78fa97b767106b4e9a7a4a060523"
+      },
+      {
+        "href": "xhtml/ch43.html",
+        "sha256": "a9c877d85ecc8a158b3c34be51174ce982aa383733b254f676f79a434360543b"
+      },
+      {
+        "href": "xhtml/ch44.html",
+        "sha256": "4f1cc4e9a4ac562540184800b3e02e19023e961b673ab405cd192edaf76c9104"
+      },
+      {
+        "href": "xhtml/ch45.html",
+        "sha256": "fd27b08dd39f0aa8f62bf2ebc8899c7dc039f116ab9a9e923ebd5adec71b4339"
+      },
+      {
+        "href": "xhtml/ch46.html",
+        "sha256": "0a267a190ae1dadd3bddb3acb09f3476b4e4d209bf2a23e38e2ced059dfa0d48"
+      },
+      {
+        "href": "xhtml/ch47.html",
+        "sha256": "6e24c3146347e9dcc909b0b4e368eb7cf76d8c8a542342ca37d77e7553e9d7db"
+      },
+      {
+        "href": "xhtml/ch48.html",
+        "sha256": "aa3b1fcd10846c22c683771671234b322c91161c553ae4b2bfdbc8f22b6ff78c"
+      },
+      {
+        "href": "xhtml/ch49.html",
+        "sha256": "94971c6c7e4de89e593ba57018cf3e97b848fcd50de4c643f16d88e66cd0f9fa"
+      },
+      {
+        "href": "xhtml/ch50.html",
+        "sha256": "aa6138cfc984381532c84dc57348821eca70ba85c7175afeaafd407370f7f327"
+      },
+      {
+        "href": "xhtml/acknow.html",
+        "sha256": "bb7bdd39b5ccad5c1fca84f7191bd6780140799bc48c72ea9bdc53d33a648ed8"
+      },
+      {
+        "href": "xhtml/about.html",
+        "sha256": "2797cda567110dee53988a86f858a56ab679366f1d171193e3ea75cd4edffde0"
+      },
+      {
+        "href": "xhtml/also.html",
+        "sha256": "0ee9d99fdef2b7d657c9a1846dcd636c478a34ce33e4e63200bf6ac6e4e364a2"
+      },
+      {
+        "href": "xhtml/SS_US_teen_signup_back.html",
+        "sha256": "3d9cef2762bee3837daadf3b6e8078de0fc32071bbd3c3894d72af7f7baff08a"
+      },
+      {
+        "href": "xhtml/copyright.html",
+        "sha256": "951b16befdf5ddbda479f8e853af99dcc4d6a7cf32025683d684f50900bc4a07"
       }
     ]
   }

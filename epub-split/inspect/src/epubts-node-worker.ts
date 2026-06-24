@@ -39,7 +39,7 @@ try {
       manifest?: Record<string, { href: string; type?: string }>;
     };
     archive?: { getText(url: string): Promise<string> | undefined };
-    path?: { directory: string };
+    path?: { directory: string; resolve(href: string): string };
   };
   const packaging = bookAny.packaging;
   const metadata = {
@@ -54,16 +54,18 @@ try {
   const manifest = Object.entries(packaging?.manifest ?? {})
     .map(([id, item]) => ({ id, href: item.href, mediaType: item.type ?? null }))
     .sort((a, b) => a.id.localeCompare(b.id));
-  // "/" + pathDir + href produces the archive URL; archive.getText strips the
-  // leading "/" via substr(1) to get the zip entry path.
-  const pathDir = bookAny.path?.directory ?? "";
+  // book.path.resolve(href) uses epub-ts's own path resolver which always
+  // produces an absolute "/" -prefixed result (it anchors to "/" when no
+  // absolute segment is found). archive.getText strips the leading "/" via
+  // substr(1) to get the zip entry path. Using resolve() handles both root-OPF
+  // and OEBPS-layout epubs, and correctly normalises any "../" hrefs.
   const spineHashes = await Promise.all(
     spine.map(async (item) => {
-      const archiveUrl = "/" + pathDir + item.href;
+      const archiveUrl = bookAny.path?.resolve(item.href) ?? ("/" + item.href);
       const content = await bookAny.archive?.getText(archiveUrl);
       const sha256 = content != null
         ? createHash("sha256").update(content).digest("hex")
-        : null;
+        : "<unreadable>";
       return { href: item.href, sha256 };
     })
   );

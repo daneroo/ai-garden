@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -570,6 +570,120 @@
         "id": "toc",
         "href": "xhtml/toc.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "xhtml/cover.xhtml",
+        "sha256": "3d8ad12e49c88baf71fa22259830f23f0e38f008b26e8ff81222ee4e3665db9b"
+      },
+      {
+        "href": "xhtml/halftitle.xhtml",
+        "sha256": "e368ad3afcd3dd32820df4a18437c917db1455319f1822c5e5188857b24b02a9"
+      },
+      {
+        "href": "xhtml/series.xhtml",
+        "sha256": "39af5be2c8708e974b48e13ffcc2fca3e61d4fd3d58c266613a3c48e03f0516d"
+      },
+      {
+        "href": "xhtml/title.xhtml",
+        "sha256": "52701aa8a90b30af167465a6c6973027883e4c24a810e143501978ce9bc1a928"
+      },
+      {
+        "href": "xhtml/contents.xhtml",
+        "sha256": "dfb9a77e917baff4f20f23aa890d9349032bb7c40d479f26a1a35b2d2085c401"
+      },
+      {
+        "href": "xhtml/name.xhtml",
+        "sha256": "dc79d27b5910502136bd47de6604c16f2f2acbdbcfc6ea44fae4ecf9be529db3"
+      },
+      {
+        "href": "xhtml/intro.xhtml",
+        "sha256": "eaf530d9ba0f787d6efbd53273db2ec24f1b73b290ecb6f3136c471e380843aa"
+      },
+      {
+        "href": "xhtml/chapter1.xhtml",
+        "sha256": "3e88179639cdfd465ace8d2d66c100c5a7289015ad62b684511bb5be033682ce"
+      },
+      {
+        "href": "xhtml/chapter2.xhtml",
+        "sha256": "2137d87b33eaf47c9a0af3ccea998426dca2d149c6abca7079811ca96ef92fe4"
+      },
+      {
+        "href": "xhtml/chapter3.xhtml",
+        "sha256": "2ddf63f9dd13be177f1c3c4d21529cd17fdabae5952685a916de7a7aa073601d"
+      },
+      {
+        "href": "xhtml/chapter4.xhtml",
+        "sha256": "80078130bf5c22bb097d07828647613acb9c71febde5fbe82b82a3b57bbbab72"
+      },
+      {
+        "href": "xhtml/chapter5.xhtml",
+        "sha256": "33be13fc0ef50c32c7deab5d1a0f6d675558dbab74233e8e255078690a1f2548"
+      },
+      {
+        "href": "xhtml/chapter6.xhtml",
+        "sha256": "0604de0d00ab793443cbcbd6e1fbc9274c46d5d4158b8067be74c6ec18717820"
+      },
+      {
+        "href": "xhtml/chapter7.xhtml",
+        "sha256": "c9e0a66154c52886ccbaced72555c26630398d4b8dee5b42f8d9cb02181b1d55"
+      },
+      {
+        "href": "xhtml/chapter8.xhtml",
+        "sha256": "a774296d987796a73c320055bbd3bac8d4689cd6622cad26aa1bc0609c2ac6f8"
+      },
+      {
+        "href": "xhtml/chapter9.xhtml",
+        "sha256": "096175515dc8f626296558d6c77deba0c59fea1e6d0c1a0058ab1ae450492f2f"
+      },
+      {
+        "href": "xhtml/chapter10.xhtml",
+        "sha256": "7b9b1bd11e4e2c45ce112ccb431a18c39e979a90ad597d6c47a0749506bb161e"
+      },
+      {
+        "href": "xhtml/chapter11.xhtml",
+        "sha256": "a87531dc7b2b512b98e39165805a0f2b1148307337a3efefab8fa073600acc30"
+      },
+      {
+        "href": "xhtml/chapter12.xhtml",
+        "sha256": "e82c6f69a436ab89a7f7bd9068da2e10d67ca028c4f14cc4b81b634f40c8bffd"
+      },
+      {
+        "href": "xhtml/chapter13.xhtml",
+        "sha256": "17f4d8b85d948c994ca333dedfb89701fa6aef13d7c596b6f63701e3a13a4757"
+      },
+      {
+        "href": "xhtml/chapter14.xhtml",
+        "sha256": "9a93fb09911508c3890f7e89b48e5cb6ebb7f70f9475e6c994101481c6bb64d3"
+      },
+      {
+        "href": "xhtml/chapter15.xhtml",
+        "sha256": "de91290287359a0b6e39c29f16fbc8b86712f71438fe6f1edad885f8ac96363f"
+      },
+      {
+        "href": "xhtml/chapter16.xhtml",
+        "sha256": "613e2ffb3bc3f1dc7705cf2e5ab8142311dc4b3eb60f78cf850b60a0b240ed5c"
+      },
+      {
+        "href": "xhtml/epi.xhtml",
+        "sha256": "ccd2d1a4f8a5be032a7ca3f3f46cbe63a4b168cbeac30c92712b155ae1037383"
+      },
+      {
+        "href": "xhtml/ack.xhtml",
+        "sha256": "ca8a029b296a0681e15b43b3ff6a45eab332b6968dbd0048f5d604f7acd6a222"
+      },
+      {
+        "href": "xhtml/index.xhtml",
+        "sha256": "8400f6374ad9cf6a6c9a45240d49825ed2126cf0bdac8450dccbed0ca2df2f57"
+      },
+      {
+        "href": "xhtml/plates.xhtml",
+        "sha256": "8069c8fb0e842fba233371ad19a8dbdf633e963165e4dad87ced327cd37f88e3"
+      },
+      {
+        "href": "xhtml/copyright.xhtml",
+        "sha256": "31748808cfa2e94602695e60926409b451a856dd6a5f00a23913af9e95a2a6fa"
       }
     ]
   }

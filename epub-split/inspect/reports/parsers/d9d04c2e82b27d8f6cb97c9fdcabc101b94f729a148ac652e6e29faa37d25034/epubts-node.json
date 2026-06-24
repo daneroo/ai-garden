@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -121,6 +121,40 @@
         "id": "veStyles_Epub.css",
         "href": "Styles/veStyles_Epub.css",
         "mediaType": "text/css"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "Text/cov01.xhtml",
+        "sha256": "5f3b1fcbcc329cc532de9aba699790f4d5a7a609f8dc465173e938b51640af79"
+      },
+      {
+        "href": "Text/vde29.00.xhtml",
+        "sha256": "c61e1704d162b4d29909ec6b5ae2591f754b3b4264db6dae5279fd6fbe374405"
+      },
+      {
+        "href": "Text/vde29.01.xhtml",
+        "sha256": "ce051cf05b6ce9230218a644e1d6d84746efff1bb743878f93cbeae85fa98a7d"
+      },
+      {
+        "href": "Text/vde29.02.xhtml",
+        "sha256": "51fde34078a70d5d5f0ef35cc05ea72977e6b22c2644b4cb0ec16513529ea5a8"
+      },
+      {
+        "href": "Text/vde29.03.xhtml",
+        "sha256": "f75aac2cb3449750b91a88fa5d31018d6835c53af384782e6549421623b34e9e"
+      },
+      {
+        "href": "Text/vde29.04.xhtml",
+        "sha256": "77150a0b45572ae7c27c92da843eb594b8b4ab4e8b001f8f9028d8a92c79fcfb"
+      },
+      {
+        "href": "Text/vde29.05.xhtml",
+        "sha256": "8896e82bff612c21b475454d7e593c5e437d23e1f8937453c5fa44352c620b19"
+      },
+      {
+        "href": "Text/vde29.06.xhtml",
+        "sha256": "dc2b93951c3df4e243870fd1ebb72a2648833517129e566504a71e4dcc85c7c7"
       }
     ]
   }

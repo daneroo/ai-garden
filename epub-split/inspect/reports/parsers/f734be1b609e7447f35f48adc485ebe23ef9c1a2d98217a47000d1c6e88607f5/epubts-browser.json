@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -539,6 +539,224 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "d90631540006fa8367b5fb0e6aaa0385e23cf6c23ac1e658deef8c7b95d575fb"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_tp_r1.htm",
+        "sha256": "a762f43f4fd275366c78818f87140646ef84392b507171d4fb86c8a2207aa1fe"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_toc_r1.htm",
+        "sha256": "e9b89874ea356705a1435212eaf5ea4629611312dbed39b832ca616bbd8de985"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_ded_r1.htm",
+        "sha256": "33e1522d904ccd154251fc4cb357aa8caa7cae9b21b81715b75ad542acc9389e"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_fm1_r1.htm",
+        "sha256": "672f3281900eee41ad62bc246026748b887318aca2a9a992373d83dbe2d6e61b"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_p01_r1.htm",
+        "sha256": "1c205800fa330862276982ea0d9732c5033e2ef3fd0081d96958f5a9d8ca3859"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_fm2_r1.htm",
+        "sha256": "5460a87dbbb2a2dae0ba412f943cafe30b0ae2f27fe585f4ed69c17e906a7c26"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c01_r1.htm",
+        "sha256": "676f4d4688e18a4681a4d28d8faa1b7acf2a88add841e8711d8cdf45563d4755"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c02_r1.htm",
+        "sha256": "e813a5f8c361887f6f8bc10788ae0df22f86004538114ada6e5f82145678e7de"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c03_r1.htm",
+        "sha256": "42ebca1b5e1cc9d2ca4d1ff0500d31925af4ca530de7b98a23013665c2dcc726"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c04_r1.htm",
+        "sha256": "c6342212eb44bc41845e14266ac3340bb5fe10e3baaef449be995b5c932d448a"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c05_r1.htm",
+        "sha256": "5aaddbc96bf5137f93f6ddfb771e73f0c9b0288cb2fa5c1bc15a65b2e8b7358b"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c06_r1.htm",
+        "sha256": "29058a8f3ca01cf24ac280e6d6711d07f7f15af7dc1ef6433d3afcc29a98d993"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c07_r1.htm",
+        "sha256": "40a2e8db92db9d983191ce0164b874892c858a729dc32dc07d0d74f83a71d548"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c08_r1.htm",
+        "sha256": "c18a07f4b8943b97144c1c8eb4b5c2d5a6e5a53e82f6957dd587dd6822ddafbf"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c09_r1.htm",
+        "sha256": "1f03e1cebbcd3ed8500339f01883be9094310b76601598b6d28e7659555ca348"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c10_r1.htm",
+        "sha256": "d2e4d10ef7645919f002685e6420fb459a56b97507e0007779070feeaa18dddb"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c11_r1.htm",
+        "sha256": "6d46231b05a3bee6a2e26a47bd5742253e68cefa98e1de0bf04aefd2798be2a5"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_p02_r1.htm",
+        "sha256": "66dcb16d5f5cfd0bfa4c70636b1940154e1f3d2816763b7f8b87282e921719a2"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c12_r1.htm",
+        "sha256": "fee5644558b7074d5aac7a92e9f3ebfe0f1009aff96c87c5188c158e71afc15c"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c13_r1.htm",
+        "sha256": "fda76c05323b5727834d05e0f429375130fcbd2e16632539cb0538ea1fafe738"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c14_r1.htm",
+        "sha256": "81c48910906392cebe9d611780a47efbfa2e67073ec5698fee947ce412947a22"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c15_r1.htm",
+        "sha256": "9204d1b272f3f49d53a688c24342b03310a9e5855dfef76db7aa26c3613c74ef"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c16_r1.htm",
+        "sha256": "4495a098d33f3f9cd960a84240fb5fc029e03113edec3e7ccdc21a8e5f6ac49a"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c17_r1.htm",
+        "sha256": "a36447e0981ad5232394023c27e814bb5b29030780ee2d72fa15fffcb3fd272f"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c18_r1.htm",
+        "sha256": "75e249f052b9f5de15038b6c24627accc8a9c0448f92ea26d5a1fef0b7c84fe9"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c19_r1.htm",
+        "sha256": "658a03ad3a4966024c03dadfc9a463c869f801292e9554eba998fbd0e8c6740f"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c20_r1.htm",
+        "sha256": "6aadff1f00be3174ee36318307869731bb02f395229238e88fefdf12bd92b8e6"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c21_r1.htm",
+        "sha256": "9a38e576c1a0817fc89756f544bd99f70723f5d1e52409ead3659659ce6e8f27"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c22_r1.htm",
+        "sha256": "69828f43c9e357829ecca15493d3443eb6455d2390e5fb6e5aec3b36fb662f2c"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c23_r1.htm",
+        "sha256": "044fe5713dd91845fdcb8b483b378cb2a307869efb9b3743ad09ce7d20296bc6"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c24_r1.htm",
+        "sha256": "6f7c72f948dc3d607c4dab96d08d84528769e480d62f30309c564f91772a02b0"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c25_r1.htm",
+        "sha256": "fad50ef9ca3ad059a6939f2e0a8942d8037e392494b2f99be5fac3402806e1bd"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c26_r1.htm",
+        "sha256": "8b7345ba10659bf519409d1a92629526396ceda0094bb463de0c4d49e0dd7b90"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c27_r1.htm",
+        "sha256": "4c46a5f77cbd20581012332e41ce70dc8ea5807fc820049ca3d3d32ed6653640"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c28_r1.htm",
+        "sha256": "2ce06246b968640312bc488869b3e8625eb6d310c59f064c9474d674e68c8b28"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c29_r1.htm",
+        "sha256": "827eb2c7424b1578f39553cc9b44b6f5713bd28f54dfad7e66c5144b6f4ac9aa"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c30_r1.htm",
+        "sha256": "2225abf18920bb8e4b810d8659e3436108c34e0737456c016e7c9afe9987123e"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c31_r1.htm",
+        "sha256": "402c2753412f841df606b1ff7e631e14a33920aa358eb07ef6ffe21f767e5769"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c32_r1.htm",
+        "sha256": "77e617070af0d6bdf7ada10d1106bdf83313153fcfbf89f18b97e8c8d230eb8e"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c33_r1.htm",
+        "sha256": "44f07602efe4656695b556468ebd2298bc0d23fd8ae48a146c0ba8c8f25d58ef"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c34_r1.htm",
+        "sha256": "248bb73785e40f20ee7aa741a65a4940425ea7949885cf6c4591035d0a412685"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c35_r1.htm",
+        "sha256": "7b909a1e7629fdc744591cb846b11161985925cd894277d91ab640053dea3a92"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c36_r1.htm",
+        "sha256": "b177817af6fe2e8cbe618bab564d02b3e49a2c2c33dfc8ab78e325d2ee8143ed"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c37_r1.htm",
+        "sha256": "a818ea8218fed87fc08e32b6a1af764969e207278ca229c69dc3ef6ff94e884b"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_p03_r1.htm",
+        "sha256": "6888c2d02d50740445a2efdd8885e659090c6a8bf9b9ad92af548b504ba27b63"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c38_r1.htm",
+        "sha256": "763b055417e7989ea613325f15295ab461afddbc73bba66027e7d258a892a737"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c39_r1.htm",
+        "sha256": "e4ffb3ffe767a605643bd101ad033cdca5e2b30e359d9b65a366be9810880f91"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_c40_r1.htm",
+        "sha256": "c8551e361edbe9f39fb96b47c69dd1c9dd83b1cd33332779e92d599a364a06a7"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_bm1_r1.htm",
+        "sha256": "19f814cef4656a6951367b0f1c559a19695b63c65018c39bb0936e27a6f84364"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_ata_r1.htm",
+        "sha256": "cbd39ca24bc3cae73c1012dddb5d8182cdf7a2bfdc76116f4919ea9a6ce76264"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_adc_r1.htm",
+        "sha256": "505e8fd3d2575e4ca41bc1ed0b3e32edbf402a665f8bb2852569d48fee04f5ba"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_prv_r1.htm",
+        "sha256": "ba6e006448b1b21e7761201d2c9156b5206eb16947e3e55944e3d733adffa684"
+      },
+      {
+        "href": "OEBPS/Text/Hobb_9780553900279_epub_cop_r1.htm",
+        "sha256": "091a984cc1774d99da00a06dc00c6ea89f6048033f2b73570f27a937135a2619"
       }
     ]
   }

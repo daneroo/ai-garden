@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -576,6 +576,176 @@
         "id": "u5y3cWXDcHmgQHOaTdDtQd8",
         "href": "ops/cover.html",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "a6e42aa8ed09cd9e3864c1296b516a3619d72d16b1707c133581f3cffb825059"
+      },
+      {
+        "href": "ops/cover.html",
+        "sha256": "a2040f5e85a2573c0e51870fbd44d8c93c3d3aa6f9e0eae3429540979205eb91"
+      },
+      {
+        "href": "ops/fm.html",
+        "sha256": "37949d23d178026f3768e8e4c1294840a9ac1a69947618013bda0f95a6dc7a35"
+      },
+      {
+        "href": "ops/title.html",
+        "sha256": "40acb6abb065e3302b53418ef6ea47e04b3f2fa7e797b400d06646300893af7a"
+      },
+      {
+        "href": "ops/copyright.html",
+        "sha256": "a980ee4fd5621a606882d8a100a8e37d5e979cc150247055dc462757e2761b82"
+      },
+      {
+        "href": "ops/dedication.html",
+        "sha256": "acfa4a47b39b8fe414788c5abbcd74fec4fffaa8a2e6538e754b644b6b44c891"
+      },
+      {
+        "href": "ops/contents.html",
+        "sha256": "dda92f7c785755690e3a705fffffeb52afd5d08b1ff8288fcd2a51480b8079a5"
+      },
+      {
+        "href": "ops/preface.html",
+        "sha256": "d9f96b5046b194ea6b959fd5ab85d06392fca576461ac93ef5156592cf4bae11"
+      },
+      {
+        "href": "ops/intro.html",
+        "sha256": "10ede85b8e078db4a88bdca266d02f1aec6b60bc3c23c4cd8ad67a061e63acba"
+      },
+      {
+        "href": "ops/ch1.html",
+        "sha256": "aa2076adc49d8e1b9b3e52e67d1c14a5d4aea468889d7dc41302aed7a8950730"
+      },
+      {
+        "href": "ops/ch2.html",
+        "sha256": "7a74feba0d520ed60781ade10df6189713eb29bdd6c1465eb27b0f05dfd98344"
+      },
+      {
+        "href": "ops/ch3.html",
+        "sha256": "8d2ff0e73d862340e99fb87f6ceea726e7cf9cf9d9d1652d3919bd9343643351"
+      },
+      {
+        "href": "ops/ch4.html",
+        "sha256": "18a8f1ca65db90443791ea1c07c07f2c8008e108c6a9e40960dbe18e4bee031c"
+      },
+      {
+        "href": "ops/ch5.html",
+        "sha256": "ceb3b9b490a32849053321bc06df64c1cd2993411a63e36ad9589dc44e71d074"
+      },
+      {
+        "href": "ops/ch6.html",
+        "sha256": "c77e445059ff42658d68c22c1ccf75825bb9024888bb8d5604fa71b6421c4f05"
+      },
+      {
+        "href": "ops/ch7.html",
+        "sha256": "80682515a9a9d837233c0d00aeeba329b7cb8642ca1f5430c7cb6627cf8faa36"
+      },
+      {
+        "href": "ops/ch8.html",
+        "sha256": "035f4a457a288df071fb8e6d20f3b12082e32dd9aba217b864fde4156b07bf15"
+      },
+      {
+        "href": "ops/ch9.html",
+        "sha256": "30c23f1b92cb16a40b1d5dcde052b4bafcc5b63a5412139e8cfd50f7633047a6"
+      },
+      {
+        "href": "ops/ch10.html",
+        "sha256": "cb1c3c5d7be4352e882f957a95145a6fff67fe9a4bf9f0e51276f8940a0e1376"
+      },
+      {
+        "href": "ops/ch11.html",
+        "sha256": "96f22a3f5cce81b07e406a7aa92a60e60225c42e7141fe9faad893803ebcde9c"
+      },
+      {
+        "href": "ops/ch12.html",
+        "sha256": "854f53a62ac78791e2e8a77e2c01666816eeed6b20c2cc0a2cb9839dd3cbe17a"
+      },
+      {
+        "href": "ops/ch13.html",
+        "sha256": "48cf8199ec489fdd3d8f86f0769d630432066616eed58d06cefcf1e2871609fb"
+      },
+      {
+        "href": "ops/ch14.html",
+        "sha256": "e163a5381a533fdca685d006b7d51e02d45992bad41689eafdc3b3009e289c1e"
+      },
+      {
+        "href": "ops/ch15.html",
+        "sha256": "050210e5d0371780c28e705eaa31925b351462a2ae8b78ff4dd98f2e379a3552"
+      },
+      {
+        "href": "ops/ch16.html",
+        "sha256": "fc5f9779729c53dbd98bfb1bd72b693212951d6bbc59553aeefe78bbc10594f8"
+      },
+      {
+        "href": "ops/ch17.html",
+        "sha256": "65aba1d5b94394f9f9633d76e7975e480e33735526e58870ba174b7660c82564"
+      },
+      {
+        "href": "ops/ch18.html",
+        "sha256": "0c239845f34200ae056d3cc45725842d1e60a4903964de99e1909f32ddf32876"
+      },
+      {
+        "href": "ops/ch19.html",
+        "sha256": "8d74b8d0a19c53b9706696860a8ef10d2f34c2c62b1482cdfcf1b1437fea58c5"
+      },
+      {
+        "href": "ops/ch20.html",
+        "sha256": "2bbb5d68947b2b5d5ba54087bd2ae56a746af2bd1a96e9c13de19f62e617d167"
+      },
+      {
+        "href": "ops/ch21.html",
+        "sha256": "0b7b6c2f7acb70c2178586dcd0119fe8fdc0dae903b12ad0b564bfb7c3afd166"
+      },
+      {
+        "href": "ops/ch22.html",
+        "sha256": "ec952e35e8c4ac2d239d7edae4bc65e3778e7d4a2b085172d1777b129215ee6c"
+      },
+      {
+        "href": "ops/ch23.html",
+        "sha256": "17789a403261495b6833e79c94b2d693c4475decdcd083b26693a51ff7c692ff"
+      },
+      {
+        "href": "ops/ch24.html",
+        "sha256": "54d72462ae528e90ad28aa14f3f0141436bf7ba80afcae808c88ed6114655d1a"
+      },
+      {
+        "href": "ops/ch25.html",
+        "sha256": "5cccf834f3f0b130f57edadbc5d43d29c51d7d466797ca0037c7e98b81df5378"
+      },
+      {
+        "href": "ops/ch26.html",
+        "sha256": "d8a09f79edde3bd1ba2bec3379cd3c190cd5b1b655fd2743a3c6f80cdf75ea62"
+      },
+      {
+        "href": "ops/ch27.html",
+        "sha256": "a8029d099ce78a739a6493c5d2705fae3a1c48569d8f3d56c73072eaa09bfb0c"
+      },
+      {
+        "href": "ops/ch28.html",
+        "sha256": "c862dc13e544bdfcf7caff8b6dc734a8181d2fba19ab35975521439e153e9b7e"
+      },
+      {
+        "href": "ops/appa.html",
+        "sha256": "0dadf90f2fc2619572633f9639d776adc013678a70f1c7f451239f5817e9c134"
+      },
+      {
+        "href": "ops/appb.html",
+        "sha256": "7ab61ece296d100dc66be7ea09b9a53c06d89ad40ee0ea2bc59143bd062d4e54"
+      },
+      {
+        "href": "ops/appc.html",
+        "sha256": "5b080d25aa69c35b93171b2e4aa5c00f64f01e50a5d104130b41f4e83caefe34"
+      },
+      {
+        "href": "ops/index.html",
+        "sha256": "0f05b531f26e2ae8d4166874f333fea7f83b359fe13c819125ee291964acca5e"
+      },
+      {
+        "href": "ops/author.html",
+        "sha256": "3b47545901e6d527f8574d54111c7e50759a1109df46c0450241978a291a64c0"
       }
     ]
   }

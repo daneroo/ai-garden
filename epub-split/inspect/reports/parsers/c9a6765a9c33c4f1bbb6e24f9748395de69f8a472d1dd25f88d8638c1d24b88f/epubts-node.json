@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -170,6 +170,64 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "e29a31cc40a63d766899d6e6e4d7f6becbb4f1c7c6420d70baf1cce8dae98241"
+      },
+      {
+        "href": "OEBPS/xhtml/title.html",
+        "sha256": "89be5c0656f5d4cf4f268257e327f84af92f5a5f844b6e2fc6227ba8566fe990"
+      },
+      {
+        "href": "OEBPS/xhtml/dedication.html",
+        "sha256": "7f647a21f15fc3c3fff25014184891fcbda8460962d63a42679965fc8ebcf2d0"
+      },
+      {
+        "href": "OEBPS/xhtml/thanks.html",
+        "sha256": "a961b15d8e9a19e3097dadda903c71d513b65ef1d663d426a619d54544ea873a"
+      },
+      {
+        "href": "OEBPS/xhtml/epigraph.html",
+        "sha256": "cce73aa855d2bfb683520d9a49e0db4a3815be2e0c7c5ad7d534b83797563bb7"
+      },
+      {
+        "href": "OEBPS/xhtml/contents.html",
+        "sha256": "9fd9deff10430b06fbd318b5eb4e44f099711e66306d0b585857afa60a03d24b"
+      },
+      {
+        "href": "OEBPS/xhtml/chapter1_split_000.html",
+        "sha256": "0f9ce33c4673ba767f1612b2a5429949bec86b3d21d8fa8b931a5a8e10ffe65a"
+      },
+      {
+        "href": "OEBPS/xhtml/chapter1_split_001.html",
+        "sha256": "b10518e79666932c3880a2ea0da2b7370675dd30891281dda9fde02e9cae7e40"
+      },
+      {
+        "href": "OEBPS/xhtml/chapter1_split_002.html",
+        "sha256": "c7611acae16f010c780b833c24ed46c8086db77c997e40bd5a6d0bc1fb7a17ca"
+      },
+      {
+        "href": "OEBPS/xhtml/chapter2.html",
+        "sha256": "027266f185442c702ea85cd672bf09a6a2eaa233585c77b06f0850348f0a1aa3"
+      },
+      {
+        "href": "OEBPS/xhtml/chapter3.html",
+        "sha256": "4eb57ea7d135351b0a169350957db3374713da0137c471a8394d379ebae56ff6"
+      },
+      {
+        "href": "OEBPS/xhtml/adcard.html",
+        "sha256": "085e3ce2531e98127862f14fc3bb0ff8121aaccce712302a14b875ff72bb5002"
+      },
+      {
+        "href": "OEBPS/xhtml/copyright.html",
+        "sha256": "1529850aa841624aa3073f3ca3fbf473126593a85ebd98650955aa0cedf75d5c"
+      },
+      {
+        "href": "OEBPS/xhtml/cover.xml",
+        "sha256": "06e79910da87f9884acd7b8d180ca85689a61087e135da8903b5de45ad0c339f"
       }
     ]
   }

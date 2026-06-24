@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -175,6 +175,60 @@
         "id": "toc",
         "href": "toc.ncx",
         "mediaType": "application/x-dtbncx+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "xhtml/cover.xhtml",
+        "sha256": "bc2d906035828205f76794d0d7c8ca6970362a27a5d67bcda816dd85fb8cf7aa"
+      },
+      {
+        "href": "xhtml/seriespage.xhtml",
+        "sha256": "d35265fef2520ddc88e48dd07ae98fd652ee76e46551f1b451501d7e19760753"
+      },
+      {
+        "href": "xhtml/title.xhtml",
+        "sha256": "84b5f3d4fc6f5964e834b644f90a4e81dcc84652f536e9b0ebdf9ea54c04714e"
+      },
+      {
+        "href": "xhtml/copyright.xhtml",
+        "sha256": "c863e64e1b1d01e2d4afb680f45a7d6d253f801f57fc4f7cb6f4d27ec4938059"
+      },
+      {
+        "href": "xhtml/anoteonthetext.xhtml",
+        "sha256": "3546fe38be60ff4ef35f06231b113bca58442fd99a0cbbe41e78b034f63fc285"
+      },
+      {
+        "href": "xhtml/contents.xhtml",
+        "sha256": "6e70aa1fe799dc474bd6cd3d93260e9ba34daca8029c5ee342a7976f6457d9fc"
+      },
+      {
+        "href": "xhtml/introduction.xhtml",
+        "sha256": "df9a86714dd0f02837c7c9ea1f6974c1b0589a7a08513c70630789628bc93e6d"
+      },
+      {
+        "href": "xhtml/chapter1.xhtml",
+        "sha256": "0df8131eddad620bdaa5513fc9650ffed9370cfacc6eb26e528e3cdb1ad8a6be"
+      },
+      {
+        "href": "xhtml/chapter2.xhtml",
+        "sha256": "7c81e49ef696bddab1130100396f2e89f60d3921316799de6025c8099171438b"
+      },
+      {
+        "href": "xhtml/chapter3.xhtml",
+        "sha256": "0c08c67e6c5ee5c6fd0f685407a344284a46beb557b7d61a41ef4f2b4243e018"
+      },
+      {
+        "href": "xhtml/chapter4.xhtml",
+        "sha256": "af97d5015d9972718939eac572fa2a738cbc44f6a390ece79387cf032a627080"
+      },
+      {
+        "href": "xhtml/chapter5.xhtml",
+        "sha256": "9f4c4b2f32a73e35435c3567df5bd00618a1765604dfbeecf9cbbf8ed581b375"
+      },
+      {
+        "href": "xhtml/notes.xhtml",
+        "sha256": "6e82c568613bb2b29d1d240310ccee6407ae6645667b071623472d5741c161ca"
       }
     ]
   }

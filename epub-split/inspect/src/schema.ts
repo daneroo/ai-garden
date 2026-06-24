@@ -83,11 +83,13 @@ export const manifestItemSchema = z.strictObject({
 });
 
 // sha256 is hex-encoded sha256 of the raw zip entry bytes (UTF-8 string via the
-// parser's archive layer). null means the item could not be read (extraction
-// failure is recorded, not a hard error). Ordered parallel to content.spine.
+// parser's archive layer). The sentinel "<unreadable>" means the item could not
+// be read (extraction failure recorded, not a hard error). Using a sentinel
+// rather than null means two parsers that both fail the same item will "agree"
+// on the sentinel value. Ordered parallel to content.spine.
 export const spineHashItemSchema = z.strictObject({
   href: z.string(),
-  sha256: z.string().nullable(),
+  sha256: z.string(),
 });
 
 export const contentSchema = z.strictObject({
@@ -183,7 +185,7 @@ export type ParserOutput = z.infer<typeof parserOutputSchema>;
 // Like ParserOutput, the sha256 is the on-disk path key
 // (comparisons/<sha256>/<parserA>--<parserB>.json), never a stored field.
 
-export const COMPARISON_RESULT_SCHEMA_VERSION = 4;
+export const COMPARISON_RESULT_SCHEMA_VERSION = 5;
 
 // Five mutually-exclusive per-field outcomes. `a`/`b` are the values from
 // parserA/parserB. Human-readable reports never print a/b — they name the
@@ -229,14 +231,14 @@ export const manifestComparisonSchema = z.strictObject({
   onlyInB: z.array(z.string()),
 });
 
-// Spine hash comparison: ordered, position by position. "agree" = all non-null
-// pairs match AND counts are equal. matchCount + mismatchCount + nullCount = total.
-// nullCount covers positions where at least one side failed to extract.
+// Spine hash comparison: ordered, position by position. "agree" = all sha256s
+// match AND counts are equal. The sentinel "<unreadable>" is treated as a
+// regular value — two parsers that both fail the same item agree on it.
+// matchCount + mismatchCount = max(countA, countB).
 export const spineHashComparisonSchema = z.strictObject({
   status: z.enum(["agree", "differ"]),
   matchCount: z.number().int().nonnegative(),
   mismatchCount: z.number().int().nonnegative(),
-  nullCount: z.number().int().nonnegative(),
 });
 
 export const comparisonResultSchema = z.strictObject({

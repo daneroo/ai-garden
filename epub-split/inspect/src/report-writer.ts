@@ -251,6 +251,8 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
   let manifestDiffer = 0;
   let spineHashAgree = 0;
   let spineHashDiffer = 0;
+  let totalSpineItems = 0;
+  let totalDistinctHashes = 0;
 
   for (const entry of input.inventory.entries) {
     const aOpened = isOpened(input, entry.sha256, pair.a);
@@ -270,6 +272,9 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
         else manifestDiffer += 1;
         if (result.spineHashes.status === "agree") spineHashAgree += 1;
         else spineHashDiffer += 1;
+        const aHashes = input.parserOutputs.get(entry.sha256)?.get(pair.a)?.content?.spineHashes ?? [];
+        totalSpineItems += aHashes.length;
+        totalDistinctHashes += new Set(aHashes.map((h) => h.sha256)).size;
       }
     } else if (!aOpened && !bOpened) {
       neitherOpened += 1;
@@ -322,6 +327,8 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
     "|---|---:|",
     `| agree | ${spineHashAgree} |`,
     `| differ | ${spineHashDiffer} |`,
+    "",
+    `distinct sha256s / total spine items: ${totalDistinctHashes} / ${totalSpineItems}`,
     "",
     "## Not compared",
     "",
@@ -564,17 +571,14 @@ function describeManifestDetail(pair: ParserPair, manifest: ComparisonResult["ma
 
 // One human-readable clause for a spine-hash mismatch in the mismatch list.
 function describeSpineHashes(hashes: ComparisonResult["spineHashes"]): string {
-  const total = hashes.matchCount + hashes.mismatchCount + hashes.nullCount;
-  if (hashes.nullCount > 0) {
-    return `spine-content: ${hashes.nullCount} item(s) unreadable of ${total}`;
-  }
+  const total = hashes.matchCount + hashes.mismatchCount;
   return `spine-content: ${hashes.mismatchCount} hash mismatch(es) of ${total} items`;
 }
 
 function describeSpineHashesDetail(hashes: ComparisonResult["spineHashes"]): string {
-  const total = hashes.matchCount + hashes.mismatchCount + hashes.nullCount;
+  const total = hashes.matchCount + hashes.mismatchCount;
   return [
-    `${total} spine items: ${hashes.matchCount} match, ${hashes.mismatchCount} mismatch, ${hashes.nullCount} unreadable`,
+    `${total} spine items: ${hashes.matchCount} match, ${hashes.mismatchCount} mismatch`,
   ].join("\n");
 }
 

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -201,6 +201,80 @@
         "id": "titlepage1",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "cd11a31bf0d3353c48d633b2ec9fef84daa25a80e1f9aaa70d1cad991682d52f"
+      },
+      {
+        "href": "OPS/title.xml",
+        "sha256": "a1e3dbce13bab5e232c98ba0276214cd2dd82a19ccce122ffed7b7aa551feb36"
+      },
+      {
+        "href": "OPS/about.xml",
+        "sha256": "ff7e785636a2d0e01c526acc41986ca51642bcba85f4c02523eacf93c0a2772d"
+      },
+      {
+        "href": "OPS/main0.xml",
+        "sha256": "ce9cc3de8127495c212091ec9a29ce332d3df0ba6521eed9d2ecac078f375684"
+      },
+      {
+        "href": "OPS/main1.xml",
+        "sha256": "1a21fd4505ff6379a356a21cf16a8b5445dcca07bc8e3accc18684d8c7145fa9"
+      },
+      {
+        "href": "OPS/main2.xml",
+        "sha256": "1605045ebe5bf5dd0e9db0aa1c51ff63286909d3ab24a771afc295351618910a"
+      },
+      {
+        "href": "OPS/main3.xml",
+        "sha256": "feaf5ae131b07c2e78c6184546f4a02189f449fb8586081761ba65a92bada89c"
+      },
+      {
+        "href": "OPS/main4.xml",
+        "sha256": "9bb3cc24ba5fc3b8f60ee1ad17e6bafbe17cd446b01fec7b6bcb367e0e1b3f00"
+      },
+      {
+        "href": "OPS/main5.xml",
+        "sha256": "878e407727c760f5aeae2d3b50a484faa86cb7fb70ccb8b3f9da5eb63e3d1f17"
+      },
+      {
+        "href": "OPS/main6.xml",
+        "sha256": "643efce0074cd5f5e5097f408952ad18e8b1f3136351f68ea3cd30c562892ea2"
+      },
+      {
+        "href": "OPS/main7.xml",
+        "sha256": "b1de8be10b0f59408415278190efba323c32d2c5481a3f464d5a49b3b7f02caf"
+      },
+      {
+        "href": "OPS/main8.xml",
+        "sha256": "76e1c5bf80e87692bd058d53cd673c016bbaf812cc4fd0f747ed7c5a5dff78ae"
+      },
+      {
+        "href": "OPS/main9.xml",
+        "sha256": "03e4ba349cae28f6345d835f297b36654f03fedc9cba93e9c50a1bd5086ef586"
+      },
+      {
+        "href": "OPS/main10.xml",
+        "sha256": "405515f817c17c98d896d9b6e2c0f7d746647c15eb20851c55ea8b1270d01d1a"
+      },
+      {
+        "href": "OPS/main11.xml",
+        "sha256": "f570bc45e68c76ced7ef26f6337f1a08fb13f2ef3c568b852535e2221af35ab9"
+      },
+      {
+        "href": "OPS/main12.xml",
+        "sha256": "5ee611e31aca86a8e94490103600aeeb15d45de3c6124d28e17880f5da61a837"
+      },
+      {
+        "href": "OPS/similar.xml",
+        "sha256": "a7f82af53b09fc73dde467b88f53b59c652e126019aa6dce57fa3ea7c06a085b"
+      },
+      {
+        "href": "OPS/feedbooks.xml",
+        "sha256": "ca4b9cd4a4dbcdd5329cbc5553a707083ee5555f3ba845da3233d9889f4fddef"
       }
     ]
   }

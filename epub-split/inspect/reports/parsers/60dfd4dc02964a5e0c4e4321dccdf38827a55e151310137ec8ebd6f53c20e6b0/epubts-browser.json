@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -73,6 +73,28 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "7110dc761fe77ed2efbafb0fd861ef8c114dbe5e9957193d9a1b591fec7e69de"
+      },
+      {
+        "href": "Cook, Glen - Black Company 03 - The White Rose_split_000.htm",
+        "sha256": "af0aa496214f30b37963f86ff93f85ce035400a6239ffab39443d7bed5b82cc0"
+      },
+      {
+        "href": "Cook, Glen - Black Company 03 - The White Rose_split_001.htm",
+        "sha256": "b9232449563be5a8eba7779eea7f6ce6de49587f9a5a2c857f5c10a95b18d5ee"
+      },
+      {
+        "href": "Cook, Glen - Black Company 03 - The White Rose_split_002.htm",
+        "sha256": "9899a7cb6268aac9ccfe9181f0d30544c84a68e94c1cacc32d8f142c123c2fba"
+      },
+      {
+        "href": "Cook, Glen - Black Company 03 - The White Rose_split_003.htm",
+        "sha256": "76f3d6bc4fb5afa387f58bcba450a749616404dadaef6f9049dd5486bbc896ce"
       }
     ]
   }

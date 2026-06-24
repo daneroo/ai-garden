@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -875,6 +875,284 @@
         "id": "toc",
         "href": "toc.ncx",
         "mediaType": "application/x-dtbncx+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "af593a84b49e27c296279b2740a50afec1cfcad7b1dd0fb0dc5b92fb9d74bf06"
+      },
+      {
+        "href": "ebook_01.html",
+        "sha256": "8a9476f1f0752c89b0fc1aa19ad1979c393cb04ba831dcbf905777fa5d6d22d5"
+      },
+      {
+        "href": "ebook_02.html",
+        "sha256": "b7d448dca68fb48d313c8f4c7084393083ea16e3bcedca5b5ed301b372b860f8"
+      },
+      {
+        "href": "ebook_03.html",
+        "sha256": "62d7b66d5d7228d4599785ca0a189ac4e23179eccc0c92c3df6877642472d678"
+      },
+      {
+        "href": "ebook_04.html",
+        "sha256": "2ebdb7d6b7bc07d4fcf5c287ed64b72394db2bdffcc9e23eac7399464027257b"
+      },
+      {
+        "href": "ebook_05.html",
+        "sha256": "9b9afb600d171ae30b0e6b1ca3c28e9cbb89278ae3cae328a29d3c703ad75229"
+      },
+      {
+        "href": "contents.html",
+        "sha256": "f9ad7bcdc46d2ea19876613bfc797076f98e47aa1df7bea3c3c75b56da60dd28"
+      },
+      {
+        "href": "ebook_06.html",
+        "sha256": "d470e7cc961ce5942f64e37402ef83eeb63fe5980853eef77a9c7809c55675af"
+      },
+      {
+        "href": "ebook_07.html",
+        "sha256": "e0ec35e57db04ceef20b7ebb3d71a1c632078f967fb2848bde2f0bb4837c116e"
+      },
+      {
+        "href": "ebook_08.html",
+        "sha256": "0853a2009256457dd291a6eeeeb3eb4493dce6455e3eced7c0c30d2ca581ced4"
+      },
+      {
+        "href": "ebook_09.html",
+        "sha256": "d9447482b663c48441908f9ee26f9e2498d3cb2fdca613b9ff9e7c7e1c56136c"
+      },
+      {
+        "href": "ebook_10.html",
+        "sha256": "c283a0c1e8379bb1eb3160eccc3581817409f58d9f29281a9795d74e8cf8b038"
+      },
+      {
+        "href": "ebook_11.html",
+        "sha256": "c5f32907c77bd0f42f61534acf0cec9e602f609a0260851fe1ec68f5d119f104"
+      },
+      {
+        "href": "ebook_12.html",
+        "sha256": "5950ce45f97cb49ce810a0ffc50314cca37271a04ef592fdec713ca87e5e56a2"
+      },
+      {
+        "href": "ebook_13.html",
+        "sha256": "fa76d1aab98c8119a388ae4186eef70b38c97c002520405a567d06d9eab8b073"
+      },
+      {
+        "href": "ebook_14.html",
+        "sha256": "6262a8b2e665dbd0e1d1a23e439a7d7d2baabfc37b717779aaf8a968b45c828a"
+      },
+      {
+        "href": "ebook_15.html",
+        "sha256": "6df90648ff8b6b5bd3758b5a9f27f51dc3ca78958dcdbe36238a545f4eb623cd"
+      },
+      {
+        "href": "ebook_16.html",
+        "sha256": "84fc60f048991447317d94c5f78abda3c1e6d5c5bcabef8cf35150ade83e2c9b"
+      },
+      {
+        "href": "ebook_17.html",
+        "sha256": "8b0b9d3df94b13f2128a495546625cc1ace8125d965646de042771c74cc1f849"
+      },
+      {
+        "href": "ebook_18.html",
+        "sha256": "2e37513c162a85390e8c36a61a521dd03afd837d9aac31a053e509e5a5df6661"
+      },
+      {
+        "href": "ebook_19.html",
+        "sha256": "2c673e16692dc206d2b7624a69908bb673a67e1ef2a278c19824a5bceff32a3d"
+      },
+      {
+        "href": "ebook_20.html",
+        "sha256": "abb13764ccfedaa8c6efdd06704291561a9b5bbfae15ecf6cef48edc3c927fe0"
+      },
+      {
+        "href": "ebook_21.html",
+        "sha256": "d57914916134b4a9497dc3117c330e68ff44f944ceb4887215c8f3ee0bcdcf12"
+      },
+      {
+        "href": "ebook_22.html",
+        "sha256": "94dcb256f785f27db9cf3550ad5d3a6724dbf3d0e8e8a5c5f57f0784dee26dce"
+      },
+      {
+        "href": "ebook_23.html",
+        "sha256": "ea13cfc8f728773b8b88d1d49dd2d831f36f00abe7c1d4a951f290eb6b4097df"
+      },
+      {
+        "href": "ebook_24.html",
+        "sha256": "995a51e65a40044d401f80405f7cfc3ba476efe2b5465fd1d6a6adc377e3cc4a"
+      },
+      {
+        "href": "ebook_25.html",
+        "sha256": "238e45514c2e35c00fbe01c4a45e6db33c32becef23190e87ec640f8f7d4ca98"
+      },
+      {
+        "href": "ebook_26.html",
+        "sha256": "359aba6a41d26eace3827c070ed8dce0651dda35f259437c9b4bc584db4c2d76"
+      },
+      {
+        "href": "ebook_27.html",
+        "sha256": "aadce777fb850254dfee72a1207225255397f13d08d0d94a324e375c6cec47f5"
+      },
+      {
+        "href": "ebook_28.html",
+        "sha256": "2dda27989b00d65bfeaa85fcb5cdc2fde37ebdee1fbee14b603c51496d6791df"
+      },
+      {
+        "href": "ebook_29.html",
+        "sha256": "1940ce9703796f4172b3317f875d006bcb2e082a433d92cc38e203d59ee9bf14"
+      },
+      {
+        "href": "ebook_30.html",
+        "sha256": "5e1599cacbd42be39274d8ee56148cffddee0d4f79ea004672d31acb07de37e3"
+      },
+      {
+        "href": "ebook_31.html",
+        "sha256": "2b34caee2294ab1c287782b41996c014c166242f8daf9c2c078ab66663912d47"
+      },
+      {
+        "href": "ebook_32.html",
+        "sha256": "76122c990c990de125e2f62cf119516934d103da33f66a39259b8c8bbbff47c6"
+      },
+      {
+        "href": "ebook_33.html",
+        "sha256": "07ca38c504e07bbd12ba22591370613d706cce89529049ddeb0b8a365e2ef9bb"
+      },
+      {
+        "href": "ebook_34.html",
+        "sha256": "5545b712edd7aed86038edef1455e4ee535d472092d785ae665f640a528dd2fb"
+      },
+      {
+        "href": "ebook_35.html",
+        "sha256": "e2e908d892509262762a484b756047f5a3c6ec09d96a49d17817d34e67e2b1d1"
+      },
+      {
+        "href": "ebook_36.html",
+        "sha256": "51f6f62b753aca4116a7246d4477371400d4de408ae295333b93874558c44f84"
+      },
+      {
+        "href": "ebook_37.html",
+        "sha256": "e7f064bdc295c630535382bdf0525731c5119b4f4090aa035b8d20ef69d1a40f"
+      },
+      {
+        "href": "ebook_38.html",
+        "sha256": "38a40a43f8176769e382949361ecabf11407282df9e8292e457d2d9af05d5d6a"
+      },
+      {
+        "href": "ebook_39.html",
+        "sha256": "82c0b44d2b2e2197c517d265753e1cd2bc1d3268c50ca7b4796b84e11af47fc0"
+      },
+      {
+        "href": "ebook_40.html",
+        "sha256": "607b59f14a49bb9b02764156b8aa5de6d7126e6ed8d0134cc956173b1d0ebede"
+      },
+      {
+        "href": "ebook_41.html",
+        "sha256": "ac21b1ed75f45dc71d4ad8252e2a3de3c039adb748f45d270d966be26b493a6a"
+      },
+      {
+        "href": "ebook_42.html",
+        "sha256": "356bbe030d9f769a9fd0254173bc3a0b283d3f38138ddfe50d7c724830d44605"
+      },
+      {
+        "href": "ebook_43.html",
+        "sha256": "c35f2bce96641c8fc0c1721370c28c82bc881ad436dc350e7c78540d44e04b04"
+      },
+      {
+        "href": "ebook_44.html",
+        "sha256": "f843f34bf1b903f06ea8ad716d8b35d90ca674e9b9b1ff1313f82edfcab2199b"
+      },
+      {
+        "href": "ebook_45.html",
+        "sha256": "bdc8f399745f5c05b13993e1ffb1cec92ec537e18511bb443cabb06b9daf12b1"
+      },
+      {
+        "href": "ebook_46.html",
+        "sha256": "1f7bdddea1eacbd512af936c1cf124f33951e1ed4ae99619d5eb697b0424daf6"
+      },
+      {
+        "href": "ebook_47.html",
+        "sha256": "bbfd8aad3eb899ac5206763160d0c19c34f4e2b48cb940fdbae23eabb35dd606"
+      },
+      {
+        "href": "ebook_48.html",
+        "sha256": "f33bb006c86424b9bcd7644638e2eda5f07a47a5e635be07ea6cad9e91fe439b"
+      },
+      {
+        "href": "ebook_49.html",
+        "sha256": "2394e08b85dc616c59938793973f19ca50e4c0cb4508745bee6859b0d013117f"
+      },
+      {
+        "href": "ebook_50.html",
+        "sha256": "ec9dae39aca12267aa66450bc4d1f2fdec9d4f1c11e41e159bd1a8e4b2a9f672"
+      },
+      {
+        "href": "ebook_51.html",
+        "sha256": "667c4b35240585b7c91877d6e8c0ff00625d27a69cb9d0c46235dddfaa800919"
+      },
+      {
+        "href": "ebook_52.html",
+        "sha256": "dfbcb1dfd29838728b449b169711e64daa8460fcf80fc7e043fba0102b215ecf"
+      },
+      {
+        "href": "ebook_53.html",
+        "sha256": "bf23a8b46cc2fe5951be8fd5d245848cb0fd4eb2f052b538b219e0d1908b8843"
+      },
+      {
+        "href": "ebook_54.html",
+        "sha256": "4d2d708dc0cac38418517f75294a853f6d7917167e3a37d7a08659c88bfacc94"
+      },
+      {
+        "href": "ebook_55.html",
+        "sha256": "b33c43fa4d1c69a602dadaa45d0282aece97ba6673be921d9895a89239555691"
+      },
+      {
+        "href": "ebook_56.html",
+        "sha256": "40e326784a31da93416fa58ce99ee07f511e8812752cb9a40d32b92e0273e908"
+      },
+      {
+        "href": "ebook_57.html",
+        "sha256": "4f5800e71a4ba419d16276de4b9c499f46aca4139e5b37875cc9887e4642ba84"
+      },
+      {
+        "href": "ebook_58.html",
+        "sha256": "bf31e828a100d2f73b41df2d4c46bc08823d6a488a1a81b157a58901498d63a0"
+      },
+      {
+        "href": "ebook_59.html",
+        "sha256": "d0885c690d93d019f67b7df5ad037d78a38405b55e818fa3c773f3207c10e986"
+      },
+      {
+        "href": "ebook_60.html",
+        "sha256": "c7334e8da927be1ded24c8520ca591cabe70f927e2c38fbab64f385716238caa"
+      },
+      {
+        "href": "ebook_61.html",
+        "sha256": "6fa5eb7e84dd934a5cb312769b2618662a3a9734220066d7733fcf1dbcb87aac"
+      },
+      {
+        "href": "ebook_62.html",
+        "sha256": "721c42c0e411e94e59b4341e7938466568d8f10a0f87aec798ca29f276211c95"
+      },
+      {
+        "href": "ebook_63.html",
+        "sha256": "c660301ea78574dd8bcc60c07f0390a69a657dfed5e428d2c2b995d47631b8af"
+      },
+      {
+        "href": "ebook_64.html",
+        "sha256": "9ed75f16a930aa9388509c677cfaf224552b47ef37313d01aa69c634a3904788"
+      },
+      {
+        "href": "ebook_65.html",
+        "sha256": "04c7fdcadfc67029d74dce29ee87bf5c544e8f4bf9f9b9f2d3f1495533246c90"
+      },
+      {
+        "href": "ebook_66.html",
+        "sha256": "c8f2cda1337c981a515b8884b07f81d4a01cf404e9d9dcdfdc1bdd8c4fb17097"
+      },
+      {
+        "href": "toc.html",
+        "sha256": "b7ab67afc32b246f22dbf6edbc5110cb26f5d3086b53c975332710f87b0d2f09"
       }
     ]
   }

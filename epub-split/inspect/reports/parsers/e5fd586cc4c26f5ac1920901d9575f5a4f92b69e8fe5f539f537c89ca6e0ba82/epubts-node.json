@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -245,6 +245,84 @@
         "id": "title",
         "href": "Text/title.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "Text/cover.xhtml",
+        "sha256": "f6934dfd97c82c84bfb4e2405612c472a424e02eca50f6897d8516dab53b9274"
+      },
+      {
+        "href": "Text/title.xhtml",
+        "sha256": "7f69ffa5c631b4eba86291727601a7105b3810d26b96531c40a34b8593747d97"
+      },
+      {
+        "href": "Text/copy.xhtml",
+        "sha256": "9e87adeea37a35db7421c40c2a6851635b4f6e2d5b0b3d1591d0ccba0064d5c4"
+      },
+      {
+        "href": "Text/foryeal.xhtml",
+        "sha256": "383527ac0b771035318f7a3860262160a0bf55a4359f34ea165b6e7465ef8c52"
+      },
+      {
+        "href": "Text/contents.xhtml",
+        "sha256": "6b8fa889baadaf05f5aec1db274e1f8ecbbe0eb517f0acc9c24467aa55a227ad"
+      },
+      {
+        "href": "Text/fm1.xhtml",
+        "sha256": "022991319c20af1a4a3c91e889f82753d36ea49ea5c42610f4389360dc851b9f"
+      },
+      {
+        "href": "Text/introduction.xhtml",
+        "sha256": "7f4554348d5bbf674ead02d1eb9370ceb9cdc27b079b0af55f7a3c91ec8667be"
+      },
+      {
+        "href": "Text/ch01.xhtml",
+        "sha256": "3adb27558a533b9b2e321459b29617f8639e9bc67bcf2935e8f87c96427aa2d2"
+      },
+      {
+        "href": "Text/ch02.xhtml",
+        "sha256": "3509b8a77470026dc230f19fec8ad07ce8f51645913fb50241fb3bcfbe3b2dd7"
+      },
+      {
+        "href": "Text/ch03.xhtml",
+        "sha256": "f294a718861126aecc069b515f456be322cf417dd37991b702e8909c9adf65b6"
+      },
+      {
+        "href": "Text/ch04.xhtml",
+        "sha256": "f00ebdec9f20e8320f7f03d815f691632755a30f5018c3e63ad8c065cfb958f6"
+      },
+      {
+        "href": "Text/notes.xhtml",
+        "sha256": "75c623b92da617b7da8db562d2282ce738575bb0d02f1115cfc5fe34852d5ece"
+      },
+      {
+        "href": "Text/sugg.xhtml",
+        "sha256": "022a436f669be7f64d82a3da8b410d34ff398c58667353d5a109269df7b927a5"
+      },
+      {
+        "href": "Text/ack.xhtml",
+        "sha256": "03566f51d63b77ae4931f38da708626bc54a8c6a921973a43ecd64eabeca2098"
+      },
+      {
+        "href": "Text/index.xhtml",
+        "sha256": "e4a52cf52e88f723efe226f8ac69f154c6d1394e53ef8b7777e8bbb3492266f2"
+      },
+      {
+        "href": "Text/praise.xhtml",
+        "sha256": "ff97f27fdcb8f6a374a01d090907db299bce13d199c3c44d7360afa6345bce9a"
+      },
+      {
+        "href": "Text/published.xhtml",
+        "sha256": "f21ac2e7e44c8801e466e183e21b816d2f23afbf561f6aea22e5aa0375f939f2"
+      },
+      {
+        "href": "Text/forth.xhtml",
+        "sha256": "a9eda01102162ddf184822d748fcf89c7ca3a30da9fbf5d33cc8f4ad2e1488a2"
+      },
+      {
+        "href": "Text/byrebecca.xhtml",
+        "sha256": "9aac8013624fa039152028fbd9131dd0b15ef2edea37d59a200d208ab79b7090"
       }
     ]
   }

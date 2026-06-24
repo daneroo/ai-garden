@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -170,6 +170,64 @@
         "id": "toc",
         "href": "PlayerofGames_toc.html",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "cover.xml",
+        "sha256": "42099e57c14724da51d65371bae21e60abb00a330a44c8645d18cd54ef851017"
+      },
+      {
+        "href": "PlayerofGames_fron-1.html",
+        "sha256": "8fa12ae3d535ab4d8f430e6fbcd62ce2e7336c9efa1fccf1e27d25570a6e053c"
+      },
+      {
+        "href": "PlayerofGames_adca-1.html",
+        "sha256": "a76938b2da8295c958a3d6f0d0172e9cf615501a54fccc47ea3a8620f4201550"
+      },
+      {
+        "href": "PlayerofGames_copy.html",
+        "sha256": "4bb24d561f1a8714f24c5a80b36fc9932d6c1232f9cd401d25d125e986445e63"
+      },
+      {
+        "href": "PlayerofGames_toc.html",
+        "sha256": "7585f0c8b7b7225593a24da83f19096a13bdb6182c198a3c8fb342bfeca9a4db"
+      },
+      {
+        "href": "PlayerofGames_chap-1.html",
+        "sha256": "02ca34bb7b1a6c592808f81e1a7511abc191e6b74cd24c7d050043b94b160654"
+      },
+      {
+        "href": "PlayerofGames_chap-1a.html",
+        "sha256": "ddae4effae8079eb5ef37a93cf472773b6e4f63c1c6a20e45dd3bd97431272e1"
+      },
+      {
+        "href": "PlayerofGames_chap-2.html",
+        "sha256": "da11f8ac883397cfdfe18e972c11ddbf4c96bb481891e79fe8a1e326c99bc2b8"
+      },
+      {
+        "href": "PlayerofGames_chap-2a.html",
+        "sha256": "e64b8a760c6d1c28a5ddc615df4b36faed8e3a35b5071bc41f314c0710b78d7a"
+      },
+      {
+        "href": "PlayerofGames_chap-3.html",
+        "sha256": "fee9daa4c0aa88d54585cb9d4c83ae9ee0a654f07c9785b52925d720edb33fc1"
+      },
+      {
+        "href": "PlayerofGames_chap-4.html",
+        "sha256": "ab02b1e11e81052054e284ac0be800bc79dc30e3aaf09dc7bd826cb33f7037fb"
+      },
+      {
+        "href": "PlayerofGames_appe-1.html",
+        "sha256": "1cbafd04afdbb268616487d4e1d7b744e08958b7199659e03a99174ee36725ce"
+      },
+      {
+        "href": "PlayerofGames_auth-1.html",
+        "sha256": "6f0938da8b479be006a4f65728808e8e775c2acf77a0565fd184ae9a759d3a47"
+      },
+      {
+        "href": "PlayerofGames_teas-1.html",
+        "sha256": "317847a2a91746525369082b1c06eeac284b04e7bd727a68a92f12cbf2e440e7"
       }
     ]
   }

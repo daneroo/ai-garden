@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -136,6 +136,36 @@
         "id": "x02.xhtml",
         "href": "Text/02.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "Text/Cover.xhtml",
+        "sha256": "7e98466b0d700aff262b173f98df5509c8be389e9b8b7ccf0d6c2e908f8f1587"
+      },
+      {
+        "href": "Text/Synopsis.xhtml",
+        "sha256": "63d1f5158f38328cc17198f1892cd9f3c3878891a2df4b3509f895cb878d7678"
+      },
+      {
+        "href": "Text/Title.xhtml",
+        "sha256": "bcf89bc2f1b7029fdbde70171da2a454d27c3b03ea2af65fc1152eff77a7fe2b"
+      },
+      {
+        "href": "Text/info.xhtml",
+        "sha256": "5eb9b4c239105a74f3660f13d2c44ecceb59daffeebf149fae758675c5568b67"
+      },
+      {
+        "href": "Text/01.xhtml",
+        "sha256": "76b6a3afe32c7ba5e5a56a9f3501db85d7c6e8d95473f6be4951e68354a8d282"
+      },
+      {
+        "href": "Text/02.xhtml",
+        "sha256": "d2aeab96de6d88d09a59a814712cd7a64492110120cadc0322082f2d19e7c026"
+      },
+      {
+        "href": "Text/Author.xhtml",
+        "sha256": "6f145a0fc2bfc2e71750f37194b91fbf6005484880802fadf27bd654b03976e4"
       }
     ]
   }

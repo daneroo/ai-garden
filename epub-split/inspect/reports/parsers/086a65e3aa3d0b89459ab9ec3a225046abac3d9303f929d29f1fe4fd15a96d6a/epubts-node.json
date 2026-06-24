@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -350,6 +350,144 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "75fd3347860348544e12ce68aecaed0c2d8f9301d086a73ecf1ca6987d32bbe9"
+      },
+      {
+        "href": "book_split_000.html",
+        "sha256": "3ebd2b3e98900352e7e39cf215d1baeb8d5f96c9a8966d51365da406fc517684"
+      },
+      {
+        "href": "book_split_001.html",
+        "sha256": "8bcc0a151cdf366ca5c10469db1f2fa39ab888e7e06f21adf6ccca90b46e63b4"
+      },
+      {
+        "href": "book_split_002.html",
+        "sha256": "573487edc53cbab5eb24136d9bd2cbae6d3732acb903553dbfe23eca186372ed"
+      },
+      {
+        "href": "book_split_003.html",
+        "sha256": "6e0ddef4021f4c24e56decbc5e07648595434f500bb558868e0773aa8246d17f"
+      },
+      {
+        "href": "book_split_004.html",
+        "sha256": "607afbad425bfd018af2c3ecf4c9474cdc9f8c88c3821fb037815e05d9597236"
+      },
+      {
+        "href": "book_split_005.html",
+        "sha256": "db4afcc84b0d8f8dc1d1e0378246f4cbeb2ca9749f9d5a11d485489643d3741b"
+      },
+      {
+        "href": "book_split_006.html",
+        "sha256": "7d555edfe8b78341efbab722189904847f889e096c5c708dd0514340ea250ac6"
+      },
+      {
+        "href": "book_split_007.html",
+        "sha256": "c7c7868233a5f0f339c0eb214685fa4d975ed1c436be22df025e338ce3f47410"
+      },
+      {
+        "href": "book_split_008.html",
+        "sha256": "b00ddc36b767f71bca3e07c6aae6bc6fe057738012052da945dc7cf2b15583af"
+      },
+      {
+        "href": "book_split_009.html",
+        "sha256": "6c8eccceb9cad0e697bca0fb9554ce03b36ca2e58313b7c828cd08fab400fcc5"
+      },
+      {
+        "href": "book_split_010.html",
+        "sha256": "2d62cf0e8863dcc6464b22196002f7e88b31a4cd79c5fb3a5ac12e4026bcc9dc"
+      },
+      {
+        "href": "book_split_011.html",
+        "sha256": "0e2808c33939cfc35c5458924f1c08b6ce93aba6da9e33cbf585e0a98d873007"
+      },
+      {
+        "href": "book_split_012.html",
+        "sha256": "39553ec8f96bf88412da86205a2da38c25794b8f83f44c8134078bd96b04c70b"
+      },
+      {
+        "href": "book_split_013.html",
+        "sha256": "70cf4b843d9040a4cac6427eb3aa822f33625b0fa82661c02be63ffcf43aab6d"
+      },
+      {
+        "href": "book_split_014.html",
+        "sha256": "66338924dd319b450e4c00268e5f65d95417cb72b79c5d6bbc29a322b56dccf4"
+      },
+      {
+        "href": "book_split_015.html",
+        "sha256": "7758e9f8fae9cf7b69f843fc5acb497197b9f572f43fe4a365fb612747605d4f"
+      },
+      {
+        "href": "book_split_016.html",
+        "sha256": "61d15301a3f15beb8a6cbc053fe265dbbf7cc73ba738e8c57e49a5cd6de7b8e5"
+      },
+      {
+        "href": "book_split_017.html",
+        "sha256": "fa380a9f522b5b8314dc8db2c768028e9885010c4a0cf06e5ea1efc72f72bbb8"
+      },
+      {
+        "href": "book_split_018.html",
+        "sha256": "786a35fd50ce42ddf8a908946754ec0eb4268190e72201c49781169445426564"
+      },
+      {
+        "href": "book_split_019.html",
+        "sha256": "66d90dd2b74273fa0d573e89f9eac8c8b6e977d7d355be5670d52994a0f12437"
+      },
+      {
+        "href": "book_split_020.html",
+        "sha256": "4e256a8220a266f309009d102d471f1e6f3ed4d9aeaddeeff97bbea0e7b4ce57"
+      },
+      {
+        "href": "book_split_021.html",
+        "sha256": "40502717973b3d7945759a7981364eea9cabb192157cd04e51995372d23e3fc2"
+      },
+      {
+        "href": "book_split_022.html",
+        "sha256": "ec79bf006aabd2df3bbebbcef0e589f84713f184555b50ba44c28ffa95625c86"
+      },
+      {
+        "href": "book_split_023.html",
+        "sha256": "6361459b85d43a22f16a68c04d424cf5ae938e1a8bba4f6ff3add1007fba52e1"
+      },
+      {
+        "href": "book_split_024.html",
+        "sha256": "6d1d6b2e54b74bde0ea86b48cfa7adfb19e6ac5088d3bbfb5174f72dfaa7b25e"
+      },
+      {
+        "href": "book_split_025.html",
+        "sha256": "75e2e6dabfbb9f3768d90c48b70b1b537cec13c1a44723abb86ed8c6c09fbceb"
+      },
+      {
+        "href": "book_split_026.html",
+        "sha256": "701fc97ce09a7702d24ef442208cfed9a9d210200bab6a53d8081e8e010a8fd1"
+      },
+      {
+        "href": "book_split_027.html",
+        "sha256": "48f51567053c83d8de7c2db770734d73ffa97113e9bd0fe14b0adcf6f712e9a9"
+      },
+      {
+        "href": "book_split_028.html",
+        "sha256": "5d8822e76f573ae3ee7ddcb6dd98dfec408255e9d79a674faa443e2a0f882c92"
+      },
+      {
+        "href": "book_split_029.html",
+        "sha256": "ccf0cb5017af261f3657ecc43533563cb7a736d7677598ae131a960276faa290"
+      },
+      {
+        "href": "book_split_030.html",
+        "sha256": "71d6fe4892d024a127bdcfb932f5f43038dfc131ae64375951735b59470bd07d"
+      },
+      {
+        "href": "book_split_031.html",
+        "sha256": "d636578bf753a4303a4b783f48afd0f7ecdfd3f28c9c44ac2f716f0bd4ddb443"
+      },
+      {
+        "href": "book_split_032.html",
+        "sha256": "fbcfb93cc69d0a52dde3553963fd0ac6ccd2c737e158eaeb735a4c65047e8fd4"
       }
     ]
   }

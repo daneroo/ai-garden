@@ -26,7 +26,7 @@ interface WorkerResult {
   };
   spine?: { href: string; linear: boolean }[];
   manifest?: { id: string; href: string; mediaType: string | null }[];
-  spineHashes?: { href: string; sha256: string | null }[];
+  spineHashes?: { href: string; sha256: string }[];
   category?: string;
   message?: string;
 }

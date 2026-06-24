@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -1491,6 +1491,620 @@
         "id": "titlepage",
         "href": "images/book2.jpg",
         "mediaType": "image/jpeg"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "text/9780062372604_Cover.xhtml",
+        "sha256": "4197eab00231fb34b53bc25b532bb3bc4c08665534ff684953b72bb19a6f6ecf"
+      },
+      {
+        "href": "text/9780062372604_Titlepage.xhtml",
+        "sha256": "a9fac140dcabe47dc29fcf25dc9427768b96f51893d00ec5da7e9c56f432f841"
+      },
+      {
+        "href": "text/9780062372604_Contents.xhtml",
+        "sha256": "dd06763f23c88fb9ff60a91484325c4119c6f98fd580556ee3e5df8f669487b6"
+      },
+      {
+        "href": "text/9780062372604_Also_By.xhtml",
+        "sha256": "258d10e087a96fd34b8338a367706edddbc54cae9088cf4576d610d5d17a5ee8"
+      },
+      {
+        "href": "text/9780062372604_Book1_Cover.xhtml",
+        "sha256": "7881603a66d736e91072dbcbe0a198f39b9d6f4578d9eb390c2286e96324d079"
+      },
+      {
+        "href": "text/9780062372604_Book1_Titlepage.xhtml",
+        "sha256": "7be5b0d08421fde7eac14a503e18bfb035fab773a048366d5287a0316b6b72c4"
+      },
+      {
+        "href": "text/9780062372604_Book1_Dedication.xhtml",
+        "sha256": "7eceb8552a54a8032ab853eee281b52bf753e59ea365d1e20934d9c3852080ea"
+      },
+      {
+        "href": "text/9780062372604_Book1_Contents.xhtml",
+        "sha256": "281f3c098108cf205d65716d90312a43ccea0f12d1e654f6e4130a7e4f713cd0"
+      },
+      {
+        "href": "text/9780062372604_Book1_Prologue.xhtml",
+        "sha256": "8278d4b62ea464de4a390a2f7198111b1fb50db012fb9e517eaa1eb247f3b463"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_1.xhtml",
+        "sha256": "a30d788fc4572f9f7cbf31ae0950b149505ff57963d23316730bc9ce7313e6b6"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_2.xhtml",
+        "sha256": "6d2103c737a7e73f9faa83a925d1821c8604b8b913a9cfa2c2784586bba9b5a1"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_3.xhtml",
+        "sha256": "b0cc4c89b2892d4b390ee78bbe0caff0692b5906ab5d30b3b1c28afdb48452b0"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_4.xhtml",
+        "sha256": "b0ea25a511ee8292dc2b3643325d24d4f4e1fb3ec6371f3618f3bf1ff240c06c"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_5.xhtml",
+        "sha256": "ae313f0f158c89c5b55dccc7c2ceef56f439c1c5b10230f06d3aed1873304e26"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_6.xhtml",
+        "sha256": "d533a0a3ad5d0c4bc996878c08aab83fc7d72ecb82df04973e4ca81cac220590"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_7.xhtml",
+        "sha256": "e1dc0ef4e0c9bc28f1906be9ea29313bb5f6f8ecc3b5befcdf22a8ff873a5e5e"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_8.xhtml",
+        "sha256": "07aa5e66a4d15ed39a82fbb9b7b694a3e01b58a4c0de999437fd110b6c4e97e9"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_9.xhtml",
+        "sha256": "8beebfa1edf5b3b7ea7072c33323a30c661f038964e6872acc686c6d79f89205"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_10.xhtml",
+        "sha256": "cecf7c372ab68b89bdc414d372c2ba15816d7d4df4266a4a57b204d2054cef5d"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_11.xhtml",
+        "sha256": "df4a8c27e6141cff554fea0ce2534f5ef16d538c8cc5e87c776158e314f5f646"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_12.xhtml",
+        "sha256": "e22b6609f3ea2598199daa6e9b471568e32976dbabdc15d653a4566e7b47d0ee"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_13.xhtml",
+        "sha256": "0329d55115fae33e79020e227d76ade5d4878fff0535d83ecc240459a1043c65"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_14.xhtml",
+        "sha256": "9f8526559d6c8a9dcd05fad864f72d8312c42e2b93660901f7300dae3666c446"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_15.xhtml",
+        "sha256": "9833d90abe5047e7fe958cc91d04faaf5ed0a5386c501f7a9de0304a05315c71"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_16.xhtml",
+        "sha256": "4591123813315e2c27aafe361cb01dd990b2426b969e42db81d60965031dfa97"
+      },
+      {
+        "href": "text/9780062372604_Book1_Chapter_17.xhtml",
+        "sha256": "8730d72d7a9591a7b9a2b28ee30b58b1c713f47d72b87e430f795dee370af42d"
+      },
+      {
+        "href": "text/9780062372604_Book1_Backmatter.xhtml",
+        "sha256": "270d107f96f240c3050928d8572919a55deb36e584ae231ad694203e8eae05f5"
+      },
+      {
+        "href": "text/9780062372604_Book1_Backmatter1.xhtml",
+        "sha256": "a445fe4ecdfb2311d4e0855dbf2f9c3a6afc92bcbeb151aeefc80da7164e0038"
+      },
+      {
+        "href": "text/9780062372604_Book1_Copyright.xhtml",
+        "sha256": "9e1d3aac9224d756f76d35f1b7073068426441ee744f520531dc904dc3e98fcb"
+      },
+      {
+        "href": "text/9780062372604_Book2_Cover.xhtml",
+        "sha256": "5767d0e7f7c9ddea90428367778d5338379ca3434a245a35cff0f46b8d8dd906"
+      },
+      {
+        "href": "text/9780062372604_Book2_Titlepage.xhtml",
+        "sha256": "e9116f9092c20fcfe1e17392444a084a8894e3f2f5c5ee2f230293b15c8bd678"
+      },
+      {
+        "href": "text/9780062372604_Book2_Contents.xhtml",
+        "sha256": "2868998e79dcfd03a243e0cd6f72911877bea6ec8d7d33d400565fabafb985bd"
+      },
+      {
+        "href": "text/9780062372604_Book2_Frontmatter1.xhtml",
+        "sha256": "fb5eb22b23bced4d0cc5b07b6ce45cbc4d7addd9624ede4f460c540279ae540a"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_1.xhtml",
+        "sha256": "f0347741161fd14e382cb8ef5d8bb0f45359a28869a0aefd6069dec0e792d0fc"
+      },
+      {
+        "href": "text/9780062372604_Book2_Prologue.xhtml",
+        "sha256": "6e5ae011499cd4a66ca4a11428a531135817463e1adaa0ba4f9e490c69ff42fd"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_2.xhtml",
+        "sha256": "586f329f67ff96d3518c9188e68be8bc12b91901b0b40e2d18b16da5dcb4fdba"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_1.xhtml",
+        "sha256": "9fd490fb4223f301bf8d33f4c1057758722f03eb62d9da67c895d83eb98433e6"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_3.xhtml",
+        "sha256": "92b4658c397e9a26e9b0f262e5e4cf4aa4fcee98734570bfd66264e2ad02dcb4"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_2.xhtml",
+        "sha256": "0d4edca556b1f533b4736fa60a87ef94ae1c2d75f89d0c98928bd1aeae193baa"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_4.xhtml",
+        "sha256": "42bbee050dbc55656419acb3d7347708d3869824fccf726efdbd00c7767963a4"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_3.xhtml",
+        "sha256": "09b74ddc3bdb91b16291ceac40e572bd0a7a6855d55c79aba12b05d95e61a9ab"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_5.xhtml",
+        "sha256": "1d8c934b509c52b538673801e3d58a60511db21d9b8485d121ce1a487d6c7fd5"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_4.xhtml",
+        "sha256": "66fd7f229b13169347f3d337952e31d051ff99d98fb9ebaebb8caf6cc6d23b83"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_6.xhtml",
+        "sha256": "2b7a5b35765fd789374a0d0b1e2795bf84eacc221cf36fddcf5a3c536bcd1038"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_5.xhtml",
+        "sha256": "1cb155cacb54b9e6846cfb62e3bf067ff2b552f674e3627eb2738b823d1311f9"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_7.xhtml",
+        "sha256": "ac357db7ffff68ddb1cddf53427ce2079468a38cb3e3d7723efd3e50bcf9d5d1"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_6.xhtml",
+        "sha256": "1873318ef03ddc6bcf07ccc3a606f8a03ed25ec737e4dab5c940d492da52476f"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_8.xhtml",
+        "sha256": "a1ce50c0089af35ea5e03781360df085437eeb175995e8e646ea86c24f0496c3"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_7.xhtml",
+        "sha256": "261e68554d72578b38e07ddf93cb3adf5d8ee7b8b605ed05c9a4e12afc43d51e"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_9.xhtml",
+        "sha256": "9a7ee97d2906de7d2bab42d3e6b906b62cb1d536673ca6b0b7002bf733121287"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_8.xhtml",
+        "sha256": "94175b346533f9d61e16fc066be66eea215ee6de61471fcba1b9537906efcc73"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_10.xhtml",
+        "sha256": "46b25be9790a1ea6b131dba0f292009c6592330ca87729677500a7495a6906a6"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_9.xhtml",
+        "sha256": "c1982b28be1e9a5291b87013d6a5b83fb9734e34dcc24a132f88bcf10103a677"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_11.xhtml",
+        "sha256": "bb8303588c3e09fc7c84293d957d334694951702b403162f48f463ed37374e89"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_10.xhtml",
+        "sha256": "93104c6232145f1f0c0a8259263c67fcfe43e4eb32a1589c497921111d127fc5"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_12.xhtml",
+        "sha256": "9cd7714e4266ae1bbd423163d456c84ecd378bd5265ecf83ccd63d6bb86caf4b"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_11.xhtml",
+        "sha256": "cf1f63a452a58f0a6e53f992e3aa4f9a06baf8244867efe17de579ef30beae06"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_13.xhtml",
+        "sha256": "0af6a6992e89dea5c8ffb1d4c3e321b50ef5e5f1d75173de10190ad1ab98fe81"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_12.xhtml",
+        "sha256": "5f7db97328c4a8b74c4b2bbf25cb55ab5aaededfd670c8d53e991b7430512b1e"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_14.xhtml",
+        "sha256": "828d1c1acb93ddd6190796f75f2119c2ee1e65b730b48928dcd9f806b8cd0320"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_13.xhtml",
+        "sha256": "1475663552c83529d9454ba2ae1e3a4fb93672c4c0f0cbfc49a378b9c98ad465"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_15.xhtml",
+        "sha256": "552d3d0b9b59f5dc582261a782136dc1117125820d0417b43e46fe773aad4a69"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_14.xhtml",
+        "sha256": "1bfbcf5b8a516d0d83d7d80fe0b31b43e9b8b4575368cb63b186c7829e349147"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_16.xhtml",
+        "sha256": "bdef68b3e46f44b75a388e8ff093d2a6ad50ac6f61df43c42be2a0e36dad26f0"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_15.xhtml",
+        "sha256": "b7db068c76e757766ac47eb8ce591a9c2972f8b1396113e18f8e3368ad21a9dc"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_17.xhtml",
+        "sha256": "51aaf9c293f2284c4ca521f3d53999685722b967ecad130bbd0675780b1e8e09"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_18.xhtml",
+        "sha256": "59ea88185932936783a2316eda0e81f63b5828018140d276fe6b4ef7f0cbf08c"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_19.xhtml",
+        "sha256": "ad0a3466c7a3565d134f39c4787651bffbf4c6c68d398ffa69eea89d2741a6c2"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_16.xhtml",
+        "sha256": "62ebb2dfe6b7209e8587624b9c7f82bfabeaf06c33acea9fb2d9077f2441437a"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_20.xhtml",
+        "sha256": "46321a91dec8ab5ae88c0cca00670e059954b1aae788b68a863c13db51482c0c"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_17.xhtml",
+        "sha256": "98e9d14c724ab09fd6f28ccb6ec82bfc1a9a332e0c9d9b239242b709c894b2e9"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_21.xhtml",
+        "sha256": "b34990498ec51f0e7452875ff65935b52c6b92e38e87adfcebfa41e09ba4bcef"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_22.xhtml",
+        "sha256": "61bd5cd78fa20c5cdf3a9ec218f66a60e082e46592c009604e258b6bbaccf543"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_18.xhtml",
+        "sha256": "6eb9256a1c8d256cbcaf97065a3cf0ed11926c355175c32d9de49e09f66433b2"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_23.xhtml",
+        "sha256": "291bba28181a4f20eeb617d6f5d87abc033e43594f8ef985442fbef7d25b28ee"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_19.xhtml",
+        "sha256": "9ebb0b17bce3b29db0b416b9de9dee959d6175d8252a2ee6a54a13dfc898b411"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_24.xhtml",
+        "sha256": "45f0aa2e117744b46e1f300746d36dc6aac8a897d72501e8e32dd63af46cea94"
+      },
+      {
+        "href": "text/9780062372604_Book2_Chapter_20.xhtml",
+        "sha256": "49c39b45ca8c7293b4d608a6fbaab653cd8d8c7a5d7c5d5bae72bbe8d7a67ddb"
+      },
+      {
+        "href": "text/9780062372604_Book2_Section_25.xhtml",
+        "sha256": "236b5da58d160db3d79e85c92cc7a56f0472191af3077f48282e255d0a080e5c"
+      },
+      {
+        "href": "text/9780062372604_Book2_Credits.xhtml",
+        "sha256": "3dc909f8d07f3e163ad95310673e1f452b4482b4bf1c1e0fdb43b9d4c3d4154b"
+      },
+      {
+        "href": "text/9780062372604_Book2_Copyright.xhtml",
+        "sha256": "f326922a41a5f1872d3096a241fed386fd2d75177eba9c6425b5f6447e5fe5e9"
+      },
+      {
+        "href": "text/9780062372604_Book3_Cover.xhtml",
+        "sha256": "dd91841859afb0a34c1dd9a41c1a49ade22cb186b24366b9f4ac7e3cbba38e78"
+      },
+      {
+        "href": "text/9780062372604_Book3_Titlepage.xhtml",
+        "sha256": "7c08dfbeb2396578ae781cfd4e0842a700c99d86007d8d81571e2a75aeec72d1"
+      },
+      {
+        "href": "text/9780062372604_Book3_Dedication.xhtml",
+        "sha256": "1358375d4d1df44902e21f310c21e23f7f7eac1a9f2c2a66d73f9ec2aa5353bb"
+      },
+      {
+        "href": "text/9780062372604_Book3_Contents.xhtml",
+        "sha256": "a3e35686889e6fa858a4a0100507fd28eaa908e1b81c5f3afdd8a2a2afe4e1b7"
+      },
+      {
+        "href": "text/9780062372604_Book3_Cast.xhtml",
+        "sha256": "5e11441090c6dde400e5ddaa95820aa1fb6d35ae532c9c10786d63022711f8c0"
+      },
+      {
+        "href": "text/9780062372604_Book3_Prologue.xhtml",
+        "sha256": "1eb7bcb2729ba02abe2b208de134e5238672a61ef1f7fa36b6092b2e45c43134"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_1.xhtml",
+        "sha256": "c7e9bc659dfab6bd433212cae5666902d71819ef0c3afa2496d669634fa7c91f"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_1.xhtml",
+        "sha256": "7b3ec9f721a9b88518e061515ff8ab6b368fa7a7156178221d2ae76dde28b1ba"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_2.xhtml",
+        "sha256": "032e8826c575952395d29b07ab874140020d5e0cf18ab97466c61d2e588b0e96"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_2.xhtml",
+        "sha256": "d301b3fb10707bfdc7d18c3137dcdd4ea5863c0adbdad74db3ac49e25ccd4d9b"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_3.xhtml",
+        "sha256": "7915ff918af432e6030c4282175a06d944f1eb1469d5149dc2b111450e25e397"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_3.xhtml",
+        "sha256": "91d68e9c494ff5ec946bb84b2196028d4471a1fa5fa31c8e016d64edff53593b"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_4.xhtml",
+        "sha256": "b41fbbebe7a99a599a37ef611b439895921672ea48b00b56bba20337efc43e12"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_4.xhtml",
+        "sha256": "3b2c9687b81442ec38d0aebe53e5afac5db8dec3829609987d6c49f2dc0a8f21"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_5.xhtml",
+        "sha256": "4a666993fbd9100d4179f15b320caa97c09a7bfb2ad6e99372fde3c159ea43fc"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_5.xhtml",
+        "sha256": "b681e534d3bc9857bedda72f9278f2e2ef8cce4f695afdceaf1b7f46ce467479"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_6.xhtml",
+        "sha256": "8a7a83d378379fa90b42c93a71880fdee34ace588f4fdf5b2f488834971b8234"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_6.xhtml",
+        "sha256": "d46bd39fd21c1103c75e1bd9169e65e57d8b2bae10fe7c4b0f16cd3c360a70e5"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_7.xhtml",
+        "sha256": "81553c7cf22cc6db41d2fdd3d5179a262463582e2a9d11e2d29023c2cfdb21bd"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_7.xhtml",
+        "sha256": "37e84fc6309cf24e2f84ff20640057d02d74d0de698ef5d4d9f0ea147438411f"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_8.xhtml",
+        "sha256": "c930ac59e81eb24ab8eb7a67834e0471b030466075643c9bb5f7a0cc2588b7e5"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_8.xhtml",
+        "sha256": "15d27c40364c417cd6dae717b7ec40d0f24360be134ef48a84ae8fd208895184"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_9.xhtml",
+        "sha256": "b5dc915863d4b77a9312e98fec5d50587bfa4e23694762f3f1214b7b287150b5"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_9.xhtml",
+        "sha256": "ae7d24af29242f14f4162ffaad5e0ebe7dc2b7d236789c375d853e8fad2f0899"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_10.xhtml",
+        "sha256": "0defd75d78596c3cd5f61b2fe5d30eba5e455773908302941302a056e49bb10b"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_10.xhtml",
+        "sha256": "01257b1f5770623956038c5ccd7749f3ba9916c276aff9dc91ff5bfc3887d064"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_11.xhtml",
+        "sha256": "66e2be6963a5d0ad85123082531891f26f4e08b102323ba7a9930b6021d43587"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_11.xhtml",
+        "sha256": "9b482d4730ad26f494190f76fb056e8703c462d7c4f80af2bacd3a93fd35b09d"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_12.xhtml",
+        "sha256": "d12705958b5fa11c732d5cc8e15634f7cc0dd98b1a00b88fefddc317952d2a49"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_12.xhtml",
+        "sha256": "f32dadb74d51ba21d7b0eaaab73a58cff71801b6ab6e8d712636e4256466a403"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_13.xhtml",
+        "sha256": "e673d0478205461a36697f585f37732223c9c9b5adfba407e42d23efb8b163da"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_13.xhtml",
+        "sha256": "4509e882cdc9eb53ebeb9135544b527fed4cfb6a0f6ba122716fb53fec2ab7a1"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_14.xhtml",
+        "sha256": "816a7059824944a1e3670733a9c11cb232d818e83e774260960483b32278626e"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_14.xhtml",
+        "sha256": "ecad97e48148945aa16ed22f54316200f9d1b311f86094bd94a98fae2f22a9b4"
+      },
+      {
+        "href": "text/9780062372604_Book3_Letter_15.xhtml",
+        "sha256": "108f13f872c70a0674842dd2d563cd6c082cbcdaadb4c27f197355b5dc777a15"
+      },
+      {
+        "href": "text/9780062372604_Book3_Chapter_15.xhtml",
+        "sha256": "cf2737543ba10cc18cdc72621fa15d7469417f7f850c8f67c423a3321fa446cc"
+      },
+      {
+        "href": "text/9780062372604_Book3_Epilogue.xhtml",
+        "sha256": "7d5d81638bf2f4ff1c34d06c8fd8fa851818dd93ddaa9a7baa177e866f5919ca"
+      },
+      {
+        "href": "text/9780062372604_Book3_Credits.xhtml",
+        "sha256": "8fb4e0ca58057dbf8979c58f58609b3ee697e8f3c9245576e61a4e2903ed0eb9"
+      },
+      {
+        "href": "text/9780062372604_Book3_Copyright.xhtml",
+        "sha256": "271f3f6e90a30a7501fb780b3c7802d33d417b3c3957b41e4fbda936b5088c86"
+      },
+      {
+        "href": "text/9780062372604_Book4_Cover.xhtml",
+        "sha256": "904cd3bac4387137a5d34e3c363221dd49ea5e68b83752021bcad5dd95219b9d"
+      },
+      {
+        "href": "text/9780062372604_Book4_Titlepage.xhtml",
+        "sha256": "e8a5e76940ec5963d61493380017a1f843579a5f6472acf4985b74c86d735a21"
+      },
+      {
+        "href": "text/9780062372604_Book4_Dedication.xhtml",
+        "sha256": "e25b1164823de616d468bcf8e4dd1a73ff0c9c1e93fae43a7750c39d8afe2198"
+      },
+      {
+        "href": "text/9780062372604_Book4_Contents.xhtml",
+        "sha256": "b8e1a8d099f9924809f3010f2ecb20513c5c957d84d5f6c7f4b297ab2dfc9ae4"
+      },
+      {
+        "href": "text/9780062372604_Book4_Cast.xhtml",
+        "sha256": "bfee3df03fd9c9db4535e07ba433802c077a92d5d78e066b74ee6164724161ea"
+      },
+      {
+        "href": "text/9780062372604_Book4_Prologue.xhtml",
+        "sha256": "f40c8d71ea3477080b203a10de5a108bf00351a365cf652291f6144c9dcaadf0"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_1.xhtml",
+        "sha256": "98d2d75ad48aabeb64c442f663f891f63c6123766ebdfcd26e570691375a090c"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_2.xhtml",
+        "sha256": "eb92a481dbe5d4a6c7f54808be503ed084ab1531c0278ae450f6bf6d6fe96f2b"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_3.xhtml",
+        "sha256": "db86d0a85505c45fa84f3375e474f01c67342865e8d9fe55633d168535ee186c"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_4.xhtml",
+        "sha256": "30d8a907fef2160d7de6c03b1e3e42427dc7f80cd00f508eb76eff3cd0b77ce8"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_5.xhtml",
+        "sha256": "b72ba834f6d757003f0ddaf44d22b4089cf069eb047d4cc230848404d050aec0"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_6.xhtml",
+        "sha256": "a0d92e5a3217e1fbf0ee5a23da3af04efb1eb86ca30ba170494852c09ee478ff"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_7.xhtml",
+        "sha256": "99c56b93b6978dda217f9a5908f3f64ae44851512d4f1288dd880b1e71ddb3ea"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_8.xhtml",
+        "sha256": "e5271f3782d6f394d1608a0562ea8a03562ff5b1725ad09ff3c9be503ee6b18a"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_9.xhtml",
+        "sha256": "9de5a1cb95574ea52ff94485fc793ea42fdaed95aeb84d02d89dd6e49cf8837d"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_10.xhtml",
+        "sha256": "a8c418a836bf7eec7daaa549458fec10c8b2efba7f01009f37660094197f73a8"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_11.xhtml",
+        "sha256": "6862a06c472c1865567d3045d83c647b74b992c39770ff69a6dae1a470e02e06"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_12.xhtml",
+        "sha256": "25e105461825d5c6bcabc51fda044adc15a1326ff478af8efec8e44f0015ee04"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_13.xhtml",
+        "sha256": "b74492e15e035fa459287c0f379f3ced892ae74347d4ba5c3e77d6cf4ebcd13b"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_14.xhtml",
+        "sha256": "a084ff9145bb7ea8a0b47d590c5cb3f0103b566991bf3308dc96fb3368db05c9"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_15.xhtml",
+        "sha256": "770e38eced2178d755c18b727354a5beeda54d67c5f25f64dc39dd0543b4ec44"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_16.xhtml",
+        "sha256": "5b4da6928d2b3037657b2d39482e12a09f827c50b83725450363c596ddc68262"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_17.xhtml",
+        "sha256": "938afa305ccce1da051373614ec52100049e1c02a177101e86a75c8eb58f08e6"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_18.xhtml",
+        "sha256": "c83cd835bc559897ad61ba9d6dfeadacba7cfda077a38ea052c260731fb5a70b"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_19.xhtml",
+        "sha256": "1a2e5300cf52117c106d2b750b156ffec2cb1c82ffb9476091fda5f90a8dc3bd"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_20.xhtml",
+        "sha256": "819675b4da37943b818968d68e94934205347041f2566bf865aac94b7ff40066"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_21.xhtml",
+        "sha256": "fd516d641d84bfb37df470d0a6405d784079f807f2d88bd718de5e0ea7b338e0"
+      },
+      {
+        "href": "text/9780062372604_Book4_Chapter_22.xhtml",
+        "sha256": "b7a58ddaf413f3ca5993c4ac26e474209bfe3b885c248febd37dfdf14a8022ce"
+      },
+      {
+        "href": "text/9780062372604_Book4_Epilogue.xhtml",
+        "sha256": "62bd638a157239203ff802b97e0584620562087a69e7852b8fc759c34224152e"
+      },
+      {
+        "href": "text/9780062372604_Book4_Credits.xhtml",
+        "sha256": "e755f50dec6e7dadac8c6200e1691e2d9949dcc1dd4941c20b3d4616c35c6c0e"
+      },
+      {
+        "href": "text/9780062372604_Book4_Copyright.xhtml",
+        "sha256": "c60bed0a2e2c4aad6b9c55695c61a7124ffa90f9b5fba509bbc116cff2a10146"
+      },
+      {
+        "href": "text/About_the_Author.xhtml",
+        "sha256": "9b15db4022c04ed01ae6c8e900455e46ba922f7c19682fbda3f01dd937243338"
+      },
+      {
+        "href": "text/About_the_Publisher.xhtml",
+        "sha256": "a7ca2af9278f241121fb4494ad2474fe36de6846a202423336e861ee58089aea"
       }
     ]
   }

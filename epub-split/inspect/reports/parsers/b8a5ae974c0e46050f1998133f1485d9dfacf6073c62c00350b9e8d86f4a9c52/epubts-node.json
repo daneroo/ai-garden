@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -182,6 +182,56 @@
         "id": "ursula.jpg",
         "href": "Images/ursula.jpg",
         "mediaType": "image/jpeg"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "Text/Ursula%20K%20Le%20Guin%20-%20Four%20Ways%20to%20Forgiveness.html",
+        "sha256": "fe52ab5b464634cc0b6a8d146ff76f91bbc7b59cb8e4f1d324ec3083a0f01a81"
+      },
+      {
+        "href": "Text/AboutAuthor.html",
+        "sha256": "3b7e75e1dc519f6d38d702e86ba712ba65a7014c0b65de132991dc24d10bcaf4"
+      },
+      {
+        "href": "Text/BooksBy.html",
+        "sha256": "10c293a8895d3cd6dc45490c62b4227354dcead399be087e9e5ae4ad767327be"
+      },
+      {
+        "href": "Text/TitlePage.html",
+        "sha256": "5e7bc6337c846e669419429c92f4b5834aa9ca03b98b8fa8e32828240190669d"
+      },
+      {
+        "href": "Text/Copyright.html",
+        "sha256": "76c9a60bd66039f340472aa80cce2f1453b7a0278985a3dec2155834a4ff8fcc"
+      },
+      {
+        "href": "Text/Contents.html",
+        "sha256": "37e8ad6cacde6f76636ecbfe1ae84d1d6f16a6e2cdbfb5e02defaf10111b5b6a"
+      },
+      {
+        "href": "Text/Story_01.html",
+        "sha256": "667cc94097dbabf0ec10ae28d343c32a6b2bb8e3dca357f0d129b755aef058f6"
+      },
+      {
+        "href": "Text/Story_02.html",
+        "sha256": "00e1f8cf3b935e8c9d39f23d7385f3e25852c851a888dcf66bad0c3d4b8b3078"
+      },
+      {
+        "href": "Text/Story_03.html",
+        "sha256": "fd0cecbe2bcc7f3287e5801e068d87ae8c368faa11a5d8298d861394c1620c05"
+      },
+      {
+        "href": "Text/Story_04.html",
+        "sha256": "ff4fb76899f06ac26e37f0b2fefb7a4dae9c46d0d6e92099b27350f6915f0880"
+      },
+      {
+        "href": "Text/Notes.html",
+        "sha256": "b0ff5265a9aa24310178c76b133d5916ff38cd838e9adc4fcfe45945ae4f1aea"
+      },
+      {
+        "href": "Text/BackCover.html",
+        "sha256": "a53dd15f5686ed4b331abb677a5323547adaf2d8bf21d0b5a7d3185c215ae6ce"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -2144,6 +2144,188 @@
         "id": "x9780593186619_nav",
         "href": "9780593186619_nav.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "xhtml/01_Cover.xhtml",
+        "sha256": "9967331aa4a539a9d6543e70969e62463a353d2fba74df25bdee2ede6742a3e9"
+      },
+      {
+        "href": "xhtml/02_Also_by_Sean_Carroll.xhtml",
+        "sha256": "794b32ac44da0d3ee189995cd83f8f4124fb9e7da0d22de6e938f2f2e4c8d468"
+      },
+      {
+        "href": "xhtml/03_Title_Page.xhtml",
+        "sha256": "1b0563b24dae8ae1b820e7492a925670e05a0eb68ecd2b651734061b4403d883"
+      },
+      {
+        "href": "xhtml/04_Copyright.xhtml",
+        "sha256": "703f9610bcd1bf6bd119da58adbe422ce916036f2ff8d23aa531d1cb0cff1891"
+      },
+      {
+        "href": "xhtml/06_Dedication.xhtml",
+        "sha256": "69726105b67ac0093605c5db928048f0e3bd9be5c9099220a316f102cf2d2ce0"
+      },
+      {
+        "href": "xhtml/05_Contents.xhtml",
+        "sha256": "cc85b9d56323fceab8ff1ab9284af1c29111b5609e0279f15210a33a468ce62d"
+      },
+      {
+        "href": "xhtml/07_Introduction.xhtml",
+        "sha256": "18e0ca207d6f1960f1450127e4d69decc2b88277deb10167e45e68f42df15ffa"
+      },
+      {
+        "href": "xhtml/08_One_Wave_Functions.xhtml",
+        "sha256": "1e74978af8dd8ce45baa57933e44fcff3800a97466c6f539b6b0beaac603c76d"
+      },
+      {
+        "href": "xhtml/09_Two_Measurement.xhtml",
+        "sha256": "be23fa76faf8e53b344974cb976b725948bc94b34232597ee38ee60c7f16e642"
+      },
+      {
+        "href": "xhtml/10_Three_Entanglement.xhtml",
+        "sha256": "25ac26993c9787831aadd25bd70aec48e6ca7cc8ee80e3df2a1713e97f812e1a"
+      },
+      {
+        "href": "xhtml/11_Four_Fields.xhtml",
+        "sha256": "5584e6596640bab4aa4e2493e7625026181da4034778bc1ef048da4396677488"
+      },
+      {
+        "href": "xhtml/12_Five_Interactions.xhtml",
+        "sha256": "87dd19f720138c1b01ee4bbf276b5c6a1189236bd10b294a146b54f99f4e499b"
+      },
+      {
+        "href": "xhtml/13_Six_Effective_Field_T.xhtml",
+        "sha256": "ea6d4297092f7d90f9f1ad3733f6cc4f5b59134be770ceb2f8ad9e64588c7af2"
+      },
+      {
+        "href": "xhtml/14_Seven_Scale.xhtml",
+        "sha256": "9fbcc43d3debb9ebbfc7d62c88e5aec12c0764827b5292d401cde5ca49750832"
+      },
+      {
+        "href": "xhtml/15_Eight_Symmetry.xhtml",
+        "sha256": "b0c94dee616bc9aeecadf75f5e4d3c253e83c7834804ceb3304294cdda8ebe48"
+      },
+      {
+        "href": "xhtml/16_Nine_Gauge_Theory.xhtml",
+        "sha256": "4d2807663a8137253e1032ba2f596038d98717133ad2b9f4f8f677d3c31d25ef"
+      },
+      {
+        "href": "xhtml/17_Ten_Phases.xhtml",
+        "sha256": "1fb8a5943b3979bd83150f1e6a2d60e070b07726c4d5ccded8ccc711456f5f8a"
+      },
+      {
+        "href": "xhtml/18_Eleven_Matter.xhtml",
+        "sha256": "b745196da708fba2fce32dfd15779febca9cdf263fe604b711dbaf40fce795b0"
+      },
+      {
+        "href": "xhtml/19_Twelve_Atoms.xhtml",
+        "sha256": "c6703af3db01c6177a95d34531fab132b78b4d5deb63b05055c70fa4443cdd44"
+      },
+      {
+        "href": "xhtml/20_Appendix_Fourier_Tran.xhtml",
+        "sha256": "0fbb49af9b055b7d6fb4add9682dfd866a86e2ee594eb0b7939a8a42b41b7de2"
+      },
+      {
+        "href": "xhtml/21_Index.xhtml",
+        "sha256": "d2896430f090c8424557f514d6f65b168310c8f0a10a64426c58507a91098b21"
+      },
+      {
+        "href": "xhtml/44_About_the_Author.xhtml",
+        "sha256": "f5caa50dbf96dbd370385a72ff42059db684d3a0a057efa311acbf084ca87de0"
+      },
+      {
+        "href": "xhtml/next-reads.xhtml",
+        "sha256": "de11064c91048b151a8e4a76d001ea2e89fcde3a8b390071ccb61e611a7ba507"
+      },
+      {
+        "href": "xhtml/22_Footnote.xhtml",
+        "sha256": "85154aa3682c7e671a4de75854010cbfc0831b5559240979958e4313922763ab"
+      },
+      {
+        "href": "xhtml/23_Footnote.xhtml",
+        "sha256": "b9060c81a972bc69d7f96a6dc6a16b50479fd33214ec83a512a109593e2572a1"
+      },
+      {
+        "href": "xhtml/24_Footnote.xhtml",
+        "sha256": "c6d6884f1d3f83acddd1470fb7bc1c86df1b262c3de512757c3a4ce815721cf9"
+      },
+      {
+        "href": "xhtml/25_Footnote.xhtml",
+        "sha256": "d2057706ad5b6d3d3dd64057abacd20f25f19483fd7fe75065edf8d460227b10"
+      },
+      {
+        "href": "xhtml/26_Footnote.xhtml",
+        "sha256": "a61bd990000820566deda44d1c7d934615d6197a50d747019e3a247bc17e3825"
+      },
+      {
+        "href": "xhtml/27_Footnote.xhtml",
+        "sha256": "549ec2025c89ac19d9c8060018a68fcc4b5f90a418cb19237c74e2cce469c891"
+      },
+      {
+        "href": "xhtml/28_Footnote.xhtml",
+        "sha256": "e0e6ca18d549ac64145ecb44c214faffe8f2fd7e8d58494b055b573d4b92076c"
+      },
+      {
+        "href": "xhtml/29_Footnote.xhtml",
+        "sha256": "a67b1a917b62b55f22828261ff6ed2284553a2dfead6191ec3153eb6a421e757"
+      },
+      {
+        "href": "xhtml/30_Footnote.xhtml",
+        "sha256": "b3ddd7e7ef225cceae6dd8a487a32839e62af36149aba71017ee09db29889586"
+      },
+      {
+        "href": "xhtml/31_Footnote.xhtml",
+        "sha256": "509aa8a9065f3d35a327ec1b3611f63414aa322471a5fe6e7ae00bce13e0ac01"
+      },
+      {
+        "href": "xhtml/32_Footnote.xhtml",
+        "sha256": "eea255e47de29825550baa4c1e616b666dd05f43bda8b6847464f5b10f0aadad"
+      },
+      {
+        "href": "xhtml/33_Footnote.xhtml",
+        "sha256": "5e2a94f64bdd9d553891fa20167810827bc301f07de3574af4ccab6cfbe04647"
+      },
+      {
+        "href": "xhtml/34_Footnote.xhtml",
+        "sha256": "b008b7be058877ec5554892772df8783c068b0c9aff5e5fa6e4e167a48ca3134"
+      },
+      {
+        "href": "xhtml/35_Footnote.xhtml",
+        "sha256": "1cb6d66f8526c94335ad69853aea727467ec2687feb1b9e926557dfe44eb9dc8"
+      },
+      {
+        "href": "xhtml/36_Footnote.xhtml",
+        "sha256": "d0876a492716379e1f9d8be92a6eb8ae5f52f5138879fd8eb34766fbcf1666e4"
+      },
+      {
+        "href": "xhtml/37_Footnote.xhtml",
+        "sha256": "dd242f1ddb61750c0df2f549327e32eb0513c5e86c8ab9bc535a26996348d7a9"
+      },
+      {
+        "href": "xhtml/38_Footnote.xhtml",
+        "sha256": "2ef164bc78d052e7d010d2cdb076bca2dadd8a15741c8062955bbbb4ce5dc413"
+      },
+      {
+        "href": "xhtml/39_Footnote.xhtml",
+        "sha256": "62f2d3664889b15df0ac7ac80e030fc3f78ae2f658ad1130fd09a563b8f22c98"
+      },
+      {
+        "href": "xhtml/40_Footnote.xhtml",
+        "sha256": "dec40b78516ac20039734792f10bc721739cdf0cd248b82aa319597dba4592fc"
+      },
+      {
+        "href": "xhtml/41_Footnote.xhtml",
+        "sha256": "276be3a2a1cea3fc0026b70f61ff3445d6d7a1e900eba2e2deb7ab6cdb10a014"
+      },
+      {
+        "href": "xhtml/42_Footnote.xhtml",
+        "sha256": "f83a2ef5db93cb2d4dbf741b91ed6ea29fded312faf80c03ebfcb02deca76a99"
+      },
+      {
+        "href": "xhtml/43_Footnote.xhtml",
+        "sha256": "42bf66ef551055ab00ef5f6364ea40f3d5237c4980f25214c16cb584be67d292"
       }
     ]
   }

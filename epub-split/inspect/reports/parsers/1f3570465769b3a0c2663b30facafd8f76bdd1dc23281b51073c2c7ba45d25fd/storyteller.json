@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -229,6 +229,24 @@
         "id": "text_verso_page_xhtml",
         "href": "text/verso_page.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "text/cover.xhtml",
+        "sha256": "5f1ff0552493061221d99b805fbd54d888e9a850aa0e41446bc6e7b2d39bd7d0"
+      },
+      {
+        "href": "text/verso_page.xhtml",
+        "sha256": "d164381a6ac4195139d675941a4438b43d11f2e14d43a63e1fef319139ad45e9"
+      },
+      {
+        "href": "nav.xhtml",
+        "sha256": "2d9791a1b6506c3e03455404b3e781c5eb74ea62a131ac6435a59fb18e151ea2"
+      },
+      {
+        "href": "text/all_chapter_contents.xhtml",
+        "sha256": "24f55d13c8e8e63fd2fe1c102761cecc699086aea4e72e6e83d50f2cecbf27c1"
       }
     ]
   }

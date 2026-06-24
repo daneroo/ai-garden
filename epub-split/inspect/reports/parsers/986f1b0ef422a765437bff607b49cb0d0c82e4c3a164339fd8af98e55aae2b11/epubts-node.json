@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -142,6 +142,56 @@
         "id": "x_9780061807022_14",
         "href": "pdlmsr.css",
         "mediaType": "text/css"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "9780061807022_cover.html",
+        "sha256": "5a12e48bb6228c12849f46024061c4a2d89c093f7c4c11ef635a1f847281c70d"
+      },
+      {
+        "href": "9780061807022_title.html",
+        "sha256": "89edbc1fce9ead54da8ba8b9b7258b62189d829f72995a3a1d6776cc9baa84ac"
+      },
+      {
+        "href": "9780061807022_contents.html",
+        "sha256": "a955c435177da4b8eb2ad9197ad484a86c0d1a126c3ce262137d098934baaa77"
+      },
+      {
+        "href": "9780061807022_chapter_01.html",
+        "sha256": "352ec644e029677e7dea271e712f703546826069345ee99a9992baa1b542ad2f"
+      },
+      {
+        "href": "9780061807022_chapter_01a.html",
+        "sha256": "47649928cd68dba2adacdbc681a6a4ae6f627ea72ed460d2cf856176f61174ac"
+      },
+      {
+        "href": "9780061807022_chapter_01b.html",
+        "sha256": "6fedca337d32d76607c6ef26191592c6ec3f27f6b98ef7e8f633b4825ff8c731"
+      },
+      {
+        "href": "9780061807022_chapter_01c.html",
+        "sha256": "f5ab92b6112162a560a70f9f9461e4f8d3502303c6b021d11a42482d489d267e"
+      },
+      {
+        "href": "9780061807022_aboutauthor.html",
+        "sha256": "05fc72bf7b350a5cc4340868e36d535e5b1c568779a1266f55cfdf8d365b138a"
+      },
+      {
+        "href": "9780061807022_review.html",
+        "sha256": "a4fd35782022161179212a7ac630631f99d41f27afe4df89ddc9969e20d0035a"
+      },
+      {
+        "href": "9780061807022_adcard.html",
+        "sha256": "701436be78479b5bb0435129d4f816c4775c6df9a70245b80474cbaa494cc4de"
+      },
+      {
+        "href": "9780061807022_copyright.html",
+        "sha256": "19d2cb70a729c06ee5173114f33b17b7f33b464829b1375bafbc54d09ada2706"
+      },
+      {
+        "href": "9780061807022_aboutpublisher.html",
+        "sha256": "e56d3d765564da6221876e854abf4c314a9a0813651f908c995d7f4884ba2df1"
       }
     ]
   }

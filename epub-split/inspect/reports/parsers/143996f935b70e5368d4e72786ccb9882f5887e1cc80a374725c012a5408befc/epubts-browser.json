@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -1684,6 +1684,464 @@
         "id": "tp",
         "href": "OEBPS/tp.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "OEBPS/cvi.xhtml",
+        "sha256": "f02d5f14c7091f52ae869f5f4cdadaf7056c11288b2a113ef04d4ea772cfb254"
+      },
+      {
+        "href": "OEBPS/fm.xhtml",
+        "sha256": "b6e31c4c9dc3ab81cb5d170068289ca47ed979bb309b4a0bf8d64bd0af9f598b"
+      },
+      {
+        "href": "OEBPS/tp.xhtml",
+        "sha256": "03781c82f5fbb51cd8f342f7271c71f3bddd1000e96a1fc9511986656cdac28f"
+      },
+      {
+        "href": "OEBPS/mini_toc.xhtml",
+        "sha256": "fea679aba82897020401d615ec2a8fde32d290ea8faba9b434242f9a4e6ac378"
+      },
+      {
+        "href": "OEBPS/notice.xhtml",
+        "sha256": "61f668514a6e0610d0d9a1be89b24f4468301d023a9a7fd8644ff9f2ada7cb9e"
+      },
+      {
+        "href": "OEBPS/ded.xhtml",
+        "sha256": "78d858946509d4f45be26fbcca948745788f664dd1387dd9eed76a87b4739e63"
+      },
+      {
+        "href": "OEBPS/ack.xhtml",
+        "sha256": "58ba8f6b5466c9b24b03addd9e47b6916a15825a3249c2218908bdb25119f8ea"
+      },
+      {
+        "href": "OEBPS/map.xhtml",
+        "sha256": "b51738947182374dc346df0d2c8daf62b2736e1fa3e67a29f36c6c4e304aa8d7"
+      },
+      {
+        "href": "OEBPS/pre.xhtml",
+        "sha256": "d430975482f11933567066f9bd6de2df8c7ea252909efd33fa4c0f901d187ae8"
+      },
+      {
+        "href": "OEBPS/book-one.xhtml",
+        "sha256": "2947b1319fc976db5b8ac62da2d9f524e323df25673ceb20c0f682b40cb016fc"
+      },
+      {
+        "href": "OEBPS/pro.xhtml",
+        "sha256": "8fdcfce0bf26809d2813cdc77085ca60d656de00e3f3a51dc028a1f27b8ce916"
+      },
+      {
+        "href": "OEBPS/p01.xhtml",
+        "sha256": "1433a43864f896f6a4c48e473273dc676086e8e0c076eb6358831b921ae7a2db"
+      },
+      {
+        "href": "OEBPS/c01.xhtml",
+        "sha256": "a7c9d91cf01325b492599d6d71b66a59fe931b87f49a987d1bb48488c4d8fc5e"
+      },
+      {
+        "href": "OEBPS/c02.xhtml",
+        "sha256": "9c7272dc3d83d294e536403a2bd906d980d3e74c142c67fc822267b083df3e21"
+      },
+      {
+        "href": "OEBPS/c03.xhtml",
+        "sha256": "5eef856eac5931b468def222ed52c52d64262603e1ef2ffcfd10e9d686a0aa6f"
+      },
+      {
+        "href": "OEBPS/c04.xhtml",
+        "sha256": "ec581794f54eb4d8966481a479500ac84575ced62572ff0172721607717f8032"
+      },
+      {
+        "href": "OEBPS/c05.xhtml",
+        "sha256": "1251cb044b97873075fe7776c26d32926cbe18d6ec088b6ac8ac81e25a5f8a9f"
+      },
+      {
+        "href": "OEBPS/c06.xhtml",
+        "sha256": "2687b5c3bbf4b7ed2630287b17399dd49c766a0c60e21ce237608f46fb5dc7a1"
+      },
+      {
+        "href": "OEBPS/c07.xhtml",
+        "sha256": "3c48f24b5f04faeef9e18972817ce54ea0960b3d43efaf87fd7b6695e1d79bd9"
+      },
+      {
+        "href": "OEBPS/c08.xhtml",
+        "sha256": "d6eb292c270fdb42eec8e060a251c77876041dc0f1e1b849862dee1a33405896"
+      },
+      {
+        "href": "OEBPS/c09.xhtml",
+        "sha256": "f4fd366d5a464cf73748c87427750210413a13fac403dff20b040881eebd55a4"
+      },
+      {
+        "href": "OEBPS/c10.xhtml",
+        "sha256": "6a0d0615a5512ccc81a2193d3eb739942f52fb86dedffc028aead698e73e4f58"
+      },
+      {
+        "href": "OEBPS/c11.xhtml",
+        "sha256": "6524e88a23d941164797afdfedcec05221e864100c9bb90a57ac41e95dde3fee"
+      },
+      {
+        "href": "OEBPS/p01a.xhtml",
+        "sha256": "6651a9f605794cdd5e10bde9e753e5983336287799e66c70b1369b89a52c6770"
+      },
+      {
+        "href": "OEBPS/p01a_c01.xhtml",
+        "sha256": "80807b553eec1a33966fafb46cef64e376d8c0faf37ca1ca9463187a2485f357"
+      },
+      {
+        "href": "OEBPS/p01a_c02.xhtml",
+        "sha256": "0603cde54864dd2f5aeee28995769b567c988bf818e0759a47a3ad9a3e8a967a"
+      },
+      {
+        "href": "OEBPS/p01a_c03.xhtml",
+        "sha256": "3b9b75c63451b1d7e3019eaea5929314cbe30af431d157ce9edfbac9b4a48805"
+      },
+      {
+        "href": "OEBPS/p02.xhtml",
+        "sha256": "7da4e5a3d6629894c311005fcee71c3f0420459b823f8060d813dd3231bb18f5"
+      },
+      {
+        "href": "OEBPS/c12.xhtml",
+        "sha256": "0e0fbae41ca0ca82dfa1d12c68dd5f11c56a27c18d099c2428ab01af1f80734e"
+      },
+      {
+        "href": "OEBPS/c13.xhtml",
+        "sha256": "e3297cc52329a2ec6d4695984915538cd0b8ea6150ba4f03b58ed011cb347923"
+      },
+      {
+        "href": "OEBPS/c14.xhtml",
+        "sha256": "abf58a46fc4ffb99d9ebcd3c57ddebac43b4f06e1d703876175b6f80306ede76"
+      },
+      {
+        "href": "OEBPS/c15.xhtml",
+        "sha256": "2c1e438a37535a2b03b069cedeeb39c3a928a3d46b8dbb8d8b1dfcabe5f7269e"
+      },
+      {
+        "href": "OEBPS/c16.xhtml",
+        "sha256": "efd63424ca6c8f29f20a4285b3038e78acad0dc44280443a421a8c89f9417e83"
+      },
+      {
+        "href": "OEBPS/c17.xhtml",
+        "sha256": "cb4173775fed0d38026bcf472be83482f3351c9b58ee7a05a62ebf45f1e9169f"
+      },
+      {
+        "href": "OEBPS/c18.xhtml",
+        "sha256": "f9a198476de02ba5524d7fd1340f2e120304c674573aa041fb31a27eb18096cd"
+      },
+      {
+        "href": "OEBPS/c19.xhtml",
+        "sha256": "effac4f78a6aab147fd8a2847c1537e0ec84bef69c11e0aa7aa60d90c9d0dc4c"
+      },
+      {
+        "href": "OEBPS/c20.xhtml",
+        "sha256": "12a4b74ba87e659ef9686f94733fe932ab31162706059476de17b9a7c38a968a"
+      },
+      {
+        "href": "OEBPS/c21.xhtml",
+        "sha256": "5e62a2206a90fad260c01343d06952beda66a7cc22b55895089d9f723d9c01b2"
+      },
+      {
+        "href": "OEBPS/c22.xhtml",
+        "sha256": "6a103cc38ca1f455aa30e4097c4c35fabe59b1de63409dd4ea426065335af501"
+      },
+      {
+        "href": "OEBPS/c23.xhtml",
+        "sha256": "cfd4da605292e87f4e3923046d6e4f0f442e1d072780957a687a2b84252c3ee9"
+      },
+      {
+        "href": "OEBPS/c24.xhtml",
+        "sha256": "9008eaeb8f3c7f1a288855d1886c50ba310b9813be03d4ecd6aae847bca5ce7a"
+      },
+      {
+        "href": "OEBPS/c25.xhtml",
+        "sha256": "7c500ee93448e1219fccab72c9c103f05e9bb8a6a116d900668b4a14ce8fc64c"
+      },
+      {
+        "href": "OEBPS/c26.xhtml",
+        "sha256": "1199855f84d68c59e494a5587692d6b832420a7ed778c28cc89de79a88a9282e"
+      },
+      {
+        "href": "OEBPS/c27.xhtml",
+        "sha256": "2c7d4d9e9d45a4c49813ee5bc575eef596a6462c379e2bd7a558739380f598b9"
+      },
+      {
+        "href": "OEBPS/c28.xhtml",
+        "sha256": "711d780369e462426dc31af34f119c2fbec9846cdcc50aae2b42861fe08e32d1"
+      },
+      {
+        "href": "OEBPS/p02a.xhtml",
+        "sha256": "571e7e013dc9a6f0942af3ad4f9a6df980f794d23813ae2e16ccc89672c44d20"
+      },
+      {
+        "href": "OEBPS/p02a_c04.xhtml",
+        "sha256": "741970797b5bc1ca522da6ae7e75ade468ed9af3b0d8e7d09ee52693453136ba"
+      },
+      {
+        "href": "OEBPS/p02a_c05.xhtml",
+        "sha256": "71350d15331c99a3f8babc026867143dfd19a8b67bee1277c846dff25fa9cd8f"
+      },
+      {
+        "href": "OEBPS/p02a_c06.xhtml",
+        "sha256": "9695ca219e820065407292a8e135e5786321859914157d4a00abb7d3ccb1e969"
+      },
+      {
+        "href": "OEBPS/p03.xhtml",
+        "sha256": "75451fbd5297072c9180d26cc6eae4ad04d9fc8928003ceb5ed9b2af373898a7"
+      },
+      {
+        "href": "OEBPS/c29.xhtml",
+        "sha256": "dd6709a3ee6ceab010e754c1cebcb8b8f9825ce068824d3bff3bb4956f888f22"
+      },
+      {
+        "href": "OEBPS/c30.xhtml",
+        "sha256": "a2cb2ed91cf5c1ce9bcd6b337d8b453ac21b294a959d9adfe919c892278515ee"
+      },
+      {
+        "href": "OEBPS/c31.xhtml",
+        "sha256": "cc3ec794dec9558bd4c6af3bc369bb671e58e5d7bfa2a74a6a363ab4980b58d3"
+      },
+      {
+        "href": "OEBPS/c32.xhtml",
+        "sha256": "69747701d8ba2020b8b1cb85d3cb40ade059b7b92d688b0e22e6d9f2262313df"
+      },
+      {
+        "href": "OEBPS/c33.xhtml",
+        "sha256": "52f06cb9f33dba955bb7ffc022cd7d02b7120e812d630791429bd59ddf1e7c90"
+      },
+      {
+        "href": "OEBPS/c34.xhtml",
+        "sha256": "3fdfaffa588a8292c4c106e7d36cbcb9cd85682d4410178e7ca7480f989d0716"
+      },
+      {
+        "href": "OEBPS/c35.xhtml",
+        "sha256": "f843707e38ecca42a3212c3cb1872364831afd705bd221d28e748b9c0007fb52"
+      },
+      {
+        "href": "OEBPS/c36.xhtml",
+        "sha256": "0ce38b8f0508119096c97f0e0e2eed5d32ff20b6d9d3f6afaba449447e91e3c1"
+      },
+      {
+        "href": "OEBPS/c37.xhtml",
+        "sha256": "59e49edecf8b1a01c69a474d862ce6ac6e7a02d719ab031c62f2e7198544ab72"
+      },
+      {
+        "href": "OEBPS/c38.xhtml",
+        "sha256": "7f7aa78e91c7e2fe116287937b3a94bc6201fb531613da15db81a1d7408c9543"
+      },
+      {
+        "href": "OEBPS/c39.xhtml",
+        "sha256": "9236408e5ab28adeba017a984f5b2ef3ca1d77799ca5006c7a6c95b862a43360"
+      },
+      {
+        "href": "OEBPS/c40.xhtml",
+        "sha256": "ff8de99a44e57058594dd4300d3ead64d6b245e14b3d82ad52194439b9133a31"
+      },
+      {
+        "href": "OEBPS/c41.xhtml",
+        "sha256": "9892c42ab57b0a37672be6954c7f5e40beeceffbae9e31cb202a4426c2b1b1aa"
+      },
+      {
+        "href": "OEBPS/c42.xhtml",
+        "sha256": "1f043883c2ca9aa5fcb6b9c5c1c48f647edd33f310767b19cec2f5b55c801a2a"
+      },
+      {
+        "href": "OEBPS/c43.xhtml",
+        "sha256": "69b015fda945a5c6a3afc138981d7cb17d4dd33b474dda10fb127d57cfb1a9fe"
+      },
+      {
+        "href": "OEBPS/c44.xhtml",
+        "sha256": "c3d245300f6136a134a722bfad00d830ff9a7357faa9d954bc6f613af42439e8"
+      },
+      {
+        "href": "OEBPS/c45.xhtml",
+        "sha256": "685024a567173ad9ddcac43fc80cc52f0f9bb33e04c98351f9ea46f5888d2a41"
+      },
+      {
+        "href": "OEBPS/c46.xhtml",
+        "sha256": "2803073368105163454865054d1199848399e36909b9f6e766b0aceed7accc69"
+      },
+      {
+        "href": "OEBPS/c47.xhtml",
+        "sha256": "bffdffa1a1f7504032b84b0cb0ea67938726d16018ba1659ecf7ae6d399cc997"
+      },
+      {
+        "href": "OEBPS/c48.xhtml",
+        "sha256": "a399f481ae81046a6bf2fc176a8684a4c6841b3db02ec2988ff57fc3080e3d2c"
+      },
+      {
+        "href": "OEBPS/c49.xhtml",
+        "sha256": "36e08bd25c2720010a66cdc295ce0f08fd173c6e49123665f9d64f097935c742"
+      },
+      {
+        "href": "OEBPS/c50.xhtml",
+        "sha256": "c7c94cf56e19e09c1c7529242fe408a9b507203762aa0c4f6ed9445cdbb457f3"
+      },
+      {
+        "href": "OEBPS/c51.xhtml",
+        "sha256": "0c2031a0c7a16f283cc60b0a46658f532c3f68afc80ba04d34b0f632605234ea"
+      },
+      {
+        "href": "OEBPS/p03a.xhtml",
+        "sha256": "a1cfb99b30446ff22ca333818cfe02326d9472f2eeb58da552f24beb63d840e5"
+      },
+      {
+        "href": "OEBPS/p03a_c07.xhtml",
+        "sha256": "ac6d90e883825afb02b5bdee12d12ad14aaa82fe9713b56f4a2f5a110c38db13"
+      },
+      {
+        "href": "OEBPS/p03a_c08.xhtml",
+        "sha256": "6165c4b7c9e727d3e42187f83f5f4041facc43f13886c7dd7e2c468c85f71a72"
+      },
+      {
+        "href": "OEBPS/p03a_c09.xhtml",
+        "sha256": "42c7b461b70069043ee13077ee4e252515946629a695900fb101514ea8cfd6bb"
+      },
+      {
+        "href": "OEBPS/p04.xhtml",
+        "sha256": "983d215825889e6f0de3ca817c7b2febb7c484da2487524279e3faeb8db00cf5"
+      },
+      {
+        "href": "OEBPS/c52.xhtml",
+        "sha256": "e2850f338039ceb7af85fa1a5ba878e10ac3756a3336cd36cd574221626259ca"
+      },
+      {
+        "href": "OEBPS/c53.xhtml",
+        "sha256": "25f45a2355c98031fa21e47ad43a551019b9b76a65b84e3bf76c9e56fdfdf1c5"
+      },
+      {
+        "href": "OEBPS/c54.xhtml",
+        "sha256": "22078e9e545852d46734fc44ccf3711c4c25df5a84b7f7d0d2b02ff2f13f4784"
+      },
+      {
+        "href": "OEBPS/c55.xhtml",
+        "sha256": "c9de6ab4e8eeb775ba9bc9ec8af4da8eed5fd0b2d954c8c45f99112883d1ca82"
+      },
+      {
+        "href": "OEBPS/c56.xhtml",
+        "sha256": "ba8c148bdbcac0e478b6d0077bc26b445ba63d0921bc17678a5d7496df1043e4"
+      },
+      {
+        "href": "OEBPS/c57.xhtml",
+        "sha256": "5e9c81930c539e6e1e42550262a5ec16127028bb6d9e6753b776458a1fd47d70"
+      },
+      {
+        "href": "OEBPS/c58.xhtml",
+        "sha256": "901faff183f023da449cc352d0b17ff2da9dd4ab6ebbef4b29ac188dd227ea05"
+      },
+      {
+        "href": "OEBPS/c59.xhtml",
+        "sha256": "7bd394b8ec201a7bd26afba8945fd2d60c36eadb49f3a98961b18c1da2113563"
+      },
+      {
+        "href": "OEBPS/c60.xhtml",
+        "sha256": "6b07fc55c5aad7379204df4543b9630e2936140f25cf0e80574bc97d2b035b81"
+      },
+      {
+        "href": "OEBPS/c61.xhtml",
+        "sha256": "8a6c04839b90fb50533644b91372d4dffc19c9717b79ebdced5a6cffefba03b3"
+      },
+      {
+        "href": "OEBPS/c62.xhtml",
+        "sha256": "795e8dd6d4852b3f887c07fefb858558bf3140cbdf3d087417cc31a18e048a32"
+      },
+      {
+        "href": "OEBPS/c63.xhtml",
+        "sha256": "3cf127bca73c2b4f073aa3513b2c9609b95cc79fcd5b938fec864836c3ed73c0"
+      },
+      {
+        "href": "OEBPS/c64.xhtml",
+        "sha256": "c4e7abc6e74c9a0e13d2609775b93d028192b15c584803c7ba5970c1d9bf8baf"
+      },
+      {
+        "href": "OEBPS/c65.xhtml",
+        "sha256": "c3039c3abb51d943cdff2dd3069cc4443075c97632d6f328a50afacd0015ff0b"
+      },
+      {
+        "href": "OEBPS/c66.xhtml",
+        "sha256": "1d79071975d28cb43a90ef60ff8a793b5f0ec9657f18db4d9ef49f2b75ad2ea5"
+      },
+      {
+        "href": "OEBPS/c67.xhtml",
+        "sha256": "985e950e138ca2dc32451b6de33bfab181930893297a6ead4856b6bc59139c46"
+      },
+      {
+        "href": "OEBPS/c68.xhtml",
+        "sha256": "e6c3bb6e340680970daf860b23c737ca1066844b4cd03e9bbae6b7c21fb2afd1"
+      },
+      {
+        "href": "OEBPS/c69.xhtml",
+        "sha256": "c58b87866129ef4817569bec883a51cad9cdc0d453708f75ef03475a7f831687"
+      },
+      {
+        "href": "OEBPS/p05.xhtml",
+        "sha256": "658fd24eb2a13db3e06030f023bac3123a57be56d74aad447fc456e23c110756"
+      },
+      {
+        "href": "OEBPS/c70.xhtml",
+        "sha256": "4ce1faff4a6e16c295377141806a494752c7dcffdda9cf7a1d8eb0fc82dfaa7a"
+      },
+      {
+        "href": "OEBPS/c71.xhtml",
+        "sha256": "75983e599621030b913306bf23732581a7cce355ac6268c916803a846b38b475"
+      },
+      {
+        "href": "OEBPS/c72.xhtml",
+        "sha256": "83b3fd61145d53df276ba4066f1e96800f248e9fc7e06e9568b593cf71840a1a"
+      },
+      {
+        "href": "OEBPS/c73.xhtml",
+        "sha256": "4c2ab5b797f8ce98195e211f91369ec6d9aab99b4c80b103b1e78884f9ea916d"
+      },
+      {
+        "href": "OEBPS/c74.xhtml",
+        "sha256": "b149bd9ac8452fb95d18c4af078a0b3f5a7efbf6f54eadf676f2a2eed659eac6"
+      },
+      {
+        "href": "OEBPS/c75.xhtml",
+        "sha256": "b5e0c92000002e2a257fb4edea17fa7c2a612f3e306c6210b2a716a7afb5ed7f"
+      },
+      {
+        "href": "OEBPS/epi.xhtml",
+        "sha256": "3e3299e7fb53f00e58aee424b5229125a6c18e4ba8f4c8d9fdbd976c207d7696"
+      },
+      {
+        "href": "OEBPS/end-note.xhtml",
+        "sha256": "bf9c213e0f59b05e2053d3fbf7db7dd3e765b4ec553704eaf64e8229f4b85dae"
+      },
+      {
+        "href": "OEBPS/ars.xhtml",
+        "sha256": "75a270c109bf62ab01f7708e47569692f6230181190b81e641926fdcf82b6d6c"
+      },
+      {
+        "href": "OEBPS/add1.xhtml",
+        "sha256": "dd97b8bccc6b90c8529b935cafb94343f0584cb39af7d16b6b53604636bfd2f6"
+      },
+      {
+        "href": "OEBPS/backad.xhtml",
+        "sha256": "ff34bd6217c902b3361c3d1cb802974d46728eb6ea65580870c52124c21685f5"
+      },
+      {
+        "href": "OEBPS/Tor_Books_by_Brandon_Sanderson.xhtml",
+        "sha256": "e4d3c0d2369b44c128c041ea17df5e6579597306151b98e4ee6f3543763e409e"
+      },
+      {
+        "href": "OEBPS/ata.xhtml",
+        "sha256": "60096491d78dbb47f71b8f0d0011909c895a043506ecdc5d1e242cf249c99046"
+      },
+      {
+        "href": "OEBPS/tor-ad.xhtml",
+        "sha256": "d229d846d25cd023e52a8fb211a97c2bfc22cf96d8aaf3e18f2e750c8c267949"
+      },
+      {
+        "href": "OEBPS/newsletter.xhtml",
+        "sha256": "e2c657689a4e61be92a65b6efc2b6b7287073b5e56ca1bc708a5bfc2aac306a2"
+      },
+      {
+        "href": "OEBPS/toc.xhtml",
+        "sha256": "726f6d7ccd1b672d3833c57fe303791fc2a83f343ccc56c2d69b0481c9ebe8fb"
+      },
+      {
+        "href": "OEBPS/cop.xhtml",
+        "sha256": "6f28370725cd3b5e1646ac17e9e6d68fd7851d95adaffc8a3914575165d49819"
       }
     ]
   }

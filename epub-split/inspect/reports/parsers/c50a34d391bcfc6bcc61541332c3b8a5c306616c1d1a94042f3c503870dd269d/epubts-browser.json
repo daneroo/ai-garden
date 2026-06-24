@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -306,6 +306,116 @@
         "id": "toc",
         "href": "toc.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "cover.xhtml",
+        "sha256": "feda23d3bc2dbb7844de837fd5fc0895fe891cb286dbe6dce4b7402bed7b9524"
+      },
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "894df48a2eb565d4420d11effb69a149bfef6e9312a359aabafb8c78df7c4590"
+      },
+      {
+        "href": "copyright.xhtml",
+        "sha256": "1d5da704a9dc96d3b70e4badb9e0de2202023627aac534ce84e52a75754990f5"
+      },
+      {
+        "href": "toc.xhtml",
+        "sha256": "b86317062a9372ddca1997bcf1c735eed5dda7c8d9c423ee669bfa3556cc560e"
+      },
+      {
+        "href": "dedication.xhtml",
+        "sha256": "342b23bb2233d25b36310960a2d7b5f4d86a76515b4a2f7e764d35fba1b9ab4a"
+      },
+      {
+        "href": "discover-page_pre.xhtml",
+        "sha256": "50e5fc455949ea4988777362a2ed18f50287d046cf3d521052f3ca4880e32598"
+      },
+      {
+        "href": "acknowledgements.xhtml",
+        "sha256": "15847b45bbb7b54deeb07f092a3cade280c0d7a3d4c6a80f7ce77ca76238f21f"
+      },
+      {
+        "href": "introduction.xhtml",
+        "sha256": "7d7ff6ce7902cb32c33da9a3fa2ef4e29fbe541abec81f409276e64cdba7e105"
+      },
+      {
+        "href": "part001.xhtml",
+        "sha256": "d09d5ed5cc8fb799d768252462e8982e30984ce479874e2a824f6ccca239b5cf"
+      },
+      {
+        "href": "chapter001.xhtml",
+        "sha256": "ffcf3c0eec635f79e2210244d90aa312eb9ab3e33dc344f6fc0ea6c601c9a28c"
+      },
+      {
+        "href": "chapter002.xhtml",
+        "sha256": "60b029555f2e2571c38b9e25e051f0425eaacc5751add3f849c09b87ca478c00"
+      },
+      {
+        "href": "chapter003.xhtml",
+        "sha256": "aac88e64a33e41dd284f211115f1a768d5dccf29b8589209c58d3a47c5a1fbb9"
+      },
+      {
+        "href": "chapter004.xhtml",
+        "sha256": "5150d9508510a48f567bd9c79f13a8cd71c54a93e60b60cdb9875cb3fa145bf2"
+      },
+      {
+        "href": "part002.xhtml",
+        "sha256": "3e8d96cba8dc7b0c21453a783cc9f93dd1031326378cd16da7198492645fc79c"
+      },
+      {
+        "href": "chapter005.xhtml",
+        "sha256": "7d5b6d143b5a3db991a29dad1f85717a3cee1e59daf415df9e615098756b7d56"
+      },
+      {
+        "href": "chapter006.xhtml",
+        "sha256": "57d6cbc102846fa51d62c94a5772401d9eccef5ac693a3e8d8b39c9a3fc857d7"
+      },
+      {
+        "href": "part003.xhtml",
+        "sha256": "b0c8951681a6bd457cb81c0ac68c43acb051b6fed69e1375edf1c083371c962e"
+      },
+      {
+        "href": "chapter007.xhtml",
+        "sha256": "6bed2216afc0e0f206033eca88246358beace96a6b201bd742f3e9f6e106db45"
+      },
+      {
+        "href": "chapter008.xhtml",
+        "sha256": "8e1942aa5da3865cccfc2c3705ca965a7ca150ac811a41ef41bcd88e36bbd9b5"
+      },
+      {
+        "href": "part004.xhtml",
+        "sha256": "b8b7eb8f515d9b30eb4fca266f14e34dcd13e802d00339e91923c4149947f03d"
+      },
+      {
+        "href": "chapter009.xhtml",
+        "sha256": "64736a2f42768fb04280154218d7b62dfc505d7be7bf468c51e7f6f480c66cfb"
+      },
+      {
+        "href": "chapter010.xhtml",
+        "sha256": "6525a65252f1f19f568c4263f29ec0ca84ad942b7a184e3b1e18b4b940be0055"
+      },
+      {
+        "href": "epilogue.xhtml",
+        "sha256": "1851f0a0ca09ac0ba316a21fc0ed5e0ca2ed1b5ea319656e98224933d4715323"
+      },
+      {
+        "href": "discover-page.xhtml",
+        "sha256": "d49e171f8f189a69bdcd53a36327cb4d86ef5c2c68fe12f1c0174d8fd91f44f4"
+      },
+      {
+        "href": "ad-card.xhtml",
+        "sha256": "3f57b50b15f7b77db9017b8867e2f2828cb8d899d03d19ec35aa91bb40a9d96f"
+      },
+      {
+        "href": "endnotes.xhtml",
+        "sha256": "25d7b0ff8bccca3f382687bd0b9376b668c3fcb1baaa2a1a9e6848103b77a980"
+      },
+      {
+        "href": "footnotes.xhtml",
+        "sha256": "2ed1b30fdaa9e062a45ccfd9b31eae1d78b8d6113337f37e9b94924b3de1f564"
       }
     ]
   }

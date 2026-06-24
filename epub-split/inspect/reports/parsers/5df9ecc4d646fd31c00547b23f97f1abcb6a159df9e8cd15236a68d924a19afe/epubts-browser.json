@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -654,6 +654,264 @@
         "id": "xorn-top-png",
         "href": "image/orn-top.png",
         "mediaType": "image/png"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "xhtml/01_Cover.xhtml",
+        "sha256": "f0e372c4b8db1c1a4b7340e557de90495887eb82ebf4f6cb2011df7aea8ce8bb"
+      },
+      {
+        "href": "xhtml/02_Praise_for_PRIEST_OF_.xhtml",
+        "sha256": "c433f6040a1ad95ba38e5b78d3dd274d315ee11f20790a799d3cc31f28fbc0df"
+      },
+      {
+        "href": "xhtml/03_Title_Page.xhtml",
+        "sha256": "f2497ecdb6f1c60667e664b2c24a927dbcfdae3af6752b0566185b6fcafbbd9b"
+      },
+      {
+        "href": "xhtml/04_Copyright.xhtml",
+        "sha256": "9a9bc7b9ccfc683d17f758e6fbad4963d904b445eb053e80e58c38a8b7fa040c"
+      },
+      {
+        "href": "xhtml/06_Dedication.xhtml",
+        "sha256": "5f53b7c9d4a775034093c7696b9c49cd24e980b96b2b4ed5127dc990821b0d75"
+      },
+      {
+        "href": "xhtml/05_Contents.xhtml",
+        "sha256": "c22c79899f3a6191f0e6cdd40af1ff42ab5ad36e4c0c1f914ffd40f677e3d9cf"
+      },
+      {
+        "href": "xhtml/07_Epigraph.xhtml",
+        "sha256": "4b640d1afe3b969be615a7a264c4c141f2e504ac40f89ed293068f56cd6672cd"
+      },
+      {
+        "href": "xhtml/08_Map.xhtml",
+        "sha256": "68ce5f6d11353ed5d118b27670002eddd1700968a0d19672e2534900034e6500"
+      },
+      {
+        "href": "xhtml/09_Dramatis_Personae.xhtml",
+        "sha256": "20ddbab05de0a7202d9a2d73c66ca534e51dee2353140f1a4791e7b6da7c7a1d"
+      },
+      {
+        "href": "xhtml/10_PART_ONE.xhtml",
+        "sha256": "6eef3c6115ed82897c7605ef58fdfb46dfc7e3c34d1cb196b3d0b44a8feeee3a"
+      },
+      {
+        "href": "xhtml/11_CHAPTER_ONE.xhtml",
+        "sha256": "f4685d58600325d737aaf89ffc2220476135cf703d5ed899fb3b6d5bdf042dcf"
+      },
+      {
+        "href": "xhtml/12_CHAPTER_TWO.xhtml",
+        "sha256": "331328bdde65eff604b2cfbf7f94c82dca4f614316f778b3e71c7562dc0a1d03"
+      },
+      {
+        "href": "xhtml/13_CHAPTER_THREE.xhtml",
+        "sha256": "311ade58f24683723d1de58bd69f3f3c100a56f1c8b931234aa5756ebf7bfe5d"
+      },
+      {
+        "href": "xhtml/14_CHAPTER_FOUR.xhtml",
+        "sha256": "8c65ab40b976e1a7a19adeed91360265b10915df81edf698c4c85714d8a618aa"
+      },
+      {
+        "href": "xhtml/15_CHAPTER_FIVE.xhtml",
+        "sha256": "93a1ac47d116037870f22f0efa5d58e35a04ddf6e0011610f7b997e8c18a7402"
+      },
+      {
+        "href": "xhtml/16_CHAPTER_SIX.xhtml",
+        "sha256": "b980ef8259465b3514111f10a74036de09651be61f96642417c45338652d0dca"
+      },
+      {
+        "href": "xhtml/17_CHAPTER_SEVEN.xhtml",
+        "sha256": "e2b862f7ec3408262d845598b5f46130db5f437af27dbc7e1eb25243399ed419"
+      },
+      {
+        "href": "xhtml/18_CHAPTER_EIGHT.xhtml",
+        "sha256": "55cf7e3aa5ce1de108ba9d244047b246ea9286ca005cc1da3f380eeff27d2a03"
+      },
+      {
+        "href": "xhtml/19_CHAPTER_NINE.xhtml",
+        "sha256": "98e40dcca38ebf1387b10f080f2914be563992d167b9700e8d0fcebaf43bd08a"
+      },
+      {
+        "href": "xhtml/20_CHAPTER_TEN.xhtml",
+        "sha256": "1895312a1ba8d9a6fd4e9f36b96f40bb827f9b2e48c694226592f4f1ac71c327"
+      },
+      {
+        "href": "xhtml/21_CHAPTER_ELEVEN.xhtml",
+        "sha256": "2134880f6cf40dade14fb19b39e865a5647768c36e3e569c428f14d346e705fd"
+      },
+      {
+        "href": "xhtml/22_CHAPTER_TWELVE.xhtml",
+        "sha256": "00b60f4212709b6ceb8a2796bd24f5f289050b62c459ad275e9f0c88c6003cd1"
+      },
+      {
+        "href": "xhtml/23_CHAPTER_THIRTEEN.xhtml",
+        "sha256": "15a857eba780191f5fa4fa0513386f3860ae2e0f636a14a87e340791165cb1f1"
+      },
+      {
+        "href": "xhtml/24_CHAPTER_FOURTEEN.xhtml",
+        "sha256": "622076f38423b89b39dc351c6b2edd1e8c197e6ad5eeedc90039a802595a4339"
+      },
+      {
+        "href": "xhtml/25_CHAPTER_FIFTEEN.xhtml",
+        "sha256": "49eccfd6acfbb4510825a7f4b89085a385e58293e437f0be7aaeb160d8bd2e24"
+      },
+      {
+        "href": "xhtml/26_CHAPTER_SIXTEEN.xhtml",
+        "sha256": "5ac13b82f5c005769af9010a7527da87e355937138c34dbefa77c2c13254b763"
+      },
+      {
+        "href": "xhtml/27_CHAPTER_SEVENTEEN.xhtml",
+        "sha256": "6c9b98c27f0b4b3eb513e0f4ea3e53dc48a01ec78aedec10533f1d9808e2fc30"
+      },
+      {
+        "href": "xhtml/28_CHAPTER_EIGHTEEN.xhtml",
+        "sha256": "55a69790b810d50df9da3354b416eb61bc602f1be339bde8b74c81a7d91d919b"
+      },
+      {
+        "href": "xhtml/29_CHAPTER_NINETEEN.xhtml",
+        "sha256": "2042c6c9dfdc76836ed64dc6d9c5e1f1f9b29da573d21d65b6b48f17a0e2af14"
+      },
+      {
+        "href": "xhtml/30_CHAPTER_TWENTY.xhtml",
+        "sha256": "c0b538dd0c6698d3a998ef64f2b5ce5466dd123e81d0b0fbcea56103b8b6073c"
+      },
+      {
+        "href": "xhtml/31_CHAPTER_TWENTY-ONE.xhtml",
+        "sha256": "a47b5abe1ac03edb9353f044f0a55f3f918c9f25d2606665960dbcd9d8ebffc0"
+      },
+      {
+        "href": "xhtml/32_CHAPTER_TWENTY-TWO.xhtml",
+        "sha256": "9d62a8dfc72b47a2429bdb42236ef85f09bccaa91f38b281d512794e2a4e0bc3"
+      },
+      {
+        "href": "xhtml/33_CHAPTER_TWENTY-THREE.xhtml",
+        "sha256": "371e8167faa8be006b7563a9fc60497a31800372b5f986bfa70008e52977d54b"
+      },
+      {
+        "href": "xhtml/34_PART_TWO.xhtml",
+        "sha256": "1d8f37d49f660005adc7c4dfb3a5762810ad67fa55a6004827fbfbbe032686b3"
+      },
+      {
+        "href": "xhtml/35_CHAPTER_TWENTY-FOUR.xhtml",
+        "sha256": "38996afef972f97863a9596344a63f9d59dfdaded763f1c6ffde21ac22aa0cd4"
+      },
+      {
+        "href": "xhtml/36_CHAPTER_TWENTY-FIVE.xhtml",
+        "sha256": "252f86fa9cf2d60f728478344406e106e92279baad309e3286be20c97bc2766c"
+      },
+      {
+        "href": "xhtml/37_CHAPTER_TWENTY-SIX.xhtml",
+        "sha256": "d6bc6502d721327faff49d9be031c4f9bb81438e15d7cfb35cb170df967c90c8"
+      },
+      {
+        "href": "xhtml/38_CHAPTER_TWENTY-SEVEN.xhtml",
+        "sha256": "19a86d71520079f2c8489e650fc7f7950293d38cb95cdfc131c1d48a70257492"
+      },
+      {
+        "href": "xhtml/39_CHAPTER_TWENTY-EIGHT.xhtml",
+        "sha256": "d24cc3c1f274f214b2d91e97dea7a6eda5e7760b1560c262605e9be6532815b6"
+      },
+      {
+        "href": "xhtml/40_CHAPTER_TWENTY-NINE.xhtml",
+        "sha256": "b56a6d524f3bf976567c8926de2ccafd031edbe3cefbc3b43b8e62c56c80fad4"
+      },
+      {
+        "href": "xhtml/41_CHAPTER_THIRTY.xhtml",
+        "sha256": "a06c0b8eb6e9795ff85bd924aa10e593cfca65d7b9e67cf3c1090cf6dd1e0398"
+      },
+      {
+        "href": "xhtml/42_CHAPTER_THIRTY-ONE.xhtml",
+        "sha256": "c9fe6fa2c1db07e1babe233f7dcf2ae5015be6238dda868a68664e31eddd6035"
+      },
+      {
+        "href": "xhtml/43_CHAPTER_THIRTY-TWO.xhtml",
+        "sha256": "00c88045e71639e8b8dceea41276f5ff81c9d99881afc88c8bb20edc34b8f531"
+      },
+      {
+        "href": "xhtml/44_CHAPTER_THIRTY-THREE.xhtml",
+        "sha256": "083e818aa60455ee44fa62003d4f2e74a4f7b8ceba83814c73f90bd4d37e3c47"
+      },
+      {
+        "href": "xhtml/45_CHAPTER_THIRTY-FOUR.xhtml",
+        "sha256": "5f8c2abb307c83b0939d861e3570ab0cb370caef140fca263efcaaf0377fe9cd"
+      },
+      {
+        "href": "xhtml/46_CHAPTER_THIRTY-FIVE.xhtml",
+        "sha256": "4cf366945c2779ed7335b8108a1632664f04c12bc9ac08812f03b806fb74930a"
+      },
+      {
+        "href": "xhtml/47_CHAPTER_THIRTY-SIX.xhtml",
+        "sha256": "7d56a62af847725fd1dcb37526e38bfa7210b243583cf8a77608b6f8e6902108"
+      },
+      {
+        "href": "xhtml/48_CHAPTER_THIRTY-SEVEN.xhtml",
+        "sha256": "f36bee48d6fdc2be38e5f598dd8d9c036803933c2573d3659fdf6e9c5a05e4ef"
+      },
+      {
+        "href": "xhtml/49_CHAPTER_THIRTY-EIGHT.xhtml",
+        "sha256": "1be6f535030f9daf1222a8868f5ecc72e797b498ee7ffb5d029e05df3312a8cc"
+      },
+      {
+        "href": "xhtml/50_CHAPTER_THIRTY-NINE.xhtml",
+        "sha256": "d6029c4d65b3c70968ab39035948a8603f9c308411327fa3aa7252b50a40f795"
+      },
+      {
+        "href": "xhtml/51_CHAPTER_FORTY.xhtml",
+        "sha256": "481ad6eac449e6c6860ffbf1f9a50fad7a082d4c2f8b454d33be8d518509ee80"
+      },
+      {
+        "href": "xhtml/52_CHAPTER_FORTY-ONE.xhtml",
+        "sha256": "34e2920cbeab180fb4d92646e85113a4998c7ee219d7603b45b5dfca07f31929"
+      },
+      {
+        "href": "xhtml/53_CHAPTER_FORTY-TWO.xhtml",
+        "sha256": "791340618b003a455e5eaecc4fdbad27dc5cdbf9e5faaf5074ab81982cc90cf7"
+      },
+      {
+        "href": "xhtml/54_CHAPTER_FORTY-THREE.xhtml",
+        "sha256": "d9029f713e6e9345d255ebcb5e779e2cc4e5d3e8871e399a89bf14dd57d1a3be"
+      },
+      {
+        "href": "xhtml/55_CHAPTER_FORTY-FOUR.xhtml",
+        "sha256": "69a9934ca027c3ea772117f59eba9089179a6f3d6b0439775e4a3afda136de9d"
+      },
+      {
+        "href": "xhtml/56_CHAPTER_FORTY-FIVE.xhtml",
+        "sha256": "7426d016f3937b8da3bf254c372d688232e2e940905915ac62920873a7151f88"
+      },
+      {
+        "href": "xhtml/57_CHAPTER_FORTY-SIX.xhtml",
+        "sha256": "e9830d24c2dd2b413f8be67c9cc3b7cf42d3aeb4fe3038e095b3c8927a5bfa9a"
+      },
+      {
+        "href": "xhtml/58_CHAPTER_FORTY-SEVEN.xhtml",
+        "sha256": "aef8aadfe1aad9d6b03f004982ab4bebf959a3ae320836121adfa7df16cf0ce9"
+      },
+      {
+        "href": "xhtml/59_CHAPTER_FORTY-EIGHT.xhtml",
+        "sha256": "279ee035abe09267ece5e41c457ea5209bd4b4f9279d4713a5a778e82fc0c716"
+      },
+      {
+        "href": "xhtml/60_CHAPTER_FORTY-NINE.xhtml",
+        "sha256": "ea1b24968aa9a36c5ec1a6fff0badfeb68ea07ccfcd174e6a33131e55a578aa7"
+      },
+      {
+        "href": "xhtml/61_CHAPTER_FIFTY.xhtml",
+        "sha256": "b1a668511adea81edcfbbc517ba378fbddab394fae4eb378917f4c7c069a8b15"
+      },
+      {
+        "href": "xhtml/62_Acknowledgments.xhtml",
+        "sha256": "16e67b74fb043062e37645c4b741cb7b978e9acf70ac891cda540855ba62b88e"
+      },
+      {
+        "href": "xhtml/63_About_the_Author.xhtml",
+        "sha256": "efe600b4ff8224b89d7a7a64e41b3a813aaa3b2a27de949e5b0ed40d24f1391b"
+      },
+      {
+        "href": "xhtml/next-reads.xhtml",
+        "sha256": "df7afcca3748685211165f074522676645e8ffb98079636b7034589d8e3228f2"
       }
     ]
   }

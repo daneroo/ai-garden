@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -550,6 +550,104 @@
         "id": "tp",
         "href": "OEBPS/Reid_9781524798062_epub3_tp_r1.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_cvi_r1.xhtml",
+        "sha256": "1350b80ec8a75f51675712b66f7dee70158588aded8e54e24d73ea243cd2505a"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_tp_r1.xhtml",
+        "sha256": "60a45569b532f8f523841e733d00c07307286a16eaea4577c85d58d7927c157f"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_cop_r1.xhtml",
+        "sha256": "aeb9fa39205b2202e79a18490e2ea6fed6daf84734e451eb94452fd385a3f0e8"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_toc_r1.xhtml",
+        "sha256": "0cace467ccc3405c21ba15ee2dc971654b3168fce8950f262229542043f4e12d"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_p001_r1.xhtml",
+        "sha256": "79fcac163c515146d620457f25780bb0adf20777656e6434b7cddbbc800926ae"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup_r1.xhtml",
+        "sha256": "b5afaea2b865cbef3ceb83ba0b749fa549b3a228ed4421eb355d9a752e0f7618"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup1_r1.xhtml",
+        "sha256": "b521a7134fcfafbc225a85a7a4be40025573cd4755868bc287c90da151393aa3"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup2_r1.xhtml",
+        "sha256": "50d1525580dd2ab05263912943c5b54343ff75724b52db26a9ae9961951532d4"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup3_r1.xhtml",
+        "sha256": "87cdbb422a9bbbb14351324fd6e7ff181ee6dad88b832b5a5bcdcacddfbad85a"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup4_r1.xhtml",
+        "sha256": "bef7df3c88cb97ecd13959ab85d5b60351724ac77d04d404cf585b28891cb71e"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup5_r1.xhtml",
+        "sha256": "c5a437bf317b15d7d4194768b35f18404e91ff368e93cf11f1ef35e98b1e3c51"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup6_r1.xhtml",
+        "sha256": "fbf5fdad539a8128e369bf01f0e17f9c6abb8e1c31981e6ab2f4ca9949f04a6c"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup7_r1.xhtml",
+        "sha256": "b84a3bd75fc14a3fb7551f3da83cb85c59cd0d89e8ea72bfd320255a73291776"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup8_r1.xhtml",
+        "sha256": "34b1979e21975b1cb50b8b16cc52ca4a4950eec96cc39424fd876196ed7d2363"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_p001-sup9_r1.xhtml",
+        "sha256": "a842654686338f2398f33b11d69f26b44c48a4d4d6d26e27851762e964a76cb0"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_p002_r1.xhtml",
+        "sha256": "fbdaf01aaf96aaed5a8070319be2b09e47028df1de8cc99b015b0db26355ec32"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_p002-sup_r1.xhtml",
+        "sha256": "5c882b76aaaff4736fa76fc445dc75f530857a34e5161d70d87e79eeb82f663c"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_epl_r1.xhtml",
+        "sha256": "3cde5e757f7cd84702084436911ecc2d5b1683b9d1b3ed5c563425f0c718b8d3"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_bm-sup_r1.xhtml",
+        "sha256": "a334b0f3141737b245765eaa8056762596064cd50b106d6e4fd56efe3082ca39"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_ded_r1.xhtml",
+        "sha256": "60794eb2bbd860df3900d58b217b2abbbcdad662c11cdec3c4299ddb9668aff0"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_ack_r1.xhtml",
+        "sha256": "0d43de4486a870547c04b2d6eb64af4b0dd928b1914992f9555f1b3649299fec"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_adc_r1.xhtml",
+        "sha256": "77587bf54eac607cbeab462c2020e4d092a70fe16831a7b2dfc5ccc6c6215080"
+      },
+      {
+        "href": "OEBPS/Reid_9781524798062_epub3_ata_r1.xhtml",
+        "sha256": "21cf4f53cd25dc42133ef9cb0937174a49d2995e3842fbdb2ba53738ff1c0f8b"
+      },
+      {
+        "href": "OEBPS/next-reads-html/next-reads.xhtml",
+        "sha256": "5b418a0e25196abbd01f85784afdd8f6ceb1b722786b6322b09a9a49e3946fe3"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -667,6 +667,276 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "aacbbc58587a4a2029178ae634fb755d090ef2b4036a5fc6ab6c04c787fa4e94"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0001.html",
+        "sha256": "e77b79a805be415fdf11145845ae912cdd88cc2e8b38cbfa89bdffd5934bd04c"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0002.html",
+        "sha256": "a5d8d01b071115edb69fe5fbf077b79cf33be7a37b1dd30e7c99f90f41779b93"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0003.html",
+        "sha256": "da46fc2fd3745e73f47ca0e75ca19b9ea6e9a38b160049ec6e349b8a48fdcc3d"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0004.html",
+        "sha256": "508596ec0bfd4dd32435f0868b349889d56dd68247fec7667002eb187a0f1d68"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0005.html",
+        "sha256": "f341e99878ed45c7ffbf9c73ce0ca61944d872ac5602faca82af71e262c0c2b9"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0006.html",
+        "sha256": "4e5ec63e4df7705105de344fa69ee5599d660c02eedeab69472301c3b5318c39"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0007.html",
+        "sha256": "47dc7cd47875b470e0f7e9396d0bf70075461fa34680e87ae049aabbb5133c4a"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0008.html",
+        "sha256": "9dfb00520426d0e908965dc9135e7e604b6a41c2c0871f08c8654f13612b6db0"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0009.html",
+        "sha256": "53eff1e73c99919aa20ef2bb6e1a60aaab9e2da08be30198efe37d195eb4875f"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0010.html",
+        "sha256": "762e550dd16cee9ed75ea14baba49b47a4a1a5201646809fb5d2b09408135d56"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0011.html",
+        "sha256": "f0af63bdd5c79b1be64e2bf255c916abe00ef86872f390026995c91e0de32549"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0012.html",
+        "sha256": "b37b9595668401db1235329dbc7131b1e27328673046990c2c1613ac5f15090c"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0013.html",
+        "sha256": "36961fa6554e9c7ef97c6d3ffbed7dd324cfc23adeac7350ab86ddc4a92b1538"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0014.html",
+        "sha256": "8bdf6b3e760f98857ee1018b67c2d4601062e81e770de649488a0dd7fe8cba9a"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0015.html",
+        "sha256": "3309173f05ddc1a229dfc6cee898f262ee8c8d07f1754a9da2f631c48e5ff312"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0016.html",
+        "sha256": "4c1b9fad2cacbd1379ddcae49a9f5c75ada347c6473d7d4a31f88e22f59c896b"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0017.html",
+        "sha256": "8f0c6157b40c7fc55177972ebf53e91300759f83108ab1284de23d5b9087b2e8"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0018.html",
+        "sha256": "cae301ac285d993669206a896a43c304cd20965f37673c0c47609ff0fba08b3e"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0019.html",
+        "sha256": "173df05635a04a6379dec60e18e70a576fbcb0661fe1b362866526ad6aae53a5"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0020.html",
+        "sha256": "13cc7d4e4dc71853f9f2e70936ed077a9afed430da18cbf15570807b4c1b26ba"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0021.html",
+        "sha256": "21622e99ef4f81db1e459652c8743fe03fbe0c657d6921c9b0ad18d22feb7fc0"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0022.html",
+        "sha256": "8ca79ee442349cb8dfba80b5b46d4e5f155a2104181ac522d02ffc41852fe496"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0023.html",
+        "sha256": "20f027f1c66b255bfb58bb66bd638190d7d71ba8f6b515b930f45186c76f6eeb"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0024.html",
+        "sha256": "46b0fdabcc19d28a0a6ebf6c51e98acd3d9c5ad2fc96af9c88bcbecfccf44d4c"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0025.html",
+        "sha256": "21362bf5bbbfece0e1fae32e423bed5b49b1b2aab23da08385c7b1dd9e52e7ab"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0026.html",
+        "sha256": "ce355775ca518f15d9bdd2a09675e8479285becea476f6d6228fc1d5613ea33e"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0027.html",
+        "sha256": "56fe61bf6e31d4fc90e86cd416b223693dcc3f0fc6518d1e5f383dd39a7bd3b4"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0028.html",
+        "sha256": "d25570a576ed82448386fd148d685852aabf5f6d4a7f1e2879fc901b86cc8be5"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0029.html",
+        "sha256": "a1687034fc3c62267ebd7c54e5eb3956b722e98489ac715004d6ad4ec3125ada"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0030.html",
+        "sha256": "53141df739316177806589b752019440e8704882714aa3506f28709f2e27e4ef"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0031.html",
+        "sha256": "715cd96fca58def05d2a8412fa7968168ecf056722e8c8e5f4052e8a788ca9ce"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0032.html",
+        "sha256": "41dac752451d367f02acf588726a8bc7448ceb0e1fa7faf290cc9283547434e2"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0033.html",
+        "sha256": "a906a8f19d9814d8fa2d17ff8a34b4ea087e7bdb8971e415878c38ae13e24055"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0034.html",
+        "sha256": "99afbec10fb4f22b1f2a3861b2464e2167efd08daa8d8cf6cf6a99b703be1ea6"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0035.html",
+        "sha256": "b1afe9e9e4d9fdeb0118c5153159a4dc60ab2e5ff92a1644917b8b5e5a3cadfc"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0036.html",
+        "sha256": "49fba23379d310715adb7957d6a947f52ca0de3185c9f0ed9d9087d05eab9306"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0037.html",
+        "sha256": "3e5a6fe0f41367b0445e3c28c78c289134ab8936a5fe3918683b243d65042037"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0038.html",
+        "sha256": "c86fec0e84381e23544f54442e09b19c63f8a728fb552cdc999959dbc162f483"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0039.html",
+        "sha256": "5cb87c07b3bb4ee63672a6569a1984fa8cc2a3ff3165e132aa35221e776c87db"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0040.html",
+        "sha256": "fce6bcb446a9db3becd826d0083bf15e059306c1106ae825268757ff17282d27"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0041.html",
+        "sha256": "a2c87e4edfb513625afefd2fff4ca0665578c523143c9236e69a6e832fddd749"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0042.html",
+        "sha256": "7b1c7c90a478c522f331d5efb23eefd86279afcdac77cf3cfe382b354ac064af"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0043.html",
+        "sha256": "3aaaeffc0fb6e8575af9c6ddc58b89ff348c2b6747955a79a3d86f29eeb4982c"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0044.html",
+        "sha256": "c0a8b956bb93549688f0a33c2f12a0aca3ad97e31d853e87227929fcf4616f3e"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0045.html",
+        "sha256": "17deacee97ce1a6f6c4c28490cf6173e532e6ba1d53d447c5cc53d91e16995ed"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0046.html",
+        "sha256": "ea73b96ab707d5e2e5ea91cf78d9eeed89906189fb82c2586351677e996cc2ed"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0047.html",
+        "sha256": "c7b6cbfee258b9351329ba2ea067502487da622ffd218a0d53238e5cfd869ec1"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0048.html",
+        "sha256": "ec636685aae0cfe4f08ca9bb604c4f8f1dd2d306575a6aeb3d076b092f7d1421"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0049.html",
+        "sha256": "9d39b592b4d7f1a35e76d254160428143ee09a56dd4dca67b4da867bc532a151"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0050.html",
+        "sha256": "f1dc2f17117384ad233ce4227a8ae1e6d872bc98c402d644f012e375a0d2439c"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0051.html",
+        "sha256": "d9b3faafceb9ddc6f2532f5d2190ac8e95e6c142f3b796dda23947ec80307e8b"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0052.html",
+        "sha256": "5ca2a6c195b2795b7595aed780b0eacb1380e348a9a007c7c4dc6ae31d844472"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0053.html",
+        "sha256": "6d799e1c12fc21addba5ccf47382a0d0f607a817f021b4ff58152d44c84808ec"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0054.html",
+        "sha256": "b43997ef92d54fd37d11f05af539957c263cf73813d34adfe4dc611a51ee9c23"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0055.html",
+        "sha256": "3ad9b6b11e767512d8306025892f3400d4c4cea888dbcd4871d2dddfb0d9cc4a"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0056.html",
+        "sha256": "318a31c1f4d7941d2cab9a46030502fabb3b716434cf325111610f0019d3e3bf"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0057.html",
+        "sha256": "3da83864736fed9b42bc172025d5f075a7f4dbfdc57ac5b7eee00ae8b1062ab7"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0058.html",
+        "sha256": "f41b574be892fc0febe8aa9780b9af55cea60afbd2f760a16d5bd6c4ccafbc31"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0059.html",
+        "sha256": "281e7d178616ecba2654dd09a0c1bb3080c6639959d6483167d6c6c95210581c"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0060.html",
+        "sha256": "a888f9e485ff9fce1cd26795658b2edc612dd09bd72fcb47d47b6ab8c6615143"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0061.html",
+        "sha256": "12b38c771b9fa84174661db7d8953f054f2c8bc33813057cafd095cecef43471"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0062.html",
+        "sha256": "bda591ff655eb4068e24c62b23a13d877e65f7c400aacb817c6412ea187c1354"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0063.html",
+        "sha256": "aaefe37b9850b0b9dc9094495fd6f488d8212406f42afc2f3fe5512c312688f0"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0064.html",
+        "sha256": "97b44b8867ca86e97942cce628f94895c8f0d08a7dd25db1f19c6d065686b200"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0065.html",
+        "sha256": "bde6db8a65e425382309eaea76b79fcd009c023df0a21e58856d0f70cb9b22f7"
+      },
+      {
+        "href": "OEBPS/Text/rhi-goldenson-0066.html",
+        "sha256": "15a2a6951a455f5abbf248bc10bfab1b69cba5bcda960e7547a7e8b1beeef8cc"
       }
     ]
   }

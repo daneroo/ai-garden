@@ -34,7 +34,7 @@ async function openBook(bytes: ArrayBuffer): Promise<EntryOpenOutcome> {
         manifest?: Record<string, { href: string; type?: string }>;
       };
       archive?: { getText(url: string): Promise<string> | undefined };
-      path?: { directory: string };
+      path?: { directory: string; resolve(href: string): string };
     };
     const pkg = bookAny.packaging;
     const spine = (pkg.spine ?? []).map((item) => ({
@@ -44,12 +44,11 @@ async function openBook(bytes: ArrayBuffer): Promise<EntryOpenOutcome> {
     const manifest = Object.entries(pkg.manifest ?? {})
       .map(([id, item]) => ({ id, href: item.href, mediaType: item.type ?? null }))
       .sort((a, b) => a.id.localeCompare(b.id));
-    const pathDir = bookAny.path?.directory ?? "";
     const spineHashes = await Promise.all(
       spine.map(async (item) => {
-        const archiveUrl = "/" + pathDir + item.href;
+        const archiveUrl = bookAny.path?.resolve(item.href) ?? ("/" + item.href);
         const content = await bookAny.archive?.getText(archiveUrl);
-        const sha256 = content != null ? await sha256Hex(content) : null;
+        const sha256 = content != null ? await sha256Hex(content) : "<unreadable>";
         return { href: item.href, sha256 };
       })
     );

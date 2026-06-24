@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -219,6 +219,84 @@
         "id": "title",
         "href": "title.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "cover.xhtml",
+        "sha256": "d1029e1fd7a22dd95e01267759070f41f25c4723c78cf973dca5a8598d32633a"
+      },
+      {
+        "href": "title.xhtml",
+        "sha256": "dfd62e199208170c612cb7ac9a7941f8e7a67af09bec286b8fc7bc7987ed87ab"
+      },
+      {
+        "href": "section1.xhtml",
+        "sha256": "cf25336f64f058c775ce871faa1d79ad76bd9191a67ba1ceb1be6b1d00cbc0c2"
+      },
+      {
+        "href": "section2.xhtml",
+        "sha256": "b98a8f097c2937d8a782488eeef1b234d03d870d42addb6ed71a8de4fb762ba4"
+      },
+      {
+        "href": "section3.xhtml",
+        "sha256": "dd21df73c399480494e8c7f03d954ed840e06f5cc5a3acfc1c6c7eec5b0dbc9c"
+      },
+      {
+        "href": "section4.xhtml",
+        "sha256": "bedadc3790e85cc1a53082e44428b63969c6f7b1e2108b878fe3538676ff8647"
+      },
+      {
+        "href": "section5.xhtml",
+        "sha256": "29be405d951b3763489e6b648c803aefae2d17b5cfed39aeba1fd5f274263c97"
+      },
+      {
+        "href": "section6.xhtml",
+        "sha256": "36dfad30d90d0a323ce054f93f1b6d18bcef101358f785209555c45f02ce0645"
+      },
+      {
+        "href": "section7.xhtml",
+        "sha256": "1d666ad62926f249ea268dbcd4095a41d4a9dfdd0df0fbf0f51d31b47e5f5378"
+      },
+      {
+        "href": "section8.xhtml",
+        "sha256": "5aadb5d10f5db7d38bb285d90acae8f2360edbad029c7d4ae78c4b1634f494f6"
+      },
+      {
+        "href": "section9.xhtml",
+        "sha256": "e390b1976e2675c28a3dba6a0aacd9c0782e1e83e4089c50b65c54c0f9aff505"
+      },
+      {
+        "href": "section10.xhtml",
+        "sha256": "429299a5cd37ec3657348766ad1009989ac811e5bef887551c03632ea365c906"
+      },
+      {
+        "href": "section11.xhtml",
+        "sha256": "abc96dfebeb1a98d62f7ee8e471b698348dec643a96f71b175dc8be3a64843fd"
+      },
+      {
+        "href": "section12.xhtml",
+        "sha256": "9b116bd9470e97890ce68e279cfc1d628b965d4322bf54fc20ea323dbd756c89"
+      },
+      {
+        "href": "section13.xhtml",
+        "sha256": "2e8eb6233d08b0a7dd42032c767edfcb3c84332742c2e9a82ec2ce081f566f58"
+      },
+      {
+        "href": "section14.xhtml",
+        "sha256": "0f5fb088226c1632ba7b465c71ba9cb9e4dafc7ed2992baa16d7a125a2bbbb06"
+      },
+      {
+        "href": "section15.xhtml",
+        "sha256": "2936049ab387dbc92f44e0ddfad773c9bded236f28f5690aa97dff40c8a5bdc9"
+      },
+      {
+        "href": "fb2info.xhtml",
+        "sha256": "c27644412a4cefb88c8c582996d7556fb8862bfec328aab645458bd478cdb89e"
+      },
+      {
+        "href": "about.xhtml",
+        "sha256": "235faeb69491d4c58bab120f638f22a4a5e733aa155dcdbcbfe7a4ace80f555d"
       }
     ]
   }

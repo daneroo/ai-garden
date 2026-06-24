@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -572,6 +572,232 @@
         "id": "xorn-jpg",
         "href": "image/orn.jpg",
         "mediaType": "image/jpeg"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "xhtml/01_Cover.xhtml",
+        "sha256": "bf51a263b3f29e0496d6f876fa1c512a9be6bb9fa16f2421116de51d1ad059c4"
+      },
+      {
+        "href": "xhtml/02_Ace_Books_by_Mark_Law.xhtml",
+        "sha256": "325e271bd288b86b1565475a268a8f603b79e99c3f983d73dc3620f0ab8a7ab4"
+      },
+      {
+        "href": "xhtml/04_Title_Page.xhtml",
+        "sha256": "97921ac7ad3a7130ff9f677e93f0547855686e84bd7d12dbc253b32b6ea02c4b"
+      },
+      {
+        "href": "xhtml/03_Copyright.xhtml",
+        "sha256": "5ec301e59dbe166f21985c0307d07423a633c2b3754aff99f59c391ad7cc35c4"
+      },
+      {
+        "href": "xhtml/05_Dedication.xhtml",
+        "sha256": "1e1c5116679ed548c625fb15cce9cbf30ced9679f27cd278b6a05382caa5e0a6"
+      },
+      {
+        "href": "xhtml/06_Contents.xhtml",
+        "sha256": "fbe9912980df45f1b8651b6ed7035453c03666e5a4bc2c76ae1baacf8bae8471"
+      },
+      {
+        "href": "xhtml/07_Author_s_Note.xhtml",
+        "sha256": "6efe838b917e05423b24ed8fd6c85148e0943aa2ca77318a6bcb83a6cb78c445"
+      },
+      {
+        "href": "xhtml/08_RED_CLASS.xhtml",
+        "sha256": "bb228f38cbb9b5ca4c9e0ab538913917d973d8115355fc624e6d555cb56f2abf"
+      },
+      {
+        "href": "xhtml/09_Prologue.xhtml",
+        "sha256": "5bc338fd48842153c8e9cdad42e35a2c6e1a8cfcb2fd48edaf70dfaf00efff3d"
+      },
+      {
+        "href": "xhtml/10_1.xhtml",
+        "sha256": "94129c9d052c808a52891beb485be8e96fc311ee8328d07d5ee2093f6b13c478"
+      },
+      {
+        "href": "xhtml/11_2.xhtml",
+        "sha256": "63121ecfd048872c005eb7228343af27be83ee0f23a2e2178028e95770357813"
+      },
+      {
+        "href": "xhtml/12_3.xhtml",
+        "sha256": "d4a6fcf30a407f1b4ada0a49724bcc2c40d713c9d48f4eb36d8ffa2a43bac888"
+      },
+      {
+        "href": "xhtml/13_4.xhtml",
+        "sha256": "33006030e533ae6ca3f66e311f35642b85bc3efbab454c97dc736d2eea43d5a0"
+      },
+      {
+        "href": "xhtml/14_5.xhtml",
+        "sha256": "e1f9ec82978726c26de022c066d0daabd5e09e215fe8a31e1214c6492733bdb2"
+      },
+      {
+        "href": "xhtml/15_6.xhtml",
+        "sha256": "1458cc3f8861622a5081c3b9e040b0b8823cc33f7206d901a9de87f47a18d2ba"
+      },
+      {
+        "href": "xhtml/16_7.xhtml",
+        "sha256": "be9f05ec4407a63569db6cab690ab424fcb5801102ac376cce3edefd4e7e5768"
+      },
+      {
+        "href": "xhtml/17_8.xhtml",
+        "sha256": "95809f024846e5311e805c95899d78c45451bc436cc62bca17596299d29e1830"
+      },
+      {
+        "href": "xhtml/18_9.xhtml",
+        "sha256": "d8b1a13f30d8cbc853a44d710db049741ac7427999889a629a892d59949beeb0"
+      },
+      {
+        "href": "xhtml/19_10.xhtml",
+        "sha256": "82e855c2b979742d212bb07e35a50e951fec14d5b5123163aa0dfa303ffd7634"
+      },
+      {
+        "href": "xhtml/20_11.xhtml",
+        "sha256": "9dc4aa0fabb8826951ae99f47674481c211e08ff2c9bd16411064908e4b04c0c"
+      },
+      {
+        "href": "xhtml/21_12.xhtml",
+        "sha256": "f7ed25b78af247e9c38df1da93145c2557c21f8cc17240a7e6956fccbf06f7de"
+      },
+      {
+        "href": "xhtml/22_13.xhtml",
+        "sha256": "378510f41814efc2e72b872f0d429a4664c6b5da59eaadcf2009c160f1d8820c"
+      },
+      {
+        "href": "xhtml/23_14.xhtml",
+        "sha256": "5c211bb8bc87fd5c959af9e986b1a92888bd41de643c5a314e099aa631e37d78"
+      },
+      {
+        "href": "xhtml/24_15.xhtml",
+        "sha256": "6428ff74791ba9bb163ad0f4caa0c583a9add6778d8c3d230508c83ef37d7975"
+      },
+      {
+        "href": "xhtml/25_16.xhtml",
+        "sha256": "9bdbe7250a84cabe9f6eb44cb39db78b55591bbe9e3310674dc1f5d031ec34be"
+      },
+      {
+        "href": "xhtml/26_17.xhtml",
+        "sha256": "552b5624d660d282fdf48a934eb8450b099f9638feec493d1fe72746c62fd895"
+      },
+      {
+        "href": "xhtml/27_18.xhtml",
+        "sha256": "b38b448d1dd271d2e35f7b74b0c122edf99262ac99320d0620b20c039f9cf51d"
+      },
+      {
+        "href": "xhtml/28_19.xhtml",
+        "sha256": "dd347591897876a7340497fedbfdb0e06695c4df0fd0ba090469e89165f28f5d"
+      },
+      {
+        "href": "xhtml/29_20.xhtml",
+        "sha256": "5017c5d13ec521d6b9c8318eff55f7ebae282efb62266ea3502045b33db07bee"
+      },
+      {
+        "href": "xhtml/30_GREY_CLASS.xhtml",
+        "sha256": "b9cb7a14dad5f2e8b6194c28d8a2cc888a5c54283efc09b94c67a4890ad06e27"
+      },
+      {
+        "href": "xhtml/30b_chapter.xhtml",
+        "sha256": "a98be288d8ef8b8ffa50f463c614d9c5690bd8917906b67d626c6eeb30e1393b"
+      },
+      {
+        "href": "xhtml/31_21.xhtml",
+        "sha256": "8c24248a0fbeaace37fe3dec88cbb9bbd93c94f26bd907a75b60887080722f02"
+      },
+      {
+        "href": "xhtml/32_22.xhtml",
+        "sha256": "6490168067415b74ad7aa356645a7cb128cf201ce5bd60492d0894fac052e6c5"
+      },
+      {
+        "href": "xhtml/33_23.xhtml",
+        "sha256": "b442875e9938a00e4b3537580f3de648a30502c641df13ade5119010dc888cba"
+      },
+      {
+        "href": "xhtml/34_24.xhtml",
+        "sha256": "93386f96e32d1581b274b358a880c55061306f7416366749e69f72bbed5d47e7"
+      },
+      {
+        "href": "xhtml/35_25.xhtml",
+        "sha256": "33b9e26d8d5b4d710f4f665e11d2fe717abf609a426f2065566d064917febf9e"
+      },
+      {
+        "href": "xhtml/36_26.xhtml",
+        "sha256": "052c663bd792f9c45b26b9e7989015a2d48f568f88dfd1b5ebaaebd02ed883ff"
+      },
+      {
+        "href": "xhtml/37_27.xhtml",
+        "sha256": "3893d230d60792e44304525304afd1f7774725f17165e6a8b74c3a5e8c7905d3"
+      },
+      {
+        "href": "xhtml/38_28.xhtml",
+        "sha256": "57c631f82c780e88474534f14020fca2bbee190edb8081dbca75b2ca2679dd11"
+      },
+      {
+        "href": "xhtml/39_29.xhtml",
+        "sha256": "b16b6b2c794896125c52e1f2c29b8d7ba121b09319f15ccb62f2c95b74028249"
+      },
+      {
+        "href": "xhtml/40_30.xhtml",
+        "sha256": "d1c8ad495373e2519845266e885c6b468aa2098748b48b55c95b2da60a0a655b"
+      },
+      {
+        "href": "xhtml/41_31.xhtml",
+        "sha256": "9d9d76d332acbbf43428f752c9941893016d48ab8b3197dff90276fed257db21"
+      },
+      {
+        "href": "xhtml/42_32.xhtml",
+        "sha256": "78279adfc78741b03766b8b878960632bb846c1491f18bdbb55e205d4cc78526"
+      },
+      {
+        "href": "xhtml/43_33.xhtml",
+        "sha256": "ab7689466c821b6ada201fd5e3e1440cd948db379140f98539af22ca2bc6ca3c"
+      },
+      {
+        "href": "xhtml/44_34.xhtml",
+        "sha256": "cc44219bf21ce389c50fecdf2a0f989c196d4037c719b57f26fb10096b3575a2"
+      },
+      {
+        "href": "xhtml/45_35.xhtml",
+        "sha256": "98a481d81b74de2d1677c94b0b2d19717352bd39ad79c08d905d9cc2fcff3429"
+      },
+      {
+        "href": "xhtml/46_36.xhtml",
+        "sha256": "05644138a9b6d36a6b76d797b5df6043018357d590f29bc6dd8e12e525fc59b9"
+      },
+      {
+        "href": "xhtml/47_37.xhtml",
+        "sha256": "5de4d518b1dfea196c5b585710559890978227445a58e97d332f4b52b3d2910e"
+      },
+      {
+        "href": "xhtml/48_38.xhtml",
+        "sha256": "aa72b409215c87074fb6acacab2cec985792ace5c6546a566058fc7c4beb70f8"
+      },
+      {
+        "href": "xhtml/49_39.xhtml",
+        "sha256": "3c363d7bb50774fe4af61bd08ffd4b7c489d5b69e4d7ef9cd492b79495522046"
+      },
+      {
+        "href": "xhtml/50_40.xhtml",
+        "sha256": "409048040c687f3657e3fc86b50f22365e8df6a9363a212c14793479a222bc6e"
+      },
+      {
+        "href": "xhtml/51_41.xhtml",
+        "sha256": "60c6cefa6349a85e1de8515f62847075ea728617ce8047f1e58ffb5a7d984d4b"
+      },
+      {
+        "href": "xhtml/52_Epilogue.xhtml",
+        "sha256": "f5423edf2358aebadaf70284bb24ddcbc67e2b3ee4ef38e250a484841930f6ff"
+      },
+      {
+        "href": "xhtml/53_Acknowledgements.xhtml",
+        "sha256": "060f40de4ca29bc9bb1d51dd9934fd653f79f9013d705dd6c5b30da7ac5fc9b2"
+      },
+      {
+        "href": "xhtml/54_About_the_Author.xhtml",
+        "sha256": "eb205c8b8e8542d9297104b19e6cdf1fd743af20cf36f9d6f360f65c3c4e3275"
+      },
+      {
+        "href": "xhtml/next-reads.xhtml",
+        "sha256": "b330f4e56076cc04450498c035724d350119a6e3942c02eabb827234bafcc376"
       }
     ]
   }

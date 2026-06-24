@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -93,6 +93,32 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "764aaba4a12c7dce5eb838ec8af8586ca72c33600e960801c8b52e6df2609075"
+      },
+      {
+        "href": "tmp_2a72b48a32057be1c4cfbdbffb589234_rEVHbP.ch.fixed.fc.tidied.stylehacked.xfixed.sc_split_000.html",
+        "sha256": "babbb450ee3c429ca5247d83c26468001c199c9e432bd1fdb38dc2757ac69cba"
+      },
+      {
+        "href": "tmp_2a72b48a32057be1c4cfbdbffb589234_rEVHbP.ch.fixed.fc.tidied.stylehacked.xfixed.sc_split_001.html",
+        "sha256": "85cc00da77d4e1157e5af95b8ae54a3f8a95cdbf5a99fa5d6228dd5ef4d8651a"
+      },
+      {
+        "href": "tmp_2a72b48a32057be1c4cfbdbffb589234_rEVHbP.ch.fixed.fc.tidied.stylehacked.xfixed.sc_split_002.html",
+        "sha256": "bbfa11dd0248dee5fc4ffc9a466d83fc35cbb6aea0c6b5fb9a2cc87bd0d93578"
+      },
+      {
+        "href": "tmp_2a72b48a32057be1c4cfbdbffb589234_rEVHbP.ch.fixed.fc.tidied.stylehacked.xfixed.sc_split_003.html",
+        "sha256": "bd4c788a6921da846051e0f73d9d3f130d9fe1ed000105179a19da1a9b58f2b5"
+      },
+      {
+        "href": "tmp_2a72b48a32057be1c4cfbdbffb589234_rEVHbP.ch.fixed.fc.tidied.stylehacked.xfixed.sc_split_004.html",
+        "sha256": "fb370553c4ab51a9cf2e3341f84d9e66b4fe223148ae1b7ce86c7cf155fa5e26"
       }
     ]
   }

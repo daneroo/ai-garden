@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -1076,6 +1076,376 @@
         "id": "title",
         "href": "html/images/title-pg.png",
         "mediaType": "image/png"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "html/00_Cover.xhtml",
+        "sha256": "276662c29430e908e759ed1e05e9dbeb766b0a88344020680113d7c5f36a188d"
+      },
+      {
+        "href": "html/01_Series_Page.xhtml",
+        "sha256": "f4a145333ac8e93f303991e66adb020f9105327a7838ae8ad5a3ec72bd33cb6f"
+      },
+      {
+        "href": "html/02_Title_Page.xhtml",
+        "sha256": "e3a264eb7b5e61f409332b2e55daddc9202a49925761af7b532abd3c375ab24e"
+      },
+      {
+        "href": "html/03_Copyright.xhtml",
+        "sha256": "28ac7572380a64fe9081c9741eaa9b4b6e916cf4181dd373793823158627ef36"
+      },
+      {
+        "href": "html/04_Dedication.xhtml",
+        "sha256": "14f462f82abda8fae22bd08b64ffcd0a631a61ba42f25ec00ed86ed2952c3566"
+      },
+      {
+        "href": "html/05_Epigraph.xhtml",
+        "sha256": "c84f50331cd8fc41a04ae9ea187e064ca16e980aecb47c6757dad08a9462133c"
+      },
+      {
+        "href": "html/06_Contents.xhtml",
+        "sha256": "c70ccd5c51fff6f7fa75a7fca1b46f5bc39e8de01b7e6dafef3cd3e0a539647a"
+      },
+      {
+        "href": "html/07_Family_Trees.xhtml",
+        "sha256": "3e57cf2367d7629ef332ae7a732df53ef81dd6a41c432e700008f1cff7577d60"
+      },
+      {
+        "href": "html/08_Prologue__The_Great_and_Terrible.xhtml",
+        "sha256": "349d4d14500491c9c06363792de1c2fae46b5f9bf4a97ce4f0744de7a21ea659"
+      },
+      {
+        "href": "html/09_1__Machiavelli_the_Patriot__SPQF.xhtml",
+        "sha256": "c4f56c78cfcc599d563eb9a015d230cd261e206db496323003ef489fa76d4f53"
+      },
+      {
+        "href": "html/10_Part_I__Why_You_Shouldn_t_Believ.xhtml",
+        "sha256": "4451c3c0b85efeb306a3fc14f0d56a460d6e279aa657a6aa31a19aee9618618b"
+      },
+      {
+        "href": "html/11_2__Everybody_Wants_to_Claim_a_Go.xhtml",
+        "sha256": "b0eaa26eabc3deb1d366eb1e33fd09a9da74a92afca1b669d386b5af8352b3de"
+      },
+      {
+        "href": "html/12_3__The_Flexible_X_Factor_of_the.xhtml",
+        "sha256": "8e5f17135edba28b3734911ccc1f5b89af6d158795c4b02fc3bb1f9fdf42cc94"
+      },
+      {
+        "href": "html/13_4__Time_for_a_Tangent_About_Viki.xhtml",
+        "sha256": "9f0a48a08af232e11b1beb6808d86e40fa964da3dbe0ea37c64d125d4cf404ca"
+      },
+      {
+        "href": "html/14_5__The_Quest_for_the_Renaissance.xhtml",
+        "sha256": "e3fa32c89d2e1f5347b923a580e5ecb4edaae65514fbaa8f4c5f4f02522d8932"
+      },
+      {
+        "href": "html/15_6__Super_Sexy_Secular_Humanism.xhtml",
+        "sha256": "4cdbb63beadf8542a17c8f16bd815693a9faef6909319c374360ff11bf16ad53"
+      },
+      {
+        "href": "html/16_7__A_New_X_Factor__The_Baron_The.xhtml",
+        "sha256": "6c1e2d838d882efaf037782e1d8f1ac1fec83bbd8cff7670a30e054526ed88d0"
+      },
+      {
+        "href": "html/17_8__Another_X_Factor__Enter_Econo.xhtml",
+        "sha256": "333b4edacdb3c3664322d47a724f2a8d73a60650df8f65b807a9ce45e51df5e4"
+      },
+      {
+        "href": "html/18_9__Florence__A_Self_Fulfilling_S.xhtml",
+        "sha256": "d72856444141a0a4443dcb220b880d237d587e9fc44de799ed9b769409a04aa2"
+      },
+      {
+        "href": "html/19_10__What_Makes_People_Start_to_S.xhtml",
+        "sha256": "a2377bc25dead7033109a7d21dbc8fa21368b571a3b3e2465352b0b766b7626d"
+      },
+      {
+        "href": "html/20_11__Lorenzo_de_Medici__Hero_or_V.xhtml",
+        "sha256": "e503e8f79ac6c106917aa8a04cc48713e83408d31a3e05a78a194c2e4d0c8aef"
+      },
+      {
+        "href": "html/21_12__Or_Were_We_Brought_Here_by_R.xhtml",
+        "sha256": "f3cef55cf5cd384ad6c2ba1631f26894d9a721608f33b856a3245b8c1b82f769"
+      },
+      {
+        "href": "html/22_13__The_Invention_of_the_Middle.xhtml",
+        "sha256": "96f5a13aa23ddf6b2021efbee89f243e21afcc72fda90de718cf08539a3dab61"
+      },
+      {
+        "href": "html/23_14__The_Un_Modern_Renaissance.xhtml",
+        "sha256": "1d1cfb7ebc3f12ea7bf2746359ad3608b036690339328bc4685e4ffe4d521a92"
+      },
+      {
+        "href": "html/24_15__Why_Did_Ada_Palmer_Start_Stu.xhtml",
+        "sha256": "8179c4a6dd5bfb9bc5ef126accb6805338aef1361b30e45d7adeeae68a8eedc6"
+      },
+      {
+        "href": "html/25_Part_II__Desperate_Times_and_Des.xhtml",
+        "sha256": "90f5849e5e616939f45b0c9e52172076d0fbe948a2cc7c933a7938927d9b32d8"
+      },
+      {
+        "href": "html/26_16__Desperate_Times.xhtml",
+        "sha256": "f30aa2e843b6b322025952218388b4be7cbb1623eed05f03bb20cd6f2c7c9f80"
+      },
+      {
+        "href": "html/27_17__Cruel_Wars_for_Light_Causes.xhtml",
+        "sha256": "e66e8bd3bd17ed1a18e51aca9f57419bcb18b0234c190affedcb3c12751b37a1"
+      },
+      {
+        "href": "html/28_18__A_Strange_Peace__A_Stranger.xhtml",
+        "sha256": "5467c9d4d523d445d99f042a32f3d7a92485d3d9460610ebccde6b26f214b265"
+      },
+      {
+        "href": "html/29_19__Rome__The_Eternal_Problem_Ci.xhtml",
+        "sha256": "6e19b1c8412e3745734a79393824c51e4c5e6aa6a8d82d76ad1350156d000e3e"
+      },
+      {
+        "href": "html/30_20__Medieval_but_Ever_So_Much_Mo.xhtml",
+        "sha256": "95e1c1654e2af91feaa102c83db40514e0326658a386e7c02f11931a58c777fd"
+      },
+      {
+        "href": "html/31_21__The_Desperate_Measure__Reviv.xhtml",
+        "sha256": "850b2b7ab0bd9651344e9bbc01dd9bfbc56d0011ade46e57522ed637acd9f9d4"
+      },
+      {
+        "href": "html/32_Intermission__Are_You_Rememberin.xhtml",
+        "sha256": "3b775069f352b3e80aa0f9c74bda1897238c7246786e1107bde1a30947379ae1"
+      },
+      {
+        "href": "html/33_22__Antiquity_Was_Not_New_Either.xhtml",
+        "sha256": "84fac88507e0b564e7c63afca8bc598c00af5f99c310513d2f03d2ac4d6e793c"
+      },
+      {
+        "href": "html/34_23__The_Umanista_s_Rival__Schola.xhtml",
+        "sha256": "d08208f56d4954cb4570bde25af4e6a7b6aba21255e79688648084addcab3fe1"
+      },
+      {
+        "href": "html/35_24__Studia_Humanitatis_The_Words.xhtml",
+        "sha256": "bad6637a181f7fc1a7c98e9abb6d5da2db7ff3400dda7895d051112cdc889204"
+      },
+      {
+        "href": "html/36_25__Italian_Renaissance_Becomes.xhtml",
+        "sha256": "a89c3bad7d4c26875c7f24c0ec90e4d3c12e49b32f48678f9b8026ba99ac5721"
+      },
+      {
+        "href": "html/37_26__The_Supremacy_of_Antiquity.xhtml",
+        "sha256": "cdf4c21cb9cd39c67a4703ed19e8fa48b8afc1d3b93cb0343509d42d2bf23e0a"
+      },
+      {
+        "href": "html/38_27__Is_This_About_Virtue_or_Powe.xhtml",
+        "sha256": "a1829f338c14a6f52485cbcac43964442a664eeade260539b42894f7637779d2"
+      },
+      {
+        "href": "html/39_Part_III__Let_s_Meet_Some_People.xhtml",
+        "sha256": "dbaa001b7f3b54f264e923a1280d5c5ba8fcfc76c78cbf08a0964e0ad36711d7"
+      },
+      {
+        "href": "html/40_28__Patrons_and_Clients_All_the.xhtml",
+        "sha256": "8fd6d79640a027e37a77099da4a521b2bd14bc99b6619f8097d906d491284ee6"
+      },
+      {
+        "href": "html/41_29__Our_Friends_So_Far.xhtml",
+        "sha256": "5ebfac627adfdc30bb186c3404ed5b9ad58fb4b922aa8658e95314f2d63947b7"
+      },
+      {
+        "href": "html/42_30__Alessandra_Strozzi__Labors_o.xhtml",
+        "sha256": "7e9dabd351897d43ecf0f77d3659547150f7aaf951f1281f1a036e0b7da43281"
+      },
+      {
+        "href": "html/43_31__Manetto_Amanatini__There_Is.xhtml",
+        "sha256": "a1c2d95245b7cb1918546f7cbb7a258e8addd268665832b03ec6ef1a8981db06"
+      },
+      {
+        "href": "html/44_32__Francesco_Filelfo__Between_R.xhtml",
+        "sha256": "52b40ec195911b294bc7176dc62b517c39918a07fe1edfe760550a6aa3090db0"
+      },
+      {
+        "href": "html/45_33__Montesecco__An_Assassin_Fear.xhtml",
+        "sha256": "4ef02a5ca0353015ec603ad0aee8e36ba56b8d761226bb3a91cd1be3cee81e98"
+      },
+      {
+        "href": "html/46_34__Ippolita_Maria_Visconti_Sfor.xhtml",
+        "sha256": "ea3ef9cf0593c3bd00cec992b12f37eb7f544b359abf1b2e3f68d8bb37c60722"
+      },
+      {
+        "href": "html/47_35__Josquin_des_Prez__The_Intern.xhtml",
+        "sha256": "5245392c608dd9cb10998093b66b9af8d4da604ad4a0d64c726914efdefddade"
+      },
+      {
+        "href": "html/48_36__Angelo_Poliziano__Patronage.xhtml",
+        "sha256": "ac54b01b469b512359a5e87eb65b84f454cfc49ff802e0bc0b5bedd10646c270"
+      },
+      {
+        "href": "html/49_37__Savonarola__Saint_or_Demon.xhtml",
+        "sha256": "a55b70789b21686fd3b6242497e93f5deac02e5250e1caa04b10a77aa2d11153"
+      },
+      {
+        "href": "html/50_38__Alessandra_Scala__The_Girl_o.xhtml",
+        "sha256": "dce873758e263fbfe86215cd0424dff876cc904714190c6d27c3de4d60954295"
+      },
+      {
+        "href": "html/51_39__Raffaello_Maffei_il_Volterra.xhtml",
+        "sha256": "936bf3df5603a2f5464a2a4aef90ce9ed1e282f61f89f5c280b0f8ff5628af77"
+      },
+      {
+        "href": "html/52_40__Lucrezia_Borgia__Princess_of.xhtml",
+        "sha256": "017e59f54d7948aa0b663247174e94a16e8444626df729884af57a8817a8a928"
+      },
+      {
+        "href": "html/53_41__Camilla_Bartolini_Rucellai.xhtml",
+        "sha256": "f55395af720e9e23172c9d9147ff4bef8db31f1845bb435b72951cdc415e8452"
+      },
+      {
+        "href": "html/54_42__Michelangelo__The_Great_and.xhtml",
+        "sha256": "97d4ce3573a412ce8888b9d96589d74a26f71f2afeebadaea1ba71a36195b453"
+      },
+      {
+        "href": "html/55_Interlude__Let_s_Ground_Ourselve.xhtml",
+        "sha256": "6b4c7a84b3bf1a5b606f2520d484bdf6f3bbe00360069391b149c8295a1ba0e6"
+      },
+      {
+        "href": "html/56_43__Julia_the_Sibyl__A_Prophetes.xhtml",
+        "sha256": "c4ae13ca6b185358d1e53b140ac237660638205ae2a8f3881653dc5371ab8cd2"
+      },
+      {
+        "href": "html/57_44__Our_Friend_Machiavelli.xhtml",
+        "sha256": "40b3e603bd39b32e7b8eec8b0381e4624595a8a9c0f272c8a7025bb17e70d8af"
+      },
+      {
+        "href": "html/58_Part_IV__What_Was_Renaissance_Hu.xhtml",
+        "sha256": "4e312ac00fb5ab9aeb5c88ef585b82eac74f01de181c3bc9a79ce7c43ed2d0ad"
+      },
+      {
+        "href": "html/59_45__What_Was_Behind_the_Curtain.xhtml",
+        "sha256": "953b3657c77cb7bbf9670d3b49acbecc728c20e57cf8ff591f71de09e8723f87"
+      },
+      {
+        "href": "html/60_46__Who_Gets_to_Count_as_a_Renai.xhtml",
+        "sha256": "a210fa4125390497140070eaa19be7b55d80312c52f4b86483896cbc093622f3"
+      },
+      {
+        "href": "html/61_47__Back_to_Our_X_Factors.xhtml",
+        "sha256": "0f65060e788942b2fc01dd049d856b7c2e13abfd94dfa4d581ca2f992586df89"
+      },
+      {
+        "href": "html/62_48__Once_Upon_a_Time_at_Vergil_s.xhtml",
+        "sha256": "643e5762b9511c10f1ec433ac106191e5e47b40cbcfb2416e8ceca8e0643e341"
+      },
+      {
+        "href": "html/63_49__Follow_the_Money.xhtml",
+        "sha256": "8fe4e87f8d117cf860b0cebee34502002bcb0b12eb5057414730284040b8ba4b"
+      },
+      {
+        "href": "html/64_50__It_s_Getting_Weird_in_Floren.xhtml",
+        "sha256": "d7ac1f67d00381a01fdc884465d3abc838605baaa69bfccb47f9da090429217e"
+      },
+      {
+        "href": "html/65_51__Scraps_of_Philosophia.xhtml",
+        "sha256": "b3840156c852174051978e4e2326b02c428a7435786c5e48d456b64b40470374"
+      },
+      {
+        "href": "html/66_52__Was_There_Renaissance_Secula.xhtml",
+        "sha256": "fa48239e079bf3760f1c8e7557be355cca6bb591303a3247d183d8170c1becf3"
+      },
+      {
+        "href": "html/67_53__How__Not__to_Dodge_the_Renai.xhtml",
+        "sha256": "b60c826da3e94bda587a6f55475ac4295d8f46d3e26b800c7e83da66bbc0c1d6"
+      },
+      {
+        "href": "html/68_54__Why_We_Care_Whether_Machiave.xhtml",
+        "sha256": "0c2ac58e6d4020328ae38146a3fc17ceeef9c13dd41cd904d958a30a6ad8fd50"
+      },
+      {
+        "href": "html/69_55__Was_Machiavelli_a_Humanist.xhtml",
+        "sha256": "dcd2a13bf3f304436029a24400b2a0cabc2272b22825311f2f6aedab4bee3da7"
+      },
+      {
+        "href": "html/70_56__Virtue_Politics.xhtml",
+        "sha256": "09d154ff45ab0a43315de2144881e48f7246d21d6c76c0d5e041c710e8f70462"
+      },
+      {
+        "href": "html/71_57__Was_Machiavelli_a_Humanist.xhtml",
+        "sha256": "2aaf5eb339b5ab0ecf66289ab19cb2beba1cf3d7d9e9904932554cf9c28d85dc"
+      },
+      {
+        "href": "html/72_Part_V__The_Try_Everything_Age.xhtml",
+        "sha256": "0c32faf396745a8bc58fd230ff47e3682766f5d13c6eb0adb7e6bdd6958b61b6"
+      },
+      {
+        "href": "html/73_58__An_Exponential_Information_R.xhtml",
+        "sha256": "e89f93fd4163e444b958b8acd617c42a334884463e76a6116dc5ea8f6d01ffbb"
+      },
+      {
+        "href": "html/74_59__We_Can_t_Just_Abelard_Harder.xhtml",
+        "sha256": "b09b213614fc5a5e923cc6dd546c732e433c2724e2375339e83c2c5bb51aed85"
+      },
+      {
+        "href": "html/75_60__The_Presumptive_Authority_of.xhtml",
+        "sha256": "1a1ba8f636beee4f8c1c89c8ef4ecdec272ee91579f0a17a2e1e15e5dcbfc75a"
+      },
+      {
+        "href": "html/76_61__The_New_Philosophy.xhtml",
+        "sha256": "c3a9e7cd12bfef50c1b58b8c0e1dc9797bdf4eeef6832afa962120a58413396c"
+      },
+      {
+        "href": "html/77_62__A_Brief_History_of_Progress.xhtml",
+        "sha256": "64bdc8071110e0eef0bfb68b5869b6b98b5c4367091ec21b75049ef5980a3864"
+      },
+      {
+        "href": "html/78_63__Progresses.xhtml",
+        "sha256": "123e2279aee873e7e487c92bc2c0f5904846f4d56f661096405c2f77d1c48067"
+      },
+      {
+        "href": "html/79_Part_VI__Conclusion___Who_Has_Po.xhtml",
+        "sha256": "952207ca640ec7865ca3e6960974a29d29be62981064a1e194845513af7b50b7"
+      },
+      {
+        "href": "html/80_64__Great_Forces_History_vs__Ind.xhtml",
+        "sha256": "6c4a5915578920c652801ea50051bd13b26743560858e7e55a445f706a676153"
+      },
+      {
+        "href": "html/81_65__The_Papal_Election_of_2016.xhtml",
+        "sha256": "0bd0fac32f894e523261df7bef69fe0dcda1c4d592fdde64494302e2d8af05ce"
+      },
+      {
+        "href": "html/82_66__Which_Horseman_of_the_Apocal.xhtml",
+        "sha256": "06185e03551acb709d603ef9c1bb3a9a4880568e038edc69e06994413b3d23dd"
+      },
+      {
+        "href": "html/83_67__What_Did_the_Black_Death_Rea.xhtml",
+        "sha256": "78738d7ed781b70d681b3ff1c21c825fba1d992482c5794705f6a613d8d61de0"
+      },
+      {
+        "href": "html/84_Sources_and_Recommended_Reading.xhtml",
+        "sha256": "58f4fbb5e72a89cb65ece644ad5c191bad5fcd85975f29888151d7cd19d798fc"
+      },
+      {
+        "href": "html/85_Notes.xhtml",
+        "sha256": "182f789d6b0b070d3a903e94c642181561c8ff51147a86c1479a676f22e4d705"
+      },
+      {
+        "href": "html/86_Acknowledgments.xhtml",
+        "sha256": "7207b15b717d3af8f4210976f091075401fffc7d93b5e83625c9d7a9324cb71a"
+      },
+      {
+        "href": "html/87_Image_Credits.xhtml",
+        "sha256": "eefc7d69f0a809dc077ee542eda7beb8e19acf1afa5e2b827c56b09fab7f097b"
+      },
+      {
+        "href": "html/877_longdes.xhtml",
+        "sha256": "f71b2dae90d1e1fc96d07f4709878cc06f5f8a14bf287cd8508dde86005d4d1e"
+      },
+      {
+        "href": "html/88_Index.xhtml",
+        "sha256": "03e61843811791636f702aab9498342d7525e41ab420a74781aa86708a7c258b"
+      },
+      {
+        "href": "html/89_About_the_Author.xhtml",
+        "sha256": "7dbc608f01d8c9f0bae3513892247fcff80b747aedcdacf2a40d39b58bfaf989"
+      },
+      {
+        "href": "html/90_footones.xhtml",
+        "sha256": "1bd10816b65f9efff739e4a989466845b7a249f85f395f867287cdd4ca03e773"
       }
     ]
   }

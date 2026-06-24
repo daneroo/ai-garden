@@ -12,7 +12,7 @@ function opened(
   date: string | null,
   spine: { href: string; linear: boolean }[] = [],
   manifest: { id: string; href: string; mediaType: string | null }[] = [],
-  spineHashes: { href: string; sha256: string | null }[] = []
+  spineHashes: { href: string; sha256: string }[] = []
 ): ParserOutput {
   return {
     schemaVersion: 4,
@@ -204,7 +204,7 @@ describe("compareBook — manifest", () => {
 
 // ── compareSpineHashes (via compareBook) ────────────────────────────────────
 
-function hash(href: string, sha256: string | null): SpineHashItem {
+function hash(href: string, sha256: string): SpineHashItem {
   return { href, sha256 };
 }
 
@@ -217,7 +217,6 @@ describe("compareBook — spineHashes", () => {
     expect(result.spineHashes.status).toBe("agree");
     expect(result.spineHashes.matchCount).toBe(2);
     expect(result.spineHashes.mismatchCount).toBe(0);
-    expect(result.spineHashes.nullCount).toBe(0);
   });
 
   test("empty spine hashes agree", () => {
@@ -235,13 +234,22 @@ describe("compareBook — spineHashes", () => {
     expect(result.spineHashes.matchCount).toBe(0);
   });
 
-  test("null sha256 counts as nullCount and triggers differ", () => {
-    const a = opened("epubts-node", null, null, null, [], [], [hash("ch01.xhtml", null)]);
+  test("sentinel <unreadable> matches sentinel (both fail same item → agree)", () => {
+    const a = opened("epubts-node", null, null, null, [], [], [hash("ch01.xhtml", "<unreadable>")]);
+    const b = opened("epubts-browser", null, null, null, [], [], [hash("ch01.xhtml", "<unreadable>")]);
+    const result = compareBook(a, b);
+    expect(result.spineHashes.status).toBe("agree");
+    expect(result.spineHashes.matchCount).toBe(1);
+    expect(result.spineHashes.mismatchCount).toBe(0);
+  });
+
+  test("sentinel vs real hash: differ", () => {
+    const a = opened("epubts-node", null, null, null, [], [], [hash("ch01.xhtml", "<unreadable>")]);
     const b = opened("epubts-browser", null, null, null, [], [], [hash("ch01.xhtml", "aaa")]);
     const result = compareBook(a, b);
     expect(result.spineHashes.status).toBe("differ");
-    expect(result.spineHashes.nullCount).toBe(1);
-    expect(result.spineHashes.mismatchCount).toBe(0);
+    expect(result.spineHashes.mismatchCount).toBe(1);
+    expect(result.spineHashes.matchCount).toBe(0);
   });
 
   test("length mismatch triggers differ", () => {
@@ -249,7 +257,7 @@ describe("compareBook — spineHashes", () => {
     const b = opened("epubts-browser", null, null, null, [], [], [hash("ch01.xhtml", "aaa")]);
     const result = compareBook(a, b);
     expect(result.spineHashes.status).toBe("differ");
-    expect(result.spineHashes.nullCount).toBe(1);
+    expect(result.spineHashes.mismatchCount).toBe(1);
   });
 });
 

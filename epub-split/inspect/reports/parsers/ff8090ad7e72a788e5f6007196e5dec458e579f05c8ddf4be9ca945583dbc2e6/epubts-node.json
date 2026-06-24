@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -314,6 +314,128 @@
         "id": "titulo.xhtml",
         "href": "Text/titulo.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "Text/cover.xhtml",
+        "sha256": "d376b1bbe00c02ab51c15c7fc5f97f4c6baa15c31ac51c47437e2f51a1ded1ee"
+      },
+      {
+        "href": "Text/sinopsis.xhtml",
+        "sha256": "b2a27d741810fd70b2f5eb29689dc83f291b85daf6d2920c1f50c331526a08a8"
+      },
+      {
+        "href": "Text/titulo.xhtml",
+        "sha256": "4ea00a87662fae1d9667f539aa2ab218cafae2a70d4d63d7db9bce730def4316"
+      },
+      {
+        "href": "Text/info.xhtml",
+        "sha256": "7e95b1f66110c4084283ade81d690c78348a0583afc09e027f691c109e21e753"
+      },
+      {
+        "href": "Text/dedication.html",
+        "sha256": "7a1738a13d7aaab5782afafc7948793c4d6dd3826f9edb085b86668b1ca23bb3"
+      },
+      {
+        "href": "Text/capitancebolleta01.html",
+        "sha256": "30e0e74a844df63be87418e50bb7e20f28627f7126db5b7dcdb667a75b37a605"
+      },
+      {
+        "href": "Text/capitancebolleta02.html",
+        "sha256": "0aac90c47e89fb96833059c2adcb48cb3a9d977c760047d38632f2541dff5c8f"
+      },
+      {
+        "href": "Text/capitancebolleta03.html",
+        "sha256": "5ca12fa147987533168744eeec434e9b445cd9b15795d42945dcdc5155e558c6"
+      },
+      {
+        "href": "Text/capitancebolleta04.html",
+        "sha256": "82a509f69d6f48ac64a5f728813e2157802bfb407492087e32f5cf7132f88f95"
+      },
+      {
+        "href": "Text/capitancebolleta05.html",
+        "sha256": "abe53b0ce6956f4c64a8516c950212473eab8b763e27f5fb3074d741e281ce10"
+      },
+      {
+        "href": "Text/capitancebolleta06.html",
+        "sha256": "0559bba971f6599c5561a250192568a4c51caa68ab97787aca6d096eaeecad52"
+      },
+      {
+        "href": "Text/capitancebolleta07.html",
+        "sha256": "e595754230afa52bcb5c268b2dfb6cad577c97a81da9573e3a3dc5539e359b55"
+      },
+      {
+        "href": "Text/capitancebolleta08.html",
+        "sha256": "023aa0b42c4426fe3954a0bdea95f918a2c71dfb352bdb7f7bbea9be7f51547b"
+      },
+      {
+        "href": "Text/capitancebolleta09.html",
+        "sha256": "67398befc4367ed9b6a234ce99090a27b1887b964b62fcdf0208182c356d2ae2"
+      },
+      {
+        "href": "Text/capitancebolleta10.html",
+        "sha256": "73635c432a29c6b0c1c35157c10d684e68cd58050713d6e87087b26612a40307"
+      },
+      {
+        "href": "Text/capitancebolleta11.html",
+        "sha256": "560b823edd29549a9c9e8214c61538e55198ea41384691da9845914418d1ef56"
+      },
+      {
+        "href": "Text/capitancebolleta12.html",
+        "sha256": "09b635b6fe0b98a3d95613e01e9858b9713d5e1e1eae653731b00413615d9599"
+      },
+      {
+        "href": "Text/capitancebolleta13.html",
+        "sha256": "a310a3ea00631fa0095f79be70d17e38056f20ee04334b0d89fd9eb7da782e0d"
+      },
+      {
+        "href": "Text/capitancebolleta14.html",
+        "sha256": "9d3de07deea9e342e0f434dbe2439d4f1fa316a842f583477b6c0a78e7d53475"
+      },
+      {
+        "href": "Text/capitancebolleta15.html",
+        "sha256": "0c134af25ff4b78432d6b2fb91ac3c4706ec33c0d4c63dd36970c9a6944d0558"
+      },
+      {
+        "href": "Text/capitancebolleta16.html",
+        "sha256": "248f31949ce509009cb66ecbe92b883a9e9b758e29e2ff251c8f0b004083c5f2"
+      },
+      {
+        "href": "Text/capitancebolleta17.html",
+        "sha256": "460c3c8161e42bef6c4147ad6da85a1a2a3397a9026d54281b7423ee15445b45"
+      },
+      {
+        "href": "Text/capitancebolleta18.html",
+        "sha256": "69e1c5ddd4b0f05beaa7fc365b31000d12670c29bda91d585082347a7dcdc5cd"
+      },
+      {
+        "href": "Text/capitancebolleta19.html",
+        "sha256": "86d36eea8801f245e6ecc15c2b3ce9e525e9e7246d73ff096f5676c39610e64c"
+      },
+      {
+        "href": "Text/capitancebolleta20.html",
+        "sha256": "f0b852d2c79525c4eac9425916ff802e973faf30b8f32ee4a2ac1fc794ba1739"
+      },
+      {
+        "href": "Text/capitancebolleta21.html",
+        "sha256": "5874deaf74b39a0c5366a1d812fefadb4319b6f38183c688cd94f32b69723cca"
+      },
+      {
+        "href": "Text/capitancebolleta22.html",
+        "sha256": "7a4c71977bbfa9b3398eb20ce074121f4125315c56a6fe565d5073b229084722"
+      },
+      {
+        "href": "Text/capitancebolleta23.html",
+        "sha256": "e5eb6879e72d69c6d917865f3acf506c088cdb21e261c6e829633f3cc227ecfd"
+      },
+      {
+        "href": "Text/acknowledgements.html",
+        "sha256": "95c38fb7b0910ca1c5da41b995c388af6884e771df72c467304da01742aabbc4"
+      },
+      {
+        "href": "Text/appendix001.html",
+        "sha256": "6cd84662b7b5fc349f81e41de722a70e1880f7912b627ff19c91dcc413ceef32"
       }
     ]
   }

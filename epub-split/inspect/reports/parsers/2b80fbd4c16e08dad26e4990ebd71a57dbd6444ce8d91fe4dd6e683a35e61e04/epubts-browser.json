@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -983,6 +983,428 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "ddd85bc30cdd6d860cbe2ac8e2ffa4dbe7c4ad3d6dd31666637e84ae49dfb54f"
+      },
+      {
+        "href": "jacket.xhtml",
+        "sha256": "ab55c71cfe2cdc009b175c182b7ee9fba24a0812b61da18f4891411a1842a4a8"
+      },
+      {
+        "href": "text/part0000.html",
+        "sha256": "147365c3a4ea5c82ddd2ab1bf3a18c4d693487e127ca2acb546c653dcf6ee403"
+      },
+      {
+        "href": "text/part0001.html",
+        "sha256": "8d025b066a319e809c5bda7c1d0e23c91fe86a3625230192a71929287c77dbbd"
+      },
+      {
+        "href": "text/part0002.html",
+        "sha256": "d2999db348b5910a8990eaa328c77d318828f2048ddc95679b949f4912e68ff5"
+      },
+      {
+        "href": "text/part0003.html",
+        "sha256": "6b043e412cbaa046cbb8cc7f7cf13909ee88dbaa7148d9fe7336e0f5c3f7af33"
+      },
+      {
+        "href": "text/part0004.html",
+        "sha256": "8bc4af80711f83d3c41e2f743969e956e8224bcfa736d9c1643a264d20538089"
+      },
+      {
+        "href": "text/part0005.html",
+        "sha256": "b307a12333e3b0f323f1ab97879b3b22bc4653f70365ee14b03e21bd68eae412"
+      },
+      {
+        "href": "text/part0006.html",
+        "sha256": "f04e52e77d7a525f190b8147996fc6654f5277376cff50ecc8f862f81bed434d"
+      },
+      {
+        "href": "text/part0007.html",
+        "sha256": "ec50c603ff42dd95efcccc312f25126c6dc9f65d1004cfcb91d3df043a704cdb"
+      },
+      {
+        "href": "text/part0008.html",
+        "sha256": "54c39fa0b932cfd46674095a86a0c615126b1005516bd00b831d48c726fcaded"
+      },
+      {
+        "href": "text/part0009.html",
+        "sha256": "9c63ee9eee435f0023b0d1dce6559893dcd96182eee89c1befa472c7718bddaf"
+      },
+      {
+        "href": "text/part0010.html",
+        "sha256": "8a8c1af3c0111c854abfb9cb2ca43cb1f97d700f6046b5dc50fc63b533840601"
+      },
+      {
+        "href": "text/part0011.html",
+        "sha256": "aa626e6f44c557528d9da55ba1e457f7052b3266ef513c65a8a5ac5bffa9c833"
+      },
+      {
+        "href": "text/part0012.html",
+        "sha256": "07c15ceb81c8206b00e34f7a9844acf3240abcbf8b9ae238a3bfe866db7d35dd"
+      },
+      {
+        "href": "text/part0013.html",
+        "sha256": "18577bf4ca0ecccea1e214ddb5e5c69e01eba52bc3505480f343db88fd291904"
+      },
+      {
+        "href": "text/part0014.html",
+        "sha256": "ab8f1e0011a36f89bf4709cf35b542073cb6267bf7908f67fe940e5c452f7ea7"
+      },
+      {
+        "href": "text/part0015.html",
+        "sha256": "9c900cc74dca8aa1c4ff5c9fa36322e0b6e8f6f5e5d9958c0d2dcdf267fd8171"
+      },
+      {
+        "href": "text/part0016.html",
+        "sha256": "1f2a0701eae0b97b31ee59d99e057db5fa775322117e960a888c9671fb23f4b5"
+      },
+      {
+        "href": "text/part0017.html",
+        "sha256": "923a070a7c9e0a0c63a4f9ff091c042b2c7bbadbadcdbbb5dfa7517e2d315b72"
+      },
+      {
+        "href": "text/part0018.html",
+        "sha256": "504f369044240243eca6ca0fb59d00328c99764a9408a748ebd9370b026206ec"
+      },
+      {
+        "href": "text/part0019.html",
+        "sha256": "cae2b694b758fd21b9fb2767c8c03556912b207298dfe8bc3d0c3415a1b563ae"
+      },
+      {
+        "href": "text/part0020.html",
+        "sha256": "3eb9655b172a03a55dafa6d4cae262e71067d3f389d82cc010333534f9f6b1a0"
+      },
+      {
+        "href": "text/part0021.html",
+        "sha256": "54c9f8f662434ce8dac6b897487fa5eb88fb83907bc18836335f9d9d3f9ad180"
+      },
+      {
+        "href": "text/part0022.html",
+        "sha256": "67b716075caab16767726a3ff90b46f94008bda82cb83e6cf662946e5a069139"
+      },
+      {
+        "href": "text/part0023.html",
+        "sha256": "a56a754702f014483ea6b08c9e821a78e9459767704103ae8353aca11063ba07"
+      },
+      {
+        "href": "text/part0024.html",
+        "sha256": "5f6d4b521a2155b391c4a410c707cf4104c4d68ff73bb2ef1f44c3eb92acb3ed"
+      },
+      {
+        "href": "text/part0025.html",
+        "sha256": "888634bdabc6a08eca29908a282813a6e916b31ce788d6a90fda877edc5fcb89"
+      },
+      {
+        "href": "text/part0026.html",
+        "sha256": "3c89c8654f08c2948f98b0eb9182940131282b107fa4a1a2fd0c753a913accc5"
+      },
+      {
+        "href": "text/part0027.html",
+        "sha256": "581d7f5a7798da9d4b563ad7b83f79513185d53772887f56c9a7661ad7737a74"
+      },
+      {
+        "href": "text/part0028.html",
+        "sha256": "8df01b68edc05a871016172c74a69e947ecf8c77ff9912fb16c23982f90554c4"
+      },
+      {
+        "href": "text/part0029.html",
+        "sha256": "f3d57f5cefc9e5bae61931c981fca454f3a0ae87e540c260f87158d013864966"
+      },
+      {
+        "href": "text/part0030.html",
+        "sha256": "337a2160d42614bddbb2763feff08c8b30afe084e83ec65c969dc7b80f181ad7"
+      },
+      {
+        "href": "text/part0031.html",
+        "sha256": "d28da91c5bf9a9c76c24379f3b0252d766c4834e27ceae4c0f2f806ded2c3523"
+      },
+      {
+        "href": "text/part0032.html",
+        "sha256": "bd851df323bc9c75bb7bb1bda41047bf7d85000390199b5337eb623a0185a3ef"
+      },
+      {
+        "href": "text/part0033.html",
+        "sha256": "c686f1af3429436f9808585d0ad182966d7280c7f869cf49304be6c4983fe719"
+      },
+      {
+        "href": "text/part0034.html",
+        "sha256": "4880e475e0093b85a0ae8b9d75dfee0f9b1a57b1fe9f7c18cc05fbac7ba440db"
+      },
+      {
+        "href": "text/part0035.html",
+        "sha256": "f150d83cb47947fabf93c0f18100ea1bcca58081e05c40947e59661a93e4eb74"
+      },
+      {
+        "href": "text/part0036.html",
+        "sha256": "3add451d6e4f22858690dd23374edc273130bf356acaf872609ee1b67e3085d8"
+      },
+      {
+        "href": "text/part0037.html",
+        "sha256": "f7c634f9034bf1fcb97f479a54e4fa0cd4e2a86d34de8f70b38883475f7f712f"
+      },
+      {
+        "href": "text/part0038.html",
+        "sha256": "39d2845689ad40ad2d96d4972413d09f1f2bceb10b627f4a3c571a2b9cb8b47d"
+      },
+      {
+        "href": "text/part0039.html",
+        "sha256": "f74dfc853796834cc32d2a3213b94e317e107f357ecb0ab25aad62028149bdc1"
+      },
+      {
+        "href": "text/part0040.html",
+        "sha256": "f6958869ea7c6240294630db74cacd01d4becfbb02d06d591643232db579870f"
+      },
+      {
+        "href": "text/part0041.html",
+        "sha256": "37e13e7187552acb9aa1904158030d1f2ad48404c847ba69eaf23aa2408303c2"
+      },
+      {
+        "href": "text/part0042.html",
+        "sha256": "f15ee2368e161cf656228e308e9020a2734daded2cc10c05d069bcaaff86aff3"
+      },
+      {
+        "href": "text/part0043.html",
+        "sha256": "a657fe4035d158083c7bb6d86bf40e26033a564846c30af20861fc9d2be80d08"
+      },
+      {
+        "href": "text/part0044.html",
+        "sha256": "ef76f2d816d983fcf15c9596b90a0985b2973a41cbace36d429a74e544f93e40"
+      },
+      {
+        "href": "text/part0045.html",
+        "sha256": "18bb51452e3cb6562109a115c7074781a50c54f6ee5d2260259009671b6730e0"
+      },
+      {
+        "href": "text/part0046.html",
+        "sha256": "053bef05f7b3a6b499d7a868a6b24bfac72cc83c2a451feb5d6c68b136c75678"
+      },
+      {
+        "href": "text/part0047.html",
+        "sha256": "ab3fdd90c091771855a8976b59fe0733fe8cbcdf686c47fb22d1b7c264193c2a"
+      },
+      {
+        "href": "text/part0048.html",
+        "sha256": "ed130a6c6ca54d610f655b99da146e7e06041a9c5f81cae7ca2d57362a6b6f2d"
+      },
+      {
+        "href": "text/part0049.html",
+        "sha256": "0752e2d68e2a12f61f71ad9000f812a5013dc43c7b74294e33e530d14013b7d4"
+      },
+      {
+        "href": "text/part0050.html",
+        "sha256": "fa8cd6a30a5fd22effbacaa497ff84f77df952039702472157cafe2dcb271576"
+      },
+      {
+        "href": "text/part0051.html",
+        "sha256": "efa21c02b9c995cab7261a7fa4c6644c48f7496edf1a5662fed59c63f2d5db6a"
+      },
+      {
+        "href": "text/part0052.html",
+        "sha256": "4ad16f04601156e5f9bc055fb74184dd4e12a0cff13527864d58b531212c30fe"
+      },
+      {
+        "href": "text/part0053.html",
+        "sha256": "16603762f090ccb4fb79cee02dec11776acb388f70d480d48ae4be33d48a28ec"
+      },
+      {
+        "href": "text/part0054.html",
+        "sha256": "bde4f4e18d044fe08d8d65f6d74d253a83c776e63af9bf4201c4f1707896c345"
+      },
+      {
+        "href": "text/part0055.html",
+        "sha256": "ae30210adad603c0091eead7e612c49ab2b973c66310ca90421d3d076f762870"
+      },
+      {
+        "href": "text/part0056.html",
+        "sha256": "1c6b6829e74e6cd73e49f84b127abf13214cded42b4ee8f886a24d51731e0277"
+      },
+      {
+        "href": "text/part0057.html",
+        "sha256": "34b954becb7f8adaf75aeca238188757785a12979e5b99bb1ea4b6a0f903c363"
+      },
+      {
+        "href": "text/part0058.html",
+        "sha256": "9c2564baa8d43ae2e3ef04c3f013cc6685e829e25e13f7708c943239bf5ea2c7"
+      },
+      {
+        "href": "text/part0059.html",
+        "sha256": "3888dd5f7d34d5cc4d48f4e6eab280c17b637bc8b2edf6a15d4fbcefce0a0b5b"
+      },
+      {
+        "href": "text/part0060.html",
+        "sha256": "e918093f6bf5f9b38a0b8125d28ecf69d9b4f27877e62226606c503c28da94ec"
+      },
+      {
+        "href": "text/part0061.html",
+        "sha256": "2fd2e706f84a9158fd4132d9258a970a593673277a5ee141f8c32bb0c9c98c5e"
+      },
+      {
+        "href": "text/part0062.html",
+        "sha256": "d806f5e050243827de1e1c3d28ef0049e721deb31a1851d903e670e5079c9b7c"
+      },
+      {
+        "href": "text/part0063.html",
+        "sha256": "c56806bf98c433528cf2b756022f296ca99c4eb7a4ac2996aaaa731c51642f82"
+      },
+      {
+        "href": "text/part0064.html",
+        "sha256": "3d306fcfc42a3d27ec4729fa01f2c30b94255d30a9496573da216b75664604b1"
+      },
+      {
+        "href": "text/part0065.html",
+        "sha256": "4409a180c5243a09a686b5f8be6b547b06651dd7ef5da298ab08db31a92b995b"
+      },
+      {
+        "href": "text/part0066.html",
+        "sha256": "54f90de49210b80232320e14bb1cf090fa8b186b5b4fa6a180af8071378aafc7"
+      },
+      {
+        "href": "text/part0067.html",
+        "sha256": "f8d0dfecdba4c6cc9ec22290c5582c8158078ddd01d3506aab6970f1350fe2b0"
+      },
+      {
+        "href": "text/part0068.html",
+        "sha256": "f68d1fd553dc10c6894699dff57fa70149552149bc8a852e93443da8092d789c"
+      },
+      {
+        "href": "text/part0069.html",
+        "sha256": "a3cc92e197896003b52132e04fc324d0ba98527054877182b7951d0ec29137bc"
+      },
+      {
+        "href": "text/part0070.html",
+        "sha256": "2c3500e7c3c2e722d8ca2eb699f80b6df4476b5b651fd73bc5aa86993103d2af"
+      },
+      {
+        "href": "text/part0071.html",
+        "sha256": "d79cd41418911c1850d52331594e86e73c74ed4776568e2cf83f5d1722bb27d1"
+      },
+      {
+        "href": "text/part0072.html",
+        "sha256": "e4b8729ffb3114cc4fafd0350b40558a482af2b702fb8b517be06fa4b92a40de"
+      },
+      {
+        "href": "text/part0073.html",
+        "sha256": "cf8f7b64004d4e8f94bbd52028af640402e2a877a20ef00cf82e5a55feba7aed"
+      },
+      {
+        "href": "text/part0074.html",
+        "sha256": "1ff1be7d00b1cb53658efbd3a62a10389e549af4e04727a35f501606ade86f60"
+      },
+      {
+        "href": "text/part0075.html",
+        "sha256": "04def28f37af185f5d98943919fade40af9ac8e1791171e749ab43a5c25601d2"
+      },
+      {
+        "href": "text/part0076.html",
+        "sha256": "4164200eb16b8308cdb6772e6f5e0c72308323b7f968f8da6dec6d15c905e881"
+      },
+      {
+        "href": "text/part0077.html",
+        "sha256": "152bb7e02b205232177d9020679cb69ad0a00f043917ffcfbe93cd1ee6f91dfa"
+      },
+      {
+        "href": "text/part0078.html",
+        "sha256": "36471da3227b580343181a53e135ea414b1c6fea929505ce74ac2b852230eab8"
+      },
+      {
+        "href": "text/part0079.html",
+        "sha256": "4e2439da358d21ddd86f6ac6f9badd0ff1d3150b49148a400ad705954739c23a"
+      },
+      {
+        "href": "text/part0080.html",
+        "sha256": "b0f3134e36354b95f90bc61d6cac4860db5aa02f5cfb7f3ac22a62cfd1792424"
+      },
+      {
+        "href": "text/part0081.html",
+        "sha256": "888dca1c3175fcd8934bbe72c8d4f577c637a0a818e334b016f76dbd7de42756"
+      },
+      {
+        "href": "text/part0082.html",
+        "sha256": "c5628a31671af09eb64e11265d75a958046d64f43230c4e6df7a1c239dd8502b"
+      },
+      {
+        "href": "text/part0083.html",
+        "sha256": "e8e56a363063df6c906c8ed579ec497c655fe49543e0514059428cab73b8a37b"
+      },
+      {
+        "href": "text/part0084.html",
+        "sha256": "54d0146800df096630a80e1bba377300886c4fefce0b9c7a5bf61b1d0d23d447"
+      },
+      {
+        "href": "text/part0085.html",
+        "sha256": "6ef7a6b247bb86d5ec44201617228bc215b4132200ffb66dd78f5fbd2ecbd4ee"
+      },
+      {
+        "href": "text/part0086.html",
+        "sha256": "9c7579b5db71575418283f7a379de7c99c2aa82e0de0afdf3fa500f976f6dd0b"
+      },
+      {
+        "href": "text/part0087.html",
+        "sha256": "0df490a643d6b9e4052c4db7c97e6373d8f0db1f302f1e4a2dff2fe8fae1c7b2"
+      },
+      {
+        "href": "text/part0088.html",
+        "sha256": "a6d61461bad6aa51674c82203e0fdc5f7cf82796b4a9069cecc265d010a04950"
+      },
+      {
+        "href": "text/part0089.html",
+        "sha256": "55bf9da3d40e4c14a563a2c072182cc8735488aca6d31b696b9bd8e1fa1c4dda"
+      },
+      {
+        "href": "text/part0090.html",
+        "sha256": "bfecc1be0f02521e73771ce98b28ae1fbd9c06ecb1d18a15b3a930414ba35e2b"
+      },
+      {
+        "href": "text/part0091.html",
+        "sha256": "6392ff029d5e99fff36c1880f2a365bacc65cf7c29280ea1a25d19ed687c5012"
+      },
+      {
+        "href": "text/part0092.html",
+        "sha256": "bd0c62669f85827833190b3c9460a90f03e1c2b97d76ee0d253f852a6a584a18"
+      },
+      {
+        "href": "text/part0093.html",
+        "sha256": "236d53109dad7b55a8fd1ea6c65ee1e1d1fd9c3346eb0961290042fb5ace3219"
+      },
+      {
+        "href": "text/part0094.html",
+        "sha256": "acd57c24f3dddde4825652d53d499fc253f732e8fe8b119e828208d1ba495f06"
+      },
+      {
+        "href": "text/part0095.html",
+        "sha256": "708fb5086c991af7bb2a2fcc8dd7bc98f31aabc9f7c6d2ab68cf2483f631a62e"
+      },
+      {
+        "href": "text/part0096.html",
+        "sha256": "48f34033475c64b3c4c9693f7448ce22e07e557ca2856bd1fd3ccd4a15bf5035"
+      },
+      {
+        "href": "text/part0097.html",
+        "sha256": "6b1070764383f34e72b8e01c52e636a6ec919cf5fb8479ecb8455b93e21532a2"
+      },
+      {
+        "href": "text/part0098.html",
+        "sha256": "2012b4a7cd8bcddc27c7cafe6c97f2e50f1e80d4e2469f626c880c7662fad648"
+      },
+      {
+        "href": "text/part0099.html",
+        "sha256": "dd69e244434fe9cde2cd1a4a6f0da2f0d95cd715fb8e8c83ecc18661a98f783f"
+      },
+      {
+        "href": "text/part0100.html",
+        "sha256": "a5c29e71123279683b8464d8802241e8558ae072cd1d2a058c14febfcae765f3"
+      },
+      {
+        "href": "text/part0101.html",
+        "sha256": "908e264c2787ecbd8592abcf7c88048d8aca3522d260c66afcffc13bfb8a8925"
+      },
+      {
+        "href": "text/part0102.html",
+        "sha256": "fe00618d96145f33bce0776b781657f0f019f0a787c5371f715dd1c50e9ecc39"
       }
     ]
   }

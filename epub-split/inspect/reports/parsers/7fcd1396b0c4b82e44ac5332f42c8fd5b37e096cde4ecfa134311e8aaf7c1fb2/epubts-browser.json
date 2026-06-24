@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -78,6 +78,28 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "f1b311abd4f421148eff895500d6f4eae8d462a6376c545c4282d1aa88c6d5ba"
+      },
+      {
+        "href": "The_Last_Enchantment_Merlin3__split_000.html",
+        "sha256": "7b494121e1d37707ec434b76c8fb4cb719890e8a6092eec2baaf425a5f5dca8c"
+      },
+      {
+        "href": "The_Last_Enchantment_Merlin3__split_001.html",
+        "sha256": "1d7a066518d649151b66029f3a7cdb9a839a7ef699d83d26396898ec96afe617"
+      },
+      {
+        "href": "The_Last_Enchantment_Merlin3__split_002.html",
+        "sha256": "e8ac52269bf19efac3e8addc996956416bac3add5833da8dc62ff78afa1c3669"
+      },
+      {
+        "href": "The_Last_Enchantment_Merlin3__split_003.html",
+        "sha256": "2e192934b5e6e25c95992338e40851ea8ba514fc30243c08155fd23f367e9e01"
       }
     ]
   }

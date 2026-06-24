@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -982,6 +982,412 @@
         "id": "ncx",
         "href": "toc.ncx",
         "mediaType": "application/x-dtbncx+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "OEBPS/bookcover.html",
+        "sha256": "4bd3fd822b5a1381ad1b2b1c155d702d8a1bc1b9a9e1d4738c1d1c1bfea60dfa"
+      },
+      {
+        "href": "OEBPS/booktp.html",
+        "sha256": "a24a45dd750922c96b0025fc63eae2192f258dd05304217ffe2f054c2302c447"
+      },
+      {
+        "href": "OEBPS/booktoc.html",
+        "sha256": "72551386c3953655bae78a739435477374244182ea698bd6a87ebde36572edd8"
+      },
+      {
+        "href": "OEBPS/cvi.htm",
+        "sha256": "cf4031203afa0e1090a632f4da5184ddc78c255ae2b42a09056e9b408973dac2"
+      },
+      {
+        "href": "OEBPS/tp.htm",
+        "sha256": "a6f6d72ac2ad753cf4501d59b9ddd122b9ce25c97edaa801aa329d7c2ac00717"
+      },
+      {
+        "href": "OEBPS/toc.htm",
+        "sha256": "b9ceda2967c6ae784ca063853a99206ec724fbb16ac2ff1ad4dd98afa9593412"
+      },
+      {
+        "href": "OEBPS/ded.htm",
+        "sha256": "e6c5b70171b754fc5972c8b574791121bff2cc6a5399728a3c84cdebe918e2b3"
+      },
+      {
+        "href": "OEBPS/c01.htm",
+        "sha256": "91159d0c36635bd4436fc0b63ec07b6dce92bd8e95570023892b37295c044bd3"
+      },
+      {
+        "href": "OEBPS/c02.htm",
+        "sha256": "f14ea1e26b2eb4a09740171c618c0fbc17f0bee60039ee1818277a5e37085e35"
+      },
+      {
+        "href": "OEBPS/c03.htm",
+        "sha256": "78583aa70d0617544ef2a838a29e4b5afbdaee87b2e839e1f3a3ec83a7033786"
+      },
+      {
+        "href": "OEBPS/c04.htm",
+        "sha256": "03526db555db4d2d3e2a8cf713b6444993a5cd14f349b4a307336a4af5b0ab4c"
+      },
+      {
+        "href": "OEBPS/c05.htm",
+        "sha256": "831b2caac314b4d0876ee2a5c37a80945cfefeb7820de598eaea7798d0845879"
+      },
+      {
+        "href": "OEBPS/ack.htm",
+        "sha256": "a0c9ab5dd80f1feee2bc693438dfd3293b619bc9915fcd38fe7718c6a62035d4"
+      },
+      {
+        "href": "OEBPS/credits.htm",
+        "sha256": "23eb18e766168b312c7fa4335b393eb1352f640f87d5d8b0858164b7b76245e7"
+      },
+      {
+        "href": "OEBPS/cop.htm",
+        "sha256": "9a9af4656ac5f4de885c0af63a162803af5bdb5e0e07ffe4d8773cc43b95d188"
+      },
+      {
+        "href": "OEBPS/b02/cvi.htm",
+        "sha256": "1236fd54a0f337e8007b742cc0f66f23203c1a589586a778be3a161e81806952"
+      },
+      {
+        "href": "OEBPS/b02/tp.htm",
+        "sha256": "e1998c3c8ea472b0446d92258f31acb734533d1a1c00b4bb2188e81287ec6a15"
+      },
+      {
+        "href": "OEBPS/b02/toc.htm",
+        "sha256": "a91d2dc2271a2ceda3824a2f4fb94d69b0cdeb86b8967dacb1d714fc04c8e5b7"
+      },
+      {
+        "href": "OEBPS/b02/dedi.htm",
+        "sha256": "f8cb29cde01245f8d71b0be8adf074bebda514527a4ad5241072a5d3cbcd951f"
+      },
+      {
+        "href": "OEBPS/b02/pt01.htm",
+        "sha256": "01ddaa9c5562cdd7fc29fc8593b3e1dd352e0e1353cab609895dcd0ce1d5f955"
+      },
+      {
+        "href": "OEBPS/b02/ch00.htm",
+        "sha256": "2f1df18912a25a1ad3b2760031a44c23f0790f90295bbe82277a7dbc40e3fe8f"
+      },
+      {
+        "href": "OEBPS/b02/ch01.htm",
+        "sha256": "008fee65ea6be689d367476ba67258a4e5c1ca4e28527d58d22128daed885687"
+      },
+      {
+        "href": "OEBPS/b02/ch02.htm",
+        "sha256": "2ac69150d25858dc425ffe7a93669d01dd1fb9270e7c0d7447580c240a2dd1a8"
+      },
+      {
+        "href": "OEBPS/b02/ch03.htm",
+        "sha256": "4cc74e1f72ec752293551a63e5268fd43a7ea094bd2a0506b78b5bbe349a99ce"
+      },
+      {
+        "href": "OEBPS/b02/ch04.htm",
+        "sha256": "d6efea3de4a32b4eb2621661d8ef0699f662575e38010cef5dbd9c435f58ea3c"
+      },
+      {
+        "href": "OEBPS/b02/pt02.htm",
+        "sha256": "723568d3a11392219999c9f1409a465d346c98a60e51cd03dab148d6760b5e01"
+      },
+      {
+        "href": "OEBPS/b02/ch05.htm",
+        "sha256": "0d1e6aa7aed4636b899b58b3510357f4739abab4d0e651410d29cd864a0f0e18"
+      },
+      {
+        "href": "OEBPS/b02/ch06.htm",
+        "sha256": "ce9ea547a7a452df5ce9136ba67586f602986e80dfbc04131f6909ae831f729e"
+      },
+      {
+        "href": "OEBPS/b02/ch07.htm",
+        "sha256": "a3d60d9433782da86af4f574b709d6744161db3034cce250c65dc12fbe2223bc"
+      },
+      {
+        "href": "OEBPS/b02/ch08.htm",
+        "sha256": "96e6bb91ecaccc105b2b8c0bb62dc02c0926719bb73cdf5cb73639496889442e"
+      },
+      {
+        "href": "OEBPS/b02/ch09.htm",
+        "sha256": "0464652e4ba6ae8822f7c4672c2f7f4d137576f7e325e3aae618c63989e57dbe"
+      },
+      {
+        "href": "OEBPS/b02/ch10.htm",
+        "sha256": "f95eae78f81c97463465bcbba456bab14c31ec1cb88b677f3f8b10b5fd084d7a"
+      },
+      {
+        "href": "OEBPS/b02/ch11.htm",
+        "sha256": "8153b00e2a0f1a4c20a0eb9820980e064713c4cc8559a349b072c05bec8db162"
+      },
+      {
+        "href": "OEBPS/b02/ch12.htm",
+        "sha256": "01ec27954087c5185a9518ca8270690b4984af5ced5943d5e69a841b66819dd1"
+      },
+      {
+        "href": "OEBPS/b02/ch13.htm",
+        "sha256": "bd0b5ab75ab3c0eb79abe35353ff07bfcde99cd62059d49f56dc02928232a150"
+      },
+      {
+        "href": "OEBPS/b02/ch14.htm",
+        "sha256": "f3e2c99d3440e40d498fbf02b48b77f877ef4797e25a4504625888f56f69e018"
+      },
+      {
+        "href": "OEBPS/b02/ch15.htm",
+        "sha256": "041fafe26cf896cc6272a75890ba8cafcc05bcfafbf3bbbcc0f1a514e40334d2"
+      },
+      {
+        "href": "OEBPS/b02/ch16.htm",
+        "sha256": "b646463dc83c9c95a4f79cb6f0da11524f021115d829d564fbee621b8884a76c"
+      },
+      {
+        "href": "OEBPS/b02/ch17.htm",
+        "sha256": "7076107bad6aae823bc4290f13c4c17edc7602704d23a6719fa987d197a68341"
+      },
+      {
+        "href": "OEBPS/b02/ch18.htm",
+        "sha256": "d3904cde06c9feb91110a71b153b1510713d65a211e53accbec559292aa77722"
+      },
+      {
+        "href": "OEBPS/b02/pt03.htm",
+        "sha256": "620e091ebf5f07be5a2bcb6b217d4102b1349a3001198b5f130991611f7f157d"
+      },
+      {
+        "href": "OEBPS/b02/ch19.htm",
+        "sha256": "4659767271e22a20f22d389e8148b6a7c5e0869d3bc38e60efa965ff89f5a727"
+      },
+      {
+        "href": "OEBPS/b02/ch20.htm",
+        "sha256": "ad4d2b89987dff19f74e00aeb0408f7948677d527e2287d33f62a230e1a65250"
+      },
+      {
+        "href": "OEBPS/b02/ch21.htm",
+        "sha256": "d00af0fb25a2cee85fbaaf8569160cb9d4af9455d1cdaf38edf622f9efa9ad98"
+      },
+      {
+        "href": "OEBPS/b02/ch22.htm",
+        "sha256": "59a99b2776ab9bd03ae9cdfa63002088238a72c906cb195449f35ae75efa1ee7"
+      },
+      {
+        "href": "OEBPS/b02/ch23.htm",
+        "sha256": "0527af7cb45e557b56441d26da9e49856bc1b8539c3a2aed51b54db6f7a1eca8"
+      },
+      {
+        "href": "OEBPS/b02/ch24.htm",
+        "sha256": "3fcbb3fc5b0e2599eba317ff4c38f24a75dc5ebbbb0fb76938476094aa8d606c"
+      },
+      {
+        "href": "OEBPS/b02/pt04.htm",
+        "sha256": "aeea1678829fb9ed3e556c5e895ca96f49007e696fc06c312763978553929c37"
+      },
+      {
+        "href": "OEBPS/b02/ch25.htm",
+        "sha256": "b31b29a468370e2968786a9f90501a85b9d3654eea9bfc95ac97e0e777cf1db1"
+      },
+      {
+        "href": "OEBPS/b02/ack.htm",
+        "sha256": "b6e5b809cd047cfef5df0378e2a5919cf832aa521560ea1718bbeffd78f142cc"
+      },
+      {
+        "href": "OEBPS/b02/credit.htm",
+        "sha256": "d477faf982d26a095b97bf7b61bbeaf9e1fcf00502ea1688788e5b364997538b"
+      },
+      {
+        "href": "OEBPS/b02/copy.htm",
+        "sha256": "8f82067b30ba0e2049f49af9ee9920d7f278747f0335a689b41708131176d7ee"
+      },
+      {
+        "href": "OEBPS/b03/cvi.htm",
+        "sha256": "4f3e73a8d86079c449026decf6281f4b27cbb6db647c3c4da11d8746ebeec5e7"
+      },
+      {
+        "href": "OEBPS/b03/tp.htm",
+        "sha256": "8fda028ace08a94b3c2835532e27659f0c0032f617a456594faafc7b7482df10"
+      },
+      {
+        "href": "OEBPS/b03/toc.htm",
+        "sha256": "6e72fa71a659ad16ac82d0a43a256563c3e5ab31f27c3f42247a630cde4f9700"
+      },
+      {
+        "href": "OEBPS/b03/ded.htm",
+        "sha256": "b1ea35c7345a7da4004b077c920d82b625ec834b390961726ca50872970ecf9d"
+      },
+      {
+        "href": "OEBPS/b03/fm.htm",
+        "sha256": "5b4153635192498a8f71acc241d709acbc69780c1fdde4ddfc0675dbbbf3855e"
+      },
+      {
+        "href": "OEBPS/b03/p1.htm",
+        "sha256": "4bc084f2d197e67ed1099afc8d806381db080765d6d11212d84fdd5d9ad19282"
+      },
+      {
+        "href": "OEBPS/b03/p1_01.htm",
+        "sha256": "dc3b82374d7ac7862e290011ee2c0f649db83793149ee7d2708bbb4f87f8b3c3"
+      },
+      {
+        "href": "OEBPS/b03/p1_02.htm",
+        "sha256": "f6896400d6fe53997c141fb1de469fcb55c0fd0a9c222307faa40df147c2dcd4"
+      },
+      {
+        "href": "OEBPS/b03/p1_03.htm",
+        "sha256": "bf0377c77ab2097806806ca6ac9fe68e9a319894eb14684be70395cbc7fac77e"
+      },
+      {
+        "href": "OEBPS/b03/p1_04.htm",
+        "sha256": "e12cc94350cf52149826221125ab422ed037098c0142eec0c0b8ef98564a1ee8"
+      },
+      {
+        "href": "OEBPS/b03/p1_05.htm",
+        "sha256": "28a1e9ec11d8b582b0b9f1e1d6cc77b84bd6334ffb1de015fa36726a028ab5d3"
+      },
+      {
+        "href": "OEBPS/b03/p1_06.htm",
+        "sha256": "48773b27075bdf89baca8096329bc311eb25bff10f876b3786c0e7f828eff03d"
+      },
+      {
+        "href": "OEBPS/b03/p1_07.htm",
+        "sha256": "bebfa6ff49cba9c34eefdfa70909d314a41b8bba161757217ae21c703d87309e"
+      },
+      {
+        "href": "OEBPS/b03/p1_08.htm",
+        "sha256": "65226ffba06972682e3721318749fd0a55a1eb7a4f064776f769fa9af7a3c097"
+      },
+      {
+        "href": "OEBPS/b03/p1_09.htm",
+        "sha256": "b6278b2ff0af50f9ba46e3c650c3d7381fb858686f5ddb47727e3de8ea73dd36"
+      },
+      {
+        "href": "OEBPS/b03/p1_10.htm",
+        "sha256": "593fb69320c7b35501dc25a923876d6097606cfad5a71e5e73c0b5e7a511b0c6"
+      },
+      {
+        "href": "OEBPS/b03/p2.htm",
+        "sha256": "86530379437d3884af87d3ab2a84aeb25f137cc32d9e4cace6a22ee0776bd99e"
+      },
+      {
+        "href": "OEBPS/b03/p2_fm.htm",
+        "sha256": "968262cd0497c2d4177adf291f0fbd0acb0016af24008a344721fe952b047579"
+      },
+      {
+        "href": "OEBPS/b03/p2_01.htm",
+        "sha256": "7984d7ff3469b9b87a538f68914eac47bbb1ecf5a52bbd70e99644281f422e7d"
+      },
+      {
+        "href": "OEBPS/b03/p2_02.htm",
+        "sha256": "f069c882b56e4434ae71c909883c91773b799a7627e866eed20567744c8d90f4"
+      },
+      {
+        "href": "OEBPS/b03/p2_03.htm",
+        "sha256": "f22aff708efb0aed2ff47209354bdafc5c78e1a2a207a7cca361a4501dca8e97"
+      },
+      {
+        "href": "OEBPS/b03/p2_04.htm",
+        "sha256": "ff1f4b5f93f3df506110b4bf7e9e1d15ca89ce58db688aa6a574d0981101a1d0"
+      },
+      {
+        "href": "OEBPS/b03/p2_05.htm",
+        "sha256": "f865c377f2399eff719b7ba95e5d5c5487ded140d37b94e944f9aae0c5001a83"
+      },
+      {
+        "href": "OEBPS/b03/p2_06.htm",
+        "sha256": "99055f3cffc7a0db30f43d91e0003253de51117d671ca09464e4a11a11bcbc91"
+      },
+      {
+        "href": "OEBPS/b03/p3.htm",
+        "sha256": "e01707ad27cfe22a4d092d3b99b15a6200b8bb2db8318ffcd386d3ba86d4c416"
+      },
+      {
+        "href": "OEBPS/b03/p3_11.htm",
+        "sha256": "9e592884e887fa37081743403be58dfab143ec92a5c98fd8e4fec971da7b2948"
+      },
+      {
+        "href": "OEBPS/b03/p3_12.htm",
+        "sha256": "278ed0dd435de69f775b0b65ffa099368ed3aad40f2ae1ef7ef59f2b4c3e8003"
+      },
+      {
+        "href": "OEBPS/b03/p3_13.htm",
+        "sha256": "f52b747f079a1ab45ff66983817390537a71a2ab28fa2ef568e3e1e266e71b22"
+      },
+      {
+        "href": "OEBPS/b03/p3_14.htm",
+        "sha256": "acc393e708d18e171a58de7fbcda0898ff5877c58b7955315c49311d101c0506"
+      },
+      {
+        "href": "OEBPS/b03/p3_15.htm",
+        "sha256": "0a0bd5523bb5a73e40a93b64767f928616c23f8243761309bb0f0568f674ab46"
+      },
+      {
+        "href": "OEBPS/b03/p3_16.htm",
+        "sha256": "a737e2996dd0bcba58cf2665cf5888fca5ca17b77bf149f0a025cced52d46620"
+      },
+      {
+        "href": "OEBPS/b03/p3_17.htm",
+        "sha256": "79167c855598614f10aa3b43bef1f2d64a7dca3e0f4f05cd40c949961412b87e"
+      },
+      {
+        "href": "OEBPS/b03/p3_18.htm",
+        "sha256": "23c118d1ba7abf4be079fb027595455c09e04070fca00218f556764be44013a5"
+      },
+      {
+        "href": "OEBPS/b03/p3_19.htm",
+        "sha256": "fb924605393539d22ed5cdfd24c085824f3644e4d60e0ca64be96464ba00aefe"
+      },
+      {
+        "href": "OEBPS/b03/p3_20.htm",
+        "sha256": "f3b36b50b256467241ada6a2dac5536c112c276f37b57ab9dcecb611122fece5"
+      },
+      {
+        "href": "OEBPS/b03/p3_21.htm",
+        "sha256": "ca395ccd1da4e3635d2e5469c6f3613b3ea7fd461ed28b14bb4316665b82706e"
+      },
+      {
+        "href": "OEBPS/b03/p3_22.htm",
+        "sha256": "6a51210e624fcaa712b8661cbb7ab18a2ccf456d0aaa6cd24d28b5e9b2d726d1"
+      },
+      {
+        "href": "OEBPS/b03/p3_23.htm",
+        "sha256": "9ca00ef72f2b71f2dc6155056a1f25fa89ad374dc40f5faa372649521c02003c"
+      },
+      {
+        "href": "OEBPS/b03/p3_24.htm",
+        "sha256": "ff5c3623153f64552e082e0834f237fac989df77df1dd596b0e7430e6fd0d86a"
+      },
+      {
+        "href": "OEBPS/b03/p3_25.htm",
+        "sha256": "8b9c514f58bcee7850ca8657ce08b419a256714decb95ba4b8c6a6bb12b778b7"
+      },
+      {
+        "href": "OEBPS/b03/p3_26.htm",
+        "sha256": "87f4afe00a1c2f18a2c713482de9ffc58dbab92ff11ced840b694631d958b930"
+      },
+      {
+        "href": "OEBPS/b03/p3_27.htm",
+        "sha256": "0f9e08aea58b2bee9e94f12fabe7c5cd69d33fda277808a788c04e6854543ba1"
+      },
+      {
+        "href": "OEBPS/b03/p3_28.htm",
+        "sha256": "f97d5531d1cf64eb1fe005c4354b8ec7c14cb6f4a198981097449f4d32ef0737"
+      },
+      {
+        "href": "OEBPS/b03/bm.htm",
+        "sha256": "7fa2cd26b05456cdc0664fbc747ee429bb473d68466a34315852622c0dbd30b9"
+      },
+      {
+        "href": "OEBPS/b03/ack.htm",
+        "sha256": "a0df6ad041aaa73a17e6b700201b9ede874f24938502f33a59761587c6d6dc6a"
+      },
+      {
+        "href": "OEBPS/b03/cre.htm",
+        "sha256": "7080451c509c3afae2db8c9480ca2d7f20305a5077c92e81757c92a82609ad56"
+      },
+      {
+        "href": "OEBPS/b03/cop.htm",
+        "sha256": "7737de8f8cda3fa8c6207cdf010002d50e98162759a1760b9b863f78764fcb5b"
+      },
+      {
+        "href": "OEBPS/aboutauth.html",
+        "sha256": "391ea22c4841b02dde0ba7615288f99f88f2e9ba721c55ab6b8f24a4a4b5afec"
+      },
+      {
+        "href": "OEBPS/aboutpub.html",
+        "sha256": "8d1aa5c696b9ab7c7f76fe73f3a7256ed58152b46112019687d56de9381db939"
       }
     ]
   }

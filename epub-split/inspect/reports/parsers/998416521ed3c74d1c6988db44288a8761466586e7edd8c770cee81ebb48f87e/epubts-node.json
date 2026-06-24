@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -1127,6 +1127,456 @@
         "id": "tp",
         "href": "OEBPS/Clav_9780307567970_epub_tp_r1.htm",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_cvi_r1.htm",
+        "sha256": "3584dba1af59a8705d8c96775b3416654144bd87e39d9279451aac9c72daf47f"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_col1_r1.htm",
+        "sha256": "6c1701fd8c681886088108599e949824774c94aaff5e1ef59eff6fbd50fb3735"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_col2_r1.htm",
+        "sha256": "e1aa38918ec03d9049ad916169e5948cd7b37adee1f53fe58e93da0845e49048"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_tp_r1.htm",
+        "sha256": "7e648f458cb8cc7ebe5b05344611a5edf2c612b5a46d1075dad687344a8b3516"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_toc_r1.htm",
+        "sha256": "9f2206a412ed924d5ae2061877331c74e6d6ae06c89429e840a27292b84aa60f"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_ded_r1.htm",
+        "sha256": "f8aa570cf9f3c66eedb73ea5a99f08ea79e7b07733c2aa233d871c1b121f3518"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_col3_r1.htm",
+        "sha256": "1543b613ff291f0e60e530b6986fe3f409b5b87ebae9fd3053c7d33263c0d2ab"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_col4_r1.htm",
+        "sha256": "8b6584b23af2cbe4bfde02c365d67068fcad70a3ec6db018bbfae0c2f0fd8d33"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_prl_r1.htm",
+        "sha256": "cf900141a7b233c73a17c21b8242e09565b0f2c1bdc11ba3334c0db3a68c1413"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_p01_r1.htm",
+        "sha256": "73dca1221270e0d15cd3731d983c4791a13cdd0c3a7ccdc2f2033176cd7b4317"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c01_r1.htm",
+        "sha256": "10fdfeb31d25f8b5d6b2dd2be790af16976470233a928c6d99fbdaea7886ccfe"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c02_r1.htm",
+        "sha256": "935d984ec5448dbc8ccdcc362a446b602804d096dad18d49babed6e3952c039f"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_p02_r1.htm",
+        "sha256": "15881e56afd73f6c05fb1be5330007e46dab7639712bb3c3e1ba5da0d201e373"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c03_r1.htm",
+        "sha256": "dd264e1fb773d81eaa1d9e8e8d53e84001a920b82554ef6305c5dddeb77078c2"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c04_r1.htm",
+        "sha256": "0dfd22cbcd61b47a850d8fa3178e9be4c99ecc795f4e37022472d9ceed136f74"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c05_r1.htm",
+        "sha256": "5f959cdd3221cc7b51dc7bf1d65b861f39f1c86cffa5b81fe2439d68ecae60a5"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c06_r1.htm",
+        "sha256": "e962a41d9cbe080776a7e7fbcdb85a777e9b404706a5101965c3b222f9489443"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c07_r1.htm",
+        "sha256": "d6c3ff7be920482640c85e0a6fc5e469adaa28f76f94619a795bc52902e9d8d1"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c08_r1.htm",
+        "sha256": "b11d6d172459843f5cda672bd2b8331dc10781bc5275eb49856e13be71bec752"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c09_r1.htm",
+        "sha256": "c6db16679665d023a80b71c37a88f9764e8e0bc5fbc81330bc0207641007361a"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c10_r1.htm",
+        "sha256": "150b26f0e93de43df205dcfaf4c8289f0329b6678a0db57eced09e1eb462282a"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c11_r1.htm",
+        "sha256": "44ff83ae88cf07dd8bc63fc9cb1a22e1dc83fb141abca7299dc8bcce0dfda01f"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c12_r1.htm",
+        "sha256": "dfd14657544c844a50363309f5089099eec2c89f2fe82482d91e062676936b99"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c13_r1.htm",
+        "sha256": "7b3ec7bbc767014c9ba79704f52ca36b5b57c884d5b6d922976ec128ee27cef8"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c14_r1.htm",
+        "sha256": "e0dd05582ea8fb64022c6f84bdfab9c9e94de648d3ecdfe1f3590ec50ca1db84"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c15_r1.htm",
+        "sha256": "a0d1c2cd0d1186b95dcd922eb103b515a86e2f690803cbefd952f584d4daf189"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c16_r1.htm",
+        "sha256": "062f1da965d1643b87e275eb0269398bddc9fbc126bf4ec595368ed9a138c1ae"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c17_r1.htm",
+        "sha256": "13b933e6a0d3c2be4b0c2c34a4c8a5ce2054e2cb775008229aa046afc5e3cd7c"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_p03_r1.htm",
+        "sha256": "70c655b2e5a7b5df687c0c4c0f0ab4682d97df3fa108ed2b0284f1eebad75a13"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c18_r1.htm",
+        "sha256": "5a312d95d0f0623259f1193c865c35458a3c93b86723aa4cfed58a89a81625d1"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c19_r1.htm",
+        "sha256": "da9dbbae3d32a13e4f68582bd9b132c1ced9dec46d6c9825c06c890ee20c1f33"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c20_r1.htm",
+        "sha256": "f69e5cb22f97c8807f3be4235ae9ab8ba962101239ca9664594adc3f5d0a97ca"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c21_r1.htm",
+        "sha256": "7fdac1382c45427d89ad7f4b76a2171bf9bb107beed3245070041a537cab8c00"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c22_r1.htm",
+        "sha256": "6b5f78de207827ede23db27c015e3853600e6ac4f35dc5b7f20b6bb12db2d6a3"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c23_r1.htm",
+        "sha256": "97104dfecfff332664ced6b846f29743b593840bdfd7888a1c3ee682646d48a7"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c24_r1.htm",
+        "sha256": "609b9751afe9c63a6d5342d09952b13a4695dac20120f7ce6dbb902de7ad6223"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c25_r1.htm",
+        "sha256": "5bf59d60d89fa26db25d8a1a04d9b46468514df6430179d554c7678c982faa8f"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c26_r1.htm",
+        "sha256": "2c3529e8aee948397fbac3effc28712262f882f9262f18d240443cb593697aab"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_p04_r1.htm",
+        "sha256": "41fb749355aaed635929fa2e5f2437b4861cf57d7021510c9ff26dc707e90e38"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c27_r1.htm",
+        "sha256": "1b78a4f861ba5a8ae3f650665dc372b1bab926fbd73db80ab01b88f1fcab9b37"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c28_r1.htm",
+        "sha256": "7f28924340cb681cc2673d9862e6a225efc735703d69c3bed7aa9c10d4197c29"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c29_r1.htm",
+        "sha256": "40537ba4c9b04b0f10e74ecee0c9f8f635a4b4547ad6d830a33de9cc2d583496"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c30_r1.htm",
+        "sha256": "d63b38656c1d3c3d2fe3542b2e8eb12f580104dff81c3a2d2bfe203fdaa40c85"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c31_r1.htm",
+        "sha256": "ae4b5a7545aa714473edf248d8a0660ad1bc3390a32bdb766848cdad9824194c"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c32_r1.htm",
+        "sha256": "ff9d640796c1c6c977ea00980ae64c4370080b152a68bd3c85e502901dec7df7"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c33_r1.htm",
+        "sha256": "f07c54172892427dd7889dec0d66db0bfc8e10107728fffa44a023da96905fda"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c34_r1.htm",
+        "sha256": "d21ebb0ef6790c0641aceaa92b07b426907bb76a70d4d2d2bca53bf7d6a9b4ea"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c35_r1.htm",
+        "sha256": "873cc86106c7a1e7ddcdb52e72a8ea3ed7962d954feaae41021d48c86d78961c"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c36_r1.htm",
+        "sha256": "12a67ba49c21d9415c315d093a426c37a25c4191039142359cbb6ad4266b2484"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c37_r1.htm",
+        "sha256": "2586353a1dafb83e3a1b5561b917c7edf88e4eb660278af17f304991d6a36946"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c38_r1.htm",
+        "sha256": "4a1580a9930e60965556b252a9da7d13e291613a6c5f8c809c56b02fc5ef5806"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_p05_r1.htm",
+        "sha256": "f0ba9c207797f12aa692b43a8ad93a273ab7cbc431ffa939d8575629c7df1616"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c39_r1.htm",
+        "sha256": "5cbcb0f818c9f00b336d629b06ee3db7ca31392783501e3ea245b015325cd112"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c40_r1.htm",
+        "sha256": "ef70f4f56cabc685ff3c9686e7ce1d42a3b28117393fd2234c0dc9ce7120a363"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c41_r1.htm",
+        "sha256": "2fcbdb7a8393c3c6e4d2560167a73b1718f5783460b4eba329e66fd1e8285f3a"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c42_r1.htm",
+        "sha256": "3d58c5c81fb48919f770779ec9c4b4e894963d83059fd45e250dd547bb4f0fee"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c43_r1.htm",
+        "sha256": "b42e8d33777aeadcd165e633c4d6677bcada4d75c1a5fe6a29cf5803114b219c"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c44_r1.htm",
+        "sha256": "74eadeac4b1135a620f9f2827f7427ef670a18a351286a2bceebf94468378547"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c45_r1.htm",
+        "sha256": "b60f0deac780a71f3b1ac05954d783377f478e3a717c290c1946568506517f77"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c46_r1.htm",
+        "sha256": "43ce320199aa6498fa5696730895ed64e00a9291cadd99ef1d4e81583246ba56"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c47_r1.htm",
+        "sha256": "2017d646b8296c9640ba32ded01ffc3c6ce0995f774db9635cd612a0ebd97ab9"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c48_r1.htm",
+        "sha256": "d157524d6fd4c69d22fe31c4d3d123e9086c01dc459be60058f7b83beefec61a"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c49_r1.htm",
+        "sha256": "084ab7d2eb3bf7273d230752f89737dd7b6b4784b93a214b47230afa6616def5"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c50_r1.htm",
+        "sha256": "9af7adbc5358bd3fd37f5aea11f03c8c9d1a183646b948712b3ce2c4368d9989"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c51_r1.htm",
+        "sha256": "fb5b919f9ccb343c56c38f9af69681365624bf193f82d8d93b674d514ffa3ad9"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c52_r1.htm",
+        "sha256": "45b8b3c22f369c67ed5e9938bed1ec576c08ea7a7fc079a6d9ec11e0b06eb096"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c53_r1.htm",
+        "sha256": "3c6d24b82d4c3759632917f695b445130b2662fda7a3080079747111b2166837"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c54_r1.htm",
+        "sha256": "e25597360f5a33f6f1b9d063d0d78bdf1af79221877435823beecba48105d01e"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c55_r1.htm",
+        "sha256": "7cc3277792c8e25e90051dcc996ba8f2a0d1ff21d5ae04425f4a1f40f4b211bd"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c56_r1.htm",
+        "sha256": "88c1528036522053cf882784db5fc109bc9eb656fe9f575639276ae64ddc2393"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_p06_r1.htm",
+        "sha256": "3da4403085b63b0c8bb79e35a4d9106f2d9b3e6400622dbf281be6bfd0231d6f"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c57_r1.htm",
+        "sha256": "376551ffff8e983c04a1b90cab3d7ff57f61974203642e8da6a54b35962e89cf"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c58_r1.htm",
+        "sha256": "1e07564813dcfc6d32741d2c890ad29361e6d7af61c433051967a969491e7831"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c59_r1.htm",
+        "sha256": "df19ed054cb9879a11f33d86f89f76b75dc9faa21a0db986e8710646b5791337"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c60_r1.htm",
+        "sha256": "48f36cba0267a505ba6c82901d0d80eee65670239f049bce229d7853712a6597"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c61_r1.htm",
+        "sha256": "add09f7742b43b486b8b1c3ba62b195efd6bcfb0d049c2c8934134fd9e66c3f7"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_p07_r1.htm",
+        "sha256": "ce7c6850f3d94518520f3d3c083fbe96e5bb51d6fa13ec1ae8917f071fbf667c"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c62_r1.htm",
+        "sha256": "fa62d772e8f0da14458218460d03a4d6109f02b004fbc918cc4c8887cc7143f8"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c63_r1.htm",
+        "sha256": "729ac2169a8ca0f16520caddcf90154613009e2eb0fd938d5c713a7dec14f3c4"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c64_r1.htm",
+        "sha256": "7a1ec1ac3ae6434419df0bc2835f26bc1be4845f6cd4559808828d4aa387c3bd"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c65_r1.htm",
+        "sha256": "20e6dc0e9372d88fe65bc9c14546f0d66261641dfa0f8a18044d2422f2998545"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c66_r1.htm",
+        "sha256": "7f3f66d35fac39ca1d9ad403d5c62a269340fc0ff1a9e41c66ad1f8e429e8c62"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c67_r1.htm",
+        "sha256": "d6b330c7b96bbe3f115925fd0fd29b4202e26f84ccaea14979c48593e5bed1d1"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c68_r1.htm",
+        "sha256": "97f8715e7ddd940e12685bbf820cee79b9342265d6f17283d1404f308b00fb42"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c69_r1.htm",
+        "sha256": "ee51e91653a9d66730a0dfb5a12ff9a50a610aec7b4e7cf1e8a2a28e622a53c1"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c70_r1.htm",
+        "sha256": "6479cc42121e4cf6f8066b81a2c838c6733bbbc16e1bf7971d27d9bac4ca76cb"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_p08_r1.htm",
+        "sha256": "cfd6fd9892100673b16907dc8c88573f901e3e8020dd9a9ee87c16190e42a1fc"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c71_r1.htm",
+        "sha256": "bd4545e1d1028b87700843b2f7e46dceaa9177385b9458501bd95ef9fa0c10c0"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c72_r1.htm",
+        "sha256": "71e74e0106aa53ac0701ce01ecc8afee0c390732a132c131bb50e6a831d6e429"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c73_r1.htm",
+        "sha256": "c493e03b9a3054b771abcdc341a20c4e77dfef8a35d5416e1f5c3318dfa1520f"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c74_r1.htm",
+        "sha256": "563f554151ecc082c0975c6fd10b5230b2bdf089e9f83bffc7f72930ab900955"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c75_r1.htm",
+        "sha256": "2a9b10ba6778d3af29bc1039181e279b3a9847fb450e9f923c654322c6c0bf9d"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c76_r1.htm",
+        "sha256": "3daf532b5d8a1995635dcfa8f3dbebaa0b558ba1d4d2e48b58a683034609e340"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c77_r1.htm",
+        "sha256": "03af1080029f29a7f563baa026049b3ebe4fce5c5eff14702b51684745639255"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c78_r1.htm",
+        "sha256": "3a87041f6bd7756a8a5abcf171c371188f593fa2962d68dde5aa1bc7d29ce9b5"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c79_r1.htm",
+        "sha256": "2f84ade134c3ab2fb1008bd68c14158cf6a34d61a836a1a38dc363b0782a37e4"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c80_r1.htm",
+        "sha256": "f6e6f240bbdaa48648779086fa1d60a48dd30d0a0c394e5a5698b1cc8066f1f4"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c81_r1.htm",
+        "sha256": "e1b958b9c417e2e00d28f31eccf213792ee65dfbcf80ef168100b9abd0f3ac39"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c82_r1.htm",
+        "sha256": "4ee9d0d7bfb3e9ed5b482bb2e50f8018f3c7e6957f3f56544ba4296ddc1883bd"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c83_r1.htm",
+        "sha256": "a3882defa05fbf45ca52c138a1661770b631220cf20fcd679011596914c8ef34"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c84_r1.htm",
+        "sha256": "ebd2d322a64cae2e18adb2a82123211dad74582e42003f2ec42e19d23ddab44d"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c85_r1.htm",
+        "sha256": "46d06e647f5c67e1b3f133eba966f001fb4731ae8f0641458d8d01497e672761"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_p09_r1.htm",
+        "sha256": "2911eb2cbf82f1fbff3339a826a6656a832814381527c2155f0c97a5c02abd5c"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c86_r1.htm",
+        "sha256": "9f556f96e0c3650424800247fe2ecba47af7a21dd75fb4ce2574a45f64303817"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c87_r1.htm",
+        "sha256": "3e7587326cb4881dcae58d08ee336336ea48e3eff6fb8dcd498eaefbe54efe5d"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c88_r1.htm",
+        "sha256": "bbe60c6058ac4fae6cfd0c380764a3a6cf09abef1a82d286ee6f46190e2f26e9"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_p10_r1.htm",
+        "sha256": "f2390e571f1b49811b851ec6d7ea02d1390fdeafe4b47f64a06c6e1c58ff3e4f"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c89_r1.htm",
+        "sha256": "0bd15682dfeb32d282d8860a6bc3810a814f2ae285cf2c2db063ac38193e0d54"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c90_r1.htm",
+        "sha256": "2559668cc6afa0784bbbddb9495c22f46cbb6e496c64686d41d854eaab06b505"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_c91_r1.htm",
+        "sha256": "1b00e5d4015cfe9d23cb5ec4483eec194c606fb7838ee410161d480760bdf420"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_ata_r1.htm",
+        "sha256": "20c856dd585bd70ab9092d7d49b4315a6bc3483f2943b7b155b1f23721a70775"
+      },
+      {
+        "href": "OEBPS/Clav_9780307567970_epub_cop_r1.htm",
+        "sha256": "8b6f7f02fe0288ea288b920b718f285d697ef1b2df8457235c51efedc442fa26"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -109,6 +109,44 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "fbf5c7d070ad405bcb8b7596cd58c834e7670c35d42095e63c3375d5b1395d36"
+      },
+      {
+        "href": "jacket.xhtml",
+        "sha256": "ef440e006e112096b27093ace8c1c21e23a0741cfeb04fc56020d43a82339ed7"
+      },
+      {
+        "href": "Isaac Asimov - I, Robot_split_000.htm",
+        "sha256": "2ced00f2da5831ad670d274144dd93fc9babd340adf49ef25fbd99f10f1802e9"
+      },
+      {
+        "href": "Isaac Asimov - I, Robot_split_001.htm",
+        "sha256": "bfe4ebae541ea5c46586571f39318aa07bc90db12df494e83eeff7c0a1a051bf"
+      },
+      {
+        "href": "Isaac Asimov - I, Robot_split_002.htm",
+        "sha256": "b11427376f1bb06bc08f6494e31c468b8e4951c535e2804725be02760b74bb8e"
+      },
+      {
+        "href": "Isaac Asimov - I, Robot_split_003.htm",
+        "sha256": "46a055122f0c384958ca52d20cc28b052a11f3c42b6851e6971530da8ca8e0ef"
+      },
+      {
+        "href": "Isaac Asimov - I, Robot_split_004.htm",
+        "sha256": "3df68f36f18e6b2adc4b68fb4d35c1eb52310ff04487bad2169232eed0ce9e27"
+      },
+      {
+        "href": "Isaac Asimov - I, Robot_split_005.htm",
+        "sha256": "22443cb18644a4165179aae0c983bbbdb09f2a0353fd7415e30050f59af2652d"
+      },
+      {
+        "href": "Isaac Asimov - I, Robot_split_006.htm",
+        "sha256": "51aab016a9b001666ac0de6ab7ee1545cdef549a6dc0827d484d2b8fd4ebcfcf"
       }
     ]
   }

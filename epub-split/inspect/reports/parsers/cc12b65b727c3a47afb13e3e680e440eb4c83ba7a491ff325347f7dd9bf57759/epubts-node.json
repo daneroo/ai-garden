@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -83,6 +83,32 @@
         "id": "part0004",
         "href": "part0004.html",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "leaf0000.html",
+        "sha256": "5395f6ec7058ded8d7b0b1d007c312bbefcffcd7ab6f34213a31019a3dc85a42"
+      },
+      {
+        "href": "part0000.html",
+        "sha256": "6d2f09d97c4586c93496eae5c42cf5ef0072abb163bff1354e396375e546a6ac"
+      },
+      {
+        "href": "part0001.html",
+        "sha256": "afb8ac3b2b37c9f072e605d55f1f5159508535521d8439a9f5ff87e2553145ce"
+      },
+      {
+        "href": "part0002.html",
+        "sha256": "fed92d29a020fd573977ec2ca6af5465c439023ff47848f2bfb76e85c75a7538"
+      },
+      {
+        "href": "part0003.html",
+        "sha256": "c55900c188480329e406c7fc087192d00c8a7e5e2c0077ff080384cbb8041ce3"
+      },
+      {
+        "href": "part0004.html",
+        "sha256": "8d6a080381c418eac66ab51f2a702267c888897a1e84801bc5cdcf9fde6861ed"
       }
     ]
   }

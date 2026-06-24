@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -83,6 +83,32 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "9efe9b60e4cf236b078c807bdc731917a498ae102b3788a58e21e9081c42dcc1"
+      },
+      {
+        "href": "temp_calibre_txt_input_to_html_split_000.html",
+        "sha256": "7e38ad9491eb56731ee742cae6bd97d96d719e97ba66f85aacb56f578b14883c"
+      },
+      {
+        "href": "temp_calibre_txt_input_to_html_split_001.html",
+        "sha256": "dd00d9a07dfe1ddf36a76dc19e89d4b3bb0a75231ef98c21a585f99a3f446660"
+      },
+      {
+        "href": "temp_calibre_txt_input_to_html_split_002.html",
+        "sha256": "16b78c25fe61ec4f78cf7589d81260524935e8d60397f24c81677a9c3030c530"
+      },
+      {
+        "href": "temp_calibre_txt_input_to_html_split_003.html",
+        "sha256": "bc7591e3c95cc5129875c71cd45ec832145e0ddadc6be9f978041adb5ba30292"
+      },
+      {
+        "href": "temp_calibre_txt_input_to_html_split_004.html",
+        "sha256": "f3c68a74431e1a7d48438c238062f0ab00d9a964306c827829f66b59a66ca85b"
       }
     ]
   }

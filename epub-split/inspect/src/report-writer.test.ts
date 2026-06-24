@@ -79,14 +79,14 @@ function field(status: string, a: string | null, b: string | null) {
 
 const SPINE_AGREE = { status: "agree" as const, countA: 0, countB: 0, onlyInA: [], onlyInB: [] };
 const MANIFEST_AGREE = { status: "agree" as const, countA: 0, countB: 0, onlyInA: [], onlyInB: [] };
-const SPINE_HASH_AGREE = { status: "agree" as const, matchCount: 0, mismatchCount: 0, nullCount: 0 };
+const SPINE_HASH_AGREE = { status: "agree" as const, matchCount: 0, mismatchCount: 0 };
 
 function comparison(
   a: ParserName,
   b: ParserName,
   fields: { title: ReturnType<typeof field>; creator: ReturnType<typeof field>; date: ReturnType<typeof field> }
 ): ComparisonResult {
-  return comparisonResultSchema.parse({ schemaVersion: 4, parserA: a, parserB: b, metadata: fields, spine: SPINE_AGREE, manifest: MANIFEST_AGREE, spineHashes: SPINE_HASH_AGREE });
+  return comparisonResultSchema.parse({ schemaVersion: 5, parserA: a, parserB: b, metadata: fields, spine: SPINE_AGREE, manifest: MANIFEST_AGREE, spineHashes: SPINE_HASH_AGREE });
 }
 
 const NODE = "epubts-node";

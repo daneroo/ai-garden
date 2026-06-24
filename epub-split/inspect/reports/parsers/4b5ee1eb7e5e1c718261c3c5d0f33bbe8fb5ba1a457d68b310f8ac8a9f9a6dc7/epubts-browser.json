@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -1502,6 +1502,112 @@
         "id": "x16_UN08.png",
         "href": "OEBPS/Images/16_UN08.png",
         "mediaType": "image/png"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "ff744102fee1b0ddb3a82e6d0e6675acc1dc64f2ded42f7d6e18967ac4ecac79"
+      },
+      {
+        "href": "OEBPS/Text/title.htm",
+        "sha256": "e04401d5aae98dc49bf55c59045604abd72a70c7ea178df3ea4e80a6568c5beb"
+      },
+      {
+        "href": "OEBPS/Text/copyright.htm",
+        "sha256": "4134705b31b313789f1729a6110cfbe55fa89379f4816e9eac3f2ade7af8b0d3"
+      },
+      {
+        "href": "OEBPS/Text/dedication.htm",
+        "sha256": "4c4894db2cb484b3d87d3ca215553517f6798900e915e5f4127a7e0f6d6836a2"
+      },
+      {
+        "href": "OEBPS/Text/toc.htm",
+        "sha256": "ff5b9ce026abc67aa81e21272650f68444d1b4ceb74aeb70e06d32b5f4e4a601"
+      },
+      {
+        "href": "OEBPS/Text/fm.htm",
+        "sha256": "bef9006c7fb230eb6585d4ed9e9a0a7c155fc6f08e5240708741287fe31db58a"
+      },
+      {
+        "href": "OEBPS/Text/p1.htm",
+        "sha256": "3d8242e4051d78f2ca5066c293bd061bcc1508064daec88202079709d47a6586"
+      },
+      {
+        "href": "OEBPS/Text/ch01_Wong.htm",
+        "sha256": "e00e390b0564e0bb4c0935e0f5a07e91aea07d6b7920f7d4c76dcec1bd133820"
+      },
+      {
+        "href": "OEBPS/Text/ch02_Wong.htm",
+        "sha256": "e70b050cb1fb6119adf5c7db58fcaa0213f0ca8ac492cec5f2baa646f7e54ae1"
+      },
+      {
+        "href": "OEBPS/Text/ch03_Wong.htm",
+        "sha256": "43f2a8e7ef75e9577b309708b038c5d3e681be830253702b55d1b652d42378be"
+      },
+      {
+        "href": "OEBPS/Text/ch04_Wong.htm",
+        "sha256": "8abac0a55cac8dd0b6b87325361ba2727041f6647be56c7f2d4b2d1bf2a5b795"
+      },
+      {
+        "href": "OEBPS/Text/ch05_Wong.htm",
+        "sha256": "e4a18c9b74cc5a05581b7ea11d80f1afebd521a190b4f8b624e20124d7460f8d"
+      },
+      {
+        "href": "OEBPS/Text/ch06_Wong.htm",
+        "sha256": "f875c70841c921f5069abb9db526091a38d05ee7251b6d11e5634f8a00a5c2f2"
+      },
+      {
+        "href": "OEBPS/Text/ch07_Wong.htm",
+        "sha256": "6afc2142d9860ed01fdbddf35a2e0a4a7deb391267ce9c551fe868016cd42895"
+      },
+      {
+        "href": "OEBPS/Text/ch08_Wong.htm",
+        "sha256": "7fd30795b5fe6c53ea3acb09467fbff41817d1f65a316e213ce06f6d3844eaf7"
+      },
+      {
+        "href": "OEBPS/Text/p2.htm",
+        "sha256": "28fb7c7be3ee1199aee6a5c270e79d7651d98bd1bbfd4ba4bd58107502b79afe"
+      },
+      {
+        "href": "OEBPS/Text/ch09_Wong.htm",
+        "sha256": "b8a0ddeb212906eb76b2a1bcee1beb3302f7eafb480a2135052178d622442385"
+      },
+      {
+        "href": "OEBPS/Text/ch10_Wong.htm",
+        "sha256": "70fb060dfe43c0e23ce698c37ad516a5f7c0da188b444fdd68ebd65c4c70b4d1"
+      },
+      {
+        "href": "OEBPS/Text/ch11_Wong.htm",
+        "sha256": "ce2d0d97777dd98d473392e776d2e08cee06867589e39fab78ceb838676546ca"
+      },
+      {
+        "href": "OEBPS/Text/ch12_Wong.htm",
+        "sha256": "d40fd38dbf51434a0189f8a440f352f936505068747b6d1ebed8f538aa4d3296"
+      },
+      {
+        "href": "OEBPS/Text/ch13_Wong.htm",
+        "sha256": "07f793703049a060f5947db3123fb8b865e48bb609b075b048ed4a8f79e7810b"
+      },
+      {
+        "href": "OEBPS/Text/ch14_Wong.htm",
+        "sha256": "259649cfc9f2f720bebe3096ad7de653d076a15410d4921aba34b735fbebc385"
+      },
+      {
+        "href": "OEBPS/Text/ch15_Wong.htm",
+        "sha256": "cf64d56ab53bb7ec25d40fa9f6aee8e87e5c907a3b86950b45c7eab5b39ac060"
+      },
+      {
+        "href": "OEBPS/Text/ch16_Wong.htm",
+        "sha256": "50cd9831475ee068bf9847f841d4c8de16f2a485076456d4a13bf7619dff0027"
+      },
+      {
+        "href": "OEBPS/Text/appA_Wong.htm",
+        "sha256": "de2e96d7318759423cc0790d66ab30525d1e2e0d528750d900c9c6d98d1b5528"
+      },
+      {
+        "href": "OEBPS/Text/index.htm",
+        "sha256": "487a1ea17d787c9bba3b98a97488ab5e97e7355c5033a1b65b4dd641e4a6b09e"
       }
     ]
   }

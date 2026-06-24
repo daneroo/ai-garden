@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -175,6 +175,64 @@
         "id": "title-page",
         "href": "title.html",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "cover.html",
+        "sha256": "021429968a342a4b673a830bb00895edb8900bddb44b904754665d62712a2a7b"
+      },
+      {
+        "href": "about_book.html",
+        "sha256": "c8edaffe75bab0b9009d8822eab5dee3b32696ca4645416e46dd623993faccd9"
+      },
+      {
+        "href": "contents.html",
+        "sha256": "9a42092b1876ca0e2197b36e82969938d63c3ff13d42821990be07d122a9845a"
+      },
+      {
+        "href": "title.html",
+        "sha256": "3544ca472e0f4f6348f227332702fa43a378651ecf15a51b8e736e6b57e840b3"
+      },
+      {
+        "href": "dedication.html",
+        "sha256": "e106891141491f0b2e80e30d38ae01f2d0569948bb5b1af035053e813439f853"
+      },
+      {
+        "href": "chapter_001.html",
+        "sha256": "24736f0ca0eef40bc5cfc4061bcaee695bb472fe2b63d488d86178b35434b6b3"
+      },
+      {
+        "href": "chapter_001a.html",
+        "sha256": "e5a1cb90f08c2645d3c99409147449f8bffab2ecdb08d5e0474fc048dfa60293"
+      },
+      {
+        "href": "chapter_001b.html",
+        "sha256": "9d61ac693f089816913ef439cd3dfae0cfe6070f194a7ee30a4e781981e852b1"
+      },
+      {
+        "href": "chapter_001c.html",
+        "sha256": "90f6478e45c885404e786553b23ef5920d3ec3b295c741e582e81b513354b8b2"
+      },
+      {
+        "href": "footnotes.html",
+        "sha256": "c3171aa50b94a1759c02d72e8e523ba8f19d70cf07bdb5bb0b19073bafd2d9f1"
+      },
+      {
+        "href": "epilogue.html",
+        "sha256": "433c88b8d6f1cd4637d98a7625923da07c332d98e277c9ae3132bc3ca55b22ae"
+      },
+      {
+        "href": "about_author.html",
+        "sha256": "66ba69356ce0621b2aac340a92ff52d1d4cd6f0fa36911a1e9e167693e07631a"
+      },
+      {
+        "href": "also_by.html",
+        "sha256": "c3dc08711b0823bfa4a3cff4901e14d96dabde523243ac540972db62430a97ef"
+      },
+      {
+        "href": "copyright.html",
+        "sha256": "e5bd6ae9f6acf35a84e39fd91dcab80b0b39404faaf75038d05522f856a25cf8"
       }
     ]
   }

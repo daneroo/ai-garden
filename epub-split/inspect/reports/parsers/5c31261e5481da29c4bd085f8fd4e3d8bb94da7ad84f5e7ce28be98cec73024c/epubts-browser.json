@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -111,6 +111,36 @@
         "id": "Title.html",
         "href": "Text/Title.html",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "Text/Cover.html",
+        "sha256": "d21c0baec2c7a81b97dfb184ec00e1f743cecd8a751d548d86f98e78d1cbf072"
+      },
+      {
+        "href": "Text/Title.html",
+        "sha256": "7584d3f2c9f5abff2cf44e989f42813087782eb76c225d933d999ea92a2d1574"
+      },
+      {
+        "href": "Text/Sixth-of-the-Dusk.html",
+        "sha256": "e7cb1698c01fac783fbbc2532ac5b9d07dae958d22dd8902006f564e4581687f"
+      },
+      {
+        "href": "Text/Acknowledgments.html",
+        "sha256": "f2145d776d7af1ee94313153e333b8b466898d9ac7b3f8778173a48f7b8de890"
+      },
+      {
+        "href": "Text/AlsoBy.html",
+        "sha256": "c58ce6ac25f4940580f86f313eb984eeefa570fb2e96025001f8631832730fca"
+      },
+      {
+        "href": "Text/Copyright.html",
+        "sha256": "24e9b4f831a787f49c9306a979308ad3312bf9d3c122a6dfc2745e1ec7d026f5"
+      },
+      {
+        "href": "Text/Contents.html",
+        "sha256": "8286a661427c333068c6ce603020589ccb2dff5a227a85ba6a43cf7dbfc16bf3"
       }
     ]
   }

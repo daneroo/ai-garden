@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -320,6 +320,124 @@
         "id": "style",
         "href": "styles/stylesheet.css",
         "mediaType": "text/css"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "xhtml/Cover.xhtml",
+        "sha256": "fd3a2775c7dae3a059c6e8a49f8f03c8fe2e4ebd28c4c9f1dec93be116eb6094"
+      },
+      {
+        "href": "xhtml/TradeDmitry_Canbury.xhtml",
+        "sha256": "7e7630760e865efd7b277475d545e002dbb5f702c1a0606a5a187a88e09db158"
+      },
+      {
+        "href": "xhtml/TOC.xhtml",
+        "sha256": "5244d08f5de3e3605d9cec53b26b2eee025dfde8a772cfc64ab46d39da0cfbf6"
+      },
+      {
+        "href": "xhtml/Dedication.xhtml",
+        "sha256": "53e66c3f7fc1a490b8f6e9b44a3b9028d7258782ac0fbdbbd2c51050a620ed25"
+      },
+      {
+        "href": "xhtml/C1.xhtml",
+        "sha256": "3598d09e3184d74bd33c4bc7bd6e7ab43f5f94234ceb62b09df897714c6a3eac"
+      },
+      {
+        "href": "xhtml/Part_1.xhtml",
+        "sha256": "c5351872b63b145d11d6e61268666b78bb0289658fc1c92fd7a5b3111b9776eb"
+      },
+      {
+        "href": "xhtml/C2.xhtml",
+        "sha256": "f97e061ee6310f3a914f9658ea55ecb03ed77c9e820889b8e2e6ad16dd3b55d8"
+      },
+      {
+        "href": "xhtml/C3.xhtml",
+        "sha256": "a919780d87b6bc90068497ad847dcceebb339249c9dff49fbc5be6498a98ca8c"
+      },
+      {
+        "href": "xhtml/C4.xhtml",
+        "sha256": "d6e5f72d3f0b62ce816b7cc8f3d0b5de8eb46eb907d2fb6ad557596e5d490984"
+      },
+      {
+        "href": "xhtml/C5.xhtml",
+        "sha256": "c132ac068b3035c40e1d2fb0461809f12367d29a95326108c1e269da7227db4e"
+      },
+      {
+        "href": "xhtml/C6.xhtml",
+        "sha256": "1f539f5e282ce64ee30fa7e34e7ac21237e70d91477825fdd3a010378a167cc7"
+      },
+      {
+        "href": "xhtml/C7.xhtml",
+        "sha256": "ea2fa408f8d803e363a5892d2f9f3d309b65003bf2797206fe77b1ece3cc4256"
+      },
+      {
+        "href": "xhtml/C8.xhtml",
+        "sha256": "4c0d55b1cf700036398659b20dc929cf18a313d598adfcf5f0f69340541462c9"
+      },
+      {
+        "href": "xhtml/C9.xhtml",
+        "sha256": "f915c2ae17ac229936c6d0553a3300ded2aad80d0e2da450de99bd0998ed6943"
+      },
+      {
+        "href": "xhtml/C10.xhtml",
+        "sha256": "8a07a210dd468ee3a6ef7b6811e666d6751f91569fea2dfb81bd65f4ee43b8af"
+      },
+      {
+        "href": "xhtml/C11.xhtml",
+        "sha256": "817d3d3bab63184639f7c6172bf5e9328d43439e98cbd6628df823aa44fe975e"
+      },
+      {
+        "href": "xhtml/Part_2.xhtml",
+        "sha256": "2b04a1fe3d0d7f7af9cf08a6d5153cb31fda15eb974218e0686b054924fc1aba"
+      },
+      {
+        "href": "xhtml/C12.xhtml",
+        "sha256": "91c7190726068c3bb608505a7b55219f1aad310dccf09249cdf7548e02c99f64"
+      },
+      {
+        "href": "xhtml/C13.xhtml",
+        "sha256": "40dcb36314bb7e09a6661220dcda0ccfeddef1fb30d6ac1b673ab6c4a34d51a0"
+      },
+      {
+        "href": "xhtml/C14.xhtml",
+        "sha256": "30fdc31a96adb8d828a753f9a76cf793c0da19a586f9b44dae8c6276af6be769"
+      },
+      {
+        "href": "xhtml/C15.xhtml",
+        "sha256": "3c9447f90c1a0b3981b25cfb61cce5abf24cd05dc1bab341c6a30a7547d6d7b6"
+      },
+      {
+        "href": "xhtml/C16.xhtml",
+        "sha256": "5c550bb568e7ea002e2f47097a90b603a863440d79f0697ff61cb7d19b106105"
+      },
+      {
+        "href": "xhtml/C17.xhtml",
+        "sha256": "a25a9c73fcb775898a1abd7b15a1ae2290f234b71924e1a96a1621775dabba9f"
+      },
+      {
+        "href": "xhtml/Conclusion.xhtml",
+        "sha256": "a9d0b334fe45108bba46da691e9d170f43facf6d6cd4782e96ec2a952e2b8d11"
+      },
+      {
+        "href": "xhtml/Index.xhtml",
+        "sha256": "4b561c276314001bf4c5c294937f87f02931dff7353ddaf462838c1351a0b279"
+      },
+      {
+        "href": "xhtml/Acknowledgements.xhtml",
+        "sha256": "358480f984d20537c87bcffc6f153c25966324f11509e00de1649156bcb930ab"
+      },
+      {
+        "href": "xhtml/TradeDmitry_About_the_Author_Canbury.xhtml",
+        "sha256": "f2a6dfac7be5d77931b9832b5cef3e68e4baf79af766ca471ecea6b35da9d2a0"
+      },
+      {
+        "href": "xhtml/TradeDmitry_Add_page.xhtml",
+        "sha256": "27d0138fe805b6e93c1a921bf6dd3f804df29363bc73590032edcec37802a871"
+      },
+      {
+        "href": "xhtml/TradeDmitry_Publish_with_us_canbury.xhtml",
+        "sha256": "101f69f48b79af564cd94bc444ba3d6cf2891d4529bcfef542e896b9b2f3f358"
       }
     ]
   }

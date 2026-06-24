@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -1310,6 +1310,560 @@
         "id": "toc",
         "href": "toc.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "cover.xhtml",
+        "sha256": "a35c664468b8ad2ab0b560e461585403fc5ab32894b8cbc10f93550d3c2cc984"
+      },
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "1924eaaa6a81fb6c5b46e2cf2f4c7e07f4a797055c331f25e5eedddc265dd435"
+      },
+      {
+        "href": "copyright.xhtml",
+        "sha256": "7c50529751e8f2c3de3587e548daa650299eafe3b2023bf657c9bd9bc5b0cf3e"
+      },
+      {
+        "href": "toc.xhtml",
+        "sha256": "3d6d3ced02d28c077fa1366f3d3d7db9bf36ea426dc6b559a6d03ecdcc7a5a45"
+      },
+      {
+        "href": "dedication.xhtml",
+        "sha256": "234ac76ebd965f606a5cb8cf87aedf52fbbef821e90ffaea2bca8d99fd7c8294"
+      },
+      {
+        "href": "discover-page_pre.xhtml",
+        "sha256": "cbc0f00be30f0fa396c52f3d8343336a672d0d44e8e69c7734803f556bfe227d"
+      },
+      {
+        "href": "preface001.xhtml",
+        "sha256": "43a9d4edb9e76405d50b603ee61c6bf9ee37a756f8ad14f63da21113afdd15ab"
+      },
+      {
+        "href": "map.xhtml",
+        "sha256": "554488049656920968df99a7e6c2d4eab963ebec0541080613da98c4d10db693"
+      },
+      {
+        "href": "epigraph.xhtml",
+        "sha256": "680f2e6ebf7e5e471f6372ee339368ff11f1abc2c626bb8cbb01aff8d3d1b2b3"
+      },
+      {
+        "href": "chapter001.xhtml",
+        "sha256": "994dba2aefcb3d33f74f9c46e554087061d6548b1c3777a813138cfdd0e9c4da"
+      },
+      {
+        "href": "chapter002.xhtml",
+        "sha256": "37bc56aceca3a2402ed231e2223cdd9321368dcb4004307f894f5812b911fcb1"
+      },
+      {
+        "href": "chapter003.xhtml",
+        "sha256": "28a05635914a282b362db5d320c69bb29cccb09b77ae2efa13b9a3f63d52c450"
+      },
+      {
+        "href": "chapter004.xhtml",
+        "sha256": "002812db188fd962bb3db77f5d5de2ccbfb6ed620f56d2d6361d928b5d03363c"
+      },
+      {
+        "href": "chapter005.xhtml",
+        "sha256": "df6fc8b0d2b2304453512336230727099d69b1b09bc5f362c55f4273e599ea5d"
+      },
+      {
+        "href": "chapter006.xhtml",
+        "sha256": "b35cf3f6a6d27b63676e45d0089254f84b3bd73544db4452e155a46074fd13ad"
+      },
+      {
+        "href": "chapter007.xhtml",
+        "sha256": "293e722b30163a336413d09d27a889cfc4a559c6d9f6c13d45cd11253369b13a"
+      },
+      {
+        "href": "chapter008.xhtml",
+        "sha256": "25f0291961bd73867043e146e785eb7a77983ad8548a6781712e34d9863d3006"
+      },
+      {
+        "href": "chapter009.xhtml",
+        "sha256": "f00947e73ae6d56ba90795591e2d155e220a29a7ee9093eeb561b510df4e0287"
+      },
+      {
+        "href": "chapter010.xhtml",
+        "sha256": "fd242fe1390a85c0998ca25f8766eb84bf3909ff255c84979c0209cb892198e9"
+      },
+      {
+        "href": "chapter011.xhtml",
+        "sha256": "f6ac4c30681b3816d0031859dd88faf512960ad505d31fda4bdbac291580c9b9"
+      },
+      {
+        "href": "chapter012.xhtml",
+        "sha256": "2c41fe187bae76f549752f3c6aac451473392b720a6c314f19902a04f662e30a"
+      },
+      {
+        "href": "chapter013.xhtml",
+        "sha256": "82cb0e8988136b8b4056250b98d84126ac1073486305b64da52360b8b04e8f6d"
+      },
+      {
+        "href": "chapter014.xhtml",
+        "sha256": "94a38546ead05e035c1fb73110b4e8583305331ba096024024d8fe43ba586db4"
+      },
+      {
+        "href": "chapter015.xhtml",
+        "sha256": "ebc5625a0036141a59abba206c94f32c5e49ea5b2633ef5506b4fcfd8515994f"
+      },
+      {
+        "href": "chapter016.xhtml",
+        "sha256": "7baca6b636f2863888fe8171c235e0c561cacb60a732c9172508d5723d3ddd58"
+      },
+      {
+        "href": "chapter017.xhtml",
+        "sha256": "1c0a76b4d4a34119a65f269c9d8dfd373681de457589a44a27ba318d23b948a5"
+      },
+      {
+        "href": "chapter018.xhtml",
+        "sha256": "cf8ade0378f6b1c8b8e75751bd09b52592ea00cdd237cdff50a4b7421978df17"
+      },
+      {
+        "href": "chapter019.xhtml",
+        "sha256": "6cb3513870cb5db06b8f09f1c47c3c83682d7d6f5e5d32a72cffa1eed5c0606c"
+      },
+      {
+        "href": "chapter020.xhtml",
+        "sha256": "51971497de250156e4abeee69f838d2302d90f5bca193fc160bf3d9f31322f1b"
+      },
+      {
+        "href": "chapter021.xhtml",
+        "sha256": "803dc5ddcf1dccf2145452a703b68bb28312485a4ac5da5946d91777123364b8"
+      },
+      {
+        "href": "chapter022.xhtml",
+        "sha256": "b3a620074a1c2a9ec4bcdafa67c503d6ecaae7fe8aff9fb77913dafb82e66fc1"
+      },
+      {
+        "href": "chapter023.xhtml",
+        "sha256": "29307cd9d1616afdc692900e89a338fa97a696ca20ba3b0e7f97725028f43ff7"
+      },
+      {
+        "href": "chapter024.xhtml",
+        "sha256": "349851376d836bd9a802a08610356d8aff3dec83da4b8d5bbdf2c69f8e50e86e"
+      },
+      {
+        "href": "chapter025.xhtml",
+        "sha256": "59dd1d5e0c7262fe1a51d0a12bb4a134a27e70f4737611cb2828ecda15656aa1"
+      },
+      {
+        "href": "chapter026.xhtml",
+        "sha256": "0775c1a451ef727fa942ea369226dca6fd08a41d9d7ca7691895df0af0e54098"
+      },
+      {
+        "href": "chapter027.xhtml",
+        "sha256": "94f0368511ed5963498e1789cb2be7aa93d707bcc95a8a0a978060d070924fdc"
+      },
+      {
+        "href": "chapter028.xhtml",
+        "sha256": "a7d3c9c3ed4d31f483fb356dbe9e983050b480d0ceb8a249eb9c9db0a9fa6989"
+      },
+      {
+        "href": "chapter029.xhtml",
+        "sha256": "34cafa237b701bf08186aea305eab53033815d6ecc3faf4b1084fbc7845a69cb"
+      },
+      {
+        "href": "chapter030.xhtml",
+        "sha256": "0bc9e063ee94d5e8f7a1d144b4f5301c19970ec1f2be1c49145d4b6312b7cc28"
+      },
+      {
+        "href": "chapter031.xhtml",
+        "sha256": "70b12c89cf973a13af5a375bef8f343b2a771f966b6dc6aa7d840f6f36bfd232"
+      },
+      {
+        "href": "chapter032.xhtml",
+        "sha256": "6a76c26cf5a71935609eb09987f1278e9a58cf934b7f063001e74a39a5a2bfed"
+      },
+      {
+        "href": "chapter033.xhtml",
+        "sha256": "28f94203bfe613d5d5de2d9674fcfdf1323d7e0bc4ab15a82ec2863dd6e54487"
+      },
+      {
+        "href": "chapter034.xhtml",
+        "sha256": "c17114ccc7b0adbe3c7adb3ceb90d055b8765c75d7aee93f959d42cf4fe1c672"
+      },
+      {
+        "href": "chapter035.xhtml",
+        "sha256": "343d1658df1f0555c683b59c4e23a3ea2a6f8486d36a014458332cbcbe89ea2c"
+      },
+      {
+        "href": "chapter036.xhtml",
+        "sha256": "7cdf50c93a0e31c766fe1cdc90314e7a28aa2a833264d3233abfef5fccfecfb6"
+      },
+      {
+        "href": "chapter037.xhtml",
+        "sha256": "349c507378ee5186faa7ee953227001c131640d7441b143873ad0a9b0477836b"
+      },
+      {
+        "href": "chapter038.xhtml",
+        "sha256": "55964cfed550eb5051ff2a41c7ec3f357536d2d9fe3421ce99ef0cc655588197"
+      },
+      {
+        "href": "chapter039.xhtml",
+        "sha256": "ba756407cf7da20df6e2dfb116f482c3c674b3cee07e17c534b39841dfc06e20"
+      },
+      {
+        "href": "chapter040.xhtml",
+        "sha256": "8ad9b4aaa2b106aee4ebf42bbfd7210dbf17623b5ff983aee09f8a0db38e0be6"
+      },
+      {
+        "href": "chapter041.xhtml",
+        "sha256": "bc1220525bedede0c6b61e32e7747b416bb21e1b6d3dbd9605c0f195032eb563"
+      },
+      {
+        "href": "chapter042.xhtml",
+        "sha256": "1d83edf43a7d435867eeb8f98014c291e23c3a50138d883ecd76b4b52136eaca"
+      },
+      {
+        "href": "chapter043.xhtml",
+        "sha256": "3e88204a7453b2a4033aeb741b406cc6f48099c462041bcd6340cc79e463dfdf"
+      },
+      {
+        "href": "chapter044.xhtml",
+        "sha256": "254dd7312d8052482d7ca6a13740279d3fac67e47b4e5fd89f5fcf38bca1e7c6"
+      },
+      {
+        "href": "chapter045.xhtml",
+        "sha256": "5995bacdc98803b4b81fa8f3fd4cc52f3e2176577adb99fea7459ef441645863"
+      },
+      {
+        "href": "chapter046.xhtml",
+        "sha256": "d867d5abdf930274551e98df07086c75ded16099ae6967bce535bfa3040a94d8"
+      },
+      {
+        "href": "chapter047.xhtml",
+        "sha256": "2bbb81a2fe75ed761ddd41cd27d3dfefc5b45f514f905ab14bcd783d7f221d2c"
+      },
+      {
+        "href": "chapter048.xhtml",
+        "sha256": "0b87737cc6b9c3576d021bdb0fa135b58238ba249b8ffe190bab468140b5cf21"
+      },
+      {
+        "href": "chapter049.xhtml",
+        "sha256": "5a432efdb1d49697f621b9b831274575d64bca02e60439c2107d9baaf1be8262"
+      },
+      {
+        "href": "chapter050.xhtml",
+        "sha256": "c1f4c5f355fb8bc5d967e996711c32f19e9708f6788f3f88b11e469ed22031a9"
+      },
+      {
+        "href": "chapter051.xhtml",
+        "sha256": "e51fd75d53bed568384e8ce1e5573c2221a07d97449cfdeb6c39c1f1ba3dad08"
+      },
+      {
+        "href": "chapter052.xhtml",
+        "sha256": "1d069ac1edf6b351b79c3b726c2421a2dd012f159ad0d3c0794962481f01bcd1"
+      },
+      {
+        "href": "chapter053.xhtml",
+        "sha256": "6b61b9e93b51ed41a689b337f18430ad6759ea05ff12b71bb7c9ed72eacdbc13"
+      },
+      {
+        "href": "chapter054.xhtml",
+        "sha256": "5c535eb6f70b27af6c5f99089451057b7d94f57b7a0879456c6af387560dada8"
+      },
+      {
+        "href": "chapter055.xhtml",
+        "sha256": "11dc60feb1c7ffb895c9b560cdf5c1e83279523048b98885c670eae005b4d57f"
+      },
+      {
+        "href": "chapter056.xhtml",
+        "sha256": "32ce74ac776692169b7727f3cf71346b600929ed04fece3eeeaf29f46790a2ea"
+      },
+      {
+        "href": "chapter057.xhtml",
+        "sha256": "697e37a17f1a5382c136457bdd61e17a849639c9a484fd3a80dfa80b93c04b68"
+      },
+      {
+        "href": "chapter058.xhtml",
+        "sha256": "b7606d3b5ad4196a8f49dc62e1b63b036e3505318afd72a78de31b52b8ef49ce"
+      },
+      {
+        "href": "chapter059.xhtml",
+        "sha256": "5814069146e0cb4eff292588808a5ae1c783968568ab03438a7a3d9ef65d21d2"
+      },
+      {
+        "href": "chapter060.xhtml",
+        "sha256": "8d5c42abf6274d4120fcc447e1d4cf6006467e55ebd12bfdcc73d5f9619eabe9"
+      },
+      {
+        "href": "chapter061.xhtml",
+        "sha256": "9b035d20b020b1622ae6b35448ee785f005b8233a71ed5633126249391a0b05e"
+      },
+      {
+        "href": "chapter062.xhtml",
+        "sha256": "74e33f284c48340234da275506e2066bf4d9598061a5d84cc8ce722fe3bdf78c"
+      },
+      {
+        "href": "chapter063.xhtml",
+        "sha256": "763274f0de9885c49fb74c12e1d3fa7c3e3a319a65232283c1fdec37bc66bd7c"
+      },
+      {
+        "href": "chapter064.xhtml",
+        "sha256": "d3acf840efeab3c14fcc81476ca34abfebe0604f330bbddb90db6913eb0743dd"
+      },
+      {
+        "href": "chapter065.xhtml",
+        "sha256": "a2e02d50350ce74315f4d5e2eb519b3001f218250b4d66d1213f2b394f77c1ff"
+      },
+      {
+        "href": "chapter066.xhtml",
+        "sha256": "f6a77f644e54861f99a61eda5dd742ac21bd582daa4728f885b73108fc2a85d6"
+      },
+      {
+        "href": "chapter067.xhtml",
+        "sha256": "ffba5ca45a119f14eebcdf6509ae4e12568992e62bd9a14f6134b03d2626aac8"
+      },
+      {
+        "href": "chapter068.xhtml",
+        "sha256": "33e5a60184ceb95941e5e031314a07dc1d26ed4e76f469237f5a7b6505ed4a7b"
+      },
+      {
+        "href": "chapter069.xhtml",
+        "sha256": "af1fc703162e0354a5b555a321dab59b5bcc29080b49316cc1b81818149768e8"
+      },
+      {
+        "href": "chapter070.xhtml",
+        "sha256": "31ec7f238ef8f9845bf78c433f54d8d5d325b4e21a614356e217dd34845e1765"
+      },
+      {
+        "href": "chapter071.xhtml",
+        "sha256": "f07de978a93ae58fed5c67eba5281d27d2b5353657176ebae68bb7bbec192509"
+      },
+      {
+        "href": "chapter072.xhtml",
+        "sha256": "79c4a8c027be79ec403f37c370f0de2fdf8f628f4f2085fa08fb085cc531eb9d"
+      },
+      {
+        "href": "chapter073.xhtml",
+        "sha256": "418b3579d1a752cdc2e4a8b6c4b038935549642e435f161aa79e653e835e36e1"
+      },
+      {
+        "href": "chapter074.xhtml",
+        "sha256": "1136d81fb2a8d557c80632e04f680ad47302bda363eabe253279a96f559b53d0"
+      },
+      {
+        "href": "chapter075.xhtml",
+        "sha256": "5578f44c0d1eddb9a0e02b0179e37aff8fb7d93703dd730f2fea2e9153f20c35"
+      },
+      {
+        "href": "chapter076.xhtml",
+        "sha256": "e4955f2d659e18a5733473b8a3691741664328a6cdeef09c2e208baf440191dd"
+      },
+      {
+        "href": "chapter077.xhtml",
+        "sha256": "db8f509c17ea03ee6a9a70c810f22bfb5f39b27305f0d6178149636f858e4394"
+      },
+      {
+        "href": "chapter078.xhtml",
+        "sha256": "cb13ca2688ea9f1b65c7aee3f83ecd728891eda454314ae4d1c8fd9cad57a94f"
+      },
+      {
+        "href": "chapter079.xhtml",
+        "sha256": "88d690e70f8ef33463f40175fde2fcd42a3dabfc063ff19937c5b30cca3bef62"
+      },
+      {
+        "href": "chapter080.xhtml",
+        "sha256": "256a4049ce60da641b40c434112fb09d59d4ab4d3e9593467bade50542da810c"
+      },
+      {
+        "href": "chapter081.xhtml",
+        "sha256": "390779c4ecfad88cb3183b0df6a51f86acc2490687ceb60c4b954c5f3aa30867"
+      },
+      {
+        "href": "chapter082.xhtml",
+        "sha256": "6b64da236c96e7c920588c96826a635793d010e04de5df208de6414e8ef2bf3a"
+      },
+      {
+        "href": "chapter083.xhtml",
+        "sha256": "6bd8af3bfa6f6ca1157e794a0a2fc7179bd35f3b5e8037d012c7ad01f3949751"
+      },
+      {
+        "href": "chapter084.xhtml",
+        "sha256": "8cc4f6f85dffdaeaee538208707296380fd86d25d10b6929d2c9fca955a59b81"
+      },
+      {
+        "href": "chapter085.xhtml",
+        "sha256": "04c91212097c6b299302f2a8e8c28f56b4014f38c62be5993f17bb55a2c8fc05"
+      },
+      {
+        "href": "chapter086.xhtml",
+        "sha256": "069ee06a74d6bea1061def9263d68e51d8732304d905711360423ed728c5165a"
+      },
+      {
+        "href": "chapter087.xhtml",
+        "sha256": "84956eec850109bf82acf8be6a045dfadaa8daa082e8d88cbbcc2315f784eccc"
+      },
+      {
+        "href": "chapter088.xhtml",
+        "sha256": "777082b5d5bafcda33ea8d526b0db2563df60069f6ebc95bfc77e287517541e0"
+      },
+      {
+        "href": "chapter089.xhtml",
+        "sha256": "8f97a3fac3bbd59562a6c5ec6772954304280a8dc05df54aee9c4659fc968944"
+      },
+      {
+        "href": "chapter090.xhtml",
+        "sha256": "59c1c3c48fffad4204c980350c1e4b885c50b8af448cec2ef4a3ad97c079bac0"
+      },
+      {
+        "href": "chapter091.xhtml",
+        "sha256": "3451cdef8236a95a33a06d4286a6de2094fe352b405f09dedf3978e86682d2a3"
+      },
+      {
+        "href": "chapter092.xhtml",
+        "sha256": "d4beeb78676790383f81028e25274d6d96852ed107943a8727b9e4928861e913"
+      },
+      {
+        "href": "chapter093.xhtml",
+        "sha256": "0f8e108a9c30b3a8c3b10b4a2eae8314f81d67ad4b80c7576f63c507796c586d"
+      },
+      {
+        "href": "chapter094.xhtml",
+        "sha256": "48ed9c94b2ce8dc0d2849e2b5c4d2c4adb7518abcada77bf5530483a683e68dd"
+      },
+      {
+        "href": "chapter095.xhtml",
+        "sha256": "e15eea9330486045d7584a932c3c5778d51558bac405a6b688d4ff2439132960"
+      },
+      {
+        "href": "chapter096.xhtml",
+        "sha256": "8f4f35277a6b1d0ecc315ee983ea3480bf6e0b03b733d757953ed60f2c394818"
+      },
+      {
+        "href": "chapter097.xhtml",
+        "sha256": "0739050542d5cb36e2b46d4f8f27e99c63bd0cb63a7e2f87b2f90c3c2da46aee"
+      },
+      {
+        "href": "chapter098.xhtml",
+        "sha256": "e00e484b1ac6a10198cc0cfb2a32b40966df893fa1681f1064567e17c38e7445"
+      },
+      {
+        "href": "chapter099.xhtml",
+        "sha256": "75bf2c964ea85f15a967452aa01bb2e08b2d62f9c15da3c9d8e68ac5fb67031f"
+      },
+      {
+        "href": "chapter100.xhtml",
+        "sha256": "a9fc52021ef0d7693afc72af0e04fd9f8d987b358d5a99e2ec8fd84a02500f04"
+      },
+      {
+        "href": "chapter101.xhtml",
+        "sha256": "37b862cab4d61b6c29a075d258a16de25e57e8110029a3a66d9f7bc1b968952c"
+      },
+      {
+        "href": "chapter102.xhtml",
+        "sha256": "71b98c812ecc1cfea3a23e63525612ec8ed9d5625de6cc114717bfd5cc100d5e"
+      },
+      {
+        "href": "chapter103.xhtml",
+        "sha256": "db17a6bd93ec09f4ed4345b5dd5e1c00e81693e60521e673081a2d93ddb6045d"
+      },
+      {
+        "href": "chapter104.xhtml",
+        "sha256": "9b4178d98649bb90569225c8b50af51078efc15fdf100b564271a6cb75d80271"
+      },
+      {
+        "href": "chapter105.xhtml",
+        "sha256": "bb0575c73394d85b3b08589ebaa1311caadc2bbd6cb45d8672f274bc5a889b2f"
+      },
+      {
+        "href": "chapter106.xhtml",
+        "sha256": "e3bcbf2b17f753f69d54c581892ad6dd51f4da33d4681f8f986a66c78cd9320c"
+      },
+      {
+        "href": "chapter107.xhtml",
+        "sha256": "027265619dbb2d32b01147dfc9126144555a8697bb7835e05024969884055ba7"
+      },
+      {
+        "href": "chapter108.xhtml",
+        "sha256": "c4ed6984d8f449e5f27b1ed1dcc8db7b52f975dbbd659111e6a0d434a0d1f539"
+      },
+      {
+        "href": "chapter109.xhtml",
+        "sha256": "1754a17a440b955b12806cde2e615cf85e0ebd09479d30e6410aee063c53a3ea"
+      },
+      {
+        "href": "chapter110.xhtml",
+        "sha256": "5e02d186bac814b4e6cb2b441ada7af1574b917b4f4af9ada694b9794f105d71"
+      },
+      {
+        "href": "chapter111.xhtml",
+        "sha256": "6ffd469530082ed34fe9cfa9bcba86541772c1456bda324fd1215f0dc1e066d7"
+      },
+      {
+        "href": "chapter112.xhtml",
+        "sha256": "3abc580d72efdea4bd04f0bbc857836c3b5078fee4e4213d935579691c3c3bb9"
+      },
+      {
+        "href": "chapter113.xhtml",
+        "sha256": "2a638c563780149825094c31661e3a9602163e34f8a78863a73ab7712c38df89"
+      },
+      {
+        "href": "chapter114.xhtml",
+        "sha256": "e716362d1aac3ae68a9c8ea9324a64c3b54ae5876bd28453655ff7fe9f69cfcc"
+      },
+      {
+        "href": "chapter115.xhtml",
+        "sha256": "66553d79bd2169c31b43f27a254d1295904d86fef148d0ef2fb11489de512b10"
+      },
+      {
+        "href": "chapter116.xhtml",
+        "sha256": "00e56870f0f2415153d4d7c3f95e01dd5615e0ffa03c65784f3eb02b7b4cbded"
+      },
+      {
+        "href": "chapter117.xhtml",
+        "sha256": "d4ee1b1725b83d3fc8b51ee8e1489e15761649ae6f91769973560f66d93d72fd"
+      },
+      {
+        "href": "chapter118.xhtml",
+        "sha256": "1b67969ceac3ecef0596c0320602bd04e41a2a4002932c17b81c260b61a0e0fa"
+      },
+      {
+        "href": "chapter119.xhtml",
+        "sha256": "f81ec4e11f459cea49efcb3603c71a5855ea38888a0ea6d000ca3e7928825e57"
+      },
+      {
+        "href": "chapter120.xhtml",
+        "sha256": "b6cf1764cb624d374dd2cfe3532afb44f0d9cde465e5a6784b08f28a78dee8ac"
+      },
+      {
+        "href": "chapter121.xhtml",
+        "sha256": "a2c59f51f7e5cafba2d77fd24b4416d63d021d9c85f29c91257b36f0b356d161"
+      },
+      {
+        "href": "chapter122.xhtml",
+        "sha256": "cccd91d10651d261e222de4b86cf0be8dbc047fcd96da17ac3964afe8b793c7a"
+      },
+      {
+        "href": "acknowledgements.xhtml",
+        "sha256": "899f14b5a664b2df9568cf727203155001ff5bae594d5e147db48b183a1cd8b0"
+      },
+      {
+        "href": "discover-page.xhtml",
+        "sha256": "de45f31f440d18d8a031b3e2393b626566c99c9e03ba68b9f7acc721adb79cd9"
+      },
+      {
+        "href": "extras.xhtml",
+        "sha256": "89b3f06599d3b15d16aae9e95a9ff2bc6b1065087f04d36afc0038439034a34b"
+      },
+      {
+        "href": "meetauthor.xhtml",
+        "sha256": "6a25cd61d05905a7bdec911288e136bf5c0bccbe8074498a351c5eb8d6490181"
+      },
+      {
+        "href": "teaser001.xhtml",
+        "sha256": "4cb62c375a62d65f002fea4d7b3ae1fbe7ec2a53dfd3f973b286834e228a9dda"
+      },
+      {
+        "href": "teaser002.xhtml",
+        "sha256": "c792a6fec317f7cdd467863d0259bb11a0654243ab22d38ef3c15a0d01468c00"
+      },
+      {
+        "href": "ad-card.xhtml",
+        "sha256": "c6db8210c4afa20f8a3ed1abf957a3088dd2bad861da55aed843993deeabb40f"
       }
     ]
   }

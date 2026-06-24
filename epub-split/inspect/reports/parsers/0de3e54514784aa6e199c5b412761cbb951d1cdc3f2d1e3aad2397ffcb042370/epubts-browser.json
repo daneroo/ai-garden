@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -137,6 +137,32 @@
         "id": "Snow_Leopard-4.jpg",
         "href": "Images/Snow Leopard-4.jpg",
         "mediaType": "image/jpeg"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "Text/Cover.html",
+        "sha256": "1da51186a48892a71b05d63c2106c363d934132b8edffb971c1eb86b595f8ba0"
+      },
+      {
+        "href": "Text/part0001.html",
+        "sha256": "c75663ef4d299254a83792dffaba4e536610a1d28d0b24451ed39b4d9b215830"
+      },
+      {
+        "href": "Text/part0002.html",
+        "sha256": "9a0f0a33c0b744cfede173a771063bc3a6830456bce2ab07eacf6d44d1207f84"
+      },
+      {
+        "href": "Text/part0003.html",
+        "sha256": "84184d3b85937cf50133e7e9e8cc5336ded86a4a4c162a99c8ae43d91fceac71"
+      },
+      {
+        "href": "Text/part0004.html",
+        "sha256": "bc808ac4b888c66e141826cdd9fea5d331fe7a1b8a7d1fb044b913a8827af831"
+      },
+      {
+        "href": "Text/part0005.html",
+        "sha256": "a03c311d155aa57dfc8bb296f87282b4de73c2845bfe399f6880c259dcdf64fc"
       }
     ]
   }

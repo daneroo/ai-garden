@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -101,6 +101,40 @@
         "id": "titlepage",
         "href": "Text/titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "Text/titlepage.xhtml",
+        "sha256": "6869eb5b6417f80f9cc4318d838c561972c4b6599f6bbd782da6256094eaa44f"
+      },
+      {
+        "href": "Text/Taltos_split_000.html",
+        "sha256": "1adc05ddbdb552ae3b9046aef4517cebb539cfda7ea6a1927eb4bda8b77432c5"
+      },
+      {
+        "href": "Text/Taltos_split_001.html",
+        "sha256": "67cde83a40fd1b124d711178ee49a19e6517dada49f18bf8200925022df3cf09"
+      },
+      {
+        "href": "Text/Taltos_split_002.html",
+        "sha256": "a888a13ff800d26a164d33f7d9cda11f2d6a61aa907fda0394a98226e9302483"
+      },
+      {
+        "href": "Text/Taltos_split_003.html",
+        "sha256": "033ff618c8599e9d8e0e33248e59a942b82d917ab13d1358666d387588fea212"
+      },
+      {
+        "href": "Text/Taltos_split_004.html",
+        "sha256": "a9c0f0a63aee16a2bb814dc42b47e7e23b1e2c3ab8ef32c30f9dac9fe9b9c873"
+      },
+      {
+        "href": "Text/Taltos_split_005.html",
+        "sha256": "a211a67fc1b96a6064a3bbd3ac137bec3d159da07a003e359c299ca2e123f055"
+      },
+      {
+        "href": "Text/Taltos_split_006.html",
+        "sha256": "0d2a4830075870a51a4db7855eb9ff96659d9493551f1e3eb809c6fbe9d4bed6"
       }
     ]
   }

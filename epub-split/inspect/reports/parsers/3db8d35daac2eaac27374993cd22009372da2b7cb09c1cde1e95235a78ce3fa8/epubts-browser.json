@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -55,6 +55,20 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "d9b5bde8c0d1a5a2ffca2b5ca1863db6bc2c7ebf53c76b6b7ed3e059a26e3432"
+      },
+      {
+        "href": "index_split_000.html",
+        "sha256": "a871b85f04099b90cef35a62179ad9e9618bf58bf8051a9202fd32d167164734"
+      },
+      {
+        "href": "index_split_001.html",
+        "sha256": "a889cc5398ba0a56b5d6825b27476cd0c9e4566e711769c668528198c306402d"
       }
     ]
   }

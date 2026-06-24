@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -163,6 +163,68 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "ba7b4724d5d380bc007abb6ccc0b0f94731d8b8b9ee313df9ad942495419a019"
+      },
+      {
+        "href": "OEBPS/title.xhtml",
+        "sha256": "36a004a4ac0f2bbb3a6012138225f2207ef11ba72f77d21ef3e31ae525154008"
+      },
+      {
+        "href": "OEBPS/part1.xhtml",
+        "sha256": "b52b7545288b4c921b31bf23cc014f2471fc06f45fd06761108cff3ded310e06"
+      },
+      {
+        "href": "OEBPS/part2.xhtml",
+        "sha256": "75520be68face7c6677993cc2c56312c1fd1da2eb1cdd6fe4ebaa1ff775e0451"
+      },
+      {
+        "href": "OEBPS/part3.xhtml",
+        "sha256": "890a13a8de14a6854152bd0ecedd50717017abf8e1595678786039d20b701e2e"
+      },
+      {
+        "href": "OEBPS/part4.xhtml",
+        "sha256": "e1b36f2e35350b0bbf3a0286e9130e19085e1219e1a8c73724ce9e26959f7ae5"
+      },
+      {
+        "href": "OEBPS/part5.xhtml",
+        "sha256": "8235f19e598a40240cfd6a81b93db2394f30e65f2d8bc8b4806342e7585b7108"
+      },
+      {
+        "href": "OEBPS/part6.xhtml",
+        "sha256": "08578ef86c12c7326e138f5b0b03e00356f819fb2b76edef1053d3d5ac32d17c"
+      },
+      {
+        "href": "OEBPS/part7.xhtml",
+        "sha256": "a63324d5a3155ea6f2a181a227ec3e025890aa77a834e9af1f5ad5b106e0baaf"
+      },
+      {
+        "href": "OEBPS/part8.xhtml",
+        "sha256": "2f234dd609790b338abe396c54d1279a1accf218a88a29204f52fb2c0265c5c8"
+      },
+      {
+        "href": "OEBPS/part9.xhtml",
+        "sha256": "d5d2b7f0f4f24f20c52025dad5ef15cd54817dde4db11642ade2eedda91f47ff"
+      },
+      {
+        "href": "OEBPS/part10.xhtml",
+        "sha256": "f00788902ca6452daf99cf12dbc9a565bc395f19d88c5faacf4ae70abcafd25a"
+      },
+      {
+        "href": "OEBPS/part11.xhtml",
+        "sha256": "dfecb25f0d958300ae373e74ab5dc222b1d6d6abf92ccaef2842b82ca6d287fa"
+      },
+      {
+        "href": "OEBPS/part12_split_000.xhtml",
+        "sha256": "ecaed72e343d5646f6302417ef39ae3d76ab8f675f060bb53401053e00d7c538"
+      },
+      {
+        "href": "OEBPS/part12_split_001.xhtml",
+        "sha256": "d431731c8723e41121d27a3596d6dae64965550da5fd32643ebc75887339fafe"
       }
     ]
   }

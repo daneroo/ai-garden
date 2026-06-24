@@ -568,7 +568,19 @@ Extract text content from parsed XHTML (strip tags, normalize whitespace) and
 compare. This is where parser-level divergence (entity handling, etc.) may appear.
 Design after 10A corpus results.
 
-- [ ] Design after seeing 10A results.
+10A findings: all raw sha256s agree across parsers — same zip bytes read identically.
+The 177 non-distinct sha256s in node×browser (37537/37714) are legitimate duplicate
+content (same short page appearing at multiple spine positions), not a failure mode.
+Storyteller subset is perfectly distinct (10601/10601).
+
+10B options to consider:
+- Investigate the 177 repeats: which books, which spine positions share a hash?
+- Parser-specific text extraction: each parser strips tags its own way → compare
+  resulting text sha256. Would catch DOM interpretation differences (entity handling,
+  whitespace normalisation) that raw bytes cannot reveal.
+- Skip 10B entirely if Gate 11 findings suffice.
+
+- [ ] Decide whether to implement 10B or proceed to Gate 11.
 
 Verifiable outcome: TYPECHECK + TEST + DETERMINISM.
 
@@ -603,4 +615,4 @@ matches the shipped tool.
 - 2026-06-24 · Gate 7 · WILL NOT IMPLEMENT — content-addressed model already correct; collapse flag adds no value
 - 2026-06-24 · Gate 8A · spine in ParserOutput (SpineItem { href, linear }); SpineComparison (ordered sequence — same hrefs, same positions to agree; onlyInA/onlyInB are set-based asymmetry); pair reports + detail pages; schema v2; TEST 75 pass / 1 todo / 0 fail, TYPECHECK clean; DETERMINISM confirmed; 756/756 agree node×browser, 213/213 agree node×storyteller · 207ce080
 - 2026-06-24 · Gate 8B · manifest in ParserOutput (ManifestItem { id, href, mediaType }); ManifestComparison (unordered set — same href-set regardless of id sort order to agree); pair reports + detail pages; schema v3; TEST 81 pass / 1 todo / 0 fail, TYPECHECK clean; DETERMINISM confirmed; 756/756 agree node×browser, 213/213 agree node×storyteller · 3ac52479
-- 2026-06-24 · Gate 10A · spineHashes in ParserOutput ({ href, sha256|null }); SpineHashComparison (ordered, position-by-position; matchCount/mismatchCount/nullCount); pair reports + detail pages; schema v4; TEST 87 pass / 1 todo / 0 fail, TYPECHECK clean · PENDING DANIEL DETERMINISM
+- 2026-06-24 · Gate 10A · spineHashes in ParserOutput ({ href, sha256 string — "<unreadable>" sentinel on failure }); SpineHashComparison (ordered, position-by-position; matchCount/mismatchCount — no nullCount, sentinel treated as value); pair reports + detail pages + distinct sha256 / total spine items ratio; ParserOutput schema v4, ComparisonResult schema v5; path fix: use book.path.resolve(href) not manual dir concat (root-OPF epubs had directory="/" causing double-slash); TEST 87 pass / 1 todo / 0 fail, TYPECHECK clean; DETERMINISM confirmed; 756/756 agree node×browser (37537/37714 distinct — 177 legitimate repeats), 213/213 agree node×storyteller (10601/10601 distinct — all unique)

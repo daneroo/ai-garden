@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -78,6 +78,28 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "dc3ffda40479529a213d50df975ffbdc7790230358af45fc89d3b5507195a406"
+      },
+      {
+        "href": "The_Hollow_Hills_Merlin_2__split_000.html",
+        "sha256": "81360a2810919b38cb2a0dfa628a1c967d98c18bb3ed83511cbbb83057ee9418"
+      },
+      {
+        "href": "The_Hollow_Hills_Merlin_2__split_001.html",
+        "sha256": "f77f41e5fd814c56e520027a5b90929bc696a5c545b81530e1141b1012a94635"
+      },
+      {
+        "href": "The_Hollow_Hills_Merlin_2__split_002.html",
+        "sha256": "db661c7e6e5559eaddfa2d5dce632c786c1115970f4879df08cd78aecfdb6f3a"
+      },
+      {
+        "href": "The_Hollow_Hills_Merlin_2__split_003.html",
+        "sha256": "0bebac04c1cd8ab811ceeeaad65ea398a1a573af51ea88f008d1a4218aa9daf7"
       }
     ]
   }

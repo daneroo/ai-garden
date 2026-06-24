@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -146,6 +146,60 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "fbf5c7d070ad405bcb8b7596cd58c834e7670c35d42095e63c3375d5b1395d36"
+      },
+      {
+        "href": "OEBPS/title.xhtml",
+        "sha256": "9676c15593d22fd5f25ad9cd6267ffea147ad0ee23d6329a16b369ed5196dbb9"
+      },
+      {
+        "href": "OEBPS/part1.xhtml",
+        "sha256": "bcdc10287c9a66a495c198c0e2b20c7502a39e1fa96885d4d4e5118ebae822a3"
+      },
+      {
+        "href": "OEBPS/part2.xhtml",
+        "sha256": "810c2fcc1c5b4287e556ca64437e7b4f750eb7a8edef7cabab66f04565143987"
+      },
+      {
+        "href": "OEBPS/part3.xhtml",
+        "sha256": "9171ab90fc7d528e8e8380b5ac06327fe7f6acf6c618e0181ba924ef968aef19"
+      },
+      {
+        "href": "OEBPS/part4.xhtml",
+        "sha256": "a196a08e4e6373b123395f6377f07976f0973de5abd1f8311e57cdceb4568bb5"
+      },
+      {
+        "href": "OEBPS/part5.xhtml",
+        "sha256": "ce437e42b482490752c61183ceacb7f583c9f3b95ff698e898a7a3e041035ba1"
+      },
+      {
+        "href": "OEBPS/part6.xhtml",
+        "sha256": "dcafe1bd26e4aaf1902151e42a66a17ffcf6202569160b86b3b2497d90a32183"
+      },
+      {
+        "href": "OEBPS/part7.xhtml",
+        "sha256": "7715aa3d431bc22e291e843174b7f3e651b801399f002799f0c73852887f2520"
+      },
+      {
+        "href": "OEBPS/part8.xhtml",
+        "sha256": "14608b94853c828f1086c84b5dabc2b129c733439696c175ad73582c7170c96d"
+      },
+      {
+        "href": "OEBPS/part9.xhtml",
+        "sha256": "addbab470a151eaa293fe73e2f8a1ee4503d557e5efe8c6cd9d6b870df527c1c"
+      },
+      {
+        "href": "OEBPS/part10.xhtml",
+        "sha256": "0926b8f872d4e68e022463b52edfeca4be5681dc8d2219f9e3dea8944b3639f2"
+      },
+      {
+        "href": "OEBPS/part11.xhtml",
+        "sha256": "07d1437ee917cc374d3bcfa59edadda273687b34f9a6de1715825201c1a9c085"
       }
     ]
   }

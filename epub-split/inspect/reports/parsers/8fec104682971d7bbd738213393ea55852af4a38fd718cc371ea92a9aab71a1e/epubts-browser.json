@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -2203,6 +2203,868 @@
         "id": "Titlepage",
         "href": "text/9780063230484_Titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "text/9780063230484_Cover.xhtml",
+        "sha256": "2f741112cfa79cd529e60c6d284222fa0814ab7a5d4817b7df1f432556c20d35"
+      },
+      {
+        "href": "text/9780063230484_Titlepage.xhtml",
+        "sha256": "d899185607ef88f20ec11324a41408a0c52598eb36740072052b642e0377acc2"
+      },
+      {
+        "href": "text/9780063230484_Dedication.xhtml",
+        "sha256": "e06cdbeae992fbec73cfc8813ad4e9c013b8ca2b44f7fac955f27f74e9600fcb"
+      },
+      {
+        "href": "text/9780063230484_Epigraph.xhtml",
+        "sha256": "5c42ea8bc08c0246a4ddc20a19277bee4723b1f07a2b6f03512070a79eaf6199"
+      },
+      {
+        "href": "text/9780063230484_Contents.xhtml",
+        "sha256": "e8ae5c270c609aa560786ee4ac8af828952d9912d0488effd354254cd69db396"
+      },
+      {
+        "href": "text/9780063230484_Introduction.xhtml",
+        "sha256": "e1651ae3defb572fbeb5ba1c6a2a80d87fa58123a673f3db71fb2680ef1955b1"
+      },
+      {
+        "href": "text/9780063230484_Part_1.xhtml",
+        "sha256": "921a89886db8cbb8dfa9b61dea7dc321d60b9e9bf88d36e00984e706765d174f"
+      },
+      {
+        "href": "text/9780063230484_Chapter_1.xhtml",
+        "sha256": "389b81439d56e4513917e165f26669ea9e0b4be7b51f6a64f898a16d8c7a085f"
+      },
+      {
+        "href": "text/9780063230484_Chapter_2.xhtml",
+        "sha256": "ff8d08f94520f5269414a3cbd038dc80b8d10850f0026e4f4602ec1a35e18f89"
+      },
+      {
+        "href": "text/9780063230484_Chapter_3.xhtml",
+        "sha256": "7db3f0c01482243f1de296abce8a63888d010986ac61203b1d4e68cf7c6a305a"
+      },
+      {
+        "href": "text/9780063230484_Chapter_4.xhtml",
+        "sha256": "b20a61c786cd10d0b73697bcbe770ee38109b3f0d117cfe547c7e66c3beb80f2"
+      },
+      {
+        "href": "text/9780063230484_Chapter_5.xhtml",
+        "sha256": "021eff505356cb62b4877073b190fc3b56bac58f766e0b68653c2cf21aed6aff"
+      },
+      {
+        "href": "text/9780063230484_Chapter_6.xhtml",
+        "sha256": "584b2ea968a73dde96a83fcef4fe4f7794a8aee1683b033408d124558d7e6021"
+      },
+      {
+        "href": "text/9780063230484_Chapter_7.xhtml",
+        "sha256": "689a811d737b9a6a916b22903b7b8619ff66fc8afca202d557918f433a88cf27"
+      },
+      {
+        "href": "text/9780063230484_Chapter_8.xhtml",
+        "sha256": "7a905212935dddf5f084a8b2a6f26e6054bd0cd915a90607e09c0851ed8bfc6d"
+      },
+      {
+        "href": "text/9780063230484_Chapter_9.xhtml",
+        "sha256": "3ffe1a4096111cbf04521980c0d023cfad8f7bb3f8b4d9bb142da41e2dbae345"
+      },
+      {
+        "href": "text/9780063230484_Chapter_9a.xhtml",
+        "sha256": "f3f807a9e7343b5a10f277636497a92842b11b28aef000ffb8bbb9b540b2e24c"
+      },
+      {
+        "href": "text/9780063230484_Part_2.xhtml",
+        "sha256": "4c7546a9bce7252a935634badf179e075935fd4aa97235a94fe98fad34942c3a"
+      },
+      {
+        "href": "text/9780063230484_Chapter_10.xhtml",
+        "sha256": "35018041f01d7556af15c7ae3553b5c0b25435c9b1a32a8f5331b501214a9a2b"
+      },
+      {
+        "href": "text/9780063230484_Chapter_11.xhtml",
+        "sha256": "eb6640731357009cdc0b3ba88bd58577cc73da8c1e39a96603dc1093c53d570e"
+      },
+      {
+        "href": "text/9780063230484_Chapter_12.xhtml",
+        "sha256": "cc0aa40cf8b73ff15ae055a3c918441fb029eb47fc8c6ee86388693d1ae6346c"
+      },
+      {
+        "href": "text/9780063230484_Chapter_13.xhtml",
+        "sha256": "7ec2a417111b4bbf1278d02fec595396095941560d23db31838f3de03efe5743"
+      },
+      {
+        "href": "text/9780063230484_Chapter_14.xhtml",
+        "sha256": "20c98aaa3297a61a546af84332faca2638af9f85d018f90aefd811f245e48025"
+      },
+      {
+        "href": "text/9780063230484_Part_3.xhtml",
+        "sha256": "4dd06eda9ccc512e2be07f9d0e35ea1dfbf46f54cfb1aca5bfecc13ef61e78d4"
+      },
+      {
+        "href": "text/9780063230484_Chapter_15.xhtml",
+        "sha256": "42ad93d61d10e0092a4a3aed10a047dfdceb5c57c9c660a0a2bc4d43de0f245e"
+      },
+      {
+        "href": "text/9780063230484_Chapter_16.xhtml",
+        "sha256": "15a9a57157bad5c7e06a9a47ea27d36aa0c69a28a42f879fac80480685b06ab4"
+      },
+      {
+        "href": "text/9780063230484_Chapter_17.xhtml",
+        "sha256": "8197aa4b9dec473ab303cc21b795175d147e9d35b6e2f977fbdeff83c264239e"
+      },
+      {
+        "href": "text/9780063230484_Chapter_18.xhtml",
+        "sha256": "ce1b1915c065c1ab9d9c52af62e5f51cdb0d3fbd54b3985c4986be15c5f92075"
+      },
+      {
+        "href": "text/9780063230484_Chapter_19.xhtml",
+        "sha256": "176ef71ac00e4bfc79bce34b719d4d01075a0553c469fbee8252d07f567ab15a"
+      },
+      {
+        "href": "text/9780063230484_Chapter_20.xhtml",
+        "sha256": "c0b8a5f6242d476d03b3fb832ac51e930acc3e791ccdd5c5743cf7081f60c543"
+      },
+      {
+        "href": "text/9780063230484_Part_4.xhtml",
+        "sha256": "2a18aedcbf98e59015d699a4fdd0b7c7ff8affba54a4f374555a165be8f515a0"
+      },
+      {
+        "href": "text/9780063230484_Chapter_21.xhtml",
+        "sha256": "89338bf34f219feabc330968bfcba900bc7f6ffe98eea06feaa729e71d2bc38b"
+      },
+      {
+        "href": "text/9780063230484_Chapter_22.xhtml",
+        "sha256": "0677e75daaa4aa57ef23f6c3e8e98ef328ffd33219a8c480cee520e956f9ceb8"
+      },
+      {
+        "href": "text/9780063230484_Chapter_23.xhtml",
+        "sha256": "69de915bd04dc69c2323a92f16983e085464d9c343970746e9fec22e473267ef"
+      },
+      {
+        "href": "text/9780063230484_Chapter_24.xhtml",
+        "sha256": "d567e1c04c90ba705a623a212cbfb8f12e7d61c3446ea0e7be2dce42a9e33562"
+      },
+      {
+        "href": "text/9780063230484_Chapter_25.xhtml",
+        "sha256": "20e2e6e0ae5332965878a93f139d98de82424f80c11cf1f58b48df5560fe7915"
+      },
+      {
+        "href": "text/9780063230484_Part_5.xhtml",
+        "sha256": "fb4105eed7bcf2a4e0f1e3adf4a1fd1a96c3f979d858661d3a453cc4a016ccff"
+      },
+      {
+        "href": "text/9780063230484_Chapter_26.xhtml",
+        "sha256": "d4bf14be96135e65ee1835a15ff428acf960ec3fd902ec85c3e72c2342fead20"
+      },
+      {
+        "href": "text/9780063230484_Chapter_27.xhtml",
+        "sha256": "0a303ba3a30ed1da64e2e2f67bdb25d979e6653e3f59608eb3ada1a3785e77fc"
+      },
+      {
+        "href": "text/9780063230484_Chapter_28.xhtml",
+        "sha256": "082c4db11c6f505d93d14a19c56ee3a261d99025d340b7b57c3364140d04d426"
+      },
+      {
+        "href": "text/9780063230484_Chapter_29.xhtml",
+        "sha256": "6feac854b686c220e88892db8e9a19bdbb91756f2873caa96e44d1ad82118327"
+      },
+      {
+        "href": "text/9780063230484_Chapter_30.xhtml",
+        "sha256": "cfc5e6e78e2601bd26281581488a13428ec4ad3693a4382eba01cd3fe229c082"
+      },
+      {
+        "href": "text/9780063230484_Chapter_31.xhtml",
+        "sha256": "06975d064b8271d5291ea85620937fa0431e7ad0c9b2c3b0463dea2758585263"
+      },
+      {
+        "href": "text/9780063230484_Chapter_32.xhtml",
+        "sha256": "3357eff8fd7100a886e0e6c87c5bb7ad404b1ad02dffa287d6712b40ded64653"
+      },
+      {
+        "href": "text/9780063230484_Part_6.xhtml",
+        "sha256": "1805c5a55a10fcc1f4397b70654fe3975cc8363a6e7be7c67e8fb3745e69e23a"
+      },
+      {
+        "href": "text/9780063230484_Chapter_33.xhtml",
+        "sha256": "3a968006b629ba187cb5dfd20c9fca9b647fc26cee9a3818b1fe6aeff547015c"
+      },
+      {
+        "href": "text/9780063230484_Chapter_34.xhtml",
+        "sha256": "7964e552daba9dd89b1fafe26816998c75f68c853222c39799c51ce38c4b4818"
+      },
+      {
+        "href": "text/9780063230484_Chapter_35.xhtml",
+        "sha256": "f927acafc55a5b6fdcd5fcd133c99745803e6e0fe66294847c5774696af6f527"
+      },
+      {
+        "href": "text/9780063230484_Chapter_36.xhtml",
+        "sha256": "d0e97309c0be9d4fb19c6813979ceefd5f4e7ae376ff1f3ea221659d3eb4bb2d"
+      },
+      {
+        "href": "text/9780063230484_Part_7.xhtml",
+        "sha256": "2ac5c9a342de58c61f1a911abcd5dbe39a68d66918ebcde480003bc9598c5ace"
+      },
+      {
+        "href": "text/9780063230484_Chapter_37.xhtml",
+        "sha256": "8506d62f55b89247837977c635302b7aae94ceb83039d2ebb6b44d5eb84b5051"
+      },
+      {
+        "href": "text/9780063230484_Chapter_38.xhtml",
+        "sha256": "f5d127cc1875b0398e5f652930e437623ff30fd40d7627f700e3f3ac6b598504"
+      },
+      {
+        "href": "text/9780063230484_Chapter_39.xhtml",
+        "sha256": "08f564c6d8882dc9c1f4c7b12b1d6299fc063b58974f15a458b6fcdda7cf09b4"
+      },
+      {
+        "href": "text/9780063230484_Chapter_40.xhtml",
+        "sha256": "39782c3fc7a9077df61e2082d0afeab9a937f17759f7c72a63c1c797178357bb"
+      },
+      {
+        "href": "text/9780063230484_Chapter_41.xhtml",
+        "sha256": "141574a78ff16ba4f463bb666baee8e1ce6087e3696d2a3cb672f0f7903839a7"
+      },
+      {
+        "href": "text/9780063230484_Chapter_42.xhtml",
+        "sha256": "64850e2b85fb4b49ff8120f1b3ab380e9c2e5e85a1d7f1847188e71f92d1cda5"
+      },
+      {
+        "href": "text/9780063230484_Chapter_43.xhtml",
+        "sha256": "e8f15372d9f46e61d2cad296f313b0bc9aa5388dd313691caa77825991e9f754"
+      },
+      {
+        "href": "text/9780063230484_Chapter_44.xhtml",
+        "sha256": "4e48bb70f0b48f8adc9d4f88257c88e619d3fd657386298c8e23c35a422914f7"
+      },
+      {
+        "href": "text/9780063230484_Epilogue.xhtml",
+        "sha256": "fe79a8fb7933c69dfd05433c738210aef32629d61b664e248d93944ad0c566c4"
+      },
+      {
+        "href": "text/9780063230484_Acknowledgments.xhtml",
+        "sha256": "ef2ac05a661d9c256bcefc0cf25a03208453500bc79484323b5bfbc252c2a4d0"
+      },
+      {
+        "href": "text/9780063230484_Index.xhtml",
+        "sha256": "c9fa1183c82b842d7478f7f2110af9cb1192ea33fc4dc55e092686b895965c12"
+      },
+      {
+        "href": "text/About_the_Author.xhtml",
+        "sha256": "eef78c927cdec4fd2ca8944ec2b14e5c10fcd86abd5e731b75d8887f7535210a"
+      },
+      {
+        "href": "text/9780063230484_Also_by.xhtml",
+        "sha256": "bd2d6c2f25999ac44736dd6fa7154d0b4301d6b8bce245ed376dc509af61b254"
+      },
+      {
+        "href": "text/9780063230484_BA.xhtml",
+        "sha256": "793787cc9f38570660b0ed33b1f0070caeea1465ab0feee48e4af1a46fa41336"
+      },
+      {
+        "href": "text/9780063230484_Copyright.xhtml",
+        "sha256": "587162ea58ffeb14c645772178d3654f0344a767dfe175094bc726e79bbf4e51"
+      },
+      {
+        "href": "text/About_the_Publisher.xhtml",
+        "sha256": "19c595e6c5b1df263547546a463f25d001ba94e9267a216878fa3a4474d34582"
+      },
+      {
+        "href": "text/9780063230484_Footnote_1.xhtml",
+        "sha256": "e50d15b25e59d53c9bebff33e2ef5cf6df482f967c46ddf16284aab385cd9e46"
+      },
+      {
+        "href": "text/9780063230484_Footnote_2.xhtml",
+        "sha256": "6b523b58857b1603274b6ae7a053c73bb5a34cd811aee81ed0767914bc0e33ca"
+      },
+      {
+        "href": "text/9780063230484_Footnote_3.xhtml",
+        "sha256": "22f1d410321b4f71273f681b2bd666e9e419fb3e725be843ad58dddfe9b97d91"
+      },
+      {
+        "href": "text/9780063230484_Footnote_4.xhtml",
+        "sha256": "905ec21a8682b0a6e72b9b7cdc2bfb1bab5d448994bd4258fe58a36d6af3155b"
+      },
+      {
+        "href": "text/9780063230484_Footnote_5.xhtml",
+        "sha256": "b840922c034dc9e5f8abf689b9fc99cc47b58829cbe9e4899c53141bb7b1976b"
+      },
+      {
+        "href": "text/9780063230484_Footnote_6.xhtml",
+        "sha256": "b3adc9f32a4b98ae3ed3514709c11d97fe27e856001ab59e330b101ae4c72ed0"
+      },
+      {
+        "href": "text/9780063230484_Footnote_7.xhtml",
+        "sha256": "5f79bb68800c53ac3ccb3184d3e22265b5c04c30ad5acaa1bb6bcc6e37022997"
+      },
+      {
+        "href": "text/9780063230484_Footnote_8.xhtml",
+        "sha256": "dd115998399b622f1808ada598efd928cdb9e429405ef740510c06238c0b9eaf"
+      },
+      {
+        "href": "text/9780063230484_Footnote_9.xhtml",
+        "sha256": "bce0c7fff91d44a16452092d8ad5d0913deb3a7688015099c004fc781097ccc0"
+      },
+      {
+        "href": "text/9780063230484_Footnote_10.xhtml",
+        "sha256": "e9f96e55d069629b7057d44ba6e56ec71b07a324768f266e92152999ff283627"
+      },
+      {
+        "href": "text/9780063230484_Footnote_11.xhtml",
+        "sha256": "8a9073ec88393bee71de404d9fec5f17117ec3f66fb34f4eb91fb03e2a713fba"
+      },
+      {
+        "href": "text/9780063230484_Footnote_12.xhtml",
+        "sha256": "1835a93026f5fa33eeda2455808746022822544394e6f2aa29c6c0488ac9025b"
+      },
+      {
+        "href": "text/9780063230484_Footnote_13.xhtml",
+        "sha256": "db7cf1e81f9dcc1f9f8bbab1baee52a98709584a5b9c37ff485a01e5fdb2a187"
+      },
+      {
+        "href": "text/9780063230484_Footnote_14.xhtml",
+        "sha256": "28393e337b213132fedda7eb682d1765aca8b925a96a8c6be0843375492b7161"
+      },
+      {
+        "href": "text/9780063230484_Footnote_15.xhtml",
+        "sha256": "90d0416524a440245908ff6788b5ad8462f50c10a657e6291e2d5b08e4738dd1"
+      },
+      {
+        "href": "text/9780063230484_Footnote_16.xhtml",
+        "sha256": "c6bf9a31f9c676d2272bccdd73be38a97465c106545affdd5928f3ad9a7b8016"
+      },
+      {
+        "href": "text/9780063230484_Footnote_17.xhtml",
+        "sha256": "94b94660cc4859753d7204ea6246cc53609659b69d3a7452e1a9f2273f8c43b8"
+      },
+      {
+        "href": "text/9780063230484_Footnote_18.xhtml",
+        "sha256": "f03c99de04187c0386306057f83c3c7a75ea58cb8f6e582af8f16c52ccc9b62d"
+      },
+      {
+        "href": "text/9780063230484_Footnote_19.xhtml",
+        "sha256": "116930248f2feff6e80a12a9c3562a7565f524893030100c9950d140e738775e"
+      },
+      {
+        "href": "text/9780063230484_Footnote_20.xhtml",
+        "sha256": "fe2ab54113f0dc2b1d0690133778fd26e5683668cc69504dc04d39b56c795fd8"
+      },
+      {
+        "href": "text/9780063230484_Footnote_21.xhtml",
+        "sha256": "802ad2f65eea5ccf56d0c67b1c3e4c2afbe8dab355d6011a7ac3b014568a914b"
+      },
+      {
+        "href": "text/9780063230484_Footnote_22.xhtml",
+        "sha256": "6128f9a1414641becee3292fd32aaf2e6ac35487066e4d289daa566b1846c619"
+      },
+      {
+        "href": "text/9780063230484_Footnote_23.xhtml",
+        "sha256": "e3d79767ee1b287fe9b51cf39bc609d4374e7fa03efc71f6ec8e097302308865"
+      },
+      {
+        "href": "text/9780063230484_Footnote_24.xhtml",
+        "sha256": "a608fcbfb61a2bc1bda3ae051f09b780a7e616de3db3c442b1a95d08b2f96dcb"
+      },
+      {
+        "href": "text/9780063230484_Footnote_25.xhtml",
+        "sha256": "3e9950cd7ea00d4e2fb9c46cf7dfbd42df1a5a497ff7a6c4a0681933b8002d50"
+      },
+      {
+        "href": "text/9780063230484_Footnote_26.xhtml",
+        "sha256": "3468e20f928dd0e429e8a1c18aff7a4ef25bb28be049f321878ee00d6b998736"
+      },
+      {
+        "href": "text/9780063230484_Footnote_27.xhtml",
+        "sha256": "50808011e345fe847843924768aaa033d125923371f5356d6dfec34eb83013e9"
+      },
+      {
+        "href": "text/9780063230484_Footnote_28.xhtml",
+        "sha256": "9c71cbcb5646c173ebf6e2297617c2f681a57adfaa5089389fead578266324f9"
+      },
+      {
+        "href": "text/9780063230484_Footnote_29.xhtml",
+        "sha256": "3a6695e712cd3422224ed9ce162092a8992c4b0cbf9d5498ea4a923052ab71d2"
+      },
+      {
+        "href": "text/9780063230484_Footnote_30.xhtml",
+        "sha256": "6bc6c0fc57b5144b8d8d3ba76321906b36e9a8b7110814629ff6d930fd3930f9"
+      },
+      {
+        "href": "text/9780063230484_Footnote_31.xhtml",
+        "sha256": "0e01e455d3afac5b9f423be3bc2b645be5876283f2d46aa3b6d0373619adddc5"
+      },
+      {
+        "href": "text/9780063230484_Footnote_32.xhtml",
+        "sha256": "a079729e71aa1b809e7db6f0f9d8aa3f28310f531a581e45e1aef638ee90d3f3"
+      },
+      {
+        "href": "text/9780063230484_Footnote_33.xhtml",
+        "sha256": "685f2f348c7fb4b29b09a0b3c43a1a65bf3cbcd4be34aadcd87efcf5aaac4fee"
+      },
+      {
+        "href": "text/9780063230484_Footnote_34.xhtml",
+        "sha256": "38354dfecbff585805016cf4badd052481ce6873172a3703771af29d0019babd"
+      },
+      {
+        "href": "text/9780063230484_Footnote_35.xhtml",
+        "sha256": "1dfdb66740263801b6ed1d843d303519489ab8b2c2215c7a9e37204edf0761d5"
+      },
+      {
+        "href": "text/9780063230484_Footnote_36.xhtml",
+        "sha256": "e825cc2b3ff6f427af0cebfc14735fd0ce4f09bfa4615bb7bba5a286c1daf92c"
+      },
+      {
+        "href": "text/9780063230484_Footnote_37.xhtml",
+        "sha256": "e85d64c3b151bf3b4fbc0e3d9e6232c9212d2f1fcde06ff278a91503f1c36f27"
+      },
+      {
+        "href": "text/9780063230484_Footnote_38.xhtml",
+        "sha256": "bdc9396e35f7b7aedb24b9eb38be0c60ba8052bfdab28df899d68468e96238a1"
+      },
+      {
+        "href": "text/9780063230484_Footnote_39.xhtml",
+        "sha256": "9cb7cdea4e26942260ade71cd456edd91e6639496842aabf2c162c5c54383920"
+      },
+      {
+        "href": "text/9780063230484_Footnote_40.xhtml",
+        "sha256": "c0e2f0e4a1733532d290eb2e5749ea8141d2ea7cb5bff5d272161e6926074ccd"
+      },
+      {
+        "href": "text/9780063230484_Footnote_41.xhtml",
+        "sha256": "ebd6d793255b384b9526a55e63bbe63a476ff0cccc4f50d3f365f03e0411ae96"
+      },
+      {
+        "href": "text/9780063230484_Footnote_42.xhtml",
+        "sha256": "03797ab9ed8274746a232dcbf9cb365a8a4d6d1dea7fcd18cab2da714b969ac6"
+      },
+      {
+        "href": "text/9780063230484_Footnote_43.xhtml",
+        "sha256": "aeeb42736d4ecf0c602938761a51a91972ec6d5d8d08383ae620d400432f1a97"
+      },
+      {
+        "href": "text/9780063230484_Footnote_44.xhtml",
+        "sha256": "c19cd8f6104afe20ddc888ca9105aeb115fbf0e6d18f2927aa5b9caf742a1654"
+      },
+      {
+        "href": "text/9780063230484_Footnote_45.xhtml",
+        "sha256": "56713f1397ff9d5a1df38012828b27f31d19c5fee5969c9186d9fe9a222260a8"
+      },
+      {
+        "href": "text/9780063230484_Footnote_46.xhtml",
+        "sha256": "3609a84faeb45c38c067f32d344c9bfb76bea0d0c51ea8abe23170ed3094d996"
+      },
+      {
+        "href": "text/9780063230484_Footnote_47.xhtml",
+        "sha256": "00208814838f74474bc267ec7091911c8d70bee16fbe7b6238e5c7aac98707b2"
+      },
+      {
+        "href": "text/9780063230484_Footnote_48.xhtml",
+        "sha256": "f5c0ca3478c13391e7a3e75543c64b3b424bac2b43d5aa8cbf50ae58a0cc890b"
+      },
+      {
+        "href": "text/9780063230484_Footnote_49.xhtml",
+        "sha256": "bb2141f0a6663471282129309bf6eceb500d2030ebdfc7bc80cf875071959b18"
+      },
+      {
+        "href": "text/9780063230484_Footnote_50.xhtml",
+        "sha256": "edcf242d27addb448cb90d15440f6328dc14d00d58954be991c22b0db497654e"
+      },
+      {
+        "href": "text/9780063230484_Footnote_51.xhtml",
+        "sha256": "9ea96376057d11f83c7203e5876dcc01b9c0259adec2887229ec34d4c4c26764"
+      },
+      {
+        "href": "text/9780063230484_Footnote_52.xhtml",
+        "sha256": "ed1372dea1a8896315cf22e5857e9a01b6a7626dd24b1bba22318633bd00b6c6"
+      },
+      {
+        "href": "text/9780063230484_Footnote_53.xhtml",
+        "sha256": "58e5f763c99617038e087ffdd0a4b754131af6f7b9738058f7ab1cc30331949c"
+      },
+      {
+        "href": "text/9780063230484_Footnote_54.xhtml",
+        "sha256": "99a33dcbb7d52047d47f87e3993cefce20a184f8d888506a9cec5819ffdb7fe2"
+      },
+      {
+        "href": "text/9780063230484_Footnote_55.xhtml",
+        "sha256": "298df23e6f755a61b05f3f6e87b170c6407511dbc9230e9fed19e6bb7ea709ec"
+      },
+      {
+        "href": "text/9780063230484_Footnote_56.xhtml",
+        "sha256": "5b00ddf074a05465503093212a57a99f2762b75217d710435338a0e682131c97"
+      },
+      {
+        "href": "text/9780063230484_Footnote_57.xhtml",
+        "sha256": "a1ed98926d8f67e9da7512154f89f70a5317590069c8c0b6af352b13f7d5194f"
+      },
+      {
+        "href": "text/9780063230484_Footnote_58.xhtml",
+        "sha256": "3feefaa3c9302c44b3a54d015c2d5c97b49323e7c310e5340d1ddd475ae6439e"
+      },
+      {
+        "href": "text/9780063230484_Footnote_59.xhtml",
+        "sha256": "74dfcb21938b546267983592fcfc0ab33513996a35e1912c342b1c0f5d3e85cd"
+      },
+      {
+        "href": "text/9780063230484_Footnote_60.xhtml",
+        "sha256": "5f35533bd07b6d3203707dfebfac958ce339bba67177cb781265a4cbb15595ee"
+      },
+      {
+        "href": "text/9780063230484_Footnote_61.xhtml",
+        "sha256": "0d1df1131faaacf0c820a9157f42936365f720b0a3b6da074209b79357c05e7b"
+      },
+      {
+        "href": "text/9780063230484_Footnote_62.xhtml",
+        "sha256": "5ecf212b47b491d7f6adc89adfd6eee747e705be50f6b6f75385ec56928ef850"
+      },
+      {
+        "href": "text/9780063230484_Footnote_63.xhtml",
+        "sha256": "01a36ae00cb61747c888a324c8623779d1adaa27037ad664927fcd4215fc7b0f"
+      },
+      {
+        "href": "text/9780063230484_Footnote_64.xhtml",
+        "sha256": "12c058f65493fd9c7a6ce336fe20faced8a1cc102952dd98403eaa149a3ee645"
+      },
+      {
+        "href": "text/9780063230484_Footnote_65.xhtml",
+        "sha256": "700240ac02cf9edbb6aeabf413ff69e58967608702ae1c10f702b994b467c956"
+      },
+      {
+        "href": "text/9780063230484_Footnote_66.xhtml",
+        "sha256": "cab1f6f222626033b68cee1d2b1d3631c359fff5389a18edca8204e33cb819e8"
+      },
+      {
+        "href": "text/9780063230484_Footnote_67.xhtml",
+        "sha256": "5888fb8f99c2a47ecc1b4b41e5d52f44bb099550838cf70a0a92d735e5ef8681"
+      },
+      {
+        "href": "text/9780063230484_Footnote_68.xhtml",
+        "sha256": "070e01194fa497cb3f72a2c2b705d4c0ad5c1d2288976e0d696a40891e67f089"
+      },
+      {
+        "href": "text/9780063230484_Footnote_69.xhtml",
+        "sha256": "441be1acebc3f6870a476905e26fb902fb8ecd2f4735951dc518e67f67473559"
+      },
+      {
+        "href": "text/9780063230484_Footnote_70.xhtml",
+        "sha256": "bcf72fed8cfe534407e32f16e4ff3eb2dc5ff9e20f645dae3fd1dd650828ca41"
+      },
+      {
+        "href": "text/9780063230484_Footnote_71.xhtml",
+        "sha256": "303e9d68998fc088b12a9f47032493b155c5c4c024ec209f26876e91cd270c24"
+      },
+      {
+        "href": "text/9780063230484_Footnote_72.xhtml",
+        "sha256": "5abf94d035cc22286aedef50a508c58d32dbd01386beb0785da9b034af521898"
+      },
+      {
+        "href": "text/9780063230484_Footnote_73.xhtml",
+        "sha256": "585a8d9b3a6a4fa29166c049426e154556ca565e0bcf17c41f17dbc166bdbfdb"
+      },
+      {
+        "href": "text/9780063230484_Footnote_74.xhtml",
+        "sha256": "d7f7736577d00b47a8854da68d5176ec097e258e0bcf7476c3527bd9994edca0"
+      },
+      {
+        "href": "text/9780063230484_Footnote_75.xhtml",
+        "sha256": "44732b7a0293c3773b799befb4df571916f48808ce8a16c4dad4bbe05b89862d"
+      },
+      {
+        "href": "text/9780063230484_Footnote_76.xhtml",
+        "sha256": "c0eb2cf0da0ec9063225074c0c75bfc68788f00c3c97ae6b5ff6145a0e69ce02"
+      },
+      {
+        "href": "text/9780063230484_Footnote_77.xhtml",
+        "sha256": "d9692e45f421d8f1390c01e1f5919a72054b2d7534cfa30e05931a16d85b9300"
+      },
+      {
+        "href": "text/9780063230484_Footnote_78.xhtml",
+        "sha256": "88ae530ccf36bd808a9dfd59c404fae08125e193b3781cbc932bdb8228a4526c"
+      },
+      {
+        "href": "text/9780063230484_Footnote_79.xhtml",
+        "sha256": "01b682e746ebeb48fc5e53a85f384bf9397af2e9fab026e1d8402ae5feb1d0fc"
+      },
+      {
+        "href": "text/9780063230484_Footnote_80.xhtml",
+        "sha256": "7c9a6a5a73852ec196f63120fa36c0725c8fd3b27b8fafeabeaf913bcfdafb24"
+      },
+      {
+        "href": "text/9780063230484_Footnote_81.xhtml",
+        "sha256": "d2ff32ec6a1fc77dd6f113c2496575aae5903942b7f20976f34deaf15f726eeb"
+      },
+      {
+        "href": "text/9780063230484_Footnote_82.xhtml",
+        "sha256": "f1c48b3ce1c9ab5ac17fc746d97688eb3e2698c136750d69114a8e9deb01e661"
+      },
+      {
+        "href": "text/9780063230484_Footnote_83.xhtml",
+        "sha256": "30a561aa3142712ced4d330fc0c5883c9da46be6660dbe0c45d729c871d4c486"
+      },
+      {
+        "href": "text/9780063230484_Footnote_84.xhtml",
+        "sha256": "932c44814934e67b57bba1fee4e02b813ece7bafc7d0ebd7e845898d4c4903d2"
+      },
+      {
+        "href": "text/9780063230484_Footnote_85.xhtml",
+        "sha256": "2af51a1ac4357dac17b4533e91d8f258f228710723f402396f158ce6c3db3cd3"
+      },
+      {
+        "href": "text/9780063230484_Footnote_86.xhtml",
+        "sha256": "af592520a2d99652fe9b69804b4280d2586839c35dd55eca3e4197e4cc23804d"
+      },
+      {
+        "href": "text/9780063230484_Footnote_87.xhtml",
+        "sha256": "46b28213c41b4ae583ec0d14d1bb7c290a155ab08035460f7a1fb03e77c9fbd4"
+      },
+      {
+        "href": "text/9780063230484_Footnote_88.xhtml",
+        "sha256": "95c1926a079a03d7ca7eeacb715d06bf4ceedab81262ad628d9179ce2f4d6ef1"
+      },
+      {
+        "href": "text/9780063230484_Footnote_89.xhtml",
+        "sha256": "26445b4bb97faaef9850491ce7c7dd8df6da061e3c73f03e200104018b1bd649"
+      },
+      {
+        "href": "text/9780063230484_Footnote_90.xhtml",
+        "sha256": "d64bbe0f641780fdaf28c9bdd520e7c3d814501bce521f6ffdc4fd8fd9e2f804"
+      },
+      {
+        "href": "text/9780063230484_Footnote_91.xhtml",
+        "sha256": "b6ddecc0f9e0a966a238fbc14c8c6f9559907b776503cdf45034cc7db4d82c46"
+      },
+      {
+        "href": "text/9780063230484_Footnote_92.xhtml",
+        "sha256": "9c526cd7d9a10db148873c4df909ccce9cf7ed8d8a5794b110f0e7f476c6cb14"
+      },
+      {
+        "href": "text/9780063230484_Footnote_93.xhtml",
+        "sha256": "d3fac1d0d54bd22fa7c3216edff6ad3934e7cd6360b22746c5a5f23223242d77"
+      },
+      {
+        "href": "text/9780063230484_Footnote_94.xhtml",
+        "sha256": "cc8b139d25ce0c24dbe2f293f829148092dab5e0c32e4f65a6e5e671bf2fa3b8"
+      },
+      {
+        "href": "text/9780063230484_Footnote_95.xhtml",
+        "sha256": "7d4c0f4d91881496c1b555e07671a72325ef03854dd5d959d6336539348e9618"
+      },
+      {
+        "href": "text/9780063230484_Footnote_96.xhtml",
+        "sha256": "d7efad27af8ee9e5be538e8086936dbc8d06567894846b4e687fe74167651ced"
+      },
+      {
+        "href": "text/9780063230484_Footnote_97.xhtml",
+        "sha256": "db217a810edd93f120320729972d2d24383e637cfbc0e215a43e53d161690b0b"
+      },
+      {
+        "href": "text/9780063230484_Footnote_98.xhtml",
+        "sha256": "75d17fb4515bcdb4ec061acb97bb5fc107b90d6c1d17e8bdaa75be2222fb7d6f"
+      },
+      {
+        "href": "text/9780063230484_Footnote_99.xhtml",
+        "sha256": "9809b2adf4297c23fec6dd7825bbf4ab9b51c0a6be5dcdc4c3ce7eda6f6eef60"
+      },
+      {
+        "href": "text/9780063230484_Footnote_100.xhtml",
+        "sha256": "2ee3abf838badcfd3072c60388acb50d48f7c5eaaf41459deb5c7bf9adb0e8c2"
+      },
+      {
+        "href": "text/9780063230484_Footnote_101.xhtml",
+        "sha256": "e96986cdd01815d196d62ab5edd5f58d67c04d2db6f119ce4b2076def160e617"
+      },
+      {
+        "href": "text/9780063230484_Footnote_102.xhtml",
+        "sha256": "011eb1534216b44244cccc56bacc84718ccf13d37554fe8b58be12fa6ac470aa"
+      },
+      {
+        "href": "text/9780063230484_Footnote_103.xhtml",
+        "sha256": "41132b501f47a9b9ff6e778cdd7270a1c77c062764f2dbd773834acc1c88033f"
+      },
+      {
+        "href": "text/9780063230484_Footnote_104.xhtml",
+        "sha256": "4ae399635489cb99d1192c9c0878be8054e2f85ff46e206e14d9f2fc9a8ea7a6"
+      },
+      {
+        "href": "text/9780063230484_Footnote_105.xhtml",
+        "sha256": "620e494ed2748d47922805827c0854cc5d36c86d9a2187810882b481fe4e3dbb"
+      },
+      {
+        "href": "text/9780063230484_Footnote_106.xhtml",
+        "sha256": "edd64fcf975a02cf7beaa2e044d733485729b76d73753dfef22ac119521bcec4"
+      },
+      {
+        "href": "text/9780063230484_Footnote_107.xhtml",
+        "sha256": "034e37af54ee6fc99f80ccf5c024995412834f3cad6aab30169de6a759409391"
+      },
+      {
+        "href": "text/9780063230484_Footnote_108.xhtml",
+        "sha256": "01b9d1a1d320ec3cfb309739711a67dbc615c1dac3fe24398cf28decd09bb15b"
+      },
+      {
+        "href": "text/9780063230484_Footnote_109.xhtml",
+        "sha256": "3061cfa6404b2b5828c5be93bcbcfff4622f481ed6713d936e12000bc7813ba5"
+      },
+      {
+        "href": "text/9780063230484_Footnote_110.xhtml",
+        "sha256": "84a22c6cad09968c4b49e5166c269dd6aad2452b155c617bdde339692e75666d"
+      },
+      {
+        "href": "text/9780063230484_Footnote_111.xhtml",
+        "sha256": "eb4fb03416ce6395b9c4b461b8e7de6efc0b5899dfbc63c1de081224157a5b98"
+      },
+      {
+        "href": "text/9780063230484_Footnote_112.xhtml",
+        "sha256": "139952f33246f4f293c512dfbca2c01cb340bd02c77414878c62a3cf75457753"
+      },
+      {
+        "href": "text/9780063230484_Footnote_113.xhtml",
+        "sha256": "331cc5d7c4608a925c62c288c1253fec8b5f8c54e2d925d2d31996bcf9c3ca04"
+      },
+      {
+        "href": "text/9780063230484_Footnote_114.xhtml",
+        "sha256": "6f5fc9f6c9dcb89715379509d5ec4a3acbd8978f60e70d18806028cc9eaf68cc"
+      },
+      {
+        "href": "text/9780063230484_Footnote_115.xhtml",
+        "sha256": "d9a48fe33155b47ea542e1d6d61d07159fd7311cdfbb0fd0d3e441951f54a499"
+      },
+      {
+        "href": "text/9780063230484_Footnote_116.xhtml",
+        "sha256": "594d4c5dbe097a69d8a88e3abccbf2aaf812b5c47763b7f9fe9505307c7f8e74"
+      },
+      {
+        "href": "text/9780063230484_Footnote_117.xhtml",
+        "sha256": "f3ef3e8a3734978eca8ea7cfe67b219088995b6b9e7a7793e5c1f5b1a43f83e5"
+      },
+      {
+        "href": "text/9780063230484_Footnote_118.xhtml",
+        "sha256": "57092b40e63a82b9f5baa0aa8d8a4456c1da78ac5cf18c89a30fa553dc1f5829"
+      },
+      {
+        "href": "text/9780063230484_Footnote_119.xhtml",
+        "sha256": "71d60eaf96d1ed304f30c6149241974354d0781890636cb42eaea9718937b944"
+      },
+      {
+        "href": "text/9780063230484_Footnote_120.xhtml",
+        "sha256": "4686b22b07e6c66357833f821fdb1c543820215c8a4dadf1e1e2a9da72acc616"
+      },
+      {
+        "href": "text/9780063230484_Footnote_121.xhtml",
+        "sha256": "be941922f23f7ea2237caed015c7023724f86b6d60c7bcee5df14f31dc7ba990"
+      },
+      {
+        "href": "text/9780063230484_Footnote_122.xhtml",
+        "sha256": "51c5876cb25ec4a2e4ff6b1106702b6afcd9f931ec0ebfa0fbfe2df2d1920911"
+      },
+      {
+        "href": "text/9780063230484_Footnote_123.xhtml",
+        "sha256": "2ade95847b4fe6ee6267e88acee3a807af28dd83ed11062435396e1caad91a7c"
+      },
+      {
+        "href": "text/9780063230484_Footnote_124.xhtml",
+        "sha256": "5168ea40fcc792337b30eb87549bf6752159f358084ad3b75b48bc0041c08160"
+      },
+      {
+        "href": "text/9780063230484_Footnote_125.xhtml",
+        "sha256": "c37ee24867d04a783864c13e318f084f5e2600988fe3ab35a6f2e272a0e561e0"
+      },
+      {
+        "href": "text/9780063230484_Footnote_126.xhtml",
+        "sha256": "645c0ed6e4adda0ff219ccc76722e72fa24dc67f51fae264dab09525635f1c45"
+      },
+      {
+        "href": "text/9780063230484_Footnote_127.xhtml",
+        "sha256": "5ad137f07fcc10713324b7d9517f1f8fb373da46890d074f6830efe611bc1e23"
+      },
+      {
+        "href": "text/9780063230484_Footnote_128.xhtml",
+        "sha256": "1ebf0e7cc7d5fa70a2fc5f47a2c872082ecb4ee10a37443dd24b56415a981f14"
+      },
+      {
+        "href": "text/9780063230484_Footnote_129.xhtml",
+        "sha256": "3859d29d45a07393eca9258aea24ceea3aad5471e6a1d060078e478a8f779a5d"
+      },
+      {
+        "href": "text/9780063230484_Footnote_130.xhtml",
+        "sha256": "ee74d7e182449ae79adc972aefe40422ef6d024f124859af0e9ffcc4399298d6"
+      },
+      {
+        "href": "text/9780063230484_Footnote_131.xhtml",
+        "sha256": "b3cede18546427a6a22ce17b57c63e438e09494dde1493942bc25a07f1674aef"
+      },
+      {
+        "href": "text/9780063230484_Footnote_132.xhtml",
+        "sha256": "96262b13bc03d25c4e6294c4a381b26026e1e230bcb4c6b5606ace7f2bb3e91d"
+      },
+      {
+        "href": "text/9780063230484_Footnote_133.xhtml",
+        "sha256": "04fd52ca7253b684713dd74fc56d49e0d8207ab1915cc60ed557fe1d16e9f9a7"
+      },
+      {
+        "href": "text/9780063230484_Footnote_134.xhtml",
+        "sha256": "adeec82bf6f9421bf13dec1862501ecf54ba32fe5de77b7fc197974eede5b0b2"
+      },
+      {
+        "href": "text/9780063230484_Footnote_135.xhtml",
+        "sha256": "3aeb49d105471e3daa9a8cb4986854b90c4ede4cc0f108a1f4b87f7e170d4fa0"
+      },
+      {
+        "href": "text/9780063230484_Footnote_136.xhtml",
+        "sha256": "5d6cbde4ecb02c7dee81748c1ecb44db4975e039cad7948fb522da320d7f84d6"
+      },
+      {
+        "href": "text/9780063230484_Footnote_137.xhtml",
+        "sha256": "d35301d0ef4eb6552df6603f8c5a914989eb79abbcbe67230bbf86d0b16e4d30"
+      },
+      {
+        "href": "text/9780063230484_Footnote_138.xhtml",
+        "sha256": "00a34f7b4d6619f2fdd3ebb7a333ea93fa16eb5e83e36091b51d87c0853cd5df"
+      },
+      {
+        "href": "text/9780063230484_Footnote_139.xhtml",
+        "sha256": "5383d803f3e3579fff5f5427954dcdc241e58d39b8fbb27b183b19033ce6766e"
+      },
+      {
+        "href": "text/9780063230484_Footnote_140.xhtml",
+        "sha256": "cb4a840fb1e49d37bd1fff6334571016b2758dceea6f9aaab54cfd46dae6a832"
+      },
+      {
+        "href": "text/9780063230484_Footnote_141.xhtml",
+        "sha256": "2b276d4dc995c0c291b26b95f9c4014407c0d752449c231c4892c831c28ddfd2"
+      },
+      {
+        "href": "text/9780063230484_Footnote_142.xhtml",
+        "sha256": "98a6d1ea252c7223162a0885e5839c6d5990802d64dc6624bd5deb451062a2ab"
+      },
+      {
+        "href": "text/9780063230484_Footnote_143.xhtml",
+        "sha256": "dfca248b514ba05b0c79e74306d79535c1a0e808895a5ca3cdef104da6cdbf49"
+      },
+      {
+        "href": "text/9780063230484_Footnote_144.xhtml",
+        "sha256": "7872b2304284a5e4034768a1a3568cd5647d6d4296988586c136a820ef5d88ef"
+      },
+      {
+        "href": "text/9780063230484_Footnote_145.xhtml",
+        "sha256": "7d69bd9eeb65b1f01f11545f33cca7323fd323d98fc8e25c89cbe42c30f5d777"
+      },
+      {
+        "href": "text/9780063230484_Footnote_146.xhtml",
+        "sha256": "84ae709aae01fb240bb02d6bde0bf27a7e54558316a73758d6510a278e6caae0"
+      },
+      {
+        "href": "text/9780063230484_Footnote_147.xhtml",
+        "sha256": "b94b13f09f3334c3b756736ddb34328692c457baabec92e21a6f7b3603c53646"
+      },
+      {
+        "href": "text/9780063230484_Footnote_148.xhtml",
+        "sha256": "21bdb0689ddf76a365614217bc7c55bcba4ecbd61903719e98c7aed155714e3d"
+      },
+      {
+        "href": "text/9780063230484_Footnote_149.xhtml",
+        "sha256": "754eec7e37793919913e30519f8227034b4b9290a60c845f20411fe48c405ed0"
       }
     ]
   }

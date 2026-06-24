@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -141,6 +141,60 @@
         "id": "part9.xhtml",
         "href": "text/part9.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "cover.html",
+        "sha256": "6cf7ad41bca8d090426c9f1bf5c68bba6f23c15bbc65636aa782fb8194f7ad1f"
+      },
+      {
+        "href": "text/part1.xhtml",
+        "sha256": "6f1db75266e78e65d388cd9fa5726528cec50845aafb0d9f7aa517e7206dd194"
+      },
+      {
+        "href": "text/part2.xhtml",
+        "sha256": "15f7cd1c1001e61e112b49b51d70d8d6596860ff32d339fa032aa5559830ebdb"
+      },
+      {
+        "href": "text/part3.xhtml",
+        "sha256": "d53fff6b64ac57a802d115d38af2023167907fcf8a151e0ddf2e64789ac63045"
+      },
+      {
+        "href": "text/part4.xhtml",
+        "sha256": "f982d2ff0a82eb4f60e814fb6e7f13df28ad103d59e6e743b1dca2212fdc8e4e"
+      },
+      {
+        "href": "text/part5.xhtml",
+        "sha256": "110fee6cc3f524a673e2c39922fce1d65765f730ac5ae7f946318859b1dfa420"
+      },
+      {
+        "href": "text/part6.xhtml",
+        "sha256": "1eb99f2857f1c19534ec89acecd7afdd00aa01e238eee3244300ccdf7d38baa5"
+      },
+      {
+        "href": "text/part7.xhtml",
+        "sha256": "3a4560cc2338d0bb8cb5c819592a765652d5ec283fe5ebe171465eee7c65302c"
+      },
+      {
+        "href": "text/part8.xhtml",
+        "sha256": "4fe2015f728dc3088edab18f994c134d0274007edec60e4f2bf542649773d5b8"
+      },
+      {
+        "href": "text/part9.xhtml",
+        "sha256": "60f9ba9fae5106054b91d5fd3f9ea44a0561b0616f06f585f3f96a8fd6aa8a5e"
+      },
+      {
+        "href": "text/part10.xhtml",
+        "sha256": "c4b2db6e681af331cf10fa9f2dcb517a9c140f8c8dc5533a70784620d6b62312"
+      },
+      {
+        "href": "text/part11.xhtml",
+        "sha256": "ce276e237de06ef5dfd15f3ca4cc5114370c50f1b5f1ac01edb0b3617c36c334"
+      },
+      {
+        "href": "text/part12.xhtml",
+        "sha256": "0ee842eaf3a1c5610750779cfb949918af180a92fff2482719f5bbb9ce56f9a0"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -207,6 +207,76 @@
         "id": "toca",
         "href": "005-toc.html",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "9b7ba41964158b80e127fb8e41b39d8481edb82d052a67f7ac7a0c277ef57fbd"
+      },
+      {
+        "href": "../jacket.xhtml",
+        "sha256": "5fbd32c9793360bdc8338b088418758078f393feafdc838dc0edc80ad4cde25f"
+      },
+      {
+        "href": "002-titlepage.html",
+        "sha256": "0fb5a0856808c66dab03658cc600492e8fcb00e81b636d3c97c456d510550f25"
+      },
+      {
+        "href": "014-copyright.html",
+        "sha256": "c2117d2fddcabe7f98379b48deac59fc7ee856dde4e4aae900ad48ca9017321e"
+      },
+      {
+        "href": "003-dedication.html",
+        "sha256": "36d3c0041b5e240b60d3d0a35da602b0639a3a230ff1add18d47a961e8726741"
+      },
+      {
+        "href": "004-epigraph.html",
+        "sha256": "da6e61c08e340c1c42811471169c6781c4b3274bd7dbceed8fbd90790d46a0c3"
+      },
+      {
+        "href": "005-toc.html",
+        "sha256": "7769f8d5b3209e7eb0bd8f3a0030fd97df4262dc3e4e9b2d8aeab1670ffacd17"
+      },
+      {
+        "href": "006-chapter1.html",
+        "sha256": "7425d0e4fb6241734e3a6e2c3785e4f6424f311eccf922a8766d71194d3baaac"
+      },
+      {
+        "href": "007-chapter2.html",
+        "sha256": "bf262766d0f669ec33f9aed27652243b564b7b0496067a3bb9944a1bbe368007"
+      },
+      {
+        "href": "008-chapter3.html",
+        "sha256": "258ef72de62d6902002f39f72ea0e733ed3c0b261e058f13c04604668a712604"
+      },
+      {
+        "href": "009-chapter4.html",
+        "sha256": "ebe16bd9714a76d61d4b0309de0a9017998f40e20835573a52d06911559fcd01"
+      },
+      {
+        "href": "keepreading.html",
+        "sha256": "8dcac3dcf588ac0a5a9309a036e6630a85c7a4efc342d8dc8795f20baeeaf85e"
+      },
+      {
+        "href": "010-notes.html",
+        "sha256": "5a6dc1ec246eca418d1a801adcdc60538f64eac4fd8864c96e2c55a6ac422ccf"
+      },
+      {
+        "href": "011-acknowledgments.html",
+        "sha256": "2cac4a6095ee43be6e34cb7d72aa2eb51529c4bc6e167fe23fa38dd1088310b0"
+      },
+      {
+        "href": "012-abouttheauthor.html",
+        "sha256": "24dc93290ba4d94b2e77c5cb149dd8be00130281f52de45ea668bc60451b339c"
+      },
+      {
+        "href": "013-otherbooksby.html",
+        "sha256": "3eff8c59c07f23d8dbe8267cf40c33eb06253569cf1f226343af02da70d00764"
+      },
+      {
+        "href": "015-aboutthepublisher.html",
+        "sha256": "8e0e3d9f922d9b274ad2097b7022bd4df1e1475e8ea12c6427e33d5b13e15c00"
       }
     ]
   }

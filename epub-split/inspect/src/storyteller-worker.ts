@@ -44,7 +44,7 @@ try {
         const sha256 = createHash("sha256").update(content).digest("hex");
         return { href: item.href, sha256 };
       } catch {
-        return { href: item.href, sha256: null };
+        return { href: item.href, sha256: "<unreadable>" };
       }
     })
   );

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -256,6 +256,80 @@
         "id": "ursula.jpg",
         "href": "Images/ursula.jpg",
         "mediaType": "image/jpeg"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "Text/Ursula%20K%20Le%20Guin%20-%20Tales%20from%20Earthsea.html",
+        "sha256": "2032f30e2894e70db008bf5df29b6b46fdcdc25a23c8d02e99ae8145a1051d9f"
+      },
+      {
+        "href": "Text/Teaser.html",
+        "sha256": "ed1ecc6783d07a6ab6372a2059f310b65d4364b460346ceac3d51bcfa0bf2eaa"
+      },
+      {
+        "href": "Text/MapA.html",
+        "sha256": "60061f3cb6ff685df973b4db97163f54b59be14dde6110a199a229345b059b0f"
+      },
+      {
+        "href": "Text/BooksBy.html",
+        "sha256": "96334fad308f15882e49802bebc335a91c137463a1222cc0ad679e9a46b2483a"
+      },
+      {
+        "href": "Text/TitlePage.html",
+        "sha256": "a95c19c9a966f5fb0954437422535f6f49fb1f3ea50e16ae14da27981eaf0f10"
+      },
+      {
+        "href": "Text/Copyright.html",
+        "sha256": "33ece34610d3d1414b4f22bdb00a2381ef8ac40a23ddf24403539066d96fd8ab"
+      },
+      {
+        "href": "Text/MapB.html",
+        "sha256": "4ecbe88fa75fe83e56f659ae35456d0484cbca4a11d86e0c4671971bed9488d5"
+      },
+      {
+        "href": "Text/Contents.html",
+        "sha256": "16350ce16506f746b4500d79d1adedbd21dc1777e2ddc4c96705f77eb194a8ab"
+      },
+      {
+        "href": "Text/Foreword.html",
+        "sha256": "d8d8e84e50edeb4f327d91208c5f68bf1121c6a341cfd525f2d645fd1d063dcf"
+      },
+      {
+        "href": "Text/Story_01.html",
+        "sha256": "5f54bf20281d62d6ccb9f9b0082174ebdbead91dfb31804b6aa366161db12c49"
+      },
+      {
+        "href": "Text/Story_02.html",
+        "sha256": "971373d42479ccfea5c55b21733eb2c2f3633febbacb369cd12ad7fbf223b7c1"
+      },
+      {
+        "href": "Text/Story_03.html",
+        "sha256": "c8bd5b815250701b8d7c769748969fbbcf816d783aa1523de0e9201b780f55f5"
+      },
+      {
+        "href": "Text/Story_04.html",
+        "sha256": "046ffd6f0796da05fee3d141e49c0b07eac583179814e145d83acb909c2b9543"
+      },
+      {
+        "href": "Text/Story_05.html",
+        "sha256": "56106b9a1d1dac6934831923d07b66b93dc49512cdf328a86967e1302b6197f4"
+      },
+      {
+        "href": "Text/Description.html",
+        "sha256": "2709545ee486020ad3a202809e140a16725edf0ba2582dff41871efd7242bf3a"
+      },
+      {
+        "href": "Text/Bonus.html",
+        "sha256": "037671988a1228d1e7f803b609b1b434394e318e86092adf4a84bbaec779ea38"
+      },
+      {
+        "href": "Text/AboutAuthor.html",
+        "sha256": "afd49c55b97c3c6e01a1748444dd0afc47a91588bc3d1d8e019b1839a8e477f3"
+      },
+      {
+        "href": "Text/BackCover.html",
+        "sha256": "86fa3a02249a43ceb103f02ffbe69d12e5653f4b34ec1f0748111ec1205b0efa"
       }
     ]
   }

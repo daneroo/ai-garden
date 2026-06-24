@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -1341,6 +1341,136 @@
         "id": "toc",
         "href": "toc.ncx",
         "mediaType": "application/x-dtbncx+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "xhtml/cover.xhtml",
+        "sha256": "aae838b7e471f183503216144b1d75f3f6c51b4fc8f10814de08442d81f659f4"
+      },
+      {
+        "href": "xhtml/title.xhtml",
+        "sha256": "0d043f73469fa07536cff3e9af76b7a559765018ecfec80e18613d5d1791ff25"
+      },
+      {
+        "href": "xhtml/mini_toc.xhtml",
+        "sha256": "f28c092d71c555149793d9282a9c6867cdf3486c85bb6852523fb353bb153fae"
+      },
+      {
+        "href": "xhtml/copyrightnotice.xhtml",
+        "sha256": "060c2a28e183ec560e69301395b0fc6b2d26de7261cc0ff16aa983f711865ee0"
+      },
+      {
+        "href": "xhtml/dedication.xhtml",
+        "sha256": "56c4536bb4f3e934f4983554f9c586c8663d7b76bb9bfcbd6f7f3348c675afd1"
+      },
+      {
+        "href": "xhtml/achapter.xhtml",
+        "sha256": "5e3181a066a9334226b6bcfa7c91a4866126cd6269fc86ff8b3db8699a7cdb32"
+      },
+      {
+        "href": "xhtml/part1.xhtml",
+        "sha256": "dda025c0fa010cd28994d8e6674624f4e9bf2dddb6da1dcc398caff74ebc16c0"
+      },
+      {
+        "href": "xhtml/chapter1.xhtml",
+        "sha256": "3831f05c09c818cfb802696639628bb0e83858e7314419fecbe05dda18d1f5a1"
+      },
+      {
+        "href": "xhtml/chapter2.xhtml",
+        "sha256": "fcb8ce0c6efa85f459e76e5c3b9cc9c560d5fcaf281d9b1fb706fe13148c6d48"
+      },
+      {
+        "href": "xhtml/chapter3.xhtml",
+        "sha256": "a0d5dcd30bbfed37a4a73d3af3f384ad0324275d367137e346e2b824ceb7d6b5"
+      },
+      {
+        "href": "xhtml/chapter4.xhtml",
+        "sha256": "dd7365e4dc28daf0f3fdab4ee761e0905fd5379afc17b5c8a7a58440b74eedd7"
+      },
+      {
+        "href": "xhtml/chapter5.xhtml",
+        "sha256": "858e452d3061b8a337c47ab74704974dc4b5d4e2c9b3c8944d6f617e3a0f756a"
+      },
+      {
+        "href": "xhtml/part2.xhtml",
+        "sha256": "70ef629bcfe06263f2e4d97fb91fffbb72a86ed6e755795b33bcfc70e1afd26b"
+      },
+      {
+        "href": "xhtml/chapter6.xhtml",
+        "sha256": "0726431975b48e280782114ef0f6824d84c511f5dda49205d928998b39f08a4d"
+      },
+      {
+        "href": "xhtml/chapter7.xhtml",
+        "sha256": "b7b43c54d51944d8e3f117760c1811719f70a7be137b4c63beec796ffdef9591"
+      },
+      {
+        "href": "xhtml/chapter8.xhtml",
+        "sha256": "90fbcdc61b949820ebaed99392aae9640167f06a66c55fcb440e9eb7adce6320"
+      },
+      {
+        "href": "xhtml/part3.xhtml",
+        "sha256": "2e778c050690bbd52af72a56741051823d7dae81455002c7cdb77462fb169a0b"
+      },
+      {
+        "href": "xhtml/chapter9.xhtml",
+        "sha256": "135a5a3a276afc7346dfaf4f265a5835397e58709f98ae60ac560f4400bdf3b9"
+      },
+      {
+        "href": "xhtml/notes-ch1.xhtml",
+        "sha256": "58f4d2a0a5f9e0bb38c5c8f44a91caa58bdb629540f57f1ef8d0c1a164b1dafc"
+      },
+      {
+        "href": "xhtml/notes-ch2.xhtml",
+        "sha256": "dd53fffabee1c229510cf3a7bb8d2ce1e7c89a93f6c6e0111c86950e375f0a0b"
+      },
+      {
+        "href": "xhtml/notes-ch3.xhtml",
+        "sha256": "9622fcc6c519caca9a7eafed5f72fbc7f7788c0a54a81a2d73ac3f1890d26464"
+      },
+      {
+        "href": "xhtml/notes-ch4.xhtml",
+        "sha256": "713a2abd00b88ccd658c6e0603acc2b78923723560a012dd9dfe894756d798af"
+      },
+      {
+        "href": "xhtml/notes-ch6.xhtml",
+        "sha256": "f325ceac88017dc01800edcde2dfc8b6c9cb84b2e1a45b5d54c0e0b069b490e3"
+      },
+      {
+        "href": "xhtml/notes-ch7.xhtml",
+        "sha256": "108b0106cbd26cf12015930b4cf154e2bdd99872c38930b675db4c06bceda176"
+      },
+      {
+        "href": "xhtml/notes-ch8.xhtml",
+        "sha256": "3705221e81272b7ee23d56b772d2f9c3e23c1af63ef072c7a5548cdfc38dde2f"
+      },
+      {
+        "href": "xhtml/acknowledgments.xhtml",
+        "sha256": "67d79525c1ef5dda10a4447da73bcb272f97ea24e7f9f277872fd610d3a8443f"
+      },
+      {
+        "href": "xhtml/index.xhtml",
+        "sha256": "6f60d47d475e744c6c74b04aba5dc8723ef128eaab907df948f673a9f8c650e9"
+      },
+      {
+        "href": "xhtml/noteaboutauthor.xhtml",
+        "sha256": "dbc41a62c92a50929b6078a3fe4f4e08323e0daebfdfd4f93e7272d797c06354"
+      },
+      {
+        "href": "xhtml/newsletter.xhtml",
+        "sha256": "d1b92dee499318393f3826b74fa8504980b973c60123413f74b770a79d53d94a"
+      },
+      {
+        "href": "xhtml/contents.xhtml",
+        "sha256": "fb5c70f941d5d8671e03209c6eceafc96b968c60856217db42b00ef1c399641f"
+      },
+      {
+        "href": "xhtml/copyright.xhtml",
+        "sha256": "b468d4fe5a7c9839aae805bd1e6c9b81a7107f20cdd751169b4ac5e8f6f7f9a9"
+      },
+      {
+        "href": "xhtml/footnote.xhtml",
+        "sha256": "400b137629345056d9f072d780a064daab057490678060b190c5e18b28d4c2ad"
       }
     ]
   }

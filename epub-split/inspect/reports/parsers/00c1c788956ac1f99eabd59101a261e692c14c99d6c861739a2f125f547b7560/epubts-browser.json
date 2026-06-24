@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -69,6 +69,24 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "fbf5c7d070ad405bcb8b7596cd58c834e7670c35d42095e63c3375d5b1395d36"
+      },
+      {
+        "href": "content/(ebook_PDF)_-_Phillip_K_Dick_-_Do_Androids_Dream_of_Electric_Sheep_(111_pages)_split_0.html",
+        "sha256": "025eb66803e8a9bab96b1571a0b07c35bd861e1cd444cee2e96e32f312223483"
+      },
+      {
+        "href": "content/(ebook_PDF)_-_Phillip_K_Dick_-_Do_Androids_Dream_of_Electric_Sheep_(111_pages)_split_1.html",
+        "sha256": "413d473de6f021f9a1b9f7319f11b3ec75ac8377239a576a86c3d518265f7e6d"
+      },
+      {
+        "href": "content/(ebook_PDF)_-_Phillip_K_Dick_-_Do_Androids_Dream_of_Electric_Sheep_(111_pages)_split_2.html",
+        "sha256": "e823111c9efefad4c8a79eecb57e494ad08a905ed1ee4a93c3698e675fab584d"
       }
     ]
   }

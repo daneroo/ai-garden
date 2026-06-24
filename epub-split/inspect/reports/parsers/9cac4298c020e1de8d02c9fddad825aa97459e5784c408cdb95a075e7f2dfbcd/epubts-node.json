@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -811,6 +811,140 @@
         "id": "tocncx",
         "href": "toc.ncx",
         "mediaType": "application/x-dtbncx+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "html/cover.xhtml",
+        "sha256": "253ce19ed1a11d0651b9e5cf5165c4be18125860bc79170456aa422a6c3aae43"
+      },
+      {
+        "href": "html/ch01.xhtml",
+        "sha256": "46ccb9bb9bdebc66203e5519fd40f0794ee93156839e8f52edefacbfd0615811"
+      },
+      {
+        "href": "html/ch04.xhtml",
+        "sha256": "34b50e4b9e27701b3f51c112f558f915652c3dbea52d72272f34b02369c33485"
+      },
+      {
+        "href": "html/ch02.xhtml",
+        "sha256": "acf8d87b322f0157f7a79c31956bdc8975a76f0d7aca979c89bc0063af49cfe7"
+      },
+      {
+        "href": "html/ch05.xhtml",
+        "sha256": "ad468ab5e231d6ea1fc8c619a5e7ee67474ce96612dea0bf828e4d6985c2b2e9"
+      },
+      {
+        "href": "html/ch06.xhtml",
+        "sha256": "3e0504025b0b070df124757a3dfbf04a8f3faa17a89ea93352857d45b05b5bc3"
+      },
+      {
+        "href": "html/ch07.xhtml",
+        "sha256": "0cbff77c99393c0b09f7c247d531a3949c7383799be945ec1eef2eeedc05b0fe"
+      },
+      {
+        "href": "html/ch08.xhtml",
+        "sha256": "d1d3fb04e6bedd2b47c397eb93da37af605dcd18bfbff89bdf3f58d82cc52110"
+      },
+      {
+        "href": "html/ch09.xhtml",
+        "sha256": "04e27ec9624f8b725bce0f01953cc90d453ca8469779d88d3a7a8c82df1de06d"
+      },
+      {
+        "href": "html/ch10.xhtml",
+        "sha256": "01b79450acfbf0cdf3777adbe70bb45a2fc03a4bc6871c0b5db4d1a3fc80cf37"
+      },
+      {
+        "href": "html/ch11.xhtml",
+        "sha256": "6a8c96c0363f03a1f6814324b499b2102d48fb21a2aeadfa42939ab84d80acc2"
+      },
+      {
+        "href": "html/ch12.xhtml",
+        "sha256": "04a7798de4e4de2d7d317369ce092fd4167ce5e8028569a9cefe3c9d785b3bb7"
+      },
+      {
+        "href": "html/ch13.xhtml",
+        "sha256": "75ed3644f434113d495792b072bdecde6cf11618c36f9868eefadb2844ccc0dd"
+      },
+      {
+        "href": "html/ch14.xhtml",
+        "sha256": "b0f4dbfba1c1493273705d259dc43735febac1902cad2d8f3b9407108d800fbd"
+      },
+      {
+        "href": "html/ch15.xhtml",
+        "sha256": "1ddcd0d3f25f4fffa390f3ab854c0b44d1200914bae439c725bb39c1b3814001"
+      },
+      {
+        "href": "html/ch16.xhtml",
+        "sha256": "904eb3d132214f7e3b4d82fe2a6d02a2d1a3c36f5035de87ef5825565572d978"
+      },
+      {
+        "href": "html/ch17.xhtml",
+        "sha256": "b5184a94ae785c1b80136d73601e72cd16a17646f277ffd83aba3469b73ad98d"
+      },
+      {
+        "href": "html/ch18.xhtml",
+        "sha256": "ed2d7cd903af14b078bac9c58300659a20f7feae0083383ea5cb6f629e8399b8"
+      },
+      {
+        "href": "html/ch19.xhtml",
+        "sha256": "81c59cb9e1f82238b90a21f2b67f2af96cbee1f4ce76d7eef309e583a778b5c1"
+      },
+      {
+        "href": "html/ch20.xhtml",
+        "sha256": "428fe2825117ea52703da38eaa045ff0c4a360a34eee1ea491a2888bba27f3c8"
+      },
+      {
+        "href": "html/ch21.xhtml",
+        "sha256": "7f3490c547cf8b34a4c8301f26e2910cd71d7228b8df2a0bfa340de26a4b19ee"
+      },
+      {
+        "href": "html/ch22.xhtml",
+        "sha256": "d2edc54f5dc3238711023f6a022adc5e1740fe6c68e60674599e57b79da99c03"
+      },
+      {
+        "href": "html/ch23.xhtml",
+        "sha256": "ffdd646e8de443d9ff57262d125513db8e09ddf19127f4cbd3b071669b91ad9b"
+      },
+      {
+        "href": "html/ch24.xhtml",
+        "sha256": "23e6efd0b444f1e37c1a486b69e838ae0e8599be063f8571aed5f49f9421efa9"
+      },
+      {
+        "href": "html/ch25.xhtml",
+        "sha256": "a77d0c8a4bc47e1a7a1493d1ff105dd85ff336c78e8937aac67294a13eba89e5"
+      },
+      {
+        "href": "html/ch26.xhtml",
+        "sha256": "93200f1f508de3fc23f0d5a0a921612e5378c2f5e738d59a61765e06f9dc4740"
+      },
+      {
+        "href": "html/ch27.xhtml",
+        "sha256": "cdbc56c8ee4d94d928610ba00f178eac9e2c0ed1812ee31b64d1539c1bba9166"
+      },
+      {
+        "href": "html/ch28.xhtml",
+        "sha256": "2d00bfff829291a811b3e137dc8810602dc4661096beca8c05610827a420125d"
+      },
+      {
+        "href": "html/ch29.xhtml",
+        "sha256": "dd2979cd2585ee850eaf27fe22a9fbb3f5240afc9f73323b216a5ece25163435"
+      },
+      {
+        "href": "html/ch30.xhtml",
+        "sha256": "fdd774e30344c7b0c509de1891ca198ad93912c7d2bbbc3c95098477dd2ee09f"
+      },
+      {
+        "href": "html/ch31.xhtml",
+        "sha256": "d9add83e3e728c7c52061861fc889839a82de95cdeaad14e41ad956ae827a9dd"
+      },
+      {
+        "href": "html/ch32.xhtml",
+        "sha256": "aebbf12f6390bc68c2586f9dd7e24f03bcf6b54446b95d2421490239e263add8"
+      },
+      {
+        "href": "html/ch03.xhtml",
+        "sha256": "1d972f6f8af225252e245d8ed05e27335a159fd104be4ad54a05e26e459f0d73"
       }
     ]
   }

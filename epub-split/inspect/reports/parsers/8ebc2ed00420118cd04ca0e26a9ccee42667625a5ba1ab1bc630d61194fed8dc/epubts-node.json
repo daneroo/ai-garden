@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -101,6 +101,40 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "7110dc761fe77ed2efbafb0fd861ef8c114dbe5e9957193d9a1b591fec7e69de"
+      },
+      {
+        "href": "Le Guin, Ursula K - The Left Hand of Darkness_split_000.htm",
+        "sha256": "b56ccc2b6943645b96c1668e3ef01f7e9e0292526bca0d77ab48545fde331f40"
+      },
+      {
+        "href": "Le Guin, Ursula K - The Left Hand of Darkness_split_001.htm",
+        "sha256": "c4bf7929b5ea74dc110ddd0f5fb4d478c05decc1b9515220049857d2e945ccfa"
+      },
+      {
+        "href": "Le Guin, Ursula K - The Left Hand of Darkness_split_002.htm",
+        "sha256": "7d22e929441cf7511ac7323a5d233922efcef7187a5af9fbe7e85c6384f10f9b"
+      },
+      {
+        "href": "Le Guin, Ursula K - The Left Hand of Darkness_split_003.htm",
+        "sha256": "15615071e4664e46bf5447056834c968fc49f163682c3d2a9f4c7856b6f6fb7d"
+      },
+      {
+        "href": "Le Guin, Ursula K - The Left Hand of Darkness_split_004.htm",
+        "sha256": "2738f37ded0e8b874c1ec47e26ced6943dbc8d3c8ab14b76836ddbfa79f535ff"
+      },
+      {
+        "href": "Le Guin, Ursula K - The Left Hand of Darkness_split_005.htm",
+        "sha256": "17de2f8e0316fd1797beccd9ee8924b1737063d00f69d908ad5c2a2ef89ef5d5"
+      },
+      {
+        "href": "Le Guin, Ursula K - The Left Hand of Darkness_split_006.htm",
+        "sha256": "2a03a7a8af17613ff8e03ff7ae9e94c2256153405b760ecad45ecf96cfcf4bf6"
       }
     ]
   }

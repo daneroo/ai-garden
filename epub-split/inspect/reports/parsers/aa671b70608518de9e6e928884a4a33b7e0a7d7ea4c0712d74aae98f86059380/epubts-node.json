@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -61,6 +61,20 @@
         "id": "toc.ncx",
         "href": "toc.ncx",
         "mediaType": "application/x-dtbncx+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "cover.xhtml",
+        "sha256": "bc7b77d2f056744f636a9724810ab0adbc031dfbbd6b7f8de9356ef33f5e7065"
+      },
+      {
+        "href": "ch01.xhtml",
+        "sha256": "fa0e9ab9c9ff9ca382d6e859d2bffadd8b285ec4420c93d4eda2b19482bbef40"
+      },
+      {
+        "href": "toc01.xhtml",
+        "sha256": "3e2c9a466b087f8aa5e614c313b97a0eb139bcefbd06b0d30840a282bd60d408"
       }
     ]
   }

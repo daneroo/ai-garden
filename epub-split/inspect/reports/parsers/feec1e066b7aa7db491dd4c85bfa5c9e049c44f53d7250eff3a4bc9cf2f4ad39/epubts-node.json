@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -357,6 +357,116 @@
         "id": "urras",
         "href": "OEBPS/urras.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "49ec7132b9ca995d2d93b41140410e9f4a36dfc8f948bb9359a28318d65360e1"
+      },
+      {
+        "href": "OEBPS/dispossessedthe_cover.xhtml",
+        "sha256": "354332be658cdc5ec60f792fd5c0965c2411e118497337fff4af60403d735ab1"
+      },
+      {
+        "href": "OEBPS/title.xhtml",
+        "sha256": "0a8fd12227f8bc922b9f4f12af2858cc17c0b5f8d8d9acf9479846d7a0a4772c"
+      },
+      {
+        "href": "OEBPS/dedication.xhtml",
+        "sha256": "75644321b0463aff5823a7ca1d4defc2d9d147876959293184bf172c9808ada9"
+      },
+      {
+        "href": "OEBPS/anarres.xhtml",
+        "sha256": "762460374d37e0603a926a8690f7e2e1a82e5527cf7d6695570f740c05ee85de"
+      },
+      {
+        "href": "OEBPS/urras.xhtml",
+        "sha256": "9a6eb58fadd11d89a5860f03b59173c36fa335bb10ba1636c3f36b8edeb97bb0"
+      },
+      {
+        "href": "OEBPS/dispossessedthe.xhtml",
+        "sha256": "d74b5957682b48c3656c02bb61bfd8594c0b616f764cb52bb0ebda1471c3a06c"
+      },
+      {
+        "href": "OEBPS/Chapter1.xhtml",
+        "sha256": "40b75754c94d9c75092feed2197b9e426297a4a32559de0eecfe94f4b95df41e"
+      },
+      {
+        "href": "OEBPS/Chapter2.xhtml",
+        "sha256": "351cfc6a9966a03c0022ecb043481e3c8a81cf70dde7ced9a78a490cac1efe0a"
+      },
+      {
+        "href": "OEBPS/Chapter3.xhtml",
+        "sha256": "9aad2498c2f4a49038ac28457f5c02a23e07839564550be388fa817feb6e5c63"
+      },
+      {
+        "href": "OEBPS/Chapter4.xhtml",
+        "sha256": "29e2151dd9767dcf0c6f4ad70b2560e262a918bff872cb537b54ce003aa59f94"
+      },
+      {
+        "href": "OEBPS/Chapter5.xhtml",
+        "sha256": "1fedf272d3f08ccbbbf25773afc9e067fe4f14cbec40a51c15f22598f39c0973"
+      },
+      {
+        "href": "OEBPS/Chapter6.xhtml",
+        "sha256": "638a53f9cd19ad6fe91b6ccab22c756fe8496b8f956085cac5482db5cd241103"
+      },
+      {
+        "href": "OEBPS/Chapter7.xhtml",
+        "sha256": "2142dead0d01d261c4d9462d6cf0cb0e1072d931edff18e3f32f1d20887fcda9"
+      },
+      {
+        "href": "OEBPS/Chapter8.xhtml",
+        "sha256": "00d209a3884cbb2d10606063cdb1a266da11f0979349d9a952699d994c9f8910"
+      },
+      {
+        "href": "OEBPS/Chapter9.xhtml",
+        "sha256": "3c682fbc3aa2ad680b9dc85eb9521e9dc52cda36ced119640b7571fcaf4d8a45"
+      },
+      {
+        "href": "OEBPS/Chapter10.xhtml",
+        "sha256": "659c4102c15815503c7ebf69ddec034dd3243e6415969f901e6a74ae3a8a717a"
+      },
+      {
+        "href": "OEBPS/Chapter11.xhtml",
+        "sha256": "9fe363d20a385d702d91ae9ec9dba0fd0de7b4b2c92281395ef3c3b238b937f7"
+      },
+      {
+        "href": "OEBPS/Chapter12.xhtml",
+        "sha256": "0fdc6b6195485166eb6b123a34baf6b76ecba088f58e808549e478145b6333e7"
+      },
+      {
+        "href": "OEBPS/Chapter13.xhtml",
+        "sha256": "2cc40b42a4d46211ac0aaa27787c5f6087197e07dce5369437a4495788026838"
+      },
+      {
+        "href": "OEBPS/footnote1.xhtml",
+        "sha256": "5bb79f88b30a59bb527a8a4aba431aca5ccd93d1c329e0461915530dc51f8ed5"
+      },
+      {
+        "href": "OEBPS/astudyguidetothedispossessed.xhtml",
+        "sha256": "a94b6f95d903ea4c47ba481d250404e399b6bb211b537af9d5e53660a668ac72"
+      },
+      {
+        "href": "OEBPS/abouttheauthor.xhtml",
+        "sha256": "0b817cdbb8b949956a34f539db9fcf3752b36b44f9fa2e5f6f65e92a79eb267c"
+      },
+      {
+        "href": "OEBPS/otherbooksbyursulak.LeGuin.xhtml",
+        "sha256": "886c4d1483020521de8166ec09e0bf98662a414e01aa992cd0bb11a4974e4c33"
+      },
+      {
+        "href": "OEBPS/credits.xhtml",
+        "sha256": "b765fab7adcf9422315cd975c6020cb36e11e13c26666838e7291496d226a6b6"
+      },
+      {
+        "href": "OEBPS/copyright.xhtml",
+        "sha256": "1d13b0b923d625c7b593830ec897e4d04afc859c528c11fb7b4203d06438bf32"
+      },
+      {
+        "href": "OEBPS/aboutthepublisher.xhtml",
+        "sha256": "1e9e12e0510ec747b0bb2aae3172640f0cbe15ffc1da879dc47dc55d86d9167e"
       }
     ]
   }

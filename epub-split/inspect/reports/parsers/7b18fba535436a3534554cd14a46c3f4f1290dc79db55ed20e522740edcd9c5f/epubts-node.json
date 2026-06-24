@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -74,6 +74,28 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "7110dc761fe77ed2efbafb0fd861ef8c114dbe5e9957193d9a1b591fec7e69de"
+      },
+      {
+        "href": "Cook, Glen - Black Company 02 - Shadows Linger_split_000.htm",
+        "sha256": "bd02de3667b09f829835fb6379f9a0b1ef9ab65e7cf4a60590371da14b9c552a"
+      },
+      {
+        "href": "Cook, Glen - Black Company 02 - Shadows Linger_split_001.htm",
+        "sha256": "79340fca02632c1673272e89921ee175d25c7247d52f3160b69c5e5895b838c6"
+      },
+      {
+        "href": "Cook, Glen - Black Company 02 - Shadows Linger_split_002.htm",
+        "sha256": "64c58f18f93100460f0348a2c1cbb917d8be6822d2b227eb07e866c75bbd1abb"
+      },
+      {
+        "href": "Cook, Glen - Black Company 02 - Shadows Linger_split_003.htm",
+        "sha256": "36439efe53ce9e5ba7dbeef12ed72be9d5ced61add109dc7497f139c17fec920"
       }
     ]
   }

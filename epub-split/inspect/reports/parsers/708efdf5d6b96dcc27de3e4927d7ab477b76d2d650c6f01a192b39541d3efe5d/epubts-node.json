@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -74,6 +74,28 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "fd546905616714225780bb0d5af4da037aaee36787c8d7c121a5e2e8386f3621"
+      },
+      {
+        "href": "Gene Wolfe - The Shadow of the Torturer_split_000.htm",
+        "sha256": "0c62fda56c882f8d4f25a749d949f3feb1575f13ba56483d5c39d6d08066c82d"
+      },
+      {
+        "href": "Gene Wolfe - The Shadow of the Torturer_split_001.htm",
+        "sha256": "329b27839b60e49d650543d6af2d9aac977a5397785120b815f83ff04396c26d"
+      },
+      {
+        "href": "Gene Wolfe - The Shadow of the Torturer_split_002.htm",
+        "sha256": "2c8b718fbb63a6954cc08c3523b13719bd6bf70e937006a37e3d7ba17ae47b69"
+      },
+      {
+        "href": "Gene Wolfe - The Shadow of the Torturer_split_003.htm",
+        "sha256": "8664c7ce9587c1f0c027ba51343fe48b9ddc6ee766cbc0b8f58f46e6a938954f"
       }
     ]
   }

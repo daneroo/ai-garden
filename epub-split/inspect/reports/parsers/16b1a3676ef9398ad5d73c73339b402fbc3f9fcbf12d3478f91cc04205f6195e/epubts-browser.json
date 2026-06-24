@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -73,6 +73,28 @@
         "id": "titlepage",
         "href": "titlepage.xhtml",
         "mediaType": "application/xhtml+xml"
+      }
+    ],
+    "spineHashes": [
+      {
+        "href": "titlepage.xhtml",
+        "sha256": "7110dc761fe77ed2efbafb0fd861ef8c114dbe5e9957193d9a1b591fec7e69de"
+      },
+      {
+        "href": "Cook, Glen - Black Company 06 - Bleak Seasons_split_000.htm",
+        "sha256": "2d8b6bdd6eeec030b27cc278c78b92b9b54aa1780252644ed19de42f96d0b926"
+      },
+      {
+        "href": "Cook, Glen - Black Company 06 - Bleak Seasons_split_001.htm",
+        "sha256": "ed253e503381681c48f9e1d83d4fb14087caf41b180ec425cad9431a8ad9fc23"
+      },
+      {
+        "href": "Cook, Glen - Black Company 06 - Bleak Seasons_split_002.htm",
+        "sha256": "b95e9e6012cfbb893db0b1093b5a87c0187c53d65b26f5705200f1a3c025f9fc"
+      },
+      {
+        "href": "Cook, Glen - Black Company 06 - Bleak Seasons_split_003.htm",
+        "sha256": "325c83fa6d93e6bdc7f9dbb6f70ab906b3c2977618268409e278bd9b0a9154f9"
       }
     ]
   }
