@@ -369,24 +369,31 @@ depend on them. This is the substantive corpus work; Gate 7 is only the optional
 collapse mode. The `corpus.ts` renamed in Gate 0B already does discovery +
 hashing — formalize it here.
 
-- [ ] `corpus.ts`: discovery + SHA-256 hashing + content-addressed inventory
-      (group occurrences by `sha256`), and the found/deduped/distinct accounting
-      per root in **config scan order (test, space, drop)**. Default behaviour is
-      occurrence-level (`deduplicate: false`).
-- [ ] Implement the report writer for the layout in "Report layout" above:
-      `parsers/<sha256>/…`, `comparisons/<sha256>/…`, `details/…`, `run.json`,
-      top-level `index.md` (corpora table + open counts; no histograms), and the
-      per-pair `<a>--<b>.md` files (empty/absent until comparisons exist in
-      Gate 6). Parsers named explicitly; no timestamp in `run.json`.
-- [ ] Atomic replacement (reuse the existing `.reports-next` mechanism).
-- [ ] Writer accepts (currently empty) parser/comparison collections so adapters
-      in Gates 3–6 just feed it; parse-once-per-`sha256` reuse lives here.
-- [ ] Unit test: synthetic inventory + `ParserOutput`/`ComparisonResult` values;
-      assert the on-disk tree, discovery table, and `index.md` render
-      deterministically and name parsers explicitly.
+- [x] `corpus.ts`: pure `buildInventory(rootOrder, occurrences)` groups by
+      `sha256` and tallies found/deduped/distinct per root in **scan order (test,
+      space, drop)**; IO wrapper `discoverInventory(roots)` for the runner.
+      Occurrence-level default (collapse mode stays Gate 7).
+- [x] `report-writer.ts`: `writeReport(outputDir, input)` renders the full
+      layout — `parsers/<sha256>/…`, `comparisons/<sha256>/…`, `details/…`,
+      `run.json`, split `index.md` (corpora table + occurrence-weighted open
+      counts + open-failed list, no histograms) and per-pair `<a>--<b>.md`
+      (header + per-field outcomes + not-compared + mismatch list). Built
+      complete now so Gates 3–6 just feed data. Parsers named explicitly; no
+      timestamp in `run.json`. `ComparisonResult` schema added to `schema.ts`
+      (shape only; `compareBook`/parity projection stay Gate 6).
+- [x] Atomic replacement via `<outputDir>.next` / `.previous` swap.
+- [x] Writer takes content-addressed `parserOutputs` / `comparisons` maps (one
+      per `sha256`); content-addressing enforces parse-once-per-`sha256`.
+- [x] Unit tests: `corpus.test.ts` (accounting, scan order, multi-root grouping)
+      and `report-writer.test.ts` (synthetic inventory + ParserOutput +
+      ComparisonResult → on-disk tree, occurrence-weighted counts, parsers named
+      explicitly, byte-identical across two writes, no timestamp/machine-path
+      leaks).
 
-Verifiable outcome: TYPECHECK + TEST green. A sample `reports/` tree from
-synthetic inputs, byte-identical across two writes. No corpus run.
+Verifiable outcome: TYPECHECK + TEST green (48 tests: 46 pass / 2 todo). Sample
+`reports/` tree byte-identical across two writes. No corpus run. NOTE: the new
+writer is not yet wired into the runner — old `index.ts`/`reports.ts` remain
+untouched (and unrun) until Gate 3 begins the rewire.
 
 ### Partial runner state (Gates 3–5)
 
@@ -534,3 +541,4 @@ matches the shipped tool.
 - 2026-06-23 · Gate 0A · baseline frozen: 1,304 occ / 756 distinct / 538 multi-root; node×browser title mismatch 9, node×storyteller 4 · chore(validate): freeze parity baseline
 - 2026-06-23 · Gate 0B · 7 source files renamed, storyteller-node→storyteller; TYPECHECK clean, build:browser ok, no report regeneration · refactor(validate): rename sources, storyteller-node→storyteller
 - 2026-06-23 · Gate 1 · zod@4 ParserOutput schema + 3 EPUB fixtures + 6 sample outputs; TEST 26 pass / 2 todo / 0 fail, TYPECHECK clean, no corpus run · feat(validate): add ParserOutput zod schema, fixtures, and tests
+- 2026-06-23 · Gate 2 · content-addressed corpus inventory + full report-writer (new layout) + ComparisonResult shape; TEST 46 pass / 2 todo, byte-identical reruns, TYPECHECK clean, no corpus run · (pending commit)

@@ -141,3 +141,56 @@ export type Meta = z.infer<typeof metaSchema>;
 export type Metadata = z.infer<typeof metadataSchema>;
 export type Content = z.infer<typeof contentSchema>;
 export type ParserOutput = z.infer<typeof parserOutputSchema>;
+
+// ── Comparison output ───────────────────────────────────────────────────────
+//
+// A pairwise comparison of two successfully-opened ParserOutputs. The runner
+// decides comparability from openStatus *before* calling the comparator, so a
+// ComparisonResult only ever describes two opened books (open failures and
+// epub2-unsupported are runner-level concerns, never comparison concerns).
+//
+// This is the result *shape*. The comparator logic that produces it
+// (compareBook, exact-lexical compareField) and the parity projection land in
+// Gate 6; the report writer (Gate 2) only renders whatever results it is given.
+// Like ParserOutput, the sha256 is the on-disk path key
+// (comparisons/<sha256>/<parserA>--<parserB>.json), never a stored field.
+
+export const COMPARISON_RESULT_SCHEMA_VERSION = 1;
+
+// Five mutually-exclusive per-field outcomes. `a`/`b` are the values from
+// parserA/parserB. Human-readable reports never print a/b — they name the
+// parsers explicitly (see the report writer); the a/b form is schema-internal.
+export const pairFieldStatusSchema = z.enum([
+  "agree", // both present, equal
+  "differ", // both present, unequal
+  "a-only", // a present, b null
+  "b-only", // a null, b present
+  "both-null", // neither present
+]);
+
+export const fieldComparisonSchema = z.strictObject({
+  status: pairFieldStatusSchema,
+  a: z.string().nullable(),
+  b: z.string().nullable(),
+});
+
+// The v1 comparison covers the three metadata fields only, matching Content.
+export const metadataComparisonSchema = z.strictObject({
+  title: fieldComparisonSchema,
+  creator: fieldComparisonSchema,
+  date: fieldComparisonSchema,
+});
+
+export const comparisonResultSchema = z.strictObject({
+  schemaVersion: z.literal(COMPARISON_RESULT_SCHEMA_VERSION),
+  // Carried from each meta.parser for reporting only — the comparator itself is
+  // parser-agnostic and knows nothing about which parser produced an output.
+  parserA: parserNameSchema,
+  parserB: parserNameSchema,
+  metadata: metadataComparisonSchema,
+});
+
+export type PairFieldStatus = z.infer<typeof pairFieldStatusSchema>;
+export type FieldComparison = z.infer<typeof fieldComparisonSchema>;
+export type MetadataComparison = z.infer<typeof metadataComparisonSchema>;
+export type ComparisonResult = z.infer<typeof comparisonResultSchema>;
