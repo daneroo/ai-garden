@@ -70,7 +70,10 @@ export async function writeReport(
   await rm(tempDir, { recursive: true, force: true });
   await mkdir(tempDir, { recursive: true });
 
-  const files = renderFiles(input);
+  const rendered = renderFiles(input);
+  const files = new Map(
+    [...rendered].map(([path, contents]) => [path, sanitizeTempPaths(contents)])
+  );
   for (const [relativePath, contents] of files) {
     const target = join(tempDir, relativePath);
     await mkdir(dirname(target), { recursive: true });
@@ -254,10 +257,10 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
   let spineHashDiffer = 0;
   let tocAgree = 0;
   let tocDiffer = 0;
-  let aOrphanBooks = 0;
-  let bOrphanBooks = 0;
-  let aOrphanTotal = 0;
-  let bOrphanTotal = 0;
+  let aMissBooks = 0;
+  let bMissBooks = 0;
+  let aMissTotal = 0;
+  let bMissTotal = 0;
   let totalSpinePositions = 0;
   let totalPerBookDistinctShas = 0;
   let totalUnreadablePositions = 0;
@@ -287,8 +290,8 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
         else tocDiffer += 1;
         const aOutput = input.parserOutputs.get(entry.sha256)?.get(pair.a);
         const bOutput = input.parserOutputs.get(entry.sha256)?.get(pair.b);
-        if (aOutput) { const o = tocOrphans(aOutput); if (o.length > 0) { aOrphanBooks += 1; aOrphanTotal += o.length; } }
-        if (bOutput) { const o = tocOrphans(bOutput); if (o.length > 0) { bOrphanBooks += 1; bOrphanTotal += o.length; } }
+        if (aOutput) { const m = tocHrefDirectMisses(aOutput); if (m.length > 0) { aMissBooks += 1; aMissTotal += m.length; } }
+        if (bOutput) { const m = tocHrefDirectMisses(bOutput); if (m.length > 0) { bMissBooks += 1; bMissTotal += m.length; } }
         const aHashes = aOutput?.content?.spineHashes ?? [];
         const title = input.parserOutputs.get(entry.sha256)?.get(pair.a)?.content?.metadata.title ?? null;
         totalSpinePositions += aHashes.length;
@@ -373,14 +376,18 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
     `| agree | ${tocAgree} |`,
     `| differ | ${tocDiffer} |`,
     "",
-    "### TOC href integrity",
+    "### TOC href direct-manifest misses",
     "",
-    "TOC hrefs (fragment stripped) absent from the parser's own manifest — per-parser self-check.",
+    "Per-parser diagnostic: TOC hrefs (fragment stripped) with no DIRECT match in",
+    "the parser's own manifest. Most misses are valid nav-relative links (the spec",
+    "allows hrefs relative to the nav document) and would match once resolved",
+    "against the nav base — they are NOT broken links. Treat as a rough signal, not",
+    "a validity verdict; precise resolution is deferred (needs nav-base capture).",
     "",
-    "| parser | books with orphans | total orphaned hrefs |",
+    "| parser | books with misses | direct-manifest misses |",
     "|---|---:|---:|",
-    `| ${pair.a} | ${aOrphanBooks} | ${aOrphanTotal} |`,
-    `| ${pair.b} | ${bOrphanBooks} | ${bOrphanTotal} |`,
+    `| ${pair.a} | ${aMissBooks} | ${aMissTotal} |`,
+    `| ${pair.b} | ${bMissBooks} | ${bMissTotal} |`,
     "",
     "## Not compared",
     "",
@@ -485,16 +492,19 @@ function renderDetail(input: ReportInput, entry: CorpusEntry): string {
     {
       const aOut = input.parserOutputs.get(entry.sha256)?.get(pair.a);
       const bOut = input.parserOutputs.get(entry.sha256)?.get(pair.b);
-      const aOrphans = aOut ? tocOrphans(aOut) : [];
-      const bOrphans = bOut ? tocOrphans(bOut) : [];
-      if (result.toc.status === "differ" || aOrphans.length > 0 || bOrphans.length > 0) {
+      const aMisses = aOut ? tocHrefDirectMisses(aOut) : [];
+      const bMisses = bOut ? tocHrefDirectMisses(bOut) : [];
+      if (result.toc.status === "differ" || aMisses.length > 0 || bMisses.length > 0) {
         lines.push("", `### TOC`, "");
         if (result.toc.status === "differ") lines.push("Label tree: differ.", "");
-        if (aOrphans.length > 0) {
-          lines.push(`Orphaned hrefs in ${pair.a} (not in manifest):`, ...aOrphans.map((h) => `- ${h}`), "");
+        if (aMisses.length > 0 || bMisses.length > 0) {
+          lines.push("Direct-manifest misses (mostly valid nav-relative hrefs, not broken):", "");
         }
-        if (bOrphans.length > 0) {
-          lines.push(`Orphaned hrefs in ${pair.b} (not in manifest):`, ...bOrphans.map((h) => `- ${h}`), "");
+        if (aMisses.length > 0) {
+          lines.push(`${pair.a}:`, ...aMisses.map((h) => `- ${h}`), "");
+        }
+        if (bMisses.length > 0) {
+          lines.push(`${pair.b}:`, ...bMisses.map((h) => `- ${h}`), "");
         }
       }
     }
@@ -505,29 +515,33 @@ function renderDetail(input: ReportInput, entry: CorpusEntry): string {
 
 // ── TOC href integrity ────────────────────────────────────────────────────────
 
-// Collect TOC hrefs (fragment stripped, deduplicated) that are absent from the
-// parser's own manifest href set. Each parser uses its own href baseline, so
-// this is a per-parser self-consistency check, not a cross-parser comparison.
-function tocOrphans(output: ParserOutput): string[] {
+// Collect TOC hrefs (fragment stripped, deduplicated) that have no DIRECT
+// string match in the parser's own manifest. This is a coarse per-parser
+// diagnostic, NOT a validity verdict: the EPUB spec permits nav hrefs relative
+// to the nav document, so a miss is usually a valid nav-relative link that
+// would match once resolved against the nav base (which we do not yet capture).
+// Genuine misses (e.g. storyteller's leaked temp paths, cross-directory nav)
+// are mixed in but indistinguishable here until base resolution lands.
+function tocHrefDirectMisses(output: ParserOutput): string[] {
   const content = output.content;
   if (!content) return [];
   const manifestHrefs = new Set(content.manifest.map((m) => m.href));
   const seen = new Set<string>();
-  const orphans: string[] = [];
+  const misses: string[] = [];
   function walk(items: TocItem[]): void {
     for (const item of items) {
       if (item.href !== null) {
         const bare = item.href.split("#")[0];
         if (bare && !manifestHrefs.has(bare) && !seen.has(bare)) {
           seen.add(bare);
-          orphans.push(bare);
+          misses.push(bare);
         }
       }
       walk(item.subitems);
     }
   }
   walk(content.toc);
-  return orphans;
+  return misses;
 }
 
 // ── helpers ─────────────────────────────────────────────────────────────────
@@ -835,9 +849,36 @@ function json(value: unknown): string {
   return JSON.stringify(value, null, 2);
 }
 
+// Storyteller leaks its filesystem extraction path into some TOC hrefs (its
+// nav resolver escapes the in-memory adapter for a handful of books). The raw
+// path is faithful but non-deterministic (random temp dir + uuid per run), so
+// we collapse the temp root to a stable <temp-root> marker at write time —
+// keeping ParserOutput faithful in memory while reports stay byte-reproducible.
+// The marker is deliberately obvious: it flags an unresolved storyteller path,
+// not a real href. We do NOT reconstruct the epub-relative form (the boundary
+// is not reliably markable across both leak shapes); the remainder after the
+// temp root is preserved as-is, which is enough to reach the content.
+export function sanitizeTempPaths(contents: string): string {
+  return contents
+    // Shape 1: …/var/folders/<dir>/<rand>/T/storyteller-platform-epub-zip-<uuid>.epub/<rest>
+    // Collapse the whole temp root through ".epub"; <rest> is preserved.
+    .replace(/var\/folders\/[^"\s]*?\.epub/g, "<temp-root>")
+    // Shape 2: …/var/folders/<dir>/<rand>/<content-dir>/<rest> (no ".epub").
+    // Collapse only the var/folders/<dir>/<rand> prefix; <content-dir>/<rest>
+    // (which happens to be epub-relative) is preserved.
+    .replace(/var\/folders\/[^/"\s]+\/[^/"\s]+/g, "<temp-root>");
+}
+
 function assertNoMachinePaths(files: ReadonlyMap<string, string>): void {
   for (const contents of files.values()) {
-    if (contents.includes("/Users/") || contents.includes("/Volumes/")) {
+    // var/folders/ is the macOS temp root; if it survives sanitizeTempPaths a
+    // new leak shape has appeared and the run must fail loudly, not ship a
+    // non-deterministic report.
+    if (
+      contents.includes("/Users/") ||
+      contents.includes("/Volumes/") ||
+      contents.includes("var/folders/")
+    ) {
       throw new Error("Absolute machine path leaked into a report file");
     }
   }

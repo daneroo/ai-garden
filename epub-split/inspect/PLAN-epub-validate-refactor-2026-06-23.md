@@ -535,59 +535,69 @@ New manifest findings recorded.
 - [x] `compareBook` gains `TocComparison { status }`.
 - [x] Schema: ParserOutput v5, ComparisonResult v6.
 - [x] Label normalization (CRLF→LF, trim) applied at comparison time in `compare.ts` only — raw labels preserved in `ParserOutput`.
-- [x] Storyteller: `getTableOfContents({ resolveToRoot: true })` normalises hrefs to epub-root-relative paths.
+- [x] Comparison is **labels + tree shape only**; hrefs excluded (parsers use incompatible href baselines — see findings).
+- [x] Storyteller: `getTableOfContents()` with no options (raw nav-relative hrefs). `resolveToRoot` was tried and reverted — see findings.
+- [x] TOC href direct-manifest-miss diagnostic per parser (coarse; not a validity verdict).
+- [x] Storyteller temp-path leak sanitized to `<temp-root>` at write time for determinism.
 
 Verifiable outcome: TYPECHECK + TEST + DETERMINISM. Earlier-section parity holds.
 
-#### Gate 9 corpus findings
+#### Gate 9 corpus findings (verified against full corpus run)
 
-**Storyteller TOC href canonicalisation — one residual case.**
+**Cross-parser TOC comparison: labels + tree shape only.** Hrefs are excluded
+because the parsers use fundamentally different, incompatible baselines:
+- epub-ts (node and browser): nav-document-relative (e.g. `001_cover.xhtml` when
+  nav lives in `xhtml/`).
+- storyteller: also nav-relative after the `resolveToRoot` revert.
 
-`resolveToRoot: true` fixes non-deterministic temp-dir paths for books whose nav
-document sits in a subdirectory (e.g. `Text/nav.xhtml`). One book remains
-non-canonical after the fix:
+Comparing hrefs is not meaningful; label hierarchy is the semantically meaningful
+content. Results on the full corpus:
+- **node × storyteller: 213 agree / 0 differ.**
+- **node × browser: 754 agree / 2 differ.** Both differs are genuine:
+  - *Thud!* (jsdom path): node extracts 0 TOC items, browser extracts 91 — the
+    node path fails TOC extraction entirely for this book.
+  - *The Thousand Autumns of Jacob de Zoet* (linkedom): node gets all 7 parts
+    with subitems, browser truncates to 2 top-level entries.
 
-> **The Beartown Trilogy** — nav at `e9781668010983/xhtml/nav.xhtml` contains
-> `../../e9781501160783/xhtml/book1_ch01.xhtml` links that cross subfolder
-> boundaries. Storyteller's `resolveToRoot` resolves these against the epub's
-> filesystem extraction path, producing OS-absolute paths
-> (`var/folders/.../e9781501160783/xhtml/book1_ch01.xhtml`) rather than the
-> correct epub-root-relative form (`e9781501160783/xhtml/book1_ch01.xhtml`).
+  These are real epub-ts node-vs-browser divergences worth keeping visible.
 
-Root cause: the EPUB spans two numbered content directories (`e9781668010983/` and
-`e9781501160783/`); relative hrefs in the nav escape the nav's own directory via
-`../..`. All other corpus books keep their nav hrefs within their own subtree,
-so `resolveToRoot` works correctly for them.
+**`resolveToRoot` was the wrong fix — reverted.** Before it, both parsers
+returned nav-relative hrefs and agreed on ~209/213. `resolveToRoot: true` prepends
+the OPF directory (`OEBPS/`) to storyteller hrefs only, producing 186/213 spurious
+"differ" with zero real content disagreement. Reverted; combined with label-only
+comparison this gives the clean 213/0 above.
 
-Fix not implemented — one book, requires post-processing TOC hrefs against the
-manifest set. Detection approach if needed: strip fragment, check href against
-`content.manifest` hrefs; any miss indicates a non-canonical path.
+**TOC href direct-manifest-miss diagnostic (renamed from "orphans").** Earlier
+framing as "orphaned"/"broken" hrefs was wrong. The EPUB spec permits nav hrefs
+relative to the nav document, so a direct manifest miss is *usually a valid
+nav-relative link* that would match once resolved against the nav base. Verified:
+`84b753d6…` has TOC href `001_cover.xhtml` and manifest `xhtml/001_cover.xhtml` —
+a valid link that fails only naive string matching. The corpus shows ~3167 such
+"misses" across 85 books per parser (node==browser, identical OPF/nav) — almost
+all valid nav-relative links, not breakage.
 
-**epub-ts vs storyteller: systematic href format difference — resolved.**
+The diagnostic is kept as a coarse signal but labelled precisely (not a validity
+verdict). **Deferred:** proper resolution (resolve href against the captured nav
+base, *then* match manifest) — needs the nav-document base path captured in
+`ParserOutput`, which we do not yet store.
 
-Before `resolveToRoot: true` was added, both parsers returned hrefs relative to
-the nav document and agreed on 209/213 books. `resolveToRoot: true` prepends the
-OPF directory (`OEBPS/`) to every href, which epub-ts does not do — this caused
-186/213 "differ" at the cost of 0 real content disagreements.
+**Storyteller temp-path leak — sanitized for determinism.** For 5 books,
+storyteller's nav resolver escapes the in-memory adapter and emits its filesystem
+extraction path as the TOC href, in two shapes:
+1. `var/folders/<dir>/<rand>/T/storyteller-platform-epub-zip-<uuid>.epub/<rest>`
+2. `var/folders/<dir>/<rand>/<content-dir>/<rest>` (Beartown Trilogy — nav hrefs
+   cross subfolder boundaries via `../..`).
 
-**Resolution:** reverted `resolveToRoot`. Comparison changed to labels + tree
-shape only (hrefs excluded). Rationale: hrefs use parser-specific baselines that
-are fundamentally incompatible; label hierarchy is the semantically meaningful
-content for validation purposes. The 4 books whose nav sits in a subdirectory
-revert to non-deterministic hrefs in `content.toc`, but this no longer affects
-comparison results (labels are stable) and is surfaced by the TOC href integrity
-audit below.
-
-**TOC href integrity audit — new per-parser report item.**
-
-For each parser independently, TOC hrefs (fragment stripped) are checked against
-that parser's own manifest. Orphaned hrefs (not found in manifest) are counted
-per-pair in the pair report and listed per-book on detail pages. This surfaces:
-- The 4 storyteller books whose nav hrefs resolve to absolute temp-dir paths
-  (they will appear as orphans on every run, non-deterministic path but stable
-  label comparison).
-- The Beartown Trilogy (cross-directory nav hrefs escape the epub package).
-- Any EPUB with genuinely broken navigation links.
+Both carry random, per-run segments → non-deterministic stored output. Decision:
+keep `ParserOutput` faithful (raw path in memory), and collapse the temp root to a
+stable `<temp-root>` marker at **report-write time** (`sanitizeTempPaths` in
+`report-writer.ts`). The marker is deliberately obvious — it flags an unresolved
+storyteller path, not a real href. We do not reconstruct the epub-relative form
+(boundary not reliably markable across both shapes); the tail after the temp root
+is preserved, enough to reach the content. `assertNoMachinePaths` now also rejects
+`var/folders/` as a backstop, so a new leak shape fails the run loudly rather than
+shipping non-deterministically. **Deferred:** real fix is upstream in storyteller
+(or nav-base resolution), tracked with the direct-miss diagnostic above.
 
 ## Gate 10 — Expand to chapter content
 

@@ -12,6 +12,7 @@ import {
   type ParserOutput,
 } from "./schema.ts";
 import {
+  sanitizeTempPaths,
   writeReport,
   type ParserPair,
   type ReportInput,
@@ -311,6 +312,36 @@ describe("writeReport — determinism guards", () => {
     for (const contents of firstTree.values()) {
       expect(contents).not.toContain("/Users/");
       expect(contents).not.toContain("/Volumes/");
+      expect(contents).not.toContain("var/folders/");
     }
+  });
+});
+
+describe("sanitizeTempPaths", () => {
+  test("shape 1: collapses temp root through .epub, preserves epub-relative tail", () => {
+    const raw =
+      "var/folders/x3/wr64jy71395_4h85jc2ll1xm0000gn/T/storyteller-platform-epub-zip-a46ae93d-0cc0-44e2-9cc9-c70109a7694d.epub/Text/01_Cover.xhtml";
+    expect(sanitizeTempPaths(raw)).toBe("<temp-root>/Text/01_Cover.xhtml");
+  });
+
+  test("shape 2: collapses var/folders/<dir>/<rand>, preserves content dir", () => {
+    const raw =
+      "var/folders/x3/wr64jy71395_4h85jc2ll1xm0000gn/e9781501160783/xhtml/book1_cover.xhtml";
+    expect(sanitizeTempPaths(raw)).toBe(
+      "<temp-root>/e9781501160783/xhtml/book1_cover.xhtml"
+    );
+  });
+
+  test("two runs with different random segments sanitize identically", () => {
+    const runA =
+      "var/folders/x3/aaaaaaaaaa/T/storyteller-platform-epub-zip-11111111-1111-1111-1111-111111111111.epub/Text/cover.xhtml";
+    const runB =
+      "var/folders/x3/bbbbbbbbbb/T/storyteller-platform-epub-zip-22222222-2222-2222-2222-222222222222.epub/Text/cover.xhtml";
+    expect(sanitizeTempPaths(runA)).toBe(sanitizeTempPaths(runB));
+  });
+
+  test("leaves normal hrefs untouched", () => {
+    const normal = "OEBPS/xhtml/title.xhtml#tit";
+    expect(sanitizeTempPaths(normal)).toBe(normal);
   });
 });

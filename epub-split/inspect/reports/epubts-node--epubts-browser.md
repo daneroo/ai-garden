@@ -53,10 +53,21 @@ within-book readable repeats: 31 extra positions across 4 book(s)
 
 ## TOC comparison
 
+Labels and tree shape compared; hrefs excluded (parsers use different href baselines).
+
 | status | distinct books |
 |---|---:|
 | agree | 754 |
 | differ | 2 |
+
+### TOC href integrity
+
+TOC hrefs (fragment stripped) absent from the parser's own manifest — per-parser self-check.
+
+| parser | books with orphans | total orphaned hrefs |
+|---|---:|---:|
+| epubts-node | 85 | 3167 |
+| epubts-browser | 85 | 3167 |
 
 ## Not compared
 
