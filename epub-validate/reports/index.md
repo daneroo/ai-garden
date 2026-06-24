@@ -1,7 +1,7 @@
 # EPUB Validate Report
 
 - Run manifest schema: 1
-- Runner: epub-inspect 0.1.0
+- Runner: epub-validate 0.1.0
 - Bun: 1.3.14
 - Chromium: 149.0.7827.55
 - epub.ts: 0.6.7

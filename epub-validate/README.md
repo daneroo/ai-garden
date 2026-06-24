@@ -103,7 +103,13 @@ The three-way comparison is really **two pairs with different purposes**:
 - [DESIGN-epub-validate-refactor-2026-06-23.md](DESIGN-epub-validate-refactor-2026-06-23.md)
   and [PLAN-epub-validate-refactor-2026-06-23.md](PLAN-epub-validate-refactor-2026-06-23.md)
   — the schema-first architecture and tracked gates.
+- [DESIGN-epub-indexing.md](docs/DESIGN-epub-indexing.md) — unimplemented design
+  for the downstream use case: audio-synced word highlighting (CFI vs
+  char-offset addressing, CSS Custom Highlight API, 3-layer validation strategy).
 - Historical (three-parser feasibility experiment, 2026-06-19 → 06-22, now
   superseded; archived in `docs/archive/`):
   [DESIGN](docs/archive/DESIGN-three-parser-inspect-2026-06-19.md),
   [PLAN](docs/archive/PLAN-three-parser-inspect-2026-06-19.md).
+- Historical (epub.js vs epub.ts comparison, 2026-06-14; archived):
+  [FINDINGS](docs/archive/FINDINGS-epub-ts-2026-06-14.md),
+  [PLAN](docs/archive/PLAN-epub-ts-2026-06-14.md).

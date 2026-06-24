@@ -208,6 +208,28 @@ Every parser reads the same zip bytes, so per-spine-item content SHA-256s agree
 Because raw extraction already agrees everywhere, body-text divergence (if any)
 could only come from DOM interpretation — the rationale for deferring Gate 10B.
 
+## Finding 8 — Some EPUB 2 books use prefixed OPF element names (legacy `opf:` namespace)
+
+Valid EPUB 2 package documents occasionally use prefixed element names
+(`<opf:package>`, `<opf:metadata>`, `<opf:manifest>`, `<opf:spine>`). epub.ts's
+unprefixed selectors fail on these; the earlier epub-split adapter worked around
+it by stripping the `opf:` prefix from a copy of the OPF before parsing. The
+current corpus shows 0 open failures for epubts-node, so this is either fixed
+upstream in `@likecoin/epub-ts` or not represented in our books. Watch for it if
+the corpus expands. Source: `docs/archive/FINDINGS-epub-ts-2026-06-14.md`.
+
+## Finding 9 — `Section.render()` is not a clean content-extraction boundary
+
+epub.ts's `Section.render(book.load.bind(book))` triggers internal rendering
+hooks before serialization. Those hooks mutate or inspect the loaded document and
+assume a DOM; on extensionless spine resources epub.ts loads the file as a string
+and the hook runner swallows the resulting exception (logged as
+`TypeError: l.querySelector is not a function`). This makes `render()` unsuitable
+as a stable extraction boundary for Gate 10B or any future content validator.
+The right path is to read spine resources directly from the archive, classify by
+manifest media type + content sniffing, and parse independently of epub.ts hooks.
+Source: `docs/archive/FINDINGS-epub-ts-2026-06-14.md`.
+
 ---
 
 ## Problematic books (candidates for fixing the EPUB, not our code)
