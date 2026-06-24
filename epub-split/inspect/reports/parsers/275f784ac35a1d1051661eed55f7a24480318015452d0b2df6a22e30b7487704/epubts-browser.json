@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,88 @@
       "title": "Mapping the Heavens",
       "creator": "Priyamvada Natarajan",
       "date": "2016"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/halftitle.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/title.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copyright.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ded.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/contents.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/preface.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch01.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch02.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch03.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch04.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch05.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch06.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch07.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/epilogue.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/notes.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/read.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ack.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/index.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/plates.html",
+        "linear": true
+      }
+    ]
   }
 }

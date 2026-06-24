@@ -48,15 +48,15 @@ function opened(
   domParser?: "linkedom" | "jsdom"
 ): ParserOutput {
   return parserOutputSchema.parse({
-    schemaVersion: 1,
+    schemaVersion: 2,
     meta: { parser, parserVersion: version, openStatus: "opened", ...(domParser ? { domParser } : {}) },
-    content: { metadata: md },
+    content: { metadata: md, spine: [] },
   });
 }
 
 function openFailed(parser: ParserName, version: string): ParserOutput {
   return parserOutputSchema.parse({
-    schemaVersion: 1,
+    schemaVersion: 2,
     meta: {
       parser,
       parserVersion: version,
@@ -68,7 +68,7 @@ function openFailed(parser: ParserName, version: string): ParserOutput {
 
 function epub2Unsupported(parser: ParserName, version: string): ParserOutput {
   return parserOutputSchema.parse({
-    schemaVersion: 1,
+    schemaVersion: 2,
     meta: { parser, parserVersion: version, openStatus: "epub2-unsupported" },
   });
 }
@@ -77,12 +77,14 @@ function field(status: string, a: string | null, b: string | null) {
   return { status, a, b };
 }
 
+const SPINE_AGREE = { status: "agree" as const, countA: 0, countB: 0, onlyInA: [], onlyInB: [] };
+
 function comparison(
   a: ParserName,
   b: ParserName,
   fields: { title: ReturnType<typeof field>; creator: ReturnType<typeof field>; date: ReturnType<typeof field> }
 ): ComparisonResult {
-  return comparisonResultSchema.parse({ schemaVersion: 1, parserA: a, parserB: b, metadata: fields });
+  return comparisonResultSchema.parse({ schemaVersion: 2, parserA: a, parserB: b, metadata: fields, spine: SPINE_AGREE });
 }
 
 const NODE = "epubts-node";

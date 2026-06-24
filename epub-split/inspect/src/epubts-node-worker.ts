@@ -33,6 +33,8 @@ try {
   const packaging = (book as {
     packaging?: {
       metadata?: { title?: unknown; creator?: unknown; pubdate?: unknown };
+      spine?: Array<{ idref: string; linear: string }>;
+      manifest?: Record<string, { href: string }>;
     };
   }).packaging;
   const metadata = {
@@ -40,7 +42,11 @@ try {
     creator: optional(packaging?.metadata?.creator),
     date: optionalDate(packaging?.metadata?.pubdate),
   };
-  process.stdout.write(JSON.stringify({ ok: true, parserVersion, domParser, metadata }));
+  const spine = (packaging?.spine ?? []).map((item) => ({
+    href: packaging?.manifest?.[item.idref]?.href ?? item.idref,
+    linear: item.linear !== "no",
+  }));
+  process.stdout.write(JSON.stringify({ ok: true, parserVersion, domParser, metadata, spine }));
   book.destroy();
 } catch (error: unknown) {
   process.stdout.write(

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,132 @@
       "title": "What Is Real?",
       "creator": "Adam Becker",
       "date": "2018-03-20"
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.xhtml",
+        "linear": false
+      },
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "toc.xhtml",
+        "linear": true
+      },
+      {
+        "href": "dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "epigraph.xhtml",
+        "linear": true
+      },
+      {
+        "href": "preface002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "introduction.xhtml",
+        "linear": true
+      },
+      {
+        "href": "prologue.xhtml",
+        "linear": true
+      },
+      {
+        "href": "part001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "chapter001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "chapter002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "chapter003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "chapter004.xhtml",
+        "linear": true
+      },
+      {
+        "href": "part002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "chapter005.xhtml",
+        "linear": true
+      },
+      {
+        "href": "chapter006.xhtml",
+        "linear": true
+      },
+      {
+        "href": "chapter007.xhtml",
+        "linear": true
+      },
+      {
+        "href": "chapter008.xhtml",
+        "linear": true
+      },
+      {
+        "href": "part003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "chapter009.xhtml",
+        "linear": true
+      },
+      {
+        "href": "chapter010.xhtml",
+        "linear": true
+      },
+      {
+        "href": "chapter011.xhtml",
+        "linear": true
+      },
+      {
+        "href": "chapter012.xhtml",
+        "linear": true
+      },
+      {
+        "href": "appendix001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "acknowledgements.xhtml",
+        "linear": true
+      },
+      {
+        "href": "personblurb.xhtml",
+        "linear": true
+      },
+      {
+        "href": "appendix002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "appendix004.xhtml",
+        "linear": true
+      },
+      {
+        "href": "appendix003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "appendix005.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

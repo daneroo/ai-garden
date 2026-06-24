@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -10,6 +10,10 @@
       "title": "Flatland",
       "creator": "Edwin A. Abbott",
       "date": "1884"
-    }
+    },
+    "spine": [
+      { "href": "wrap0000.html", "linear": true },
+      { "href": "wrap0001.html", "linear": true }
+    ]
   }
 }

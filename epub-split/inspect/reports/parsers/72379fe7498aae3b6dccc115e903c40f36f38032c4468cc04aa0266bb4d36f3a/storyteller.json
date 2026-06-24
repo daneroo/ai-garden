@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -10,6 +10,80 @@
       "title": "Accelerando",
       "creator": "Charles Stross",
       "date": "2015-03-30"
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "bk01-toc.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index.xhtml",
+        "linear": true
+      },
+      {
+        "href": "pr01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "pr02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "pr03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "ch01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "ch01s01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "ch01s02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "ch01s03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "ch02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "ch02s01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "ch02s02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "ch02s03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "ch03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "ch03s01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "ch03s02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "ch03s03.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

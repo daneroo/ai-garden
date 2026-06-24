@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,172 @@
       "title": "The Western Canon",
       "creator": "Harold Bloom",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xml",
+        "linear": true
+      },
+      {
+        "href": "toc.xml",
+        "linear": true
+      },
+      {
+        "href": "front01.xml",
+        "linear": true
+      },
+      {
+        "href": "front02.xml",
+        "linear": true
+      },
+      {
+        "href": "front03.xml",
+        "linear": true
+      },
+      {
+        "href": "c01.xml",
+        "linear": true
+      },
+      {
+        "href": "c001.xml",
+        "linear": true
+      },
+      {
+        "href": "c02.xml",
+        "linear": true
+      },
+      {
+        "href": "c002.xml",
+        "linear": true
+      },
+      {
+        "href": "c03.xml",
+        "linear": true
+      },
+      {
+        "href": "c04.xml",
+        "linear": true
+      },
+      {
+        "href": "c05.xml",
+        "linear": true
+      },
+      {
+        "href": "c06.xml",
+        "linear": true
+      },
+      {
+        "href": "c07.xml",
+        "linear": true
+      },
+      {
+        "href": "c08.xml",
+        "linear": true
+      },
+      {
+        "href": "c09.xml",
+        "linear": true
+      },
+      {
+        "href": "c10.xml",
+        "linear": true
+      },
+      {
+        "href": "c003.xml",
+        "linear": true
+      },
+      {
+        "href": "c11.xml",
+        "linear": true
+      },
+      {
+        "href": "c12.xml",
+        "linear": true
+      },
+      {
+        "href": "c13.xml",
+        "linear": true
+      },
+      {
+        "href": "c14.xml",
+        "linear": true
+      },
+      {
+        "href": "c15.xml",
+        "linear": true
+      },
+      {
+        "href": "c16.xml",
+        "linear": true
+      },
+      {
+        "href": "c004.xml",
+        "linear": true
+      },
+      {
+        "href": "c17.xml",
+        "linear": true
+      },
+      {
+        "href": "c18.xml",
+        "linear": true
+      },
+      {
+        "href": "c19.xml",
+        "linear": true
+      },
+      {
+        "href": "c20.xml",
+        "linear": true
+      },
+      {
+        "href": "c21.xml",
+        "linear": true
+      },
+      {
+        "href": "c22.xml",
+        "linear": true
+      },
+      {
+        "href": "c23.xml",
+        "linear": true
+      },
+      {
+        "href": "c005.xml",
+        "linear": true
+      },
+      {
+        "href": "c24.xml",
+        "linear": true
+      },
+      {
+        "href": "back01.xml",
+        "linear": true
+      },
+      {
+        "href": "back02.xml",
+        "linear": true
+      },
+      {
+        "href": "back03.xml",
+        "linear": true
+      },
+      {
+        "href": "back04.xml",
+        "linear": true
+      },
+      {
+        "href": "back05.xml",
+        "linear": true
+      },
+      {
+        "href": "back06.xml",
+        "linear": true
+      },
+      {
+        "href": "back07.xml",
+        "linear": true
+      }
+    ]
   }
 }

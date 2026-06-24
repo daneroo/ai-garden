@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,84 @@
       "title": "The Lightning Tamers",
       "creator": "Kathy Joseph",
       "date": "2022"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/hf.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/title.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copy.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ded.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/toc.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/pre.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter1.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter2.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter3.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter4.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter5.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter6.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter7.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter8.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/aut.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/fig.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ref.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ack.html",
+        "linear": true
+      }
+    ]
   }
 }

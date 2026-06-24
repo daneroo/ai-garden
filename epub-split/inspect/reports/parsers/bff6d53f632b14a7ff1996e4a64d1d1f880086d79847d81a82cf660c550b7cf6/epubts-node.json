@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,84 @@
       "title": "The Tombs of Atuan",
       "creator": "Ursula Kroeber Le Guin",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section2.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section3.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section4.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section5.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section6.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section7.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section8.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section9.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section10.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section11.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section12.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section13.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section14.xhtml",
+        "linear": true
+      },
+      {
+        "href": "section15.xhtml",
+        "linear": true
+      },
+      {
+        "href": "fb2info.xhtml",
+        "linear": true
+      },
+      {
+        "href": "about.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

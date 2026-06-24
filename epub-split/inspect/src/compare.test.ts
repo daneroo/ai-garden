@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import { compareBook, projectNodeBrowserMismatches, projectNodeStorytellerMismatches, type BaselineHistogram } from "./compare.ts";
-import type { ParserOutput } from "./schema.ts";
+import type { ParserOutput, SpineItem } from "./schema.ts";
 
 // ── hand-built ParserOutput helpers ─────────────────────────────────────────
 
@@ -9,12 +9,13 @@ function opened(
   parser: ParserOutput["meta"]["parser"],
   title: string | null,
   creator: string | null,
-  date: string | null
+  date: string | null,
+  spine: { href: string; linear: boolean }[] = []
 ): ParserOutput {
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     meta: { parser, parserVersion: "1.0.0", openStatus: "opened" },
-    content: { metadata: { title, creator, date } },
+    content: { metadata: { title, creator, date }, spine },
   };
 }
 
@@ -66,7 +67,7 @@ describe("compareBook", () => {
 
   test("throws when either input is not opened", () => {
     const a: ParserOutput = {
-      schemaVersion: 1,
+      schemaVersion: 2,
       meta: { parser: "epubts-node", parserVersion: "1.0.0", openStatus: "open-failed", openFailure: { category: "Error", message: "bad" } },
     };
     const b = opened("epubts-browser", "Title", null, null);
@@ -80,6 +81,67 @@ describe("compareBook", () => {
     expect(result.metadata.title.status).toBe("differ");
     expect(result.metadata.creator.status).toBe("agree");
     expect(result.metadata.date.status).toBe("both-null");
+  });
+});
+
+// ── compareSpine (via compareBook) ───────────────────────────────────────────
+
+function item(href: string, linear = true): SpineItem {
+  return { href, linear };
+}
+
+describe("compareBook — spine", () => {
+  test("identical spine sequences agree", () => {
+    const spine = [item("ch01.xhtml"), item("ch02.xhtml")];
+    const a = opened("epubts-node", null, null, null, spine);
+    const b = opened("epubts-browser", null, null, null, spine);
+    const result = compareBook(a, b);
+    expect(result.spine.status).toBe("agree");
+    expect(result.spine.countA).toBe(2);
+    expect(result.spine.countB).toBe(2);
+    expect(result.spine.onlyInA).toEqual([]);
+    expect(result.spine.onlyInB).toEqual([]);
+  });
+
+  test("empty spines agree", () => {
+    const a = opened("epubts-node", null, null, null, []);
+    const b = opened("epubts-browser", null, null, null, []);
+    expect(compareBook(a, b).spine.status).toBe("agree");
+  });
+
+  test("asymmetric hrefs: extra item in A", () => {
+    const a = opened("epubts-node", null, null, null, [item("ch01.xhtml"), item("ch02.xhtml")]);
+    const b = opened("epubts-browser", null, null, null, [item("ch01.xhtml")]);
+    const result = compareBook(a, b);
+    expect(result.spine.status).toBe("differ");
+    expect(result.spine.onlyInA).toEqual(["ch02.xhtml"]);
+    expect(result.spine.onlyInB).toEqual([]);
+  });
+
+  test("asymmetric hrefs: extra item in B", () => {
+    const a = opened("epubts-node", null, null, null, [item("ch01.xhtml")]);
+    const b = opened("epubts-browser", null, null, null, [item("ch01.xhtml"), item("ch02.xhtml")]);
+    const result = compareBook(a, b);
+    expect(result.spine.status).toBe("differ");
+    expect(result.spine.onlyInA).toEqual([]);
+    expect(result.spine.onlyInB).toEqual(["ch02.xhtml"]);
+  });
+
+  test("same set different order: differ with empty onlyInA/onlyInB", () => {
+    const a = opened("epubts-node", null, null, null, [item("ch01.xhtml"), item("ch02.xhtml")]);
+    const b = opened("epubts-browser", null, null, null, [item("ch02.xhtml"), item("ch01.xhtml")]);
+    const result = compareBook(a, b);
+    expect(result.spine.status).toBe("differ");
+    expect(result.spine.onlyInA).toEqual([]);
+    expect(result.spine.onlyInB).toEqual([]);
+    expect(result.spine.countA).toBe(2);
+    expect(result.spine.countB).toBe(2);
+  });
+
+  test("linear flag is ignored in comparison", () => {
+    const a = opened("epubts-node", null, null, null, [{ href: "ch01.xhtml", linear: true }]);
+    const b = opened("epubts-browser", null, null, null, [{ href: "ch01.xhtml", linear: false }]);
+    expect(compareBook(a, b).spine.status).toBe("agree");
   });
 });
 

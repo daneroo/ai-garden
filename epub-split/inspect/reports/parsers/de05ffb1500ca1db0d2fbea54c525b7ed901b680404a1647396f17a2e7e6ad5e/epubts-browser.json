@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,44 @@
       "title": "The Willful Princess and the Piebald Prince",
       "creator": "Robin Hobb",
       "date": "2013-02-27T06:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/part0000.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0001.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0002.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0003_split_000.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0003_split_001.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0004.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0005_split_000.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0005_split_001.html",
+        "linear": true
+      }
+    ]
   }
 }

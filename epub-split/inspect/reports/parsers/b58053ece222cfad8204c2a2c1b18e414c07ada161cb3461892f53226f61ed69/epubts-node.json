@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,100 @@
       "title": "The Blind Watchmaker",
       "creator": "Richard Dawkins",
       "date": "2015"
-    }
+    },
+    "spine": [
+      {
+        "href": "00_Cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "03_Title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "05_Ded.xhtml",
+        "linear": true
+      },
+      {
+        "href": "06_Contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "07_Intro.xhtml",
+        "linear": true
+      },
+      {
+        "href": "08_Preface.xhtml",
+        "linear": true
+      },
+      {
+        "href": "09_Halftitle.xhtml",
+        "linear": true
+      },
+      {
+        "href": "10_Chapter01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "11_Chapter02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "12_Chapter03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "13_Chapter04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "14_Chapter05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "15_Chapter06.xhtml",
+        "linear": true
+      },
+      {
+        "href": "16_Chapter07.xhtml",
+        "linear": true
+      },
+      {
+        "href": "17_Chapter08.xhtml",
+        "linear": true
+      },
+      {
+        "href": "18_Chapter09.xhtml",
+        "linear": true
+      },
+      {
+        "href": "19_Chapter10.xhtml",
+        "linear": true
+      },
+      {
+        "href": "20_Chapter11.xhtml",
+        "linear": true
+      },
+      {
+        "href": "21_Bib.xhtml",
+        "linear": true
+      },
+      {
+        "href": "22_Index.xhtml",
+        "linear": true
+      },
+      {
+        "href": "01_Front-matter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "02_Author.xhtml",
+        "linear": true
+      },
+      {
+        "href": "04_Copyright.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

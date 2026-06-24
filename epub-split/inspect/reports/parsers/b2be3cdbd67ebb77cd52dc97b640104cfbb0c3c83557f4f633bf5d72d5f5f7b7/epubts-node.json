@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,48 @@
       "title": "The Pillow Book of Sei Shonagon: The Diary of a Courtesan in Tenth Century Japan",
       "creator": "Arthur Waley",
       "date": "1002-01-01T05:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/Cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Inside_cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Helf_title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Foreword.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Notes.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter_01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Back_01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Back_02.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

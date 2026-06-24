@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,64 @@
       "title": "Discworld #39 - Snuff",
       "creator": "Terry Pratchett",
       "date": "2011-10-11T13:26:10+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.html",
+        "linear": false
+      },
+      {
+        "href": "about_book.html",
+        "linear": true
+      },
+      {
+        "href": "contents.html",
+        "linear": true
+      },
+      {
+        "href": "title.html",
+        "linear": true
+      },
+      {
+        "href": "dedication.html",
+        "linear": true
+      },
+      {
+        "href": "chapter_001.html",
+        "linear": true
+      },
+      {
+        "href": "chapter_001a.html",
+        "linear": true
+      },
+      {
+        "href": "chapter_001b.html",
+        "linear": true
+      },
+      {
+        "href": "chapter_001c.html",
+        "linear": true
+      },
+      {
+        "href": "footnotes.html",
+        "linear": true
+      },
+      {
+        "href": "epilogue.html",
+        "linear": true
+      },
+      {
+        "href": "about_author.html",
+        "linear": true
+      },
+      {
+        "href": "also_by.html",
+        "linear": true
+      },
+      {
+        "href": "copyright.html",
+        "linear": true
+      }
+    ]
   }
 }

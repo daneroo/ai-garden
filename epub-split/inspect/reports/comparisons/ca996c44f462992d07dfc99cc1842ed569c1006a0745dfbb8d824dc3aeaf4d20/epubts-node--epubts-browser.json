@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "parserA": "epubts-node",
   "parserB": "epubts-browser",
   "metadata": {
@@ -18,5 +18,12 @@
       "a": "2010-02-09T02:00:00+00:00",
       "b": "2010-02-09T02:00:00+00:00"
     }
+  },
+  "spine": {
+    "status": "agree",
+    "countA": 15,
+    "countB": 15,
+    "onlyInA": [],
+    "onlyInB": []
   }
 }

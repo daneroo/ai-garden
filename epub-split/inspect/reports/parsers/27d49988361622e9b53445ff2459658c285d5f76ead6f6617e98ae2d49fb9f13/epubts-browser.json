@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,44 @@
       "title": "Critical Mass",
       "creator": "Craig Alanson",
       "date": "2020-02-15T00:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_000.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_004.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_005.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_006.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_007.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

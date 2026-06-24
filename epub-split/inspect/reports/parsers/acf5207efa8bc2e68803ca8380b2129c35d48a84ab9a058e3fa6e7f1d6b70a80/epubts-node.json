@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,24 @@
       "title": "Braiding Sweetgrass",
       "creator": "Robin Kimmerer",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.xhtml",
+        "linear": false
+      },
+      {
+        "href": "braidingtext.xhtml",
+        "linear": true
+      },
+      {
+        "href": "braidingtext-1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "braidingtext-2.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

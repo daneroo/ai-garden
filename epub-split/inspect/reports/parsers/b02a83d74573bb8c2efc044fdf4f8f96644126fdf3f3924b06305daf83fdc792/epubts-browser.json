@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,20 @@
       "title": "Flatland: A Romance of Many Dimensions",
       "creator": "Edwin Abbott Abbott",
       "date": "1995-01-01"
-    }
+    },
+    "spine": [
+      {
+        "href": "wrap0000.xhtml",
+        "linear": true
+      },
+      {
+        "href": "7465813847988166912_201-h-0.htm.xhtml",
+        "linear": true
+      },
+      {
+        "href": "7465813847988166912_201-h-1.htm.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

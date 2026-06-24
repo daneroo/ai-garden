@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,16 @@
       "title": "Small Gods",
       "creator": "Terry Pratchett",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

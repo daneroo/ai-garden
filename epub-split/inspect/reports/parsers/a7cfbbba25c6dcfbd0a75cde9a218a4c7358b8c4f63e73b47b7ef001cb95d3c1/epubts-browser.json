@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,88 @@
       "title": "Probably Approximately Correct",
       "creator": "Valiant, Leslie",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.html",
+        "linear": false
+      },
+      {
+        "href": "xhtml/halftitle.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/title.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copyright.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/contents.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/summary.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter1.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter2.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter3.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter4.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter5.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter6.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter7.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter8.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter9.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter10.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/notes.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/glossary.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/acknowledgments.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/index.html",
+        "linear": true
+      }
+    ]
   }
 }

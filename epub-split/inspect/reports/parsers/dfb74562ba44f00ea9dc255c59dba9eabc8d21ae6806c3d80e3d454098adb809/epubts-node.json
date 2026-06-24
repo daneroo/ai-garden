@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,88 @@
       "title": "And Every Morning the Way Home Gets Longer and Longer",
       "creator": "Fredrik Backman",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ebookregfront.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/title.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/fm01.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch01.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/back01.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/back02.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/back03.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/buylinkpage0.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/back04.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/back05.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/buylinkpage1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/back06.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/back07.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/buylinkpage2.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/back08.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/about.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/also.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ebookregback.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copy.html",
+        "linear": true
+      }
+    ]
   }
 }

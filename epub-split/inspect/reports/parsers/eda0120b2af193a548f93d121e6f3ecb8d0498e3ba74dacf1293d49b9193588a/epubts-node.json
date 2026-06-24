@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,36 @@
       "title": "Discworld 12 - Witches Abroad",
       "creator": "Pratchett, Terry",
       "date": "1970-01-07T05:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/part1_split_000.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/part1_split_001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/part2.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/part3.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/part4.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,92 @@
       "title": "Blood of Elves",
       "creator": "Andrzej Sapkowski",
       "date": "2009-04-30T16:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_fron-1.html",
+        "linear": true
+      },
+      {
+        "href": "title.html",
+        "linear": true
+      },
+      {
+        "href": "../toc.xhtml",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_copy.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_adca-1.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_epig-1.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_chap-1.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_chap-2PRE.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_chap-2.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_chap-3PRE.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_chap-3.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_chap-4PRE.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_chap-4.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_chap-5PRE.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_chap-5.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_chap-6PRE.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_chap-6.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_chap-7PRE.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_chap-7.html",
+        "linear": true
+      },
+      {
+        "href": "BloodofElves_auth-1.html",
+        "linear": true
+      }
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,60 @@
       "title": "Five Ways to Forgiveness",
       "creator": "Ursula K. Le Guin",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/seriespage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/anoteonthetext.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/introduction.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter2.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter3.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter4.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter5.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/notes.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

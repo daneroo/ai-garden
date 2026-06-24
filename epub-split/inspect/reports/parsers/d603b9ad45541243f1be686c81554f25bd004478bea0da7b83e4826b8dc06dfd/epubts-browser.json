@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,44 @@
       "title": "Athyra",
       "creator": "Steven Brust",
       "date": "2012-04-10T08:31:06+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Athyra_split_000.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Athyra_split_001.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Athyra_split_002.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Athyra_split_003.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Athyra_split_004.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Athyra_split_005.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Athyra_split_006.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Athyra_split_007.html",
+        "linear": true
+      }
+    ]
   }
 }

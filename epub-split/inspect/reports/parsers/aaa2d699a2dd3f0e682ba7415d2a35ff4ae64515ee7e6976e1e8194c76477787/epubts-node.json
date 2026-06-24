@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,84 @@
       "title": "The Power of Crisis",
       "creator": "Ian Bremmer",
       "date": "2022-05-17"
-    }
+    },
+    "spine": [
+      {
+        "href": "e9781982167523/xhtml/cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/SS_US_adult_signup_front.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/intro.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/ch01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/ch02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/ch03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/ch04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/bm01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/bm02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/ack.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/SS_recommendpage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/authorbio.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/adcard.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/SS_US_adult_signup_back.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/endnotes.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/index.xhtml",
+        "linear": true
+      },
+      {
+        "href": "e9781982167523/xhtml/copyright.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

@@ -484,18 +484,50 @@ occurrences attached. A separate collapse flag adds UI polish with no downstream
 value — the discovery table already shows found/deduped/distinct correctly.
 Dropped 2026-06-24.
 
-## Gate 8 — Expand content to manifest + spine
+## Gate 8A — Expand content to spine
 
-> **Revisit the detailed plan when Gate 8 begins.** Gates 8–10 are deliberately
-> sketch-level: the structural comparison taxonomies (manifest/spine/toc/chapter
-> warnings) are designed when the work starts, not now.
+Spine first: ordered list of idref strings (linear items only, or all? — decide
+at design checkpoint). Simpler than manifest; teaches us the right comparison
+granularity and report presentation before committing to manifest's wider surface.
 
-- [ ] Extend `content` schema; bump `PARSER_OUTPUT_SCHEMA_VERSION`.
-- [ ] All three adapters populate manifest + spine.
-- [ ] `compareBook` gains `ManifestComparison`, `SpineComparison`.
+Design settled (2026-06-24):
+- `content.spine: { href: string; linear: boolean }[]` — ordered items from OPF,
+  `linear` captured for future use but not used in comparison yet.
+- `SpineComparison: { status, countA, countB, onlyInA, onlyInB }` — href-only,
+  set-based diff. "agree" = identical ordered href sequence. "differ" = anything
+  else; onlyInA/onlyInB list the asymmetric hrefs; both empty + differ = order-only.
+- Pair report: one spine block after metadata table (agree N / differ M).
+- Detail page: spine section showing onlyInA, onlyInB (or full sequences if order-only).
+
+- [x] Bump `PARSER_OUTPUT_SCHEMA_VERSION` to 2.
+- [x] Extend `content.spine: SpineItem[]` in `schema.ts`; `SpineItem = { href, linear }`.
+- [x] All three adapters populate `content.spine`.
+- [x] `compare.ts`: `compareBook` gains `spine: SpineComparison`; `ComparisonResult`
+      extended.
+- [x] `report-writer.ts`: pair reports and detail pages render spine findings.
+- [x] Unit tests cover spine schema invariants + at least one real fixture.
 
 Verifiable outcome: TYPECHECK + TEST + DETERMINISM. Metadata parity still holds.
-New structural findings recorded.
+New spine findings recorded; commit as Gate 8A.
+
+**Design review after Gate 8A:** evaluate what the spine comparison revealed
+(field granularity, report density, surprising parser divergences) before
+designing Gate 8B.
+
+## Gate 8B — Expand content to manifest
+
+Informed by Gate 8A lessons. Manifest is wider (all items including nav, cover,
+CSS, images) and has richer per-item metadata (`media-type`, `href`, optional
+`properties`).
+
+- [ ] `content.manifest` schema; bump `PARSER_OUTPUT_SCHEMA_VERSION`.
+- [ ] All three adapters populate `content.manifest`.
+- [ ] `compareBook` gains manifest comparison.
+- [ ] Pair reports and detail pages render manifest findings.
+- [ ] Unit tests.
+
+Verifiable outcome: TYPECHECK + TEST + DETERMINISM. Earlier-section parity holds.
+New manifest findings recorded.
 
 ## Gate 9 — Expand to TOC
 
@@ -540,3 +572,4 @@ matches the shipped tool.
 - 2026-06-24 · Gate 5 · storyteller adapter; worker emits epub2-unsupported on EpubVersionError; openStoryteller() returns ParserOutput; runner adds storyteller loop + complete provenance; TEST 59 pass / 1 todo / 0 fail, TYPECHECK clean · 097dbd72
 - 2026-06-24 · Gate 6 · compare.ts (compareBook, compareField, parity projection); runner wired with PAIRS + comparisons; pair reports + detail pages now live; switched to distinct-book counts (occ=1); baseline/ removed; TEST 69 pass / 1 todo / 0 fail, TYPECHECK clean · 655f73ac
 - 2026-06-24 · Gate 7 · WILL NOT IMPLEMENT — content-addressed model already correct; collapse flag adds no value
+- 2026-06-24 · Gate 8A · spine in ParserOutput (SpineItem { href, linear }); SpineComparison (href-set); pair reports + detail pages; schema v2; TEST 75 pass / 1 todo / 0 fail, TYPECHECK clean · PENDING DANIEL DETERMINISM

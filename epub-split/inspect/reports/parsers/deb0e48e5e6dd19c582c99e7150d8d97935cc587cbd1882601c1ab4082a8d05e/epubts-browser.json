@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,96 @@
       "title": "More Everything Forever",
       "creator": "Adam Becker",
       "date": "2025-04-22"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/002_Title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/003_Copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/toc.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/004_dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/discover-page_pre.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/005_FM_001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/006_epigraph.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/008_FM_003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/009_chapter_001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/010_chapter_002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/011_chapter_003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/012_chapter_004.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/013_chapter_005.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/014_chapter_006.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/015_BM_001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/discover-page.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/019_BM_005.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/001_praise.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/016_BM_002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/017_BM_003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/018_BM_004.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

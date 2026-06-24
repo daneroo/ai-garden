@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,84 @@
       "title": "Excalibur",
       "creator": "Bernard Cornwell",
       "date": "1999-07-28T04:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content004.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content005.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content006.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content007.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content008.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content009.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content010.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content011.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content012.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content013.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content014.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content015.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content016.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content017.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content018.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/text/content019.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

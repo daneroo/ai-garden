@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,96 @@
       "title": "Fifth Sun",
       "creator": "Camilla Townsend",
       "date": "2019-09-06"
-    }
+    },
+    "spine": [
+      {
+        "href": "000_ACover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "002_FM_halftitle.xhtml",
+        "linear": true
+      },
+      {
+        "href": "003_FM_titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "004_FM_titleverso.xhtml",
+        "linear": true
+      },
+      {
+        "href": "005_FM_contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "006_FM_acknowledgements.xhtml",
+        "linear": true
+      },
+      {
+        "href": "007_FM_glossary.xhtml",
+        "linear": true
+      },
+      {
+        "href": "008_FM_other.xhtml",
+        "linear": true
+      },
+      {
+        "href": "009_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "010_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "011_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "012_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "013_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "014_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "015_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "016_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "017_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "018_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "019_BM_appendixGroup.xhtml",
+        "linear": true
+      },
+      {
+        "href": "020_BM_endNotes.xhtml",
+        "linear": true
+      },
+      {
+        "href": "021_BM_bibliographyGroup.xhtml",
+        "linear": true
+      },
+      {
+        "href": "022_BM_regular.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

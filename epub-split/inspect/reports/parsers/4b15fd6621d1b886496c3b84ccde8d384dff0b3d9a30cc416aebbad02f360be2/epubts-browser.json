@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,48 @@
       "title": "Killing Floor",
       "creator": "Lee Child",
       "date": "2006-04-25T07:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "jacket.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_000_split_000.html",
+        "linear": true
+      },
+      {
+        "href": "index_split_000_split_001.html",
+        "linear": true
+      },
+      {
+        "href": "index_split_000_split_002.html",
+        "linear": true
+      },
+      {
+        "href": "index_split_000_split_003.html",
+        "linear": true
+      },
+      {
+        "href": "index_split_001_split_000.html",
+        "linear": true
+      },
+      {
+        "href": "index_split_001_split_001.html",
+        "linear": true
+      },
+      {
+        "href": "index_split_001_split_002.html",
+        "linear": true
+      },
+      {
+        "href": "index_split_001_split_003.html",
+        "linear": true
+      }
+    ]
   }
 }

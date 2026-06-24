@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,88 @@
       "title": "The Colosseum",
       "creator": "Keith Hopkins",
       "date": "2005-06-25T23:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch00_fm01_pre1.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch00_fm02_tit.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch00_fm03_copy.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch00_fm04_cont.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch00_fm05_pre.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch00_fm06.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch01.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch02.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch03.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch04.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch05.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch06.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch07_making.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch08_further.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch09_illu.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch10_ack.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch11_index.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch12_wonder.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch13_map.html",
+        "linear": true
+      }
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,128 @@
       "title": "Anathem",
       "creator": "Neal Stephenson",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/fm01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part06.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part07.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/pt07.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part08.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part09.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part10.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part11.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part12.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part13.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/bm01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/bm02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/bm03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/bm04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ack01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ata01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/adc01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/cre01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copy.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/atp01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/footnote1.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

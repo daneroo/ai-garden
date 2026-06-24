@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,112 @@
       "title": "Tale of Genji",
       "creator": "Murasaki Shikibu",
       "date": "2017-06-09"
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/Cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Fly_Title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Author_Note.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Title_Page.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/toc.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Introduction_NW.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Introduction_Trans.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter2.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter3.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter4.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter5.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter6.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter7.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter8.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter9.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter10.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter11.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter12.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter13.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter14.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter15.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter16.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter17.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/back.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

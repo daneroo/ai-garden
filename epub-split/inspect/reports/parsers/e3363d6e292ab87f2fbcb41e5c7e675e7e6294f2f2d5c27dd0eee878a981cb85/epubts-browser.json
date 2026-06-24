@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,12 @@
       "title": "The Road Not Taken",
       "creator": "Robert Frost",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "RobertFrostTheRoadNotTaken.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -10,6 +10,24 @@
       "title": "Crossplane",
       "creator": "Viktor Farcic",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "text/cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/verso_page.xhtml",
+        "linear": true
+      },
+      {
+        "href": "nav.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/all_chapter_contents.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

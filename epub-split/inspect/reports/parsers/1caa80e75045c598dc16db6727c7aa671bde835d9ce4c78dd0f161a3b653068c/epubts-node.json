@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,228 @@
       "title": "Dragon Haven",
       "creator": "Robin Hobb",
       "date": "2010-03-02T08:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/002-titlepage.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/003-TOC.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/004-frontmatterpage01.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/005-dm01.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/006-prologuepage.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/007-dm02.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/008-chapter01.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/009-dm03.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/010-chapter02.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/011-dm04.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/012-chapter03.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/013-dm05.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/014-chapter04.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/015-dm06.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/016-chapter05.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/017-dm07.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/018-chapter06.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/019-dm08.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/020-chapter07.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/021-dm09.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/022-chapter08.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/023-dm10.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/024-chapter09.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/025-dm11.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/026-chapter10.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/027-dm12.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/028-chapter11.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/029-dm13.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/030-chapter12.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/031-dm14.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/032-chapter13.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/033-dm15.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/034-chapter14.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/035-dm16.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/036-chapter15.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/037-dm17.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/038-dm18.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/039-dm19.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/040-chapter16.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/041-dm20.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/042-chapter17.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/043-dm21.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/044-dm22.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/045-chapter18.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/046-dm23.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/047-chapter19.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/048-dm24.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/049-chapter20.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/050-dm25.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/051-aboutauthorpage.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/052-adcardpage.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/053-creditpage.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/054-copyrightpage.html",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/Text/055-aboutpublisherpage.html",
+        "linear": true
+      }
+    ]
   }
 }

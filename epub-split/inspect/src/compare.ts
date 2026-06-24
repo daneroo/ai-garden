@@ -4,6 +4,8 @@ import {
   type ComparisonResult,
   type FieldComparison,
   type ParserOutput,
+  type SpineComparison,
+  type SpineItem,
 } from "./schema.ts";
 
 export function compareBook(a: ParserOutput, b: ParserOutput): ComparisonResult {
@@ -19,6 +21,7 @@ export function compareBook(a: ParserOutput, b: ParserOutput): ComparisonResult 
       creator: compareField(a.content.metadata.creator, b.content.metadata.creator),
       date: compareField(a.content.metadata.date, b.content.metadata.date),
     },
+    spine: compareSpine(a.content.spine, b.content.spine),
   });
 }
 
@@ -29,6 +32,17 @@ function compareField(a: string | null, b: string | null): FieldComparison {
   if (a !== null) return { status: "a-only", a, b: null };
   if (b !== null) return { status: "b-only", a: null, b };
   return { status: "both-null", a: null, b: null };
+}
+
+function compareSpine(a: SpineItem[], b: SpineItem[]): SpineComparison {
+  const aHrefs = a.map((item) => item.href);
+  const bHrefs = b.map((item) => item.href);
+  const bSet = new Set(bHrefs);
+  const aSet = new Set(aHrefs);
+  const onlyInA = aHrefs.filter((href) => !bSet.has(href));
+  const onlyInB = bHrefs.filter((href) => !aSet.has(href));
+  const agree = aHrefs.length === bHrefs.length && aHrefs.every((href, i) => href === bHrefs[i]);
+  return { status: agree ? "agree" : "differ", countA: aHrefs.length, countB: bHrefs.length, onlyInA, onlyInB };
 }
 
 // ── Parity projection ────────────────────────────────────────────────────────

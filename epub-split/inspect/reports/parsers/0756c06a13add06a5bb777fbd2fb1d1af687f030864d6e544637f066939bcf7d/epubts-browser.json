@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,64 @@
       "title": "The Jade Setter of Janloon",
       "creator": "Fonda Lee",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "the-apprentice.xhtml",
+        "linear": true
+      },
+      {
+        "href": "the-theft.xhtml",
+        "linear": true
+      },
+      {
+        "href": "the-ultimatum.xhtml",
+        "linear": true
+      },
+      {
+        "href": "the-search.xhtml",
+        "linear": true
+      },
+      {
+        "href": "the-fists.xhtml",
+        "linear": true
+      },
+      {
+        "href": "the-dealer.xhtml",
+        "linear": true
+      },
+      {
+        "href": "the-crime.xhtml",
+        "linear": true
+      },
+      {
+        "href": "the-master.xhtml",
+        "linear": true
+      },
+      {
+        "href": "acknowledgements.xhtml",
+        "linear": true
+      },
+      {
+        "href": "about-the-author.xhtml",
+        "linear": true
+      },
+      {
+        "href": "about-us.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

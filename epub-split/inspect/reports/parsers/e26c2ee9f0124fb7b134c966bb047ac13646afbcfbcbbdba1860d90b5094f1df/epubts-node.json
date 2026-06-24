@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,56 @@
       "title": "Heretics of Dune",
       "creator": "Frank Herbert",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "9780575104457_oeb_cover_r1.html",
+        "linear": false
+      },
+      {
+        "href": "9780575104457_oeb_otherbooks_r1.html",
+        "linear": true
+      },
+      {
+        "href": "9780575104457_oeb_tp_r1.html",
+        "linear": true
+      },
+      {
+        "href": "9780575104457_oeb_toc_r1.html",
+        "linear": true
+      },
+      {
+        "href": "9780575104457_oeb_pro_r1.html",
+        "linear": true
+      },
+      {
+        "href": "9780575104457_oeb_c01a_r1.html",
+        "linear": true
+      },
+      {
+        "href": "9780575104457_oeb_c01b_r1.html",
+        "linear": true
+      },
+      {
+        "href": "9780575104457_oeb_c01c_r1.html",
+        "linear": true
+      },
+      {
+        "href": "9780575104457_oeb_c01d_r1.html",
+        "linear": true
+      },
+      {
+        "href": "9780575104457_oeb_c01e_r1.html",
+        "linear": true
+      },
+      {
+        "href": "9780575104457_oeb_c01f_r1.html",
+        "linear": true
+      },
+      {
+        "href": "9780575104457_oeb_cpy_r1.html",
+        "linear": true
+      }
+    ]
   }
 }

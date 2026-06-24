@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,28 @@
       "title": "Bleak Seasons",
       "creator": "Glen Cook",
       "date": "2010-01-22T00:01:40"
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Cook, Glen - Black Company 06 - Bleak Seasons_split_000.htm",
+        "linear": true
+      },
+      {
+        "href": "Cook, Glen - Black Company 06 - Bleak Seasons_split_001.htm",
+        "linear": true
+      },
+      {
+        "href": "Cook, Glen - Black Company 06 - Bleak Seasons_split_002.htm",
+        "linear": true
+      },
+      {
+        "href": "Cook, Glen - Black Company 06 - Bleak Seasons_split_003.htm",
+        "linear": true
+      }
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,108 @@
       "title": "Pax",
       "creator": "Tom Holland",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/fm01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/dedi.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/fm02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/fm03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/fm04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/fm05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter06.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter07.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/bm01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/bm02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/bm03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/bm04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/bm05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/plates.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

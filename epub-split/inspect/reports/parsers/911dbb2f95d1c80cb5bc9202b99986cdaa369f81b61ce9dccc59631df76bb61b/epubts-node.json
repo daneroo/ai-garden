@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,76 @@
       "title": "2034: A Novel of the Next World War",
       "creator": "Elliot Ackerman",
       "date": "2021-03-09T00:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/01_Cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/02_Also_by_Elliot_Ackerm.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/03_Title_Page.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/04_Copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/05_Epigraph.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/06_Contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/07_1_The_W_n_Rui_Inciden.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/08_2_Blackout.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/09_3_Blinding_the_Elepha.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/10_4_Red_Lines.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/11_5_On_Death_Ground.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/12_6_The_Tandava.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/13_Coda_The_Horizon.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/14_Epigraph.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/15_Acknowledgments.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/16_About_the_Authors.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/next-reads.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

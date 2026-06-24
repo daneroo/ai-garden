@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,100 @@
       "title": "Dune",
       "creator": "Frank Herbert",
       "date": "2010-12-30"
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.xml",
+        "linear": false
+      },
+      {
+        "href": "ad-card.html",
+        "linear": true
+      },
+      {
+        "href": "TitlePage.html",
+        "linear": true
+      },
+      {
+        "href": "dedication.html",
+        "linear": true
+      },
+      {
+        "href": "toc.html",
+        "linear": true
+      },
+      {
+        "href": "chapter000.html",
+        "linear": true
+      },
+      {
+        "href": "chapter000a.html",
+        "linear": true
+      },
+      {
+        "href": "chapter000b.html",
+        "linear": true
+      },
+      {
+        "href": "chapter001.html",
+        "linear": true
+      },
+      {
+        "href": "chapter001a.html",
+        "linear": true
+      },
+      {
+        "href": "chapter001b.html",
+        "linear": true
+      },
+      {
+        "href": "chapter002.html",
+        "linear": true
+      },
+      {
+        "href": "chapter002a.html",
+        "linear": true
+      },
+      {
+        "href": "appendix001.html",
+        "linear": true
+      },
+      {
+        "href": "appendix002.html",
+        "linear": true
+      },
+      {
+        "href": "appendix003.html",
+        "linear": true
+      },
+      {
+        "href": "appendix004.html",
+        "linear": true
+      },
+      {
+        "href": "appendix005.html",
+        "linear": true
+      },
+      {
+        "href": "appendix006.html",
+        "linear": true
+      },
+      {
+        "href": "appendix007.html",
+        "linear": true
+      },
+      {
+        "href": "appendix008.html",
+        "linear": true
+      },
+      {
+        "href": "appendix009.html",
+        "linear": true
+      },
+      {
+        "href": "copyright.html",
+        "linear": true
+      }
+    ]
   }
 }

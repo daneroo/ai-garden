@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,576 @@
       "title": "Wrath",
       "creator": "John Gwynne",
       "date": "2016-12-06T00:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/preface003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/preface004.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/epigraph.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter004.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter005.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter006.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter007.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter008.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter009.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter010.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter011.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter012.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter013.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter014.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter015.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter016.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter017.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter018.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter019.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter020.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter021.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter022.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter023.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter024.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter025.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter026.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter027.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter028.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter029.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter030.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter031.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter032.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter033.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter034.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter035.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter036.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter037.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter038.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter039.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter040.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter041.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter042.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter043.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter044.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter045.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter046.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter047.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter048.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter049.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter050.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter051.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter052.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter053.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter054.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter055.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter056.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter057.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter058.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter059.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter060.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter061.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter062.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter063.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter064.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter065.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter066.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter067.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter068.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter069.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter070.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter071.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter072.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter073.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter074.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter075.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter076.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter077.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter078.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter079.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter080.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter081.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter082.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter083.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter084.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter085.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter086.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter087.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter088.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter089.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter090.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter091.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter092.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter093.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter094.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter095.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter096.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter097.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter098.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter099.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter100.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter101.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter102.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter103.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter104.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter105.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter106.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter107.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter108.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter109.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter110.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter111.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter112.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter113.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter114.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter115.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter116.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter117.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter118.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter119.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter120.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter121.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter122.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter123.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter124.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter125.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter126.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter127.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/acknowledgements.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/appendix001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/personblurb.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/ad-card.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/teaser001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/introduction.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/chapter128.xhtml",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/newsletterOrbit.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

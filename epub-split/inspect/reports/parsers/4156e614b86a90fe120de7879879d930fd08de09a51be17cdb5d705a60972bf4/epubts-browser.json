@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,56 @@
       "title": "Jade Shards",
       "creator": "Fonda Lee",
       "date": "2023-07-18T06:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/part0000.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0001.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0002.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0003.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0004.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0005.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0006.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0007.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0008.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0009.html",
+        "linear": true
+      },
+      {
+        "href": "text/part0010.html",
+        "linear": true
+      }
+    ]
   }
 }

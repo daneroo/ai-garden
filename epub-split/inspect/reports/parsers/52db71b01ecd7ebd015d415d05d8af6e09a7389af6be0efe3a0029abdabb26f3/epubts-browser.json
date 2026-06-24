@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,24 @@
       "title": "Hainish Cycle #01 - Rocannon's World",
       "creator": "Ursula K. Le Guin",
       "date": "1964-01-01T23:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_000.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_002.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

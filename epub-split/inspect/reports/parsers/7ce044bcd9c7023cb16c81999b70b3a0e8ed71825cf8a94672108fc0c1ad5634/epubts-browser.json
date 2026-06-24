@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,96 @@
       "title": "Exponential",
       "creator": "Azeem Azhar",
       "date": "2021-09-07"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.xhtml",
+        "linear": false
+      },
+      {
+        "href": "xhtml/brand_page.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/nav.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/about_the_author.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/preface001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter004.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter005.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter006.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter007.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter008.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/conclusion.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/acknowledgements.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/notes.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/bibliography.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/index.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/follow_penguin.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copyright.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

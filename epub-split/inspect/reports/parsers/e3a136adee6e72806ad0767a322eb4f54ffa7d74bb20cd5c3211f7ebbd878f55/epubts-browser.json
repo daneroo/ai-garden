@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,48 @@
       "title": "The Black Company",
       "creator": "Glen Cook",
       "date": "1984-05-09"
-    }
+    },
+    "spine": [
+      {
+        "href": "001.html",
+        "linear": false
+      },
+      {
+        "href": "002.html",
+        "linear": true
+      },
+      {
+        "href": "003.html",
+        "linear": true
+      },
+      {
+        "href": "004.html",
+        "linear": true
+      },
+      {
+        "href": "005.html",
+        "linear": true
+      },
+      {
+        "href": "006.html",
+        "linear": true
+      },
+      {
+        "href": "007.html",
+        "linear": true
+      },
+      {
+        "href": "008.html",
+        "linear": true
+      },
+      {
+        "href": "009.html",
+        "linear": true
+      },
+      {
+        "href": "010.html",
+        "linear": true
+      }
+    ]
   }
 }

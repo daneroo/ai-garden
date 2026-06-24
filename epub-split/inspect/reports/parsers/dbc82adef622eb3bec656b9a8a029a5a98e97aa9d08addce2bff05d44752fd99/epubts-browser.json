@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,80 @@
       "title": "Mobile First",
       "creator": "Luke Wroblewski",
       "date": "2011-10"
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.html",
+        "linear": true
+      },
+      {
+        "href": "frontmatter.html",
+        "linear": true
+      },
+      {
+        "href": "foreword.html",
+        "linear": true
+      },
+      {
+        "href": "introduction.html",
+        "linear": true
+      },
+      {
+        "href": "part1.html",
+        "linear": true
+      },
+      {
+        "href": "chapter1.html",
+        "linear": true
+      },
+      {
+        "href": "chapter2.html",
+        "linear": true
+      },
+      {
+        "href": "chapter3.html",
+        "linear": true
+      },
+      {
+        "href": "part2.html",
+        "linear": true
+      },
+      {
+        "href": "chapter4.html",
+        "linear": true
+      },
+      {
+        "href": "chapter5.html",
+        "linear": true
+      },
+      {
+        "href": "chapter6.html",
+        "linear": true
+      },
+      {
+        "href": "chapter7.html",
+        "linear": true
+      },
+      {
+        "href": "conclusion.html",
+        "linear": true
+      },
+      {
+        "href": "resources.html",
+        "linear": true
+      },
+      {
+        "href": "references.html",
+        "linear": true
+      },
+      {
+        "href": "book-index.html",
+        "linear": true
+      },
+      {
+        "href": "backmatter.html",
+        "linear": true
+      }
+    ]
   }
 }

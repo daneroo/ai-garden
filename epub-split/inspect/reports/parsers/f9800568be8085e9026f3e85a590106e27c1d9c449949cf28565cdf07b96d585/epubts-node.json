@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,120 @@
       "title": "The Soul of a New Machine",
       "creator": "Tracy Kidder",
       "date": "2011-08-23"
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.xml",
+        "linear": false
+      },
+      {
+        "href": "titlepage.html",
+        "linear": true
+      },
+      {
+        "href": "welcome.html",
+        "linear": true
+      },
+      {
+        "href": "dedication.html",
+        "linear": true
+      },
+      {
+        "href": "prologue.html",
+        "linear": true
+      },
+      {
+        "href": "chapter002.html",
+        "linear": true
+      },
+      {
+        "href": "chapter003.html",
+        "linear": true
+      },
+      {
+        "href": "chapter004.html",
+        "linear": true
+      },
+      {
+        "href": "chapter005.html",
+        "linear": true
+      },
+      {
+        "href": "chapter006.html",
+        "linear": true
+      },
+      {
+        "href": "chapter007.html",
+        "linear": true
+      },
+      {
+        "href": "chapter008.html",
+        "linear": true
+      },
+      {
+        "href": "chapter009.html",
+        "linear": true
+      },
+      {
+        "href": "chapter010.html",
+        "linear": true
+      },
+      {
+        "href": "chapter011.html",
+        "linear": true
+      },
+      {
+        "href": "chapter012.html",
+        "linear": true
+      },
+      {
+        "href": "chapter013.html",
+        "linear": true
+      },
+      {
+        "href": "chapter014.html",
+        "linear": true
+      },
+      {
+        "href": "chapter015.html",
+        "linear": true
+      },
+      {
+        "href": "chapter016.html",
+        "linear": true
+      },
+      {
+        "href": "chapter017.html",
+        "linear": true
+      },
+      {
+        "href": "epilogue.html",
+        "linear": true
+      },
+      {
+        "href": "acknowledgements.html",
+        "linear": true
+      },
+      {
+        "href": "appendix001.html",
+        "linear": true
+      },
+      {
+        "href": "toc.html",
+        "linear": true
+      },
+      {
+        "href": "ad_card.html",
+        "linear": true
+      },
+      {
+        "href": "praise.html",
+        "linear": true
+      },
+      {
+        "href": "copyright.html",
+        "linear": true
+      }
+    ]
   }
 }

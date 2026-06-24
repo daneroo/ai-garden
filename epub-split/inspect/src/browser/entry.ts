@@ -27,13 +27,23 @@ async function openBook(bytes: ArrayBuffer): Promise<EntryOpenOutcome> {
   const book = ePub(bytes, { replacements: "none" });
   try {
     await book.opened;
+    const pkg = book.packaging as {
+      metadata: { title?: unknown; creator?: unknown; pubdate?: unknown };
+      spine?: Array<{ idref: string; linear: string }>;
+      manifest?: Record<string, { href: string }>;
+    };
+    const spine = (pkg.spine ?? []).map((item) => ({
+      href: pkg.manifest?.[item.idref]?.href ?? item.idref,
+      linear: item.linear !== "no",
+    }));
     return {
       status: "opened",
       metadata: {
-        title: optional(book.packaging.metadata.title),
-        creator: optional(book.packaging.metadata.creator),
-        date: optionalDate(book.packaging.metadata.pubdate),
+        title: optional(pkg.metadata.title),
+        creator: optional(pkg.metadata.creator),
+        date: optionalDate(pkg.metadata.pubdate),
       },
+      spine,
     };
   } catch (error) {
     return {

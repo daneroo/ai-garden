@@ -19,7 +19,7 @@
 // not modelled below.
 import { z } from "zod";
 
-export const PARSER_OUTPUT_SCHEMA_VERSION = 1;
+export const PARSER_OUTPUT_SCHEMA_VERSION = 2;
 
 export const parserNameSchema = z.enum([
   "epubts-browser",
@@ -55,18 +55,26 @@ export const metaSchema = z.strictObject({
   openFailure: openFailureSchema.optional(),
 });
 
-// v1 content is three metadata fields only, each required and nullable. `null`
-// means "this parser exposed no value" (distinct from "the schema does not model
-// this field yet"). language/publisher/identifier are out of v1 — too unreliable
-// across parsers to compare. manifest/spine/toc arrive in later schema versions.
+// Three metadata fields, each required and nullable. `null` means "this parser
+// exposed no value". language/publisher/identifier are out of scope — too
+// unreliable across parsers to compare.
 export const metadataSchema = z.strictObject({
   title: z.string().nullable(),
   creator: z.string().nullable(),
   date: z.string().nullable(),
 });
 
+// href is the OPF manifest href, relative to the package document, as-is —
+// both parsers read the same OPF so no normalisation is needed. linear is
+// captured for future use; comparisons use href-set only for now.
+export const spineItemSchema = z.strictObject({
+  href: z.string(),
+  linear: z.boolean(),
+});
+
 export const contentSchema = z.strictObject({
   metadata: metadataSchema,
+  spine: z.array(spineItemSchema),
 });
 
 export const parserOutputSchema = z
@@ -155,7 +163,7 @@ export type ParserOutput = z.infer<typeof parserOutputSchema>;
 // Like ParserOutput, the sha256 is the on-disk path key
 // (comparisons/<sha256>/<parserA>--<parserB>.json), never a stored field.
 
-export const COMPARISON_RESULT_SCHEMA_VERSION = 1;
+export const COMPARISON_RESULT_SCHEMA_VERSION = 2;
 
 // Five mutually-exclusive per-field outcomes. `a`/`b` are the values from
 // parserA/parserB. Human-readable reports never print a/b — they name the
@@ -174,11 +182,21 @@ export const fieldComparisonSchema = z.strictObject({
   b: z.string().nullable(),
 });
 
-// The v1 comparison covers the three metadata fields only, matching Content.
 export const metadataComparisonSchema = z.strictObject({
   title: fieldComparisonSchema,
   creator: fieldComparisonSchema,
   date: fieldComparisonSchema,
+});
+
+// Spine comparison: href-set based. "agree" = identical ordered sequence.
+// "differ" = anything else. onlyInA/onlyInB list the asymmetric hrefs; both
+// empty with status "differ" means same set but different order.
+export const spineComparisonSchema = z.strictObject({
+  status: z.enum(["agree", "differ"]),
+  countA: z.number().int().nonnegative(),
+  countB: z.number().int().nonnegative(),
+  onlyInA: z.array(z.string()),
+  onlyInB: z.array(z.string()),
 });
 
 export const comparisonResultSchema = z.strictObject({
@@ -188,9 +206,12 @@ export const comparisonResultSchema = z.strictObject({
   parserA: parserNameSchema,
   parserB: parserNameSchema,
   metadata: metadataComparisonSchema,
+  spine: spineComparisonSchema,
 });
 
 export type PairFieldStatus = z.infer<typeof pairFieldStatusSchema>;
 export type FieldComparison = z.infer<typeof fieldComparisonSchema>;
 export type MetadataComparison = z.infer<typeof metadataComparisonSchema>;
+export type SpineItem = z.infer<typeof spineItemSchema>;
+export type SpineComparison = z.infer<typeof spineComparisonSchema>;
 export type ComparisonResult = z.infer<typeof comparisonResultSchema>;

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,40 @@
       "title": "Mazirian the Magician",
       "creator": "Jack Vance",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/cov01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/vde29.00.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/vde29.01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/vde29.02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/vde29.03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/vde29.04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/vde29.05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/vde29.06.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

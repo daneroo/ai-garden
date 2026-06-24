@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,184 @@
       "title": "The Eagle and the Hart",
       "creator": "Helen Castor",
       "date": "2024-10-03"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.xhtml",
+        "linear": false
+      },
+      {
+        "href": "xhtml/brand_page.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/about_the_author.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/nav.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/epigraph.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/list_of_illustrations.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/maps.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/family_tree.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/a_note.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/introduction.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter004.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter005.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter006.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter007.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter008.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter009.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter010.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter011.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter012.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter013.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter014.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/part004.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter015.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter016.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter017.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter018.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter019.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/epilogue.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/images.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/acknowledgements.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/appendix.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/notes.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/bibliography.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/index.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/follow_penguin.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copyright.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

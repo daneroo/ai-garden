@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,60 @@
       "title": "Absolution Gap",
       "creator": "Alastair Reynolds",
       "date": "2005-05-30"
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.html",
+        "linear": false
+      },
+      {
+        "href": "text/part1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/part2.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/part3.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/part4.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/part5.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/part6.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/part7.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/part8.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/part9.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/part10.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/part11.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/part12.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

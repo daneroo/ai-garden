@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,128 @@
       "title": "Rome",
       "creator": "Christopher Hibbert",
       "date": "2001-10-24T23:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "../jacket.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/aboutauthor.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/title.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copyright.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/dedication.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/contents.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/preface001.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/preface002.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter001.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter002.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter003.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter004.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter005.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter006.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter007.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter008.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter009.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter010.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter011.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter012.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter013.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter014.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter015.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter016.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter017.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/appendix.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/notes001.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/notes002.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/bibliography.html",
+        "linear": true
+      }
+    ]
   }
 }

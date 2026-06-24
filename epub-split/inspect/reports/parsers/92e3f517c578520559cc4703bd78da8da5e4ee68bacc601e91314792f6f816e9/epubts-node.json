@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,76 @@
       "title": "Breakneck: Chinas Quest to Engineer the Future",
       "creator": "Daniel Wang",
       "date": "2025"
-    }
+    },
+    "spine": [
+      {
+        "href": "text/00_Cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/02_Title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/04_Dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/05_Contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/06_Introduction.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/07_Halftitle1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/08_Chapter01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/09_Chapter02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/10_Chapter03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/11_Chapter04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/12_Chapter05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/13_Chapter06.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/14_Chapter07.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/15_Acknowledgments.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/16_Notes.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/17_Further_Reading.xhtml",
+        "linear": true
+      },
+      {
+        "href": "text/03_Copyright.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

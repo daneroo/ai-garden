@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -10,6 +10,96 @@
       "title": "The Light Ages",
       "creator": "Seb Falk",
       "date": "2020-10-09"
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/00_Cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/01_Title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/03_Dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/04_Fm01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/05_Contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/06_Illustrations.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/07_Halftitle.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/08_Prologue.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/09_Chapter01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/10_Chapter02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/11_Chapter03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/12_Chapter04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/13_Chapter05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/14_Chapter06.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/15_Chapter07.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/16_Epilogue.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/17_Illustrations_Insert.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/18_Further_Reading.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/19_Notes.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/20_Acknowledgements.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/21_Index.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/02_Copyrights.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

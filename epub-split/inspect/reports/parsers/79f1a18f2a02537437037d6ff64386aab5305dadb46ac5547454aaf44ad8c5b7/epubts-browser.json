@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,160 @@
       "title": "The Odyssey",
       "creator": "Homer",
       "date": "2017"
-    }
+    },
+    "spine": [
+      {
+        "href": "00_Cover.xhtml",
+        "linear": false
+      },
+      {
+        "href": "02a_Pub.xhtml",
+        "linear": true
+      },
+      {
+        "href": "02_Title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "04_Dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "05_Contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "06_Intro.xhtml",
+        "linear": true
+      },
+      {
+        "href": "07_Trans.xhtml",
+        "linear": true
+      },
+      {
+        "href": "08_Map.xhtml",
+        "linear": true
+      },
+      {
+        "href": "09_Part01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "10_Chapter01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "11_Chapter02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "12_Chapter03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "13_Chapter04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "14_Chapter05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "15_Chapter06.xhtml",
+        "linear": true
+      },
+      {
+        "href": "16_Chapter07.xhtml",
+        "linear": true
+      },
+      {
+        "href": "17_Chapter08.xhtml",
+        "linear": true
+      },
+      {
+        "href": "18_Chapter09.xhtml",
+        "linear": true
+      },
+      {
+        "href": "19_Chapter10.xhtml",
+        "linear": true
+      },
+      {
+        "href": "20_Chapter11.xhtml",
+        "linear": true
+      },
+      {
+        "href": "21_Chapter12.xhtml",
+        "linear": true
+      },
+      {
+        "href": "22_Chapter13.xhtml",
+        "linear": true
+      },
+      {
+        "href": "23_Chapter14.xhtml",
+        "linear": true
+      },
+      {
+        "href": "24_Chapter15.xhtml",
+        "linear": true
+      },
+      {
+        "href": "25_Chapter16.xhtml",
+        "linear": true
+      },
+      {
+        "href": "26_Chapter17.xhtml",
+        "linear": true
+      },
+      {
+        "href": "27_Chapter18.xhtml",
+        "linear": true
+      },
+      {
+        "href": "28_Chapter19.xhtml",
+        "linear": true
+      },
+      {
+        "href": "29_Chapter20.xhtml",
+        "linear": true
+      },
+      {
+        "href": "30_Chapter21.xhtml",
+        "linear": true
+      },
+      {
+        "href": "31_Chapter22.xhtml",
+        "linear": true
+      },
+      {
+        "href": "32_Chapter23.xhtml",
+        "linear": true
+      },
+      {
+        "href": "33_Chapter24.xhtml",
+        "linear": true
+      },
+      {
+        "href": "34_Notes.xhtml",
+        "linear": true
+      },
+      {
+        "href": "35_Glossary.xhtml",
+        "linear": true
+      },
+      {
+        "href": "36_Ack.xhtml",
+        "linear": true
+      },
+      {
+        "href": "01_Alsoby.xhtml",
+        "linear": true
+      },
+      {
+        "href": "03_Copyright.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

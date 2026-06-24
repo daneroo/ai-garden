@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,104 @@
       "title": "Twelve Caesars",
       "creator": "Mary Beard",
       "date": "2021-08-16"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/01_cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/02_halftitle.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/03_frontispiece.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/04_title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/05_copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/06_dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/07_cont.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/08_listoftables.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/09_preface.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/10_ch1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/11_ch2.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/12_ch3.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/13_ch4.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/14_ch5.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/15_ch6.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/16_ch7.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/17_ch8.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/18_acknowledgments.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/19_appendix.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/20_notes.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/21_bibliography.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/22_illustration.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/23_index.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/24_backmatter.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

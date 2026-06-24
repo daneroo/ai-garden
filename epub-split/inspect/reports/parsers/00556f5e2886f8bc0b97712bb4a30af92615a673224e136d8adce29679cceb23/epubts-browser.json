@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,36 @@
       "title": "The Last Question",
       "creator": "Isaac Asimov",
       "date": "1956-11-01"
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/Cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Synopsis.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/info.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Author.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

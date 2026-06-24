@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,36 @@
       "title": "Sixth of the Dusk",
       "creator": "Brandon Sanderson",
       "date": "2014-10-15"
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/Cover.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Title.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Sixth-of-the-Dusk.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Acknowledgments.html",
+        "linear": true
+      },
+      {
+        "href": "Text/AlsoBy.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Copyright.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Contents.html",
+        "linear": true
+      }
+    ]
   }
 }

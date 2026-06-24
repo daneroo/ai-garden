@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,104 @@
       "title": "The Strategy of Denial",
       "creator": "Elbridge A. Colby",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.htm",
+        "linear": true
+      },
+      {
+        "href": "half_title.htm",
+        "linear": true
+      },
+      {
+        "href": "title_page.htm",
+        "linear": true
+      },
+      {
+        "href": "copyright.htm",
+        "linear": true
+      },
+      {
+        "href": "dedication.htm",
+        "linear": true
+      },
+      {
+        "href": "epigraph.htm",
+        "linear": true
+      },
+      {
+        "href": "contents.htm",
+        "linear": true
+      },
+      {
+        "href": "preface.htm",
+        "linear": true
+      },
+      {
+        "href": "acknowledgments.htm",
+        "linear": true
+      },
+      {
+        "href": "chapter_opening.htm",
+        "linear": true
+      },
+      {
+        "href": "chapter_1.htm",
+        "linear": true
+      },
+      {
+        "href": "chapter_2.htm",
+        "linear": true
+      },
+      {
+        "href": "chapter_3.htm",
+        "linear": true
+      },
+      {
+        "href": "chapter_4.htm",
+        "linear": true
+      },
+      {
+        "href": "chapter_5.htm",
+        "linear": true
+      },
+      {
+        "href": "chapter_6.htm",
+        "linear": true
+      },
+      {
+        "href": "chapter_7.htm",
+        "linear": true
+      },
+      {
+        "href": "chapter_8.htm",
+        "linear": true
+      },
+      {
+        "href": "chapter_9.htm",
+        "linear": true
+      },
+      {
+        "href": "chapter_10.htm",
+        "linear": true
+      },
+      {
+        "href": "chapter_11.htm",
+        "linear": true
+      },
+      {
+        "href": "chapter_12.htm",
+        "linear": true
+      },
+      {
+        "href": "notes.htm",
+        "linear": true
+      },
+      {
+        "href": "index.htm",
+        "linear": true
+      }
+    ]
   }
 }

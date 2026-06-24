@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "parserA": "epubts-node",
   "parserB": "storyteller",
   "metadata": {
@@ -18,5 +18,12 @@
       "a": "2020-04-07",
       "b": "2020-04-07"
     }
+  },
+  "spine": {
+    "status": "agree",
+    "countA": 138,
+    "countB": 138,
+    "onlyInA": [],
+    "onlyInB": []
   }
 }

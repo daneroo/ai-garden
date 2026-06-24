@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,32 @@
       "title": "The Snow leopard",
       "creator": "Matthiessen Peter",
       "date": "1978-12-31T23:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/Cover.html",
+        "linear": true
+      },
+      {
+        "href": "Text/part0001.html",
+        "linear": true
+      },
+      {
+        "href": "Text/part0002.html",
+        "linear": true
+      },
+      {
+        "href": "Text/part0003.html",
+        "linear": true
+      },
+      {
+        "href": "Text/part0004.html",
+        "linear": true
+      },
+      {
+        "href": "Text/part0005.html",
+        "linear": true
+      }
+    ]
   }
 }

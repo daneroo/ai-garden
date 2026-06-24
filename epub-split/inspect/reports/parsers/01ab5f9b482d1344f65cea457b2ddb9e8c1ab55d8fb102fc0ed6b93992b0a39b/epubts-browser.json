@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,84 @@
       "title": "How to Talk to a Science Denier",
       "creator": "Lee McIntyre",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/title_page.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/epigraph.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/introduction.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter_1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter_2.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter_3.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter_4.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter_5.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter_6.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter_7.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter_8.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/epilogue.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/acknowledgments.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/bibliography.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/index.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,32 @@
       "title": "On the Road",
       "creator": "Jack Kerouac",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "leaf0000.html",
+        "linear": true
+      },
+      {
+        "href": "part0000.html",
+        "linear": true
+      },
+      {
+        "href": "part0001.html",
+        "linear": true
+      },
+      {
+        "href": "part0002.html",
+        "linear": true
+      },
+      {
+        "href": "part0003.html",
+        "linear": true
+      },
+      {
+        "href": "part0004.html",
+        "linear": true
+      }
+    ]
   }
 }

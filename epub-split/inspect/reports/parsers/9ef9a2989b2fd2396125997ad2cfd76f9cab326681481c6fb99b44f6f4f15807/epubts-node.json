@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,64 @@
       "title": "The Jamstack Book MEAP V06",
       "creator": "Raymond Camden",
       "date": "2021-10-14T22:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/WL.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/toc.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/01.htm",
+        "linear": true
+      },
+      {
+        "href": "Text/02.htm",
+        "linear": true
+      },
+      {
+        "href": "Text/03.htm",
+        "linear": true
+      },
+      {
+        "href": "Text/04.htm",
+        "linear": true
+      },
+      {
+        "href": "Text/05.htm",
+        "linear": true
+      },
+      {
+        "href": "Text/06.htm",
+        "linear": true
+      },
+      {
+        "href": "Text/07.htm",
+        "linear": true
+      },
+      {
+        "href": "Text/08.htm",
+        "linear": true
+      },
+      {
+        "href": "Text/09.htm",
+        "linear": true
+      },
+      {
+        "href": "Text/10.htm",
+        "linear": true
+      }
+    ]
   }
 }

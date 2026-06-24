@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,108 @@
       "title": "The Universe in a Box",
       "creator": "Andrew Pontzen",
       "date": "2023-06-13"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/01_Cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/02_Title_Page.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/03_Copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/04_Dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/05_Contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/06_Epigraph.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/07_Introduction.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/08_1_Weather_and_Climate.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/09_2_Dark_Matter_Dark_En.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/10_3_Galaxies_and_the_Su.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/11_4_Black_Holes.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/12_5_Quantum_Mechanics_a.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/13_6_Thinking.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/14_7_Simulations_Science.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/15_Acknowledgments.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/16_Notes.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/17_Index.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/18_About_the_Author.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/next-reads.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/19_Footnote.xhtml",
+        "linear": false
+      },
+      {
+        "href": "xhtml/20_Footnote.xhtml",
+        "linear": false
+      },
+      {
+        "href": "xhtml/21_Footnote.xhtml",
+        "linear": false
+      },
+      {
+        "href": "xhtml/22_Footnote.xhtml",
+        "linear": false
+      },
+      {
+        "href": "xhtml/23_Footnote.xhtml",
+        "linear": false
+      },
+      {
+        "href": "xhtml/24_Footnote.xhtml",
+        "linear": false
+      }
+    ]
   }
 }

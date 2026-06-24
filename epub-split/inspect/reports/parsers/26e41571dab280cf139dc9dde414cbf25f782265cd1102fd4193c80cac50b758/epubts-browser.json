@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,104 @@
       "title": "Going Infinite",
       "creator": "Michael Lewis",
       "date": "2023"
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.xhtml",
+        "linear": false
+      },
+      {
+        "href": "title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "epigraph.xhtml",
+        "linear": true
+      },
+      {
+        "href": "contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "preface.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Act1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Chapter1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Chapter2.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Chapter3.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Chapter4.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Act2.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Chapter5.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Chapter6.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Chapter7.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Act3.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Chapter8.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Chapter9.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Chapter10.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Chapter11.xhtml",
+        "linear": true
+      },
+      {
+        "href": "coda.xhtml",
+        "linear": true
+      },
+      {
+        "href": "ack.xhtml",
+        "linear": true
+      },
+      {
+        "href": "alsoby.xhtml",
+        "linear": true
+      },
+      {
+        "href": "copyright.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

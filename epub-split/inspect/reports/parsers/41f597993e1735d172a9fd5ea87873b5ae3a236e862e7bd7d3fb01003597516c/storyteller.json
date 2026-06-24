@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "storyteller",
     "parserVersion": "0.6.2",
@@ -10,6 +10,60 @@
       "title": "Grief of Stones (9781250813909)",
       "creator": "Addison, Katherine",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/mini_toc.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copyrightnotice.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/acknowledgments.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/adcard.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/abouttheauthor.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/newsletter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/torad.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copyright.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

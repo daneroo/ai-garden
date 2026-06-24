@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,64 @@
       "title": "The Word for World is Forest",
       "creator": "Ursula K Le Guin",
       "date": "2014-02-25T05:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/Ursula K Le Guin - The Word for World is Forest.html",
+        "linear": true
+      },
+      {
+        "href": "Text/TitlePage.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Copyright.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Dedication.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Contents.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter_01.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter_02.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter_03.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter_04.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter_05.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter_06.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter_07.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Chapter_08.html",
+        "linear": true
+      },
+      {
+        "href": "Text/BackCover.html",
+        "linear": true
+      }
+    ]
   }
 }

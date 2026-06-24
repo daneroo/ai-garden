@@ -40,6 +40,7 @@ interface WorkerSuccess {
     creator: string | null;
     date: string | null;
   };
+  spine: { href: string; linear: boolean }[];
 }
 interface WorkerFailure {
   ok: false;
@@ -97,6 +98,7 @@ function toParserOutput(result: WorkerResult): ParserOutput {
       parserVersion: result.parserVersion,
       domParser: result.domParser,
       metadata: result.metadata,
+      spine: result.spine,
     });
   }
   return buildParserOutput("epubts-node", {

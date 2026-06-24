@@ -24,6 +24,7 @@ interface WorkerResult {
     creator: string | null;
     date: string | null;
   };
+  spine?: { href: string; linear: boolean }[];
   category?: string;
   message?: string;
 }
@@ -86,6 +87,7 @@ export async function openStoryteller(
       openStatus: "opened",
       parserVersion: STORYTELLER_VERSION,
       metadata: parsed.metadata,
+      spine: parsed.spine ?? [],
     });
   }
 

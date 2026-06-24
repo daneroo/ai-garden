@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,20 @@
       "title": "Force_Multiplier",
       "creator": "Unknown",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "ch01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "toc01.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

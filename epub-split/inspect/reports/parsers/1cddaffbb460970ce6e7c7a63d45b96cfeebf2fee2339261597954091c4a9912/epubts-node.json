@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,132 @@
       "title": "Polostan",
       "creator": "Neal Stephenson",
       "date": "2024-08-23T17:00:00Z"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/001_cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/002_title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/003_copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/004_dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/005_epigraph.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/006_contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/007_prologue.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/008_chapter001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/009_chapter002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/010_chapter003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/011_chapter004.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/012_chapter005.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/013_chapter006.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/014_chapter007.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/015_chapter008.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/016_chapter009.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/017_chapter010.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/018_chapter011.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/019_chapter012.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/020_chapter013.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/021_chapter014.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/022_chapter015.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/023_chapter016.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/024_chapter017.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/025_chapter018.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/026_chapter019.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/027_chapter020.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/028_chapter021.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/029_ack.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/030_alsoby.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/031_aboutpublisher.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

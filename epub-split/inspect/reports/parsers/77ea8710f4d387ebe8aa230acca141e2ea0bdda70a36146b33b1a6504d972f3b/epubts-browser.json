@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,76 @@
       "title": "What is Life?",
       "creator": "Pross, Addy; ",
       "date": "2012"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/fm.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/title.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copyright.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/dedication.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/contents.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/prologue.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch01.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch02.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch03.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch04.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch05.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch06.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch07.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ch08.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/references.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/index.html",
+        "linear": true
+      }
+    ]
   }
 }

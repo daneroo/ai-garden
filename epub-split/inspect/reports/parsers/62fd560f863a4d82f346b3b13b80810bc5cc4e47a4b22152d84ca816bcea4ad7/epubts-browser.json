@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,24 @@
       "title": "City of Illusions",
       "creator": "Ursula K LeGuin",
       "date": "1967-01-01T05:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_000.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_002.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

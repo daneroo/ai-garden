@@ -14,6 +14,13 @@ mismatch = differ + a-only + b-only.
 | creator | 213 | 0 | 0 | 0 | 0 | 0 |
 | date | 168 | 0 | 0 | 0 | 45 | 0 |
 
+## Spine comparison
+
+| status | distinct books |
+|---|---:|
+| agree | 213 |
+| differ | 0 |
+
 ## Not compared
 
 | reason | distinct books |

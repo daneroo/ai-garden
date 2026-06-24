@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,96 @@
       "title": "And Another Thing…",
       "creator": "Eoin Colfer",
       "date": "2009"
-    }
+    },
+    "spine": [
+      {
+        "href": "andanotherthing_cov.html",
+        "linear": false
+      },
+      {
+        "href": "andanotherthing_tp01.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_ded01.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_epi01.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_con01.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_fm01.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_fm03.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_ch01.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_ch02.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_ch03.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_ch04.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_ch05.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_ch06.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_ch07.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_ch08.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_ch09.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_ch10.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_ch11.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_ch12.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_ack01.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_adc01.html",
+        "linear": true
+      },
+      {
+        "href": "andanotherthing_cop01.html",
+        "linear": true
+      }
+    ]
   }
 }

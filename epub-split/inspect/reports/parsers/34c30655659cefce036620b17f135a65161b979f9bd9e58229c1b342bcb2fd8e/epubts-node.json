@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,184 @@
       "title": "The Royal Succession",
       "creator": "Maurice Druon",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "html/cover.html",
+        "linear": false
+      },
+      {
+        "href": "html/title.html",
+        "linear": true
+      },
+      {
+        "href": "html/epigraph.html",
+        "linear": true
+      },
+      {
+        "href": "html/contents.html",
+        "linear": true
+      },
+      {
+        "href": "html/fore.html",
+        "linear": true
+      },
+      {
+        "href": "html/char.html",
+        "linear": true
+      },
+      {
+        "href": "html/tree.html",
+        "linear": true
+      },
+      {
+        "href": "html/royal.html",
+        "linear": true
+      },
+      {
+        "href": "html/prologue.html",
+        "linear": true
+      },
+      {
+        "href": "html/part1.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter001.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter002.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter003.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter004.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter005.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter006.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter007.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter008.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter009.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter010.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter011.html",
+        "linear": true
+      },
+      {
+        "href": "html/part2.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter012.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter013.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter014.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter015.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter016.html",
+        "linear": true
+      },
+      {
+        "href": "html/part3.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter017.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter018.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter019.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter020.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter021.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter022.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter023.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter024.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter025.html",
+        "linear": true
+      },
+      {
+        "href": "html/chapter026.html",
+        "linear": true
+      },
+      {
+        "href": "html/history.html",
+        "linear": true
+      },
+      {
+        "href": "html/footnotes.html",
+        "linear": true
+      },
+      {
+        "href": "html/ack.html",
+        "linear": true
+      },
+      {
+        "href": "html/alsoby.html",
+        "linear": true
+      },
+      {
+        "href": "html/copyright.html",
+        "linear": true
+      },
+      {
+        "href": "html/aboutpublisher.html",
+        "linear": true
+      }
+    ]
   }
 }

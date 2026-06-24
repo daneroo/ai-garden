@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,80 @@
       "title": "Tales from Earthsea",
       "creator": "Ursula K Le Guin",
       "date": "2014-02-16"
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/Ursula%20K%20Le%20Guin%20-%20Tales%20from%20Earthsea.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Teaser.html",
+        "linear": true
+      },
+      {
+        "href": "Text/MapA.html",
+        "linear": true
+      },
+      {
+        "href": "Text/BooksBy.html",
+        "linear": true
+      },
+      {
+        "href": "Text/TitlePage.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Copyright.html",
+        "linear": true
+      },
+      {
+        "href": "Text/MapB.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Contents.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Foreword.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Story_01.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Story_02.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Story_03.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Story_04.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Story_05.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Description.html",
+        "linear": true
+      },
+      {
+        "href": "Text/Bonus.html",
+        "linear": true
+      },
+      {
+        "href": "Text/AboutAuthor.html",
+        "linear": true
+      },
+      {
+        "href": "Text/BackCover.html",
+        "linear": true
+      }
+    ]
   }
 }

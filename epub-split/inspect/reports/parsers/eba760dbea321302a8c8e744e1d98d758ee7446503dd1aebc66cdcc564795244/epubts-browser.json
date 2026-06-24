@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,88 @@
       "title": "The Character of Physical Law",
       "creator": "Richard P Feynman",
       "date": "1992"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.html",
+        "linear": false
+      },
+      {
+        "href": "xhtml/abouttheauthor.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/title.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copyright.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/toc.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/introduction.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter001.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter002.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter003.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter004.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter005.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter006.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter007.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/illustrations.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter001-fn.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter002-fn.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter003-fn.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter004-fn.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter005-fn.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter007-fn.html",
+        "linear": true
+      }
+    ]
   }
 }

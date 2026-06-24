@@ -26,7 +26,12 @@ try {
     creator: values("dc:creator")[0] ?? null,
     date: optionalDate(values("dc:date")[0]),
   };
-  process.stdout.write(JSON.stringify({ ok: true, metadata }));
+  // getSpineItems() returns ManifestItem[] in reading order but does not expose
+  // the OPF linear attribute — default true (safe for EPUB 3, which storyteller
+  // exclusively handles).
+  const spineItems = await reader.getSpineItems();
+  const spine = spineItems.map((item) => ({ href: item.href, linear: true }));
+  process.stdout.write(JSON.stringify({ ok: true, metadata, spine }));
   await reader.discardAndClose();
 } catch (error: unknown) {
   if (error instanceof EpubVersionError) {

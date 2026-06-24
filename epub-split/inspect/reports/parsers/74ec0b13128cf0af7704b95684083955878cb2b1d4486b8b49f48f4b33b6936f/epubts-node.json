@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,112 @@
       "title": "The First Scientist",
       "creator": "Carlo Rovelli",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "01_cover.xhtml",
+        "linear": false
+      },
+      {
+        "href": "02_advertisement-title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "03_title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "04_copyright-title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "05_dedication-title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "06_toc-title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "07_author-title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "08_ack-title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "09_introduction-title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "10_chapter-title-1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "11_chapter-title-2.xhtml",
+        "linear": true
+      },
+      {
+        "href": "12_chapter-title-3.xhtml",
+        "linear": true
+      },
+      {
+        "href": "13_chapter-title-4.xhtml",
+        "linear": true
+      },
+      {
+        "href": "14_chapter-title-5.xhtml",
+        "linear": true
+      },
+      {
+        "href": "15_chapter-title-6.xhtml",
+        "linear": true
+      },
+      {
+        "href": "16_chapter-title-7.xhtml",
+        "linear": true
+      },
+      {
+        "href": "17_chapter-title-8.xhtml",
+        "linear": true
+      },
+      {
+        "href": "18_chapter-title-9.xhtml",
+        "linear": true
+      },
+      {
+        "href": "19_chapter-title-10.xhtml",
+        "linear": true
+      },
+      {
+        "href": "20_chapter-title-11.xhtml",
+        "linear": true
+      },
+      {
+        "href": "21_chapter-title-12.xhtml",
+        "linear": true
+      },
+      {
+        "href": "22_endnote-title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "23_bibiliography-title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "24_index-title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "25_credits-title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "26_ack-title.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

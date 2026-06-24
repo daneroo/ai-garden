@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,16 @@
       "title": "The Hope of Elantris",
       "creator": "Brandon Sanderson",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.html",
+        "linear": true
+      },
+      {
+        "href": "page-1.html",
+        "linear": true
+      }
+    ]
   }
 }

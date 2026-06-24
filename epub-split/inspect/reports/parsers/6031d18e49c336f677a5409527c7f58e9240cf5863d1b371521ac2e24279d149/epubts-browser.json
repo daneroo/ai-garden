@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,96 @@
       "title": "The Language Game",
       "creator": "Morten H. Christiansen",
       "date": "2022-02-22"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/002_Title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/003_Copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/toc.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/004_Dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/discover-page_pre.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/006_FM_002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/007_Chapter_001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/008_Chapter_002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/009_Chapter_003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/010_Chapter_004.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/011_Chapter_005.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/012_Chapter_006.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/013_Chapter_007.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/014_Chapter_008.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/015_BM_001.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/016_BM_002.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/discover-page.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/019_BM_005.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/001_ad-card.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/017_BM_003.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/018_BM_004.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

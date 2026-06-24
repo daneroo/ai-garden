@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,28 @@
       "title": "The Last Enchantment (Merlin3)",
       "creator": "Mary Stewart",
       "date": "2009-10-14T13:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "The_Last_Enchantment_Merlin3__split_000.html",
+        "linear": true
+      },
+      {
+        "href": "The_Last_Enchantment_Merlin3__split_001.html",
+        "linear": true
+      },
+      {
+        "href": "The_Last_Enchantment_Merlin3__split_002.html",
+        "linear": true
+      },
+      {
+        "href": "The_Last_Enchantment_Merlin3__split_003.html",
+        "linear": true
+      }
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,76 @@
       "title": "Staring at the Sun",
       "creator": "Irvin D. Yalom",
       "date": "2008-03-03"
-    }
+    },
+    "spine": [
+      {
+        "href": "OEBPS/cvi.htm",
+        "linear": false
+      },
+      {
+        "href": "OEBPS/tp.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/cop.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/toc.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/ded.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/pre.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/c01.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/c02.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/c03.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/c04.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/c05.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/c06.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/c07.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/aft.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/note.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/ata.htm",
+        "linear": true
+      },
+      {
+        "href": "OEBPS/guide.htm",
+        "linear": true
+      }
+    ]
   }
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,100 @@
       "title": "Rome",
       "creator": "Matthew Kneale",
       "date": "2017-11-17"
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/00_Cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/03_Title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/23_Copy.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/04_Dedi.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/05_Contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/07a_Map.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/07_Note.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/08_Intro.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/09_Chapter01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/10_Chapter02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/11_Chapter03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/12_Chapter04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/13_Chapter05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/14_Chapter06.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/15_Chapter07.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/16_Afterword.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/17_Ack.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/18_Notes.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/19_Bib.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/20_Index.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/21_Author.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/02_Also.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/22_Illustration.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

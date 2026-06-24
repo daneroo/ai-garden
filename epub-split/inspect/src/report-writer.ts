@@ -245,6 +245,8 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
   let aNotOpened = 0;
   let bNotOpened = 0;
   let neitherOpened = 0;
+  let spineAgree = 0;
+  let spineDiffer = 0;
 
   for (const entry of input.inventory.entries) {
     const aOpened = isOpened(input, entry.sha256, pair.a);
@@ -258,6 +260,8 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
           const counts = histogram[field];
           counts[status] = (counts[status] ?? 0) + 1;
         }
+        if (result.spine.status === "agree") spineAgree += 1;
+        else spineDiffer += 1;
       }
     } else if (!aOpened && !bOpened) {
       neitherOpened += 1;
@@ -289,6 +293,13 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
         "a-only"
       )} | ${get("b-only")} | ${get("both-null")} | ${mismatch} |`;
     }),
+    "",
+    "## Spine comparison",
+    "",
+    "| status | distinct books |",
+    "|---|---:|",
+    `| agree | ${spineAgree} |`,
+    `| differ | ${spineDiffer} |`,
     "",
     "## Not compared",
     "",
@@ -327,10 +338,11 @@ function renderPairMismatchList(
       const fields = METADATA_FIELDS.map((field) =>
         describeField(pair, field, result.metadata[field].status)
       ).filter((value): value is string => value !== null);
+      if (result.spine.status === "differ") {
+        fields.push(describeSpine(pair, result.spine));
+      }
       lines.push(
-        `- [${displayName(entry)}](details/${entry.sha256}.md) — ${fields.join(
-          "; "
-        )}`
+        `- [${displayName(entry)}](details/${entry.sha256}.md) — ${fields.join("; ")}`
       );
     }
     lines.push("");
@@ -371,6 +383,9 @@ function renderDetail(input: ReportInput, entry: CorpusEntry): string {
         )} | ${verdict(pair, cell.status)} |`;
       })
     );
+    if (result.spine.status === "differ") {
+      lines.push("", `### Spine`, "", describeSpineDetail(pair, result.spine));
+    }
   }
 
   return `${lines.join("\n")}\n`;
@@ -440,6 +455,7 @@ function activePairs(input: ReportInput): ParserPair[] {
 }
 
 function comparisonHasMismatch(result: ComparisonResult): boolean {
+  if (result.spine.status === "differ") return true;
   return METADATA_FIELDS.some((field) => {
     const status = result.metadata[field].status;
     return status === "differ" || status === "a-only" || status === "b-only";
@@ -453,6 +469,36 @@ function entryHasMismatch(input: ReportInput, sha256: string): boolean {
     if (comparisonHasMismatch(result)) return true;
   }
   return false;
+}
+
+// One human-readable clause for a spine mismatch in the mismatch list.
+function describeSpine(
+  pair: ParserPair,
+  spine: ComparisonResult["spine"]
+): string {
+  if (spine.onlyInA.length === 0 && spine.onlyInB.length === 0) {
+    return `spine: same hrefs, different order (${spine.countA} items)`;
+  }
+  const parts: string[] = [];
+  if (spine.onlyInA.length > 0) parts.push(`${spine.onlyInA.length} only in ${pair.a}`);
+  if (spine.onlyInB.length > 0) parts.push(`${spine.onlyInB.length} only in ${pair.b}`);
+  return `spine: ${parts.join(", ")}`;
+}
+
+// Multi-line spine diff for detail pages.
+function describeSpineDetail(pair: ParserPair, spine: ComparisonResult["spine"]): string {
+  if (spine.onlyInA.length === 0 && spine.onlyInB.length === 0) {
+    return `same hrefs, different order — ${spine.countA} items each`;
+  }
+  const lines: string[] = [];
+  lines.push(`${pair.a}: ${spine.countA} items, ${pair.b}: ${spine.countB} items`);
+  if (spine.onlyInA.length > 0) {
+    lines.push("", `Only in ${pair.a}:`, ...spine.onlyInA.map((h) => `- ${h}`));
+  }
+  if (spine.onlyInB.length > 0) {
+    lines.push("", `Only in ${pair.b}:`, ...spine.onlyInB.map((h) => `- ${h}`));
+  }
+  return lines.join("\n");
 }
 
 // One human-readable clause for a single field's outcome, naming the parsers

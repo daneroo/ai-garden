@@ -71,7 +71,7 @@ describe("BrowserTransport.open", () => {
       const path = resolve(TEST_BOOKS, "aristotle-nicomachean-ethics.epub");
       const { sha256, size } = await bookInfo(path);
       const output = await transport.open(path, sha256, size);
-      expect(output.schemaVersion).toBe(1);
+      expect(output.schemaVersion).toBe(2);
       expect(["opened", "open-failed", "epub2-unsupported"]).toContain(
         output.meta.openStatus,
       );

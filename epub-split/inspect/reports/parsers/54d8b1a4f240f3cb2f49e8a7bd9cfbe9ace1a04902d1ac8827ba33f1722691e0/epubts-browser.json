@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,104 @@
       "title": "Transformer",
       "creator": "Nick Lane",
       "date": "2022-06-04"
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/00_Cover.xhtml",
+        "linear": false
+      },
+      {
+        "href": "Text/02_Title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/03_Dedi.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/04_Contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/05_Fm.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/08_Intro.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/12_Chapter01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/12_Chapter02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/12_Chapter03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/12_Chapter04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/12_Chapter05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/12_Chapter06.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/14_Epilog.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/15_Env.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/16_Forward.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/17_Reverse.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/18_App_1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/18_App_2.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/19_Abb.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/20_Further.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/21_Ack.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/22_Index.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/31_Praise.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/32_Copyright.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

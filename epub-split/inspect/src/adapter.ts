@@ -15,6 +15,7 @@ export type RawOpenResult =
       parserVersion: string;
       domParser?: "linkedom" | "jsdom";
       metadata: { title: string | null; creator: string | null; date: string | null };
+      spine: { href: string; linear: boolean }[];
     }
   | { openStatus: "open-failed"; parserVersion: string; openFailure: { category: string; message: string } }
   | { openStatus: "epub2-unsupported"; parserVersion: string };
@@ -29,7 +30,7 @@ export function buildParserOutput(parser: ParserName, raw: RawOpenResult): Parse
         openStatus: "opened",
         ...(raw.domParser !== undefined ? { domParser: raw.domParser } : {}),
       },
-      content: { metadata: raw.metadata },
+      content: { metadata: raw.metadata, spine: raw.spine },
     });
   }
   if (raw.openStatus === "open-failed") {

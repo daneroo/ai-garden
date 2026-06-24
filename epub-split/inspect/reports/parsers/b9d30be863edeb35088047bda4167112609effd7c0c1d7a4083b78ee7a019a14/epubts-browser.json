@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,68 @@
       "title": "The Rapture of the Nerds",
       "creator": "Cory Doctorow and Charles Stross",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.xml",
+        "linear": false
+      },
+      {
+        "href": "xhtml/title.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copyrightnotice.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/dedication.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/acknowledgments.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/contents.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter1.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter2.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/chapter3.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/epilogue.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/adcard.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/abouttheauthor.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copyright.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/footnotes.html",
+        "linear": true
+      },
+      {
+        "href": "xhtml/footnotes1.html",
+        "linear": true
+      }
+    ]
   }
 }

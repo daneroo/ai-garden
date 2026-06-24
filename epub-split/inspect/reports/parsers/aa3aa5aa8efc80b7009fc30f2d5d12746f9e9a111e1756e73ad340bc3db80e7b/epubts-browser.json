@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,48 @@
       "title": "Parable of the Sower",
       "creator": "Octavia E Butler",
       "date": null
-    }
+    },
+    "spine": [
+      {
+        "href": "Text/Octavia E Butler - Parable of the Sower.html",
+        "linear": true
+      },
+      {
+        "href": "Text/BooksBy.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/TitlePage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Part_1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Part_2.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Part_3.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Part_4.xhtml",
+        "linear": true
+      },
+      {
+        "href": "Text/Conversation.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

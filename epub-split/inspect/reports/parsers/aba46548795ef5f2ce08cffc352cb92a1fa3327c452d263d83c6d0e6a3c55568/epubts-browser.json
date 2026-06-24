@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,96 @@
       "title": "Cryptography Apocalypse",
       "creator": "Roger A. Grimes",
       "date": "2019-11-26T00:00:00Z"
-    }
+    },
+    "spine": [
+      {
+        "href": "cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "navigation.xhtml",
+        "linear": true
+      },
+      {
+        "href": "f01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "f06.xhtml",
+        "linear": true
+      },
+      {
+        "href": "p01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "c01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "c02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "c03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "c04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "c05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "p02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "c06.xhtml",
+        "linear": true
+      },
+      {
+        "href": "c07.xhtml",
+        "linear": true
+      },
+      {
+        "href": "c08.xhtml",
+        "linear": true
+      },
+      {
+        "href": "c09.xhtml",
+        "linear": true
+      },
+      {
+        "href": "b01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "b02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "f02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "f03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "f04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "f05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "eula.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

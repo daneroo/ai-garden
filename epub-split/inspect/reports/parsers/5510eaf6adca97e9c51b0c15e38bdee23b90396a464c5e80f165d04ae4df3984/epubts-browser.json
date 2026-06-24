@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,44 @@
       "title": "The 1st Chronicles of Thomas Covenant #2: The Illearth War",
       "creator": "Stephen R. Donaldson",
       "date": "1987-10-12T07:00:00+00:00"
-    }
+    },
+    "spine": [
+      {
+        "href": "titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "index_split_000.html",
+        "linear": true
+      },
+      {
+        "href": "index_split_001.html",
+        "linear": true
+      },
+      {
+        "href": "index_split_002.html",
+        "linear": true
+      },
+      {
+        "href": "index_split_003.html",
+        "linear": true
+      },
+      {
+        "href": "index_split_004.html",
+        "linear": true
+      },
+      {
+        "href": "index_split_005.html",
+        "linear": true
+      },
+      {
+        "href": "index_split_006.html",
+        "linear": true
+      },
+      {
+        "href": "index_split_007.html",
+        "linear": true
+      }
+    ]
   }
 }

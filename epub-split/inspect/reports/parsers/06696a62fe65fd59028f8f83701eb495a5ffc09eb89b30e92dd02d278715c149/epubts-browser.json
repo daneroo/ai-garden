@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,88 @@
       "title": "Space at the Speed of Light",
       "creator": "Dr. Becky Smethurst",
       "date": "2020-06-02"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/tp.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/copy.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/prf.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/c01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/c02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/c03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/c04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/c05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/c06.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/c07.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/c08.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/c09.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/c10.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ded.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ack.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/ata.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/index.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/next-reads.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

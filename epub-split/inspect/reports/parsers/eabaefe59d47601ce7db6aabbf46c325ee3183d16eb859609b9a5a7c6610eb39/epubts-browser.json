@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-browser",
     "parserVersion": "0.3",
@@ -10,6 +10,136 @@
       "title": "All the Seas of the World",
       "creator": "Guy Gavriel Kay",
       "date": "2022-05-17"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/01_Cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/02_Books.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/03_Title_Page.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/04_Copyright.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/05_Contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/06_Dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/07_Epigraph.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/08_Map.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/09_Principal_Characters.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/10_Part_One.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/11_Chapter_I.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/12_Chapter_II.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/13_Chapter_III.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/14_Chapter_IV.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/15_Part_Two.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/16_Chapter_V.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/17_Chapter_VI.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/18_Chapter_VII.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/19_Part_Three.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/20_Chapter_VIII.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/21_Chapter_IX.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/22_Chapter_X.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/23_Chapter_XI.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/24_Part_Four.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/25_Chapter_XII.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/26_Chapter_XIII.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/27_Chapter_XIV.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/28_Chapter_XV.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/29_Chapter_XVI.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/30_Acknowledgements.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/31_About_the_Author.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/next-reads.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

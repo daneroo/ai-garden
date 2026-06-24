@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,104 @@
       "title": "Disorder",
       "creator": "Helen Thompson",
       "date": "2021-12-24"
-    }
+    },
+    "spine": [
+      {
+        "href": "000_ACover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "002_FM_halftitle.xhtml",
+        "linear": true
+      },
+      {
+        "href": "003_FM_titlepage.xhtml",
+        "linear": true
+      },
+      {
+        "href": "004_FM_titleverso.xhtml",
+        "linear": true
+      },
+      {
+        "href": "005_FM_dedication.xhtml",
+        "linear": true
+      },
+      {
+        "href": "006_FM_epigraph.xhtml",
+        "linear": true
+      },
+      {
+        "href": "007_FM_contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "008_FM_acknowledgements.xhtml",
+        "linear": true
+      },
+      {
+        "href": "009_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "010_part1.xhtml",
+        "linear": true
+      },
+      {
+        "href": "011_part1_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "012_part1_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "013_part1_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "014_part2.xhtml",
+        "linear": true
+      },
+      {
+        "href": "015_part2_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "016_part2_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "017_part2_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "018_part3.xhtml",
+        "linear": true
+      },
+      {
+        "href": "019_part3_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "020_part3_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "021_part3_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "022_part3_chapter.xhtml",
+        "linear": true
+      },
+      {
+        "href": "023_BM_endNotes.xhtml",
+        "linear": true
+      },
+      {
+        "href": "024_BM_regular.xhtml",
+        "linear": true
+      }
+    ]
   }
 }

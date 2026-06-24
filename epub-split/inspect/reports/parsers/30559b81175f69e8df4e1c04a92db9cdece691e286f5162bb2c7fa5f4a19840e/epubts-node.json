@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "meta": {
     "parser": "epubts-node",
     "parserVersion": "0.6.7",
@@ -11,6 +11,108 @@
       "title": "Journey to the Edge of Reason",
       "creator": "Stephen Budiansky",
       "date": "2021-04-05"
-    }
+    },
+    "spine": [
+      {
+        "href": "xhtml/Cover.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Title.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Contents.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Illustrations.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Halftitle.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Frontmatter01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Prologue.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Chapter01.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Chapter02.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Chapter03.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Chapter04.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Chapter05.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Chapter06.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Chapter07.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Chapter08.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Chapter09.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Chapter10.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Appendix.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Acknowledgments.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Notes.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Bibliography.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Credits.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Index.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Also_by_Stephen_Budiansky.xhtml",
+        "linear": true
+      },
+      {
+        "href": "xhtml/Copyright.xhtml",
+        "linear": true
+      }
+    ]
   }
 }
