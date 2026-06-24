@@ -2,7 +2,7 @@
 
 - parserA: epubts-node
 - parserB: storyteller
-- both-opened (occurrence-weighted): 368
+- both-opened (distinct books): 213
 
 ## Per-field outcomes
 
@@ -10,16 +10,16 @@ mismatch = differ + a-only + b-only.
 
 | field | agree | differ | a-only | b-only | both-null | mismatch |
 |---|---:|---:|---:|---:|---:|---:|
-| title | 364 | 4 | 0 | 0 | 0 | 4 |
-| creator | 368 | 0 | 0 | 0 | 0 | 0 |
-| date | 292 | 0 | 0 | 0 | 76 | 0 |
+| title | 211 | 2 | 0 | 0 | 0 | 2 |
+| creator | 213 | 0 | 0 | 0 | 0 | 0 |
+| date | 168 | 0 | 0 | 0 | 45 | 0 |
 
 ## Not compared
 
-| reason | occurrences |
+| reason | distinct books |
 |---|---:|
 | epubts-node not opened | 0 |
-| storyteller not opened | 936 |
+| storyteller not opened | 543 |
 | neither opened | 0 |
 
 ## Mismatches

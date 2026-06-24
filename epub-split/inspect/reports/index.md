@@ -23,13 +23,13 @@ deduped = sha256 already seen earlier in scan order (test, space, drop).
 
 ## Parser open outcomes
 
-Occurrence-weighted (denominator 1304).
+Distinct-content denominator: 756.
 
 | parser | opened | open-failed | epub2-unsupported | jsdom fallback |
 |---|---:|---:|---:|---:|
-| epubts-browser | 1304 | 0 | 0 | 0 |
-| epubts-node | 1304 | 0 | 0 | 15 |
-| storyteller | 368 | 36 | 900 | 0 |
+| epubts-browser | 756 | 0 | 0 | 0 |
+| epubts-node | 756 | 0 | 0 | 9 |
+| storyteller | 213 | 18 | 525 | 0 |
 
 ## Open failures
 
