@@ -168,7 +168,7 @@ function renderIndex(input: ReportInput): string {
     "",
     "## Parser open outcomes",
     "",
-    `Occurrence-weighted (denominator ${occurrences}).`,
+    `Distinct-content denominator: ${inventory.entries.length}.`,
     "",
     "| parser | opened | open-failed | epub2-unsupported | jsdom fallback |",
     "|---|---:|---:|---:|---:|",
@@ -247,25 +247,24 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
   let neitherOpened = 0;
 
   for (const entry of input.inventory.entries) {
-    const occ = entry.occurrences.length;
     const aOpened = isOpened(input, entry.sha256, pair.a);
     const bOpened = isOpened(input, entry.sha256, pair.b);
     if (aOpened && bOpened) {
-      bothOpened += occ;
+      bothOpened += 1;
       const result = input.comparisons.get(entry.sha256)?.get(key);
       if (result) {
         for (const field of METADATA_FIELDS) {
           const status = result.metadata[field].status;
           const counts = histogram[field];
-          counts[status] = (counts[status] ?? 0) + occ;
+          counts[status] = (counts[status] ?? 0) + 1;
         }
       }
     } else if (!aOpened && !bOpened) {
-      neitherOpened += occ;
+      neitherOpened += 1;
     } else if (!aOpened) {
-      aNotOpened += occ;
+      aNotOpened += 1;
     } else {
-      bNotOpened += occ;
+      bNotOpened += 1;
     }
   }
 
@@ -274,7 +273,7 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
     "",
     `- parserA: ${pair.a}`,
     `- parserB: ${pair.b}`,
-    `- both-opened (occurrence-weighted): ${bothOpened}`,
+    `- both-opened (distinct books): ${bothOpened}`,
     "",
     "## Per-field outcomes",
     "",
@@ -293,7 +292,7 @@ function renderPairReport(input: ReportInput, pair: ParserPair): string {
     "",
     "## Not compared",
     "",
-    "| reason | occurrences |",
+    "| reason | distinct books |",
     "|---|---:|",
     `| ${pair.a} not opened | ${aNotOpened} |`,
     `| ${pair.b} not opened | ${bNotOpened} |`,
@@ -397,19 +396,18 @@ function parserCounts(
     jsdomFallback: 0,
   };
   for (const entry of input.inventory.entries) {
-    const occ = entry.occurrences.length;
     const output = parserOutput(input, entry.sha256, parser);
     if (!output) continue;
     switch (output.meta.openStatus) {
       case "opened":
-        counts.opened += occ;
-        if (output.meta.domParser === "jsdom") counts.jsdomFallback += occ;
+        counts.opened += 1;
+        if (output.meta.domParser === "jsdom") counts.jsdomFallback += 1;
         break;
       case "open-failed":
-        counts.openFailed += occ;
+        counts.openFailed += 1;
         break;
       case "epub2-unsupported":
-        counts.epub2Unsupported += occ;
+        counts.epub2Unsupported += 1;
         break;
     }
   }

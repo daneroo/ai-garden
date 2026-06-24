@@ -244,10 +244,10 @@ describe("writeReport — index.md", () => {
     expect(index()).toContain("| total | 6 | 1 | 5 |");
   });
 
-  test("per-parser open outcomes are occurrence-weighted", () => {
-    expect(index()).toContain("| epubts-browser | 5 | 1 | 0 | 0 |");
-    expect(index()).toContain("| epubts-node | 5 | 1 | 0 | 1 |");
-    expect(index()).toContain("| storyteller | 4 | 1 | 1 | 0 |");
+  test("per-parser open outcomes are distinct-book counts", () => {
+    expect(index()).toContain("| epubts-browser | 4 | 1 | 0 | 0 |");
+    expect(index()).toContain("| epubts-node | 4 | 1 | 0 | 1 |");
+    expect(index()).toContain("| storyteller | 3 | 1 | 1 | 0 |");
   });
 
   test("genuine open failures name the book and parsers explicitly", () => {
@@ -262,16 +262,16 @@ describe("writeReport — index.md", () => {
 });
 
 describe("writeReport — pair reports", () => {
-  test("node-vs-browser both-opened denominator and title mismatch are occurrence-weighted", () => {
+  test("node-vs-browser both-opened denominator and title mismatch are distinct-book counts", () => {
     const report = file(`${NODE_BROWSER}.md`);
-    expect(report).toContain("both-opened (occurrence-weighted): 5");
-    // title: agree 3 (happy+epub2+jsdom), differ 2 (entity, 2 occurrences)
-    expect(report).toContain("| title | 3 | 2 | 0 | 0 | 0 | 2 |");
+    expect(report).toContain("both-opened (distinct books): 4");
+    // title: agree 3 (happy+epub2+jsdom), differ 1 (entity — 1 distinct book)
+    expect(report).toContain("| title | 3 | 1 | 0 | 0 | 0 | 1 |");
   });
 
   test("node-vs-storyteller records the epub2 book as not-compared", () => {
     const report = file(`${NODE_STORY}.md`);
-    expect(report).toContain("both-opened (occurrence-weighted): 4");
+    expect(report).toContain("both-opened (distinct books): 3");
     expect(report).toContain("| storyteller not opened | 1 |");
   });
 

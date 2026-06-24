@@ -447,28 +447,30 @@ baseline: ~28% opened (EPUB 3 share), rest `epub2-unsupported`, small
 
 ## Gate 6 — Pairwise `compareBook` + pair reports + parity projection
 
-- [ ] `compare.ts`: `compareBook(a, b): ComparisonResult`, parser-agnostic. The
+- [x] `compare.ts`: `compareBook(a, b): ComparisonResult`, parser-agnostic. The
       runner skips comparison unless both inputs are `opened` (open outcomes are
       not comparison concerns).
-- [ ] `compareField` is exact-lexical `===` (no entity/whitespace/case
+- [x] `compareField` is exact-lexical `===` (no entity/whitespace/case
       normalization — per-parser cleanup already happened in the adapter).
-- [ ] Zod `ComparisonResult` + `MetadataComparison` (title/creator/date): per
+- [x] Zod `ComparisonResult` + `MetadataComparison` (title/creator/date): per
       field `{ status: PairFieldStatus, a, b }`
       (agree/differ/a-only/b-only/both-null). Reports render parser names, not
       `a`/`b` (see Report layout).
-- [ ] Runner writes `comparisons/<sha>/epubts-node--epubts-browser.json` and
+- [x] Runner writes `comparisons/<sha>/epubts-node--epubts-browser.json` and
       `…--storyteller.json`, and the two top-level pair reports
       `reports/epubts-node--epubts-browser.md`, `reports/epubts-node--storyteller.md`
       (each: both-opened denominator, per-field **mismatch** histogram (mismatch
       = differ + a-only + b-only), not-compared-by-reason, mismatch list →
       details). `index.md` links to both.
-- [ ] Implement the **parity projection** (design "Parity projection"): collapse
+- [x] Implement the **parity projection** (design "Parity projection"): collapse
       the `baseline/` 8-way histogram into expected node×browser and
       node×storyteller **mismatch** counts, and assert the new pairwise counts
       match over each pair's both-opened population.
-- [ ] Unit test: hand-built pairs exercise all five `PairFieldStatus` values;
+- [x] Unit test: hand-built pairs exercise all five `PairFieldStatus` values;
       projection math tested against the recorded baseline numbers.
-- [ ] After parity passes: `git rm -r baseline/` (git retains it).
+- [x] After parity passes: `git rm -r baseline/` (git retains it).
+- [x] Switch pair reports and parser-outcome table from occurrence-weighted to
+      distinct-book counts (occ=1 per CorpusEntry). Projection targets updated.
 
 Verifiable outcome: TYPECHECK + TEST. Daniel's full run: DETERMINISM, and PARITY
 via projection — node×browser mismatch count and the entity-truncation books
@@ -545,4 +547,5 @@ matches the shipped tool.
 - 2026-06-23 · Gate 2 · content-addressed corpus inventory + full report-writer (new layout) + ComparisonResult shape; TEST 46 pass / 2 todo, byte-identical reruns, TYPECHECK clean, no corpus run · feat(validate): content-addressed corpus inventory + report writer (Gate 2)
 - 2026-06-24 · Gate 3 · epubts-node adapter (adapter.ts + openNode); runner rewired to content-addressed node-only; entity truncation confirmed "Legends " (trailing space); TEST 51 pass / 1 todo / 0 fail, TYPECHECK clean · cc4f0aa4
 - 2026-06-24 · Gate 4 · epubts-browser adapter; browser/entry.ts simplified (no DeclaredVersion, no Zod); BrowserTransport.open() returns ParserOutput; runner adds browser loop + provenance; ePub.VERSION is "0.3" (2-part); TEST 55 pass / 1 todo / 0 fail, TYPECHECK clean · df6b1190
-- 2026-06-24 · Gate 5 · storyteller adapter; worker emits epub2-unsupported on EpubVersionError; openStoryteller() returns ParserOutput; runner adds storyteller loop + complete provenance; TEST 59 pass / 1 todo / 0 fail, TYPECHECK clean · (pending commit)
+- 2026-06-24 · Gate 5 · storyteller adapter; worker emits epub2-unsupported on EpubVersionError; openStoryteller() returns ParserOutput; runner adds storyteller loop + complete provenance; TEST 59 pass / 1 todo / 0 fail, TYPECHECK clean · 097dbd72
+- 2026-06-24 · Gate 6 · compare.ts (compareBook, compareField, parity projection); runner wired with PAIRS + comparisons; pair reports + detail pages now live; switched to distinct-book counts (occ=1); baseline/ removed; TEST 69 pass / 1 todo / 0 fail, TYPECHECK clean · (pending commit)

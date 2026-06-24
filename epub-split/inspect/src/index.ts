@@ -2,11 +2,12 @@ import { join } from "node:path";
 
 import { discoverInventory, type CorpusEntry } from "./corpus.ts";
 import { INSPECT_DIRECTORY, REPORTS_DIRECTORY, ROOTS } from "./config.ts";
+import { compareBook } from "./compare.ts";
 import { BrowserTransport } from "./epubts-browser.ts";
 import { openNode } from "./epubts-node.ts";
 import { openStoryteller, STORYTELLER_VERSION } from "./storyteller.ts";
-import { writeReport, type ReportInput, type RunProvenance } from "./report-writer.ts";
-import type { ParserName, ParserOutput } from "./schema.ts";
+import { writeReport, pairKey, type ParserPair, type ReportInput, type RunProvenance } from "./report-writer.ts";
+import type { ComparisonResult, ParserName, ParserOutput } from "./schema.ts";
 
 if (process.argv.length > 2) {
   throw new Error("epub-inspect takes no arguments; every run processes all roots");
@@ -74,13 +75,32 @@ for (let i = 0; i < inventory.entries.length; i++) {
 }
 clearProgress();
 
+const PAIRS: readonly ParserPair[] = [
+  { a: "epubts-node", b: "epubts-browser" },
+  { a: "epubts-node", b: "storyteller" },
+];
+
+const comparisons = new Map<string, Map<string, ComparisonResult>>();
+for (const entry of inventory.entries) {
+  for (const pair of PAIRS) {
+    const aOutput = parserOutputs.get(entry.sha256)?.get(pair.a);
+    const bOutput = parserOutputs.get(entry.sha256)?.get(pair.b);
+    if (aOutput?.meta.openStatus === "opened" && bOutput?.meta.openStatus === "opened") {
+      const result = compareBook(aOutput, bOutput);
+      const pairMap = comparisons.get(entry.sha256) ?? new Map<string, ComparisonResult>();
+      pairMap.set(pairKey(pair), result);
+      comparisons.set(entry.sha256, pairMap);
+    }
+  }
+}
+
 const input: ReportInput = {
   provenance,
   inventory,
   ranParsers: ["epubts-node", "epubts-browser", "storyteller"],
-  pairs: [],
+  pairs: PAIRS,
   parserOutputs,
-  comparisons: new Map(),
+  comparisons,
 };
 
 console.error("Writing reports...");
