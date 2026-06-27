@@ -101,20 +101,17 @@ framework is the reference for axis 4, not bun-one's Claude-flavored config.
 - The player bake-off "winner" won against its own seed spec, which may not match
   prosodio's short-term goals; it is a revisit candidate, not a clean port.
 
-## Open questions
+## Scheduled unknowns (none block seeding)
 
-- prosodio short-term goals / north star - currently unstated. Drives v1 scope and the
-  player re-spec.
-- Axis 2 tooling forks (see that section): format/lint stack, schema lib, per-app
-  type-check strategy, shared-data home.
-- Axis 4 harness enablement (see that section): single-source AGENTS.md mechanism,
-  portable MCP config, the "tested with two harnesses" acceptance gate (Claude Code + Codex).
-- Axis 5 IDE alignment (see that section): single source of truth for tool versions;
-  whether to build a drift check. Resolving the Axis 2 format/lint fork settles most of it.
-- EPUB production API shape - the parser roles are already chosen in
+There are no blocking open questions for Epoch 0/1. Remaining unknowns are scheduled into
+the epoch that resolves them:
+
+- EPUB production API shape (distinct from the `ParserOutput` parity schema) -> Epoch 2.
+  Parser roles are already chosen in
   `epub-validate/docs/FINDINGS-epub-validate-2026-06-24.md` (epubts-node production,
-  epubts-browser reference, Storyteller independent validator). Open: how to expose a
-  swappable production EPUB API distinct from the `ParserOutput` parity schema.
+  epubts-browser reference, Storyteller validator).
+- Word-level alignment contract -> Epoch 4. Schema-lib and IDE alignment (Axis 5) ->
+  deferred milestones. The decision log and per-epoch checklists carry live state.
 
 ## Axis 1 - Repository layout and architecture
 
@@ -132,8 +129,9 @@ Established conventions to carry over:
 - Shared root: `package.json` (workspaces + dependency catalogs), one `bun.lock`, base
   `tsconfig.json`, `eslint.config.js`.
 - Internal dependencies via the `workspace:*` protocol.
-- `data/` is conventionally volatile and `.gitignored` - so it is NOT the home for test
-  fixtures or generated reports (those need different homes; see open questions).
+- `data/` is volatile and `.gitignored` - the private side of the central corpora location
+  (see Public/private boundary). Public fixtures live in the committed corpora root; public
+  generated artifacts go in top-level `reports/`.
 - Possible 4th top-level category for runtime/backend-bound code (depends on Bun/Node
   APIs or shells out to executables like ffprobe), to keep OS-dependent packages out of
   the frontend. See the Axis 2 dependency-isolation note. (open)
@@ -154,9 +152,11 @@ prosodio/
     transcribe/            # ASR CLI (renamed from whisper)
     player/                # web player (re-spec'd from bookplayer winner; TanStack Start)
     epub-validate/         # dev/validation harness (corpus + compare + report-writer)
-  # possible 4th category for runtime/backend-bound code - see Axis 2 isolation note
-  data/                    # volatile, .gitignored - NOT test fixtures or reports
-  plans/                   # AI-accessible planning docs (docs/? plans/archive/? - open)
+  fixtures/test-books/     # committed PUBLIC corpora (audiobooks+ebooks); placement = publishable
+  reports/                 # committed PUBLIC generated artifacts (whisper bench; maybe epub-validate)
+  data/                    # gitignored: PRIVATE corpora + full reports (central, local)
+  docs/                    # durable knowledge (bun, styling, CI, private-data, harnesses)
+  thoughts/                # plans/research/tickets/reviews (this plan lands here on seed)
 ```
 
 ASSUME / NOT SPECIFIED - epub-validate decomposition. The following is Claude's
@@ -437,9 +437,9 @@ capability. Recorded as a delayed opportunity; not designed here.
   - Early VTT-display players; media-chrome ideas worth a glance.
 - `highlight-cfi/` - REFERENCE
   - CFI highlighting logic - candidate to mine into the player port.
-- `whisper-bench/`, `whisper-sh/` - REFERENCE
-  - Superseded leftovers of the mature whisper app, never removed. Nothing to port;
-    benchmark-method notes only. Also ai-garden cleanup candidates (remove from old repo).
+- `whisper-bench/`, `whisper-sh/` - DEAD
+  - Already superseded and dead; just not deleted yet. Nothing to capture or port; delete
+    from ai-garden.
 - `whisperkit-cli/` - REFERENCE
   - Different ASR backend (WhisperKit / CoreML, not whisper.cpp). Keep as reference for an
     alternate transcription path.
@@ -563,15 +563,15 @@ on.
 ### Epoch 1 - transcribe (first port)
 
 First product milestone: a working reproduction of whisper - NOT an extracted vtt package
-and NOT an end-to-end player.
+and NOT an end-to-end player. `bun-one/apps/whisper` is already the consolidated, mature
+implementation; nothing is needed from the dead `whisper-sh` / `whisper-bench`.
 
 - [ ] Clean-port `bun-one/apps/whisper` as `apps/transcribe` (the rename is part of the
       behavior-preserving port), keeping its trusted VTT implementation internal.
-- [ ] Adapt corpus paths, caches, outputs, and performance evaluation to the public/private
-      boundary.
+- [ ] Point it at the central corpora location and `reports/` output; adjust paths only.
 - [ ] Prove the root CI target includes the app.
 - [ ] Use the port to validate runtime-bound package/app conventions.
-- [ ] Acceptance: the whisper contract (see "Port strategy and provenance").
+- [ ] Acceptance: judged by Daniel at port time (see Port strategy and provenance).
 
 ### Epoch 2 - EPUB parsing and validation
 
@@ -643,13 +643,13 @@ private. Designed during Epoch 1 because both whisper and EPUB validation need i
 - Private, local: raw audiobook+ebook corpora and full generated reports live outside the
   public worktree, under a gitignored `data/` subtree; a gitignored local config (or env
   vars) maps logical corpus names to paths (`.env.example`, never absolute paths).
-- Output/data locations via monorepo-wide config (Daniel): a single monorepo-wide config
-  maps logical names to physical locations - in-repo `reports/<thing>`, gitignored
-  `data/<thing>`, and/or `external-location/<thing>`. Subprojects consume this config
-  instead of hardcoding paths. The pattern is documented now; the specific policy per
-  output type is resolved per subproject and may evolve - e.g. epub-validate reports
-  (want versioned regression history) and whisper performance are not necessarily the
-  same.
+- Central locations via monorepo-wide config (Daniel): ONE central place for corpora -
+  public and private, audiobooks and ebooks - plus one top-level `reports/` for public
+  generated artifacts (at first just the whisper benchmark; maybe an epub-validate run on
+  test-books). A monorepo-wide config maps logical names to physical locations (committed
+  public corpora root, gitignored private `data/`, `reports/`, optional external).
+  Subprojects consume this config; they do NOT hardcode paths or invent per-app env vars.
+  Per-output policy may still evolve per subproject.
 - Gating: adapt whisper's existing `RUN_E2E_TESTS=1 bun test` pattern. Two distinct
   concepts that must not be conflated: long E2E tests vs private-corpora access - they may
   need separate gates. `bun run ci` operates only on public fixtures and is the GitHub

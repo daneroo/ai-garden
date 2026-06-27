@@ -5,4 +5,7 @@ media/
 # line once the top-level /books folder is gone — it appears unused.
 /books/
 external-repos/
+# prosodio is bootstrapped here as a nested repo for visibility, then `mv ..`
+# out to a sibling once it is ready for handoff. ai-garden does not track it.
+prosodio/
 .DS_Store
