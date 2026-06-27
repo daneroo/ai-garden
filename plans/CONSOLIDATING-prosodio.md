@@ -4,10 +4,10 @@ Status: planning (no code moved yet). This is the single source of truth for the
 prosodio consolidation. It is meant to be reviewed by Daniel and by a second agent
 (codex). Keep everything here - no hidden or external artifacts.
 
-How to read this: unless a claim is explicitly marked VALIDATED, treat it as an
-assumption to be checked, not a decision. Several early entries were written by Claude
-asserting quality or structure it had not verified (flagged inline as ASSUME / NOT
-SPECIFIED). The doc's first job is to enumerate those so they can be validated.
+How to read this: claims carry a decision state, not a binary "validated or not" (see
+"Decision state model"). State and evidence are independent - a choice can be decided yet
+not production-validated, or evidence-backed yet not accepted. Items flagged ASSUME / NOT
+SPECIFIED are Claude's unverified sketches; ASSESS verdicts await a real read of the code.
 
 ## Current objective
 
@@ -74,6 +74,19 @@ framework is the reference for axis 4, not bun-one's Claude-flavored config.
 
 - prosodio is a sibling local repo (`~/Code/iMetrical/prosodio`), created only after
   this plan is approved. No git remote yet.
+- prosodio will be PUBLIC. State: decided - this is Daniel's default posture (all his
+  repos are public, with a limited set of exceptions; ai-garden itself is public), not a
+  special choice. It also explains why current corpora metadata is already exposed. Real
+  corpora and identifying/derived reports stay private (see Public/private boundary).
+- Format/lint: a revisitable requirement, not a permanent pick (the exemplar of how such
+  choices are recorded). Requirement: one root-invokable formatter+linter meeting the
+  Axis-2 formatter/linter swap-criteria (IDE parity, single-tool ideal, low config
+  footprint, markdown incl embedded code). Current best choice (provisional, decided):
+  prettier + eslint for everything including markdown - simplest single path. Rationale:
+  Biome too risky now; deno fmt likely infeasible to mix with Bun. Revisit-when: the
+  markdown/IDE-alignment pain (Axis 5) or a viable single-tool option that better meets
+  the criteria.
+- License: MIT (public repo). State: decided.
 - Runtime: Bun monorepo only. Deno parallel copies are reference-only.
 - Migration style: clean-port plus provenance pointers. Each ported package carries a
   one-line `Ported from ai-garden@<sha>:<path>` note in its README. ai-garden persists,
@@ -98,7 +111,10 @@ framework is the reference for axis 4, not bun-one's Claude-flavored config.
   portable MCP config, the "tested with two harnesses" acceptance gate (Claude Code + Codex).
 - Axis 5 IDE alignment (see that section): single source of truth for tool versions;
   whether to build a drift check. Resolving the Axis 2 format/lint fork settles most of it.
-- Canonical epub parser - chosen from epub-validate's findings.
+- EPUB production API shape - the parser roles are already chosen in
+  `epub-validate/docs/FINDINGS-epub-validate-2026-06-24.md` (epubts-node production,
+  epubts-browser reference, Storyteller independent validator). Open: how to expose a
+  swappable production EPUB API distinct from the `ParserOutput` parity schema.
 
 ## Axis 1 - Repository layout and architecture
 
@@ -175,18 +191,21 @@ differ in how they tolerate bad input. The goal is not academic parser validatio
 confidence that Daniel's consumption of the chosen library is reliable across his real
 corpus. That is why comparison exists.
 
-Open layout questions:
+Layout questions (several now resolved by the epochs / boundary sections):
 
-- Which parser adapter(s) become the production default vs validation-only? (Resolved by
-  epub-validate's findings against the real corpus.)
-- Does transcription split into `packages/transcription`, or stay inside `apps/transcribe`?
-- Home for test fixtures / sample books - NOT `data/` (volatile/gitignored); fixtures may
-  need versioning.
-- Home for epub-validate reports - they need git history for human regression assessment
-  across schema evolution, but should not leak into a public repo (tension to resolve).
-- Is top-level `plans/` the right home for AI-accessible planning docs? Should there also
-  be a `docs/` folder, and/or a `plans/archive/` for completed work?
-- A 4th top-level category for runtime/backend-bound code (see Axis 2 isolation)?
+- Parser roles: RESOLVED in the epub-validate findings (epubts-node production, browser
+  reference, Storyteller validator). Open instead: the production EPUB API shape (Axis-3
+  EPUB notes + Epoch 2).
+- Fixtures vs volatile data: DECIDED - public minimal corpora live in a committed root
+  (e.g. `fixtures/` or `test/`; `test-books/` is the seed); volatile/private goes in a
+  gitignored `data/` subtree (see Public/private boundary).
+- epub-validate reports: RESOLVED by the boundary - full reports are private; storage
+  model (private repo vs local) is a remaining decision.
+- Doc/plans home: RESOLVED toward the `thoughts/` model + `docs/` (see Doc and agent
+  structure), not a single top-level `plans/`.
+- 4th top-level category for runtime/backend-bound code: deferred (see Axis 2 isolation).
+- Open: does transcription ever split into `packages/transcription`, or stay inside
+  `apps/transcribe`? (Just-in-time, per migration philosophy.)
 
 ## Axis 2 - Stack and tooling
 
@@ -271,6 +290,9 @@ Each concern below lists its bun-one baseline, then the prosodio status.
     Axis 5) but too risky at this point (Daniel). deno fmt is attractive - it even formats
     embedded code inside markdown, which prettier does not - but mixing the deno formatter
     into a bun toolchain is likely infeasible now. Expected to change over time.
+  - seed decision (provisional, decided): Epoch 0 uses prettier + eslint for everything
+    including markdown (simplest single path). Revisit-when: the markdown/IDE-alignment
+    pain (Axis 5) or a viable single-tool option appears.
 - Schema lib
   - baseline: zod and valibot both catalogued; `vtt` carries dual schemas
   - status: OPEN - standardize on one (zod dominates whisper + epub-validate) or keep
@@ -282,9 +304,10 @@ Each concern below lists its bun-one baseline, then the prosodio status.
   - runtime binding: some code can only run on the backend - it depends on Bun/Node
     runtime APIs or shells out to executables (e.g. ffprobe). This must be isolated so an
     OS-dependent package is never accidentally pulled into the frontend bundle.
-  - implication: possibly a 4th top-level dir (alongside apps/packages/components) for
-    backend/runtime-bound code, or another mechanism guaranteeing the separation - the
-    same discipline already used to keep React components cleanly separated. (open)
+  - requirement (keep): backend-only dependencies must never enter browser/frontend
+    bundles. Mechanism is OPEN and deferred: a 4th top-level dir is only one option;
+    package exports, dependency rules, lint checks, and framework entry points may
+    suffice. Defer the 4th category until a concrete package boundary needs it (codex).
 - Shared data
   - baseline: `data/` at workspace root, volatile/gitignored
   - status: OPEN - fixtures and reports need non-`data/` homes (see Axis 1 open questions).
@@ -466,12 +489,10 @@ Principles:
 - This layer is moved, ported, tested, and evaluated like code: verify at least two
   harnesses actually work against it before blessing it.
 
-Open questions:
-
-- Mechanism for keeping the single AGENTS.md source and generated per-harness pointers
-  in sync (symlink, generator script, or a one-line import directive).
-- Minimum portable MCP config approach across the harnesses Daniel actually uses.
-- What "tested with two harnesses" concretely means as an acceptance gate.
+Concrete design and acceptance for this axis now live under the epochs in "Doc and agent
+structure" and "AI harness enablement (empirical compatibility program)". Remaining open:
+the sync mechanism for AGENTS.md -> per-harness pointers (symlink / generator / import),
+and the minimum portable MCP-config approach.
 
 ## Axis 5 - IDE config alignment
 
@@ -522,69 +543,203 @@ audio --ASR----►  transcript (vtt)
                                           └-► play (web player)
 ```
 
-## Migration order
+## Epochs
 
-Dependency-ordered; each step gated by a validation criterion before the next begins.
+Replaces the earlier flat migration order. Each epoch becomes a living checklist as we
+execute (`- [ ]` / `- [x]`). Ordered so each epoch proves the conventions the next relies
+on.
 
-- `vtt` - clean port; tests green.
-- epub split - decompose epub-validate into `epub-contract` + parser packages + the
-  validation app; run it to pick the production-default parser.
-- `whisper` - port the ASR pipeline (dedupe vtt); e2e transcription matches.
-- alignment - design fresh against the pipeline contract (the research track).
-- player - re-spec against prosodio's short-term goals, then port from the winner.
-- finder / tts / search - deferred capabilities, scheduled after the core proves out.
+### Epoch 0 - seed and operating contract
 
-## Per-component migration specs
+- [ ] Create the public prosodio repo and a minimal Bun workspace.
+- [ ] Establish the doc + agent structure (see "Doc and agent structure") as an adaptable
+      starting point, not a finished framework.
+- [ ] Minimal Claude Code + Codex instruction discovery (AGENTS.md canonical; thin
+      CLAUDE.md pointer).
+- [ ] Public-fixture and private-corpus conventions (see "Public/private boundary").
+- [ ] One root CI command that works before the first app arrives.
+- [ ] Record provisional tooling decisions with explicit revisit triggers.
 
-To be filled in once axes 1 and 2 are agreed. One subsection per PORT / PORT+DECIDE /
-REVISIT component, each with: verdict recap, target slot (axis 1), tooling
-normalization (axis 2), acceptance criteria, and provenance pointer.
+### Epoch 1 - transcribe (first port)
 
-## Milestones / epochs (deferred requirements)
+First product milestone: a working reproduction of whisper - NOT an extracted vtt package
+and NOT an end-to-end player.
 
-Captured so they are not lost, explicitly deferred so they do not block the move. These
-resolve incrementally inside prosodio once it exists, not here.
+- [ ] Clean-port `bun-one/apps/whisper` as `apps/transcribe` (the rename is part of the
+      behavior-preserving port), keeping its trusted VTT implementation internal.
+- [ ] Adapt corpus paths, caches, outputs, and performance evaluation to the public/private
+      boundary.
+- [ ] Prove the root CI target includes the app.
+- [ ] Use the port to validate runtime-bound package/app conventions.
+- [ ] Acceptance: the whisper contract (see "Port strategy and provenance").
 
-- IDE config alignment (Axis 5) - deferred; likely larger than the whole port.
-- Axis 2 tooling forks - format/lint stack, schema lib, per-app type-check strategy -
-  delayed; bun-one defaults stand in until revisited.
-- Config-footprint minimization - prefer defaults, consolidate dotfiles over time.
-- Per-component migration specs - filled in as each component is actually read.
-- Unified validation abstraction - reconcile nx-audiobook `validators` with
-  epub-validate's schema into one reusable capability (opportunity, delayed).
+### Epoch 2 - EPUB parsing and validation
 
-## First safe step (proposed, not executed)
+- [ ] Port `epub-validate` with its validated findings intact; keep `ParserOutput` as the
+      parser-parity contract.
+- [ ] Introduce the smallest production EPUB abstraction an actual consumer justifies - do
+      not turn the validation adapter boundaries directly into production packages.
+- [ ] Keep browser (Playwright) and Storyteller machinery out of production dependency
+      graphs.
+- [ ] Move full-corpus reports to the private workflow; keep public deterministic
+      fixtures/summaries sufficient to test the tool.
+- [ ] Use this port to exercise dependency sharing, runtime isolation, and dead-dependency
+      checks deliberately.
 
-Goal: a minimal prosodio repo that can host its own incremental objectives, with no
-decisions baked in that we have chosen to delay.
+### Epoch 3 - audiobook collection validation
 
-Proposed first step (to confirm, not yet run):
+- [ ] Assess and port the useful `nx-audiobook/apps/validate`, `validators`, and required
+      file-walking.
+- [ ] Re-evaluate the generic `Validation` abstraction against real EPUB-validation needs;
+      do not unify models just because both say "validation".
+- [ ] Exclude the old viewer/conversion surface unless a fresh requirement justifies it.
 
-- Create the sibling repo and `git init`.
-- Stand up a minimal Bun workspace using bun-one's config as provisional defaults
-  (root `package.json` workspaces, `tsconfig.json`, lint/format) - explicitly marked
-  provisional, not endorsed.
-- Copy this plan into `prosodio/plans/` as the context bridge, so the context survives
-  the move.
-- Port no components yet. The first component port becomes prosodio's own first
-  objective, decided incrementally there.
+### Epoch 4 - alignment research
 
-Why this is safe: it is additive (a new repo), reverses by deletion, commits to none of
-the delayed forks, and produces the "minimal setup" that lets prosodio take over its own
-direction. Open: whether the seed copies bun-one config wholesale or starts barer
-(delayed).
+- [ ] Port or mine `audio-deno-match`, `chapter-marks-match` under Bun (candidates, not
+      mature alignment architecture).
+- [ ] Define evaluation corpora and metrics before selecting an algorithm.
+- [ ] Develop the word-level alignment contract in a dedicated plan, informed by the now
+      real transcription and EPUB APIs. Its location model, metrics, and confidence
+      representation are premature here.
 
-## Process / next steps
+Player, finder, TTS, and search remain later capability decisions, not implied members of
+an initial release.
 
-- Agree the four-axis framing and the baselines (bun-one for 1/2, experiments/ for 4).
-- Resolve the axis-2 open tooling forks (or explicitly defer each).
-- Design the axis-4 harness-enablement layer (it gates how every agent works in the repo).
-- Pin prosodio's short-term goals - unblocks v1 scope and the player re-spec.
-- Fill in per-component migration specs.
-- Later, separate effort: seed the repo and begin the ordered migration.
+## Port strategy and provenance
+
+For substantial sources (whisper, epub-validate), use two logical phases even when some
+path/config changes are needed immediately:
+
+- Behavior-preserving port: copy the source, record its exact source repo SHA and path,
+  make only the changes needed to run in prosodio, and satisfy an explicit equivalence
+  check.
+- Native normalization: rename, split packages, change config in reviewable follow-ups.
+
+This makes regressions attributable and compensates for not importing git history.
+Provenance is recorded centrally in `provenance.md`: component, source repo, source commit,
+source path, worktree state, target path, port commit, equivalence evidence, intentional
+deviations. Package READMEs link to it rather than each inventing wording.
+
+Whisper "reproduce" acceptance: TO BE JUDGED BY DANIEL at port time. Approach: port as-is,
+make it run, then adjust source/destination paths to the new layout and public/private
+boundary. Low expected difficulty beyond adapting to prosodio's evolving standards. The
+codex candidate evidence (existing tests pass; a public fixture yields semantically
+equivalent VTT; cache/runner/segmentation/failure behavior stays covered; a private-corpus
+smoke run via external-data config; recorded performance) is available as a checklist if
+Daniel wants it, not a required gate.
+
+## Public/private boundary
+
+State: decided. prosodio will be public; real corpora and identifying/derived reports stay
+private. Designed during Epoch 1 because both whisper and EPUB validation need it.
+
+- Public, committed: a single designated corpora root in the repo (path TBD, e.g.
+  `fixtures/test-books`; ai-garden's `test-books/` is the seed, epub-only for now). Simple
+  documented rule (Daniel): placing a file under that committed root IS the declaration
+  that it is safe/legal to expose on GitHub - the location is the contract, no per-fixture
+  license ceremony. Also public: unit/integration tests that run without private data;
+  schemas, report generators, benchmark runners; small synthetic/public golden outputs.
+- Private, local: raw audiobook+ebook corpora and full generated reports live outside the
+  public worktree, under a gitignored `data/` subtree; a gitignored local config (or env
+  vars) maps logical corpus names to paths (`.env.example`, never absolute paths).
+- Output/data locations via monorepo-wide config (Daniel): a single monorepo-wide config
+  maps logical names to physical locations - in-repo `reports/<thing>`, gitignored
+  `data/<thing>`, and/or `external-location/<thing>`. Subprojects consume this config
+  instead of hardcoding paths. The pattern is documented now; the specific policy per
+  output type is resolved per subproject and may evolve - e.g. epub-validate reports
+  (want versioned regression history) and whisper performance are not necessarily the
+  same.
+- Gating: adapt whisper's existing `RUN_E2E_TESTS=1 bun test` pattern. Two distinct
+  concepts that must not be conflated: long E2E tests vs private-corpora access - they may
+  need separate gates. `bun run ci` operates only on public fixtures and is the GitHub
+  Actions gate.
+- Identity (decided, pragmatic): if a report is private, its filenames are private too;
+  public summaries omit filenames (and titles where easy). Keep this proportionate - NOT a
+  strict security program. Current corpora metadata is already public in ai-garden; the
+  goal is to be slightly better going forward, not to retrofit. A deliberate promotion step
+  produces any public summary; a full private report is never auto-copied into the repo.
+  Heavy sanitization tooling (per-field scrub tests, SHA-fingerprint handling) is optional,
+  added only if a real need appears.
+
+## Doc and agent structure (Epoch 0)
+
+A starting point, documented as adaptable, with hints for the future - not a finished
+framework. Simpler than a full architecture/decisions/development tree (Daniel: drop the
+heavy `decisions/` + `development/` split).
+
+- `AGENTS.md` - canonical, short normative instructions; links to deeper docs.
+- `CLAUDE.md` - thin pointer/import only; never restates instructions.
+- `README.md` - product, capabilities, entry points (for humans).
+- `docs/` - durable plain-markdown knowledge (bun usage, styling, CI contract, workspace
+  conventions, private-data rules, ai-harness notes), ported from
+  `experiments/{BUN_TANSTACK,STYLING,MARKDOWN,WORKSPACE}.md`.
+- `thoughts/` - the working model already used in experiments (elixir_one,
+  bookfinder-opencode): `plans/`, `research/`, `tickets/`, `reviews/`. Where in-progress
+  work and this consolidation plan live and get discharged.
+- `provenance.md` - central clean-port lineage (see Port strategy).
+- ADR (architecture decision record): liked in principle, kept lightweight - a dated record
+  per significant decision, superseded rather than rewritten. Not a heavy numbered
+  subsystem yet; a hint for the future.
+
+The consolidation plan is a bootstrap/context artifact: once prosodio is seeded it moves
+into `thoughts/plans/`, is progressively discharged into durable docs, and is eventually
+archived. It does not remain the permanent architecture manual.
+
+## AI harness enablement (empirical compatibility program)
+
+Frame harness support as an evolving compatibility program, not a one-time neutral design
+(Daniel: exploratory, expected to evolve).
+
+- `AGENTS.md` canonical; harness-specific files are minimal adapters/pointers.
+- Durable technical knowledge in plain `docs/*.md`.
+- Skills added only for repeated workflows with evidence they help; portable workflow docs
+  remain without the skill.
+- MCP config documented per harness (storage/semantics not portable).
+
+First acceptance check (intentionally modest): in a clean session, Claude Code and Codex
+both discover the repo instructions, identify the same root CI command and private-data
+restriction, and each make a small fixture-backed change and run the authoritative checks
+without contradictory instructions. More ambitious evaluation (skills, subagents, MCP
+equivalence) is added from observed failures, not predicted up front.
+
+## Decision state model
+
+State and validation are independent (replaces the earlier coarse "unmarked = assumption"
+rule). For consequential items the decision log / decision records record:
+
+- State: decided | provisional | proposed | open | deferred | superseded.
+- Evidence: verified source, or explicit "not yet validated".
+- Rationale: why this choice currently wins.
+- Revisit-when: a concrete trigger (a second consumer, a failed browser-bundle check,
+  measured incompatibility), not merely "later".
+
+This need not appear on every bullet - it belongs in the decision log and focused decision
+records. For revisitable tool choices the shape is: requirement + current best choice +
+selection criteria (the Axis-2 swap-checklist) + revisit trigger. The format/lint seed is
+the worked exemplar.
+
+## Epoch 0-1 decisions (resolved or deferred this pass)
+
+These gated Epochs 0-1; all are now settled or deliberately deferred to port time:
+
+- Format/lint seed: DECIDED (provisional) - prettier + eslint incl markdown (see decision
+  log / Axis 2).
+- License: DECIDED - MIT.
+- Whisper public contract: DEFERRED - judged by Daniel at port time (port as-is, make it
+  run, adjust paths).
+- Private regression-report storage: RESOLVED as a pattern - monorepo-wide location config
+  (logical name -> `reports/` | `data/` | external); per-subproject policy settled when
+  each lands.
+- Corpus identity: RESOLVED (pragmatic) - private report implies private filenames; public
+  summaries omit filenames/titles where easy; proportionate, not a strict program.
+- Public-fixture rule: RESOLVED - a single committed corpora root (path TBD) is by
+  convention the publishable set; placing a file there declares it safe to expose. No
+  per-fixture license ceremony.
 
 ## Verification
 
-This is a planning artifact, not code. Done means: this file is self-contained, codex
-can review it without external context, every component has a verdict, the three axes
-and their open decisions are current, and there are no hidden artifacts.
+This is a planning/bootstrap artifact, not code. Done means: self-contained and
+codex-reviewable without external context; every component carries a state/verdict (some
+remain ASSESS by design); the five axes, the epochs, and the open decisions are current;
+and there are no hidden artifacts.
