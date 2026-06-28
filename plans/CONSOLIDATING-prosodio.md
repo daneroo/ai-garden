@@ -979,18 +979,23 @@ state + what triggers a revisit.
   included). prettier-only is safe for tables. Remaining to spot-check on first real
   occurrence: alignment markers (`:---:`), very-wide tables, CJK width. Document the result
   (with the repro test as proof) in `docs/FORMATTING.md` at 0.13.
-- Editor-config unification via CUE (IDEA): the per-editor `.vscode` settings problem -
-  N editors, overlapping `[language]` blocks, layered precedence, silent conflicts (e.g.
-  Cursor's user `[markdown]` -> table-formatter) - is a configuration-unification task CUE
-  is built for. Define the formatting/editor policy once as typed CUE constraints, generate
-  each editor's `settings.json`, and detect divergence as a unification failure. Daniel
-  already runs CUE. Long-term, pairs with the `@bun-one/quality` direction. Post-seed.
-  PROVEN recipe (imperative, jq form - the CUE version is the declarative goal): parse the
-  JSONC settings with `jsonc-parser` (VS Code's own parser) via bun, pipe to jq, extract
-  `editor.defaultFormatter` per `[lang]` (falling back to global), compare to the desired
-  map -> per-language ok/mismatch. Demonstrated against Cursor's user layer: flagged
-  `[markdown]` -> table-formatter and `[json]` -> deno as mismatches; jsonc/js/ts ok. This
-  is the kernel of a `verify-editor-config` check (could become `bun run verify:editor`).
+- Reconciliation validators: desired -> actual convergence (PRINCIPLE): a recurring pattern
+  Daniel reaches for, k8s-style - state the DESIRED condition generally, compute the ACTUAL
+  state from the source of truth, report/converge the diff. The mechanism is open and not
+  the point (jq, a bun script, CUE - CUE was just one idea, not required); the loop is. Use
+  it to enforce invariants the type system / formatters can't. Each becomes a `verify:*`
+  check, eventually wired into `ci`. Known instances to build (extensible - this is general,
+  not these two):
+  - Editor settings (not just formatters): desired = any editor settings we care about
+    (formatter routing is the first, but generalize - format-on-save, rulers, whatever);
+    actual = the layered `.vscode`/user JSON. PROVEN kernel: `jsonc-parser` (VS Code's own
+    parser) via bun -> jq, diff actual vs desired per setting. Demonstrated on Cursor:
+    flagged `[markdown]` -> table-formatter and `[json]` -> deno as mismatches.
+  - package.json invariants: e.g. catalog hoisting - if a dependency appears in 2+ workspace
+    packages it MUST be a `catalog:` entry (desired) vs what the package.json files actually
+    declare (actual); plus any other package.json rules we choose to enforce (allowed
+    fields, version-pin policy, script presence). See the catalog-workflow item below.
+  Post-seed; pairs with the `@bun-one/quality` direction.
 - Document line length + proseWrap (TODO at docs time): in `docs/FORMATTING.md` (and/or
   `docs/MARKDOWN.md`) explain and justify the two prose-formatting choices. Decided so far:
   `proseWrap: always` (deliberate deviation from the `preserve` default - enforces wrapping,
