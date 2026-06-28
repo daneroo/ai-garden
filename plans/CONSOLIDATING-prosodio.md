@@ -582,10 +582,10 @@ Bun workspace (generate, then edit deliberately - see Seed procedure):
 
 Markdown / format gates (spec + gates G1-G5 in the Markdown item below):
 
-- [ ] 0.8 G1: prettier config in `package.json` + single `.markdownlint-cli2.jsonc` (prettier
+- [x] 0.8 G1: prettier config in `package.json` + single `.markdownlint-cli2.jsonc` (prettier
       preset) + `.prettierignore` for generated artifacts; commit.
-- [ ] 0.9 G2: `bun run fmt` twice -> empty `git diff` (idempotent).
-- [ ] 0.10 G3: `bun run fmt:check && bun run lint:md` exit 0 and change no files.
+- [x] 0.9 G2: `bun run fmt` twice -> empty `git diff` (idempotent).
+- [x] 0.10 G3: `bun run fmt:check && bun run lint:md` exit 0 and change no files.
 - [ ] 0.11 G4: `.vscode/extensions.json` + `settings.json` (prettier format-on-save +
       markdownlint diagnostics); commit.
 - [ ] 0.12 G5: review and simplify the `package.json` script names; commit.
@@ -599,7 +599,9 @@ Scaffold + boundary + CI:
 - [ ] 0.15 Public/private conventions: `.env.example` for corpus paths (no absolute paths) +
       the central-location config note (see "Public/private boundary"); commit.
 - [ ] 0.16 `bun install && bun run ci` green on the empty workspace (`bun run fmt` first if
-      needed); commit.
+      needed); commit. NOTE: as of 0.10, the only red ci step is `bun test` ("0 test files"
+      exits 1) - decide here: placeholder smoke test vs a no-tests flag vs scaffold a package
+      with a real test first. fmt:check / lint / lint:md / check already pass.
 
 Handoff (only after gates G1-G3 are green - see Handoff):
 
@@ -910,6 +912,14 @@ commit(s).
   surface unchanged) and confirmed `bunx eslint .` loads clean (exit 0). Dropped a
   speculative `data/` ignore - add only if needed. `ci` not yet green: `lint:md` lacks
   config until G1 (0.8).
+- 2026-06-28 - Epoch 0 steps 0.8-0.10 (markdown/format gates G1-G3). prosodio `67e3422`
+  G1 config (prettier in package.json proseWrap:always/printWidth:100; single
+  `.markdownlint-cli2.jsonc` extending `markdownlint/style/prettier`, `gitignore:true`;
+  `.prettierignore` for bun.lock); `f052036` G2 applied fmt (idempotent - 2nd pass no-op).
+  Verified per docs: markdownlint reads no package.json natively (needs awkward
+  `--configPointer`), but a single `.markdownlint-cli2.jsonc` holds options + rules;
+  prettier reads package.json natively. G3 clean: fmt:check + lint:md exit 0. Remaining ci
+  gap = `bun test` on empty workspace (see 0.16 note).
 
 ## Issues to address later
 
