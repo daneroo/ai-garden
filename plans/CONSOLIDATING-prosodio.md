@@ -611,10 +611,16 @@ Scaffold + boundary + CI:
 
 Harvest + handoff - nothing moves until 0.17 is done and Daniel approves:
 
-- [ ] 0.17 HARVEST the remaining useful docs from ai-garden into `prosodio/docs/` +
-      `thoughts/` (the formatting subset was done in 0.13). See Issues - "Harvest existing
-      docs" for the inventory and the import -> reformat -> refactor recipe. Hard gate
-      before any move and before Epoch 1.
+- [ ] 0.17 HARVEST remaining useful docs from ai-garden (the formatting subset was done in
+      0.13). Hard gate before any move and before Epoch 1. Sub-steps:
+  - [ ] Inventory: list candidate `*.md` (bun-one, experiments; exclude
+        node_modules/deps/dist) into `thoughts/plans/doc-harvest.md`, with a keep/merge/drop
+        + destination column. Daniel helps triage.
+  - [ ] Import keepers as-is into `docs/` or `thoughts/`, each with a provenance pointer
+        (`Ported from ai-garden@<sha>:<path>`); commit.
+  - [ ] Reformat (prettier) in a SEPARATE commit; then refactor/rename.
+  - [ ] Reconcile overlaps: e.g. fold `SEEDING.md` into a `BUN-WORKSPACE.md` (as a seeding
+        section), split per-framework material out, drop bun-one-specific bits.
 - [ ] 0.18 Move this plan to `prosodio/thoughts/plans/` (reflows to 80 under prosodio's
       prettier); confirm gates; commit in prosodio.
 - [ ] 0.19 Replace the ai-garden copy with a one-line pointer to the new home.
@@ -996,16 +1002,3 @@ state + what triggers a revisit.
   accident? Candidate direction: a central config-owning package (cf.
   `bun-one/plans/BUN_ONE_QUALITY.md`, the `@bun-one/quality` idea). Revisit when dotfile
   sprawl across packages becomes painful - not at seed.
-- Harvest existing docs (OPEN, partial): sweep all `docs/*.md` (and stray `*.md` tidbits)
-  across ai-garden - `bun-one/`, `experiments/`, and siblings - so no useful guidance is
-  lost when context moves to prosodio. Files may have been moved or renamed, so search by
-  content, not just path. Triage each into prosodio `docs/` or `thoughts/`, or explicitly
-  drop. DONE so far (0.13): the formatting/markdown subset - `experiments/MARKDOWN.md` +
-  bun-one `## Markdown Rules` -> `docs/MARKDOWN.md`; bun-one `## Code Structure` ->
-  `docs/CODING-STYLE.md`; our decisions -> `docs/FORMATTING.md`. REMAINING: the rest of the
-  ~90-file inventory (foundational docs like `WORKSPACE-BUN.md`, `BUN_ONE_QUALITY.md`,
-  `BUN_TANSTACK.md`, STYLING; per-experiment artifacts; seeds). Recipe to apply: import
-  as-is + provenance, reformat as a separate commit, then refactor/rename. Trigger: a HARD
-  GATE before Epoch 1 begins (see Epoch 1 precondition) - while ai-garden is still the live
-  working context. Handoff (0.18) is too late: by then the context needed to triage these
-  docs is gone.
