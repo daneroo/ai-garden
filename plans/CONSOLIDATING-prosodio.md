@@ -572,12 +572,12 @@ Repo init (git first - nothing is ever untracked):
 
 Bun workspace (generate, then edit deliberately - see Seed procedure):
 
-- [ ] 0.4 `bun init`; review the generated `package.json`/`tsconfig.json`/`.gitignore`; commit.
-- [ ] 0.5 Edit `package.json`: `private`, `type: module`, workspaces globs
+- [x] 0.4 `bun init`; review the generated `package.json`/`tsconfig.json`/`.gitignore`; commit.
+- [x] 0.5 Edit `package.json`: `private`, `type: module`, workspaces globs
       (`packages/*`, `components/*`, `apps/*`), empty `runtime` catalog; commit.
-- [ ] 0.6 `bun add -d` tooling: typescript, @types/bun, prettier, eslint, @eslint/js,
+- [x] 0.6 `bun add -d` tooling: typescript, @types/bun, prettier, eslint, @eslint/js,
       typescript-eslint, markdownlint-cli2; commit.
-- [ ] 0.7 eslint flat config (current typescript-eslint docs) + root scripts
+- [x] 0.7 eslint flat config (current typescript-eslint docs) + root scripts
       (`fmt`, `fmt:check`, `lint`, `lint:md`, `check`, `test`, `test:e2e`, `ci`, `outdated`); commit.
 
 Markdown / format gates (spec + gates G1-G5 in the Markdown item below):
@@ -891,3 +891,58 @@ This is a planning/bootstrap artifact, not code. Done means: self-contained and
 codex-reviewable without external context; every component carries a state/verdict (some
 remain ASSESS by design); the five axes, the epochs, and the open decisions are current;
 and there are no hidden planning artifacts.
+
+## Progress Log
+
+Append-only trail of what landed, newest at the bottom. Each entry: date, step(s),
+commit(s).
+
+- 2026-06-28 - Epoch 0 steps 0.1-0.3. prosodio repo seeded git-init-first (nested
+  `ai-garden/prosodio`, gitignored). prosodio `1e714a7` MIT LICENSE + README stub;
+  `df87b90` AGENTS.md (canonical) + thin CLAUDE.md. Probed `bun init` non-destructiveness
+  (preserves README/CLAUDE, merges package.json, never touches AGENTS, litters `.cursor/`).
+- 2026-06-28 - Epoch 0 steps 0.4-0.6 (workspace). prosodio `3bcc3d5` bun init base
+  (removed dead `module`, `.cursor/`, `index.ts`); `d37b479` workspaces globs + empty
+  runtime catalog; `1ebb0e5` dev tooling. Landed eslint 10 (bun-one is 9); flat-config API
+  stable. typescript stays a peerDependency, as generated.
+- 2026-06-28 - Epoch 0 step 0.7. prosodio `c1ec4e7` eslint flat config (bun-one port) +
+  root scripts. Verified against eslint 10 migration notes (flat config + `tseslint.config`
+  surface unchanged) and confirmed `bunx eslint .` loads clean (exit 0). Dropped a
+  speculative `data/` ignore - add only if needed. `ci` not yet green: `lint:md` lacks
+  config until G1 (0.8).
+
+## Issues to address later
+
+Parking lot until prosodio exists and `thoughts/tickets/` becomes the durable home. Each:
+state + what triggers a revisit.
+
+- Agent-instructions convention (PROVISIONAL): is AGENTS.md / CLAUDE.md actually (a)
+  required and (b) respected by agents - and which wins when AGENTS.md, CLAUDE.md, and
+  `.cursor/rules` coexist? Current seed is minimal placeholder. Reconcile against existing
+  examples (`bun-one/CLAUDE.md`, the experiments' CLAUDE/AGENTS files, bun init's generated
+  CLAUDE.md + `.cursor` rule). Revisit after a few epochs actually exercise an agent here.
+- Document the catalog workflow (TODO at docs time): the `workspaces.catalogs.runtime` map
+  is seeded empty. An entry is added only when a dependency is shared by 2+ workspace
+  packages - whoever introduces it pins one version in the catalog and consumers reference
+  `catalog:runtime`. Demand-driven, not speculative. Multiple named catalogs are expected
+  (bun-one runs both `runtime` (zod, valibot) and `testing` (@testing-library/react)); add
+  a `testing` catalog when test deps arrive. Write this up in `docs/DEPENDENCIES.md` (or a
+  BUN-workspace doc) when docs land. See `bun-one/docs/WORKSPACE-BUN.md` for the reference
+  shape.
+- Dependency-update workflow (TODO): `outdated` only reports (`bun outdated -r`). Augment it
+  and add an update script - decide the modes (interactive vs update-all vs
+  patch/minor-only), how the catalog versions get bumped, and what runs CI afterward.
+  Document the chosen workflow in `docs/DEPENDENCIES.md` alongside the catalog notes.
+  Revisit when the first dependency actually goes stale.
+- Config/dotfile ownership (OPEN): bun init (and later tool inits) generate dotfiles whose
+  embedded decisions - tsconfig strictness, ignore globs, version floors - nobody
+  explicitly chose, yet the repo now owns them. "Generated" is not "decided". Who owns
+  these, and how do we make the choices visible/revisitable rather than inherited by
+  accident? Candidate direction: a central config-owning package (cf.
+  `bun-one/plans/BUN_ONE_QUALITY.md`, the `@bun-one/quality` idea). Revisit when dotfile
+  sprawl across packages becomes painful - not at seed.
+- Harvest existing docs (OPEN): sweep all `docs/*.md` (and stray `*.md` tidbits) across
+  ai-garden - `bun-one/`, `experiments/`, and siblings - so no useful guidance is lost when
+  context moves to prosodio. Files may have been moved or renamed, so search by content,
+  not just path. Triage each into prosodio `docs/` or `thoughts/`, or explicitly drop.
+  Trigger: before the ai-garden context is frozen at handoff (step 0.18).
