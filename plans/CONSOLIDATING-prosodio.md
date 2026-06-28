@@ -920,6 +920,15 @@ commit(s).
   `--configPointer`), but a single `.markdownlint-cli2.jsonc` holds options + rules;
   prettier reads package.json natively. G3 clean: fmt:check + lint:md exit 0. Remaining ci
   gap = `bun test` on empty workspace (see 0.16 note).
+- 2026-06-28 - Epoch 0 markdown/format refinement + Daniel manual validation. Reviewed the
+  fmt diff together (prose reflow driven by proseWrap:always/printWidth); Daniel deemed 100
+  too long. Confirmed prettier AND deno fmt both default to 80 / proseWrap:preserve.
+  prosodio `344eed6` dropped the printWidth override -> default 80, kept proseWrap:always;
+  docs reflowed to 80, idempotent, G3 still clean. Daniel manually validated lint:md by
+  mangling README.md - markdownlint correctly caught MD025 (dup H1), MD040 (unlabeled
+  fence), MD047 (trailing newline); these are exactly the structural rules the prettier
+  preset leaves on. README restored after the test. package.json must stay strict JSON (no
+  `package.jsonc`); formatting rationale to live in docs/FORMATTING.md.
 
 ## Issues to address later
 
@@ -939,6 +948,14 @@ state + what triggers a revisit.
   a `testing` catalog when test deps arrive. Write this up in `docs/DEPENDENCIES.md` (or a
   BUN-workspace doc) when docs land. See `bun-one/docs/WORKSPACE-BUN.md` for the reference
   shape.
+- Document line length + proseWrap (TODO at docs time): in `docs/FORMATTING.md` (and/or
+  `docs/MARKDOWN.md`) explain and justify the two prose-formatting choices. Decided so far:
+  `proseWrap: always` (deliberate deviation from the `preserve` default - enforces wrapping,
+  the price is paragraph-reflow churn on edits) and width = prettier default 80 (dropped the
+  100 override; 80 is the universal default - prettier AND deno fmt both default to 80/
+  preserve, and bun-one ships no override). package.json can't carry inline comments (must be
+  strict JSON), so the rationale lives in the doc. Revisit if 80 proves cramped for tables/
+  code-in-prose.
 - Dependency-update workflow (TODO): `outdated` only reports (`bun outdated -r`). Augment it
   and add an update script - decide the modes (interactive vs update-all vs
   patch/minor-only), how the catalog versions get bumped, and what runs CI afterward.
