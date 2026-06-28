@@ -590,7 +590,11 @@ Markdown / format gates (spec + gates G1-G5 in the Markdown item below):
       markdownlint diagnostics); commit.
 - [ ] 0.12 G5: review and simplify the `package.json` script names; commit.
 - [ ] 0.13 `docs/FORMATTING.md` + `docs/MARKDOWN.md` (Codex spec + `experiments/MARKDOWN.md`,
-      cross-referencing); commit.
+      cross-referencing); commit. Include a reproducible "Re-validation / Proof" section so
+      the guarantees can be re-verified by anyone: ragged table -> aligned (prettier matches
+      deno), `lint:md` catches MD025/MD040/MD047, `fmt` idempotency, and the IDE
+      format-on-save behavioral check. Record the decisions (80 width, proseWrap:always, why
+      not deno) with this evidence.
 
 Scaffold + boundary + CI:
 
@@ -929,6 +933,16 @@ commit(s).
   fence), MD047 (trailing newline); these are exactly the structural rules the prettier
   preset leaves on. README restored after the test. package.json must stay strict JSON (no
   `package.jsonc`); formatting rationale to live in docs/FORMATTING.md.
+- 2026-06-28 - Markdown table formatting validated. Discovered (via reading the layered
+  `.vscode`/user settings off disk - all CLI-observable) that ai-garden routes `[markdown]`
+  + `[typescript]` to `denoland.vscode-deno` at the workspace layer, so Daniel has been
+  formatting markdown with deno fmt for its table alignment. Micro-test in prosodio
+  README.md (uncommitted): a deliberately ragged GFM table, run through prettier, came out
+  byte-identical to deno's aligned output (columns padded to widest cell, separator dashes
+  stretched). Daniel then validated behaviorally in the Antigravity IDE (format-on-save,
+  via global prettier since prosodio has no `.vscode` yet): aligns perfectly including the
+  header separator row. Conclusion: prettier-only is safe for tables; no need to revisit
+  the no-deno decision on table grounds. Watch alignment-markers / very-wide / CJK cases.
 
 ## Issues to address later
 
@@ -948,6 +962,20 @@ state + what triggers a revisit.
   a `testing` catalog when test deps arrive. Write this up in `docs/DEPENDENCIES.md` (or a
   BUN-workspace doc) when docs land. See `bun-one/docs/WORKSPACE-BUN.md` for the reference
   shape.
+- Validate prettier markdown tables vs deno fmt (VALIDATED 2026-06-28): Daniel had been
+  formatting markdown with `deno fmt` in-editor (ai-garden `.vscode` routes `[markdown]` ->
+  denoland.vscode-deno at the workspace layer) for its table alignment. Tested: a ragged
+  GFM table through prettier came out byte-identical to deno's aligned output, and Daniel
+  confirmed format-on-save in the Antigravity IDE aligns correctly (header separator
+  included). prettier-only is safe for tables. Remaining to spot-check on first real
+  occurrence: alignment markers (`:---:`), very-wide tables, CJK width. Document the result
+  (with the repro test as proof) in `docs/FORMATTING.md` at 0.13.
+- Editor-config unification via CUE (IDEA): the per-editor `.vscode` settings problem -
+  N editors, overlapping `[language]` blocks, layered precedence, silent conflicts (e.g.
+  Cursor's user `[markdown]` -> table-formatter) - is a configuration-unification task CUE
+  is built for. Define the formatting/editor policy once as typed CUE constraints, generate
+  each editor's `settings.json`, and detect divergence as a unification failure. Daniel
+  already runs CUE. Long-term, pairs with the `@bun-one/quality` direction. Post-seed.
 - Document line length + proseWrap (TODO at docs time): in `docs/FORMATTING.md` (and/or
   `docs/MARKDOWN.md`) explain and justify the two prose-formatting choices. Decided so far:
   `proseWrap: always` (deliberate deviation from the `preserve` default - enforces wrapping,
