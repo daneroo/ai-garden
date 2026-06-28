@@ -2,7 +2,8 @@
 
 Status: planning (no code moved yet). This is the single source of truth for the
 prosodio consolidation. It is meant to be reviewed by Daniel and by a second agent
-(codex). Keep everything here - no hidden or external artifacts.
+(codex). Keep all PLANNING content here - no hidden planning artifacts (the repo itself
+may still carry ordinary dotfiles/config).
 
 How to read this: claims carry a decision state, not a binary "validated or not" (see
 "Decision state model"). State and evidence are independent - a choice can be decided yet
@@ -33,8 +34,10 @@ sub-monorepos (`bun-one/`, `deno-one/`), legacy root prototypes, and agent bake-
 experiments. The goal is to consolidate the components of interest into a new, clean
 sibling repository called prosodio (`~/Code/iMetrical/prosodio`).
 
-This effort is planning-only. No code is created or moved until this plan is approved.
-Seeding the repo is a later, separate effort, out of scope here.
+Seeding the prosodio repo is now IN SCOPE (Epoch 0). This started as a planning-only
+document; it is now the live record as we begin executing. Canonical target: the sibling
+repo `~/Code/iMetrical/prosodio`. (The earlier nested `ai-garden/prosodio` scaffold was a
+failed attempt, since removed - not completed work.)
 
 ## Motivation - why leave ai-garden
 
@@ -81,11 +84,14 @@ framework is the reference for axis 4, not bun-one's Claude-flavored config.
 - Format/lint: a revisitable requirement, not a permanent pick (the exemplar of how such
   choices are recorded). Requirement: one root-invokable formatter+linter meeting the
   Axis-2 formatter/linter swap-criteria (IDE parity, single-tool ideal, low config
-  footprint, markdown incl embedded code). Current best choice (provisional, decided):
-  prettier + eslint for everything including markdown - simplest single path. Rationale:
-  Biome too risky now; deno fmt likely infeasible to mix with Bun. Revisit-when: the
-  markdown/IDE-alignment pain (Axis 5) or a viable single-tool option that better meets
-  the criteria.
+  footprint, markdown incl embedded code). Current best choice (provisional, decided,
+  evidence-backed): Codex's researched spec - prettier as the sole formatter
+  (`proseWrap: always` @ 100, formats markdown + embedded code) + eslint for code +
+  markdownlint-cli2 (`markdownlint/style/prettier` preset) as a structural markdown linter.
+  No deno, no biome. See the Epoch 0 markdown item; it lands in `docs/FORMATTING.md`.
+  Rationale: Biome too risky now; deno dropped (Daniel); prettier and markdownlint proven
+  to coexist via the prettier preset. Revisit-when: the IDE-alignment validation (Axis 5)
+  or a better single-tool option; `markdownlint --fix` usefulness is doubted and under test.
 - License: MIT (public repo). State: decided.
 - Runtime: Bun monorepo only. Deno parallel copies are reference-only.
 - Migration style: clean-port plus provenance pointers. Each ported package carries a
@@ -253,7 +259,8 @@ replacement must meet or beat these.
     (VSCode / Antigravity / Cursor) so CLI == IDE == CI (the Axis 5 observability point).
   - single-tool ideal, to shrink the alignment surface.
   - low config footprint: opinionated/deterministic defaults, minimal dotfiles.
-  - markdown handling including embedded code blocks (deno fmt's notable strength).
+  - markdown handling, including embedded fenced code with language ids (prettier supports
+    this via `embeddedLanguageFormatting`).
 - Test runner
   - native to Bun, zero extra config (part of the Bun simplicity rationale).
 - Type-check
@@ -286,13 +293,14 @@ Each concern below lists its bun-one baseline, then the prosodio status.
     scripts are currently `echo` placeholders. The web player forces this.
 - Format + lint
   - baseline: prettier + eslint v9 flat config
-  - status: keep prettier+eslint for now. Biome is interesting (single tool, would help
-    Axis 5) but too risky at this point (Daniel). deno fmt is attractive - it even formats
-    embedded code inside markdown, which prettier does not - but mixing the deno formatter
-    into a bun toolchain is likely infeasible now. Expected to change over time.
-  - seed decision (provisional, decided): Epoch 0 uses prettier + eslint for everything
-    including markdown (simplest single path). Revisit-when: the markdown/IDE-alignment
-    pain (Axis 5) or a viable single-tool option appears.
+  - status: ADOPTED (see seed decision + Epoch 0 markdown item): prettier (format) +
+    markdownlint-cli2 (structural lint); eslint for code. Biome too risky now; deno dropped.
+    prettier formats embedded fenced code with language ids (`embeddedLanguageFormatting`).
+  - seed decision (provisional, decided): adopt Codex's researched markdown spec - prettier
+    sole formatter (`proseWrap: always` @ 100) + eslint (code) + markdownlint-cli2
+    (`markdownlint/style/prettier` preset) structural linter; no deno/biome. See the Epoch 0
+    markdown item. `markdownlint --fix` kept as manual-only and its usefulness is doubted.
+    Revisit-when: the IDE-alignment validation (Axis 5) or a better single-tool option.
 - Schema lib
   - baseline: zod and valibot both catalogued; `vtt` carries dual schemas
   - status: OPEN - standardize on one (zod dominates whisper + epub-validate) or keep
@@ -310,7 +318,8 @@ Each concern below lists its bun-one baseline, then the prosodio status.
     suffice. Defer the 4th category until a concrete package boundary needs it (codex).
 - Shared data
   - baseline: `data/` at workspace root, volatile/gitignored
-  - status: OPEN - fixtures and reports need non-`data/` homes (see Axis 1 open questions).
+  - status: DECIDED - central corpora location + top-level `reports/`; gitignored `data/`
+    holds private corpora/reports (see Public/private boundary).
 - Web app framework
   - baseline: TanStack Start, Vite, Astro/Starlight all proven in bun-one
   - status: converging on TanStack Start (still a bit new) - chosen because Next.js
@@ -551,14 +560,132 @@ on.
 
 ### Epoch 0 - seed and operating contract
 
-- [ ] Create the public prosodio repo and a minimal Bun workspace.
-- [ ] Establish the doc + agent structure (see "Doc and agent structure") as an adaptable
-      starting point, not a finished framework.
-- [ ] Minimal Claude Code + Codex instruction discovery (AGENTS.md canonical; thin
-      CLAUDE.md pointer).
-- [ ] Public-fixture and private-corpus conventions (see "Public/private boundary").
-- [ ] One root CI command that works before the first app arrives.
-- [ ] Record provisional tooling decisions with explicit revisit triggers.
+Granular checklist - each step is ~one commit; work top-to-bottom; this is the live
+tracker (details for each step live in "Seed procedure" and the "Markdown" spec below).
+
+Repo init (git first - nothing is ever untracked):
+
+- [ ] 0.1 Create the repo dir and `git init` BEFORE any file (nested `ai-garden/prosodio`
+      for visibility, `mv` to the sibling at handoff).
+- [ ] 0.2 Commit: MIT `LICENSE` + `README` stub.
+- [ ] 0.3 Commit: `AGENTS.md` (canonical) + thin `CLAUDE.md`.
+
+Bun workspace (generate, then edit deliberately - see Seed procedure):
+
+- [ ] 0.4 `bun init`; review the generated `package.json`/`tsconfig.json`/`.gitignore`; commit.
+- [ ] 0.5 Edit `package.json`: `private`, `type: module`, workspaces globs
+      (`packages/*`, `components/*`, `apps/*`), empty `runtime` catalog; commit.
+- [ ] 0.6 `bun add -d` tooling: typescript, @types/bun, prettier, eslint, @eslint/js,
+      typescript-eslint, markdownlint-cli2; commit.
+- [ ] 0.7 eslint flat config (current typescript-eslint docs) + root scripts
+      (`fmt`, `fmt:check`, `lint`, `lint:md`, `check`, `test`, `test:e2e`, `ci`, `outdated`); commit.
+
+Markdown / format gates (spec + gates G1-G5 in the Markdown item below):
+
+- [ ] 0.8 G1: prettier config in `package.json` + single `.markdownlint-cli2.jsonc` (prettier
+      preset) + `.prettierignore` for generated artifacts; commit.
+- [ ] 0.9 G2: `bun run fmt` twice -> empty `git diff` (idempotent).
+- [ ] 0.10 G3: `bun run fmt:check && bun run lint:md` exit 0 and change no files.
+- [ ] 0.11 G4: `.vscode/extensions.json` + `settings.json` (prettier format-on-save +
+      markdownlint diagnostics); commit.
+- [ ] 0.12 G5: review and simplify the `package.json` script names; commit.
+- [ ] 0.13 `docs/FORMATTING.md` + `docs/MARKDOWN.md` (Codex spec + `experiments/MARKDOWN.md`,
+      cross-referencing); commit.
+
+Scaffold + boundary + CI:
+
+- [ ] 0.14 Dir scaffold (`packages components apps docs thoughts/{plans,research,tickets,reviews}
+      fixtures reports`) with `.gitkeep`; gitignore `data/`; commit.
+- [ ] 0.15 Public/private conventions: `.env.example` for corpus paths (no absolute paths) +
+      the central-location config note (see "Public/private boundary"); commit.
+- [ ] 0.16 `bun install && bun run ci` green on the empty workspace (`bun run fmt` first if
+      needed); commit.
+
+Handoff (only after gates G1-G3 are green - see Handoff):
+
+- [ ] 0.17 Move this plan to `prosodio/thoughts/plans/`; reflow with prettier (proseWrap @ 100);
+      confirm gates; commit in prosodio.
+- [ ] 0.18 Replace the ai-garden copy with a one-line pointer to the new home.
+- [ ] 0.19 (if nested) `mv prosodio ~/Code/iMetrical/` to the canonical sibling.
+
+Markdown formatting / linting (spec for steps 0.8-0.13; decision recorded, validated via
+the gates):
+  - Adopted approach (Codex's research): prettier is the ONLY formatter (prose + fenced
+    code with language ids); config in `package.json` (`proseWrap: always`,
+    `printWidth: 100`, `embeddedLanguageFormatting: auto`, `endOfLine: lf`). markdownlint is
+    a STRUCTURAL linter, not a formatter: one `.markdownlint-cli2.jsonc` using the
+    `markdownlint/style/prettier` preset (disables the rules prettier owns, line length
+    included) - so a single config, not the two-file bookfinder split. No deno, no biome.
+    CI checks both without writing. IDE = prettier format-on-save + markdownlint
+    diagnostics; NO markdownlint fixAll-on-save.
+  - `markdownlint-cli2 --fix`: usefulness DOUBTED (Daniel). Keep only as an explicit manual
+    repair (`lint:md:fix`), never in CI, never on-save. Validate whether it adds anything
+    over prettier (hypothesis: largely a no-op); drop it if it does not earn its place.
+  - Document in the new repo: `docs/FORMATTING.md` (tool choices, configs, commands, IDE)
+    and `docs/MARKDOWN.md` (style conventions, adjusted from `experiments/MARKDOWN.md`);
+    the two cross-reference each other.
+  - Validate in the new repo (practical tests): prettier formats this doc deterministically
+    (proven - a ~845-line one-time reflow from 80 to 100 cols); markdownlint's prettier
+    preset is recognized and the formatted doc passes (pending); `--fix` usefulness
+    (pending); IDE/`.vscode` format-on-save matches the CLI (testable eventually, per the
+    Axis-5 observability rule: CLI is ground truth, IDE mirrors).
+  - Where it lives (artifact map; documented in `docs/FORMATTING.md`):
+    - `package.json` - prettier config + scripts (`fmt`, `fmt:check`, `lint:md`,
+      `lint:md:fix`, `ci`). Keep prettier config here to avoid another dotfile.
+    - `.markdownlint-cli2.jsonc` - the single markdownlint config (prettier preset, globs,
+      ignores). No second `.markdownlint.*`.
+    - `.prettierignore` - generated artifacts only (dist, coverage, data, reports/generated).
+    - `.vscode/extensions.json` + `.vscode/settings.json` - recommended extensions and the
+      format-on-save baseline, shared across VSCode / Cursor / Antigravity.
+    - `docs/FORMATTING.md` (tool choices, responsibilities, commands, IDE, agent rules) and
+      `docs/MARKDOWN.md` (style conventions), cross-referencing each other.
+  - How to re-validate (repeatable; codify as a check, not a one-time ritual - this is the
+    point of "getting it right"):
+    - idempotence: `bun run fmt` twice, then `git diff` is empty (no churn on a second pass).
+    - clean gate: `bun run fmt:check && bun run lint:md` exits 0 and modifies no files.
+    - golden fixture: a known-ugly markdown fixture (wide tables + embedded code) formats to
+      a committed expected output - proves the formatter does what we intend, and catches
+      regressions on tool upgrades.
+    - IDE<->CLI parity (Axis 5, eventually): format-on-save a scratch file and confirm it
+      matches `bun run fmt`; any mismatch is an IDE-config bug, not a rule change.
+    - Run this whole procedure on every prettier / markdownlint version bump (the revisit
+      trigger); `outdated` / Dependabot surfaces the bumps.
+  - Validation order (gates - each must pass before the next; Epoch 0's markdown sign-off,
+    simplified per Codex):
+    1. G1 - configs exist: prettier config in `package.json` + single
+       `.markdownlint-cli2.jsonc` (prettier preset).
+    2. G2 - idempotent: `bun run fmt` twice -> empty `git diff`.
+    3. G3 - clean gate: `bun run fmt:check && bun run lint:md` exit 0 and change no files.
+    4. G4 - editor uses prettier (format-on-save) + markdownlint (diagnostics).
+    5. G5 - review gate (Daniel): once functional, simplify and validate the `package.json`
+       script targets/names.
+    After G1-G3 are green, this plan doc is reflowed (prettier proseWrap @ 100) and handed
+    off (see Handoff). Non-blocking follow-ups (NOT gates): a golden-fixture regression
+    test; evaluating whether `markdownlint --fix` earns its place (`lint:md:fix` omitted
+    initially).
+
+Seed procedure (document first, then execute - hard rule):
+
+- Generate first, then edit deliberately. Use generators where useful (`bun init`,
+  `bun add`), then explicitly edit and validate the config - generated output is a starting
+  point, not architectural truth. The narrow hard rule: never INVENT dependency versions by
+  hand; versions come from `bun add` / the registry. Use current docs (Context7 / WebFetch)
+  and the scaffold CLI output as the reference for versions/scripts, then adjust with intent.
+- `bun init` at the prosodio root -> base `package.json`, `tsconfig.json`, `.gitignore`
+  (origin: Bun official init).
+- Configure workspaces: globs `packages/*`, `components/*`, `apps/*` (origin: bun-one
+  `docs/WORKSPACE-BUN.md`, validated pattern).
+- Add a `runtime` catalog for shared dependency versions; populate it only as real deps
+  are added (origin: bun-one catalogs).
+- Dev tooling via `bun add -d`: typescript, `@types/bun`, prettier, eslint, `@eslint/js`,
+  typescript-eslint - versions as bun resolves them, never hand-pinned. eslint flat config
+  from the current typescript-eslint setup docs. Exact version pinning is DEFERRED until
+  tool choices stabilize (pinning now would hinder validating md formatting across versions);
+  commit `bun.lock` regardless.
+- Root scripts (`ci`/`fmt`/`lint`/`check`/`test`): adopt bun-one's documented set, verified
+  against the generated `package.json`.
+- Each adopted choice (workspaces, catalog, every library) is documented with its origin
+  before it is materialized.
 
 ### Epoch 1 - transcribe (first port)
 
@@ -566,8 +693,9 @@ First product milestone: a working reproduction of whisper - NOT an extracted vt
 and NOT an end-to-end player. `bun-one/apps/whisper` is already the consolidated, mature
 implementation; nothing is needed from the dead `whisper-sh` / `whisper-bench`.
 
-- [ ] Clean-port `bun-one/apps/whisper` as `apps/transcribe` (the rename is part of the
-      behavior-preserving port), keeping its trusted VTT implementation internal.
+- [ ] Clean-port `bun-one/apps/whisper`, keeping its trusted VTT implementation internal.
+      The rename (-> `apps/transcribe`?) and the equivalence/acceptance contract are settled
+      during Epoch 1 execution, not pre-specified here (deferred per Codex).
 - [ ] Point it at the central corpora location and `reports/` output; adjust paths only.
 - [ ] Prove the root CI target includes the app.
 - [ ] Use the port to validate runtime-bound package/app conventions.
@@ -640,8 +768,8 @@ private. Designed during Epoch 1 because both whisper and EPUB validation need i
   that it is safe/legal to expose on GitHub - the location is the contract, no per-fixture
   license ceremony. Also public: unit/integration tests that run without private data;
   schemas, report generators, benchmark runners; small synthetic/public golden outputs.
-- Private, local: raw audiobook+ebook corpora and full generated reports live outside the
-  public worktree, under a gitignored `data/` subtree; a gitignored local config (or env
+- Private, local: raw audiobook+ebook corpora and full generated reports live outside
+  tracked Git content (a gitignored `data/` subtree, still inside the worktree); a gitignored local config (or env
   vars) maps logical corpus names to paths (`.env.example`, never absolute paths).
 - Central locations via monorepo-wide config (Daniel): ONE central place for corpora -
   public and private, audiobooks and ebooks - plus one top-level `reports/` for public
@@ -678,13 +806,33 @@ heavy `decisions/` + `development/` split).
   bookfinder-opencode): `plans/`, `research/`, `tickets/`, `reviews/`. Where in-progress
   work and this consolidation plan live and get discharged.
 - `provenance.md` - central clean-port lineage (see Port strategy).
-- ADR (architecture decision record): liked in principle, kept lightweight - a dated record
-  per significant decision, superseded rather than rewritten. Not a heavy numbered
-  subsystem yet; a hint for the future.
+- No ADR/decision bureaucracy (Codex): durable decisions live contextually in
+  `docs/<subject>.md`, superseded rather than rewritten when they change. `thoughts/` is
+  experimental working space, not a system of record.
+- OPEN (Daniel): whether `thoughts/` holds only a few active plans, or also longer-term
+  issues/todos - pick the home for long-term issues/todos when the need is concrete.
 
 The consolidation plan is a bootstrap/context artifact: once prosodio is seeded it moves
 into `thoughts/plans/`, is progressively discharged into durable docs, and is eventually
 archived. It does not remain the permanent architecture manual.
+
+## Handoff (single source of truth)
+
+Exactly ONE authoritative copy of this plan exists at any moment - never two.
+
+- Now -> handoff: `ai-garden/plans/CONSOLIDATING-prosodio.md` is the sole authority. All
+  edits happen here.
+- Stale duplicate to clean up: an out-of-date copy exists at
+  `prosodio/thoughts/plans/CONSOLIDATING-prosodio.md` from the earlier (failed) bootstrap.
+  It is NOT authoritative. It gets removed/overwritten when the prosodio scaffold is
+  re-seeded git-init-first. Do not edit it; do not treat it as real.
+- Handoff event (the one moment it moves): when prosodio is seeded git-init-first AND its
+  markdown gates G1-G4 pass. Then, in one step: move this doc into
+  `prosodio/thoughts/plans/`, reflow it with prosodio's prettier (proseWrap @ 100), confirm
+  it passes the gates, and commit it there.
+- After handoff: prosodio's copy is the SOLE authority; the ai-garden copy is replaced by a
+  one-line pointer to the new home (not a second living copy). All further edits, and the
+  progressive discharge into `docs/*.md`, happen in prosodio only.
 
 ## AI harness enablement (empirical compatibility program)
 
@@ -742,4 +890,4 @@ These gated Epochs 0-1; all are now settled or deliberately deferred to port tim
 This is a planning/bootstrap artifact, not code. Done means: self-contained and
 codex-reviewable without external context; every component carries a state/verdict (some
 remain ASSESS by design); the five axes, the epochs, and the open decisions are current;
-and there are no hidden artifacts.
+and there are no hidden planning artifacts.
