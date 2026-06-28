@@ -943,6 +943,15 @@ commit(s).
   via global prettier since prosodio has no `.vscode` yet): aligns perfectly including the
   header separator row. Conclusion: prettier-only is safe for tables; no need to revisit
   the no-deno decision on table grounds. Watch alignment-markers / very-wide / CJK cases.
+- 2026-06-28 - VS Code precedence gotcha + verification recipe (informs 0.11). Verified
+  per docs: a single-language `[lang]` block beats a multi-language `[a][b]` block BEFORE
+  scope rules - so a combined workspace block would lose to a user-level single-language
+  override. Cursor has user single-language `[markdown]`/`[json]`/`[typescript]`/etc.
+  blocks, so 0.11 must use per-language single blocks (workspace single beats user single
+  via scope). Built a working CLI verifier (jsonc-parser via bun -> jq) that computes
+  actual defaultFormatter per language and diffs against desired; on Cursor it flagged
+  `[markdown]` -> table-formatter and `[json]` -> deno as the two real mismatches our
+  workspace blocks must override. Recipe captured under the CUE issue.
 
 ## Issues to address later
 
@@ -976,6 +985,12 @@ state + what triggers a revisit.
   is built for. Define the formatting/editor policy once as typed CUE constraints, generate
   each editor's `settings.json`, and detect divergence as a unification failure. Daniel
   already runs CUE. Long-term, pairs with the `@bun-one/quality` direction. Post-seed.
+  PROVEN recipe (imperative, jq form - the CUE version is the declarative goal): parse the
+  JSONC settings with `jsonc-parser` (VS Code's own parser) via bun, pipe to jq, extract
+  `editor.defaultFormatter` per `[lang]` (falling back to global), compare to the desired
+  map -> per-language ok/mismatch. Demonstrated against Cursor's user layer: flagged
+  `[markdown]` -> table-formatter and `[json]` -> deno as mismatches; jsonc/js/ts ok. This
+  is the kernel of a `verify-editor-config` check (could become `bun run verify:editor`).
 - Document line length + proseWrap (TODO at docs time): in `docs/FORMATTING.md` (and/or
   `docs/MARKDOWN.md`) explain and justify the two prose-formatting choices. Decided so far:
   `proseWrap: always` (deliberate deviation from the `preserve` default - enforces wrapping,
