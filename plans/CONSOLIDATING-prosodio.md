@@ -586,7 +586,7 @@ Markdown / format gates (spec + gates G1-G5 in the Markdown item below):
       preset) + `.prettierignore` for generated artifacts; commit.
 - [x] 0.9 G2: `bun run fmt` twice -> empty `git diff` (idempotent).
 - [x] 0.10 G3: `bun run fmt:check && bun run lint:md` exit 0 and change no files.
-- [ ] 0.11 G4: `.vscode/extensions.json` + `settings.json` (prettier format-on-save +
+- [x] 0.11 G4: `.vscode/extensions.json` + `settings.json` (prettier format-on-save +
       markdownlint diagnostics); commit.
 - [ ] 0.12 G5: review and simplify the `package.json` script names; commit.
 - [ ] 0.13 `docs/FORMATTING.md` + `docs/MARKDOWN.md` (Codex spec + `experiments/MARKDOWN.md`,
@@ -952,6 +952,15 @@ commit(s).
   actual defaultFormatter per language and diffs against desired; on Cursor it flagged
   `[markdown]` -> table-formatter and `[json]` -> deno as the two real mismatches our
   workspace blocks must override. Recipe captured under the CUE issue.
+- 2026-06-28 - Epoch 0 step 0.11 (G4 IDE parity). prosodio `d2250c0` `.vscode/settings.json`
+  (per-language single blocks -> prettier) + `extensions.json`. Re-verified the precedence
+  rule against the docs: every language-specific tier beats every non-language tier (even
+  narrower-scoped), so per-language workspace blocks are required to beat user `[lang]`
+  overrides - confirms the design. Ran the reconciliation verifier against Daniel's actual
+  editor (Antigravity): found `[typescript]` -> deno (real mismatch); the merged
+  workspace-over-user effective check then came back all-green (every language -> prettier
+  via workspace [lang]). Dropped a redundant per-markdown `formatOnSave` - asserted globally,
+  drift delegated to the verify reconciler. Daniel uses Antigravity (not Cursor presently).
 
 ## Issues to address later
 
@@ -963,6 +972,11 @@ state + what triggers a revisit.
   `.cursor/rules` coexist? Current seed is minimal placeholder. Reconcile against existing
   examples (`bun-one/CLAUDE.md`, the experiments' CLAUDE/AGENTS files, bun init's generated
   CLAUDE.md + `.cursor` rule). Revisit after a few epochs actually exercise an agent here.
+- MDX formatting/linting (OPEN, defer): when Astro/TanStack land, `.mdx` files appear.
+  prettier has an mdx parser, but our `lint:md` glob is `**/*.md` (won't match `.mdx`) and
+  markdownlint does not lint mdx. Decide then: whether to format mdx with prettier, add an
+  `[mdx]` block to `.vscode/settings.json`, extend/seperate the lint glob, and what (if any)
+  structural linter covers mdx. No need to test now - revisit at the first `.mdx` file.
 - Document the catalog workflow (TODO at docs time): the `workspaces.catalogs.runtime` map
   is seeded empty. An entry is added only when a dependency is shared by 2+ workspace
   packages - whoever introduces it pins one version in the catalog and consumers reference
