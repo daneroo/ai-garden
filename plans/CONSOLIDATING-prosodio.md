@@ -35,9 +35,10 @@ experiments. The goal is to consolidate the components of interest into a new, c
 sibling repository called prosodio (`~/Code/iMetrical/prosodio`).
 
 Seeding the prosodio repo is now IN SCOPE (Epoch 0). This started as a planning-only
-document; it is now the live record as we begin executing. Canonical target: the sibling
-repo `~/Code/iMetrical/prosodio`. (The earlier nested `ai-garden/prosodio` scaffold was a
-failed attempt, since removed - not completed work.)
+document; it is now the live record as we execute. The repo currently lives as a NESTED git
+repo at `ai-garden/prosodio` (gitignored, for Claude's visibility); it moves to the
+canonical sibling `~/Code/iMetrical/prosodio` at handoff (0.20). An earlier hand-crafted
+scaffold attempt was removed; the current nested repo is the real, git-init-first seed.
 
 ## Motivation - why leave ai-garden
 
@@ -86,7 +87,7 @@ framework is the reference for axis 4, not bun-one's Claude-flavored config.
   Axis-2 formatter/linter swap-criteria (IDE parity, single-tool ideal, low config
   footprint, markdown incl embedded code). Current best choice (provisional, decided,
   evidence-backed): Codex's researched spec - prettier as the sole formatter
-  (`proseWrap: always` @ 100, formats markdown + embedded code) + eslint for code +
+  (`proseWrap: always`, width 80, formats markdown + embedded code) + eslint for code +
   markdownlint-cli2 (`markdownlint/style/prettier` preset) as a structural markdown linter.
   No deno, no biome. See the Epoch 0 markdown item; it lands in `docs/FORMATTING.md`.
   Rationale: Biome too risky now; deno dropped (Daniel); prettier and markdownlint proven
@@ -297,7 +298,7 @@ Each concern below lists its bun-one baseline, then the prosodio status.
     markdownlint-cli2 (structural lint); eslint for code. Biome too risky now; deno dropped.
     prettier formats embedded fenced code with language ids (`embeddedLanguageFormatting`).
   - seed decision (provisional, decided): adopt Codex's researched markdown spec - prettier
-    sole formatter (`proseWrap: always` @ 100) + eslint (code) + markdownlint-cli2
+    sole formatter (`proseWrap: always`, width 80) + eslint (code) + markdownlint-cli2
     (`markdownlint/style/prettier` preset) structural linter; no deno/biome. See the Epoch 0
     markdown item. `markdownlint --fix` kept as manual-only and its usefulness is doubted.
     Revisit-when: the IDE-alignment validation (Axis 5) or a better single-tool option.
@@ -771,7 +772,7 @@ Exactly ONE authoritative copy of this plan exists at any moment - never two.
   re-seeded git-init-first. Do not edit it; do not treat it as real.
 - Handoff event (the one moment it moves): when prosodio is seeded git-init-first AND its
   markdown gates G1-G4 pass. Then, in one step: move this doc into
-  `prosodio/thoughts/plans/`, reflow it with prosodio's prettier (proseWrap @ 100), confirm
+  `prosodio/thoughts/plans/`, reflow it with prosodio's prettier (proseWrap always, width 80), confirm
   it passes the gates, and commit it there.
 - After handoff: prosodio's copy is the SOLE authority; the ai-garden copy is replaced by a
   one-line pointer to the new home (not a second living copy). All further edits, and the
