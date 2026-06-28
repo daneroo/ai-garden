@@ -588,7 +588,7 @@ Markdown / format gates (spec + gates G1-G5 in the Markdown item below):
 - [x] 0.10 G3: `bun run fmt:check && bun run lint:md` exit 0 and change no files.
 - [x] 0.11 G4: `.vscode/extensions.json` + `settings.json` (prettier format-on-save +
       markdownlint diagnostics); commit.
-- [ ] 0.12 G5: review and simplify the `package.json` script names; commit.
+- [x] 0.12 G5: review and simplify the `package.json` script names; commit.
 - [ ] 0.13 `docs/FORMATTING.md` + `docs/MARKDOWN.md` (Codex spec + `experiments/MARKDOWN.md`,
       cross-referencing); commit. Include a reproducible "Re-validation / Proof" section so
       the guarantees can be re-verified by anyone: ragged table -> aligned (prettier matches
@@ -961,6 +961,14 @@ commit(s).
   workspace-over-user effective check then came back all-green (every language -> prettier
   via workspace [lang]). Dropped a redundant per-markdown `formatOnSave` - asserted globally,
   drift delegated to the verify reconciler. Daniel uses Antigravity (not Cursor presently).
+- 2026-06-28 - Epoch 0 step 0.12 (G5 script rationalization). prosodio `35045d7`: `lint`
+  now rolls up `lint:js` (eslint) + `lint:md`; `ci` simplified. Added `outdated:fix`
+  (`bun update -i -r` - native interactive recursive updater, beats ncu) and a `sanity`
+  stub reserving the reconciliation entry point. Dropped a redundant `update` (one way to
+  update). NOTE: this plan file got accidentally reflowed to 80-col by an editor save
+  (ai-garden routes `[markdown]` -> deno) which also clobbered two uncommitted edits; we
+  discarded the reflow via `git checkout` and re-applied the lost dependency + sanity edits.
+  Lesson: don't leave the plan open/autosaving in the editor while Claude edits it.
 
 ## Issues to address later
 
@@ -997,9 +1005,12 @@ state + what triggers a revisit.
   Daniel reaches for, k8s-style - state the DESIRED condition generally, compute the ACTUAL
   state from the source of truth, report/converge the diff. The mechanism is open and not
   the point (jq, a bun script, CUE - CUE was just one idea, not required); the loop is. Use
-  it to enforce invariants the type system / formatters can't. Each becomes a `verify:*`
-  check, eventually wired into `ci`. Known instances to build (extensible - this is general,
-  not these two):
+  it to enforce invariants the type system / formatters can't. Naming convention (Daniel's
+  preference): `sanity:*` - signals a precondition/pre-flight gate, not a one-off. Each
+  reconciler is a `sanity:<thing>` script (e.g. `sanity:editor`, `sanity:catalog`), with an
+  umbrella `sanity` running them all, gateable in `ci`. A placeholder `sanity` script exists
+  now (echoes "coming soon") to reserve the entry point. Known instances to build
+  (extensible - this is general, not these two):
   - Editor settings (not just formatters): desired = any editor settings we care about
     (formatter routing is the first, but generalize - format-on-save, rulers, whatever);
     actual = the layered `.vscode`/user JSON. PROVEN kernel: `jsonc-parser` (VS Code's own
@@ -1018,11 +1029,16 @@ state + what triggers a revisit.
   preserve, and bun-one ships no override). package.json can't carry inline comments (must be
   strict JSON), so the rationale lives in the doc. Revisit if 80 proves cramped for tables/
   code-in-prose.
-- Dependency-update workflow (TODO): `outdated` only reports (`bun outdated -r`). Augment it
-  and add an update script - decide the modes (interactive vs update-all vs
-  patch/minor-only), how the catalog versions get bumped, and what runs CI afterward.
-  Document the chosen workflow in `docs/DEPENDENCIES.md` alongside the catalog notes.
-  Revisit when the first dependency actually goes stale.
+- Dependency-update workflow (TODO): `outdated` only reports (`bun outdated -r`).
+  Findings (bun 1.3.14): `bun update` = within-range; `bun update --latest` = bump past
+  ranges, all packages, non-interactive; `bun update -i -r` = NATIVE interactive picker,
+  recursive across the workspace (both flags work though absent from --help). This beats
+  `bunx npm-check-updates -i` - native, workspace-aware, no extra tool. CAVEAT: still verify
+  it handles `catalog:` references correctly; catalog bumps may need separate handling.
+  Implemented as `outdated:fix` (`bun update -i -r`, the actionable counterpart to
+  `outdated`) - one interactive way to update, no redundant non-interactive `update`.
+  Document in `docs/DEPENDENCIES.md` with the catalog notes. Revisit when the first
+  dependency goes stale.
 - Config/dotfile ownership (OPEN): bun init (and later tool inits) generate dotfiles whose
   embedded decisions - tsconfig strictness, ignore globs, version floors - nobody
   explicitly chose, yet the repo now owns them. "Generated" is not "decided". Who owns
