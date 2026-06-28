@@ -565,10 +565,10 @@ tracker (details for each step live in "Seed procedure" and the "Markdown" spec 
 
 Repo init (git first - nothing is ever untracked):
 
-- [ ] 0.1 Create the repo dir and `git init` BEFORE any file (nested `ai-garden/prosodio`
+- [x] 0.1 Create the repo dir and `git init` BEFORE any file (nested `ai-garden/prosodio`
       for visibility, `mv` to the sibling at handoff).
-- [ ] 0.2 Commit: MIT `LICENSE` + `README` stub.
-- [ ] 0.3 Commit: `AGENTS.md` (canonical) + thin `CLAUDE.md`.
+- [x] 0.2 Commit: MIT `LICENSE` + `README` stub.
+- [x] 0.3 Commit: `AGENTS.md` (canonical) + thin `CLAUDE.md`.
 
 Bun workspace (generate, then edit deliberately - see Seed procedure):
 
