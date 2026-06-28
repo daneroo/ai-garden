@@ -561,7 +561,7 @@ on.
 ### Epoch 0 - seed and operating contract
 
 Granular checklist - each step is ~one commit; work top-to-bottom; this is the live
-tracker (details for each step live in "Seed procedure" and the "Markdown" spec below).
+tracker. Steps 0.1-0.16 are done; the Progress Log records what landed.
 
 Repo init (git first - nothing is ever untracked):
 
@@ -570,7 +570,7 @@ Repo init (git first - nothing is ever untracked):
 - [x] 0.2 Commit: MIT `LICENSE` + `README` stub.
 - [x] 0.3 Commit: `AGENTS.md` (canonical) + thin `CLAUDE.md`.
 
-Bun workspace (generate, then edit deliberately - see Seed procedure):
+Bun workspace (generate via bun init/bun add, then edit deliberately):
 
 - [x] 0.4 `bun init`; review the generated `package.json`/`tsconfig.json`/`.gitignore`; commit.
 - [x] 0.5 Edit `package.json`: `private`, `type: module`, workspaces globs
@@ -609,91 +609,16 @@ Scaffold + boundary + CI:
       root `smoke-remove-me.test.ts` satisfies `bun test`, remove when Epoch 1 brings real
       tests. fmt:check / lint / check / test all pass, exit 0.
 
-Handoff (only after gates G1-G3 are green - see Handoff):
+Harvest + handoff - nothing moves until 0.17 is done and Daniel approves:
 
-- [ ] 0.17 Move this plan to `prosodio/thoughts/plans/`; reflow with prettier (proseWrap @ 100);
-      confirm gates; commit in prosodio.
-- [ ] 0.18 Replace the ai-garden copy with a one-line pointer to the new home.
-- [ ] 0.19 (if nested) `mv prosodio ~/Code/iMetrical/` to the canonical sibling.
-
-Markdown formatting / linting (spec for steps 0.8-0.13; decision recorded, validated via
-the gates):
-  - Adopted approach (Codex's research): prettier is the ONLY formatter (prose + fenced
-    code with language ids); config in `package.json` (`proseWrap: always`,
-    `printWidth: 100`, `embeddedLanguageFormatting: auto`, `endOfLine: lf`). markdownlint is
-    a STRUCTURAL linter, not a formatter: one `.markdownlint-cli2.jsonc` using the
-    `markdownlint/style/prettier` preset (disables the rules prettier owns, line length
-    included) - so a single config, not the two-file bookfinder split. No deno, no biome.
-    CI checks both without writing. IDE = prettier format-on-save + markdownlint
-    diagnostics; NO markdownlint fixAll-on-save.
-  - `markdownlint-cli2 --fix`: usefulness DOUBTED (Daniel). Keep only as an explicit manual
-    repair (`lint:md:fix`), never in CI, never on-save. Validate whether it adds anything
-    over prettier (hypothesis: largely a no-op); drop it if it does not earn its place.
-  - Document in the new repo: `docs/FORMATTING.md` (tool choices, configs, commands, IDE)
-    and `docs/MARKDOWN.md` (style conventions, adjusted from `experiments/MARKDOWN.md`);
-    the two cross-reference each other.
-  - Validate in the new repo (practical tests): prettier formats this doc deterministically
-    (proven - a ~845-line one-time reflow from 80 to 100 cols); markdownlint's prettier
-    preset is recognized and the formatted doc passes (pending); `--fix` usefulness
-    (pending); IDE/`.vscode` format-on-save matches the CLI (testable eventually, per the
-    Axis-5 observability rule: CLI is ground truth, IDE mirrors).
-  - Where it lives (artifact map; documented in `docs/FORMATTING.md`):
-    - `package.json` - prettier config + scripts (`fmt`, `fmt:check`, `lint:md`,
-      `lint:md:fix`, `ci`). Keep prettier config here to avoid another dotfile.
-    - `.markdownlint-cli2.jsonc` - the single markdownlint config (prettier preset, globs,
-      ignores). No second `.markdownlint.*`.
-    - `.prettierignore` - generated artifacts only (dist, coverage, data, reports/generated).
-    - `.vscode/extensions.json` + `.vscode/settings.json` - recommended extensions and the
-      format-on-save baseline, shared across VSCode / Cursor / Antigravity.
-    - `docs/FORMATTING.md` (tool choices, responsibilities, commands, IDE, agent rules) and
-      `docs/MARKDOWN.md` (style conventions), cross-referencing each other.
-  - How to re-validate (repeatable; codify as a check, not a one-time ritual - this is the
-    point of "getting it right"):
-    - idempotence: `bun run fmt` twice, then `git diff` is empty (no churn on a second pass).
-    - clean gate: `bun run fmt:check && bun run lint:md` exits 0 and modifies no files.
-    - golden fixture: a known-ugly markdown fixture (wide tables + embedded code) formats to
-      a committed expected output - proves the formatter does what we intend, and catches
-      regressions on tool upgrades.
-    - IDE<->CLI parity (Axis 5, eventually): format-on-save a scratch file and confirm it
-      matches `bun run fmt`; any mismatch is an IDE-config bug, not a rule change.
-    - Run this whole procedure on every prettier / markdownlint version bump (the revisit
-      trigger); `outdated` / Dependabot surfaces the bumps.
-  - Validation order (gates - each must pass before the next; Epoch 0's markdown sign-off,
-    simplified per Codex):
-    1. G1 - configs exist: prettier config in `package.json` + single
-       `.markdownlint-cli2.jsonc` (prettier preset).
-    2. G2 - idempotent: `bun run fmt` twice -> empty `git diff`.
-    3. G3 - clean gate: `bun run fmt:check && bun run lint:md` exit 0 and change no files.
-    4. G4 - editor uses prettier (format-on-save) + markdownlint (diagnostics).
-    5. G5 - review gate (Daniel): once functional, simplify and validate the `package.json`
-       script targets/names.
-    After G1-G3 are green, this plan doc is reflowed (prettier proseWrap @ 100) and handed
-    off (see Handoff). Non-blocking follow-ups (NOT gates): a golden-fixture regression
-    test; evaluating whether `markdownlint --fix` earns its place (`lint:md:fix` omitted
-    initially).
-
-Seed procedure (document first, then execute - hard rule):
-
-- Generate first, then edit deliberately. Use generators where useful (`bun init`,
-  `bun add`), then explicitly edit and validate the config - generated output is a starting
-  point, not architectural truth. The narrow hard rule: never INVENT dependency versions by
-  hand; versions come from `bun add` / the registry. Use current docs (Context7 / WebFetch)
-  and the scaffold CLI output as the reference for versions/scripts, then adjust with intent.
-- `bun init` at the prosodio root -> base `package.json`, `tsconfig.json`, `.gitignore`
-  (origin: Bun official init).
-- Configure workspaces: globs `packages/*`, `components/*`, `apps/*` (origin: bun-one
-  `docs/WORKSPACE-BUN.md`, validated pattern).
-- Add a `runtime` catalog for shared dependency versions; populate it only as real deps
-  are added (origin: bun-one catalogs).
-- Dev tooling via `bun add -d`: typescript, `@types/bun`, prettier, eslint, `@eslint/js`,
-  typescript-eslint - versions as bun resolves them, never hand-pinned. eslint flat config
-  from the current typescript-eslint setup docs. Exact version pinning is DEFERRED until
-  tool choices stabilize (pinning now would hinder validating md formatting across versions);
-  commit `bun.lock` regardless.
-- Root scripts (`ci`/`fmt`/`lint`/`check`/`test`): adopt bun-one's documented set, verified
-  against the generated `package.json`.
-- Each adopted choice (workspaces, catalog, every library) is documented with its origin
-  before it is materialized.
+- [ ] 0.17 HARVEST the remaining useful docs from ai-garden into `prosodio/docs/` +
+      `thoughts/` (the formatting subset was done in 0.13). See Issues - "Harvest existing
+      docs" for the inventory and the import -> reformat -> refactor recipe. Hard gate
+      before any move and before Epoch 1.
+- [ ] 0.18 Move this plan to `prosodio/thoughts/plans/` (reflows to 80 under prosodio's
+      prettier); confirm gates; commit in prosodio.
+- [ ] 0.19 Replace the ai-garden copy with a one-line pointer to the new home.
+- [ ] 0.20 `mv prosodio ~/Code/iMetrical/` to the canonical sibling.
 
 ### Epoch 1 - transcribe (first port)
 
@@ -701,10 +626,8 @@ First product milestone: a working reproduction of whisper - NOT an extracted vt
 and NOT an end-to-end player. `bun-one/apps/whisper` is already the consolidated, mature
 implementation; nothing is needed from the dead `whisper-sh` / `whisper-bench`.
 
-PRECONDITION (gate): finish the doc harvest (see Issues - "Harvest existing docs") BEFORE
-starting Epoch 1, while ai-garden is still the live working context. Once Epoch 1 work
-moves into prosodio, that context is effectively lost and the triage can no longer be done
-well. This is a hard gate, not a handoff-time afterthought.
+PRECONDITION: step 0.17 (doc harvest) and the handoff must be done first - see "Harvest +
+handoff" in Epoch 0. ai-garden context is lost once work moves here.
 
 - [ ] Clean-port `bun-one/apps/whisper`, keeping its trusted VTT implementation internal.
       The rename (-> `apps/transcribe`?) and the equivalence/acceptance contract are settled
