@@ -602,12 +602,12 @@ Scaffold + boundary + CI:
 - [x] 0.14 Dir scaffold (`packages components apps fixtures thoughts/{plans,research,tickets,reviews}`)
       with `.gitkeep`; gitignore `data/`; commit. `reports/` skipped (tentative); `data/`
       gitignored not gitkept. prosodio `a1225e0`.
-- [ ] 0.15 Public/private conventions: `.env.example` for corpus paths (no absolute paths) +
-      the central-location config note (see "Public/private boundary"); commit.
-- [ ] 0.16 `bun install && bun run ci` green on the empty workspace (`bun run fmt` first if
-      needed); commit. NOTE: as of 0.10, the only red ci step is `bun test` ("0 test files"
-      exits 1) - decide here: placeholder smoke test vs a no-tests flag vs scaffold a package
-      with a real test first. fmt:check / lint / lint:md / check already pass.
+- [x] 0.15 Public/private conventions: `.env.example` (provisional `PROSODIO_CORPORA_DIR`,
+      no absolute paths); reconciled the boundary section - corpora external, `data/` =
+      volatile outputs; commit.
+- [ ] 0.16 `bun install && bun run ci` green on the empty workspace; commit. Plan: add root
+      `smoke-remove-me.test.ts` (`expect(true)`, no deps) to satisfy `bun test`; remove when
+      Epoch 1 brings real tests. fmt:check / lint / check already pass.
 
 Handoff (only after gates G1-G3 are green - see Handoff):
 
@@ -781,14 +781,15 @@ private. Designed during Epoch 1 because both whisper and EPUB validation need i
   that it is safe/legal to expose on GitHub - the location is the contract, no per-fixture
   license ceremony. Also public: unit/integration tests that run without private data;
   schemas, report generators, benchmark runners; small synthetic/public golden outputs.
-- Private, local: raw audiobook+ebook corpora and full generated reports live outside
-  tracked Git content (a gitignored `data/` subtree, still inside the worktree); a gitignored local config (or env
-  vars) maps logical corpus names to paths (`.env.example`, never absolute paths).
+- Private corpora live OUTSIDE the worktree (an external dir), referenced via env
+  (`.env.example` -> `PROSODIO_CORPORA_DIR`; name provisional, never absolute paths). The
+  gitignored `data/` subtree (inside the worktree) is for volatile OUTPUTS and scratch (full
+  generated reports, intermediates) - not corpora.
 - Central locations via monorepo-wide config (Daniel): ONE central place for corpora -
   public and private, audiobooks and ebooks - plus one top-level `reports/` for public
   generated artifacts (at first just the whisper benchmark; maybe an epub-validate run on
   test-books). A monorepo-wide config maps logical names to physical locations (committed
-  public corpora root, gitignored private `data/`, `reports/`, optional external).
+  public corpora root, external private corpora, gitignored `data/` for outputs, `reports/`).
   Subprojects consume this config; they do NOT hardcode paths or invent per-app env vars.
   Per-output policy may still evolve per subproject.
 - Gating: adapt whisper's existing `RUN_E2E_TESTS=1 bun test` pattern. Two distinct
