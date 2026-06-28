@@ -589,8 +589,9 @@ Markdown / format gates (spec + gates G1-G5 in the Markdown item below):
 - [x] 0.11 G4: `.vscode/extensions.json` + `settings.json` (prettier format-on-save +
       markdownlint diagnostics); commit.
 - [x] 0.12 G5: review and simplify the `package.json` script names; commit.
-- [ ] 0.13 `docs/FORMATTING.md` + `docs/MARKDOWN.md` (Codex spec + `experiments/MARKDOWN.md`,
-      cross-referencing); commit. Include a reproducible "Re-validation / Proof" section so
+- [x] 0.13 `docs/FORMATTING.md` + `docs/MARKDOWN.md` + `docs/CODING-STYLE.md` (from
+      `experiments/MARKDOWN.md` + bun-one AGENTS sections), AGENTS/README pointers; commit.
+      Include a reproducible "Re-validation / Proof" section so
       the guarantees can be re-verified by anyone: ragged table -> aligned (prettier matches
       deno), `lint:md` catches MD025/MD040/MD047, `fmt` idempotency, and the IDE
       format-on-save behavioral check. Record the decisions (80 width, proseWrap:always, why
@@ -698,6 +699,11 @@ Seed procedure (document first, then execute - hard rule):
 First product milestone: a working reproduction of whisper - NOT an extracted vtt package
 and NOT an end-to-end player. `bun-one/apps/whisper` is already the consolidated, mature
 implementation; nothing is needed from the dead `whisper-sh` / `whisper-bench`.
+
+PRECONDITION (gate): finish the doc harvest (see Issues - "Harvest existing docs") BEFORE
+starting Epoch 1, while ai-garden is still the live working context. Once Epoch 1 work
+moves into prosodio, that context is effectively lost and the triage can no longer be done
+well. This is a hard gate, not a handoff-time afterthought.
 
 - [ ] Clean-port `bun-one/apps/whisper`, keeping its trusted VTT implementation internal.
       The rename (-> `apps/transcribe`?) and the equivalence/acceptance contract are settled
@@ -969,6 +975,14 @@ commit(s).
   (ai-garden routes `[markdown]` -> deno) which also clobbered two uncommitted edits; we
   discarded the reflow via `git checkout` and re-applied the lost dependency + sanity edits.
   Lesson: don't leave the plan open/autosaving in the editor while Claude edits it.
+- 2026-06-28 - Epoch 0 step 0.13 (first docs; closes the markdown/format group). Wrote
+  `docs/FORMATTING.md` (mechanics + reproducible proof), `docs/MARKDOWN.md` (authoring style
+  + dash-filename convention), `docs/CODING-STYLE.md` (top-down ordering) - harvested from
+  `experiments/MARKDOWN.md` and bun-one `## Markdown Rules` / `## Code Structure`, each
+  citing source. AGENTS.md rewritten tighter and led with the `bun run ci` directive (fmt is
+  the formatting remediation, not a co-equal step); script catalog moved out of FORMATTING
+  into AGENTS; README/AGENTS gained doc pointers. Made the remaining doc harvest a HARD GATE
+  before Epoch 1 (was mistakenly deferred to handoff). All gates green.
 
 ## Issues to address later
 
@@ -1046,8 +1060,16 @@ state + what triggers a revisit.
   accident? Candidate direction: a central config-owning package (cf.
   `bun-one/plans/BUN_ONE_QUALITY.md`, the `@bun-one/quality` idea). Revisit when dotfile
   sprawl across packages becomes painful - not at seed.
-- Harvest existing docs (OPEN): sweep all `docs/*.md` (and stray `*.md` tidbits) across
-  ai-garden - `bun-one/`, `experiments/`, and siblings - so no useful guidance is lost when
-  context moves to prosodio. Files may have been moved or renamed, so search by content,
-  not just path. Triage each into prosodio `docs/` or `thoughts/`, or explicitly drop.
-  Trigger: before the ai-garden context is frozen at handoff (step 0.18).
+- Harvest existing docs (OPEN, partial): sweep all `docs/*.md` (and stray `*.md` tidbits)
+  across ai-garden - `bun-one/`, `experiments/`, and siblings - so no useful guidance is
+  lost when context moves to prosodio. Files may have been moved or renamed, so search by
+  content, not just path. Triage each into prosodio `docs/` or `thoughts/`, or explicitly
+  drop. DONE so far (0.13): the formatting/markdown subset - `experiments/MARKDOWN.md` +
+  bun-one `## Markdown Rules` -> `docs/MARKDOWN.md`; bun-one `## Code Structure` ->
+  `docs/CODING-STYLE.md`; our decisions -> `docs/FORMATTING.md`. REMAINING: the rest of the
+  ~90-file inventory (foundational docs like `WORKSPACE-BUN.md`, `BUN_ONE_QUALITY.md`,
+  `BUN_TANSTACK.md`, STYLING; per-experiment artifacts; seeds). Recipe to apply: import
+  as-is + provenance, reformat as a separate commit, then refactor/rename. Trigger: a HARD
+  GATE before Epoch 1 begins (see Epoch 1 precondition) - while ai-garden is still the live
+  working context. Handoff (0.18) is too late: by then the context needed to triage these
+  docs is gone.
