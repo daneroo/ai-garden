@@ -599,8 +599,9 @@ Markdown / format gates (spec + gates G1-G5 in the Markdown item below):
 
 Scaffold + boundary + CI:
 
-- [ ] 0.14 Dir scaffold (`packages components apps docs thoughts/{plans,research,tickets,reviews}
-      fixtures reports`) with `.gitkeep`; gitignore `data/`; commit.
+- [x] 0.14 Dir scaffold (`packages components apps fixtures thoughts/{plans,research,tickets,reviews}`)
+      with `.gitkeep`; gitignore `data/`; commit. `reports/` skipped (tentative); `data/`
+      gitignored not gitkept. prosodio `a1225e0`.
 - [ ] 0.15 Public/private conventions: `.env.example` for corpus paths (no absolute paths) +
       the central-location config note (see "Public/private boundary"); commit.
 - [ ] 0.16 `bun install && bun run ci` green on the empty workspace (`bun run fmt` first if
@@ -975,6 +976,12 @@ commit(s).
   (ai-garden routes `[markdown]` -> deno) which also clobbered two uncommitted edits; we
   discarded the reflow via `git checkout` and re-applied the lost dependency + sanity edits.
   Lesson: don't leave the plan open/autosaving in the editor while Claude edits it.
+- 2026-06-28 - Epoch 0 step 0.14 (scaffold). prosodio `a1225e0`: skeleton dirs
+  (packages/components/apps/fixtures/thoughts/*) via `.gitkeep`; `data/` gitignored
+  (volatile); `reports/` skipped (tentative). Also trimmed docs hard (prose bloat -> terse
+  rule sheets) and regrouped AGENTS layout into Code/Docs/Data; `data/` reframed as
+  gitignored-volatile (not corpora; corpora live external). bun-test-on-empty-workspace gap
+  to be closed at 0.16 with a root `smoke-remove-me.test.ts`.
 - 2026-06-28 - Epoch 0 step 0.13 (first docs; closes the markdown/format group). Wrote
   `docs/FORMATTING.md` (mechanics + reproducible proof), `docs/MARKDOWN.md` (authoring style
   + dash-filename convention), `docs/CODING-STYLE.md` (top-down ordering) - harvested from
