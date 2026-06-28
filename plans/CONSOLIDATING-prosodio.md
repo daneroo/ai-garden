@@ -605,9 +605,9 @@ Scaffold + boundary + CI:
 - [x] 0.15 Public/private conventions: `.env.example` (provisional `PROSODIO_CORPORA_DIR`,
       no absolute paths); reconciled the boundary section - corpora external, `data/` =
       volatile outputs; commit.
-- [ ] 0.16 `bun install && bun run ci` green on the empty workspace; commit. Plan: add root
-      `smoke-remove-me.test.ts` (`expect(true)`, no deps) to satisfy `bun test`; remove when
-      Epoch 1 brings real tests. fmt:check / lint / check already pass.
+- [x] 0.16 `bun install && bun run ci` GREEN on the empty workspace (prosodio `a2fbf3f`);
+      root `smoke-remove-me.test.ts` satisfies `bun test`, remove when Epoch 1 brings real
+      tests. fmt:check / lint / check / test all pass, exit 0.
 
 Handoff (only after gates G1-G3 are green - see Handoff):
 
@@ -977,6 +977,11 @@ commit(s).
   (ai-garden routes `[markdown]` -> deno) which also clobbered two uncommitted edits; we
   discarded the reflow via `git checkout` and re-applied the lost dependency + sanity edits.
   Lesson: don't leave the plan open/autosaving in the editor while Claude edits it.
+- 2026-06-28 - Epoch 0 steps 0.15-0.16. 0.15: `.env.example` (provisional
+  `PROSODIO_CORPORA_DIR`); reconciled boundary - corpora external, `data/` = volatile
+  outputs (prosodio `85c9d45`). 0.16: `bun run ci` GREEN end-to-end via root
+  `smoke-remove-me.test.ts` (prosodio `a2fbf3f`). Scaffold+boundary+CI group done; only
+  handoff (0.17-0.19) remains.
 - 2026-06-28 - Epoch 0 step 0.14 (scaffold). prosodio `a1225e0`: skeleton dirs
   (packages/components/apps/fixtures/thoughts/*) via `.gitkeep`; `data/` gitignored
   (volatile); `reports/` skipped (tentative). Also trimmed docs hard (prose bloat -> terse
