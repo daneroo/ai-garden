@@ -562,7 +562,7 @@ on.
 ### Epoch 0 - seed and operating contract
 
 Granular checklist - each step is ~one commit; work top-to-bottom; this is the live
-tracker. Steps 0.1-0.16 are done; the Progress Log records what landed.
+tracker. Steps 0.1-0.17 are done; the Progress Log records what landed.
 
 Repo init (git first - nothing is ever untracked):
 
@@ -612,70 +612,37 @@ Scaffold + boundary + CI:
 
 Harvest + handoff - nothing moves until 0.17 is done and Daniel approves:
 
-- [ ] 0.17 HARVEST remaining useful docs from ai-garden (the formatting subset was done in
-      0.13). Hard gate before any move and before Epoch 1. Sub-steps:
-  - [ ] Inventory: list candidate `*.md` (bun-one, experiments; exclude
-        node_modules/deps/dist) into `thoughts/plans/doc-harvest.md`, with a keep/merge/drop
-        + destination column. Daniel helps triage.
-  - [ ] Import keepers as-is into `docs/` or `thoughts/`, each with a provenance pointer
-        (`Ported from ai-garden@<sha>:<path>`); commit.
-  - [ ] Reformat (prettier) in a SEPARATE commit; then refactor/rename.
-  - [ ] Reconcile overlaps: e.g. fold `SEEDING.md` into a `BUN-WORKSPACE.md` (as a seeding
-        section), split per-framework material out, drop bun-one-specific bits.
-- [ ] 0.18 Move this plan to `prosodio/thoughts/plans/` (reflows to 80 under prosodio's
-      prettier); confirm gates; commit in prosodio.
-- [ ] 0.19 Replace the ai-garden copy with a one-line pointer to the new home.
-- [ ] 0.20 `mv prosodio ~/Code/iMetrical/` to the canonical sibling.
+- [x] 0.17 HARVEST remaining useful docs from ai-garden (the formatting subset was done in
+      0.13). Hard gate before any move and before Epoch 1. Done:
+  - [x] Inventory + triage in `thoughts/plans/doc-harvest.md`; Daniel triaged. Signal was
+        small (most of 84 files are placeholders/meta/per-experiment noise).
+  - [x] Imported keepers, then refactored to terse rule-sheets (prettier-clean, ci green).
+  - [x] Reconciled: `SEEDING.md` folded into `WORKSPACE.md`; per-framework material split
+        into `FRAMEWORK-{TANSTACK,ASTRO}.md` (both marked unvalidated); `docs/README.md`
+        index added. Provenance comments stripped at Daniel's request.
+  - `thoughts/` AI-dev lifecycle: RESOLVED — `docs/WORKFLOW.md` (BACKLOG +
+        plans/<id>.md). doc-harvest.md deleted (spent).
+Handoff is no longer "move the monolith". The live-tracker role is already
+migrated (epochs -> `prosodio/thoughts/plans/`, issues -> `BACKLOG.md`). What
+remains here is the knowledge core, which GRADUATES to `prosodio/docs/`
+just-in-time per epoch. The plan dies by attrition; the document is not `mv`'d.
 
-### Epoch 1 - transcribe (first port)
+- [ ] 0.18 Graduate knowledge sections to `prosodio/docs/` as epochs need them
+      (e.g. Port strategy -> docs; Public/private boundary -> docs), repointing
+      the epoch plans' references. Incremental.
+- [ ] 0.19 When nothing valuable remains here, replace this file with a one-line
+      pointer to prosodio.
+- [ ] 0.20 `mv prosodio ~/Code/iMetrical/` to the canonical sibling (rescheduled
+      into the ai-garden cleanup phase).
 
-First product milestone: a working reproduction of whisper - NOT an extracted vtt package
-and NOT an end-to-end player. `bun-one/apps/whisper` is already the consolidated, mature
-implementation; nothing is needed from the dead `whisper-sh` / `whisper-bench`.
+### Epochs 1-4 - migrated to prosodio
 
-PRECONDITION: step 0.17 (doc harvest) and the handoff must be done first - see "Harvest +
-handoff" in Epoch 0. ai-garden context is lost once work moves here.
-
-- [ ] Clean-port `bun-one/apps/whisper`, keeping its trusted VTT implementation internal.
-      The rename (-> `apps/transcribe`?) and the equivalence/acceptance contract are settled
-      during Epoch 1 execution, not pre-specified here (deferred per Codex).
-- [ ] Point it at the central corpora location and `reports/` output; adjust paths only.
-- [ ] Prove the root CI target includes the app.
-- [ ] Use the port to validate runtime-bound package/app conventions.
-- [ ] Acceptance: judged by Daniel at port time (see Port strategy and provenance).
-
-### Epoch 2 - EPUB parsing and validation
-
-- [ ] Port `epub-validate` with its validated findings intact; keep `ParserOutput` as the
-      parser-parity contract.
-- [ ] Introduce the smallest production EPUB abstraction an actual consumer justifies - do
-      not turn the validation adapter boundaries directly into production packages.
-- [ ] Keep browser (Playwright) and Storyteller machinery out of production dependency
-      graphs.
-- [ ] Move full-corpus reports to the private workflow; keep public deterministic
-      fixtures/summaries sufficient to test the tool.
-- [ ] Use this port to exercise dependency sharing, runtime isolation, and dead-dependency
-      checks deliberately.
-
-### Epoch 3 - audiobook collection validation
-
-- [ ] Assess and port the useful `nx-audiobook/apps/validate`, `validators`, and required
-      file-walking.
-- [ ] Re-evaluate the generic `Validation` abstraction against real EPUB-validation needs;
-      do not unify models just because both say "validation".
-- [ ] Exclude the old viewer/conversion surface unless a fresh requirement justifies it.
-
-### Epoch 4 - alignment research
-
-- [ ] Port or mine `audio-deno-match`, `chapter-marks-match` under Bun (candidates, not
-      mature alignment architecture).
-- [ ] Define evaluation corpora and metrics before selecting an algorithm.
-- [ ] Develop the word-level alignment contract in a dedicated plan, informed by the now
-      real transcription and EPUB APIs. Its location model, metrics, and confidence
-      representation are premature here.
-
-Player, finder, TTS, and search remain later capability decisions, not implied members of
-an initial release.
+Decomposed into standalone plans under `prosodio/thoughts/plans/`:
+`epoch1-transcribe`, `epoch2-epub`, `epoch3-audiobook-validation`,
+`epoch4-alignment`. They still lean on the knowledge sections below (Port
+strategy, Public/private boundary, the axes) until those graduate to
+`prosodio/docs/` (see 0.18). Player, finder, TTS, and search remain later
+capability decisions, not implied members of an initial release.
 
 ## Port strategy and provenance
 
@@ -926,80 +893,16 @@ commit(s).
   the formatting remediation, not a co-equal step); script catalog moved out of FORMATTING
   into AGENTS; README/AGENTS gained doc pointers. Made the remaining doc harvest a HARD GATE
   before Epoch 1 (was mistakenly deferred to handoff). All gates green.
+- 2026-06-29 - Epoch 0 step 0.17 (HARVEST) done. Inventory + triage in
+  `thoughts/plans/doc-harvest.md` (signal small: most of 84 files placeholders/meta/noise).
+  Built the `docs/` set as terse rule-sheets: FILE-LAYOUT, WORKSPACE (absorbs SEEDING),
+  DEPENDENCY, FORMATTING, MARKDOWN, CODING-STYLE (+ reconciliation principle), STYLING,
+  FRAMEWORK-{TANSTACK,ASTRO} (marked unvalidated), README index. Refactored hard
+  (importance-first, no package.json restatement, one-concept-one-home); provenance comments
+  stripped. prosodio commits `ce88632`..`f82b6e0`, ci green. Only `thoughts/` AI-dev
+  lifecycle left open. 0.18-0.20 (move plan, pointer, `mv` repo) remain - Daniel's trigger.
 
 ## Issues to address later
 
-Parking lot until prosodio exists and `thoughts/tickets/` becomes the durable home. Each:
-state + what triggers a revisit.
-
-- Agent-instructions convention (PROVISIONAL): is AGENTS.md / CLAUDE.md actually (a)
-  required and (b) respected by agents - and which wins when AGENTS.md, CLAUDE.md, and
-  `.cursor/rules` coexist? Current seed is minimal placeholder. Reconcile against existing
-  examples (`bun-one/CLAUDE.md`, the experiments' CLAUDE/AGENTS files, bun init's generated
-  CLAUDE.md + `.cursor` rule). Revisit after a few epochs actually exercise an agent here.
-- MDX formatting/linting (OPEN, defer): when Astro/TanStack land, `.mdx` files appear.
-  prettier has an mdx parser, but our `lint:md` glob is `**/*.md` (won't match `.mdx`) and
-  markdownlint does not lint mdx. Decide then: whether to format mdx with prettier, add an
-  `[mdx]` block to `.vscode/settings.json`, extend/seperate the lint glob, and what (if any)
-  structural linter covers mdx. No need to test now - revisit at the first `.mdx` file.
-- Document the catalog workflow (TODO at docs time): the `workspaces.catalogs.runtime` map
-  is seeded empty. An entry is added only when a dependency is shared by 2+ workspace
-  packages - whoever introduces it pins one version in the catalog and consumers reference
-  `catalog:runtime`. Demand-driven, not speculative. Multiple named catalogs are expected
-  (bun-one runs both `runtime` (zod, valibot) and `testing` (@testing-library/react)); add
-  a `testing` catalog when test deps arrive. Write this up in `docs/DEPENDENCIES.md` (or a
-  BUN-workspace doc) when docs land. See `bun-one/docs/WORKSPACE-BUN.md` for the reference
-  shape.
-- Validate prettier markdown tables vs deno fmt (VALIDATED 2026-06-28): Daniel had been
-  formatting markdown with `deno fmt` in-editor (ai-garden `.vscode` routes `[markdown]` ->
-  denoland.vscode-deno at the workspace layer) for its table alignment. Tested: a ragged
-  GFM table through prettier came out byte-identical to deno's aligned output, and Daniel
-  confirmed format-on-save in the Antigravity IDE aligns correctly (header separator
-  included). prettier-only is safe for tables. Remaining to spot-check on first real
-  occurrence: alignment markers (`:---:`), very-wide tables, CJK width. Document the result
-  (with the repro test as proof) in `docs/FORMATTING.md` at 0.13.
-- Reconciliation validators: desired -> actual convergence (PRINCIPLE): a recurring pattern
-  Daniel reaches for, k8s-style - state the DESIRED condition generally, compute the ACTUAL
-  state from the source of truth, report/converge the diff. The mechanism is open and not
-  the point (jq, a bun script, CUE - CUE was just one idea, not required); the loop is. Use
-  it to enforce invariants the type system / formatters can't. Naming convention (Daniel's
-  preference): `sanity:*` - signals a precondition/pre-flight gate, not a one-off. Each
-  reconciler is a `sanity:<thing>` script (e.g. `sanity:editor`, `sanity:catalog`), with an
-  umbrella `sanity` running them all, gateable in `ci`. A placeholder `sanity` script exists
-  now (echoes "coming soon") to reserve the entry point. Known instances to build
-  (extensible - this is general, not these two):
-  - Editor settings (not just formatters): desired = any editor settings we care about
-    (formatter routing is the first, but generalize - format-on-save, rulers, whatever);
-    actual = the layered `.vscode`/user JSON. PROVEN kernel: `jsonc-parser` (VS Code's own
-    parser) via bun -> jq, diff actual vs desired per setting. Demonstrated on Cursor:
-    flagged `[markdown]` -> table-formatter and `[json]` -> deno as mismatches.
-  - package.json invariants: e.g. catalog hoisting - if a dependency appears in 2+ workspace
-    packages it MUST be a `catalog:` entry (desired) vs what the package.json files actually
-    declare (actual); plus any other package.json rules we choose to enforce (allowed
-    fields, version-pin policy, script presence). See the catalog-workflow item below.
-  Post-seed; pairs with the `@bun-one/quality` direction.
-- Document line length + proseWrap (TODO at docs time): in `docs/FORMATTING.md` (and/or
-  `docs/MARKDOWN.md`) explain and justify the two prose-formatting choices. Decided so far:
-  `proseWrap: always` (deliberate deviation from the `preserve` default - enforces wrapping,
-  the price is paragraph-reflow churn on edits) and width = prettier default 80 (dropped the
-  100 override; 80 is the universal default - prettier AND deno fmt both default to 80/
-  preserve, and bun-one ships no override). package.json can't carry inline comments (must be
-  strict JSON), so the rationale lives in the doc. Revisit if 80 proves cramped for tables/
-  code-in-prose.
-- Dependency-update workflow (TODO): `outdated` only reports (`bun outdated -r`).
-  Findings (bun 1.3.14): `bun update` = within-range; `bun update --latest` = bump past
-  ranges, all packages, non-interactive; `bun update -i -r` = NATIVE interactive picker,
-  recursive across the workspace (both flags work though absent from --help). This beats
-  `bunx npm-check-updates -i` - native, workspace-aware, no extra tool. CAVEAT: still verify
-  it handles `catalog:` references correctly; catalog bumps may need separate handling.
-  Implemented as `outdated:fix` (`bun update -i -r`, the actionable counterpart to
-  `outdated`) - one interactive way to update, no redundant non-interactive `update`.
-  Document in `docs/DEPENDENCIES.md` with the catalog notes. Revisit when the first
-  dependency goes stale.
-- Config/dotfile ownership (OPEN): bun init (and later tool inits) generate dotfiles whose
-  embedded decisions - tsconfig strictness, ignore globs, version floors - nobody
-  explicitly chose, yet the repo now owns them. "Generated" is not "decided". Who owns
-  these, and how do we make the choices visible/revisitable rather than inherited by
-  accident? Candidate direction: a central config-owning package (cf.
-  `bun-one/plans/BUN_ONE_QUALITY.md`, the `@bun-one/quality` idea). Revisit when dotfile
-  sprawl across packages becomes painful - not at seed.
+Migrated to `prosodio/thoughts/BACKLOG.md` (8 issues, ported as-is; triage
+pending).
