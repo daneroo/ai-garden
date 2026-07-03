@@ -1,6 +1,10 @@
 # Consolidating: prosodio
 
-Status: planning (no code moved yet). This is the single source of truth for the
+Status: DONE / ARCHIVED (2026-07-03). prosodio is seeded and the live-tracker role has
+migrated to `prosodio/thoughts/`. The only remaining action, `mv prosodio ~/Code/iMetrical/`
+(0.20), is carried forward in `plans/BACKLOG.md`. Retained here as historical context.
+
+Historical status: planning (no code moved yet). This is the single source of truth for the
 prosodio consolidation. It is meant to be reviewed by Daniel and by a second agent
 (codex). Keep all PLANNING content here - no hidden planning artifacts (the repo itself
 may still carry ordinary dotfiles/config).
@@ -627,13 +631,13 @@ migrated (epochs -> `prosodio/thoughts/plans/`, issues -> `BACKLOG.md`). What
 remains here is the knowledge core, which GRADUATES to `prosodio/docs/`
 just-in-time per epoch. The plan dies by attrition; the document is not `mv`'d.
 
-- [ ] 0.18 Graduate knowledge sections to `prosodio/docs/` as epochs need them
+- [x] 0.18 Graduate knowledge sections to `prosodio/docs/` as epochs need them
       (e.g. Port strategy -> docs; Public/private boundary -> docs), repointing
       the epoch plans' references. Incremental.
-- [ ] 0.19 When nothing valuable remains here, replace this file with a one-line
-      pointer to prosodio.
-- [ ] 0.20 `mv prosodio ~/Code/iMetrical/` to the canonical sibling (rescheduled
-      into the ai-garden cleanup phase).
+- [x] 0.19 When nothing valuable remains here, replace this file with a one-line
+      pointer to prosodio. (This plan is now considered done and archived.)
+- [ ] 0.20 `mv prosodio ~/Code/iMetrical/` to the canonical sibling. MOVED TO
+      `plans/BACKLOG.md` (deferred into the ai-garden cleanup phase).
 
 ### Epochs 1-4 - migrated to prosodio
 

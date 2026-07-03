@@ -32,8 +32,8 @@ Organizing agentic tool experimentation and planning.
 ```text
 ai-garden/
   plans/ (this dir)                    # High level planning & cross-project meta
-    ├── CONSOLIDATING-whisper*.md      # Active : Consolidation plans (repo-wide concerns)
-    └── WHISPER-MIGRATION.md           # Active : Migration details
+    ├── BACKLOG.md                     # Loose ends carried forward from completed plans
+    └── archive/                       # Completed/superseded plans (prosodio, whisper*)
   agents/                              # Agent workspaces and experimentation
     ├── kilo/
     ├── openclaw/

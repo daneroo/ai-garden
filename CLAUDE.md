@@ -5,15 +5,15 @@ Multi-project AI experimentation repository.
 ## Active Work
 
 - **bun-one/**: Primary Bun/TypeScript monorepo (see bun-one/CLAUDE.md)
-- **Whisper Consolidation**: See CONSOLIDATING-whisper-v2.md for status
+- **prosodio**: Consolidation done; nested repo at `prosodio/` (gitignored). Live
+  tracker moved to `prosodio/thoughts/`.
 
 ## Planning Documents
 
-- CONSOLIDATING-whisper-v2.md - Active whisper pipeline consolidation
-- CONSOLIDATING-whisper.md - Superseded (historical reference)
-- WHISPER-MIGRATION.md - Superseded (historical reference)
+- plans/BACKLOG.md - Loose ends carried forward from completed plans
+- plans/archive/ - Completed/superseded plans (prosodio + whisper consolidations)
 
 ## Legacy Directories (Pending Cleanup)
 
-- whisper-bench/ - Being consolidated into bun-one/apps/whisper
-- whisper-sh/ - Being consolidated into bun-one/apps/whisper
+- whisper-bench/, whisper-sh/ - Superseded by bun-one/apps/whisper; removal tracked
+  in plans/BACKLOG.md
