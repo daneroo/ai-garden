@@ -9,6 +9,8 @@ transcripts) and reading while listening.
 - Winner: `bookplayer-agy-opus46` (Opus).
 - Runner-up: `bookplayer-codex-gpt-5.3-codex` (strong validation and CI
   discipline, but over-typed and less seed-aligned).
+- Honorable-mention: `bookplayer-claude-opus-46` best working player (chapter
+  search audio scrobble)
 - Key takeaway: stricter seed-contract alignment and smaller public type
   surfaces beat heavier abstraction for this app domain.
 
@@ -344,8 +346,8 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
   mapping/mount or route handlers) as long as runtime and security requirements
   below are met.
 - Input validation is required for route params and query params.
-- For TanStack server functions, use `createServerFn` with
-  `inputValidator` (not `validator`).
+- For TanStack server functions, use `createServerFn` with `inputValidator` (not
+  `validator`).
 - `createServerFn` handlers may be synchronous when no `await` work is needed;
   use `async` only when required.
 - Return structured error payloads for not-found and invalid id cases.
@@ -400,8 +402,8 @@ VTT_DIR=../../bun-one/apps/whisper/data/output/
   - persist updates as enrichment completes
 - Use bounded-concurrency ffprobe workers (documented default, for example `8`)
   for background enrichment.
-- Prefer a standard limiter utility (for example `p-limit`) for bounded
-  ffprobe concurrency.
+- Prefer a standard limiter utility (for example `p-limit`) for bounded ffprobe
+  concurrency.
 - Cache extracted metadata server-side (memory + persisted data file) and only
   recompute when file fingerprint changes.
 
@@ -518,12 +520,12 @@ Extract or derive:
 
 ### Metrics
 
-| Implementation                    | Prod files | Test files | Prod LoC | Test LoC | Test/Prod | Cmplx/Fn | Cmplx/Sum |  Avg | P90 | Max | CI now |
-| --------------------------------- | ---------: | ---------: | -------: | -------: | --------: | -------: | --------: | ---: | --: | --: | :----: |
-| `bookplayer-agy-opus46`           |         19 |          0 |     2397 |        0 |      0.00 |       68 |       375 | 5.51 |  10 |  41 |   ❌   |
-| `bookplayer-claude-opus-46`       |          7 |          1 |     1110 |        8 |      0.01 |       35 |       191 | 5.46 |   9 |  31 |   ❌   |
-| `bookplayer-codex-gpt-5.3-codex`  |         15 |          2 |     2441 |      149 |      0.06 |       61 |       444 | 7.28 |  14 |  60 |   ✅   |
-| `bookplayer-opencode-gemini3pro-high` |      17 |          2 |     1687 |      116 |      0.07 |       37 |       280 | 7.57 |  20 |  43 |   ❌   |
+| Implementation                        | Prod files | Test files | Prod LoC | Test LoC | Test/Prod | Cmplx/Fn | Cmplx/Sum |  Avg | P90 | Max | CI now |
+| ------------------------------------- | ---------: | ---------: | -------: | -------: | --------: | -------: | --------: | ---: | --: | --: | :----: |
+| `bookplayer-agy-opus46`               |         19 |          0 |     2397 |        0 |      0.00 |       68 |       375 | 5.51 |  10 |  41 |   ❌   |
+| `bookplayer-claude-opus-46`           |          7 |          1 |     1110 |        8 |      0.01 |       35 |       191 | 5.46 |   9 |  31 |   ❌   |
+| `bookplayer-codex-gpt-5.3-codex`      |         15 |          2 |     2441 |      149 |      0.06 |       61 |       444 | 7.28 |  14 |  60 |   ✅   |
+| `bookplayer-opencode-gemini3pro-high` |         17 |          2 |     1687 |      116 |      0.07 |       37 |       280 | 7.57 |  20 |  43 |   ❌   |
 
 Notes:
 
@@ -546,19 +548,19 @@ Notes:
   defines `.epub` as optional. It also has the heaviest type boundary surface
   (`LibraryPair`, `PublicLibraryPair`, separate asset URL contracts), which
   raises coupling risk for future change.
-- `bookplayer-opencode-gemini3pro-high` has useful performance intent
-  (scan lock + cache + bounded metadata concurrency), but core route wiring is
+- `bookplayer-opencode-gemini3pro-high` has useful performance intent (scan
+  lock + cache + bounded metadata concurrency), but core route wiring is
   incomplete: UI expects `/api/media/*` endpoints that are not implemented as
   server routes in `src/routes/api/...`. Player code is monolithic and less
   maintainable.
-- `bookplayer-claude-opus-46` is the lightest code footprint and easiest to
-  read at a glance, but it is under-complete against this seed (phase depth,
-  route naming, scanner contract looseness, and transcript-strip behavior when
-  VTT is absent).
+- `bookplayer-claude-opus-46` is the lightest code footprint and easiest to read
+  at a glance, but it is under-complete against this seed (phase depth, route
+  naming, scanner contract looseness, and transcript-strip behavior when VTT is
+  absent).
 
 ### Bottom Line
 
 - For this experiment, `bookplayer-agy-opus46` is preferred for practical
   seed-compliance and architectural balance.
-- `bookplayer-codex-gpt-5.3-codex` remains a technically strong alternate if
-  its contract drift and public type surface are trimmed.
+- `bookplayer-codex-gpt-5.3-codex` remains a technically strong alternate if its
+  contract drift and public type surface are trimmed.
