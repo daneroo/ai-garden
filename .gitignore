@@ -9,3 +9,8 @@ external-repos/
 # out to a sibling once it is ready for handoff. ai-garden does not track it.
 prosodio/
 .DS_Store
+# Claude Code local settings + tool scratch (per-machine, never committed).
+# Commented out because I don;t want these hanging around!
+#.claude/settings.local.json
+#.claude/launch.json
+#.playwright-mcp/
